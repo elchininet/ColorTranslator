@@ -1,0 +1,22 @@
+#demo4 > div {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  height: 500px;
+  margin: 0 auto;
+  position: relative;
+  width: 500px;
+}
+
+#demo4 .box {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-size: 10px;
+  height: 16.666666%;
+  justify-content: center;
+  text-align: center;
+  width: 16.666666%;
+}

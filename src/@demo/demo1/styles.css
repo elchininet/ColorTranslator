@@ -1,0 +1,24 @@
+#demo1 > div {
+  border: 10px solid #fff;
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  height: 500px;
+  margin: 0 auto;
+  position: relative;
+  width: 500px;
+}
+
+#demo1 .box {
+  align-items: center;
+  display: flex;
+  box-sizing: border-box;
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-family: Arial;
+  font-size: 10px;
+  justify-content: center;
+  text-align: center;
+  height: 10%;
+  width: 10%;
+}
