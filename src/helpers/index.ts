@@ -1,5 +1,13 @@
-import { NumberOrString, RGBObject } from '@types';
+import { NumberOrString } from '@types';
 import { PCENT, HEX } from '#constants';
+
+//---Has property
+export const hasProp = <T>(obj: T, prop: string): boolean => Object.prototype.hasOwnProperty.call(obj, prop);
+
+//---Get a percentage
+export const percent = (percent: NumberOrString): number => PCENT.test(`${percent}`)
+    ? +(`${percent}`.replace(PCENT, '$1'))
+    : Math.min(+percent, 100);
 
 //---Convert to decimal
 export const getDEC = (hex: string): number => {
@@ -21,15 +29,35 @@ export const toHEX = (h: number | string): string => {
         hex = `0${hex}`;
     }
     return hex;
-}
+};
 
-//---Calculate a decimal 255 value from a percent
-export const getBase255Number = (color: string): number => PCENT.test(color)
-    ? Math.min(255 * parseInt(color) / 100, 255)
-    : Math.min(parseInt(color), 255);
+//---Calculate a decimal 255 from an RGB color
+export const getBase255Number = (color: string, alpha: boolean = false): number => {
+    if (!alpha && PCENT.test(color)) {
+        return Math.min(255 * +(color.replace(PCENT, '$1')) / 100, 255);
+    }
+    if (HEX.test(color)) {
+        if (color.length === 3) {
+            return alpha
+                ? parseInt(color + color.slice(-1)) / 255
+                : parseInt(color + color.slice(-1));
+        }
+        return alpha
+            ? parseInt(color) / 255
+            : parseInt(color);
+    }
+    return Math.min(+color, alpha ? 1 : 255);
+};
+
 
 //---Calculate a decimal 0-1 value from CMYK value
-export const getCMYKNumber = (color: string): number => Math.min(PCENT.test(color) ? parseInt(color) / 100 : parseInt(color), 1);
+export const getCMYKNumber = (color: string): number => Math.min(PCENT.test(color) ? +(color.replace(PCENT, '$1')) / 100 : +color, 1);
 
 //---Return an ordered string from an array values
-export const getOrderedArrayString = (keys: Array<string>): string => keys.sort().join().toUpperCase();
+export const getOrderedArrayString = (keys: string[]): string => keys.sort().join().toUpperCase();
+
+//---Round value
+export const round = (value: NumberOrString, decimals: number = 0): number => {
+    const exp = Math.pow(10, decimals);
+    return Math.round(+value * exp) / exp;
+};

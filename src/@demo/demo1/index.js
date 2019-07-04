@@ -1,9 +1,9 @@
-import "./styles.css";
+import './styles.css';
 
-export default (colortranslator) => {
+export default (ColorTranslator) => {
 
-    const container = document.createElement("div");
-    const hsl = { h: 180, s: "", l: "" };
+    const container = document.createElement('div');
+    const hsl = { h: 180, s: '', l: '' };
 
     for (let row = 0; row < 10; row++) {
 
@@ -12,11 +12,11 @@ export default (colortranslator) => {
             hsl.s = `${row * 10}%`;
             hsl.l = `${col * 5 + 30}%`;
 
-            const rgb = colortranslator.toHEX(hsl);
-            const code = colortranslator.toRGB(hsl, false);
-            const box = document.createElement("div");
+            const rgb = ColorTranslator.toHEX(hsl);
+            const code = ColorTranslator.toRGB(hsl, false);
+            const box = document.createElement('div');
 
-            box.classList.add("box");
+            box.classList.add('box');
             box.style.background = rgb;
 
             box.innerText =

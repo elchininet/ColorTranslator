@@ -44,10 +44,11 @@ export const rgbToCMYK = (r: number, g: number, b: number): CMYKObjectFinal => {
     r /= 255;
     g /= 255;
     b /= 255;
-    const k = Math.max(r, g, b);
-    const c = (k - r) / k;
-    const m = (k - g) / k;
-    const y = (k - b) / k;
+    const k = 1 - Math.max(r, g, b);
+    const k1 = 1 - k;
+    const c = (k1 - r) / k1;
+    const m = (k1 - g) / k1;
+    const y = (k1 - b) / k1;
     return {
         c: Math.round(c * 100),
         m: Math.round(m * 100),
@@ -61,13 +62,13 @@ export const rgbToHSL = (r: number, g: number, b: number, a: number = 1): HSLObj
     r /= 255;
     g /= 255;
     b /= 255;
-    a = Math.min(a, 1)
+    a = Math.min(a, 1);
     const max = Math.max(r, g, b);
     const min = Math.min(r, g, b);
     const d = max - min;
     let h = 0;
     let s = 0;
-    let l = (max + min) / 2;
+    const l = (max + min) / 2;
     if (d === 0) {
         h = 0;
         s = 0;
@@ -84,7 +85,7 @@ export const rgbToHSL = (r: number, g: number, b: number, a: number = 1): HSLObj
                 break;
         }
         h = Math.round(h * 60);
-        if (h < 0) { h += 360 };
+        if (h < 0) { h += 360; }
         s = d / (1 - Math.abs(2 * l - 1));
     }
     return {
@@ -93,4 +94,4 @@ export const rgbToHSL = (r: number, g: number, b: number, a: number = 1): HSLObj
         l: Math.round(l * 100),
         a
     };
-}
+};

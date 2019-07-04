@@ -1,9 +1,9 @@
-import "./styles.css";
+import './styles.css';
 
-export default (colortranslator) => {
+export default (ColorTranslator) => {
 
-    const container = document.createElement("div");
-    const hsl = { h: 0, s: "90%", l: "50%" };
+    const container = document.createElement('div');
+    const hsl = { h: 0, s: '90%', l: '50%' };
     const hue = [undefined, 55, 30, 0, 290, 220, 130];
     const total = hue.length;
 
@@ -17,11 +17,11 @@ export default (colortranslator) => {
             }
             hsl.h = hue[index];
             const rgb = hue[index] === undefined
-                ? "#FFF"
-                : colortranslator.toHEX(hsl);
-            const box = document.createElement("div");
+                ? '#FFF'
+                : ColorTranslator.toHEX(hsl);
+            const box = document.createElement('div');
 
-            box.classList.add("flag");
+            box.classList.add('flag');
             box.style.background = rgb;
 
             container.appendChild(box);

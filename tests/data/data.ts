@@ -1,5 +1,5 @@
 import { ColorInput, RGBOutput, HSLOutput, CMYKOutput } from '../../src/@types';
-import { colortranslator as ct } from '../../src/colortranslator';
+import { ColorTranslator as ct } from '../../src/';
 
 export interface ColorProps {
     rgb: ColorInput;
@@ -14,9 +14,7 @@ export interface ColorProps {
     hslObject: ColorInput;
     hsla: ColorInput;
     hslaObject: ColorInput;
-    cmyk: ColorInput;
-    cmykObject: ColorInput;
-};
+}
 
 export interface ColorFunction {
     name: string;
@@ -39,7 +37,7 @@ export interface ColorFunctionProps {
     hslaObject: ColorFunction;
     cmyk: ColorFunction;
     cmykObject: ColorFunction;
-};
+}
 
 export const COLORS = [
     {
@@ -54,9 +52,7 @@ export const COLORS = [
         hsl: 'hsl(0,100%,50%)',
         hslObject: { h: 0, s: 100, l: 50 },
         hsla: 'hsla(0,100%,50%,1)',
-        hslaObject: { h: 0, s: 100, l: 50, a: 1 },
-        cmyk: 'device-cmyk(0%,100%,100%,0%)',
-        cmykObject: { c: 0, m: 100, y: 100, k: 0 }
+        hslaObject: { h: 0, s: 100, l: 50, a: 1 }
     },
     {
         rgb: 'rgb(0,255,0)',
@@ -70,9 +66,7 @@ export const COLORS = [
         hsl: 'hsl(120,100%,50%)',
         hslObject: { h: 120, s: 100, l: 50 },
         hsla: 'hsla(120,100%,50%,1)',
-        hslaObject: { h: 120, s: 100, l: 50, a: 1 },
-        cmyk: 'device-cmyk(100%,0%,100%,0%)',
-        cmykObject: { c: 100, m: 0, y: 100, k: 0 }
+        hslaObject: { h: 120, s: 100, l: 50, a: 1 }
     },
     {
         rgb: 'rgb(0,0,255)',
@@ -86,9 +80,7 @@ export const COLORS = [
         hsl: 'hsl(240,100%,50%)',
         hslObject: { h: 240, s: 100, l: 50 },
         hsla: 'hsla(240,100%,50%,1)',
-        hslaObject: { h: 240, s: 100, l: 50, a: 1 },
-        cmyk: 'device-cmyk(100%,100%,0%,0%)',
-        cmykObject: { c: 100, m: 100, y: 0, k: 0 }
+        hslaObject: { h: 240, s: 100, l: 50, a: 1 }
     },
     {
         rgb: 'rgb(255,0,255)',
@@ -102,9 +94,7 @@ export const COLORS = [
         hsl: 'hsl(300,100%,50%)',
         hslObject: { h: 300, s: 100, l: 50 },
         hsla: 'hsla(300,100%,50%,1)',
-        hslaObject: { h: 300, s: 100, l: 50, a: 1 },
-        cmyk: 'device-cmyk(0%,100%,0%,0%)',
-        cmykObject: { c: 0, m: 100, y: 0, k: 0 }
+        hslaObject: { h: 300, s: 100, l: 50, a: 1 }
     },
     {
         rgb: 'rgb(255,255,255)',
@@ -118,9 +108,7 @@ export const COLORS = [
         hsl: 'hsl(0,0%,100%)',
         hslObject: { h: 0, s: 0, l: 100 },
         hsla: 'hsla(0,0%,100%,1)',
-        hslaObject: { h: 0, s: 0, l: 100, a: 1 },
-        cmyk: 'device-cmyk(0%,0%,0%,0%)',
-        cmykObject: { c: 0, m: 0, y: 0, k: 0 }
+        hslaObject: { h: 0, s: 0, l: 100, a: 1 }
     },
     {
         rgb: 'rgb(0,0,0)',
@@ -134,9 +122,7 @@ export const COLORS = [
         hsl: 'hsl(0,0%,0%)',
         hslObject: { h: 0, s: 0, l: 0 },
         hsla: 'hsla(0,0%,0%,1)',
-        hslaObject: { h: 0, s: 0, l: 0, a: 1 },
-        cmyk: 'device-cmyk(0%,0%,0%,100%)',
-        cmykObject: { c: 0, m: 0, y: 0, k: 100 }
+        hslaObject: { h: 0, s: 0, l: 0, a: 1 }
     },
     {
         rgb: 'rgb(64,64,64)',
@@ -150,9 +136,7 @@ export const COLORS = [
         hsl: 'hsl(0,0%,25%)',
         hslObject: { h: 0, s: 0, l: 25 },
         hsla: 'hsla(0,0%,25%,1)',
-        hslaObject: { h: 0, s: 0, l: 25, a: 1 },
-        cmyk: 'device-cmyk(50%,50%,50%,50%)',
-        cmykObject: { c: 50, m: 50, y: 50, k: 50 }
+        hslaObject: { h: 0, s: 0, l: 25, a: 1 }
     }
 ];
 

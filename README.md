@@ -6,26 +6,27 @@
 
 A JavaScript library, written in TypeScript, to convert among different color models
 
-# Demo
+## Demo
 
 https://elchininet.github.io/ColorTranslator/
 
-# Installation
+## Installation
 
-<h4>Using NPM</h4>
+#### Using NPM
 
 ```
 npm install colortranslator
 ```
 
-<h4>Using Yarn</h4>
+#### Using Yarn
 
 ```
 yarn add colortranslator
 ```
 
-<h4>In the browser</h4>
-It is possible to include a compiled version of the package directly in an HTML file. It will create a global `colortranslator` variable that can be accessed from anywhere in your JavaScript code.
+#### In the browser
+
+It is possible to include a compiled version of the package directly in an HTML file. It will create a global `ColorTranslator` variable that can be accessed from anywhere in your JavaScript code.
 
 1. Copy the JavaScript file `colortranslator.web.js`, located in the `dist` folder
 2. Put it in the folder that you prefer in your web server
@@ -35,34 +36,63 @@ It is possible to include a compiled version of the package directly in an HTML 
 <script src="wherever/you/instelled/colortranslator.web.js"></script>
 ```
 
-# Scripts
+#### Importing using CommonJS
 
-<h4>build</h4>
+```javascript
+const { ColorTranslator } = require('colortranslator');
+```
+
+#### Importing using ES6 modules
+
+```javascript
+import { ColorTranslator } from 'colortranslator';
+```
+
+#### Using in the browser
+
+```javascript
+/* Use it directly in your JavaScript code */
+ColorTranslator;
+
+/* Or access to the global variable if there is a variable with this name in the same scope */
+window.ColorTranslator;
+```
+
+## Scripts
+
+#### build
 
 `npm run build`
 
 Transpiles the TypeScript code and creates two bundles in the `dist` folder (`colortranslator.node.js` for Node environments and `colortranslator.web.js` to use directly in the browser).
 
-<h4>test</h4>
+#### test
 
 `npm run test`
 
 Runs multiple dynamic tests converting from / to all the color models available (excepting CMYK) using a table of colors.
 
-<h4>demo</h4>
+#### lint
+
+`npm run lint`
+
+Runs eslint in source files.
+
+#### demo
 
 `npm run demo`
 
 Opens a development server that provides live reloading using [webpack-dev-server](https://github.com/webpack/webpack-dev-server). Some demo examples located in the `@demo` folder will be shown. You can modify the code of the demos and the changes will be live reloaded in the browser.
 
-# API
+## API
 
 It is not needed to specify the color model from which you are converting, the API will detect the format. You only need to specify to which color model you want to convert calling the specific method.
 
-<h4>Input</h4>
+#### Input
+
 It is possible to convert from a CSS string or an object.
 
-<h6>CSS string inputs</h6>
+###### CSS string inputs
 
 | Example of CSS string inputs      | Description                                                |
 | --------------------------------- | ---------------------------------------------------------- |
@@ -78,21 +108,24 @@ It is possible to convert from a CSS string or an object.
 | `device-cmyk(0%, 100%, 100%, 0%)` | Device-dependent functional CMYK notation with percentages |
 | `device-cmyk(0, 1, 1, 0)`         | Device-dependent functional CMYK notation with numbers     |
 
-<h6>Object inputs</h6>
+###### Object inputs
 
-| Example of object inputs                       | Description                    |
-| ---------------------------------------------- | ------------------------------ |
-| `{r: "0xFF", g: "0x00", b: "0xFF"}`            | Hexadecimal color              |
-| `{r: "0xF", g: "0x0", b: "0xF"}`               | Shorthand hexadecimal color    |
-| `{r: "0xFF", g: "0x00", b: "0xFF", a: "0x80"}` | Hexadecimal color with alpha   |
-| `{r: 255, g: 0, b: 255}`                       | RGB notation                   |
-| `{r: 255, g: 0, b: 255, a: 0.5}`               | RGB notation with alpha        |
-| `{h: 300, s: "100%", l: "50%"}`                | HSL notation                   |
-| `{h: 300, s: "100%", l: "50%", a: 0.5}`        | HSL notation with alpha        |
-| `{c: "0%", m: "100%", y: "100%", k: "0%"}`     | CMYK notation with percentages |
-| `{c: 0, m: 1, y: 1, k: 0}`                     | CMYK notation with numbers     |
+| Example of object inputs                       | Description                               |
+| ---------------------------------------------- | ----------------------------------------- |
+| `{r: "0xFF", g: "0x00", b: "0xFF"}`            | Hexadecimal color                         |
+| `{r: "0xF", g: "0x0", b: "0xF"}`               | Shorthand hexadecimal color               |
+| `{r: "0xFF", g: "0x00", b: "0xFF", a: "0x80"}` | Hexadecimal color with alpha              |
+| `{r: 255, g: 0, b: 255}`                       | RGB notation                              |
+| `{r: 255, g: 0, b: 255, a: 0.5}`               | RGB notation with alpha                   |
+| `{h: 300, s: "100%", l: "50%"}`                | HSL notation using percentages            |
+| `{h: 300, s: 100, l: 50}`                      | HSL notation using numbers                |
+| `{h: 300, s: "100%", l: "50%", a: 0.5}`        | HSL notation with alpha using percentages |
+| `{h: 300, s: 100, l: 50, a: 0.5}`              | HSL notation with alpha using numbers     |
+| `{c: "0%", m: "100%", y: "100%", k: "0%"}`     | CMYK notation using percentages           |
+| `{c: 0, m: 1, y: 1, k: 0}`                     | CMYK notation using numbers               |
 
-<h4>Methods</h4>
+#### Methods
+
 There are 7 methods available and all of them accept any of the previous inputs as the first parameter. The second parameter is optional and it specifies if the output should be a CSS string or an object:
 
 ```
@@ -111,34 +144,20 @@ anyMethod(color: string | object, css: boolean = true)
 
 > **Note:** The conversion to a CMYK color is made taking a random value of black as a base (in this case, taking the greater value from red, green or blue). When a value of black is assumed, the rest of the colors can be calculated from it. The result will be visually similar to the original light color, but if you try to convert it back you will not obtain the same original value.
 
-# Examples
-
-<h4>Importing using CommonJS</h4>
+## Example methods
 
 ```javascript
-const { colortranslator } = require('colortranslator');
-```
+ColorTranslator.toRGB('#FF00FF'); // rgb(255,0,255)
 
-<h4>Importing using ES6 modules</h4>
+ColorTranslator.toRGBA('hsl(50, 20%, 90%)'); // rgba(235,233,224,1)
 
-```javascript
-import { colortranslator } from 'colortranslator';
-```
+ColorTranslator.toHSL('rgb(255, 0, 0)'); // hsl(0,100%,50%)
 
-<h4>Example methods</h4>
+ColorTranslator.toHSLA('rgba(0, 255, 255, .5)'); // hsla(180,100%,50%,0.5)
 
-```javascript
-colortranslator.toRGB('#FF00FF'); // rgb(255,0,255)
+ColorTranslator.toCMYK('#F0F', false); // {c: 0, m: 100, y: 0, k: 0}
 
-colortranslator.toRGBA('hsl(50, 20%, 90%)'); // rgba(235,233,224,1)
+ColorTranslator.toRGB({ h: 115, s: '70%', l: '45%' }); // rgb(48,195,34)
 
-colortranslator.toHSL('rgb(255, 0, 0)'); // hsl(0,100%,50%)
-
-colortranslator.toHSLA('rgba(0, 255, 255, .5)'); // hsla(180,100%,50%,0.5)
-
-colortranslator.toCMYK('#F0F', false); // {c: 0, m: 100, y: 0, k: 0}
-
-colortranslator.toRGB({ h: 115, s: '70%', l: '45%' }); // rgb(48,195,34)
-
-colortranslator.toHSLA({ r: 115, g: 200, b: 150, a: 0.5 }); // hsla(145,44%,62%,0.5)
+ColorTranslator.toHSLA({ r: 115, g: 200, b: 150, a: 0.5 }); // hsla(145,44%,62%,0.5)
 ```

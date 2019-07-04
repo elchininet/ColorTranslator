@@ -48,3 +48,9 @@ export type ColorInput = string | Color;
 export type RGBOutput = string | RGBObject;
 export type HSLOutput = string | HSLObject;
 export type CMYKOutput = string | CMYKObject;
+
+export type Omit<T, K> = Exclude<T, K>
+
+export interface ObjectProps<T> {
+    [key: string]: T;
+}

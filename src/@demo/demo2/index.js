@@ -1,9 +1,9 @@
-import "./styles.css";
+import './styles.css';
 
-export default (colortranslator) => {
+export default (ColorTranslator) => {
 
-    const container = document.createElement("div");
-    const hsl = { h: 0, s: "100%", l: "50%" };
+    const container = document.createElement('div');
+    const hsl = { h: 0, s: '100%', l: '50%' };
     const hue = [0, 30, 60, 120, 240, 280, 320, 0];
     let rainbow;
 
@@ -11,9 +11,9 @@ export default (colortranslator) => {
 
         hsl.h = hue[r];
 
-        const rgb = colortranslator.toHEX(hsl);
-        const bow = document.createElement("div");
-        bow.classList.add("rainbow");
+        const rgb = ColorTranslator.toHEX(hsl);
+        const bow = document.createElement('div');
+        bow.classList.add('rainbow');
         bow.style.background = rgb;
 
         if (rainbow) {
@@ -25,7 +25,7 @@ export default (colortranslator) => {
         rainbow = bow;
     }
 
-    rainbow.style.background = "#333";
+    rainbow.style.background = '#333';
 
     return container;
 
