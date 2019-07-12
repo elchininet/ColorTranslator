@@ -61,3 +61,6 @@ export const round = (value: NumberOrString, decimals: number = 0): number => {
     const exp = Math.pow(10, decimals);
     return Math.round(+value * exp) / exp;
 };
+
+//---Minimum and maximum
+export const minmax = (n: number, min: number, max: number): number => Math.max(min, Math.min(n, max));

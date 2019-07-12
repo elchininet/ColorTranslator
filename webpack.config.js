@@ -11,6 +11,8 @@ const aliases = Object.keys(paths).reduce(
     {}
 );
 
+let pluginsCreated = false;
+
 const getConfig = (node) => {
 
     const output = node
@@ -27,10 +29,11 @@ const getConfig = (node) => {
 
     const plugins = [];
 
-    if (node) {
+    if (!pluginsCreated) {
         plugins.push(
             new CleanWebpackPlugin()
         );
+        pluginsCreated = true;
     }
 
     return {
@@ -53,7 +56,4 @@ const getConfig = (node) => {
     };
 };
 
-const nodeConfig = getConfig(true);
-const webConfig = getConfig(false);
-
-module.exports = [nodeConfig, webConfig];
+module.exports = [getConfig(true), getConfig(false)];

@@ -3,26 +3,25 @@ import './styles.css';
 export default (ColorTranslator) => {
 
     const container = document.createElement('div');
-    const hsl = { h: 180, s: '', l: '' };
+    const color = new ColorTranslator('hsl(180,100%,50%)');
 
     for (let row = 0; row < 10; row++) {
 
         for (let col = 0; col < 10; col++) {
 
-            hsl.s = `${row * 10}%`;
-            hsl.l = `${col * 5 + 30}%`;
-
-            const rgb = ColorTranslator.toHEX(hsl);
-            const code = ColorTranslator.toRGB(hsl, false);
+            color
+                .setS(row * 10)
+                .setL(col * 5 + 30);
+                
             const box = document.createElement('div');
 
             box.classList.add('box');
-            box.style.background = rgb;
+            box.style.background = color.HEX;
 
             box.innerText =
-                `R:${code.r}
-                 G:${code.g}
-                 B:${code.b}`;
+                `R:${color.R}
+                 G:${color.G}
+                 B:${color.B}`;
             container.appendChild(box);
 
         }

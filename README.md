@@ -32,8 +32,8 @@ It is possible to include a compiled version of the package directly in an HTML 
 2. Put it in the folder that you prefer in your web server
 3. Include it in your HTML file
 
-```
-<script src="wherever/you/instelled/colortranslator.web.js"></script>
+```javascript
+<script src="wherever/you/instelled/colortranslator.web.js" />
 ```
 
 #### Importing using CommonJS
@@ -64,7 +64,7 @@ window.ColorTranslator;
 
 `npm run build`
 
-Transpiles the TypeScript code and creates two bundles in the `dist` folder (`colortranslator.node.js` for Node environments and `colortranslator.web.js` to use directly in the browser).
+Transpiles the TypeScript code and creates two bundles in the `dist` folder (`index.js` for Node environments and `colortranslator.web.js` to use directly in the browser).
 
 #### test
 
@@ -86,11 +86,11 @@ Opens a development server that provides live reloading using [webpack-dev-serve
 
 ## API
 
-It is not needed to specify the color model from which you are converting, the API will detect the format. You only need to specify to which color model you want to convert calling the specific method.
+> **Note:** The conversion to a CMYK color is made taking a random value of black as a base (in this case, taking the greater value from red, green or blue). When a value of black is assumed, the rest of the colors can be calculated from it. The result will be visually similar to the original light color, but if you try to convert it back you will not obtain the same original value.
 
 #### Input
 
-It is possible to convert from a CSS string or an object.
+The input can be a CSS string or an object:
 
 ###### CSS string inputs
 
@@ -124,27 +124,139 @@ It is possible to convert from a CSS string or an object.
 | `{c: "0%", m: "100%", y: "100%", k: "0%"}`     | CMYK notation using percentages           |
 | `{c: 0, m: 1, y: 1, k: 0}`                     | CMYK notation using numbers               |
 
-#### Methods
+#### Class instantiation
 
-There are 7 methods available and all of them accept any of the previous inputs as the first parameter. The second parameter is optional and it specifies if the output should be a CSS string or an object:
+It is possible to instantiate the class using any of the previous inputs:
+
+###### Class instantiation examples
+
+```javascript
+const hex = new ColorTranslator('#FF00FF');
+
+const rgb = new ColorTranslator('rgb(255, 0, 0)');
+
+const hsl = new ColorTranslator('hsl(50, 20%, 90%)');
+
+const hsla = new ColorTranslator({ r: 115, g: 200, b: 150, a: 0.5 });
+
+const cmyk = new ColorTranslator({ c: 100, m: 100, y: 0, k: 0 });
+```
+
+#### Class public methods
+
+There are 11 chainable public methods and all of them accept a number as input:
+
+| Public methods | Input           | Description                                        |
+| -------------- | --------------- | -------------------------------------------------- |
+| setH           | 0 ≤ input ≤ 360 | Set the color hue                                  |
+| setS           | 0 ≤ input ≤ 100 | Set the color saturation percentage                |
+| setL           | 0 ≤ input ≤ 100 | Set the color lightness percentage                 |
+| setR           | 0 ≤ input ≤ 255 | Set the red value of the color                     |
+| setG           | 0 ≤ input ≤ 255 | Set the green value of the color                   |
+| setB           | 0 ≤ input ≤ 255 | Set the blue value of the color                    |
+| setC           | 0 ≤ input ≤ 100 | Set the CMYK cyan percentage value of the color    |
+| setM           | 0 ≤ input ≤ 100 | Set the CMYK magenta percentage value of the color |
+| setY           | 0 ≤ input ≤ 100 | Set the CMYK yellow percentage value of the color  |
+| setK           | 0 ≤ input ≤ 100 | Set the CMYK black percentage value of the color   |
+| setA           | 0 ≤ input ≤ 1   | Set the alpha value of the color                   |
+
+###### Class public methods examples
+
+You can also consult the [demo 1](https://elchininet.github.io/ColorTranslator/#demo1) and the [demo 2](https://elchininet.github.io/ColorTranslator/#demo2) to check the use of the public methods.
+
+```javascript
+const color = new ColorTranslator('#FF00FF');
+
+color
+  .setH(120)
+  .setS(80)
+  .setA(0.5);
+
+color
+  .setR(255)
+  .setG(150)
+  .setA(0.25);
+```
+
+#### Class public readonly properties
+
+There are 7 properties to get the CSS representation of the color:
+
+| Property | Description                                         |
+| -------- | --------------------------------------------------- |
+| HEX      | Get the the object hex representation of the color  |
+| HEXA     | Get the the object hexa representation of the color |
+| RGB      | Get the the object rgb representation of the color  |
+| RGBA     | Get the the object rgba representation of the color |
+| HSL      | Get the the object hsl representation of the color  |
+| HSLA     | Get the the object hsla representation of the color |
+| CMYK     | Get the the object cmyk representation of the color |
+
+There are 7 properties to get the object representation of the color:
+
+| Property   | Description                                         |
+| ---------- | --------------------------------------------------- |
+| HEXObject  | Get the the object hex representation of the color  |
+| HEXAObject | Get the the object hexa representation of the color |
+| RGBObject  | Get the the object rgb representation of the color  |
+| RGBAObject | Get the the object rgba representation of the color |
+| HSLObject  | Get the the object hsl representation of the color  |
+| HSLAObject | Get the the object hsla representation of the color |
+| CMYKObject | Get the the object cmyk representation of the color |
+
+There are 11 properties to get the individual color values:
+
+| Property | Description                                        |
+| -------- | -------------------------------------------------- |
+| H        | Get the color hue                                  |
+| S        | Get the color saturation percentage                |
+| L        | Get the color lightness percentage                 |
+| R        | Get the red value of the color                     |
+| G        | Get the green value of the color                   |
+| B        | Get the blue value of the color                    |
+| C        | Get the CMYK cyan percentage value of the color    |
+| M        | Get the CMYK magenta percentage value of the color |
+| Y        | Get the CMYK yellow percentage value of the color  |
+| K        | Get the CMYK black percentage value of the color   |
+| A        | Get the alpha value of the color                   |
+
+###### Class public properties examples
+
+You can also consult the [demo 1](https://elchininet.github.io/ColorTranslator/#demo1) and the [demo 2](https://elchininet.github.io/ColorTranslator/#demo2) to check the use of the public properties.
+
+```javascript
+const color = new ColorTranslator('#FF00FF');
+
+color.R; // 255
+color.G; // 0
+color.B; // 255
+color.RGB; // rgb(255,0,255)
+color.HSLA; // hsla(300,100%,50%,1)
+```
+
+#### Class static methods
+
+It is not needed to specify the color model from which you are converting, the API will detect the format. You only need to specify to which color model you want to convert calling the specific static method.
+
+There are 7 static methods available and all of them accept any of the mentioned inputs as the first parameter. The second parameter is optional and it specifies if the output should be a CSS string or an object:
 
 ```
-anyMethod(color: string | object, css: boolean = true)
+anyStaticMethod(color: string | object, css: boolean = true)
 ```
 
-| Available methods | Description                                   |
-| ----------------- | --------------------------------------------- |
-| toHEX             | Convert to an hexadecimal notation            |
-| toHEXA            | Convert to an hexadecimal notation with alpha |
-| toRGB             | Convert to an RGB notation                    |
-| toRGBA            | Convert to an RGB notation with alpha         |
-| toHSL             | Convert to an HSL notation                    |
-| toHSLA            | Convert to an HSL notation with alpha         |
-| toCMYK            | Convert to a CMYK notation                    |
+| Static method | Description                                   |
+| ------------- | --------------------------------------------- |
+| toHEX         | Convert to an hexadecimal notation            |
+| toHEXA        | Convert to an hexadecimal notation with alpha |
+| toRGB         | Convert to an RGB notation                    |
+| toRGBA        | Convert to an RGB notation with alpha         |
+| toHSL         | Convert to an HSL notation                    |
+| toHSLA        | Convert to an HSL notation with alpha         |
+| toCMYK        | Convert to a CMYK notation                    |
 
-> **Note:** The conversion to a CMYK color is made taking a random value of black as a base (in this case, taking the greater value from red, green or blue). When a value of black is assumed, the rest of the colors can be calculated from it. The result will be visually similar to the original light color, but if you try to convert it back you will not obtain the same original value.
+#### Static methods examples
 
-## Example methods
+You can also consult the [demo 3](https://elchininet.github.io/ColorTranslator/#demo3) and the [demo 4](https://elchininet.github.io/ColorTranslator/#demo4) to check the use of static methods.
 
 ```javascript
 ColorTranslator.toRGB('#FF00FF'); // rgb(255,0,255)
@@ -156,6 +268,8 @@ ColorTranslator.toHSL('rgb(255, 0, 0)'); // hsl(0,100%,50%)
 ColorTranslator.toHSLA('rgba(0, 255, 255, .5)'); // hsla(180,100%,50%,0.5)
 
 ColorTranslator.toCMYK('#F0F', false); // {c: 0, m: 100, y: 0, k: 0}
+
+ColorTranslator.toCMYK('#F0F'); // cmyk(0%,100%,0%,0%)
 
 ColorTranslator.toRGB({ h: 115, s: '70%', l: '45%' }); // rgb(48,195,34)
 
