@@ -1,4 +1,4 @@
-import './styles.css';
+import './styles.scss';
 
 export default (ColorTranslator) => {
 

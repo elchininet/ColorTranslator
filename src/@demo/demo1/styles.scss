@@ -1,0 +1,26 @@
+#demo1 {
+  .demo-wrapper > div {
+    border: 10px solid #fff;
+    display: flex;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+
+  .box {
+    align-items: center;
+    display: flex;
+    box-sizing: border-box;
+    flex-grow: 0;
+    flex-shrink: 0;
+    font-family: Arial;
+    font-size: 10px;
+    justify-content: center;
+    text-align: center;
+    height: 10%;
+    width: 10%;
+
+    @media screen and (max-width: 768px) {
+      font-size: 6px;
+    }
+  }
+}

@@ -3,6 +3,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WebpackCconfig = require('./webpack.config')[1];
 /* eslint-enable @typescript-eslint/no-var-requires */
@@ -16,6 +18,10 @@ module.exports = {
             {
                 test: /\.ts$/,
                 use: 'ts-loader'
+            },
+            {
+                test: /\.scss$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             },
             {
                 test: /\.css$/,
@@ -44,5 +50,11 @@ module.exports = {
             filename: 'styles/styles.css'
         }),
         new CopyWebpackPlugin([{ from: 'src/@demo/images', to: 'images' }])
-    ]
+    ],
+    optimization: {
+        minimizer: [
+            new TerserJSPlugin({}),
+            new OptimizeCSSAssetsPlugin({})
+        ],
+    }
 };

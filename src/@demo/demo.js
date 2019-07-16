@@ -1,7 +1,7 @@
 import '../../node_modules/google-code-prettify/bin/run_prettify.min';
 import '../../node_modules/google-code-prettify/bin/prettify.min.css';
 import '../../node_modules/google-code-prettify/styles/desert.css';
-import './styles.css';
+import './styles.scss';
 import { ColorTranslator } from '../';
 import demo1 from './demo1';
 import demo2 from './demo2';
@@ -11,6 +11,7 @@ import demo4 from './demo4';
 const functioToString = (fn) => {
     const article = document.createElement('article');
     const pre = document.createElement('pre');
+    article.classList.add('function-container');
     pre.classList.add('prettyprint');
     article.appendChild(pre);
     pre.innerHTML = fn.toString().replace('(ColorTranslator)', '()');
@@ -26,8 +27,16 @@ const demos = new Map([
 
 document.addEventListener('DOMContentLoaded', () => {
     demos.forEach((module, div) => {
-        const cocontainer = document.getElementById(div);
-        cocontainer.appendChild(module(ColorTranslator));
-        cocontainer.appendChild(functioToString(module));
+        const demo = document.getElementById(div);
+        const container = document.createElement('div');
+        const wrapper = document.createElement('div');
+        
+        container.classList.add('demo-container');
+        wrapper.classList.add('demo-wrapper');
+
+        wrapper.appendChild(module(ColorTranslator));
+        container.appendChild(wrapper);
+        demo.appendChild(container);
+        demo.appendChild(functioToString(module));
     });
 });

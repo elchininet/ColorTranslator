@@ -7,10 +7,16 @@ WebpackCconfig.mode = 'development';
 WebpackCconfig.entry = './src/@demo/demo.js';
 WebpackCconfig.output.path = path.resolve(__dirname, 'docs');
 WebpackCconfig.resolve.extensions.push('.js');
-WebpackCconfig.module.rules.push({
-    test: /\.css$/,
-    use: ['style-loader', 'css-loader']
-});
+WebpackCconfig.module.rules.push(
+    {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+    },
+    {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+    }
+);
 WebpackCconfig.plugins = [
     new HtmlWebpackPlugin({
         title: 'ColorTranslator demo',
