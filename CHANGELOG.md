@@ -1,5 +1,11 @@
 # Changelog
 
+## 2019-08-31
+
+#### Fixes
+
+- Resolve eslint-utils vulnerability forcing the version to be equal or greater than 1.4.1 
+
 ## 2019-07-17
 
 #### Changes
