@@ -1,9 +1,9 @@
-import { Color, RGBObjectFinal, RGBObject, HSLObject, CMYKObject, ColorInput, RGBOutput, HSLOutput, CMYKOutput, Omit, HSLObjectFinal, CMYKObjectFinal } from '@types';
+import { Color, ColorInput, RGBObject, HSLObject, CMYKObject, RGBObjectFinal, HSLObjectFinal, CMYKObjectFinal, RGBOutput, HSLOutput, CMYKOutput, Omit } from '@types';
 import { CONST } from '#constants';
 import { rgbToHSL, hslToRGB, rgbToCMYK, cmykToRGB } from '#color/translators';
-import { hasProp, round, minmax } from '#helpers';
 import { getColorModel, getRGBObjectFromString, getRGBObjectFromObject, translateColor } from '#color/utils';
 import { CSS } from '#color/css';
+import { hasProp, round, minmax } from '#helpers';
 
 type ColorModel = keyof typeof CONST;
 type NotHEX = Omit<ColorModel, 'HEX'>;
@@ -36,7 +36,7 @@ export class ColorTranslator {
     // Constructor
     public constructor(color: ColorInput) {
         this.rgb = getRGBObject(color);
-        this.hsl = rgbToHSL(this.rgb.r, this.rgb.g, this.rgb.b, this.rgb.a);
+        this.updateHSL();
         this.updateCMYK();
     }
 
@@ -56,7 +56,7 @@ export class ColorTranslator {
     }
 
     private updateHSL(): void {
-        this.hsl = { ...rgbToHSL(this.rgb.r, this.rgb.g, this.rgb.b), a: this.rgb.a };
+        this.hsl = rgbToHSL(this.rgb.r, this.rgb.g, this.rgb.b, this.rgb.a);
     }
 
     private updateCMYK(): void {
