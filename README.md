@@ -33,7 +33,7 @@ It is possible to include a compiled version of the package directly in an HTML 
 3. Include it in your HTML file
 
 ```javascript
-<script src="wherever/you/instelled/colortranslator.web.js" />
+<script src="wherever/you/installed/colortranslator.web.js" />
 ```
 
 #### Importing using CommonJS
@@ -244,19 +244,25 @@ There are 7 static methods available and all of them accept any of the mentioned
 anyStaticMethod(color: string | object, css: boolean = true)
 ```
 
-| Static method | Description                                   |
-| ------------- | --------------------------------------------- |
-| toHEX         | Convert to an hexadecimal notation            |
-| toHEXA        | Convert to an hexadecimal notation with alpha |
-| toRGB         | Convert to an RGB notation                    |
-| toRGBA        | Convert to an RGB notation with alpha         |
-| toHSL         | Convert to an HSL notation                    |
-| toHSLA        | Convert to an HSL notation with alpha         |
-| toCMYK        | Convert to a CMYK notation                    |
+| Static method | Description                                                                                 |
+| ------------- | ------------------------------------------------------------------------------------------- |
+| toHEX         | Convert to an hexadecimal notation                                                          |
+| toHEXA        | Convert to an hexadecimal notation with alpha                                               |
+| toRGB         | Convert to an RGB notation                                                                  |
+| toRGBA        | Convert to an RGB notation with alpha                                                       |
+| toHSL         | Convert to an HSL notation                                                                  |
+| toHSLA        | Convert to an HSL notation with alpha                                                       |
+| toCMYK        | Convert to a CMYK notation                                                                  |
+| blendHEX      | Create an array relative to the blend between two colors in hexadecimal notation            |  
+| blendHEXA     | Create an array relative to the blend between two colors in hexadecimal notation with alpha |
+| blendRGB      | Create an array relative to the blend between two colors in RGB notation                    |
+| blendRGBA     | Create an array relative to the blend between two colors in RGB notation with alpha         |
+| blendHSL      | Create an array relative to the blend between two colors in HSL notation                    |
+| blendHSLA     | Create an array relative to the blend between two colors in HSL notation with alpha         |
 
 #### Static methods examples
 
-You can also consult the [demo 3](https://elchininet.github.io/ColorTranslator/#demo3) and the [demo 4](https://elchininet.github.io/ColorTranslator/#demo4) to check the use of static methods.
+You can also consult the [demo 3](https://elchininet.github.io/ColorTranslator/#demo3), the [demo 4](https://elchininet.github.io/ColorTranslator/#demo4), and the [demo 5](https://elchininet.github.io/ColorTranslator/#demo5) to check the use of static methods.
 
 ```javascript
 ColorTranslator.toRGB('#FF00FF'); // rgb(255,0,255)
@@ -274,4 +280,8 @@ ColorTranslator.toCMYK('#F0F'); // cmyk(0%,100%,0%,0%)
 ColorTranslator.toRGB({ h: 115, s: '70%', l: '45%' }); // rgb(48,195,34)
 
 ColorTranslator.toHSLA({ r: 115, g: 200, b: 150, a: 0.5 }); // hsla(145,44%,62%,0.5)
+
+ColorTranslator.blendHEX('#FF0000', '#0000FF', 5); // ["#FF0000","#BF003F","#7F007F","#3F00BF","#0000FF"]
+
+ColorTranslator.blendHSLA('#FF000000', '#0000FFFF', 3); // ["hsla(0,100%,50%,0)","hsla(300,100%,25%,0.5)","hsla(240,100%,50%,1)"]
 ```

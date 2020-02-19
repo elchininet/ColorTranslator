@@ -1,0 +1,29 @@
+#demo5 {
+  .demo-wrapper > div {
+    display: flex;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    margin: 0 auto;
+  }
+
+  .box {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
+    font-size: 10px;
+    height: 33.333333%;
+    justify-content: center;
+    text-align: center;
+    &.file0 {
+      width: 33.333333%;
+    }
+    &.file1 {
+      width: 16.666666%;
+    }
+    &.file2 {
+      width: 11.111111%;
+    }
+  }
+}

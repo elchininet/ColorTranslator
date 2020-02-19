@@ -1,5 +1,11 @@
 # Changelog
 
+## 2020-01-19
+
+#### Addings
+
+- Added static methods to return an array of blends between two colors
+
 ## 2019-08-31
 
 #### Fixes

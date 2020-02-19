@@ -156,3 +156,5 @@ export const FUNCTIONS = {
     cmyk: { name: 'CMYK CSS', func: ct.toCMYK, css: true },
     cmykObject: { name: 'CMYK object', func: ct.toCMYK, css: false }
 };
+
+export const ColorTranslator = ct;

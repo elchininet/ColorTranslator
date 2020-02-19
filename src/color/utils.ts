@@ -197,3 +197,24 @@ export const translateColor = {
         return rgbToCMYK(color.r, color.g, color.b);
     }
 };
+
+//---Blending
+export const blend = (from: RGBObjectFinal, to: RGBObjectFinal, steps: number): RGBObjectFinal[] => {
+    const div = steps - 1;
+    const diffR = (to.r - from.r) / div;
+    const diffG = (to.g - from.g) / div;
+    const diffB = (to.b - from.b) / div;
+    const fromA = isNaN(+from.a) ? 1 : from.a;
+    const toA = isNaN(+to.a) ? 1 : to.a;
+    const diffA = (toA - fromA) / div;
+    return Array(steps).fill(null).map((n, i): RGBObjectFinal => {
+        if (i === 0) { return from; }
+        if (i === div) { return to; }
+        return {
+            r: from.r + diffR * i,
+            g: from.g + diffG * i,
+            b: from.b + diffB * i,
+            a: fromA + diffA * i
+        };
+    });
+};

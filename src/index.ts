@@ -1,7 +1,7 @@
 import { Color, ColorInput, RGBObject, HSLObject, CMYKObject, RGBObjectFinal, HSLObjectFinal, CMYKObjectFinal, RGBOutput, HSLOutput, CMYKOutput, Omit } from '@types';
 import { CONST } from '#constants';
 import { rgbToHSL, hslToRGB, rgbToCMYK, cmykToRGB } from '#color/translators';
-import { getColorModel, getRGBObjectFromString, getRGBObjectFromObject, translateColor } from '#color/utils';
+import { getColorModel, getRGBObjectFromString, getRGBObjectFromObject, translateColor, blend } from '#color/utils';
 import { CSS } from '#color/css';
 import { hasProp, round, minmax } from '#helpers';
 
@@ -29,6 +29,31 @@ const getReturn = <A>(
         return translated;
     }
     return cssFunction(translated);
+};
+
+const defaultBlendSteps = 5;
+
+const getBlenReturn = <A>(
+    from: ColorInput,
+    to: ColorInput,
+    steps: number,
+    css: boolean,
+    translateFunction: (color: Color) => A,
+    cssFunction: (color: A) => string
+): (A | string)[] => {
+    if (steps < 1) steps = defaultBlendSteps;
+    const fromModel = getColorModel(from);
+    const toModel = getColorModel(to);
+    const fromRGBObject = getRGBObject(from, fromModel);
+    const toRGBObject = getRGBObject(to, toModel);
+    const blendArray = blend(fromRGBObject, toRGBObject, steps);
+    return blendArray.map((color: RGBObjectFinal): A | string => {
+        const translated = translateFunction(color);
+        if (!css) {
+            return translated;
+        }
+        return cssFunction(translated);
+    });
 };
 
 export class ColorTranslator {
@@ -324,6 +349,30 @@ export class ColorTranslator {
             return color as CMYKOutput;
         }
         return getReturn<CMYKObject>(color, model, css, translateColor.CMYK, CSS.CMYK);
+    }
+
+    public static blendHEX(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): RGBOutput[] {
+        return getBlenReturn<RGBObject>(from, to, steps, css, translateColor.HEX, CSS.HEX);
+    }
+
+    public static blendHEXA(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): RGBOutput[] {
+        return getBlenReturn<RGBObject>(from, to, steps, css, translateColor.HEXA, CSS.HEX);
+    }
+
+    public static blendRGB(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): RGBOutput[] {
+        return getBlenReturn<RGBObject>(from, to, steps, css, translateColor.RGB, CSS.RGB);
+    }
+
+    public static blendRGBA(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): RGBOutput[] {
+        return getBlenReturn<RGBObject>(from, to, steps, css, translateColor.RGBA, CSS.RGB);
+    }
+
+    public static blendHSL(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): HSLOutput[] {
+        return getBlenReturn<HSLObject>(from, to, steps, css, translateColor.HSL, CSS.HSL);
+    }
+
+    public static blendHSLA(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): HSLOutput[] {
+        return getBlenReturn<HSLObject>(from, to, steps, css, translateColor.HSLA, CSS.HSL);
     }
 
 }
