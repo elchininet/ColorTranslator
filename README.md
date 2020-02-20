@@ -2,11 +2,13 @@
     <a href="https://elchininet.github.io/ColorTranslator/">
         <img src="./src/@demo/images/logo.png?raw=true" width="500" title="ColorTranslator" />
     </a>
+    <br>
+    A JavaScript library, written in TypeScript, to convert among different color models
 </p>
 
-A JavaScript library, written in TypeScript, to convert among different color models
+[![Build Status](https://travis-ci.com/elchininet/ColorTranslator.svg?branch=master)](https://travis-ci.com/elchininet/ColorTranslator)
 
-## Demo
+## Demo 
 
 https://elchininet.github.io/ColorTranslator/
 
