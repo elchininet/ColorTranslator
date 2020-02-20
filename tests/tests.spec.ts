@@ -36,20 +36,24 @@ COLORS.forEach((item: ColorProps): void => {
 
         });
 
-        describe('ColorTranslator blending tests', (): void => {
-
-            const from = '#FF0000';
-            const to = '#0000FF';
-
-            const blend1 = ColorTranslator.blendHEX(from, to, 3);
-            const blend2 = ColorTranslator.blendHEX(from, to, 6);
-            const blend3 = ColorTranslator.blendHEX(from, to, 9);
-
-            expect(blend1).to.deep.equal([ '#FF0000', '#7F007F', '#0000FF' ]);
-            expect(blend2).to.deep.equal([ '#FF0000', '#CC0033', '#990066', '#660099', '#3300CC', '#0000FF' ]);
-            expect(blend3).to.deep.equal([ '#FF0000', '#DF001F', '#BF003F', '#9F005F', '#7F007F', '#5F009F', '#3F00BF', '#1F00DF', '#0000FF' ]);
-
-        });
-
     });
+});
+
+describe('ColorTranslator blending tests', (): void => {
+
+    it('Blending deep equals', (): void => {
+
+        const from = '#FF0000';
+        const to = '#0000FF';
+
+        const blend1 = ColorTranslator.blendHEX(from, to, 3);
+        const blend2 = ColorTranslator.blendHEX(from, to, 6);
+        const blend3 = ColorTranslator.blendHEX(from, to, 9);
+
+        expect(blend1).to.deep.equal([ '#FF0000', '#7F007F', '#0000FF' ]);
+        expect(blend2).to.deep.equal([ '#FF0000', '#CC0033', '#990066', '#660099', '#3300CC', '#0000FF' ]);
+        expect(blend3).to.deep.equal([ '#FF0000', '#DF001F', '#BF003F', '#9F005F', '#7F007F', '#5F009F', '#3F00BF', '#1F00DF', '#0000FF' ]);
+        
+    });
+
 });
