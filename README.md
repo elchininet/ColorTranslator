@@ -2,11 +2,13 @@
     <a href="https://elchininet.github.io/ColorTranslator/">
         <img src="./src/@demo/images/logo.png?raw=true" width="500" title="ColorTranslator" />
     </a>
+    <br>
+    A JavaScript library, written in TypeScript, to convert among different color models
 </p>
 
-A JavaScript library, written in TypeScript, to convert among different color models
+[![Build Status](https://travis-ci.com/elchininet/ColorTranslator.svg?branch=master)](https://travis-ci.com/elchininet/ColorTranslator)
 
-## Demo
+## Demo 
 
 https://elchininet.github.io/ColorTranslator/
 
@@ -238,31 +240,28 @@ color.HSLA; // hsla(300,100%,50%,1)
 
 It is not needed to specify the color model from which you are converting, the API will detect the format. You only need to specify to which color model you want to convert calling the specific static method.
 
-There are 7 static methods available and all of them accept any of the mentioned inputs as the first parameter. The second parameter is optional and it specifies if the output should be a CSS string or an object:
+There are 13 static methods available, 7 of them to convert colors and 6 to create color blends.
+
+The static methods to convert colors accept any of the mentioned inputs as the first parameter. The second parameter is optional and it specifies if the output should be a CSS string or an object:
 
 ```
-anyStaticMethod(color: string | object, css: boolean = true)
+convertColorStaticMethod(
+  color: string | object,
+  css: boolean = true
+)
 ```
 
-| Static method | Description                                                                                 |
-| ------------- | ------------------------------------------------------------------------------------------- |
-| toHEX         | Convert to an hexadecimal notation                                                          |
-| toHEXA        | Convert to an hexadecimal notation with alpha                                               |
-| toRGB         | Convert to an RGB notation                                                                  |
-| toRGBA        | Convert to an RGB notation with alpha                                                       |
-| toHSL         | Convert to an HSL notation                                                                  |
-| toHSLA        | Convert to an HSL notation with alpha                                                       |
-| toCMYK        | Convert to a CMYK notation                                                                  |
-| blendHEX      | Create an array relative to the blend between two colors in hexadecimal notation            |  
-| blendHEXA     | Create an array relative to the blend between two colors in hexadecimal notation with alpha |
-| blendRGB      | Create an array relative to the blend between two colors in RGB notation                    |
-| blendRGBA     | Create an array relative to the blend between two colors in RGB notation with alpha         |
-| blendHSL      | Create an array relative to the blend between two colors in HSL notation                    |
-| blendHSLA     | Create an array relative to the blend between two colors in HSL notation with alpha         |
+| Static method | Description                                    |
+| ------------- | ---------------------------------------------- |
+| toHEX         | Convert to an hexadecimal notation             |
+| toHEXA        | Convert to an hexadecimal notation with alpha  |
+| toRGB         | Convert to an RGB notation                     |
+| toRGBA        | Convert to an RGB notation with alpha          |
+| toHSL         | Convert to an HSL notation                     |
+| toHSLA        | Convert to an HSL notation with alpha          |
+| toCMYK        | Convert to a CMYK notation                     |
 
-#### Static methods examples
-
-You can also consult the [demo 3](https://elchininet.github.io/ColorTranslator/#demo3), the [demo 4](https://elchininet.github.io/ColorTranslator/#demo4), and the [demo 5](https://elchininet.github.io/ColorTranslator/#demo5) to check the use of static methods.
+###### Color conversion static methods examples
 
 ```javascript
 ColorTranslator.toRGB('#FF00FF'); // rgb(255,0,255)
@@ -280,8 +279,60 @@ ColorTranslator.toCMYK('#F0F'); // cmyk(0%,100%,0%,0%)
 ColorTranslator.toRGB({ h: 115, s: '70%', l: '45%' }); // rgb(48,195,34)
 
 ColorTranslator.toHSLA({ r: 115, g: 200, b: 150, a: 0.5 }); // hsla(145,44%,62%,0.5)
-
-ColorTranslator.blendHEX('#FF0000', '#0000FF', 5); // ["#FF0000","#BF003F","#7F007F","#3F00BF","#0000FF"]
-
-ColorTranslator.blendHSLA('#FF000000', '#0000FFFF', 3); // ["hsla(0,100%,50%,0)","hsla(300,100%,25%,0.5)","hsla(240,100%,50%,1)"]
 ```
+
+You can also consult the [demo 3](https://elchininet.github.io/ColorTranslator/#demo3), and the [demo 4](https://elchininet.github.io/ColorTranslator/#demo4) to check the use of these static methods.
+
+The static methods to create color blends accept any of the mentioned inputs as the first and second parameter, the third parameter is optional and it is the number of steps of the blending, and the fourth parameter is also optional and it specifies if the output colors should be a CSS string or an object:
+
+```
+blendColorsStaticMethod(
+  fromColor: string | object,
+  toColor: string | object,
+  steps: number = 5,
+  css: boolean = true
+)
+```
+
+| Static method | Description                                                                                 |
+| ------------- | ------------------------------------------------------------------------------------------- |
+| blendHEX      | Create an array relative to the blend between two colors in hexadecimal notation            |  
+| blendHEXA     | Create an array relative to the blend between two colors in hexadecimal notation with alpha |
+| blendRGB      | Create an array relative to the blend between two colors in RGB notation                    |
+| blendRGBA     | Create an array relative to the blend between two colors in RGB notation with alpha         |
+| blendHSL      | Create an array relative to the blend between two colors in HSL notation                    |
+| blendHSLA     | Create an array relative to the blend between two colors in HSL notation with alpha         |
+
+###### Colors blend static methods examples
+
+```javascript
+ColorTranslator.blendHEX('#FF0000', '#0000FF', 5);
+
+// [
+//   "#FF0000",
+//   "#BF003F",
+//   "#7F007F",
+//   "#3F00BF",
+//   "#0000FF"
+// ]
+
+ColorTranslator.blendHSLA('#FF000000', '#0000FFFF', 3);
+
+// [
+//   "hsla(0,100%,50%,0)",
+//   "hsla(300,100%,25%,0.5)",
+//   "hsla(240,100%,50%,1)"
+// ]
+
+ColorTranslator.blendRGBA('#F000', 'rgba(0,0,255,1)', 5, false);
+
+// [
+//   {r: 255, g: 0, b: 0, a: 0},
+//   {r: 191.25, g: 0, b: 63.75, a: 0.25},
+//   {r: 127.5, g: 0, b: 127.5, a: 0.5},
+//   {r: 63.75, g: 0, b: 191.25, a: 0.75},
+//   {r: 0, g: 0, b: 255, a: 1}
+// ]
+```
+
+You can also consult the [demo 5](https://elchininet.github.io/ColorTranslator/#demo5) to check the use of these static methods.
