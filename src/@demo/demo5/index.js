@@ -8,7 +8,7 @@ export default (ColorTranslator) => {
 
     for (let i = 0; i < rows; i++) {
 
-        const blends = ColorTranslator.blendHEX('#FF0000', '#FFFF00', mult + i * mult);
+        const blends = ColorTranslator.getBlendHEX('#FF0000', '#FFFF00', mult + i * mult);
 
         blends.forEach((blend, index) => {
             const box = document.createElement('div');

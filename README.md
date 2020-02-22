@@ -286,7 +286,7 @@ You can also consult the [demo 3](https://elchininet.github.io/ColorTranslator/#
 The static methods to create color blends accept any of the mentioned inputs as the first and second parameter, the third parameter is optional and it is the number of steps of the blending, and the fourth parameter is also optional and it specifies if the output colors should be a CSS string or an object:
 
 ```
-blendColorsStaticMethod(
+getBlendColorsStaticMethod(
   fromColor: string | object,
   toColor: string | object,
   steps: number = 5,
@@ -296,17 +296,17 @@ blendColorsStaticMethod(
 
 | Static method | Description                                                                                 |
 | ------------- | ------------------------------------------------------------------------------------------- |
-| blendHEX      | Create an array relative to the blend between two colors in hexadecimal notation            |  
-| blendHEXA     | Create an array relative to the blend between two colors in hexadecimal notation with alpha |
-| blendRGB      | Create an array relative to the blend between two colors in RGB notation                    |
-| blendRGBA     | Create an array relative to the blend between two colors in RGB notation with alpha         |
-| blendHSL      | Create an array relative to the blend between two colors in HSL notation                    |
-| blendHSLA     | Create an array relative to the blend between two colors in HSL notation with alpha         |
+| getBlendHEX   | Create an array relative to the blend between two colors in hexadecimal notation            |  
+| getBlendHEXA  | Create an array relative to the blend between two colors in hexadecimal notation with alpha |
+| getBlendRGB   | Create an array relative to the blend between two colors in RGB notation                    |
+| getBlendRGBA  | Create an array relative to the blend between two colors in RGB notation with alpha         |
+| getBlendHSL   | Create an array relative to the blend between two colors in HSL notation                    |
+| getBlendHSLA  | Create an array relative to the blend between two colors in HSL notation with alpha         |
 
 ###### Colors blend static methods examples
 
 ```javascript
-ColorTranslator.blendHEX('#FF0000', '#0000FF', 5);
+ColorTranslator.getBlendHEX('#FF0000', '#0000FF', 5);
 
 // [
 //   "#FF0000",
@@ -316,7 +316,7 @@ ColorTranslator.blendHEX('#FF0000', '#0000FF', 5);
 //   "#0000FF"
 // ]
 
-ColorTranslator.blendHSLA('#FF000000', '#0000FFFF', 3);
+ColorTranslator.getBlendHSLA('#FF000000', '#0000FFFF', 3);
 
 // [
 //   "hsla(0,100%,50%,0)",
@@ -324,7 +324,7 @@ ColorTranslator.blendHSLA('#FF000000', '#0000FFFF', 3);
 //   "hsla(240,100%,50%,1)"
 // ]
 
-ColorTranslator.blendRGBA('#F000', 'rgba(0,0,255,1)', 5, false);
+ColorTranslator.getBlendRGBA('#F000', 'rgba(0,0,255,1)', 5, false);
 
 // [
 //   {r: 255, g: 0, b: 0, a: 0},

@@ -1,6 +1,10 @@
 # Changelog
 
-## 2020-01-19
+## [1.2.1] - 2020-02-22
+
+- Renamed the blend static methods to make them more descriptive
+
+## [1.2.0] - 2020-02-19
 
 #### Addings
 

@@ -350,27 +350,27 @@ export class ColorTranslator {
         return getReturn<CMYKObject>(color, model, css, translateColor.CMYK, CSS.CMYK);
     }
 
-    public static blendHEX(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): RGBOutput[] {
+    public static getBlendHEX(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): RGBOutput[] {
         return getBlenReturn<RGBObject>(from, to, steps, css, translateColor.HEX, CSS.HEX);
     }
 
-    public static blendHEXA(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): RGBOutput[] {
+    public static getBlendHEXA(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): RGBOutput[] {
         return getBlenReturn<RGBObject>(from, to, steps, css, translateColor.HEXA, CSS.HEX);
     }
 
-    public static blendRGB(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): RGBOutput[] {
+    public static getBlendRGB(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): RGBOutput[] {
         return getBlenReturn<RGBObject>(from, to, steps, css, translateColor.RGB, CSS.RGB);
     }
 
-    public static blendRGBA(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): RGBOutput[] {
+    public static getBlendRGBA(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): RGBOutput[] {
         return getBlenReturn<RGBObject>(from, to, steps, css, translateColor.RGBA, CSS.RGB);
     }
 
-    public static blendHSL(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): HSLOutput[] {
+    public static getBlendHSL(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): HSLOutput[] {
         return getBlenReturn<HSLObject>(from, to, steps, css, translateColor.HSL, CSS.HSL);
     }
 
-    public static blendHSLA(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): HSLOutput[] {
+    public static getBlendHSLA(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): HSLOutput[] {
         return getBlenReturn<HSLObject>(from, to, steps, css, translateColor.HSLA, CSS.HSL);
     }
 

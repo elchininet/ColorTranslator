@@ -46,9 +46,9 @@ describe('ColorTranslator blending tests', (): void => {
         const from = '#FF0000';
         const to = '#0000FF';
 
-        const blend1 = ColorTranslator.blendHEX(from, to, 3);
-        const blend2 = ColorTranslator.blendHEX(from, to, 6);
-        const blend3 = ColorTranslator.blendHEX(from, to, 9);
+        const blend1 = ColorTranslator.getBlendHEX(from, to, 3);
+        const blend2 = ColorTranslator.getBlendHEX(from, to, 6);
+        const blend3 = ColorTranslator.getBlendHEX(from, to, 9);
 
         expect(blend1).to.deep.equal([ '#FF0000', '#7F007F', '#0000FF' ]);
         expect(blend2).to.deep.equal([ '#FF0000', '#CC0033', '#990066', '#660099', '#3300CC', '#0000FF' ]);
