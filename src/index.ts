@@ -1,12 +1,11 @@
 import { Color, ColorInput, RGBObject, HSLObject, CMYKObject, RGBObjectFinal, HSLObjectFinal, CMYKObjectFinal, RGBOutput, HSLOutput, CMYKOutput, Omit } from '@types';
-import { CONST } from '#constants';
+import { ColorModel } from '#constants';
 import { rgbToHSL, hslToRGB, rgbToCMYK, cmykToRGB } from '#color/translators';
 import { getColorModel, getRGBObjectFromString, getRGBObjectFromObject, translateColor, blend } from '#color/utils';
 import { CSS } from '#color/css';
 import { hasProp, round, minmax } from '#helpers';
 
-type ColorModel = keyof typeof CONST;
-type NotHEX = Omit<ColorModel, 'HEX'>;
+type NotHEX = Omit<ColorModel, ColorModel.HEX>;
 
 const check = (color: ColorInput, css: boolean): boolean => (typeof color === 'string' && css || typeof color === 'object' && !css);
 
@@ -329,7 +328,7 @@ export class ColorTranslator {
 
     public static toHSL(color: ColorInput, css: boolean = true): HSLOutput {
         const model = getColorModel(color);
-        if (model === CONST.HSL && check(color, css)) {
+        if (model === ColorModel.HSL && check(color, css)) {
             return color as HSLOutput;
         }
         return getReturn<HSLObject>(color, model, css, translateColor.HSL, CSS.HSL);
@@ -337,7 +336,7 @@ export class ColorTranslator {
 
     public static toHSLA(color: ColorInput, css: boolean = true): HSLOutput {
         const model = getColorModel(color);
-        if (model === CONST.HSLA && check(color, css)) {
+        if (model === ColorModel.HSLA && check(color, css)) {
             return color as HSLOutput;
         }
         return getReturn<HSLObject>(color, model, css, translateColor.HSLA, CSS.HSL);
@@ -345,7 +344,7 @@ export class ColorTranslator {
 
     public static toCMYK(color: ColorInput, css: boolean = true): CMYKOutput {
         const model = getColorModel(color);
-        if (model === CONST.CMYK && check(color, css)) {
+        if (model === ColorModel.CMYK && check(color, css)) {
             return color as CMYKOutput;
         }
         return getReturn<CMYKObject>(color, model, css, translateColor.CMYK, CSS.CMYK);

@@ -1,14 +1,12 @@
 import { Color, RGBObject, HSLObject, CMYKObject, RGBObjectFinal } from '@types';
-import { CONST, COLORREGS, ERRORS } from '#constants';
+import { ColorModel, COLORREGS, ERRORS } from '#constants';
 import { getOrderedArrayString, getDEC, getHEX, getBase255Number, getCMYKNumber, hasProp, percent, round } from '#helpers';
 import { rgbToHSL, hslToRGB, cmykToRGB, rgbToCMYK } from '#color/translators';
-
-type ColorModel = keyof typeof CONST;
 
 //---Detect the color model from an string
 const getColorModelFromString = (color: string): ColorModel => {
     let model;
-    Object.keys(CONST).some((p: ColorModel): boolean => {
+    Object.keys(ColorModel).some((p: ColorModel): boolean => {
         const reg = COLORREGS[p];
         if (reg.test(color)) {
             model = p;
@@ -25,7 +23,7 @@ const getColorModelFromString = (color: string): ColorModel => {
 const getColorModelFromObject = (color: Color): ColorModel => {
     let model;
     const props = getOrderedArrayString(Object.keys(color));
-    Object.keys(CONST).some((p: ColorModel): boolean => {
+    Object.keys(ColorModel).some((p: ColorModel): boolean => {
         if (getOrderedArrayString(p.split('')) === props) {
             model = p;
             return true;
@@ -44,7 +42,7 @@ export const getColorModel = (color: string | Color): ColorModel => typeof color
 
 //---Convert a color string to an RGB object
 export const getRGBObjectFromString = {
-    HEX(color: string): RGBObjectFinal {
+    [ColorModel.HEX](color: string): RGBObjectFinal {
         const match = color.match(COLORREGS.HEX);
         const object: RGBObjectFinal = {
             r: getDEC(match[1] || match[5]),
@@ -57,7 +55,7 @@ export const getRGBObjectFromString = {
         }
         return object;
     },
-    RGB(color: string): RGBObjectFinal {
+    [ColorModel.RGB](color: string): RGBObjectFinal {
         const match = color.match(COLORREGS.RGB);
         const r = getBase255Number(match[1] || match[4]);
         const g = getBase255Number(match[2] || match[5]);
@@ -69,7 +67,7 @@ export const getRGBObjectFromString = {
         };
         return object;
     },
-    RGBA(color: string): RGBObjectFinal {
+    [ColorModel.RGBA](color: string): RGBObjectFinal {
         const match = color.match(COLORREGS.RGBA);
         const r = getBase255Number(match[1] || match[4]);
         const g = getBase255Number(match[2] || match[5]);
@@ -83,14 +81,14 @@ export const getRGBObjectFromString = {
         };
         return object;
     },
-    HSL(color: string): RGBObjectFinal {
+    [ColorModel.HSL](color: string): RGBObjectFinal {
         const match = color.match(COLORREGS.HSL);
         const h = +match[1];
         const s = percent(match[2]);
         const l = percent(match[3]);
         return hslToRGB(h, s, l);
     },
-    HSLA(color: string): RGBObjectFinal {
+    [ColorModel.HSLA](color: string): RGBObjectFinal {
         const match = color.match(COLORREGS.HSLA);
         const a = +match[4];
         const h = +match[1];
@@ -100,7 +98,7 @@ export const getRGBObjectFromString = {
         rgb.a = isNaN(a) || a > 1 ? 1 : round(a, 2);
         return rgb;
     },
-    CMYK(color: string): RGBObjectFinal {
+    [ColorModel.CMYK](color: string): RGBObjectFinal {
         const match = color.match(COLORREGS.CMYK);
         const c = getCMYKNumber(match[1] || match[5]);
         const m = getCMYKNumber(match[2] || match[6]);
@@ -112,7 +110,7 @@ export const getRGBObjectFromString = {
 
 //---Convert a color object to an RGB object
 export const getRGBObjectFromObject = {
-    RGB(color: RGBObject): RGBObjectFinal {
+    [ColorModel.RGB](color: RGBObject): RGBObjectFinal {
         const object: RGBObjectFinal = {
             r: getBase255Number(`${color.r}`),
             g: getBase255Number(`${color.g}`),
@@ -120,24 +118,24 @@ export const getRGBObjectFromObject = {
         };
         return object;
     },
-    RGBA(color: RGBObject): RGBObjectFinal {
+    [ColorModel.RGBA](color: RGBObject): RGBObjectFinal {
         const object = this.RGB(color);
         object.a = hasProp<RGBObject>(color, 'a')
             ? Math.min(getBase255Number(`${color.a}`, true), 1)
             : 1;
         return object;
     },
-    HSL(color: HSLObject): RGBObjectFinal {
+    [ColorModel.HSL](color: HSLObject): RGBObjectFinal {
         const s = percent(`${color.s}`);
         const l = percent(`${color.l}`);
         return hslToRGB(color.h, s, l);
     },
-    HSLA(color: HSLObject): RGBObjectFinal {
+    [ColorModel.HSLA](color: HSLObject): RGBObjectFinal {
         const rgb = this.HSL(color);
         rgb.a = isNaN(+color.a) || +color.a > 1 ? 1 : round(color.a, 2);
         return rgb;
     },
-    CMYK(color: CMYKObject): RGBObjectFinal {
+    [ColorModel.CMYK](color: CMYKObject): RGBObjectFinal {
         const c = getCMYKNumber(`${color.c}`);
         const m = getCMYKNumber(`${color.m}`);
         const y = getCMYKNumber(`${color.y}`);
@@ -149,7 +147,7 @@ export const getRGBObjectFromObject = {
 //---Get the color values from an object
 export const translateColor = {
 
-    HEX(color: RGBObjectFinal): RGBObject {
+    [ColorModel.HEX](color: RGBObjectFinal): RGBObject {
         return {
             r: getHEX(color.r),
             g: getHEX(color.g),
@@ -165,27 +163,27 @@ export const translateColor = {
         return rgb;
     },
 
-    RGB(color: RGBObjectFinal): RGBObject {
+    [ColorModel.RGB](color: RGBObjectFinal): RGBObject {
         if (hasProp<RGBObjectFinal>(color, 'a')) {
             delete color.a;
         }
         return color;
     },
 
-    RGBA(color: RGBObjectFinal): RGBObject {
+    [ColorModel.RGBA](color: RGBObjectFinal): RGBObject {
         color.a = hasProp<RGBObjectFinal>(color, 'a')
             ? round(color.a, 2)
             : 1;
         return color;
     },
 
-    HSL(color: RGBObjectFinal): HSLObject {
+    [ColorModel.HSL](color: RGBObjectFinal): HSLObject {
         const hsl = rgbToHSL(color.r, color.g, color.b);
         delete hsl.a;
         return hsl;
     },
 
-    HSLA(color: RGBObjectFinal): HSLObject {
+    [ColorModel.HSLA](color: RGBObjectFinal): HSLObject {
         const hsl = translateColor.HSL(color);
         hsl.a = hasProp<RGBObjectFinal>(color, 'a')
             ? round(color.a, 2)
@@ -193,7 +191,7 @@ export const translateColor = {
         return hsl;
     },
 
-    CMYK(color: RGBObjectFinal): CMYKObject {
+    [ColorModel.CMYK](color: RGBObjectFinal): CMYKObject {
         return rgbToCMYK(color.r, color.g, color.b);
     }
 };
