@@ -1,6 +1,6 @@
 {
   "name": "colortranslator",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A JavaScript library, written in TypeScript, to convert among different color models",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
