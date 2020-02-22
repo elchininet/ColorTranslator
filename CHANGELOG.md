@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.3.0] - 2020-02-22
+
+- Created a new static method to build color harmonies
+
 ## [1.2.1] - 2020-02-22
 
 - Renamed the blend static methods to make them more descriptive

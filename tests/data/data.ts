@@ -1,5 +1,5 @@
 import { ColorInput, RGBOutput, HSLOutput, CMYKOutput } from '../../src/@types';
-import { ColorTranslator as ct } from '../../src/';
+import { ColorTranslator as ct, Harmony } from '../../src/';
 
 export interface ColorProps {
     rgb: ColorInput;
@@ -158,3 +158,4 @@ export const FUNCTIONS = {
 };
 
 export const ColorTranslator = ct;
+export { Harmony };

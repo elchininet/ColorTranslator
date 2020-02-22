@@ -48,6 +48,7 @@ export type ColorInput = string | Color;
 export type RGBOutput = string | RGBObject;
 export type HSLOutput = string | HSLObject;
 export type CMYKOutput = string | CMYKObject;
+export type ColorOutput = RGBOutput | HSLOutput | CMYKOutput;
 
 export type Omit<T, K> = Exclude<T, K>
 

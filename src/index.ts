@@ -1,19 +1,11 @@
-import { Color, ColorInput, RGBObject, HSLObject, CMYKObject, RGBObjectFinal, HSLObjectFinal, CMYKObjectFinal, RGBOutput, HSLOutput, CMYKOutput, Omit } from '@types';
-import { ColorModel } from '#constants';
+import { Color, ColorInput, RGBObject, HSLObject, CMYKObject, RGBObjectFinal, HSLObjectFinal, CMYKObjectFinal, RGBOutput, HSLOutput, CMYKOutput, ColorOutput } from '@types';
+import { ColorModel, Harmony } from '#constants';
 import { rgbToHSL, hslToRGB, rgbToCMYK, cmykToRGB } from '#color/translators';
-import { getColorModel, getRGBObjectFromString, getRGBObjectFromObject, translateColor, blend } from '#color/utils';
+import * as utils from '#color/utils';
 import { CSS } from '#color/css';
 import { hasProp, round, minmax } from '#helpers';
 
-type NotHEX = Omit<ColorModel, ColorModel.HEX>;
-
 const check = (color: ColorInput, css: boolean): boolean => (typeof color === 'string' && css || typeof color === 'object' && !css);
-
-const getRGBObject = (color: ColorInput, model: ColorModel = getColorModel(color)): RGBObjectFinal => {
-    return typeof color === 'string'
-        ? getRGBObjectFromString[model](color)
-        : getRGBObjectFromObject[model as NotHEX](color as RGBObject & HSLObject & CMYKObject);
-};
 
 const getReturn = <A>(
     color: ColorInput,
@@ -22,7 +14,7 @@ const getReturn = <A>(
     translateFunction: (color: Color) => A,
     cssFunction: (color: A) => string
 ): A | string => {
-    const rgbObject = getRGBObject(color, model);
+    const rgbObject = utils.getRGBObject(color, model);
     const translated = translateFunction(rgbObject);
     if (!css) {
         return translated;
@@ -32,7 +24,7 @@ const getReturn = <A>(
 
 const defaultBlendSteps = 5;
 
-const getBlenReturn = <A>(
+const getBlendReturn = <A>(
     from: ColorInput,
     to: ColorInput,
     steps: number,
@@ -41,11 +33,9 @@ const getBlenReturn = <A>(
     cssFunction: (color: A) => string
 ): (A | string)[] => {
     if (steps < 1) steps = defaultBlendSteps;
-    const fromModel = getColorModel(from);
-    const toModel = getColorModel(to);
-    const fromRGBObject = getRGBObject(from, fromModel);
-    const toRGBObject = getRGBObject(to, toModel);
-    const blendArray = blend(fromRGBObject, toRGBObject, steps);
+    const fromRGBObject = utils.getRGBObject(from);
+    const toRGBObject = utils.getRGBObject(to);
+    const blendArray = utils.blend(fromRGBObject, toRGBObject, steps);
     return blendArray.map((color: RGBObjectFinal): A | string => {
         const translated = translateFunction(color);
         if (!css) {
@@ -59,7 +49,7 @@ export class ColorTranslator {
 
     // Constructor
     public constructor(color: ColorInput) {
-        this.rgb = getRGBObject(color);
+        this.rgb = utils.getRGBObject(color);
         this.updateHSL();
         this.updateCMYK();
     }
@@ -68,7 +58,6 @@ export class ColorTranslator {
     private rgb: RGBObjectFinal;
     private hsl: HSLObjectFinal;
     private cmyk: CMYKObjectFinal;
-    private pi2: number = 360;
 
     // Private methods
     private updateRGB(): void {
@@ -107,12 +96,7 @@ export class ColorTranslator {
 
     // Public HSL methods
     public setH(h: number): ColorTranslator {
-        if (h > 360) {
-            h -= Math.floor(h / this.pi2) * this.pi2;
-        } else if (h < 0) {
-            h = Math.ceil(h / this.pi2) * this.pi2 - h;
-        }
-        this.hsl.h = h;
+        this.hsl.h = utils.normalizeHue(h);
         return this.updateRGBAndCMYK();
     }
 
@@ -219,21 +203,21 @@ export class ColorTranslator {
 
     // Object public properties
     public get HEXObject(): RGBObject {
-        return translateColor.HEX(this.rgb);
+        return utils.translateColor.HEX(this.rgb);
     }
 
     public get HEXAObject(): RGBObject {
-        return translateColor.HEXA(this.rgb);
+        return utils.translateColor.HEXA(this.rgb);
     }
 
     public get RGBObject(): RGBObject {
         const rgb = { ...this.rgb };
-        return translateColor.RGB(rgb);
+        return utils.translateColor.RGB(rgb);
     }
 
     public get RGBAObject(): RGBObject {
         const rgb = { ...this.rgb };
-        return translateColor.RGBA(rgb);
+        return utils.translateColor.RGBA(rgb);
     }
 
     public get HSLObject(): HSLObject {
@@ -305,73 +289,95 @@ export class ColorTranslator {
         return CSS.CMYK(this.cmyk);
     }
 
-    // Static methods
+    // Color Conversion Static Methods
     public static toHEX(color: ColorInput, css: boolean = true): RGBOutput {
-        const model = getColorModel(color);
-        return getReturn<RGBObject>(color, model, css, translateColor.HEX, CSS.HEX);
+        const model = utils.getColorModel(color);
+        return getReturn<RGBObject>(color, model, css, utils.translateColor.HEX, CSS.HEX);
     }
 
     public static toHEXA(color: ColorInput, css: boolean = true): RGBOutput {
-        const model = getColorModel(color);
-        return getReturn<RGBObject>(color, model, css, translateColor.HEXA, CSS.HEX);
+        const model = utils.getColorModel(color);
+        return getReturn<RGBObject>(color, model, css, utils.translateColor.HEXA, CSS.HEX);
     }
 
     public static toRGB(color: ColorInput, css: boolean = true): RGBOutput {
-        const model = getColorModel(color);
-        return getReturn<RGBObject>(color, model, css, translateColor.RGB, CSS.RGB);
+        const model = utils.getColorModel(color);
+        return getReturn<RGBObject>(color, model, css, utils.translateColor.RGB, CSS.RGB);
     }
 
     public static toRGBA(color: ColorInput, css: boolean = true): RGBOutput {
-        const model = getColorModel(color);
-        return getReturn<RGBObject>(color, model, css, translateColor.RGBA, CSS.RGB);
+        const model = utils.getColorModel(color);
+        return getReturn<RGBObject>(color, model, css, utils.translateColor.RGBA, CSS.RGB);
     }
 
     public static toHSL(color: ColorInput, css: boolean = true): HSLOutput {
-        const model = getColorModel(color);
+        const model = utils.getColorModel(color);
         if (model === ColorModel.HSL && check(color, css)) {
             return color as HSLOutput;
         }
-        return getReturn<HSLObject>(color, model, css, translateColor.HSL, CSS.HSL);
+        return getReturn<HSLObject>(color, model, css, utils.translateColor.HSL, CSS.HSL);
     }
 
     public static toHSLA(color: ColorInput, css: boolean = true): HSLOutput {
-        const model = getColorModel(color);
+        const model = utils.getColorModel(color);
         if (model === ColorModel.HSLA && check(color, css)) {
             return color as HSLOutput;
         }
-        return getReturn<HSLObject>(color, model, css, translateColor.HSLA, CSS.HSL);
+        return getReturn<HSLObject>(color, model, css, utils.translateColor.HSLA, CSS.HSL);
     }
 
     public static toCMYK(color: ColorInput, css: boolean = true): CMYKOutput {
-        const model = getColorModel(color);
+        const model = utils.getColorModel(color);
         if (model === ColorModel.CMYK && check(color, css)) {
             return color as CMYKOutput;
         }
-        return getReturn<CMYKObject>(color, model, css, translateColor.CMYK, CSS.CMYK);
+        return getReturn<CMYKObject>(color, model, css, utils.translateColor.CMYK, CSS.CMYK);
     }
 
+    // Color Blending Static Methods
     public static getBlendHEX(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): RGBOutput[] {
-        return getBlenReturn<RGBObject>(from, to, steps, css, translateColor.HEX, CSS.HEX);
+        return getBlendReturn<RGBObject>(from, to, steps, css, utils.translateColor.HEX, CSS.HEX);
     }
 
     public static getBlendHEXA(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): RGBOutput[] {
-        return getBlenReturn<RGBObject>(from, to, steps, css, translateColor.HEXA, CSS.HEX);
+        return getBlendReturn<RGBObject>(from, to, steps, css, utils.translateColor.HEXA, CSS.HEX);
     }
 
     public static getBlendRGB(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): RGBOutput[] {
-        return getBlenReturn<RGBObject>(from, to, steps, css, translateColor.RGB, CSS.RGB);
+        return getBlendReturn<RGBObject>(from, to, steps, css, utils.translateColor.RGB, CSS.RGB);
     }
 
     public static getBlendRGBA(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): RGBOutput[] {
-        return getBlenReturn<RGBObject>(from, to, steps, css, translateColor.RGBA, CSS.RGB);
+        return getBlendReturn<RGBObject>(from, to, steps, css, utils.translateColor.RGBA, CSS.RGB);
     }
 
     public static getBlendHSL(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): HSLOutput[] {
-        return getBlenReturn<HSLObject>(from, to, steps, css, translateColor.HSL, CSS.HSL);
+        return getBlendReturn<HSLObject>(from, to, steps, css, utils.translateColor.HSL, CSS.HSL);
     }
 
     public static getBlendHSLA(from: ColorInput, to: ColorInput, steps: number = defaultBlendSteps, css: boolean = true): HSLOutput[] {
-        return getBlenReturn<HSLObject>(from, to, steps, css, translateColor.HSLA, CSS.HSL);
+        return getBlendReturn<HSLObject>(from, to, steps, css, utils.translateColor.HSLA, CSS.HSL);
+    }
+
+    // Color Harmony Static Method
+    public static getHarmony(color: ColorInput, armony: Harmony = Harmony.COMPLEMENTARY): ColorOutput[] {
+        switch(armony) {
+            case Harmony.ANALOGOUS:
+                return utils.colorHarmony.buildHarmony(color, utils.analogous);
+            case Harmony.SPLIT_COMPLEMENTARY:
+                return utils.colorHarmony.buildHarmony(color, utils.splitComplementary);
+            case Harmony.TRIADIC:
+                return utils.colorHarmony.buildHarmony(color, utils.triadic);
+            case Harmony.TETRADIC:
+                return utils.colorHarmony.buildHarmony(color, utils.tetradic);
+            case Harmony.SQUARE:
+                return utils.colorHarmony.buildHarmony(color, utils.square);
+            default:
+                return utils.colorHarmony.buildHarmony(color, utils.complementary);
+
+        }
     }
 
 }
+
+export { Harmony };
