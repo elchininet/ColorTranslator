@@ -1,23 +1,18 @@
-$size: 16.666666%;
+$color: #333;
 
 #demo6 {
   .demo-wrapper > div {
-    background: white;
-    border: 2px solid white;
     display: flex;
     font-size: 16px;
     flex-shrink: 0;
     flex-wrap: wrap;
     margin: 0 auto;
-
     @media screen and (max-width: 768px) {
       font-size: 10px;
     }
-
   }
 
   .row {
-    border: 1px solid white;
     display: flex;
     width: 100%;
   }
@@ -28,15 +23,15 @@ $size: 16.666666%;
     display: flex;
     flex-grow: 0;
     flex-shrink: 0;
-    border: 4px solid white;
+    border: 4px solid $color;
     width: 16.666666%;
   }
 
   .label {
     align-items: center;
-    background: white;
+    background: $color;
     justify-content: flex-end;
-    color: #333;
+    color: white;
     display: flex;
     flex-grow: 1;
     flex-shrink: 0;
