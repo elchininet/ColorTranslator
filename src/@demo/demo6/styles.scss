@@ -1,0 +1,45 @@
+$size: 16.666666%;
+
+#demo6 {
+  .demo-wrapper > div {
+    background: white;
+    border: 2px solid white;
+    display: flex;
+    font-size: 16px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    margin: 0 auto;
+
+    @media screen and (max-width: 768px) {
+      font-size: 10px;
+    }
+
+  }
+
+  .row {
+    border: 1px solid white;
+    display: flex;
+    width: 100%;
+  }
+
+  .box {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border: 4px solid white;
+    width: 16.666666%;
+  }
+
+  .label {
+    align-items: center;
+    background: white;
+    justify-content: flex-end;
+    color: #333;
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding-right: 30px;
+  }
+}

@@ -1,7 +1,42 @@
-import { Color, RGBObject, HSLObject, CMYKObject, RGBObjectFinal } from '@types';
+import { Color, ColorInput, RGBObject, HSLObject, HSLObjectFinal, CMYKObject, RGBObjectFinal, RGBOutput, HSLOutput, Omit } from '@types';
 import { ColorModel, COLORREGS, ERRORS } from '#constants';
 import { getOrderedArrayString, getDEC, getHEX, getBase255Number, getCMYKNumber, hasProp, percent, round } from '#helpers';
 import { rgbToHSL, hslToRGB, cmykToRGB, rgbToCMYK } from '#color/translators';
+import { CSS } from '#color/css';
+
+type HarmonyFunction = (color: HSLObjectFinal) => HSLObjectFinal[];
+type NotHEX = Omit<ColorModel, 'HEX'>;
+
+//---Normalize hue
+const pi2 = 360;
+
+export const normalizeHue = (hue: number): number => {
+    if (hue > 360) {
+        hue -= Math.floor(hue / pi2) * pi2;
+    } else if (hue < 0) {
+        hue = (Math.ceil(hue / pi2) + 1) * pi2 + hue;
+    }
+    return hue;
+}; 
+
+//---Normalize alpha
+export const normalizeAlpha = (alpha: number | undefined | null): number => (isNaN(+alpha) || alpha > 1) ? 1 : round(alpha, 2);
+
+//---Harmony
+const harmony = (color: HSLObjectFinal, angles: number[]): HSLObjectFinal[] =>
+    angles.reduce(
+        (arr: HSLObjectFinal[], num: number): HSLObjectFinal[] =>
+            (                
+                [...arr, {...color, h: normalizeHue(color.h + num)}]
+            ), [{...color}]
+    );
+
+export const analogous = (color: HSLObjectFinal): HSLObjectFinal[] => harmony(color, [-30, 30]);
+export const complementary = (color: HSLObjectFinal): HSLObjectFinal[] => harmony(color, [180]);
+export const splitComplementary = (color: HSLObjectFinal): HSLObjectFinal[] => harmony(color, [-150, 150]);
+export const triadic = (color: HSLObjectFinal): HSLObjectFinal[] => harmony(color, [120, -120]);
+export const tetradic = (color: HSLObjectFinal): HSLObjectFinal[] => harmony(color, [-60, 120, 180]);
+export const square = (color: HSLObjectFinal): HSLObjectFinal[] => harmony(color, [-90, 90, 180]);
 
 //---Detect the color model from an string
 const getColorModelFromString = (color: string): ColorModel => {
@@ -77,7 +112,7 @@ export const getRGBObjectFromString = {
             r: Math.min(r, 255),
             g: Math.min(g, 255),
             b: Math.min(b, 255),
-            a: isNaN(a) || a > 1 ? 1 : round(a, 2)
+            a: normalizeAlpha(a)
         };
         return object;
     },
@@ -95,7 +130,7 @@ export const getRGBObjectFromString = {
         const s = percent(match[2]);
         const l = percent(match[3]);
         const rgb = hslToRGB(h, s, l);
-        rgb.a = isNaN(a) || a > 1 ? 1 : round(a, 2);
+        rgb.a = normalizeAlpha(a);
         return rgb;
     },
     [ColorModel.CMYK](color: string): RGBObjectFinal {
@@ -132,7 +167,7 @@ export const getRGBObjectFromObject = {
     },
     [ColorModel.HSLA](color: HSLObject): RGBObjectFinal {
         const rgb = this.HSL(color);
-        rgb.a = isNaN(+color.a) || +color.a > 1 ? 1 : round(color.a, 2);
+        rgb.a = normalizeAlpha(color.a);
         return rgb;
     },
     [ColorModel.CMYK](color: CMYKObject): RGBObjectFinal {
@@ -142,6 +177,12 @@ export const getRGBObjectFromObject = {
         const k = getCMYKNumber(`${color.k}`);
         return cmykToRGB(c, m, y, k);
     }
+};
+
+export const getRGBObject = (color: ColorInput, model: ColorModel = getColorModel(color)): RGBObjectFinal => {
+    return typeof color === 'string'
+        ? getRGBObjectFromString[model](color)
+        : getRGBObjectFromObject[model as NotHEX](color as RGBObject & HSLObject & CMYKObject);
 };
 
 //---Get the color values from an object
@@ -202,8 +243,8 @@ export const blend = (from: RGBObjectFinal, to: RGBObjectFinal, steps: number): 
     const diffR = (to.r - from.r) / div;
     const diffG = (to.g - from.g) / div;
     const diffB = (to.b - from.b) / div;
-    const fromA = isNaN(+from.a) ? 1 : from.a;
-    const toA = isNaN(+to.a) ? 1 : to.a;
+    const fromA = normalizeAlpha(from.a);
+    const toA = normalizeAlpha(to.a);
     const diffA = (toA - fromA) / div;
     return Array(steps).fill(null).map((n, i): RGBObjectFinal => {
         if (i === 0) { return from; }
@@ -215,4 +256,98 @@ export const blend = (from: RGBObjectFinal, to: RGBObjectFinal, steps: number): 
             a: fromA + diffA * i
         };
     });
+};
+
+//---Harmony
+export const colorHarmony = {
+
+    buildHarmony(color: ColorInput, harmonyFunction: HarmonyFunction): string[] {
+        const model = getColorModel(color);
+        const rgb = getRGBObject(color, model);
+        const hsl = rgbToHSL(rgb.r, rgb.g, rgb.b, rgb.a);
+        const hasAlpha = Object.prototype.hasOwnProperty.call(rgb, 'a');
+        const isCSS = typeof color === 'string';
+        switch(model) {
+            case ColorModel.HEX:
+                return hasAlpha
+                    ? this.HEXA(hsl, harmonyFunction, isCSS)
+                    : this.HEX(hsl, harmonyFunction, isCSS);
+            case ColorModel.HSL:
+                return this.HSL(hsl, harmonyFunction, isCSS);
+            case ColorModel.HSLA:
+                return this.HSLA(hsl, harmonyFunction, isCSS);
+            case ColorModel.RGB:
+                return this.RGB(hsl, harmonyFunction, isCSS);
+            case ColorModel.RGBA:
+                return this.RGBA(hsl, harmonyFunction, isCSS);
+            default:
+                return [];
+        }
+    },
+
+    [ColorModel.HEX](color: HSLObjectFinal, harmonyFunction: HarmonyFunction, css: boolean): RGBOutput[] {
+        const array = harmonyFunction(color);
+        return array.map(
+            (c: HSLObjectFinal): RGBOutput => (
+                css
+                    ? CSS.HEX(hslToRGB(c.h, c.s, c.l))
+                    : translateColor.HEXA(hslToRGB(c.h, c.s, c.l))
+            )
+        );
+    },
+
+    HEXA(color: HSLObjectFinal, harmonyFunction: HarmonyFunction, css: boolean): RGBOutput[] {
+        const array = harmonyFunction(color);
+        return array.map(
+            (c: HSLObjectFinal): RGBOutput => (
+                css
+                    ? CSS.HEX({...hslToRGB(c.h, c.s, c.l), a: normalizeAlpha(c.a) * 255})
+                    : translateColor.HEXA({...hslToRGB(c.h, c.s, c.l), a: normalizeAlpha(c.a) * 255})
+            )
+        );
+    },
+
+    [ColorModel.RGB](color: HSLObjectFinal, harmonyFunction: HarmonyFunction, css: boolean): RGBOutput[] {
+        const array = harmonyFunction(color);
+        return array.map(
+            (c: HSLObjectFinal): RGBOutput => (
+                css
+                    ? CSS.RGB(hslToRGB(c.h, c.s, c.l))
+                    : translateColor.RGB(hslToRGB(c.h, c.s, c.l))
+            )
+        );
+    },
+
+    [ColorModel.RGBA](color: HSLObjectFinal, harmonyFunction: HarmonyFunction, css: boolean): RGBOutput[] {
+        const array = harmonyFunction(color);
+        return array.map(
+            (c: HSLObjectFinal): RGBOutput => (
+                css
+                    ? CSS.RGB({...hslToRGB(c.h, c.s, c.l), a: normalizeAlpha(c.a)})
+                    : translateColor.RGBA({...hslToRGB(c.h, c.s, c.l), a: normalizeAlpha(c.a)})
+            )
+        );
+    },
+
+    [ColorModel.HSL](color: HSLObjectFinal, harmonyFunction: HarmonyFunction, css: boolean): HSLOutput[] {
+        const array = harmonyFunction(color);
+        return array.map(
+            (c: HSLObjectFinal): HSLOutput => (
+                css
+                    ? CSS.HSL({h: c.h, s: c.s, l: c.l})
+                    : translateColor.HSL(hslToRGB(c.h, c.s, c.l))
+            )
+        );
+    },
+
+    [ColorModel.HSLA](color: HSLObjectFinal, harmonyFunction: HarmonyFunction, css: boolean): HSLOutput[] {
+        const array = harmonyFunction(color);
+        return array.map(
+            (c: HSLObjectFinal): HSLOutput => (
+                css
+                    ? CSS.HSL({...c, a: normalizeAlpha(c.a)})
+                    : translateColor.HSLA({...hslToRGB(c.h, c.s, c.l), a: normalizeAlpha(c.a)})
+            )
+        );
+    }
 };

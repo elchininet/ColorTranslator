@@ -1,6 +1,6 @@
 import 'mocha';
 import { expect } from 'chai';
-import { COLORS, FUNCTIONS, ColorProps, ColorTranslator } from './data/data';
+import { COLORS, FUNCTIONS, ColorProps, ColorTranslator, Harmony } from './data/data';
 
 //Iterate over the colors
 COLORS.forEach((item: ColorProps): void => {
@@ -53,6 +53,33 @@ describe('ColorTranslator blending tests', (): void => {
         expect(blend1).to.deep.equal([ '#FF0000', '#7F007F', '#0000FF' ]);
         expect(blend2).to.deep.equal([ '#FF0000', '#CC0033', '#990066', '#660099', '#3300CC', '#0000FF' ]);
         expect(blend3).to.deep.equal([ '#FF0000', '#DF001F', '#BF003F', '#9F005F', '#7F007F', '#5F009F', '#3F00BF', '#1F00DF', '#0000FF' ]);
+        
+    });
+
+});
+
+describe('ColorTranslator harmony tests', (): void => {
+
+    it('Harmony deep equals', (): void => {
+
+        const base = '#FF0000';
+        
+        const results = [
+            ['#FF0000', '#FF0080', '#FF8000'],
+            ['#FF0000', '#00FFFF'],
+            ['#FF0000', '#0080FF', '#00FF80'],
+            ['#FF0000', '#00FF00', '#0000FF'],
+            ['#FF0000', '#FF00FF', '#00FF00', '#00FFFF'],
+            ['#FF0000', '#8000FF', '#80FF00', '#00FFFF']
+        ];
+
+        Object.keys(Harmony).forEach((harmony, index): void => {
+
+            const colors = ColorTranslator.getHarmony(base, Harmony[harmony as Harmony]);
+            
+            expect(colors).to.deep.equal(results[index]);
+
+        });
         
     });
 

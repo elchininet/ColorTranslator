@@ -7,6 +7,15 @@ export enum ColorModel {
     CMYK = 'CMYK'
 }
 
+export enum Harmony {
+    ANALOGOUS = 'ANALOGOUS',
+    COMPLEMENTARY = 'COMPLEMENTARY',
+    SPLIT_COMPLEMENTARY = 'SPLIT_COMPLEMENTARY',
+    TRIADIC = 'TRIADIC',
+    TETRADIC = 'TETRADIC',
+    SQUARE = 'SQUARE'
+}
+
 export const COLORREGS = {
     [ColorModel.HEX]: /^#(?:([a-f\d])([a-f\d])([a-f\d])([a-f\d])?|([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?)$/i,
     [ColorModel.RGB]: /^rgb\s*\(\s*(?:(\d+%)\s*,\s*(\d+%)\s*,\s*(\d+%)|(\d+)\s*,\s*(\d+)\s*,\s*(\d+))\s*\)$/,

@@ -41,13 +41,13 @@ It is possible to include a compiled version of the package directly in an HTML 
 #### Importing using CommonJS
 
 ```javascript
-const { ColorTranslator } = require('colortranslator');
+const { ColorTranslator, Harmony } = require('colortranslator');
 ```
 
 #### Importing using ES6 modules
 
 ```javascript
-import { ColorTranslator } from 'colortranslator';
+import { ColorTranslator, Harmony } from 'colortranslator';
 ```
 
 #### Using in the browser
@@ -55,9 +55,11 @@ import { ColorTranslator } from 'colortranslator';
 ```javascript
 /* Use it directly in your JavaScript code */
 ColorTranslator;
+Harmony;
 
 /* Or access to the global variable if there is a variable with this name in the same scope */
 window.ColorTranslator;
+window.Harmony;
 ```
 
 ## Scripts
@@ -240,7 +242,9 @@ color.HSLA; // hsla(300,100%,50%,1)
 
 It is not needed to specify the color model from which you are converting, the API will detect the format. You only need to specify to which color model you want to convert calling the specific static method.
 
-There are 13 static methods available, 7 of them to convert colors and 6 to create color blends.
+There are 14 static methods available, 7 of them to convert colors, 6 to create color blends, and one to create color harmonies.
+
+###### Color conversion static methods
 
 The static methods to convert colors accept any of the mentioned inputs as the first parameter. The second parameter is optional and it specifies if the output should be a CSS string or an object:
 
@@ -250,6 +254,7 @@ convertColorStaticMethod(
   css: boolean = true
 )
 ```
+###### Color conversion static methods description
 
 | Static method | Description                                    |
 | ------------- | ---------------------------------------------- |
@@ -270,7 +275,7 @@ ColorTranslator.toRGBA('hsl(50, 20%, 90%)'); // rgba(235,233,224,1)
 
 ColorTranslator.toHSL('rgb(255, 0, 0)'); // hsl(0,100%,50%)
 
-ColorTranslator.toHSLA('rgba(0, 255, 255, .5)'); // hsla(180,100%,50%,0.5)
+ColorTranslator.toHSLA('rgba(0, 255, 255, 0.5)'); // hsla(180,100%,50%,0.5)
 
 ColorTranslator.toCMYK('#F0F', false); // {c: 0, m: 100, y: 0, k: 0}
 
@@ -283,6 +288,8 @@ ColorTranslator.toHSLA({ r: 115, g: 200, b: 150, a: 0.5 }); // hsla(145,44%,62%,
 
 You can also consult the [demo 3](https://elchininet.github.io/ColorTranslator/#demo3), and the [demo 4](https://elchininet.github.io/ColorTranslator/#demo4) to check the use of these static methods.
 
+###### Color blends static methods
+
 The static methods to create color blends accept any of the mentioned inputs as the first and second parameter, the third parameter is optional and it is the number of steps of the blending, and the fourth parameter is also optional and it specifies if the output colors should be a CSS string or an object:
 
 ```
@@ -294,6 +301,8 @@ getBlendColorsStaticMethod(
 )
 ```
 
+###### Color blends static methods description
+
 | Static method | Description                                                                                 |
 | ------------- | ------------------------------------------------------------------------------------------- |
 | getBlendHEX   | Create an array relative to the blend between two colors in hexadecimal notation            |  
@@ -303,7 +312,7 @@ getBlendColorsStaticMethod(
 | getBlendHSL   | Create an array relative to the blend between two colors in HSL notation                    |
 | getBlendHSLA  | Create an array relative to the blend between two colors in HSL notation with alpha         |
 
-###### Colors blend static methods examples
+###### Color blends static methods examples
 
 ```javascript
 ColorTranslator.getBlendHEX('#FF0000', '#0000FF', 5);
@@ -336,3 +345,55 @@ ColorTranslator.getBlendRGBA('#F000', 'rgba(0,0,255,1)', 5, false);
 ```
 
 You can also consult the [demo 5](https://elchininet.github.io/ColorTranslator/#demo5) to check the use of these static methods.
+
+###### Color harmonies static method
+
+The static method to create color harmonies accepts two parmeters, the first one could be any of the mentioned inputs and the second one is optional and it is to specify the kind of harmony (by default it will be Harmony.COMPLEMENTARY). It will return the colors in the same format that was sent:
+
+```
+getHarmony(
+  color: string | object
+  harmony: Harmony = Harmony.COMPLEMENTARY
+)
+```
+
+###### Color harmonies static method description
+
+| Static method | Description                                                                  |
+| ------------- | ---------------------------------------------------------------------------- |
+| getHarmony    | Return an array of colors representing the harmony requested. The first color will be the same that has been sent |
+
+###### Available armonies
+
+| Harmony             | Description                                                              | Returned colors |
+| ------------------- | ------------------------------------------------------------------------ | --------------- |
+| ANALOGOUS           | Returns the same color plus the two relative analogous colours           | 3               |
+| COMPLEMENTARY       | Returns the same color plus the relative complementary color             | 2               |
+| SPLIT_COMPLEMENTARY | Returns the same color plus the two relative split complementary colours | 3               |
+| SQUARE              | Returns the same color plus the three relative evenly square colours     | 4               |
+| TETRADIC            | Returns the same color plus the three relative tetradic colours          | 4               |
+| TRIADIC             | Returns the same color plus the two relative evenly triadic colors       | 3               |
+
+###### Color harmonies static method examples
+
+```javascript
+ColorTranslator.getHarmony('#FF00FF'); // ["#FF00FF", "#00FF00"]
+
+ColorTranslator.getHarmony('rgba(0, 255, 255, 0.5)', Harmony.ANALOGOUS);
+
+// [
+//   "rgba(0,255,255,127.5)",
+//   "rgba(0,255,128,127.5)",
+//   "rgba(0,128,255,127.5)"
+// ]
+
+ColorTranslator.getHarmony({ r: 115, g: 200, b: 150, a: 0.5 }, Harmony.COMPLEMENTARY);
+
+// [
+//   {r: 115, g: 201, b: 151, a: 0.5},
+//   {r: 201, g: 115, b: 165, a: 0.5}
+// ]
+
+```
+
+You can also consult the [demo 6](https://elchininet.github.io/ColorTranslator/#demo6) to check the use of these static methods.
