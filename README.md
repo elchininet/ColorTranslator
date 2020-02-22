@@ -348,7 +348,7 @@ You can also consult the [demo 5](https://elchininet.github.io/ColorTranslator/#
 
 ###### Color harmonies static method
 
-The static method to create color harmonies accepts two parmeters, the first one could be any of the mentioned inputs and the second one is optional and it is to specify the kind of harmony (by default it will be Harmony.COMPLEMENTARY). It will return the colors in the same format that was sent:
+The static method to create color harmonies accepts two parmeters, the first one could be any of the mentioned inputs and the second one is optional and it is to specify the kind of harmony (by default it will be `Harmony.COMPLEMENTARY`). It will return the colors in the same format that was sent:
 
 ```
 getHarmony(
