@@ -6,7 +6,9 @@ cache:
     - node_modules
 script:
   - yarn lint
-  - yarn test
+  - yarn test --coverage
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - rm -rf ./coverage
 before_deploy:
   - yarn build
 deploy:
