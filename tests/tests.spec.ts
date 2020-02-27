@@ -1,5 +1,3 @@
-import 'mocha';
-import { expect } from 'chai';
 import { COLORS, FUNCTIONS, ColorProps, ColorTranslator, Harmony } from './data/data';
 
 //Iterate over the colors
@@ -26,9 +24,9 @@ COLORS.forEach((item: ColorProps): void => {
 
                 it(`Getting ${functionName} from ${convertString} must return => ${resultString}`, (): void => {
                     if (cssProps) {
-                        expect(functionCall(convert, true)).equal(result);
+                        expect(functionCall(convert, true)).toBe(result);
                     } else {
-                        expect(functionCall(convert, false)).to.deep.equal(result);
+                        expect(functionCall(convert, false)).toMatchObject(result);
                     }
                 });
 
@@ -50,9 +48,9 @@ describe('ColorTranslator blending tests', (): void => {
         const blend2 = ColorTranslator.getBlendHEX(from, to, 6);
         const blend3 = ColorTranslator.getBlendHEX(from, to, 9);
 
-        expect(blend1).to.deep.equal([ '#FF0000', '#7F007F', '#0000FF' ]);
-        expect(blend2).to.deep.equal([ '#FF0000', '#CC0033', '#990066', '#660099', '#3300CC', '#0000FF' ]);
-        expect(blend3).to.deep.equal([ '#FF0000', '#DF001F', '#BF003F', '#9F005F', '#7F007F', '#5F009F', '#3F00BF', '#1F00DF', '#0000FF' ]);
+        expect(blend1).toMatchObject([ '#FF0000', '#7F007F', '#0000FF' ]);
+        expect(blend2).toMatchObject([ '#FF0000', '#CC0033', '#990066', '#660099', '#3300CC', '#0000FF' ]);
+        expect(blend3).toMatchObject([ '#FF0000', '#DF001F', '#BF003F', '#9F005F', '#7F007F', '#5F009F', '#3F00BF', '#1F00DF', '#0000FF' ]);
         
     });
 
@@ -77,7 +75,7 @@ describe('ColorTranslator harmony tests', (): void => {
 
             const colors = ColorTranslator.getHarmony(base, Harmony[harmony as Harmony]);
             
-            expect(colors).to.deep.equal(results[index]);
+            expect(colors).toMatchObject(results[index]);
 
         });
         
