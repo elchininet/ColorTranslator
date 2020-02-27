@@ -32,7 +32,7 @@ export const toHEX = (h: number | string): string => {
 };
 
 //---Calculate a decimal 255 from an RGB color
-export const getBase255Number = (color: string, alpha: boolean = false): number => {
+export const getBase255Number = (color: string, alpha = false): number => {
     if (!alpha && PCENT.test(color)) {
         return Math.min(255 * +(color.replace(PCENT, '$1')) / 100, 255);
     }
@@ -57,7 +57,7 @@ export const getCMYKNumber = (color: string): number => Math.min(PCENT.test(colo
 export const getOrderedArrayString = (keys: string[]): string => keys.sort().join().toUpperCase();
 
 //---Round value
-export const round = (value: NumberOrString, decimals: number = 0): number => {
+export const round = (value: NumberOrString, decimals = 0): number => {
     const exp = Math.pow(10, decimals);
     return Math.round(+value * exp) / exp;
 };

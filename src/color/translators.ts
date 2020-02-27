@@ -58,7 +58,7 @@ export const rgbToCMYK = (r: number, g: number, b: number): CMYKObjectFinal => {
 };
 
 //---RGB to HSL
-export const rgbToHSL = (r: number, g: number, b: number, a: number = 1): HSLObjectFinal => {
+export const rgbToHSL = (r: number, g: number, b: number, a = 1): HSLObjectFinal => {
     r /= 255;
     g /= 255;
     b /= 255;
