@@ -6,7 +6,7 @@
     A JavaScript library, written in TypeScript, to convert among different color models
 </p>
 
-[![Build Status](https://travis-ci.com/elchininet/ColorTranslator.svg?branch=master)](https://travis-ci.com/elchininet/ColorTranslator)
+[![Build Status](https://travis-ci.com/elchininet/ColorTranslator.svg?branch=master)](https://travis-ci.com/elchininet/ColorTranslator) &nbsp; [![Coverage Status](https://coveralls.io/repos/github/elchininet/ColorTranslator/badge.svg?branch=master)](https://coveralls.io/github/elchininet/ColorTranslator?branch=master)
 
 ## Demo 
 
