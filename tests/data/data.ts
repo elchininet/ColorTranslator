@@ -19,6 +19,7 @@ export interface ColorProps {
 export interface CMYKProps {
     rgb: string;
     cmyk: string;
+    cmykint: string;
 }
 
 export interface ColorFunction {
@@ -259,27 +260,33 @@ export const HEX3 = [
 export const CMYK = [
     {
         rgb: '#F00',
-        cmyk: 'cmyk(0%,100%,100%,0%)'
+        cmyk: 'cmyk(0%,100%,100%,0%)',
+        cmykint: 'cmyk(0,1,1,0)'
     },
     {
         rgb: '#0F0',
-        cmyk: 'cmyk(100%,0%,100%,0%)'
+        cmyk: 'cmyk(100%,0%,100%,0%)',
+        cmykint: 'cmyk(1,0,1,0)'
     },
     {
         rgb: '#00F',
-        cmyk: 'cmyk(100%,100%,0%,0%)'
+        cmyk: 'cmyk(100%,100%,0%,0%)',
+        cmykint: 'cmyk(1,1,0,0)'
     },
     {
         rgb: '#0FF',
-        cmyk: 'cmyk(100%,0%,0%,0%)'
+        cmyk: 'cmyk(100%,0%,0%,0%)',
+        cmykint: 'cmyk(1,0,0,0)'
     },
     {
         rgb: '#FF0',
-        cmyk: 'cmyk(0%,0%,100%,0%)'
+        cmyk: 'cmyk(0%,0%,100%,0%)',
+        cmykint: 'cmyk(0,0,1,0)'
     },
     {
         rgb: '#F0F',
-        cmyk: 'cmyk(0%,100%,0%,0%)'
+        cmyk: 'cmyk(0%,100%,0%,0%)',
+        cmykint: 'cmyk(0,1,0,0)'
     }
 ];
 

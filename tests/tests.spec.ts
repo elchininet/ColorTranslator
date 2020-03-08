@@ -1,4 +1,5 @@
 import { COLORS, HEX3, CMYK, FUNCTIONS, ColorProps, CMYKProps, ColorTranslator, Harmony } from './data/data';
+import { HSLObject } from '../src/@types';
 
 //Iterate over the colors
 COLORS.forEach((item: ColorProps): void => {
@@ -35,6 +36,55 @@ COLORS.forEach((item: ColorProps): void => {
         });
 
     });
+});
+
+// Test HSL Objects with percentages
+const hslTo = ['rgb', 'rgbObject', 'rgba', 'rgbaObject', 'hex', 'hexObject', 'hexa', 'hexaObject'];
+
+COLORS.forEach((item: ColorProps): void => {
+
+    describe(`HSL Object with percentages`, (): void => {
+
+        const hsl = { ...item.hslObject as HSLObject };
+        const hsla = { ...item.hslaObject as HSLObject };
+
+        hsl.s += '%';
+        hsl.l += '%';
+        hsla.s += '%';
+        hsla.l += '%';
+
+        hslTo.forEach((prop: keyof ColorProps): void => {
+
+            it(`${JSON.stringify(hsl)} => ${JSON.stringify(item[prop])}`, (): void => {
+
+                const functionCall = FUNCTIONS[prop].func;
+                const cssProps = FUNCTIONS[prop].css;
+
+                if (cssProps) {
+                    expect(functionCall(hsl, true)).toBe(item[prop]);
+                } else {
+                    expect(functionCall(hsl, false)).toMatchObject(item[prop]);
+                }
+
+            });
+
+            it(`${JSON.stringify(hsla)} => ${JSON.stringify(item[prop])}`, (): void => {
+
+                const functionCall = FUNCTIONS[prop].func;
+                const cssProps = FUNCTIONS[prop].css;
+
+                if (cssProps) {
+                    expect(functionCall(hsla, true)).toBe(item[prop]);
+                } else {
+                    expect(functionCall(hsla, false)).toMatchObject(item[prop]);
+                }
+
+            });
+
+        });
+
+    });
+
 });
 
 const hex3Props = ['hex', 'hexObject', 'hexa', 'hexaObject', 'hexObjectPercent', 'rgbPercent'];
@@ -85,8 +135,15 @@ HEX3.forEach((item: ColorProps): void => {
 
 CMYK.forEach((item: CMYKProps): void => {
     describe('ColorTranslator basic CMYK tests', (): void => {
+        const hex = ColorTranslator.toHEX(item.rgb);
         it(`${item.rgb} => ${item.cmyk}`, (): void => {
             expect(ColorTranslator.toCMYK(item.rgb)).toBe(item.cmyk);
+        });
+        it(`${item.cmyk} => ${hex}`, (): void => {
+            expect(ColorTranslator.toHEX(item.cmyk)).toBe(hex);
+        });
+        it(`${item.cmykint} => ${hex}`, (): void => {
+            expect(ColorTranslator.toHEX(item.cmykint)).toBe(hex);
         });
     });
 });
@@ -105,6 +162,10 @@ describe('ColorTranslator blending tests', (): void => {
         expect(blend1).toMatchObject([ '#FF0000', '#7F007F', '#0000FF' ]);
         expect(blend2).toMatchObject([ '#FF0000', '#CC0033', '#990066', '#660099', '#3300CC', '#0000FF' ]);
         expect(blend3).toMatchObject([ '#FF0000', '#DF001F', '#BF003F', '#9F005F', '#7F007F', '#5F009F', '#3F00BF', '#1F00DF', '#0000FF' ]);
+        
+        // Check default steps
+        expect(ColorTranslator.getBlendHEX(from, to)).toMatchObject(ColorTranslator.getBlendHEX(from, to, 5));
+        expect(ColorTranslator.getBlendHEX(from, to, -5)).toMatchObject(ColorTranslator.getBlendHEX(from, to, 5));
         
     });
 
