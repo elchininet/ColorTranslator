@@ -11,10 +11,8 @@ type NotHEX = Omit<ColorModel, 'HEX'>;
 const pi2 = 360;
 
 export const normalizeHue = (hue: number): number => {
-    if (hue > 360) {
+    if (hue > 360 || hue < 0) {
         hue -= Math.floor(hue / pi2) * pi2;
-    } else if (hue < 0) {
-        hue = (Math.ceil(hue / pi2) + 1) * pi2 + hue;
     }
     return hue;
 }; 
@@ -118,17 +116,17 @@ export const getRGBObjectFromString = {
     },
     [ColorModel.HSL](color: string): RGBObjectFinal {
         const match = color.match(COLORREGS.HSL);
-        const h = +match[1];
+        const h = normalizeHue(+match[1]);
         const s = percent(match[2]);
         const l = percent(match[3]);
         return hslToRGB(h, s, l);
     },
     [ColorModel.HSLA](color: string): RGBObjectFinal {
         const match = color.match(COLORREGS.HSLA);
-        const a = +match[4];
-        const h = +match[1];
+        const h = normalizeHue(+match[1]);
         const s = percent(match[2]);
         const l = percent(match[3]);
+        const a = +match[4];
         const rgb = hslToRGB(h, s, l);
         rgb.a = normalizeAlpha(a);
         return rgb;
@@ -163,7 +161,7 @@ export const getRGBObjectFromObject = {
     [ColorModel.HSL](color: HSLObject): RGBObjectFinal {
         const s = percent(`${color.s}`);
         const l = percent(`${color.l}`);
-        return hslToRGB(color.h, s, l);
+        return hslToRGB(normalizeHue(color.h), s, l);
     },
     [ColorModel.HSLA](color: HSLObject): RGBObjectFinal {
         const rgb = this.HSL(color);
@@ -250,10 +248,10 @@ export const blend = (from: RGBObjectFinal, to: RGBObjectFinal, steps: number): 
         if (i === 0) { return from; }
         if (i === div) { return to; }
         return {
-            r: from.r + diffR * i,
-            g: from.g + diffG * i,
-            b: from.b + diffB * i,
-            a: fromA + diffA * i
+            r: round(from.r + diffR * i),
+            g: round(from.g + diffG * i),
+            b: round(from.b + diffB * i),
+            a: round(fromA + diffA * i, 2)
         };
     });
 };
@@ -269,6 +267,7 @@ export const colorHarmony = {
         const isCSS = typeof color === 'string';
         switch(model) {
             case ColorModel.HEX:
+            default:
                 return hasAlpha
                     ? this.HEXA(hsl, harmonyFunction, isCSS)
                     : this.HEX(hsl, harmonyFunction, isCSS);
@@ -280,8 +279,6 @@ export const colorHarmony = {
                 return this.RGB(hsl, harmonyFunction, isCSS);
             case ColorModel.RGBA:
                 return this.RGBA(hsl, harmonyFunction, isCSS);
-            default:
-                return [];
         }
     },
 

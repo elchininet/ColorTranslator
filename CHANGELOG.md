@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.1] - 2020-03-09
+
+- Fix a bug to normalize the hue of HSL colors for negative values
+- Normalize the hue of the HSL inputs
+- Round the values of the blends
+
 ## [1.3.0] - 2020-02-22
 
 - Created a new static method to build color harmonies

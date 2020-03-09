@@ -1,4 +1,4 @@
-import { ColorInput, RGBOutput, HSLOutput, CMYKOutput } from '../../src/@types';
+import { ColorInput, RGBOutput, HSLOutput, CMYKOutput, CMYKObject } from '../../src/@types';
 import { ColorTranslator as ct, Harmony } from '../../src/';
 
 export interface ColorProps {
@@ -20,6 +20,8 @@ export interface CMYKProps {
     rgb: string;
     cmyk: string;
     cmykint: string;
+    cmykObject: CMYKObject;
+    cmykIntObject: CMYKObject;
 }
 
 export interface ColorFunction {
@@ -261,32 +263,44 @@ export const CMYK = [
     {
         rgb: '#F00',
         cmyk: 'cmyk(0%,100%,100%,0%)',
-        cmykint: 'cmyk(0,1,1,0)'
+        cmykint: 'cmyk(0,1,1,0)',
+        cmykObject: {c: '0%', m: '100%', y: '100%', k: '0%'},
+        cmykIntObject: {c: 0, m: 1, y: 1, k: 0}
     },
     {
         rgb: '#0F0',
         cmyk: 'cmyk(100%,0%,100%,0%)',
-        cmykint: 'cmyk(1,0,1,0)'
+        cmykint: 'cmyk(1,0,1,0)',
+        cmykObject: {c: '100%', m: '0%', y: '100%', k: '0%'},
+        cmykIntObject: {c: 1, m: 0, y: 1, k: 0}
     },
     {
         rgb: '#00F',
         cmyk: 'cmyk(100%,100%,0%,0%)',
-        cmykint: 'cmyk(1,1,0,0)'
+        cmykint: 'cmyk(1,1,0,0)',
+        cmykObject: {c: '100%', m: '100%', y: '0%', k: '0%'},
+        cmykIntObject: {c: 1, m: 1, y: 0, k: 0}
     },
     {
         rgb: '#0FF',
         cmyk: 'cmyk(100%,0%,0%,0%)',
-        cmykint: 'cmyk(1,0,0,0)'
+        cmykint: 'cmyk(1,0,0,0)',
+        cmykObject: {c: '100%', m: '0%', y: '0%', k: '0%'},
+        cmykIntObject: {c: 1, m: 0, y: 0, k: 0}
     },
     {
         rgb: '#FF0',
         cmyk: 'cmyk(0%,0%,100%,0%)',
-        cmykint: 'cmyk(0,0,1,0)'
+        cmykint: 'cmyk(0,0,1,0)',
+        cmykObject: {c: '0%', m: '0%', y: '100%', k: '0%'},
+        cmykIntObject: {c: 0, m: 0, y: 1, k: 0}
     },
     {
         rgb: '#F0F',
         cmyk: 'cmyk(0%,100%,0%,0%)',
-        cmykint: 'cmyk(0,1,0,0)'
+        cmykint: 'cmyk(0,1,0,0)',
+        cmykObject: {c: '0%', m: '100%', y: '0%', k: '0%'},
+        cmykIntObject: {c: 0, m: 1, y: 0, k: 0}
     }
 ];
 
