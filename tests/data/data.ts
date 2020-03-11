@@ -321,5 +321,9 @@ export const FUNCTIONS = {
     cmykObject: { name: 'CMYK object', func: ct.toCMYK, css: false }
 };
 
+export const CLASS_PROPERTIES = {
+    
+};
+
 export const ColorTranslator = ct;
 export { Harmony };

@@ -288,7 +288,7 @@ export const colorHarmony = {
             (c: HSLObjectFinal): RGBOutput => (
                 css
                     ? CSS.HEX(hslToRGB(c.h, c.s, c.l))
-                    : translateColor.HEXA(hslToRGB(c.h, c.s, c.l))
+                    : translateColor.HEX(hslToRGB(c.h, c.s, c.l))
             )
         );
     },
