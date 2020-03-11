@@ -87,20 +87,6 @@ COLORS.forEach((item: ColorProps): void => {
 
     });
 
-    //const colors = Object.keys(item);
-    
-    /*colors.forEach((color: keyof ColorProps): void => {
-
-        describe(`ColorTranslator instance class dynamic tests from ${color}: ${JSON.stringify(item[color])}`, (): void => {
-
-            const myInstance = new ColorTranslator(item[color]);
-
-
-
-        });
-
-    });*/
-
 });
 
 // Test HSL Objects
