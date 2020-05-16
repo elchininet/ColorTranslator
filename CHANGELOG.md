@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.3.2] - 2020-05-16
+
+- Fix type definitions bugs
+- Increase coverage with more tests
+
 ## [1.3.1] - 2020-03-09
 
 - Fix a bug to normalize the hue of HSL colors for negative values

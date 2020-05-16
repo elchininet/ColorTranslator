@@ -16,13 +16,13 @@ https://elchininet.github.io/ColorTranslator/
 
 #### Using NPM
 
-```
+```javascript
 npm install colortranslator
 ```
 
 #### Using Yarn
 
-```
+```javascript
 yarn add colortranslator
 ```
 
@@ -397,3 +397,62 @@ ColorTranslator.getHarmony({ r: 115, g: 200, b: 150, a: 0.5 }, Harmony.COMPLEMEN
 ```
 
 You can also consult the [demo 6](https://elchininet.github.io/ColorTranslator/#demo6) to check the use of these static methods.
+
+## TypeScript Support
+
+The package has its own type definitions, so it can be used in a `TypeScript` project without any issues. The next interfaces are exposed and can be imported in your project:
+
+###### HEXObject
+
+This type is returned by the `HEXObject`, and `HEXAObject` properties, the `toHEX`, `toHEXA`, `getBlendHEX`, and `getBlendHEXA` methods (when the `css` property is `false`), and the `getHarmony` method (when this type is send as a [Generic][1]).
+
+```typescript
+interface HEXObject {
+    r: string;
+    g: string;
+    b: string;
+    a?: string;
+}
+```
+
+###### RGBObject
+
+This type is returned by the `RGBObject`, and `RGBAObject` properties, the `toRGB`, `toRGBA`, `getBlendRGB`, and `getBlendRGBA` methods (when the `css` property is `false`), and the `getHarmony` method (when this type is send as a [Generic][1]).
+
+```typescript
+interface RGBObject {
+    r: number;
+    g: number;
+    b: number;
+    a?: number;
+}
+```
+
+###### HSLObject
+
+This type is returned by the `HSLObject`, and `HSLAObject` properties, the `toHSL`, `toHSLA`, `getBlendHSL`, and `getBlendHSLA` methods (when the `css` property is `false`), and the `getHarmony` method (when this type is send as a [Generic][1]).
+
+```typescript
+interface HSLObject {
+    h: number;
+    s: number;
+    l: number;
+    a?: number;
+}
+```
+
+###### CMYKObject
+
+This type is returned by the `CMYKObject` property, and the `toCMYK` method.
+
+```typescript
+interface CMYKObject {
+    c: number;
+    m: number;
+    y: number;
+    k: number;
+}
+```
+
+[1]: https://www.typescriptlang.org/docs/handbook/generics.html
+

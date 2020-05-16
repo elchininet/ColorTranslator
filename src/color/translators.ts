@@ -1,4 +1,4 @@
-import { RGBObjectFinal, HSLObjectFinal, CMYKObjectFinal } from '@types';
+import { RGBObject, HSLObject, CMYKObject } from '@types';
 
 //---HUE to RGB
 export const hueToRGB = (t1: number, t2: number, hue: number): number => {
@@ -16,7 +16,7 @@ export const hueToRGB = (t1: number, t2: number, hue: number): number => {
 };
 
 //---HSL to RGB
-export const hslToRGB = (h: number, s: number, l: number): RGBObjectFinal => {
+export const hslToRGB = (h: number, s: number, l: number): RGBObject => {
     h /= 60;
     s /= 100;
     l /= 100;
@@ -31,7 +31,7 @@ export const hslToRGB = (h: number, s: number, l: number): RGBObjectFinal => {
 };
 
 //---CMYK To RGB
-export const cmykToRGB = (c: number, m: number, y: number, k: number): RGBObjectFinal => {
+export const cmykToRGB = (c: number, m: number, y: number, k: number): RGBObject => {
     k = 1 - k;
     const r = Math.round(255 * (1 - c) * k);
     const g = Math.round(255 * (1 - m) * k);
@@ -40,7 +40,7 @@ export const cmykToRGB = (c: number, m: number, y: number, k: number): RGBObject
 };
 
 //---RGB to CMYK
-export const rgbToCMYK = (r: number, g: number, b: number): CMYKObjectFinal => {
+export const rgbToCMYK = (r: number, g: number, b: number): CMYKObject => {
     r /= 255;
     g /= 255;
     b /= 255;
@@ -58,7 +58,7 @@ export const rgbToCMYK = (r: number, g: number, b: number): CMYKObjectFinal => {
 };
 
 //---RGB to HSL
-export const rgbToHSL = (r: number, g: number, b: number, a = 1): HSLObjectFinal => {
+export const rgbToHSL = (r: number, g: number, b: number, a = 1): HSLObject => {
     r /= 255;
     g /= 255;
     b /= 255;
