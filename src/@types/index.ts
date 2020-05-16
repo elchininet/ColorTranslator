@@ -1,54 +1,62 @@
 export type NumberOrString = number | string;
 
-export interface RGBObject {
-    r: NumberOrString;
-    g: NumberOrString;
-    b: NumberOrString;
-    a?: NumberOrString;
+export interface HEXObject {
+    r: string;
+    g: string;
+    b: string;
+    a?: string;
 }
 
-export interface RGBObjectFinal {
+export interface RGBObject {
     r: number;
     g: number;
     b: number;
     a?: number;
 }
 
-export interface HSLObject {
-    h: number;
-    s: NumberOrString;
-    l: NumberOrString;
-    a?: number;
+export interface RGBObjectGeneric {
+    r: NumberOrString;
+    g: NumberOrString;
+    b: NumberOrString;
+    a?: NumberOrString;
 }
 
-export interface HSLObjectFinal {
+export interface HSLObject {
     h: number;
     s: number;
     l: number;
     a?: number;
 }
 
-export interface CMYKObject {
-    c: NumberOrString;
-    m: NumberOrString;
-    y: NumberOrString;
-    k: NumberOrString;
+export interface HSLObjectGeneric {
+    h: number;
+    s: NumberOrString;
+    l: NumberOrString;
+    a?: number;
 }
 
-export interface CMYKObjectFinal {
+export interface CMYKObject {
     c: number;
     m: number;
     y: number;
     k: number;
 }
 
-export type Color = RGBObject | HSLObject | CMYKObject;
+export interface CMYKObjectGeneric {
+    c: NumberOrString;
+    m: NumberOrString;
+    y: NumberOrString;
+    k: NumberOrString;
+}
+
+export type Color = RGBObjectGeneric | HSLObjectGeneric | CMYKObjectGeneric;
 
 export type ColorInput = string | Color;
+export type HEXOutput = string | HEXObject;
 export type RGBOutput = string | RGBObject;
 export type HSLOutput = string | HSLObject;
 export type CMYKOutput = string | CMYKObject;
-export type ColorOutput = RGBOutput | HSLOutput | CMYKOutput;
+export type ColorOutput = RGBOutput | HSLOutput;
 
 export type Omit<T, K> = Exclude<T, K>
 

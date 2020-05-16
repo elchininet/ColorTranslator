@@ -1,5 +1,5 @@
-import { ColorInput, RGBOutput, HSLOutput, CMYKOutput, CMYKObject } from '../../src/@types';
-import { ColorTranslator as ct, Harmony } from '../../src/';
+import { ColorInput, CMYKObjectGeneric } from '../../src/@types';
+import { ColorTranslator as ct, Harmony, RGBObject, HSLObject, CMYKObject } from '../../src/';
 
 export interface ColorProps {
     rgb: ColorInput;
@@ -20,13 +20,13 @@ export interface CMYKProps {
     rgb: string;
     cmyk: string;
     cmykint: string;
-    cmykObject: CMYKObject;
+    cmykObject: CMYKObjectGeneric;
     cmykIntObject: CMYKObject;
 }
 
 export interface ColorFunction {
     name: string;
-    func: (color: ColorInput, css?: boolean) => RGBOutput | HSLOutput | CMYKOutput;
+    func: (color: ColorInput, css?: boolean) => RGBObject | HSLObject | CMYKObject | string;
     css: boolean;
 }
 
