@@ -404,7 +404,7 @@ The package has its own type definitions, so it can be used in a `TypeScript` pr
 
 ###### HEXObject
 
-This type is returned by the `HEXObject`, and `HEXAObject` properties, the `toHEX`, `toHEXA`, `getBlendHEX`, and `getBlendHEXA` methods (when the `css` property is `false`), and the `getHarmony` method (when this type is send as a [Generic][1]).
+This type is returned by the `HEXObject`, and `HEXAObject` properties, the `toHEX`, `toHEXA`, `getBlendHEX`, and `getBlendHEXA` methods (when the `css` property is `false`), and the `getHarmony` method (when this type is sent as a [Generic][1]).
 
 ```typescript
 interface HEXObject {
@@ -417,7 +417,7 @@ interface HEXObject {
 
 ###### RGBObject
 
-This type is returned by the `RGBObject`, and `RGBAObject` properties, the `toRGB`, `toRGBA`, `getBlendRGB`, and `getBlendRGBA` methods (when the `css` property is `false`), and the `getHarmony` method (when this type is send as a [Generic][1]).
+This type is returned by the `RGBObject`, and `RGBAObject` properties, the `toRGB`, `toRGBA`, `getBlendRGB`, and `getBlendRGBA` methods (when the `css` property is `false`), and the `getHarmony` method (when this type is sent as a [Generic][1]).
 
 ```typescript
 interface RGBObject {
@@ -430,7 +430,7 @@ interface RGBObject {
 
 ###### HSLObject
 
-This type is returned by the `HSLObject`, and `HSLAObject` properties, the `toHSL`, `toHSLA`, `getBlendHSL`, and `getBlendHSLA` methods (when the `css` property is `false`), and the `getHarmony` method (when this type is send as a [Generic][1]).
+This type is returned by the `HSLObject`, and `HSLAObject` properties, the `toHSL`, `toHSLA`, `getBlendHSL`, and `getBlendHSLA` methods (when the `css` property is `false`), and the `getHarmony` method (when this type is sent as a [Generic][1]).
 
 ```typescript
 interface HSLObject {
