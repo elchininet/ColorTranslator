@@ -25,7 +25,7 @@ export const COLORREGS = {
     [ColorModel.CMYK]: /^(?:device-cmyk|cmyk)\s*\(\s*(?:(\d+\.?\d*%)\s*,\s*(\d+\.?\d*%)\s*,\s*(\d+\.?\d*%)\s*,\s*(\d+\.?\d*%)|(\d\.?\d*)\s*,\s*(\d\.?\d*)\s*,\s*(\d\.?\d*)\s*,\s*(\d\.?\d*))\s*\)$/
 };
 
-export const PCENT = /^([\d.]+)%$/;
+export const PCENT = /^(\d+(?:\.\d+)?|\.\d+)%$/;
 export const HEX = /^0x([a-f\d]{1,2})$/i;
 
 export const ERRORS = {

@@ -246,7 +246,7 @@ export class ColorTranslator {
             h: round(this.hsl.h),
             s: round(this.hsl.s),
             l: round(this.hsl.l),
-            a: hasProp<HSLObjectGeneric>(this.hsl, 'a')
+            a: hasProp<HSLObject>(this.hsl, 'a')
                 ? round(this.hsl.a, 2)
                 : 1
         };
@@ -413,6 +413,9 @@ export class ColorTranslator {
 
     // Color Harmony Static Method
     public static getHarmony(color: string, armony?: Harmony): string[];
+    public static getHarmony(color: HEXObject, armony?: Harmony): HEXObject[];
+    public static getHarmony(color: RGBObject, armony?: Harmony): RGBObject[];
+    public static getHarmony(color: HSLObjectGeneric, armony?: Harmony): HSLObject[];
     public static getHarmony<T>(color: string, armony?: Harmony): T[];
     public static getHarmony(color: ColorInput, armony: Harmony = Harmony.COMPLEMENTARY): ColorOutput[] {
         switch(armony) {
