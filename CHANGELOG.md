@@ -1,11 +1,11 @@
 # Changelog
 
-## [1.3.3] - 2020-05-17
+## [1.3.4] - 2020-05-17
 
 - Improve the definition types of the method getHarmony
 - Fix a bug in the getHarmony method that was returning RGBObject colors when a HEXObject color was provided
 
-## [1.3.2] - 2020-05-16
+## [1.3.2 - 1.3.3] - 2020-05-16
 
 - Fix type definitions bugs
 - Increase coverage with more tests
