@@ -12,7 +12,7 @@ import {
     HSLOutput,
     HEXOutput
 } from '@types';
-import { HEX, ColorModel, COLORREGS, ERRORS } from '#constants';
+import { HEX, PCENT, ColorModel, COLORREGS, ERRORS } from '#constants';
 import { getOrderedArrayString, getDEC, getHEX, getBase255Number, getCMYKNumber, hasProp, percent, round } from '#helpers';
 import { rgbToHSL, hslToRGB, cmykToRGB, rgbToCMYK } from '#color/translators';
 import { CSS } from '#color/css';
@@ -78,13 +78,26 @@ const getColorModelFromObject = (color: Color): ColorModel => {
         }
     });
     if (model && model === ColorModel.RGB || model === ColorModel.RGBA) {
+
         const isHEX = Object.entries(color).map((item: [string, string | number]): boolean => HEX.test(`${item[1]}`));
-        different = isHEX.some((item: boolean, index: number): boolean => {
+        const isRGB = Object.entries(color).map((item: [string, string | number]): boolean => PCENT.test(`${item[1]}`) || (!HEX.test(`${item[1]}`) && !isNaN(+item[1]) && +item[1] <= 255));
+        
+        const differentHEX = isHEX.some((item: boolean, index: number): boolean => {
             if (index > 0 && item !== isHEX[index - 1]) {
                 return true;
             }
             return false;
         });
+
+        const differentRGB = isRGB.some((item: boolean, index: number): boolean => {
+            if (index > 0 && item !== isRGB[index - 1]) {
+                return true;
+            }
+            return false;
+        });
+
+        different = differentHEX || differentRGB || (!isHEX[0] && !isRGB[0]);
+
         if (!different && isHEX[0]) {
             model = ColorModel.HEX;
         }
