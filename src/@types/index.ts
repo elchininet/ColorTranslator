@@ -56,9 +56,7 @@ export type HEXOutput = string | HEXObject;
 export type RGBOutput = string | RGBObject;
 export type HSLOutput = string | HSLObject;
 export type CMYKOutput = string | CMYKObject;
-export type ColorOutput = RGBOutput | HSLOutput;
-
-export type Omit<T, K> = Exclude<T, K>
+export type ColorOutput = HEXOutput | RGBOutput | HSLOutput;
 
 export interface ObjectProps<T> {
     [key: string]: T;

@@ -10,16 +10,15 @@ import {
     HEXObject,
     RGBOutput,
     HSLOutput,
-    Omit,
     HEXOutput
 } from '@types';
-import { ColorModel, COLORREGS, ERRORS } from '#constants';
+import { HEX, ColorModel, COLORREGS, ERRORS } from '#constants';
 import { getOrderedArrayString, getDEC, getHEX, getBase255Number, getCMYKNumber, hasProp, percent, round } from '#helpers';
 import { rgbToHSL, hslToRGB, cmykToRGB, rgbToCMYK } from '#color/translators';
 import { CSS } from '#color/css';
 
 type HarmonyFunction = (color: HSLObject) => HSLObject[];
-type NotHEX = Omit<ColorModel, 'HEX'>;
+type ColorModelKeys = keyof typeof ColorModel;
 
 //---Normalize hue
 const pi2 = 360;
@@ -69,14 +68,28 @@ const getColorModelFromString = (color: string): ColorModel => {
 //---Detect the color model from an object
 const getColorModelFromObject = (color: Color): ColorModel => {
     let model;
+    let different = false;
     const props = getOrderedArrayString(Object.keys(color));
-    Object.keys(ColorModel).some((p: ColorModel): boolean => {
+    const keys = Object.keys(ColorModel).filter((key: ColorModelKeys) => key !== ColorModel.HEX);
+    keys.some((p: ColorModelKeys): boolean => {
         if (getOrderedArrayString(p.split('')) === props) {
             model = p;
             return true;
         }
     });
-    if (!model) {
+    if (model && model === ColorModel.RGB || model === ColorModel.RGBA) {
+        const isHEX = Object.entries(color).map((item: [string, string | number]): boolean => HEX.test(`${item[1]}`));
+        different = isHEX.some((item: boolean, index: number): boolean => {
+            if (index > 0 && item !== isHEX[index - 1]) {
+                return true;
+            }
+            return false;
+        });
+        if (!different && isHEX[0]) {
+            model = ColorModel.HEX;
+        }
+    }
+    if (!model || different) {
         throw new Error(ERRORS.NOT_ACCEPTED_OBJECT_INPUT);
     }
     return model as ColorModel;
@@ -157,20 +170,26 @@ export const getRGBObjectFromString = {
 
 //---Convert a color object to an RGB object
 export const getRGBObjectFromObject = {
-    [ColorModel.RGB](color: RGBObjectGeneric): RGBObject {
+    [ColorModel.HEX](color: RGBObjectGeneric): RGBObject {
         const object: RGBObject = {
             r: getBase255Number(`${color.r}`),
             g: getBase255Number(`${color.g}`),
             b: getBase255Number(`${color.b}`)
         };
-        return object;
-    },
-    [ColorModel.RGBA](color: RGBObjectGeneric): RGBObject {
-        const object = this.RGB(color);
         object.a = hasProp<RGBObjectGeneric>(color, 'a')
             ? Math.min(getBase255Number(`${color.a}`, true), 1)
             : 1;
         return object;
+    },
+    [ColorModel.RGB](color: RGBObjectGeneric): RGBObject {
+        const rgbColor = this.HEX(color);
+        if (hasProp<RGBObject>(rgbColor, 'a')) {
+            delete rgbColor.a;
+        }
+        return rgbColor;
+    },
+    [ColorModel.RGBA](color: RGBObjectGeneric): RGBObject {
+        return this.HEX(color);
     },
     [ColorModel.HSL](color: HSLObjectGeneric): RGBObject {
         const s = percent(`${color.s}`);
@@ -194,7 +213,7 @@ export const getRGBObjectFromObject = {
 export const getRGBObject = (color: ColorInput, model: ColorModel = getColorModel(color)): RGBObject => {
     return typeof color === 'string'
         ? getRGBObjectFromString[model](color)
-        : getRGBObjectFromObject[model as NotHEX](color as RGBObjectGeneric & HSLObjectGeneric & CMYKObjectGeneric);
+        : getRGBObjectFromObject[model](color as RGBObjectGeneric & HSLObjectGeneric & CMYKObjectGeneric);
 };
 
 //---Get the color values from an object
