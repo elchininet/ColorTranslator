@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.3.5] - 2020-12-17
+
+- Updated packages, solved vulnerabilities
+
 ## [1.3.4] - 2020-05-17
 
 - Improve the definition types of the method getHarmony
