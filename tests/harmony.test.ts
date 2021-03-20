@@ -1,4 +1,6 @@
-import { ColorTranslator, Harmony } from './data/data';
+import { ColorTranslator } from './data/data';
+import { Harmony } from '../src/constants';
+import { HEXObject, RGBObject, HSLObjectGeneric } from '../src/@types';
 
 describe('ColorTranslator harmony tests', (): void => {    
 
@@ -26,15 +28,24 @@ describe('ColorTranslator harmony tests', (): void => {
 
         colorFunctions.forEach((fn): void => {
 
-            const b = fn(base);
-            const r = results.map(colors => colors.map(color => fn(color)));
+            const css = fn(base);
+            const obj = fn(base, false) as HEXObject & RGBObject & HSLObjectGeneric;
+            const resultCSS = results.map(colors => colors.map(color => fn(color)));
+            const resultObject = results.map(colors => colors.map(color => fn(color, false))) as (HEXObject | RGBObject | HSLObjectGeneric)[][];
 
-            it(`Harmony deep equals: ${harmony} for ${b} => ${JSON.stringify(r[index])}`, (): void => {
-
-                const colors = ColorTranslator.getHarmony(b, Harmony[harmony as Harmony]);
-                expect(colors).toMatchObject(r[index]);
-
-            });            
+            it(`Harmony deep equals: ${harmony} for ${css} => ${JSON.stringify(resultCSS[index])}`, (): void => {
+                const colors = harmony === Harmony.COMPLEMENTARY
+                    ? ColorTranslator.getHarmony(css)
+                    : ColorTranslator.getHarmony(css, Harmony[harmony as Harmony]);
+                expect(colors).toMatchObject(resultCSS[index]);
+            });
+            
+            it(`Harmony deep equals: ${harmony} for ${JSON.stringify(obj)} => ${JSON.stringify(resultObject[index])}`, (): void => {
+                const colors = harmony === Harmony.COMPLEMENTARY
+                    ? ColorTranslator.getHarmony(obj)
+                    : ColorTranslator.getHarmony(obj, Harmony[harmony as Harmony]);
+                expect(colors).toMatchObject(resultObject[index]);
+            });
 
         });  
 

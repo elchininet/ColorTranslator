@@ -1,8 +1,10 @@
 import { COLORS, FUNCTIONS, ColorProps } from './data/data';
 import { HSLObject } from '../src/@types';
 
+type Props = keyof typeof COLORS[0];
+
 // Test HSL Objects
-const hslTo = ['rgb', 'rgbObject', 'rgba', 'rgbaObject', 'hex', 'hexObject', 'hexa', 'hexaObject'];
+const hslTo: Props[] = ['rgb', 'rgbObject', 'rgba', 'rgbaObject', 'hex', 'hexObject', 'hexa', 'hexaObject'];
 
 COLORS.forEach((item: ColorProps): void => {
 
@@ -17,7 +19,7 @@ COLORS.forEach((item: ColorProps): void => {
         const hslLowHue = { ...hsl, h: hsl.h - 360 };
         const hslaLowHue = { ...hsl, h: hsl.h - 360 };
 
-        hslTo.forEach((prop: keyof ColorProps): void => {
+        hslTo.forEach((prop: Props): void => {
 
             const functionCall = FUNCTIONS[prop].func;
             const cssProps = FUNCTIONS[prop].css;

@@ -50,8 +50,10 @@ export interface CMYKObjectGeneric {
 }
 
 export type Color = RGBObjectGeneric | HSLObjectGeneric | CMYKObjectGeneric;
+export type ColorWithoutCMYK = RGBObjectGeneric | HSLObjectGeneric;
 
 export type ColorInput = string | Color;
+export type ColorInputWithoutCMYK = string | ColorWithoutCMYK;
 export type HEXOutput = string | HEXObject;
 export type RGBOutput = string | RGBObject;
 export type HSLOutput = string | HSLObject;

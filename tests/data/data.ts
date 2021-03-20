@@ -333,4 +333,3 @@ export const CLASS_PROPERTIES = {
 };
 
 export const ColorTranslator = ct;
-export { Harmony };
