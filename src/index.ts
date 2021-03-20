@@ -1,6 +1,7 @@
 import {
     Color,
     ColorInput,
+    ColorInputWithoutCMYK,
     HSLObjectGeneric,
     HEXObject,
     RGBObject,
@@ -16,7 +17,7 @@ import { ColorModel, Harmony } from '#constants';
 import { rgbToHSL, hslToRGB, rgbToCMYK, cmykToRGB } from '#color/translators';
 import * as utils from '#color/utils';
 import { CSS } from '#color/css';
-import { hasProp, round, minmax } from '#helpers';
+import { round, minmax } from '#helpers';
 
 const check = (color: ColorInput, css: boolean): boolean => (typeof color === 'string' && css || typeof color === 'object' && !css);
 
@@ -224,40 +225,41 @@ export class ColorTranslator {
     }
 
     public get RGBObject(): RGBObject {
-        const rgb = { ...this.rgb };
-        return utils.translateColor.RGB(rgb);
+        return {
+            r: this.R,
+            g: this.G,
+            b: this.B
+        };
     }
 
     public get RGBAObject(): RGBObject {
-        const rgb = { ...this.rgb };
-        return utils.translateColor.RGBA(rgb);
+        return {
+            ...this.RGBObject,
+            a: this.A
+        };
     }
 
     public get HSLObject(): HSLObject {
         return {
-            h: round(this.hsl.h),
-            s: round(this.hsl.s),
-            l: round(this.hsl.l)
+            h: this.H,
+            s: this.S,
+            l: this.L
         };
     }
 
     public get HSLAObject(): HSLObject {
         return {
-            h: round(this.hsl.h),
-            s: round(this.hsl.s),
-            l: round(this.hsl.l),
-            a: hasProp<HSLObject>(this.hsl, 'a')
-                ? round(this.hsl.a, 2)
-                : 1
+            ...this.HSLObject,
+            a: this.A
         };
     }
 
     public get CMYKObject(): CMYKObject {
         return {
-            c: round(this.cmyk.c),
-            m: round(this.cmyk.m),
-            y: round(this.cmyk.y),
-            k: round(this.cmyk.k)
+            c: this.C,
+            m: this.M,
+            y: this.Y,
+            k: this.K
         };
     }
 
@@ -269,8 +271,8 @@ export class ColorTranslator {
     }
 
     public get HEXA(): string {
-        const { r, g, b, a = 1 } = this.rgb;
-        const rgb = { r, g, b, a: a * 255 };
+        const { r, g, b } = this.rgb;
+        const rgb = { r, g, b, a: this.A * 255 };
         return CSS.HEX(rgb);
     }
 
@@ -281,8 +283,8 @@ export class ColorTranslator {
     }
 
     public get RGBA(): string {
-        const { r, g, b, a = 1 } = this.rgb;
-        const rgb = { r, g, b, a };
+        const { r, g, b } = this.rgb;
+        const rgb = { r, g, b, a: this.A };
         return CSS.RGB(rgb);
     }
 
@@ -293,9 +295,7 @@ export class ColorTranslator {
     }
 
     public get HSLA(): string {
-        const { h, s, l, a = 1 } = this.hsl;
-        const hsl = { h, s, l, a };
-        return CSS.HSL(hsl);
+        return CSS.HSL(this.hsl);
     }
 
     public get CMYK(): string {
@@ -417,7 +417,7 @@ export class ColorTranslator {
     public static getHarmony(color: RGBObject, armony?: Harmony): RGBObject[];
     public static getHarmony(color: HSLObjectGeneric, armony?: Harmony): HSLObject[];
     public static getHarmony<T>(color: string, armony?: Harmony): T[];
-    public static getHarmony(color: ColorInput, armony: Harmony = Harmony.COMPLEMENTARY): ColorOutput[] {
+    public static getHarmony(color: ColorInputWithoutCMYK, armony: Harmony = Harmony.COMPLEMENTARY): ColorOutput[] {
         switch(armony) {
             case Harmony.ANALOGOUS:
                 return utils.colorHarmony.buildHarmony(color, utils.analogous);

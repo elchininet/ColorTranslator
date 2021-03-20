@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.6] - 2021-03-20
+
+- Fix a bug in the getHarmony method when the input is a hex object without alpha
+- Refactor the code to remove unused lines
+- Improved the test coverage
+
 ## [1.3.5] - 2020-12-17
 
 - Updated packages, solved vulnerabilities

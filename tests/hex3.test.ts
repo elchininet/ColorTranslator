@@ -1,11 +1,14 @@
-import { HEX3, ColorProps, ColorTranslator } from './data/data';
+import { HEX3, ColorTranslator } from './data/data';
 
-const hex3Props = ['hex', 'hexObject', 'hexa', 'hexaObject', 'hexObjectPercent', 'rgbPercent'];
+type HexProps = typeof HEX3[0];
+type Props = keyof HexProps;
 
-HEX3.forEach((item: ColorProps): void => {
+const hex3Props: Props[] = ['hex', 'hexObject', 'hexa', 'hexaObject', 'hexObjectPercent', 'rgbPercent'];
+
+HEX3.forEach((item: HexProps): void => {
 
     // Iterate over the color models
-    hex3Props.forEach((prop: keyof ColorProps): void => {
+    hex3Props.forEach((prop: Props): void => {
 
         describe(`ColorTranslator dynamic test for the HEX3 color: ${JSON.stringify(item[prop])}`, (): void => {
 

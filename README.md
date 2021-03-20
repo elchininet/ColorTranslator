@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://elchininet.github.io/ColorTranslator/">
-        <img src="./src/@demo/images/logo.png?raw=true" width="500" title="ColorTranslator" />
+        <img src="https://raw.githubusercontent.com/elchininet/ColorTranslator/master/src/%40demo/images/logo.png" width="500" title="ColorTranslator" />
     </a>
     <br>
     A JavaScript library, written in TypeScript, to convert among different color models

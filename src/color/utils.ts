@@ -1,6 +1,7 @@
 import {
     Color,
     ColorInput,
+    ColorInputWithoutCMYK,
     RGBObjectGeneric,
     HSLObjectGeneric,
     CMYKObjectGeneric,
@@ -79,8 +80,10 @@ const getColorModelFromObject = (color: Color): ColorModel => {
     });
     if (model && model === ColorModel.RGB || model === ColorModel.RGBA) {
 
-        const isHEX = Object.entries(color).map((item: [string, string | number]): boolean => HEX.test(`${item[1]}`));
-        const isRGB = Object.entries(color).map((item: [string, string | number]): boolean => PCENT.test(`${item[1]}`) || (!HEX.test(`${item[1]}`) && !isNaN(+item[1]) && +item[1] <= 255));
+        const isHEX = Object.entries(color).map((item: [string, string | number]): boolean =>
+            HEX.test(`${item[1]}`));
+        const isRGB = Object.entries(color).map((item: [string, string | number]): boolean =>
+            PCENT.test(`${item[1]}`) || (!HEX.test(`${item[1]}`) && !isNaN(+item[1]) && +item[1] <= 255));
         
         const differentHEX = isHEX.some((item: boolean, index: number): boolean => {
             if (index > 0 && item !== isHEX[index - 1]) {
@@ -196,9 +199,7 @@ export const getRGBObjectFromObject = {
     },
     [ColorModel.RGB](color: RGBObjectGeneric): RGBObject {
         const rgbColor = this.HEX(color);
-        if (hasProp<RGBObject>(rgbColor, 'a')) {
-            delete rgbColor.a;
-        }
+        delete rgbColor.a;
         return rgbColor;
     },
     [ColorModel.RGBA](color: RGBObjectGeneric): RGBObject {
@@ -305,11 +306,14 @@ export const blend = (from: RGBObject, to: RGBObject, steps: number): RGBObject[
 //---Harmony
 export const colorHarmony = {
 
-    buildHarmony(color: ColorInput, harmonyFunction: HarmonyFunction): string[] {
+    buildHarmony(color: ColorInputWithoutCMYK, harmonyFunction: HarmonyFunction): string[] {
         const model = getColorModel(color);
         const rgb = getRGBObject(color, model);
         const hsl = rgbToHSL(rgb.r, rgb.g, rgb.b, rgb.a);
-        const hasAlpha = Object.prototype.hasOwnProperty.call(rgb, 'a');
+        const hasAlpha = (
+            (typeof color === 'string' && hasProp<RGBObject>(rgb, 'a')) ||
+            (typeof color !== 'string' && hasProp<RGBObjectGeneric | HSLObjectGeneric>(color, 'a'))
+        );
         const isCSS = typeof color === 'string';
         switch(model) {
             case ColorModel.HEX:
@@ -345,7 +349,7 @@ export const colorHarmony = {
             (c: HSLObject): HEXOutput => (
                 css
                     ? CSS.HEX({...hslToRGB(c.h, c.s, c.l), a: normalizeAlpha(c.a) * 255})
-                    : translateColor.HEXA({...hslToRGB(c.h, c.s, c.l), a: normalizeAlpha(c.a) * 255})
+                    : translateColor.HEXA({...hslToRGB(c.h, c.s, c.l), a: normalizeAlpha(c.a)})
             )
         );
     },
