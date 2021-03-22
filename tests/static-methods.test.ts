@@ -1,4 +1,4 @@
-import { COLORS, FUNCTIONS, ColorProps, ColorTranslator } from './data/data';
+import { COLORS, FUNCTIONS, ColorProps } from './data/data';
 
 type Props = keyof typeof COLORS[0];
 

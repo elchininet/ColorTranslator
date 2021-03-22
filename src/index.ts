@@ -411,6 +411,49 @@ export class ColorTranslator {
         return getBlendReturn<HSLObject>(from, to, steps, css, utils.translateColor.HSLA, CSS.HSL);
     }
 
+    // Color Mix Static Methods
+    public static getMixHEX(colors: ColorInput[]): string;
+    public static getMixHEX(colors: ColorInput[], css: true): string;
+    public static getMixHEX(colors: ColorInput[], css: false): HEXObject;
+    public static getMixHEX(colors: ColorInput[], css = true): HEXOutput {
+        return utils.colorMixer.HEX(colors, css);
+    }
+
+    public static getMixHEXA(colors: ColorInput[]): string;
+    public static getMixHEXA(colors: ColorInput[], css: true): string;
+    public static getMixHEXA(colors: ColorInput[], css: false): HEXObject;
+    public static getMixHEXA(colors: ColorInput[], css = true): HEXOutput {
+        return utils.colorMixer.HEXA(colors, css);
+    }
+
+    public static getMixRGB(colors: ColorInput[]): string;
+    public static getMixRGB(colors: ColorInput[], css: true): string;
+    public static getMixRGB(colors: ColorInput[], css: false): RGBObject;
+    public static getMixRGB(colors: ColorInput[], css = true): RGBOutput {
+        return utils.colorMixer.RGB(colors, css);
+    }
+
+    public static getMixRGBA(colors: ColorInput[]): string;
+    public static getMixRGBA(colors: ColorInput[], css: true): string;
+    public static getMixRGBA(colors: ColorInput[], css: false): RGBObject;
+    public static getMixRGBA(colors: ColorInput[], css = true): RGBOutput {
+        return utils.colorMixer.RGBA(colors, css);
+    }
+
+    public static getMixHSL(colors: ColorInput[]): string;
+    public static getMixHSL(colors: ColorInput[], css: true): string;
+    public static getMixHSL(colors: ColorInput[], css: false): HSLObject;
+    public static getMixHSL(colors: ColorInput[], css = true): HSLOutput {
+        return utils.colorMixer.HSL(colors, css);
+    }
+
+    public static getMixHSLA(colors: ColorInput[]): string;
+    public static getMixHSLA(colors: ColorInput[], css: true): string;
+    public static getMixHSLA(colors: ColorInput[], css: false): HSLObject;
+    public static getMixHSLA(colors: ColorInput[], css = true): HSLOutput {
+        return utils.colorMixer.HSLA(colors, css);
+    }
+
     // Color Harmony Static Method
     public static getHarmony(color: string, armony?: Harmony): string[];
     public static getHarmony(color: HEXObject, armony?: Harmony): HEXObject[];
@@ -434,7 +477,6 @@ export class ColorTranslator {
 
         }
     }
-
 }
 
 export {

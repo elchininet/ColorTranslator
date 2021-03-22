@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.4.0] - 2021-03-22
+
+- Implemented static methods to mix colors in additive mode
+    * getMixHEX
+    * getMixHEXA
+    * getMixRGB
+    * getMixRGBA
+    * getMixHSL
+    * getMixHSLA
+
 ## [1.3.6] - 2021-03-20
 
 - Fix a bug in the getHarmony method when the input is a hex object without alpha
