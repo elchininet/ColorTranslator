@@ -240,9 +240,9 @@ color.HSLA; // hsla(300,100%,50%,1)
 
 #### Class static methods
 
-It is not needed to specify the color model from which you are converting, the API will detect the format. You only need to specify to which color model you want to convert calling the specific static method.
+It is not needed to specify the input color model for any of the methods, the API will detect the format. You only need to specify to which color model you want to convert calling the specific static method.
 
-There are 14 static methods available, 7 of them to convert colors, 6 to create color blends, and one to create color harmonies.
+There are 20 static methods available, 7 of them to convert colors, 6 to create color blends, 6 to mix colors, and one to create color harmonies.
 
 ###### Color conversion static methods
 
@@ -346,6 +346,46 @@ ColorTranslator.getBlendRGBA('#F000', 'rgba(0,0,255,1)', 5, false);
 
 You can also consult the [demo 5](https://elchininet.github.io/ColorTranslator/#demo5) to check the use of these static methods.
 
+###### Color mix static methods
+
+The static methods to mix colors accept an array of any of the mentioned inputs as the first parameter. The second parameter is optional and it specifies if the output should be a CSS string or an object:
+
+```
+getMixColorsStaticMethod(
+  colors: [string | object][],
+  css: boolean = true
+)
+```
+
+###### Color mix static methods description
+
+| Static method | Description                                                        |
+| ------------- | -------------------------------------------------------------------|
+| getMixHEX     | Get the mix of the input colors in hexadecimal notation            |  
+| getMixHEXA    | Get the mix of the input colors in hexadecimal notation with alpha |
+| getMixRGB     | Get the mix of the input colors in RGB notation                    |
+| getMixRGBA    | Get the mix of the input colors in RGB notation with alpha         |
+| getMixHSL     | Get the mix of the input colors in HSL notation                    |
+| getMixHSLA    | Get the mix of the input colors in HSL notation with alpha         |
+
+###### Color mix static methods examples
+
+```javascript
+ColorTranslator.getMixHEX(['#FF0000', '#0000FF']);
+
+// #FF00FF
+
+ColorTranslator.getMixHSL(['rgba(255, 0, 0, 1)', '#00FF00']);
+
+// hsl(60,100%,50%)
+
+ColorTranslator.getMixHEXA(['#F00', 'rgb(0, 0, 255)'], true);
+
+// { r: '0xFF', g: '0x00', b: '0xFF', a: '0xFF' }
+```
+
+You can also consult the [demo 6](https://elchininet.github.io/ColorTranslator/#demo6) to check the use of these static methods.
+
 ###### Color harmonies static method
 
 The static method to create color harmonies accepts two parmeters, the first one could be any of the mentioned inputs and the second one is optional and it is to specify the kind of harmony (by default it will be `Harmony.COMPLEMENTARY`). It will return the colors in the same format that was sent:
@@ -396,7 +436,7 @@ ColorTranslator.getHarmony({ r: 115, g: 200, b: 150, a: 0.5 }, Harmony.COMPLEMEN
 
 ```
 
-You can also consult the [demo 6](https://elchininet.github.io/ColorTranslator/#demo6) to check the use of these static methods.
+You can also consult the [demo 7](https://elchininet.github.io/ColorTranslator/#demo7) to check the use of these static methods.
 
 ## TypeScript Support
 

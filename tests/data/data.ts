@@ -328,8 +328,23 @@ export const FUNCTIONS = {
     cmykObject: { name: 'CMYK object', func: ct.toCMYK, css: false }
 };
 
-export const CLASS_PROPERTIES = {
-    
-};
+export const MIXES = [
+    {
+        colors: ['#FF0000', '#0000FF'],
+        mix: '#FF00FF'
+    },
+    {
+        colors: ['#FF0000', '#00FF00'],
+        mix: '#FFFF00'
+    },
+    {
+        colors: ['#00FF00', '#0000FF'],
+        mix: '#00FFFF'
+    },
+    {
+        colors: ['#FF0000', '#00FF00', '#0000FF'],
+        mix: '#FFFFFF'
+    }
+];
 
 export const ColorTranslator = ct;

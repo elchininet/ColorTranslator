@@ -2,6 +2,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackCconfig = require('./webpack.config')[1];
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 /* eslint-enable @typescript-eslint/no-var-requires */
 WebpackCconfig.mode = 'development';
 WebpackCconfig.entry = './src/@demo/demo.js';
@@ -23,6 +24,9 @@ WebpackCconfig.plugins = [
         logo: './src/@demo/images/logo_white.svg',
         favicon: './src/@demo/favicon.png',
         template: 'src/@demo/demo.html'
+    }),
+    new CopyWebpackPlugin({
+        patterns: [{ from: 'src/@demo/images', to: 'images' }]            
     })
 ];
 WebpackCconfig.devServer = {

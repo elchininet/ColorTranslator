@@ -1,6 +1,7 @@
 import '../../node_modules/google-code-prettify/bin/run_prettify.min';
 import '../../node_modules/google-code-prettify/bin/prettify.min.css';
 import '../../node_modules/google-code-prettify/styles/desert.css';
+import 'whatwg-fetch';
 import './styles.scss';
 import { ColorTranslator, Harmony } from '../';
 import demo1 from './demo1';
@@ -9,6 +10,7 @@ import demo3 from './demo3';
 import demo4 from './demo4';
 import demo5 from './demo5';
 import demo6 from './demo6';
+import demo7 from './demo7';
 
 const functioToString = (fn) => {
     const article = document.createElement('article');
@@ -27,6 +29,7 @@ const demos = new Map([
     ['demo4', demo4],
     ['demo5', demo5],
     ['demo6', demo6],
+    ['demo7', demo7],
 ]);
 
 document.addEventListener('DOMContentLoaded', () => {
