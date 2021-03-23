@@ -10,8 +10,8 @@ const WebpackCconfig = require('./webpack.config')[1];
 /* eslint-enable @typescript-eslint/no-var-requires */
 
 module.exports = {
+    mode: 'production',
     target: 'web',
-    devtool: 'eval-source-map',
     entry: './src/@demo/demo.js',
     module: {
         rules: [
