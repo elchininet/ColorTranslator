@@ -96,7 +96,10 @@ export const rgbToHSL = (r: number, g: number, b: number, a = 1): HSLObject => {
     };
 };
 
-//---RGB to RYB
+//---RGB to RYB and RYB to RGB
+/*
+* http://nishitalab.org/user/UEI/publication/Sugita_IWAIT2015.pdf
+*/
 export const rgbToRYB = (r: number, g: number, b: number): RYBObject => {
     const Iw = Math.min(r, g, b);
     const Ib = Math.min(255 - r, 255 - g, 255 - b);
