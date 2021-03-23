@@ -8,6 +8,7 @@ import {
     CMYKObject,
     HSLObject,
     RGBObject,
+    RYBObject,
     HEXObject,
     RGBOutput,
     HSLOutput,
@@ -18,8 +19,9 @@ import {
     HEX,
     PCENT,
     ColorModel,
+    Mix,
     COLORREGS,
-    ERRORS
+    ERRORS,
 } from '#constants';
 import {
     getOrderedArrayString,
@@ -36,7 +38,9 @@ import {
     rgbToHSL,
     hslToRGB,
     cmykToRGB,
-    rgbToCMYK
+    rgbToCMYK,
+    rgbToRYB,
+    rybToRGB
 } from '#color/translators';
 import { CSS } from '#color/css';
 
@@ -422,38 +426,67 @@ export const colorHarmony = {
 };
 
 export const colorMixer = {
-    mix(colors: ColorInput[]): RGBObject {
+
+    mix(colors: ColorInput[], mode: Mix): RGBObject {
+
         const rgbMap = colors.map((color: ColorInput): RGBObject => {
             const model = getColorModel(color);
             return getRGBObject(color, model);
         });
-        const mix = rgbMap.reduce((mix: RGBObject, color: RGBObject): RGBObject => {
-            const mixA = hasProp<RGBObject>(mix, 'a') ? mix.a : 1;
-            const colorA = hasProp<RGBObject>(color, 'a') ? color.a : 1;
+
+        if (mode === Mix.ADDITIVE) {
+
+            const mix = rgbMap.reduce((mix: RGBObject, color: RGBObject): RGBObject => {
+                const mixA = hasProp<RGBObject>(mix, 'a') ? mix.a : 1;
+                const colorA = hasProp<RGBObject>(color, 'a') ? color.a : 1;
+                return {
+                    r: mix.r + color.r * colorA,
+                    g: mix.g + color.g * colorA,
+                    b: mix.b + color.b * colorA,
+                    a: mixA + colorA
+                };
+            }, {r: 0, g: 0, b: 0});
             return {
-                r: mix.r + color.r * colorA,
-                g: mix.g + color.g * colorA,
-                b: mix.b + color.b * colorA,
-                a: mixA + colorA
+                r: minmax(mix.r, 0, 255),
+                g: minmax(mix.g, 0, 255),
+                b: minmax(mix.b, 0, 255),
+                a: minmax(mix.a, 0, 1)
             };
-        }, {r: 0, g: 0, b: 0});
-        const rgb: RGBObject = {
-            r: minmax(mix.r, 0, 255),
-            g: minmax(mix.g, 0, 255),
-            b: minmax(mix.b, 0, 255),
-            a: minmax(mix.a, 0, 1)
-        };
-        return rgb;
+
+        } else {
+
+            const alpha = rgbMap.reduce((a: number, color: RGBObject): number => {
+                return a + (hasProp<RGBObject>(color, 'a') ? color.a : 1);
+            }, 0);
+
+            const rybMap = rgbMap.map((color: RGBObject) => rgbToRYB(color.r, color.g, color.b));
+
+            const mix = rybMap.reduce((mix: RYBObject, color: RYBObject): RYBObject => ({
+                r: mix.r + color.r,
+                y: mix.y + color.y,
+                b: mix.b + color.b  
+            }), {r: 0, y: 0, b: 0});
+
+            const rgb = rybToRGB(mix.r, mix.y, mix.b);
+
+            return {
+                r: minmax(rgb.r, 0, 255),
+                g: minmax(rgb.g, 0, 255),
+                b: minmax(rgb.b, 0, 255),
+                a: minmax(alpha, 0, 1)
+            };
+
+        }
     },
-    [ColorModel.HEX](colors: ColorInput[], css: boolean): HEXOutput {
-        const mix = this.mix(colors);
+    [ColorModel.HEX](colors: ColorInput[], mode: Mix, css: boolean): HEXOutput {
+        const mix = this.mix(colors, mode);
         delete mix.a;
         return css
             ? CSS.HEX(mix)
             : translateColor.HEX(mix);
     },
-    HEXA(colors: ColorInput[], css: boolean): HEXOutput {
-        const mix = this.mix(colors);
+    HEXA(colors: ColorInput[], mode: Mix, css: boolean): HEXOutput {
+        const mix = this.mix(colors, mode);
         mix.a = css
             ? normalizeAlpha(mix.a) * 255
             : normalizeAlpha(mix.a);
@@ -461,21 +494,21 @@ export const colorMixer = {
             ? CSS.HEX(mix)
             : translateColor.HEXA(mix);
     },
-    [ColorModel.RGB](colors: ColorInput[], css: boolean): RGBOutput {
-        const mix = this.mix(colors);
+    [ColorModel.RGB](colors: ColorInput[], mode: Mix, css: boolean): RGBOutput {
+        const mix = this.mix(colors, mode);
         delete mix.a;
         return css
             ? CSS.RGB(mix)
             : translateColor.RGB(mix);
     },
-    [ColorModel.RGBA](colors: ColorInput[], css: boolean): RGBOutput {
-        const mix = this.mix(colors);
+    [ColorModel.RGBA](colors: ColorInput[], mode: Mix, css: boolean): RGBOutput {
+        const mix = this.mix(colors, mode);
         return css
             ? CSS.RGB(mix)
             : translateColor.RGBA(mix);
     },
-    [ColorModel.HSL](colors: ColorInput[], css: boolean): HSLOutput {
-        const mix = this.mix(colors);
+    [ColorModel.HSL](colors: ColorInput[], mode: Mix, css: boolean): HSLOutput {
+        const mix = this.mix(colors, mode);
         const hsl = rgbToHSL(mix.r, mix.g, mix.b);
         delete mix.a;
         delete hsl.a;
@@ -483,8 +516,8 @@ export const colorMixer = {
             ? CSS.HSL(hsl)
             : translateColor.HSL(mix);
     },
-    [ColorModel.HSLA](colors: ColorInput[], css: boolean): HSLOutput {
-        const mix = this.mix(colors);
+    [ColorModel.HSLA](colors: ColorInput[], mode: Mix, css: boolean): HSLOutput {
+        const mix = this.mix(colors, mode);
         const hsl = rgbToHSL(mix.r, mix.g, mix.b, mix.a);
         return css
             ? CSS.HSL(hsl)

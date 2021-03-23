@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.5.0] - 2021-03-23
+
+- Support for subtractive mixing of colors
+
 ## [1.4.0] - 2021-03-22
 
 - Implemented static methods to mix colors in additive mode

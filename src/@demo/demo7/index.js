@@ -1,39 +1,39 @@
 import './styles.scss';
 
-export default (ColorTranslator, Harmony) => {
+export default (ColorTranslator, { Mix }) => {
 
     const container = document.createElement('div');
-    const base = '#F00';
-    const harmonies = [
-        { label: 'Complementary',       value: Harmony.COMPLEMENTARY },
-        { label: 'Split Complementary', value: Harmony.SPLIT_COMPLEMENTARY },
-        { label: 'Analogous',           value: Harmony.ANALOGOUS },
-        { label: 'Triadic',             value: Harmony.TRIADIC },
-        { label: 'Tetradic',            value: Harmony.TETRADIC },
-        { label: 'Square',              value: Harmony.SQUARE }
+
+    const mixes = [
+        '#FFFF00',
+        '#FF0000',
+        '#0000FF',
+        [1, 3],
+        [1, 2],
+        [2, 3],
+        [1, 2, 3]
     ];
     
-    harmonies.forEach((item) => {
-
-        const row = document.createElement('div');
-        row.classList.add('row');
-
-        const colors = ColorTranslator.getHarmony(base, item.value);
-
-        colors.forEach((hex) => {
-            const box = document.createElement('div');
-            box.classList.add('box');
-            box.style.background = hex;
-            row.appendChild(box);
+    const fillPlanes = () => {
+        const planes = container.querySelectorAll('#planes path');
+        planes.forEach((plane, index) => {
+            let color = '#CCCCCC';
+            if (typeof mixes[index] === 'string') {
+                color = mixes[index];
+            } else if(mixes[index]) {
+                const colors = mixes[index].map((i) => mixes[i - 1]);
+                color = mixes[index] = ColorTranslator.getMixHEX(colors, Mix.SUBTRACTIVE);           
+            }  
+            plane.setAttribute('fill', color);
         });
+    };
 
-        const label = document.createElement('div');
-        label.classList.add('label');
-        label.innerText = item.label;
-        row.appendChild(label);
-
-        container.appendChild(row);
-    });
+    fetch('images/color-mixes.svg')
+        .then(result => result.text())
+        .then((svgCode) => {
+            container.innerHTML = svgCode;
+            fillPlanes();
+        });
 
     return container;
 

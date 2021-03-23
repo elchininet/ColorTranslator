@@ -348,11 +348,14 @@ You can also consult the [demo 5](https://elchininet.github.io/ColorTranslator/#
 
 ###### Color mix static methods
 
-The static methods to mix colors accept an array of any of the mentioned inputs as the first parameter. The second parameter is optional and it specifies if the output should be a CSS string or an object:
+The static methods to mix colors accept an array of any of the mentioned inputs as the first parameter. The second parameter is optional and specifies the mixing mode (by default it will be `Mix.ADDITIVE`). The third parameter is also optional and it specifies if the output should be a CSS string or an object:
+
+> **Note:** The subtractive mix simulates the mixing of pigments, to achieve this, the rgb colors are converted to ryb color model, the addition is performed in this mode and at the end the result is converted back to rgb. The result is OK most of the time, but as this is not a real mix of pigments, sometimes the result could differ from the reality.
 
 ```
 getMixColorsStaticMethod(
   colors: [string | object][],
+  mode: Mix = Mix.ADDITIVE,
   css: boolean = true
 )
 ```
@@ -379,12 +382,16 @@ ColorTranslator.getMixHSL(['rgba(255, 0, 0, 1)', '#00FF00']);
 
 // hsl(60,100%,50%)
 
-ColorTranslator.getMixHEXA(['#F00', 'rgb(0, 0, 255)'], true);
+ColorTranslator.getMixHEXA(['#F00', 'rgb(0, 0, 255)'], Mix.ADDITIVE, true);
 
 // { r: '0xFF', g: '0x00', b: '0xFF', a: '0xFF' }
+
+ColorTranslator.getMixHEX(['#FF0', '#F00'], Mix.SUBTRACTIVE);
+
+// #FF7F00
 ```
 
-You can also consult the [demo 6](https://elchininet.github.io/ColorTranslator/#demo6) to check the use of these static methods.
+You can also consult the [demo 6](https://elchininet.github.io/ColorTranslator/#demo6) and [demo 7](https://elchininet.github.io/ColorTranslator/#demo7) to check the use of these static methods.
 
 ###### Color harmonies static method
 
@@ -436,7 +443,7 @@ ColorTranslator.getHarmony({ r: 115, g: 200, b: 150, a: 0.5 }, Harmony.COMPLEMEN
 
 ```
 
-You can also consult the [demo 7](https://elchininet.github.io/ColorTranslator/#demo7) to check the use of these static methods.
+You can also consult the [demo 8](https://elchininet.github.io/ColorTranslator/#demo8) to check the use of these static methods.
 
 ## TypeScript Support
 

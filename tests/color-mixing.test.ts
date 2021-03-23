@@ -1,7 +1,8 @@
-import { ColorTranslator, MIXES } from './data/data';
+import { ColorTranslator, ADDITIVE_MIXES, SUBTRACTIVE_MIXES } from './data/data';
 import { RGBOutput, HSLOutput, HEXOutput } from '../src/@types';
+import { Mix } from '../src/constants';
 
-type Mix = typeof MIXES[0];
+type MixObject = typeof ADDITIVE_MIXES[0];
 
 const mixFunctions = [
     { name: 'getMixHEX',  mixFn: ColorTranslator.getMixHEX,  fn: ColorTranslator.toHEX },
@@ -12,21 +13,37 @@ const mixFunctions = [
     { name: 'getMixHSLA', mixFn: ColorTranslator.getMixHSLA, fn: ColorTranslator.toHSLA },
 ];
 
-describe('Color mixing', (): void => {
+describe('Additive Color mixing', (): void => {
     mixFunctions.forEach((fnObject): void => {
-        MIXES.forEach((item: Mix): void => {
+        ADDITIVE_MIXES.forEach((item: MixObject): void => {
             const colors = item.colors.map((c): string => fnObject.fn(c));
             const mix = fnObject.mixFn(colors);
             it(`Regular CSS mix using ${fnObject.name} ${JSON.stringify(colors)} => ${mix}`, (): void => {
                 expect(mix).toBe(fnObject.fn(item.mix));
             });        
         });
-        MIXES.forEach((item: Mix): void => {
+        ADDITIVE_MIXES.forEach((item: MixObject): void => {
             const colors = item.colors.map((c): RGBOutput | HSLOutput | HEXOutput => fnObject.fn(c, false));
-            const mix = fnObject.mixFn(colors, false);
+            const mix = fnObject.mixFn(colors, Mix.ADDITIVE, false);
             it(`Regular Object mix using ${fnObject.name} ${JSON.stringify(colors)} => ${JSON.stringify(mix)}`, (): void => {
                 expect(mix).toMatchObject(fnObject.fn(item.mix, false));
             });        
         }); 
+    });
+});
+
+describe('Subtractive Color mixing', (): void => {
+    SUBTRACTIVE_MIXES.forEach((item: MixObject): void => {
+        const mix = ColorTranslator.getMixHEX(item.colors, Mix.SUBTRACTIVE);
+        it(`Regular CSS mix using getMixHEX ${JSON.stringify(item.colors)} => ${mix}`, (): void => {
+            expect(mix).toBe(item.mix);
+        });        
+    });
+    SUBTRACTIVE_MIXES.forEach((item: MixObject): void => {
+        const colors = item.colors.map((c): string => ColorTranslator.toHEXA(c));
+        const mix = ColorTranslator.getMixHEXA(colors, Mix.SUBTRACTIVE);
+        it(`Regular CSS mix using getMixHEXA ${JSON.stringify(colors)} => ${mix}`, (): void => {
+            expect(mix).toBe(ColorTranslator.toHEXA(item.mix));
+        });        
     });
 });

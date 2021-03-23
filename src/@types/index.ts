@@ -49,6 +49,12 @@ export interface CMYKObjectGeneric {
     k: NumberOrString;
 }
 
+export interface RYBObject {
+    r: number;
+    y: number;
+    b: number;
+}
+
 export type Color = RGBObjectGeneric | HSLObjectGeneric | CMYKObjectGeneric;
 export type ColorWithoutCMYK = RGBObjectGeneric | HSLObjectGeneric;
 
