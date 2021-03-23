@@ -5,8 +5,8 @@ export default (ColorTranslator, { Mix }) => {
     const container = document.createElement('div');
 
     const mixes = [
-        '#FFFF00',
         '#FF0000',
+        '#FFFF00',
         '#0000FF',
         [1, 3],
         [1, 2],
