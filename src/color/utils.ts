@@ -434,49 +434,55 @@ export const colorMixer = {
             return getRGBObject(color, model);
         });
 
-        if (mode === Mix.ADDITIVE) {
+        const rybMap = mode === Mix.SUBTRACTIVE
+            ? rgbMap.map((color: RGBObject): RYBObject => {
+                const ryb = rgbToRYB(color.r, color.g, color.b);
+                if (hasProp<RGBObject>(color, 'a')) {
+                    ryb.a = color.a;
+                }
+                return ryb;
+            })
+            : null;
 
-            const mix = rgbMap.reduce((mix: RGBObject, color: RGBObject): RGBObject => {
-                const mixA = hasProp<RGBObject>(mix, 'a') ? mix.a : 1;
-                const colorA = hasProp<RGBObject>(color, 'a') ? color.a : 1;
-                return {
-                    r: mix.r + color.r * colorA,
-                    g: mix.g + color.g * colorA,
+        function createMix(items: RGBObject[]): RGBObject;
+        function createMix(items: RYBObject[]): RYBObject;
+        function createMix(items: (RGBObject | RYBObject)[]): (RGBObject | RYBObject) {
+            const initial = mode === Mix.ADDITIVE
+                ? {r: 0, g: 0, b: 0, a: 0}
+                : {r: 0, y: 0, b: 0, a: 0};
+            return items.reduce((mix: RGBObject & RYBObject, color: RGBObject & RYBObject): RGBObject | RYBObject => {
+                const colorA = hasProp<RGBObject & RYBObject>(color, 'a') ? color.a : 1;
+                const common = {
+                    r: mix.r  + color.r * colorA,
                     b: mix.b + color.b * colorA,
-                    a: mixA + colorA
+                    a: 1 - (1 - colorA) * (1 - mix.a)
                 };
-            }, {r: 0, g: 0, b: 0});
-            return {
-                r: minmax(mix.r, 0, 255),
-                g: minmax(mix.g, 0, 255),
-                b: minmax(mix.b, 0, 255),
-                a: minmax(mix.a, 0, 1)
-            };
-
-        } else {
-
-            const alpha = rgbMap.reduce((a: number, color: RGBObject): number => {
-                return a + (hasProp<RGBObject>(color, 'a') ? color.a : 1);
-            }, 0);
-
-            const rybMap = rgbMap.map((color: RGBObject) => rgbToRYB(color.r, color.g, color.b));
-
-            const mix = rybMap.reduce((mix: RYBObject, color: RYBObject): RYBObject => ({
-                r: mix.r + color.r,
-                y: mix.y + color.y,
-                b: mix.b + color.b  
-            }), {r: 0, y: 0, b: 0});
-
-            const rgb = rybToRGB(mix.r, mix.y, mix.b);
-
-            return {
-                r: minmax(rgb.r, 0, 255),
-                g: minmax(rgb.g, 0, 255),
-                b: minmax(rgb.b, 0, 255),
-                a: minmax(alpha, 0, 1)
-            };
-
+                return {
+                    ...common,
+                    ...(mode === Mix.ADDITIVE
+                        ? { g: mix.g + color.g * colorA }
+                        : { y: mix.y + color.y * colorA }
+                    )
+                };
+            }, initial);
         }
+
+        let mix: RGBObject;
+
+        if (mode === Mix.ADDITIVE) {
+            mix = createMix(rgbMap);
+        } else {
+            const ryb = createMix(rybMap);
+            mix = rybToRGB(ryb.r, ryb.y, ryb.b);
+            mix.a = ryb.a;
+        }
+        
+        return {
+            r: minmax(mix.r, 0, 255),
+            g: minmax(mix.g, 0, 255),
+            b: minmax(mix.b, 0, 255),
+            a: minmax(mix.a, 0, 1)
+        };
     },
     [ColorModel.HEX](colors: ColorInput[], mode: Mix, css: boolean): HEXOutput {
         const mix = this.mix(colors, mode);

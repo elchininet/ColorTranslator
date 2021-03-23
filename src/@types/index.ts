@@ -53,6 +53,7 @@ export interface RYBObject {
     r: number;
     y: number;
     b: number;
+    a?: number;
 }
 
 export type Color = RGBObjectGeneric | HSLObjectGeneric | CMYKObjectGeneric;
