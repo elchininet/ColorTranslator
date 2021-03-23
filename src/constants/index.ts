@@ -16,6 +16,11 @@ export enum Harmony {
     SQUARE = 'SQUARE'
 }
 
+export enum Mix {
+    ADDITIVE = 'ADDITIVE',
+    SUBTRACTIVE = 'SUBTRACTIVE'
+}
+
 export const COLORREGS = {
     [ColorModel.HEX]: /^#(?:([a-f\d])([a-f\d])([a-f\d])([a-f\d])?|([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?)$/i,
     [ColorModel.RGB]: /^rgb\s*\(\s*(?:(\d+%)\s*,\s*(\d+%)\s*,\s*(\d+%)|(\d+)\s*,\s*(\d+)\s*,\s*(\d+))\s*\)$/,

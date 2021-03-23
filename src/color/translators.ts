@@ -1,4 +1,4 @@
-import { RGBObject, HSLObject, CMYKObject } from '@types';
+import { RGBObject, HSLObject, CMYKObject, RYBObject } from '@types';
 
 //---HUE to RGB
 export const hueToRGB = (t1: number, t2: number, hue: number): number => {
@@ -93,5 +93,42 @@ export const rgbToHSL = (r: number, g: number, b: number, a = 1): HSLObject => {
         s: Math.round(s * 100),
         l: Math.round(l * 100),
         a
+    };
+};
+
+//---RGB to RYB
+export const rgbToRYB = (r: number, g: number, b: number): RYBObject => {
+    const Iw = Math.min(r, g, b);
+    const Ib = Math.min(255 - r, 255 - g, 255 - b);
+    const rRGB = r - Iw;
+    const gRGB = g - Iw;
+    const bRGB = b - Iw;
+    const minRG = Math.min(rRGB, gRGB);
+    const rRYB = rRGB - minRG;
+    const yRYB = (gRGB + minRG) / 2;
+    const bRYB = (bRGB + gRGB - minRG) / 2;
+    const n = Math.max(rRYB, yRYB, bRYB, 1) / Math.max(rRGB, gRGB, bRGB, 1);
+    return {
+        r: rRYB / n + Ib,
+        y: yRYB / n + Ib,
+        b: bRYB / n + Ib
+    };
+};
+
+export const rybToRGB = (r: number, y: number, b: number): RGBObject => {
+    const Iw = Math.min(r, y, b);
+    const Ib = Math.min(255 - r, 255 - y, 255 - b);
+    const rRYB = r - Iw;
+    const yRYB = y - Iw;
+    const bRYB = b - Iw;
+    const minYB = Math.min(yRYB, bRYB);
+    const rRGB = rRYB + yRYB - minYB;
+    const gRGB = yRYB + 2 * minYB;
+    const bRGB = 2 * (bRYB - minYB);
+    const n = Math.max(rRGB, gRGB, bRGB, 1) / Math.max(rRYB, yRYB, bRYB, 1);
+    return {
+        r: rRGB / n + Ib,
+        g: gRGB / n + Ib,
+        b: bRGB / n + Ib
     };
 };

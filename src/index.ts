@@ -13,7 +13,7 @@ import {
     CMYKOutput,
     ColorOutput
 } from '@types';
-import { ColorModel, Harmony } from '#constants';
+import { ColorModel, Harmony, Mix } from '#constants';
 import { rgbToHSL, hslToRGB, rgbToCMYK, cmykToRGB } from '#color/translators';
 import * as utils from '#color/utils';
 import { CSS } from '#color/css';
@@ -413,45 +413,51 @@ export class ColorTranslator {
 
     // Color Mix Static Methods
     public static getMixHEX(colors: ColorInput[]): string;
-    public static getMixHEX(colors: ColorInput[], css: true): string;
-    public static getMixHEX(colors: ColorInput[], css: false): HEXObject;
-    public static getMixHEX(colors: ColorInput[], css = true): HEXOutput {
-        return utils.colorMixer.HEX(colors, css);
+    public static getMixHEX(colors: ColorInput[], mode: Mix): string;
+    public static getMixHEX(colors: ColorInput[], mode: Mix, css: true): string;
+    public static getMixHEX(colors: ColorInput[], mode: Mix, css: false): HEXObject;
+    public static getMixHEX(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true): HEXOutput {
+        return utils.colorMixer.HEX(colors, mode, css);
     }
 
     public static getMixHEXA(colors: ColorInput[]): string;
-    public static getMixHEXA(colors: ColorInput[], css: true): string;
-    public static getMixHEXA(colors: ColorInput[], css: false): HEXObject;
-    public static getMixHEXA(colors: ColorInput[], css = true): HEXOutput {
-        return utils.colorMixer.HEXA(colors, css);
+    public static getMixHEXA(colors: ColorInput[], mode: Mix): string;
+    public static getMixHEXA(colors: ColorInput[], mode: Mix, css: true): string;
+    public static getMixHEXA(colors: ColorInput[], mode: Mix, css: false): HEXObject;
+    public static getMixHEXA(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true): HEXOutput {
+        return utils.colorMixer.HEXA(colors, mode, css);
     }
 
     public static getMixRGB(colors: ColorInput[]): string;
-    public static getMixRGB(colors: ColorInput[], css: true): string;
-    public static getMixRGB(colors: ColorInput[], css: false): RGBObject;
-    public static getMixRGB(colors: ColorInput[], css = true): RGBOutput {
-        return utils.colorMixer.RGB(colors, css);
+    public static getMixRGB(colors: ColorInput[], mode: Mix): string;
+    public static getMixRGB(colors: ColorInput[], mode: Mix, css: true): string;
+    public static getMixRGB(colors: ColorInput[], mode: Mix, css: false): RGBObject;
+    public static getMixRGB(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true): RGBOutput {
+        return utils.colorMixer.RGB(colors, mode, css);
     }
 
     public static getMixRGBA(colors: ColorInput[]): string;
-    public static getMixRGBA(colors: ColorInput[], css: true): string;
-    public static getMixRGBA(colors: ColorInput[], css: false): RGBObject;
-    public static getMixRGBA(colors: ColorInput[], css = true): RGBOutput {
-        return utils.colorMixer.RGBA(colors, css);
+    public static getMixRGBA(colors: ColorInput[], mode: Mix): string;
+    public static getMixRGBA(colors: ColorInput[], mode: Mix, css: true): string;
+    public static getMixRGBA(colors: ColorInput[], mode: Mix, css: false): RGBObject;
+    public static getMixRGBA(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true): RGBOutput {
+        return utils.colorMixer.RGBA(colors, mode, css);
     }
 
     public static getMixHSL(colors: ColorInput[]): string;
-    public static getMixHSL(colors: ColorInput[], css: true): string;
-    public static getMixHSL(colors: ColorInput[], css: false): HSLObject;
-    public static getMixHSL(colors: ColorInput[], css = true): HSLOutput {
-        return utils.colorMixer.HSL(colors, css);
+    public static getMixHSL(colors: ColorInput[], mode: Mix): string;
+    public static getMixHSL(colors: ColorInput[], mode: Mix, css: true): string;
+    public static getMixHSL(colors: ColorInput[], mode: Mix, css: false): HSLObject;
+    public static getMixHSL(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true): HSLOutput {
+        return utils.colorMixer.HSL(colors, mode, css);
     }
 
     public static getMixHSLA(colors: ColorInput[]): string;
-    public static getMixHSLA(colors: ColorInput[], css: true): string;
-    public static getMixHSLA(colors: ColorInput[], css: false): HSLObject;
-    public static getMixHSLA(colors: ColorInput[], css = true): HSLOutput {
-        return utils.colorMixer.HSLA(colors, css);
+    public static getMixHSLA(colors: ColorInput[], mode: Mix): string;
+    public static getMixHSLA(colors: ColorInput[], mode: Mix, css: true): string;
+    public static getMixHSLA(colors: ColorInput[], mode: Mix, css: false): HSLObject;
+    public static getMixHSLA(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true): HSLOutput {
+        return utils.colorMixer.HSLA(colors, mode, css);
     }
 
     // Color Harmony Static Method
@@ -481,6 +487,7 @@ export class ColorTranslator {
 
 export {
     Harmony,
+    Mix,
     HEXObject,
     RGBObject,
     HSLObject,
