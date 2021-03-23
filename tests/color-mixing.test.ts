@@ -18,14 +18,14 @@ describe('Additive Color mixing', (): void => {
         ADDITIVE_MIXES.forEach((item: MixObject): void => {
             const colors = item.colors.map((c): string => fnObject.fn(c));
             const mix = fnObject.mixFn(colors);
-            it(`Regular CSS mix using ${fnObject.name} ${JSON.stringify(colors)} => ${mix}`, (): void => {
+            it(`Regular CSS additive mix using ${fnObject.name} ${JSON.stringify(colors)} => ${mix}`, (): void => {
                 expect(mix).toBe(fnObject.fn(item.mix));
             });        
         });
         ADDITIVE_MIXES.forEach((item: MixObject): void => {
             const colors = item.colors.map((c): RGBOutput | HSLOutput | HEXOutput => fnObject.fn(c, false));
             const mix = fnObject.mixFn(colors, Mix.ADDITIVE, false);
-            it(`Regular Object mix using ${fnObject.name} ${JSON.stringify(colors)} => ${JSON.stringify(mix)}`, (): void => {
+            it(`Regular Object additive mix using ${fnObject.name} ${JSON.stringify(colors)} => ${JSON.stringify(mix)}`, (): void => {
                 expect(mix).toMatchObject(fnObject.fn(item.mix, false));
             });        
         }); 
@@ -35,15 +35,44 @@ describe('Additive Color mixing', (): void => {
 describe('Subtractive Color mixing', (): void => {
     SUBTRACTIVE_MIXES.forEach((item: MixObject): void => {
         const mix = ColorTranslator.getMixHEX(item.colors, Mix.SUBTRACTIVE);
-        it(`Regular CSS mix using getMixHEX ${JSON.stringify(item.colors)} => ${mix}`, (): void => {
+        it(`Regular CSS subtractive mix using getMixHEX ${JSON.stringify(item.colors)} => ${mix}`, (): void => {
             expect(mix).toBe(item.mix);
         });        
     });
     SUBTRACTIVE_MIXES.forEach((item: MixObject): void => {
         const colors = item.colors.map((c): string => ColorTranslator.toHEXA(c));
         const mix = ColorTranslator.getMixHEXA(colors, Mix.SUBTRACTIVE);
-        it(`Regular CSS mix using getMixHEXA ${JSON.stringify(colors)} => ${mix}`, (): void => {
+        it(`Regular CSS subtractive mix using getMixHEXA ${JSON.stringify(colors)} => ${mix}`, (): void => {
             expect(mix).toBe(ColorTranslator.toHEXA(item.mix));
         });        
+    });
+});
+
+describe('Color mixing with alphas', (): void => {
+    ADDITIVE_MIXES.forEach((item: MixObject): void => {
+        const colors = item.colors.map((c): string => {
+            return `${c}55`;
+        });
+        const mix = ColorTranslator.getMixHEXA(colors);
+        it(`Regular CSS additive mix with alpha using getMixHEXA ${JSON.stringify(colors)} => ${mix}`, (): void => {
+            if (colors.length === 3) {
+                expect(mix.slice(-2)).toBe('B2');
+            } else {
+                expect(mix.slice(-2)).toBe('8E');
+            }            
+        });   
+    });
+    SUBTRACTIVE_MIXES.forEach((item: MixObject): void => {
+        const colors = item.colors.map((c): string => {
+            return `${c}55`;
+        });
+        const mix = ColorTranslator.getMixHEXA(colors);
+        it(`Regular CSS subtractive mix with alpha using getMixHEXA ${JSON.stringify(colors)} => ${mix}`, (): void => {
+            if (colors.length === 3) {
+                expect(mix.slice(-2)).toBe('B2');
+            } else {
+                expect(mix.slice(-2)).toBe('8E');
+            }            
+        });   
     });
 });

@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.5.1] - 2021-03-23
+
+- Fix final alpha value of color mixes with alpha
+
 ## [1.5.0] - 2021-03-23
 
 - Support for subtractive mixing of colors
