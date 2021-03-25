@@ -22,5 +22,13 @@ module.exports = {
     rules: {
         quotes: ['error', 'single', { 'avoidEscape': true, 'allowTemplateLiterals': true }],
         semi: ['error', 'always']
-    }
+    },
+    overrides: [
+        {
+            files: ['webpack*.js'],
+            rules: {
+                '@typescript-eslint/no-var-requires': 'off'
+            }
+        }
+    ]
 };
