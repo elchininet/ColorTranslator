@@ -32,22 +32,19 @@ export default (ColorTranslator, { Harmony }) => {
         fetch('images/color-wheel.svg')
             .then(result => result.text())
             .then((svgCode) => {
-
                 wheel.innerHTML = svgCode;
-
                 wheel.querySelectorAll('path').forEach((path) => {
                     const color = new ColorTranslator(baseColor).setH(30 * (+path.dataset.name - 1));
                     path.setAttribute('data-color', color.HEX);
                     path.setAttribute('fill', color.setL(70).setS(35).HEX);        
                 });
-
                 const harmonyColors = ColorTranslator.getHarmony(baseColor, item.value);
-
                 harmonyColors.forEach((hex) => {
                     wheel.querySelector(`path[data-color="${hex}"]`).setAttribute('fill', hex);
                     createElement('box', harmony).style.background = hex;                    
                 });
             });
+            
     };
 
     harmonies.forEach((item) => createHarmony(item));
