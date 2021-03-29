@@ -3,7 +3,7 @@ import './styles.scss';
 export default (ColorTranslator, { Harmony }) => {
 
     const container = document.createElement('div');
-    const base = '#F00';
+
     const harmonies = [
         { label: 'Complementary',       value: Harmony.COMPLEMENTARY },
         { label: 'Split Complementary', value: Harmony.SPLIT_COMPLEMENTARY },
@@ -12,28 +12,45 @@ export default (ColorTranslator, { Harmony }) => {
         { label: 'Tetradic',            value: Harmony.TETRADIC },
         { label: 'Square',              value: Harmony.SQUARE }
     ];
-    
-    harmonies.forEach((item) => {
 
-        const row = document.createElement('div');
-        row.classList.add('row');
+    const baseColor = '#F00';
 
-        const colors = ColorTranslator.getHarmony(base, item.value);
+    const createElement = (className, parent) => {
+        const div = document.createElement('div');
+        div.classList.add(className);
+        parent.appendChild(div);
+        return div;
+    };
 
-        colors.forEach((hex) => {
-            const box = document.createElement('div');
-            box.classList.add('box');
-            box.style.background = hex;
-            row.appendChild(box);
-        });
+    const createHarmony = (item) => {
 
-        const label = document.createElement('div');
-        label.classList.add('label');
-        label.innerText = item.label;
-        row.appendChild(label);
+        const wrapper = createElement('wrapper', container);
+        const wheel = createElement('wheel', wrapper);
+        const harmony = createElement('harmony', wrapper);
+        createElement('label', wrapper).innerText = item.label;
 
-        container.appendChild(row);
-    });
+        fetch('images/color-wheel.svg')
+            .then(result => result.text())
+            .then((svgCode) => {
+
+                wheel.innerHTML = svgCode;
+
+                wheel.querySelectorAll('path').forEach((path) => {
+                    const color = new ColorTranslator(baseColor).setH(30 * (+path.dataset.name - 1));
+                    path.setAttribute('data-color', color.HEX);
+                    path.setAttribute('fill', color.setL(70).setS(35).HEX);        
+                });
+
+                const harmonyColors = ColorTranslator.getHarmony(baseColor, item.value);
+
+                harmonyColors.forEach((hex) => {
+                    wheel.querySelector(`path[data-color="${hex}"]`).setAttribute('fill', hex);
+                    createElement('box', harmony).style.background = hex;                    
+                });
+            });
+    };
+
+    harmonies.forEach((item) => createHarmony(item));
 
     return container;
 
