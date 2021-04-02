@@ -16,12 +16,12 @@ describe('ColorTranslator harmony tests', (): void => {
     const base = '#FF0000';
     
     const results = [
-        ['#FF0000', '#FF0080', '#FF8000'],
+        ['#FF0000', '#FF8000', '#FF0080'],
         ['#FF0000', '#00FFFF'],
-        ['#FF0000', '#0080FF', '#00FF80'],
+        ['#FF0000', '#00FF80', '#0080FF'],
         ['#FF0000', '#00FF00', '#0000FF'],
-        ['#FF0000', '#FF00FF', '#00FF00', '#00FFFF'],
-        ['#FF0000', '#8000FF', '#80FF00', '#00FFFF']
+        ['#FF0000', '#FFFF00', '#0000FF', '#00FFFF'],
+        ['#FF0000', '#80FF00', '#8000FF', '#00FFFF']
     ];
 
     Object.keys(Harmony).forEach((harmony, index): void => {
