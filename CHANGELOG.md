@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.5.2] - 2021-04-02
+
+- Fix the RGB harmonies
+
 ## [1.5.1] - 2021-03-23
 
 - Fix final alpha value of color mixes with alpha

@@ -69,12 +69,12 @@ const harmony = (color: HSLObject, angles: number[]): HSLObject[] =>
             ), [{...color}]
     );
 
-export const analogous = (color: HSLObject): HSLObject[] => harmony(color, [-30, 30]);
+export const analogous = (color: HSLObject): HSLObject[] => harmony(color, [30, -30]);
 export const complementary = (color: HSLObject): HSLObject[] => harmony(color, [180]);
-export const splitComplementary = (color: HSLObject): HSLObject[] => harmony(color, [-150, 150]);
+export const splitComplementary = (color: HSLObject): HSLObject[] => harmony(color, [150, -150]);
 export const triadic = (color: HSLObject): HSLObject[] => harmony(color, [120, -120]);
-export const tetradic = (color: HSLObject): HSLObject[] => harmony(color, [-60, 120, 180]);
-export const square = (color: HSLObject): HSLObject[] => harmony(color, [-90, 90, 180]);
+export const tetradic = (color: HSLObject): HSLObject[] => harmony(color, [60, -120, 180]);
+export const square = (color: HSLObject): HSLObject[] => harmony(color, [90, -90, 180]);
 
 //---Detect the color model from an string
 const getColorModelFromString = (color: string): ColorModel => {

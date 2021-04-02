@@ -429,9 +429,9 @@ ColorTranslator.getHarmony('#FF00FF'); // ["#FF00FF", "#00FF00"]
 ColorTranslator.getHarmony('rgba(0, 255, 255, 0.5)', Harmony.ANALOGOUS);
 
 // [
-//   "rgba(0,255,255,127.5)",
-//   "rgba(0,255,128,127.5)",
-//   "rgba(0,128,255,127.5)"
+//   "rgba(0,255,255,0.5)",
+//   "rgba(0,128,255,0.5)",
+//   "rgba(0,255,128,0.5)"
 // ]
 
 ColorTranslator.getHarmony({ r: 115, g: 200, b: 150, a: 0.5 }, Harmony.COMPLEMENTARY);
