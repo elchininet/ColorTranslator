@@ -96,7 +96,7 @@ export const rgbToHSL = (r: number, g: number, b: number, a = 1): HSLObject => {
     };
 };
 
-//---RGB to RYB and RYB to RGB
+//---RGB to RYB and RYB to RGB for color mixes
 /*
 * http://nishitalab.org/user/UEI/publication/Sugita_IWAIT2015.pdf
 */
@@ -134,4 +134,37 @@ export const rybToRGB = (r: number, y: number, b: number): RGBObject => {
         g: gRGB / n + Ib,
         b: bRGB / n + Ib
     };
+};
+
+//---Hue RYB
+export const hueRYB = (hue: number, toRYB: boolean): number => {
+    
+    if (hue < 0) hue += 360;
+    if (hue > 360) hue -= 360;
+
+    if (hue === 360 || hue === 0) return hue;
+
+    const map1 = [[0, 120], [120, 180], [180, 240], [240, 360]];
+    const map2 = [[0, 60], [60, 120], [120, 240], [240, 360]];
+    const from = toRYB ? map1 : map2;
+    const to = toRYB ? map2 : map1;
+
+    let a = 0;
+    let b = 0;
+    let c = 0;
+    let d = 0;
+
+    from.find((arr: [number, number], index: number): boolean => {
+        if (hue >= arr[0] && hue < arr[1]) {
+            a = arr[0];
+            b = arr[1];
+            c = to[index][0];
+            d = to[index][1];
+            return true;
+        }
+        return false;
+    });
+
+    return c + (hue - a) * ((d - c) / (b - a));
+
 };

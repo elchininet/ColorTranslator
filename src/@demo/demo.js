@@ -12,6 +12,7 @@ import demo5 from './demo5';
 import demo6 from './demo6';
 import demo7 from './demo7';
 import demo8 from './demo8';
+import demo9 from './demo9';
 
 const functioToString = (fn) => {
     const article = document.createElement('article');
@@ -32,6 +33,7 @@ const demos = new Map([
     ['demo6', demo6],
     ['demo7', demo7],
     ['demo8', demo8],
+    ['demo9', demo9],
 ]);
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -40,11 +40,12 @@ import {
     cmykToRGB,
     rgbToCMYK,
     rgbToRYB,
-    rybToRGB
+    rybToRGB,
+    hueRYB
 } from '#color/translators';
 import { CSS } from '#color/css';
 
-type HarmonyFunction = (color: HSLObject) => HSLObject[];
+type HarmonyFunction = (color: HSLObject, mode: Mix) => HSLObject[];
 type ColorModelKeys = keyof typeof ColorModel;
 
 //---Normalize hue
@@ -61,20 +62,28 @@ export const normalizeHue = (hue: number): number => {
 export const normalizeAlpha = (alpha: number | undefined | null): number => (isNaN(+alpha) || alpha > 1) ? 1 : round(alpha, 2);
 
 //---Harmony
-const harmony = (color: HSLObject, angles: number[]): HSLObject[] =>
+const harmony = (color: HSLObject, angles: number[], mode: Mix): HSLObject[] =>
     angles.reduce(
         (arr: HSLObject[], num: number): HSLObject[] =>
             (                
-                [...arr, {...color, h: normalizeHue(color.h + num)}]
+                [
+                    ...arr,
+                    {
+                        ...color,
+                        h: mode === Mix.ADDITIVE
+                            ? normalizeHue(color.h + num)
+                            : normalizeHue(hueRYB(hueRYB(color.h, false) + num, true))
+                    }
+                ]
             ), [{...color}]
     );
 
-export const analogous = (color: HSLObject): HSLObject[] => harmony(color, [30, -30]);
-export const complementary = (color: HSLObject): HSLObject[] => harmony(color, [180]);
-export const splitComplementary = (color: HSLObject): HSLObject[] => harmony(color, [150, -150]);
-export const triadic = (color: HSLObject): HSLObject[] => harmony(color, [120, -120]);
-export const tetradic = (color: HSLObject): HSLObject[] => harmony(color, [60, -120, 180]);
-export const square = (color: HSLObject): HSLObject[] => harmony(color, [90, -90, 180]);
+export const analogous          = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [30, -30], mode);
+export const complementary      = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [180], mode);
+export const splitComplementary = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [150, -150], mode);
+export const triadic            = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [120, -120], mode);
+export const tetradic           = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [60, -120, 180], mode);
+export const square             = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [90, -90, 180], mode);
 
 //---Detect the color model from an string
 const getColorModelFromString = (color: string): ColorModel => {
@@ -332,7 +341,7 @@ export const blend = (from: RGBObject, to: RGBObject, steps: number): RGBObject[
 //---Harmony
 export const colorHarmony = {
 
-    buildHarmony(color: ColorInputWithoutCMYK, harmonyFunction: HarmonyFunction): ColorOutput[] {
+    buildHarmony(color: ColorInputWithoutCMYK, harmonyFunction: HarmonyFunction, mode: Mix): ColorOutput[] {
         const model = getColorModel(color);
         const rgb = getRGBObject(color, model);
         const hsl = rgbToHSL(rgb.r, rgb.g, rgb.b, rgb.a);
@@ -345,21 +354,26 @@ export const colorHarmony = {
             case ColorModel.HEX:
             default:
                 return hasAlpha
-                    ? this.HEXA(hsl, harmonyFunction, isCSS)
-                    : this.HEX(hsl, harmonyFunction, isCSS);
+                    ? this.HEXA(hsl, harmonyFunction, mode, isCSS)
+                    : this.HEX(hsl, harmonyFunction, mode, isCSS);
             case ColorModel.HSL:
-                return this.HSL(hsl, harmonyFunction, isCSS);
+                return this.HSL(hsl, harmonyFunction, mode, isCSS);
             case ColorModel.HSLA:
-                return this.HSLA(hsl, harmonyFunction, isCSS);
+                return this.HSLA(hsl, harmonyFunction, mode, isCSS);
             case ColorModel.RGB:
-                return this.RGB(hsl, harmonyFunction, isCSS);
+                return this.RGB(hsl, harmonyFunction, mode, isCSS);
             case ColorModel.RGBA:
-                return this.RGBA(hsl, harmonyFunction, isCSS);
+                return this.RGBA(hsl, harmonyFunction, mode, isCSS);
         }
     },
 
-    [ColorModel.HEX](color: HSLObject, harmonyFunction: HarmonyFunction, css: boolean): HEXOutput[] {
-        const array = harmonyFunction(color);
+    [ColorModel.HEX](
+        color: HSLObject,
+        harmonyFunction: HarmonyFunction,
+        mode: Mix,
+        css: boolean
+    ): HEXOutput[] {
+        const array = harmonyFunction(color, mode);
         return array.map(
             (c: HSLObject): HEXOutput => (
                 css
@@ -369,8 +383,13 @@ export const colorHarmony = {
         );
     },
 
-    HEXA(color: HSLObject, harmonyFunction: HarmonyFunction, css: boolean): HEXOutput[] {
-        const array = harmonyFunction(color);
+    HEXA(
+        color: HSLObject,
+        harmonyFunction: HarmonyFunction,
+        mode: Mix,
+        css: boolean
+    ): HEXOutput[] {
+        const array = harmonyFunction(color, mode);
         return array.map(
             (c: HSLObject): HEXOutput => (
                 css
@@ -380,8 +399,13 @@ export const colorHarmony = {
         );
     },
 
-    [ColorModel.RGB](color: HSLObject, harmonyFunction: HarmonyFunction, css: boolean): RGBOutput[] {
-        const array = harmonyFunction(color);
+    [ColorModel.RGB](
+        color: HSLObject,
+        harmonyFunction: HarmonyFunction,
+        mode: Mix,
+        css: boolean
+    ): RGBOutput[] {
+        const array = harmonyFunction(color, mode);
         return array.map(
             (c: HSLObject): RGBOutput => (
                 css
@@ -391,8 +415,13 @@ export const colorHarmony = {
         );
     },
 
-    [ColorModel.RGBA](color: HSLObject, harmonyFunction: HarmonyFunction, css: boolean): RGBOutput[] {
-        const array = harmonyFunction(color);
+    [ColorModel.RGBA](
+        color: HSLObject,
+        harmonyFunction: HarmonyFunction,
+        mode: Mix,
+        css: boolean
+    ): RGBOutput[] {
+        const array = harmonyFunction(color, mode);
         return array.map(
             (c: HSLObject): RGBOutput => (
                 css
@@ -402,8 +431,13 @@ export const colorHarmony = {
         );
     },
 
-    [ColorModel.HSL](color: HSLObject, harmonyFunction: HarmonyFunction, css: boolean): HSLOutput[] {
-        const array = harmonyFunction(color);
+    [ColorModel.HSL](
+        color: HSLObject,
+        harmonyFunction: HarmonyFunction,
+        mode: Mix,
+        css: boolean
+    ): HSLOutput[] {
+        const array = harmonyFunction(color, mode);
         return array.map(
             (c: HSLObject): HSLOutput => (
                 css
@@ -413,8 +447,13 @@ export const colorHarmony = {
         );
     },
 
-    [ColorModel.HSLA](color: HSLObject, harmonyFunction: HarmonyFunction, css: boolean): HSLOutput[] {
-        const array = harmonyFunction(color);
+    [ColorModel.HSLA](
+        color: HSLObject,
+        harmonyFunction: HarmonyFunction,
+        mode: Mix,
+        css: boolean
+    ): HSLOutput[] {
+        const array = harmonyFunction(color, mode);
         return array.map(
             (c: HSLObject): HSLOutput => (
                 css

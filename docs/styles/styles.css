@@ -53,3 +53,5 @@ body,html{font-family:Roboto;height:100%}body{background-color:#333;margin:0;pad
 
 #demo8 .demo-wrapper>div{display:flex;flex-wrap:wrap}#demo8 .wrapper{width:33.33%}#demo8 .harmony{display:flex;height:25px;justify-content:center}@media screen and (max-width: 768px){#demo8 .harmony{height:15px}}#demo8 .label{color:#FFF;font-size:12px;padding-top:10px;text-align:center}#demo8 .box{height:25px;outline:2px solid #000;width:25px}@media screen and (max-width: 768px){#demo8 .box{height:15px;outline-width:1px;width:15px}}
 
+#demo9 .demo-wrapper>div{display:flex;flex-wrap:wrap}#demo9 .wrapper{width:33.33%}#demo9 .harmony{display:flex;height:25px;justify-content:center}@media screen and (max-width: 768px){#demo9 .harmony{height:15px}}#demo9 .label{color:#FFF;font-size:12px;padding-top:10px;text-align:center}#demo9 .box{height:25px;outline:2px solid #000;width:25px}@media screen and (max-width: 768px){#demo9 .box{height:15px;outline-width:1px;width:15px}}
+
