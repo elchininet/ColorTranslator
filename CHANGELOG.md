@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.6.0] - 2021-04-03
+
+- Support for subtractive color harmonies generation
+
 ## [1.5.2] - 2021-04-02
 
 - Fix the RGB harmonies

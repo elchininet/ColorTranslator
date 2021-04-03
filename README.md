@@ -248,7 +248,7 @@ There are 20 static methods available, 7 of them to convert colors, 6 to create 
 
 The static methods to convert colors accept any of the mentioned inputs as the first parameter. The second parameter is optional and it specifies if the output should be a CSS string or an object:
 
-```
+```typescript
 convertColorStaticMethod(
   color: string | object,
   css: boolean = true
@@ -292,7 +292,7 @@ You can also consult the [demo 3](https://elchininet.github.io/ColorTranslator/#
 
 The static methods to create color blends accept any of the mentioned inputs as the first and second parameter, the third parameter is optional and it is the number of steps of the blending, and the fourth parameter is also optional and it specifies if the output colors should be a CSS string or an object:
 
-```
+```typescript
 getBlendColorsStaticMethod(
   fromColor: string | object,
   toColor: string | object,
@@ -352,7 +352,7 @@ The static methods to mix colors accept an array of any of the mentioned inputs 
 
 > **Note:** The subtractive mix simulates the mixing of pigments, to achieve this, the rgb colors are converted to ryb color model, the addition is performed in this mode and at the end the result is converted back to rgb. The result is OK most of the time, but as this is not a real mix of pigments, sometimes the result could differ from the reality.
 
-```
+```typescript
 getMixColorsStaticMethod(
   colors: [string | object][],
   mode: Mix = Mix.ADDITIVE,
@@ -395,12 +395,13 @@ You can also consult the [demo 6](https://elchininet.github.io/ColorTranslator/#
 
 ###### Color harmonies static method
 
-The static method to create color harmonies accepts two parmeters, the first one could be any of the mentioned inputs and the second one is optional and it is to specify the kind of harmony (by default it will be `Harmony.COMPLEMENTARY`). It will return the colors in the same format that was sent:
+The static method to create color harmonies accepts three parmeters, the first one could be any of the mentioned inputs, the second one is optional and it is to specify the kind of harmony (by default it will be `Harmony.COMPLEMENTARY`), and the third one is also optional and it specifies if the returned harmony is based on additive or subtractive colors (by default it will be `Mix.ADDITIVE`). This method will return the colors in the same format that was sent as input:
 
-```
+```typescript
 getHarmony(
   color: string | object
-  harmony: Harmony = Harmony.COMPLEMENTARY
+  harmony: Harmony = Harmony.COMPLEMENTARY,
+  mode: Mix = Mix.ADDITIVE
 )
 ```
 
@@ -408,7 +409,7 @@ getHarmony(
 
 | Static method | Description                                                                  |
 | ------------- | ---------------------------------------------------------------------------- |
-| getHarmony    | Return an array of colors representing the harmony requested. The first color will be the same that has been sent |
+| getHarmony    | Return an array of colors representing the harmony requested. The first color will be the same that was sent as input |
 
 ###### Available armonies
 
@@ -424,7 +425,9 @@ getHarmony(
 ###### Color harmonies static method examples
 
 ```javascript
-ColorTranslator.getHarmony('#FF00FF'); // ["#FF00FF", "#00FF00"]
+ColorTranslator.getHarmony('#FF00FF');
+
+// ["#FF00FF", "#00FF00"]
 
 ColorTranslator.getHarmony('rgba(0, 255, 255, 0.5)', Harmony.ANALOGOUS);
 
@@ -441,9 +444,13 @@ ColorTranslator.getHarmony({ r: 115, g: 200, b: 150, a: 0.5 }, Harmony.COMPLEMEN
 //   {r: 201, g: 115, b: 165, a: 0.5}
 // ]
 
+ColorTranslator.getHarmony('#FF0000', Harmony.COMPLEMENTARY, Mix.SUBTRACTIVE);
+
+// ["#FF0000", "#00FF00"]
+
 ```
 
-You can also consult the [demo 8](https://elchininet.github.io/ColorTranslator/#demo8) to check the use of these static methods.
+You can also consult the [demo 8](https://elchininet.github.io/ColorTranslator/#demo8) and [demo 9](https://elchininet.github.io/ColorTranslator/#demo9) to check the use of this static method.
 
 ## TypeScript Support
 

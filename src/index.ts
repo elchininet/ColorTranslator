@@ -461,25 +461,25 @@ export class ColorTranslator {
     }
 
     // Color Harmony Static Method
-    public static getHarmony(color: string, armony?: Harmony): string[];
-    public static getHarmony(color: HEXObject, armony?: Harmony): HEXObject[];
-    public static getHarmony(color: RGBObject, armony?: Harmony): RGBObject[];
-    public static getHarmony(color: HSLObjectGeneric, armony?: Harmony): HSLObject[];
-    public static getHarmony<T>(color: string, armony?: Harmony): T[];
-    public static getHarmony(color: ColorInputWithoutCMYK, armony: Harmony = Harmony.COMPLEMENTARY): ColorOutput[] {
+    public static getHarmony(color: string, armony?: Harmony, mode?: Mix): string[];
+    public static getHarmony(color: HEXObject, armony?: Harmony, mode?: Mix): HEXObject[];
+    public static getHarmony(color: RGBObject, armony?: Harmony, mode?: Mix): RGBObject[];
+    public static getHarmony(color: HSLObjectGeneric, armony?: Harmony, mode?: Mix): HSLObject[];
+    public static getHarmony<T>(color: string, armony?: Harmony, mode?: Mix): T[];
+    public static getHarmony(color: ColorInputWithoutCMYK, armony: Harmony = Harmony.COMPLEMENTARY, mode: Mix = Mix.ADDITIVE): ColorOutput[] {
         switch(armony) {
             case Harmony.ANALOGOUS:
-                return utils.colorHarmony.buildHarmony(color, utils.analogous);
+                return utils.colorHarmony.buildHarmony(color, utils.analogous, mode);
             case Harmony.SPLIT_COMPLEMENTARY:
-                return utils.colorHarmony.buildHarmony(color, utils.splitComplementary);
+                return utils.colorHarmony.buildHarmony(color, utils.splitComplementary, mode);
             case Harmony.TRIADIC:
-                return utils.colorHarmony.buildHarmony(color, utils.triadic);
+                return utils.colorHarmony.buildHarmony(color, utils.triadic, mode);
             case Harmony.TETRADIC:
-                return utils.colorHarmony.buildHarmony(color, utils.tetradic);
+                return utils.colorHarmony.buildHarmony(color, utils.tetradic, mode);
             case Harmony.SQUARE:
-                return utils.colorHarmony.buildHarmony(color, utils.square);
+                return utils.colorHarmony.buildHarmony(color, utils.square, mode);
             default:
-                return utils.colorHarmony.buildHarmony(color, utils.complementary);
+                return utils.colorHarmony.buildHarmony(color, utils.complementary, mode);
 
         }
     }
