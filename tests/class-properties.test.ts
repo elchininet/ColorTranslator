@@ -50,3 +50,12 @@ COLORS.forEach((item: ColorProps): void => {
     });
 
 });
+
+describe('Check class properties', (): void => {
+
+    it('Return HEXA color with alpha if the alpha is 0', (): void => {
+        expect(new ColorTranslator({r: 255, g: 0, b: 0, a: 0}).HEXA).toBe('#FF000000');
+        expect(new ColorTranslator('#FFFFFF00').HEXAObject).toMatchObject({r: '0xFF', g: '0xFF', b: '0xFF', a: '0x00'});
+    });
+
+});

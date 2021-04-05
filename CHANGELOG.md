@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.6.1] - 2021-04-05
+
+- Fix a bug that was returning HEXA values without alpha if the alpha value was 0
+
 ## [1.6.0] - 2021-04-03
 
 - Support for subtractive color harmonies generation

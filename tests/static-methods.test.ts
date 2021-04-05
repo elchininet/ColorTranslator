@@ -1,4 +1,4 @@
-import { COLORS, FUNCTIONS, ColorProps } from './data/data';
+import { COLORS, FUNCTIONS, ColorProps, ColorTranslator } from './data/data';
 
 type Props = keyof typeof COLORS[0];
 
@@ -37,4 +37,14 @@ COLORS.forEach((item: ColorProps): void => {
         });
 
     });
+
+});
+
+describe('Check static methods', (): void => {
+
+    it('Return HEXA color with alpha if the alpha is 0', (): void => {
+        expect(ColorTranslator.toHEXA('#FF0000')).toBe('#FF0000FF');
+        expect(ColorTranslator.toHEXA('#FF000000', false)).toMatchObject({r: '0xFF', g: '0x00', b: '0x00', a: '0x00'});
+    });
+
 });

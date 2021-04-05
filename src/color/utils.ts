@@ -9,6 +9,7 @@ import {
     HSLObject,
     RGBObject,
     RYBObject,
+    RGYBObject,
     HEXObject,
     RGBOutput,
     HSLOutput,
@@ -485,22 +486,28 @@ export const colorMixer = {
 
         function createMix(items: RGBObject[]): RGBObject;
         function createMix(items: RYBObject[]): RYBObject;
-        function createMix(items: (RGBObject | RYBObject)[]): (RGBObject | RYBObject) {
+        function createMix(items: RGYBObject[]): RGYBObject {
             const initial = mode === Mix.ADDITIVE
                 ? {r: 0, g: 0, b: 0, a: 0}
                 : {r: 0, y: 0, b: 0, a: 0};
-            return items.reduce((mix: RGBObject & RYBObject, color: RGBObject & RYBObject): RGBObject | RYBObject => {
-                const colorA = hasProp<RGBObject & RYBObject>(color, 'a') ? color.a : 1;
+            return items.reduce((mix: RGYBObject, color: RGYBObject): RGYBObject => {
+                const colorA = hasProp<RGYBObject>(color, 'a') ? color.a : 1;
                 const common = {
                     r: mix.r  + color.r * colorA,
                     b: mix.b + color.b * colorA,
                     a: 1 - (1 - colorA) * (1 - mix.a)
                 };
+                const mixGY = 'g' in mix
+                    ? mix.g
+                    : mix.y;
+                const colorGY = 'g' in color
+                    ? color.g
+                    : color.y;
                 return {
                     ...common,
                     ...(mode === Mix.ADDITIVE
-                        ? { g: mix.g + color.g * colorA }
-                        : { y: mix.y + color.y * colorA }
+                        ? { g: mixGY + colorGY * colorA }
+                        : { y: mixGY + colorGY * colorA }
                     )
                 };
             }, initial);
