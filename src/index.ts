@@ -460,13 +460,34 @@ export class ColorTranslator {
         return utils.colorMixer.HSLA(colors, mode, css);
     }
 
+    // Get shades static method
+    public static getShades(color: string, shades: number): string[];
+    public static getShades(color: HEXObject, shades: number): HEXObject[];
+    public static getShades(color: RGBObject, shades: number): RGBObject[];
+    public static getShades(color: HSLObjectGeneric, shades: number): HSLObject[];
+    public static getShades(color: ColorInputWithoutCMYK, shades: number): ColorOutput[] {
+        return utils.getColorMixture(color, shades, true);
+    }
+
+    // Get tints static method
+    public static getTints(color: string, tints: number): string[];
+    public static getTints(color: HEXObject, tints: number): HEXObject[];
+    public static getTints(color: RGBObject, tints: number): RGBObject[];
+    public static getTints(color: HSLObjectGeneric, tints: number): HSLObject[];
+    public static getTints(color: ColorInputWithoutCMYK, tints: number): ColorOutput[] {
+        return utils.getColorMixture(color, tints, false);
+    }
+
     // Color Harmony Static Method
     public static getHarmony(color: string, armony?: Harmony, mode?: Mix): string[];
     public static getHarmony(color: HEXObject, armony?: Harmony, mode?: Mix): HEXObject[];
     public static getHarmony(color: RGBObject, armony?: Harmony, mode?: Mix): RGBObject[];
     public static getHarmony(color: HSLObjectGeneric, armony?: Harmony, mode?: Mix): HSLObject[];
-    public static getHarmony<T>(color: string, armony?: Harmony, mode?: Mix): T[];
-    public static getHarmony(color: ColorInputWithoutCMYK, armony: Harmony = Harmony.COMPLEMENTARY, mode: Mix = Mix.ADDITIVE): ColorOutput[] {
+    public static getHarmony(
+        color: ColorInputWithoutCMYK,
+        armony: Harmony = Harmony.COMPLEMENTARY,
+        mode: Mix = Mix.ADDITIVE
+    ): ColorOutput[] {
         switch(armony) {
             case Harmony.ANALOGOUS:
                 return utils.colorHarmony.buildHarmony(color, utils.analogous, mode);
