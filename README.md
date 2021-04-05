@@ -34,8 +34,8 @@ It is possible to include a compiled version of the package directly in an HTML 
 2. Put it in the folder that you prefer in your web server
 3. Include it in your HTML file
 
-```javascript
-<script src="wherever/you/installed/colortranslator.web.js" />
+```html
+<script src="wherever/you/installed/colortranslator.web.js"></script>
 ```
 
 #### Importing using CommonJS
