@@ -244,7 +244,7 @@ color.HSLA; // hsla(300,100%,50%,1)
 
 It is not needed to specify the input color model for any of the methods, the API will detect the format. You only need to specify to which color model you want to convert calling the specific static method.
 
-There are 20 static methods available, 7 of them to convert colors, 6 to create color blends, 6 to mix colors, and one to create color harmonies.
+There are 22 static methods available, 7 of them to convert colors, 6 to create color blends, one to get shades, one to get tints, 6 to mix colors, and one to create color harmonies.
 
 ###### Color conversion static methods
 
@@ -348,6 +348,56 @@ ColorTranslator.getBlendRGBA('#F000', 'rgba(0,0,255,1)', 5, false);
 
 You can also consult the [demo 5](https://elchininet.github.io/ColorTranslator/#demo5) to check the use of these static methods.
 
+###### Color shades and color tints static methods
+
+The static methods to get [shades or tints of a color](https://en.m.wikipedia.org/wiki/Tints_and_shades) accept any of the mentioned inputs as the first parameter, and a second parameter that specifies the number of shades or tints that should be returned. This method will return the colors in the same format that was sent as input:
+
+```typescript
+getShades(
+  color: string | object,
+  shades: number
+)
+
+getTints(
+  color: string | object,
+  tints: number
+)
+```
+
+###### Color shades and color tints static methods description
+
+| Static method | Description                                                                                 |
+| ------------- | ------------------------------------------------------------------------------------------- |
+| getShades     | Get shades of a colour (mix the color with black increasing its darkness)                   |  
+| getTints      | Get tints of a colour (mix the color with white increasing its lightness)                   |
+
+
+###### Color shades and color tints static methods examples
+
+```javascript
+ColorTranslator.getShades('#FF0000', 5);
+
+// [
+//   "#D40000",
+//   "#AA0000",
+//   "#800000",
+//   "#550000",
+//   "#2A0000"
+// ]
+
+ColorTranslator.getTints({r: 255, g: 0, b: 0, a: 0.5}, 5);
+
+// [
+//   {r: 255, g: 43, b: 43, a: 0.5},
+//   {r: 255, g: 85, b: 85, a: 0.5},
+//   {r: 255, g: 128, b: 128, a: 0.5},
+//   {r: 255, g: 170, b: 170, a: 0.5},
+//   {r: 255, g: 213, b: 213, a: 0.5}
+// ]
+```
+
+You can also consult the [demo 6](https://elchininet.github.io/ColorTranslator/#demo6) to check the use of these static methods.
+
 ###### Color mix static methods
 
 The static methods to mix colors accept an array of any of the mentioned inputs as the first parameter. The second parameter is optional and specifies the mixing mode (by default it will be `Mix.ADDITIVE`). The third parameter is also optional and it specifies if the output should be a CSS string or an object:
@@ -393,7 +443,7 @@ ColorTranslator.getMixHEX(['#FF0', '#F00'], Mix.SUBTRACTIVE);
 // #FF7F00
 ```
 
-You can also consult the [demo 6](https://elchininet.github.io/ColorTranslator/#demo6) and [demo 7](https://elchininet.github.io/ColorTranslator/#demo7) to check the use of these static methods.
+You can also consult the [demo 7](https://elchininet.github.io/ColorTranslator/#demo7) and [demo 8](https://elchininet.github.io/ColorTranslator/#demo8) to check the use of these static methods.
 
 ###### Color harmonies static method
 
@@ -452,7 +502,7 @@ ColorTranslator.getHarmony('#FF0000', Harmony.COMPLEMENTARY, Mix.SUBTRACTIVE);
 
 ```
 
-You can also consult the [demo 8](https://elchininet.github.io/ColorTranslator/#demo8) and [demo 9](https://elchininet.github.io/ColorTranslator/#demo9) to check the use of this static method.
+You can also consult the [demo 9](https://elchininet.github.io/ColorTranslator/#demo9) and [demo 10](https://elchininet.github.io/ColorTranslator/#demo10) to check the use of this static method.
 
 ## TypeScript Support
 

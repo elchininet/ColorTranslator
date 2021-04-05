@@ -1,12 +1,13 @@
 import './styles.scss';
 
-export default (ColorTranslator, { Mix }) => {
+
+export default (ColorTranslator) => {
 
     const container = document.createElement('div');
 
     const mixes = [
         '#FF0000',
-        '#FFFF00',
+        '#00FF00',
         '#0000FF',
         [1, 3],
         [1, 2],
@@ -22,7 +23,7 @@ export default (ColorTranslator, { Mix }) => {
                 color = mixes[index];
             } else if(mixes[index]) {
                 const colors = mixes[index].map((i) => mixes[i - 1]);
-                color = mixes[index] = ColorTranslator.getMixHEX(colors, Mix.SUBTRACTIVE);           
+                color = mixes[index] = ColorTranslator.getMixHEX(colors);           
             }  
             plane.setAttribute('fill', color);
         });

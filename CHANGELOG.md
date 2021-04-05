@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.7.0] - 2021-04-05
+
+- Implemented two static methods to get shades and tints of a color
+
 ## [1.6.1] - 2021-04-05
 
 - Fix a bug that was returning HEXA values without alpha if the alpha value was 0

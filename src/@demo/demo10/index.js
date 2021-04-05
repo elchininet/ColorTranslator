@@ -1,6 +1,6 @@
 import './styles.scss';
 
-export default (ColorTranslator, { Harmony }) => {
+export default (ColorTranslator, { Harmony, Mix }) => {
 
     const container = document.createElement('div');
 
@@ -29,10 +29,10 @@ export default (ColorTranslator, { Harmony }) => {
         const harmony = createElement('harmony', wrapper);
         createElement('label', wrapper).innerText = item.label;
 
-        fetch('images/wheel-additive.svg')
+        fetch('images/wheel-subtractive.svg')
             .then(result => result.text())
             .then((svgCode) => {
-                const harmonyColors = ColorTranslator.getHarmony(baseColor, item.value);
+                const harmonyColors = ColorTranslator.getHarmony(baseColor, item.value, Mix.SUBTRACTIVE);
                 const selector = 'path' + harmonyColors.map((color) => `:not([fill="${color}"])`).join('');
                 wheel.innerHTML = svgCode;                
                 harmonyColors.forEach((hex) => createElement('box', harmony).style.background = hex);                

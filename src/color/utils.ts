@@ -327,7 +327,7 @@ export const blend = (from: RGBObject, to: RGBObject, steps: number): RGBObject[
     const fromA = normalizeAlpha(from.a);
     const toA = normalizeAlpha(to.a);
     const diffA = (toA - fromA) / div;
-    return Array(steps).fill(null).map((n, i): RGBObject => {
+    return Array(steps).fill(null).map((__n, i): RGBObject => {
         if (i === 0) { return from; }
         if (i === div) { return to; }
         return {
@@ -337,6 +337,62 @@ export const blend = (from: RGBObject, to: RGBObject, steps: number): RGBObject[
             a: round(fromA + diffA * i, 2)
         };
     });
+};
+
+//---Shades
+export const getColorMixture = (color: ColorInputWithoutCMYK, steps: number, shades: boolean): ColorOutput[] => {
+    const model = getColorModel(color);
+    const isCSS = typeof color === 'string';
+    const rgb = getRGBObject(color, model);
+    const hasAlpha = (
+        (typeof color === 'string' && hasProp<RGBObject>(rgb, 'a')) ||
+        (typeof color !== 'string' && hasProp<RGBObjectGeneric | HSLObjectGeneric>(color, 'a'))
+    );
+    const hsl: HSLObject = rgbToHSL(rgb.r, rgb.g, rgb.b, rgb.a);
+    if (!hasAlpha) delete hsl.a;
+    const increment = shades
+        ? hsl.l / (steps + 1)
+        : (100 - hsl.l) / (steps + 1);
+    const hslMap = Array(steps).fill(null).map((__n, i): HSLObject => ({
+        ...hsl,
+        l: hsl.l + increment * (i + 1) * (1 - +shades * 2)
+    }));
+    switch(model) {
+        case ColorModel.HEX:
+            default:
+                return hslMap.map((hslColor: HSLObject): HEXOutput => {
+                    const rgbColor = hslToRGB(hslColor.h, hslColor.s, hslColor.l);
+                    if (hasAlpha) rgbColor.a = hslColor.a;
+                    return isCSS
+                        ? hasAlpha
+                            ? CSS.HEX({ ...rgbColor, a: round(rgbColor.a * 255, 2) })
+                            : CSS.HEX(rgbColor)
+                        : hasAlpha
+                            ? translateColor.HEXA(rgbColor)
+                            : translateColor.HEX(rgbColor);
+                });
+        case ColorModel.RGB:
+        case ColorModel.RGBA:
+            return hslMap.map((hslColor: HSLObject): RGBOutput => {
+                const rgbColor = hslToRGB(hslColor.h, hslColor.s, hslColor.l);
+                if (hasAlpha) rgbColor.a = hslColor.a;
+                return isCSS
+                    ? CSS.RGB(rgbColor)
+                    : hasAlpha
+                        ? translateColor.RGBA(rgbColor)
+                        : translateColor.RGB(rgbColor);
+            });
+        case ColorModel.HSL:
+        case ColorModel.HSLA:
+            return hslMap.map((hslColor: HSLObject): HSLOutput => {
+                return isCSS
+                    ? CSS.HSL(hslColor)
+                    : hasAlpha
+                        ? translateColor.HSLA({ ...hslToRGB(hslColor.h, hslColor.s, hslColor.l), a: hslColor.a })
+                        : translateColor.HSL(hslToRGB(hslColor.h, hslColor.s, hslColor.l));
+            });
+        
+    }
 };
 
 //---Harmony
