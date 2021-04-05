@@ -41,13 +41,13 @@ It is possible to include a compiled version of the package directly in an HTML 
 #### Importing using CommonJS
 
 ```javascript
-const { ColorTranslator, Harmony } = require('colortranslator');
+const { ColorTranslator, Harmony, Mix } = require('colortranslator');
 ```
 
 #### Importing using ES6 modules
 
 ```javascript
-import { ColorTranslator, Harmony } from 'colortranslator';
+import { ColorTranslator, Harmony, Mix } from 'colortranslator';
 ```
 
 #### Using in the browser
@@ -56,10 +56,12 @@ import { ColorTranslator, Harmony } from 'colortranslator';
 /* Use it directly in your JavaScript code */
 ColorTranslator;
 Harmony;
+Mix;
 
 /* Or access to the global variable if there is a variable with this name in the same scope */
 window.ColorTranslator;
 window.Harmony;
+window.Mix;
 ```
 
 ## Scripts
