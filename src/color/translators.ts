@@ -110,11 +110,12 @@ export const rgbToRYB = (r: number, g: number, b: number): RYBObject => {
     const rRYB = rRGB - minRG;
     const yRYB = (gRGB + minRG) / 2;
     const bRYB = (bRGB + gRGB - minRG) / 2;
-    const n = Math.max(rRYB, yRYB, bRYB, 1) / Math.max(rRGB, gRGB, bRGB, 1);
+    const n = Math.max(rRYB, yRYB, bRYB) / Math.max(rRGB, gRGB, bRGB);
+    const N = isNaN(n) || n === Infinity || n <= 0 ? 1 : n;
     return {
-        r: rRYB / n + Ib,
-        y: yRYB / n + Ib,
-        b: bRYB / n + Ib
+        r: rRYB / N + Ib,
+        y: yRYB / N + Ib,
+        b: bRYB / N + Ib
     };
 };
 
@@ -128,11 +129,12 @@ export const rybToRGB = (r: number, y: number, b: number): RGBObject => {
     const rRGB = rRYB + yRYB - minYB;
     const gRGB = yRYB + 2 * minYB;
     const bRGB = 2 * (bRYB - minYB);
-    const n = Math.max(rRGB, gRGB, bRGB, 1) / Math.max(rRYB, yRYB, bRYB, 1);
+    const n = Math.max(rRGB, gRGB, bRGB) / Math.max(rRYB, yRYB, bRYB);
+    const N = isNaN(n) || n === Infinity || n <= 0 ? 1 : n;
     return {
-        r: rRGB / n + Ib,
-        g: gRGB / n + Ib,
-        b: bRGB / n + Ib
+        r: rRGB / N + Ib,
+        g: gRGB / N + Ib,
+        b: bRGB / N + Ib
     };
 };
 

@@ -549,8 +549,8 @@ export const colorMixer = {
             return items.reduce((mix: RGYBObject, color: RGYBObject): RGYBObject => {
                 const colorA = hasProp<RGYBObject>(color, 'a') ? color.a : 1;
                 const common = {
-                    r: mix.r  + color.r * colorA,
-                    b: mix.b + color.b * colorA,
+                    r: Math.min(mix.r  + color.r * colorA, 255),
+                    b: Math.min(mix.b + color.b * colorA, 255),
                     a: 1 - (1 - colorA) * (1 - mix.a)
                 };
                 const mixGY = 'g' in mix
@@ -562,8 +562,8 @@ export const colorMixer = {
                 return {
                     ...common,
                     ...(mode === Mix.ADDITIVE
-                        ? { g: mixGY + colorGY * colorA }
-                        : { y: mixGY + colorGY * colorA }
+                        ? { g: Math.min(mixGY + colorGY * colorA, 255) }
+                        : { y: Math.min(mixGY + colorGY * colorA, 255) }
                     )
                 };
             }, initial);
@@ -580,9 +580,9 @@ export const colorMixer = {
         }
         
         return {
-            r: minmax(mix.r, 0, 255),
-            g: minmax(mix.g, 0, 255),
-            b: minmax(mix.b, 0, 255),
+            r: round(mix.r, 2),
+            g: round(mix.g, 2),
+            b: round(mix.b, 2),
             a: minmax(mix.a, 0, 1)
         };
     },

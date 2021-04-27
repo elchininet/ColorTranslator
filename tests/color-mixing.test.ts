@@ -76,3 +76,12 @@ describe('Color mixing with alphas', (): void => {
         });   
     });
 });
+
+describe('Strong additive colors mixing', (): void => {
+    it('Black with blue', (): void => {
+        expect(ColorTranslator.getMixHEX(['#000000', '#0000FF'], Mix.SUBTRACTIVE)).toBe('#000000');
+    });
+    it('Black with White', (): void => {
+        expect(ColorTranslator.getMixHEX(['#000000', '#FFFFFF'], Mix.SUBTRACTIVE)).toBe('#000000');
+    });
+});

@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.7.1] - 2021-04-27
+
+- Small improvements to the additive color mix feature
+
 ## [1.7.0] - 2021-04-05
 
 - Implemented two static methods to get shades and tints of a color
