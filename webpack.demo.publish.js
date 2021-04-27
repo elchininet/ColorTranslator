@@ -35,7 +35,9 @@ module.exports = {
         libraryTarget: 'window'
     },
     plugins: [
-        new CleanWebpackPlugin(),
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: []
+        }),
         new HtmlWebpackPlugin({
             title: 'ColorTranslator demo',
             logo: 'images/logo_white.svg',
