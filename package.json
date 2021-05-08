@@ -39,7 +39,7 @@
     "typescript"
   ],
   "author": "ElChiniNet",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/elchininet/ColorTranslator/issues"
   },
