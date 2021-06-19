@@ -510,7 +510,7 @@ The package has its own type definitions, so it can be used in a `TypeScript` pr
 
 ###### HEXObject
 
-This type is returned by the `HEXObject`, and `HEXAObject` properties, the `toHEX`, `toHEXA`, `getBlendHEX`, `getBlendHEXA`, `getMixHEX`, and `getMixHEXA` methods (when the `css` property is `false`), and the `getHarmony` method (when the input is an `HEXObject` or when the input is a `string` and a [Generic][1] with this type is sent to the method).
+This type is returned by the `HEXObject`, and `HEXAObject` properties, the `toHEX`, `toHEXA`, `getBlendHEX`, `getBlendHEXA`, `getMixHEX`, and `getMixHEXA` methods (when the `css` property is `false`), and the `getHarmony` method (when the input is an `HEXObject`).
 
 ```typescript
 interface HEXObject {
@@ -523,7 +523,7 @@ interface HEXObject {
 
 ###### RGBObject
 
-This type is returned by the `RGBObject`, and `RGBAObject` properties, the `toRGB`, `toRGBA`, `getBlendRGB`, `getBlendRGBA`, `getMixRGB`, and `getMixRGBA` methods (when the `css` property is `false`), and the `getHarmony` method (when the input is an `RGBObject` or when the input is a `string` and a [Generic][1] with this type is sent to the method).
+This type is returned by the `RGBObject`, and `RGBAObject` properties, the `toRGB`, `toRGBA`, `getBlendRGB`, `getBlendRGBA`, `getMixRGB`, and `getMixRGBA` methods (when the `css` property is `false`), and the `getHarmony` method (when the input is an `RGBObject`).
 
 ```typescript
 interface RGBObject {
@@ -536,7 +536,7 @@ interface RGBObject {
 
 ###### HSLObject
 
-This type is returned by the `HSLObject`, and `HSLAObject` properties, the `toHSL`, `toHSLA`, `getBlendHSL`, `getBlendHSLA`, `getMixHSL`, and `getMixHSLA` methods (when the `css` property is `false`), and the `getHarmony` method (when the input is an `HSLObject` or when the input is a `string` and a [Generic][1] with this type is sent to the method).
+This type is returned by the `HSLObject`, and `HSLAObject` properties, the `toHSL`, `toHSLA`, `getBlendHSL`, `getBlendHSLA`, `getMixHSL`, and `getMixHSLA` methods (when the `css` property is `false`), and the `getHarmony` method (when the input is an `HSLObject`).
 
 ```typescript
 interface HSLObject {
@@ -559,6 +559,3 @@ interface CMYKObject {
     k: number;
 }
 ```
-
-[1]: https://www.typescriptlang.org/docs/handbook/generics.html
-
