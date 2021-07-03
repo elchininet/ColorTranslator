@@ -20,7 +20,7 @@ WebpackCconfig.module.rules.push(
 WebpackCconfig.plugins = [
     new HtmlWebpackPlugin({
         title: 'ColorTranslator demo',
-        logo: './src/@demo/images/logo_white.svg',
+        logo: './images/logo_white.svg',
         favicon: './src/@demo/favicon.png',
         template: 'src/@demo/demo.html'
     }),
