@@ -45,7 +45,7 @@
   },
   "homepage": "https://github.com/elchininet/ColorTranslator#readme",
   "devDependencies": {
-    "@types/jest": "^27.0.1",
+    "@types/jest": "^27.0.2",
     "@types/node": "^16.9.1",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
@@ -56,7 +56,7 @@
     "eslint": "^7.32.0",
     "google-code-prettify": "^1.0.5",
     "html-webpack-plugin": "^5.3.2",
-    "jest": "^27.2.0",
+    "jest": "^27.2.1",
     "mini-css-extract-plugin": "^2.3.0",
     "node-sass": "^6.0.1",
     "sass-loader": "^12.1.0",
