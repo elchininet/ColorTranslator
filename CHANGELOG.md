@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.8.0] - 2021-10-27
+
+- Created a EMS version of the package allowing backward compatibility for CJS
+- Replaced webpack by rollup to build the packages
+
 ## [1.7.1] - 2021-04-27
 
 - Small improvements to the additive color mix feature

@@ -30,12 +30,12 @@ yarn add colortranslator
 
 It is possible to include a compiled version of the package directly in an HTML file. It will create a global `ColorTranslator` variable that can be accessed from anywhere in your JavaScript code.
 
-1. Copy the JavaScript file `colortranslator.web.js`, located in the `dist` folder
+1. Copy the JavaScript file `colortranslator.js`, located in the `dist/web/` folder
 2. Put it in the folder that you prefer in your web server
 3. Include it in your HTML file
 
 ```html
-<script src="wherever/you/installed/colortranslator.web.js"></script>
+<script src="wherever/you/installed/colortranslator.js"></script>
 ```
 
 #### Importing using CommonJS
@@ -53,15 +53,10 @@ import { ColorTranslator, Harmony, Mix } from 'colortranslator';
 #### Using in the browser
 
 ```javascript
-/* Use it directly in your JavaScript code */
-ColorTranslator;
-Harmony;
-Mix;
-
-/* Or access to the global variable if there is a variable with this name in the same scope */
-window.ColorTranslator;
-window.Harmony;
-window.Mix;
+/* There will be a global variable named colortranslator containing all the modules */
+colortranslator.ColorTranslator;
+colortranslator.Harmony;
+colortranslator.Mix;
 ```
 
 ## Scripts
