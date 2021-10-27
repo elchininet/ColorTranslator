@@ -28,7 +28,7 @@ yarn add colortranslator
 
 #### In the browser
 
-It is possible to include a compiled version of the package directly in an HTML file. It will create a global `ColorTranslator` variable that can be accessed from anywhere in your JavaScript code.
+It is possible to include a compiled version of the package directly in an HTML file. It will create a global `colortranslator` object containing all the exported modules that can be accessed from anywhere in your JavaScript code.
 
 1. Copy the JavaScript file `colortranslator.js`, located in the `dist/web/` folder
 2. Put it in the folder that you prefer in your web server
@@ -36,6 +36,13 @@ It is possible to include a compiled version of the package directly in an HTML 
 
 ```html
 <script src="wherever/you/installed/colortranslator.js"></script>
+```
+
+```javascript
+/* There will be a global variable named colortranslator containing all the modules */
+colortranslator.ColorTranslator;
+colortranslator.Harmony;
+colortranslator.Mix;
 ```
 
 #### Importing using CommonJS
@@ -50,22 +57,13 @@ const { ColorTranslator, Harmony, Mix } = require('colortranslator');
 import { ColorTranslator, Harmony, Mix } from 'colortranslator';
 ```
 
-#### Using in the browser
-
-```javascript
-/* There will be a global variable named colortranslator containing all the modules */
-colortranslator.ColorTranslator;
-colortranslator.Harmony;
-colortranslator.Mix;
-```
-
 ## Scripts
 
 #### build
 
 `npm run build`
 
-Transpiles the TypeScript code and creates two bundles in the `dist` folder (`index.js` for Node environments and `colortranslator.web.js` to use directly in the browser).
+Transpiles the TypeScript code and creates three bundles in the `dist` folder (`index.js` for commonjs, `esm/index.js` for ESM, and `web/colortranslator.js` to use directly in the browser).
 
 #### test
 
