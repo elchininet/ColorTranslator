@@ -2,14 +2,14 @@
   "name": "colortranslator",
   "version": "1.7.1",
   "description": "A JavaScript library, written in TypeScript, to convert among different color models",
-  "type": "module",
-  "main": "dist/cjs/index.js",
-  "module": "dist/index.js",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/cjs/index.js",
-      "import": "./dist/index.js"
+      "require": "./dist/index.js",
+      "import": "./dist/esm/index.js"
     }
   },
   "files": [
@@ -19,7 +19,7 @@
     "test": "jest --verbose",
     "lint": "eslint src/**/*.ts",
     "clean": "rimraf dist",
-    "copy-cjs-package": "cp ./package.cjs.json ./dist/cjs/package.json",
+    "copy-cjs-package": "cp ./package.esm.json ./dist/esm/package.json",
     "build-declarations": "tsc --emitDeclarationOnly",
     "replace-dts-paths": "tsconfig-replace-paths -p tsconfig.json -s ./src -o ./dist",
     "build": "yarn clean && rollup --config rollup.config.js && yarn copy-cjs-package && yarn build-declarations && yarn replace-dts-paths",
