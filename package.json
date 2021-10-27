@@ -2,15 +2,27 @@
   "name": "colortranslator",
   "version": "1.7.1",
   "description": "A JavaScript library, written in TypeScript, to convert among different color models",
-  "main": "dist/index.js",
+  "type": "module",
+  "main": "dist/cjs/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/index.js"
+    }
+  },
   "files": [
     "dist/**/*"
   ],
   "scripts": {
     "test": "jest --verbose",
     "lint": "eslint src/**/*.ts",
-    "build": "webpack && tsconfig-replace-paths -p tsconfig.json -s ./src -o ./dist",
+    "clean": "rimraf dist",
+    "copy-cjs-package": "cp ./package.cjs.json ./dist/cjs/package.json",
+    "build-declarations": "tsc --emitDeclarationOnly",
+    "replace-dts-paths": "tsconfig-replace-paths -p tsconfig.json -s ./src -o ./dist",
+    "build": "yarn clean && rollup --config rollup.config.js && yarn copy-cjs-package && yarn build-declarations && yarn replace-dts-paths",
     "demo": "webpack serve --open --config webpack.demo.config.js",
     "docs": "webpack --config webpack.demo.publish.js --mode production",
     "prepare": "npm run build",
@@ -45,6 +57,7 @@
   },
   "homepage": "https://github.com/elchininet/ColorTranslator#readme",
   "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.0",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.9.1",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
@@ -59,6 +72,8 @@
     "jest": "^27.2.1",
     "mini-css-extract-plugin": "^2.3.0",
     "node-sass": "^6.0.1",
+    "rollup": "^2.58.3",
+    "rollup-plugin-terser": "^7.0.2",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.2.1",
     "ts-jest": "^27.0.5",
