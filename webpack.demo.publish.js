@@ -3,12 +3,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const WebpackCconfig = require('./webpack.config')[1];
+const aliases = require('./aliases');
 
 module.exports = {
     devtool: 'eval-source-map',
     target: 'web',
     entry: './src/@demo/demo.js',
+    output: {
+        filename: 'scripts/bundle.js',
+        path: path.resolve(__dirname, 'docs'),
+        libraryTarget: 'window'
+    },
     module: {
         rules: [
             {
@@ -27,13 +32,8 @@ module.exports = {
     },
     resolve: {
         extensions: ['.ts', '.js'],
-        alias: WebpackCconfig.resolve.alias
-    },
-    output: {
-        path: path.resolve(__dirname, 'docs'),
-        filename: 'scripts/bundle.js',
-        libraryTarget: 'window'
-    },
+        alias: aliases
+    },    
     plugins: [
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: []

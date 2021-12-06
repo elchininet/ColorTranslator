@@ -16,6 +16,8 @@ export interface ColorProps {
     hslaObject: ColorInput;
 }
 
+export type ColorPropsWithKeyword = ColorProps & { keyword: string };
+
 export interface CMYKProps {
     rgb: string;
     cmyk: string;
@@ -50,6 +52,7 @@ export interface ColorFunctionProps {
 
 export const COLORS = [
     {
+        keyword: 'red',
         rgb: 'rgb(255,0,0)',
         rgbObject: { r: 255, g: 0, b: 0 },
         rgba: 'rgba(255,0,0,1)',
@@ -64,6 +67,7 @@ export const COLORS = [
         hslaObject: { h: 0, s: 100, l: 50, a: 1 }
     },
     {
+        keyword: 'lime',
         rgb: 'rgb(0,255,0)',
         rgbObject: { r: 0, g: 255, b: 0 },
         rgba: 'rgba(0,255,0,1)',
@@ -78,6 +82,7 @@ export const COLORS = [
         hslaObject: { h: 120, s: 100, l: 50, a: 1 }
     },
     {
+        keyword: 'blue',
         rgb: 'rgb(0,0,255)',
         rgbObject: { r: 0, g: 0, b: 255 },
         rgba: 'rgba(0,0,255,1)',
@@ -92,6 +97,7 @@ export const COLORS = [
         hslaObject: { h: 240, s: 100, l: 50, a: 1 }
     },
     {
+        keyword: 'magenta',
         rgb: 'rgb(255,0,255)',
         rgbObject: { r: 255, g: 0, b: 255 },
         rgba: 'rgba(255,0,255,1)',
@@ -106,6 +112,7 @@ export const COLORS = [
         hslaObject: { h: 300, s: 100, l: 50, a: 1 }
     },
     {
+        keyword: 'white',
         rgb: 'rgb(255,255,255)',
         rgbObject: { r: 255, g: 255, b: 255 },
         rgba: 'rgba(255,255,255,1)',
@@ -120,6 +127,7 @@ export const COLORS = [
         hslaObject: { h: 0, s: 0, l: 100, a: 1 }
     },
     {
+        keyword: 'black',
         rgb: 'rgb(0,0,0)',
         rgbObject: { r: 0, g: 0, b: 0 },
         rgba: 'rgba(0,0,0,1)',
@@ -134,23 +142,25 @@ export const COLORS = [
         hslaObject: { h: 0, s: 0, l: 0, a: 1 }
     },
     {
-        rgb: 'rgb(64,64,64)',
-        rgbObject: { r: 64, g: 64, b: 64 },
-        rgba: 'rgba(64,64,64,1)',
-        rgbaObject: { r: 64, g: 64, b: 64, a: 1 },
-        hex: '#404040',
-        hexObject: { r: '0x40', g: '0x40', b: '0x40' },
-        hexa: '#404040FF',
-        hexaObject: { r: '0x40', g: '0x40', b: '0x40', a: '0xFF' },
-        hsl: 'hsl(0,0%,25%)',
-        hslObject: { h: 0, s: 0, l: 25 },
-        hsla: 'hsla(0,0%,25%,1)',
-        hslaObject: { h: 0, s: 0, l: 25, a: 1 }
+        keyword: 'gray',
+        rgb: 'rgb(128,128,128)',
+        rgbObject: { r: 128, g: 128, b: 128 },
+        rgba: 'rgba(128,128,128,1)',
+        rgbaObject: { r: 128, g: 128, b: 128, a: 1 },
+        hex: '#808080',
+        hexObject: { r: '0x80', g: '0x80', b: '0x80' },
+        hexa: '#808080FF',
+        hexaObject: { r: '0x80', g: '0x80', b: '0x80', a: '0xFF' },
+        hsl: 'hsl(0,0%,50%)',
+        hslObject: { h: 0, s: 0, l: 50 },
+        hsla: 'hsla(0,0%,50%,1)',
+        hslaObject: { h: 0, s: 0, l: 50, a: 1 }
     }
 ];
 
 export const HEX3 = [
     {
+        keyword: 'red',
         hex: '#F00',
         hexObject: { r: '0xF', g: '0x0', b: '0x0' },
         hexa: '#F00F',
@@ -169,6 +179,7 @@ export const HEX3 = [
         hslaObject: { h: 0, s: 100, l: 50, a: 1 }
     },
     {
+        keyword: 'lime',
         hex: '#0F0',
         hexObject: { r: '0x0', g: '0xF', b: '0x0' },
         hexa: '#0F0F',
@@ -187,6 +198,7 @@ export const HEX3 = [
         hslaObject: { h: 120, s: 100, l: 50, a: 1 }
     },
     {
+        keyword: 'blue',
         hex: '#00F',
         hexObject: { r: '0x0', g: '0x0', b: '0xF' },
         hexa: '#00FF',
@@ -205,6 +217,7 @@ export const HEX3 = [
         hslaObject: { h: 240, s: 100, l: 50, a: 1 }
     },
     {
+        keyword: 'fuchsia',
         hex: '#F0F',
         hexObject: { r: '0xF', g: '0x0', b: '0xF' },
         hexa: '#F0FF',
@@ -223,6 +236,7 @@ export const HEX3 = [
         hslaObject: { h: 300, s: 100, l: 50, a: 1 }
     },
     {
+        keyword: 'white',
         hex: '#FFF',
         hexObject: { r: '0xF', g: '0xF', b: '0xF' },
         hexa: '#FFFF',
@@ -241,6 +255,7 @@ export const HEX3 = [
         hslaObject: { h: 0, s: 0, l: 100, a: 1 }
     },
     {
+        keyword: 'black',
         hex: '#000',
         hexObject: { r: '0x0', g: '0x0', b: '0x0' },
         hexa: '#000F',

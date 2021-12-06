@@ -1,36 +1,49 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackCconfig = require('./webpack.config')[1];
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const aliases = require('./aliases');
 
-WebpackCconfig.mode = 'development';
-WebpackCconfig.entry = './src/@demo/demo.js';
-WebpackCconfig.output.path = path.resolve(__dirname, 'docs');
-WebpackCconfig.resolve.extensions.push('.js');
-WebpackCconfig.module.rules.push(
-    {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+module.exports = {
+    mode: 'development',
+    entry: './src/@demo/demo.js',
+    output: {
+        filename: 'scripts/bundle.js',
+        path: path.resolve(__dirname, 'docs'),
+        libraryTarget: 'window'
     },
-    {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+    resolve: {
+        extensions: ['.ts', '.js'],
+        alias: aliases
+    },
+    module: {
+        rules: [
+            {
+                test: /\.ts?$/,
+                loader: 'ts-loader'
+            },
+            {
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            }
+        ]
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'ColorTranslator demo',
+            logo: './images/logo_white.svg',
+            favicon: './src/@demo/favicon.png',
+            template: 'src/@demo/demo.html'
+        }),
+        new CopyWebpackPlugin({
+            patterns: [{ from: 'src/@demo/images', to: 'images' }]            
+        })
+    ],
+    devServer: {
+        compress: true,
+        port: 9000
     }
-);
-WebpackCconfig.plugins = [
-    new HtmlWebpackPlugin({
-        title: 'ColorTranslator demo',
-        logo: './images/logo_white.svg',
-        favicon: './src/@demo/favicon.png',
-        template: 'src/@demo/demo.html'
-    }),
-    new CopyWebpackPlugin({
-        patterns: [{ from: 'src/@demo/images', to: 'images' }]            
-    })
-];
-WebpackCconfig.devServer = {
-    compress: true,
-    port: 9000
 };
-
-module.exports = WebpackCconfig;
