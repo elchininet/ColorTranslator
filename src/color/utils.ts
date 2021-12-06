@@ -21,7 +21,9 @@ import {
     PCENT,
     ColorModel,
     Mix,
+    ColorKeywords,
     COLORREGS,
+    COLOR_KEYS,
     ERRORS,
 } from '#constants';
 import {
@@ -96,6 +98,12 @@ const getColorModelFromString = (color: string): ColorModel => {
             return true;
         }
     });
+    if (
+        !model &&
+        !!~COLOR_KEYS.indexOf(color)
+    ) {
+        model = ColorModel.HEX;
+    }
     if (!model) {
         throw new Error(ERRORS.NOT_ACCEPTED_STRING_INPUT);
     }
@@ -155,7 +163,10 @@ export const getColorModel = (color: string | Color): ColorModel => typeof color
 //---Convert a color string to an RGB object
 export const getRGBObjectFromString = {
     [ColorModel.HEX](color: string): RGBObject {
-        const match = color.match(COLORREGS.HEX);
+        const colorStr = !~COLOR_KEYS.indexOf(color)
+            ? color
+            : ColorKeywords[color as keyof typeof ColorKeywords];
+        const match = colorStr.match(COLORREGS.HEX);
         const object: RGBObject = {
             r: getDEC(match[1] || match[5]),
             g: getDEC(match[2] || match[6]),

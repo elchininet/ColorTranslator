@@ -4,12 +4,12 @@ export default (ColorTranslator) => {
 
     const container = document.createElement('div');
     const colors = [
-        '#FF0000',
-        '#00FF00',
-        '#0000FF',
-        '#00FFFF',
-        '#FFFF00',
-        '#FF00FF'
+        'red',
+        'lime',
+        'blue',
+        'aqua',
+        'yellow',
+        'fuchsia'
     ];
     const total = colors.length;
 

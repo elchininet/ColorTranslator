@@ -95,6 +95,7 @@ The input can be a CSS string or an object:
 
 | Example of CSS string inputs      | Description                                                |
 | --------------------------------- | ---------------------------------------------------------- |
+| `fuchsia`                         | Color keyword                                              |
 | `#FF00FF`                         | Hexadecimal color                                          |
 | `#F0F`                            | Shorthand hexadecimal color                                |
 | `#FF00FF80`                       | Hexadecimal color with alpha                               |
@@ -130,6 +131,8 @@ It is possible to instantiate the class using any of the previous inputs:
 ###### Class instantiation examples
 
 ```javascript
+const keyword = new ColorTranslator('deeppink');
+
 const hex = new ColorTranslator('#FF00FF');
 
 const rgb = new ColorTranslator('rgb(255, 0, 0)');
@@ -264,6 +267,8 @@ convertColorStaticMethod(
 ###### Color conversion static methods examples
 
 ```javascript
+ColorTranslator.toHEX('gold'); // #FFD700
+
 ColorTranslator.toRGB('#FF00FF'); // rgb(255,0,255)
 
 ColorTranslator.toRGBA('hsl(50, 20%, 90%)'); // rgba(235,233,224,1)

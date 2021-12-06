@@ -1,7 +1,7 @@
 import { COLORS, FUNCTIONS, ColorProps } from './data/data';
 import { HSLObject } from '../src/@types';
 
-type Props = keyof typeof COLORS[0];
+type Props = Exclude<keyof typeof COLORS[0], 'keyword'>;
 
 // Test HSL Objects
 const hslTo: Props[] = ['rgb', 'rgbObject', 'rgba', 'rgbaObject', 'hex', 'hexObject', 'hexa', 'hexaObject'];

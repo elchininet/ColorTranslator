@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.9.0] - 2021-12-06
+
+- Added support for color keywords
+
 ## [1.8.0] - 2021-10-27
 
 - Created a EMS version of the package allowing backward compatibility for CJS
