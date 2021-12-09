@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.9.1] - 2021-12-09
+
+- Updated the Travis URL in the README
+
 ## [1.9.0] - 2021-12-06
 
 - Added support for color keywords
