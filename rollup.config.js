@@ -5,7 +5,11 @@ import { terser } from "rollup-plugin-terser";
 export default {
     plugins: [
         typescript(),
-        terser()
+        terser({
+            output: {
+                comments: false
+            }
+        })
     ],
     input: 'src/index.ts',
     output: [
