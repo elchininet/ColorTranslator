@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.9.2] - 2021-12-22
+
+- Removed comments from the bundle
+
 ## [1.9.1] - 2021-12-09
 
 - Updated the Travis URL in the README
