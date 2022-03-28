@@ -1,10 +1,10 @@
 import pkg from './package.json';
-import typescript from '@rollup/plugin-typescript';
+import ts from 'rollup-plugin-ts';
 import { terser } from "rollup-plugin-terser";
 
 export default {
     plugins: [
-        typescript(),
+        ts(),
         terser({
             output: {
                 comments: false
@@ -14,7 +14,7 @@ export default {
     input: 'src/index.ts',
     output: [
         {
-            file: 'dist/web/colortranslator.js',
+            file: 'web/colortranslator.js',
             format: 'iife',
             name: 'colortranslator'
         },
