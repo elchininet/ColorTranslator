@@ -1,6 +1,8 @@
 node_modules/
 .DS_Store
 **/.DS_Store
-dist/*
-!dist/web
 coverage/
+esm/
+web/
+index.d.ts
+index.js

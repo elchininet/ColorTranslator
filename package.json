@@ -2,26 +2,27 @@
   "name": "colortranslator",
   "version": "1.9.2",
   "description": "A JavaScript library, written in TypeScript, to convert among different color models",
-  "main": "dist/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/index.d.ts",
+  "main": "index.js",
+  "module": "esm/index.js",
+  "types": "index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/esm/index.js"
+      "require": "./index.js",
+      "import": "./esm/index.js"
     }
   },
   "files": [
-    "dist/**/*"
+    "esm/**/*",
+    "web/**/*",
+    "index.d.ts",
+    "index.js"
   ],
   "scripts": {
     "test": "jest --verbose",
     "lint": "eslint src/**/*.ts",
-    "clean": "rimraf dist",
-    "copy-esm-package": "cp ./package.esm.json ./dist/esm/package.json",
-    "build-declarations": "tsc --emitDeclarationOnly",
-    "replace-dts-paths": "tsconfig-replace-paths -p tsconfig.json -s ./src -o ./dist",
-    "build": "yarn clean && rollup --config rollup.config.js && yarn copy-esm-package && yarn build-declarations && yarn replace-dts-paths",
+    "clean": "./scripts/clean.sh",
+    "finish": "./scripts/finish.sh",
+    "build": "yarn clean && rollup --config rollup.config.js && yarn finish",
     "demo": "webpack serve --open --config webpack.demo.config.js",
     "docs": "webpack --config webpack.demo.publish.js --mode production",
     "prepare": "npm run build",
@@ -56,7 +57,6 @@
   },
   "homepage": "https://github.com/elchininet/ColorTranslator#readme",
   "devDependencies": {
-    "@rollup/plugin-typescript": "^8.3.0",
     "@types/jest": "^27.4.0",
     "@types/node": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
@@ -71,14 +71,14 @@
     "jest": "^27.4.7",
     "mini-css-extract-plugin": "^2.5.1",
     "node-sass": "^7.0.1",
+    "rimraf": "^3.0.2",
     "rollup": "^2.64.0",
     "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-ts": "^2.0.5",
     "sass-loader": "^12.4.0",
     "style-loader": "^3.3.1",
     "ts-jest": "^27.1.3",
     "ts-loader": "^9.2.6",
-    "tsconfig-replace-paths": "^0.0.11",
-    "tslib": "^2.3.1",
     "typescript": "4.4.4",
     "webpack": "^5.66.0",
     "webpack-cli": "^4.9.1",
