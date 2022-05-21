@@ -89,7 +89,7 @@ Opens a development server that provides live reloading using [webpack-dev-serve
 
 #### Input
 
-The input can be a CSS string or an object:
+The most wonderful thing about `colortranslator` is that you don‘t need to specify the input that you are using, the library will recognise it automatically. The input can be a CSS string or an object:
 
 ###### CSS string inputs
 
@@ -238,7 +238,7 @@ color.HSLA; // hsla(300,100%,50%,1)
 
 #### Class static methods
 
-It is not needed to specify the input color model for any of the methods, the API will detect the format. You only need to specify to which color model you want to convert calling the specific static method.
+For the static methods, it is not needed to specify the input color model, the API will detect the format automatically. It is only needed to specify to which color model one wants to convert calling the specific static method.
 
 There are 22 static methods available, 7 of them to convert colors, 6 to create color blends, one to get shades, one to get tints, 6 to mix colors, and one to create color harmonies.
 
@@ -290,7 +290,7 @@ You can also consult the [demo 3](https://elchininet.github.io/ColorTranslator/#
 
 ###### Color blends static methods
 
-The static methods to create color blends accept any of the mentioned inputs as the first and second parameter, the third parameter is optional and it is the number of steps of the blending, and the fourth parameter is also optional and it specifies if the output colors should be a CSS string or an object:
+The static methods to create color blends accept any of the mentioned inputs as the first and second parameter, the third parameter is optional and it is the number of steps of the blending, and the fourth parameter is also optional and it specifies if the output colors should be CSS strings or objects:
 
 ```typescript
 getBlendColorsStaticMethod(
@@ -459,7 +459,7 @@ getHarmony(
 
 | Static method | Description                                                                  |
 | ------------- | ---------------------------------------------------------------------------- |
-| getHarmony    | Return an array of colors representing the harmony requested. The first color will be the same that was sent as input |
+| getHarmony    | Return an array of colors representing the harmony requested. The color output will be the same that was sent as input |
 
 ###### Available armonies
 
