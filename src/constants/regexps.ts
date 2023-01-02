@@ -3,7 +3,7 @@ import { ColorModel } from './enums';
 const HEX_DIGIT = '[a-f\\d]';
 const HEX_DIGIT_DOUBLE = `${HEX_DIGIT}{2}`;
 const DIGIT = '\\d+';
-const DIGIT_WITH_DECIMALS = '\\d\\.?\\d*';
+const DIGIT_WITH_DECIMALS = '(?:\\d?\\.)?\\d*';
 const NUMBER_WITH_DECIMALS = '\\d+\\.?\\d*';
 const PERCENTAGE_DIGIT = '\\d+%';
 const SPACE = '\\s*';
