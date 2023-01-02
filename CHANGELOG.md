@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.9.3] - 2023-01-02
+
+- Fixed a bug that didn‘t allow leading zeros
+
 ## [1.9.2] - 2021-12-22
 
 - Removed comments from the bundle
