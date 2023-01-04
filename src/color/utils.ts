@@ -25,6 +25,7 @@ import {
     COLORREGS,
     COLOR_KEYS,
     ERRORS,
+    HSL_HUE
 } from '#constants';
 import {
     getOrderedArrayString,
@@ -35,7 +36,8 @@ import {
     hasProp,
     percent,
     round,
-    minmax
+    minmax,
+    grades
 } from '#helpers';
 import {
     rgbToHSL,
@@ -53,10 +55,31 @@ type HarmonyFunction = (color: HSLObject, mode: Mix) => HSLObject[];
 //---Normalize hue
 const pi2 = 360;
 
-export const normalizeHue = (hue: number): number => {
+export const normalizeHue = (hue: number | string): number => {
+
+    if (typeof hue === 'string') {
+
+        const matches = hue.match(HSL_HUE) as string[];
+        const value = +matches[1];
+        const units = matches[2];
+        switch(units) {
+            case 'rad':
+                hue = Math.round(grades(value));
+                break;
+            case 'turn':
+                hue = Math.round(value * 360);
+                break;
+            case 'deg':
+            case 'grad':
+            default:                
+                hue = value;
+        }
+    }
+
     if (hue > 360 || hue < 0) {
         hue -= Math.floor(hue / pi2) * pi2;
     }
+
     return hue;
 }; 
 
@@ -203,7 +226,7 @@ export const getRGBObjectFromString = {
     },
     [ColorModel.HSL](color: string): RGBObject {
         const match = color.match(COLORREGS.HSL);
-        const h = normalizeHue(+(match[1] || match[5]));
+        const h = normalizeHue(match[1] || match[5]);
         const s = percent(match[2] || match[6]);
         const l = percent(match[3] || match[7]);
         const a = match[4] || match[8];

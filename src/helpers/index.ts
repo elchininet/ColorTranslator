@@ -64,3 +64,6 @@ export const round = (value: NumberOrString, decimals = 0): number => {
 
 //---Minimum and maximum
 export const minmax = (n: number, min: number, max: number): number => Math.max(min, Math.min(n, max));
+
+//--Radian to grades
+export const grades = (radian: number): number => radian * 180 / Math.PI;
