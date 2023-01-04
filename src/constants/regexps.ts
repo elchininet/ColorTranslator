@@ -126,3 +126,4 @@ export const COLORREGS = {
 
 export const PCENT = /^(\d+(?:\.\d+)?|\.\d+)%$/;
 export const HEX = /^0x([a-f\d]{1,2})$/i;
+export const HSL_HUE = new RegExp(`^(-?${NUMBER_WITH_DECIMALS})(${HSL_DEGREES_UNITS})$`);

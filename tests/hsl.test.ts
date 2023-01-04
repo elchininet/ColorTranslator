@@ -1,6 +1,8 @@
 import { ColorTranslator } from '../src';
 import { COLORS } from './tests.constants';
 
+const HSL_REGEXP = /^(hsla?\()(\d+)([^)]*\))$/;
+
 COLORS.forEach((item): void => {
 
     describe(`HSL tests for ${item.hsl}`, (): void => {
@@ -12,7 +14,15 @@ COLORS.forEach((item): void => {
         const hslBigHue = { ...hsl, h: hsl.h + 360 };
         const hslaBigHue = { ...hsl, h: hsl.h + 360 };
         const hslLowHue = { ...hsl, h: hsl.h - 360 };
-        const hslaLowHue = { ...hsl, h: hsl.h - 360 };        
+        const hslaLowHue = { ...hsl, h: hsl.h - 360 };
+        const hslDeg = item.hsl.replace(HSL_REGEXP, '$1$2deg$3');
+        const hslGrad = item.hsl.replace(HSL_REGEXP, '$1$2grad$3');
+        const hslRadians = item.hsl.replace(HSL_REGEXP, (__match: string, start: string, number: string, end: string): string => {
+            return `${start}${Math.round((+number * Math.PI / 180) * 100) / 100}rad${end}`;
+        });
+        const hslTurns = item.hsl.replace(HSL_REGEXP, (__match: string, start: string, number: string, end: string): string => {
+            return `${start}${Math.round(+number / 360 * 10000) / 10000}turn${end}`;
+        });
 
         it(`HSL with percentages ${JSON.stringify(hslPercentages)}`, (): void => {
 
@@ -71,6 +81,46 @@ COLORS.forEach((item): void => {
 
             expect(ColorTranslator.toHSLA(hslaLowHue)).toBe(item.hsla);
             expect(ColorTranslator.toHSLA(hslaLowHue, false)).toMatchObject(item.hslaObject);
+
+        });
+
+        it(`Hue in deg ${hslDeg}`, () => {
+            
+            expect(ColorTranslator.toRGB(hslDeg)).toBe(item.rgb);
+            expect(ColorTranslator.toRGB(hslDeg, false)).toMatchObject(item.rgbObject);
+
+            expect(ColorTranslator.toHSL(hslDeg)).toBe(item.hsl);
+            expect(ColorTranslator.toHSL(hslDeg, false)).toMatchObject(item.hslObject);
+
+        });
+
+        it(`Hue in grad ${hslGrad}`, () => {
+            
+            expect(ColorTranslator.toRGB(hslGrad)).toBe(item.rgb);
+            expect(ColorTranslator.toRGB(hslGrad, false)).toMatchObject(item.rgbObject);
+
+            expect(ColorTranslator.toHSL(hslGrad)).toBe(item.hsl);
+            expect(ColorTranslator.toHSL(hslGrad, false)).toMatchObject(item.hslObject);
+
+        });
+
+        it(`Hue in rad ${hslRadians}`, () => {
+            
+            expect(ColorTranslator.toRGB(hslRadians)).toBe(item.rgb);
+            expect(ColorTranslator.toRGB(hslRadians, false)).toMatchObject(item.rgbObject);
+
+            expect(ColorTranslator.toHSL(hslRadians)).toBe(item.hsl);
+            expect(ColorTranslator.toHSL(hslRadians, false)).toMatchObject(item.hslObject);
+
+        });
+
+        it(`Hue in turn ${hslTurns}`, () => {
+            
+            expect(ColorTranslator.toRGB(hslTurns)).toBe(item.rgb);
+            expect(ColorTranslator.toRGB(hslTurns, false)).toMatchObject(item.rgbObject);
+
+            expect(ColorTranslator.toHSL(hslTurns)).toBe(item.hsl);
+            expect(ColorTranslator.toHSL(hslTurns, false)).toMatchObject(item.hslObject);
 
         });
 
