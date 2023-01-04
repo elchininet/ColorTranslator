@@ -30,7 +30,7 @@ yarn add colortranslator
 
 It is possible to include a compiled version of the package directly in an HTML file. It will create a global `colortranslator` object containing all the exported modules that can be accessed from anywhere in your JavaScript code.
 
-1. Copy the JavaScript file `colortranslator.js`, located in the `dist/web/` folder
+1. Copy the JavaScript file `colortranslator.js`, located in the `web/` folder
 2. Put it in the folder that you prefer in your web server
 3. Include it in your HTML file
 
