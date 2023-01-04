@@ -93,21 +93,48 @@ The most wonderful thing about `colortranslator` is that you don‘t need to spe
 
 ###### CSS string inputs
 
-| Example of CSS string inputs      | Description                                                |
-| --------------------------------- | ---------------------------------------------------------- |
-| `fuchsia`                         | Color keyword                                              |
-| `#FF00FF`                         | Hexadecimal color                                          |
-| `#F0F`                            | Shorthand hexadecimal color                                |
-| `#FF00FF80`                       | Hexadecimal color with alpha                               |
-| `rgb(255, 0, 255)`                | Functional RGB notation                                    |
+| Example of CSS string inputs          | Description                                                                                                        |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `fuchsia`                             | Color keyword                                                                                                      |
+| `#FF00FF`                             | Hexadecimal color                                                                                                  |
+| `#F0F`                                | Shorthand hexadecimal color                                                                                        |
+| `#FF00FF80`                           | Hexadecimal color with alpha                                                                                       |
+| `#F0FF`                               | Shorthand hexadecimal color with alpha                                                                             |
+| `rgb(255, 0, 255)`                    | Functional RGB notation                                                                                            |
+| `rgba(255, 0, 255, 0.5)`              | Functional RGB notation with alpha                                                                                 |
+| `rgb(255 0 255)`                      | Functional RGB notation (CSS Colors 4 space-separated)                                                             |
+| `rgba(255 0 255 / 0.5)`               | Functional RGB notation with alpha (CSS Colors 4 space-separated)                                                  |
+| `rgba(255 0 255 / 50%)`               | Functional RGB notation CSS with alpha in percenatages (Colors 4 space-separated)                                  |
+| `hsl(300, 100%, 50%)`                 | Functional HSL notation                                                                                            |
+| `hsl(300grad, 100%, 50%)`             | Functional HSL notation with hue in grads                                                                          |
+| `hsl(300deg, 100%, 50%)`              | Functional HSL notation with hue in degrees                                                                        |
+| `hsl(5.24rad, 100%, 50%)`             | Functional HSL notation with hue in radians                                                                        |
+| `hsl(0.83turn, 100%, 50%)`            | Functional HSL notation with hue in turns                                                                          |
+| `hsla(300, 100%, 50%, 0.5)`           | Functional HSL notation with alpha                                                                                 |
+| `hsl(300 100% 50%)`                   | Functional HSL notation (CSS Colors 4 space-separated)                                                             |
+| `hsla(300 100% 50% / 0.5)`            | Functional HSL notation with alpha (CSS Colors 4 space-separated)                                                  |
+| `hsla(300 100% 50% / 50%)`            | Functional HSL notation with alpha in percentages (CSS Colors 4 space-separated)                                   |
+| `cmyk(0%, 100%, 100%, 0%)`            | Functional CMYK notation with percentages                                                                          |
+| `cmyk(0%, 100%, 100%, 0%, 1)`         | Functional CMYK notation with percentages and alpha                                                                |
+| `cmyk(0% 100% 100% 0%)`               | Functional CMYK notation with percentages (CSS Colors 4 space-separated)                                           |
+| `cmyk(0% 100% 100% 0% / 1)`           | Functional CMYK notation with percentages and alpha (CSS Colors 4 space-separated)                                 |
+| `cmyk(0% 100% 100% 0% / 100%)`        | Functional CMYK notation with percentages and alpha in percentages (CSS Colors 4 space-separated)                  |
+| `cmyk(0, 1, 1, 0)`                    | Functional CMYK notation with numbers                                                                              |
+| `cmyk(0, 1, 1, 0, 1)`                 | Functional CMYK notation with numbers and alpha                                                                    |
+| `cmyk(0 1 1 0)`                       | Functional CMYK notation with numbers (CSS Colors 4 space-separated)                                               |
+| `cmyk(0 1 1 0 / 1)`                   | Functional CMYK notation with numbers and alpha (CSS Colors 4 space-separated)                                     |
+| `cmyk(0 1 1 0 / 100%)`                | Functional CMYK notation with numbers and alpha in percentages (CSS Colors 4 space-separated)                      |
+| `device-cmyk(0%, 100%, 100%, 0%)`     | Device-dependent functional CMYK notation with percentages                                                         |
+| `device-cmyk(0%, 100%, 100%, 0%, 1)`  | Device-dependent functional CMYK notation with percentages and alpha                                               |
+| `device-cmyk(0% 100% 100% 0%)`        | Device-dependent functional CMYK notation with percentages (CSS Colors 4 space-separated)                          |
+| `device-cmyk(0% 100% 100% 0% / 1)`    | Device-dependent functional CMYK notation with percentages and alpha (CSS Colors 4 space-separated)                |
+| `device-cmyk(0% 100% 100% 0% / 100%)` | Device-dependent functional CMYK notation with percentages and alpha in percentages (CSS Colors 4 space-separated) |
+| `device-cmyk(0, 1, 1, 0)`             | Device-dependent functional CMYK notation with numbers                                                             |
+| `device-cmyk(0, 1, 1, 0, 1)`          | Device-dependent functional CMYK notation with numbers and alpha                                                   |
+| `device-cmyk(0 1 1 0)`                | Device-dependent functional CMYK notation with numbers (CSS Colors 4 space-separated)                              |
+| `device-cmyk(0 1 1 0 / 1)`            | Device-dependent functional CMYK notation with numbers and alpha (CSS Colors 4 space-separated)                    |
+| `device-cmyk(0 1 1 0 / 100%)`         | Device-dependent functional CMYK notation with numbers and alpha in percentages (CSS Colors 4 space-separated)     |
 
-| `rgba(255, 0, 255, 0.5)`          | Functional RGB notation with alpha                         |
-| `hsl(300, 100%, 50%)`             | Functional HSL notation                                    |
-| `hsla(300, 100%, 50%, 0.5)`       | Functional HSL notation with alpha                         |
-| `cmyk(0%, 100%, 100%, 0%)`        | Functional CMYK notation with percentages                  |
-| `cmyk(0, 1, 1, 0)`                | Functional CMYK notation with numbers                      |
-| `device-cmyk(0%, 100%, 100%, 0%)` | Device-dependent functional CMYK notation with percentages |
-| `device-cmyk(0, 1, 1, 0)`         | Device-dependent functional CMYK notation with numbers     |
 
 ###### Object inputs
 
@@ -116,6 +143,7 @@ The most wonderful thing about `colortranslator` is that you don‘t need to spe
 | `{r: "0xFF", g: "0x00", b: "0xFF"}`            | Hexadecimal color                         |
 | `{r: "0xF", g: "0x0", b: "0xF"}`               | Shorthand hexadecimal color               |
 | `{r: "0xFF", g: "0x00", b: "0xFF", a: "0x80"}` | Hexadecimal color with alpha              |
+| `{r: "0xF", g: "0x0", b: "0xF", a: "0xF"}`     | Shorthand hexadecimal color with alpha    |
 | `{r: 255, g: 0, b: 255}`                       | RGB notation                              |
 | `{r: 255, g: 0, b: 255, a: 0.5}`               | RGB notation with alpha                   |
 | `{h: 300, s: "100%", l: "50%"}`                | HSL notation using percentages            |
