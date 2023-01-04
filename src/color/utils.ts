@@ -84,7 +84,16 @@ export const normalizeHue = (hue: number | string): number => {
 }; 
 
 //---Normalize alpha
-export const normalizeAlpha = (alpha: number | undefined | null): number => (isNaN(+alpha) || alpha > 1) ? 1 : round(alpha, 2);
+export const normalizeAlpha = (alpha: number | string | undefined | null): number => {
+    if (typeof alpha === 'string') {
+        if(PCENT.test(alpha)) {
+            alpha = +alpha.replace(PCENT, '$1') / 100;
+        } else {
+            alpha = +alpha;
+        }
+    }
+    return (isNaN(+alpha) || alpha > 1) ? 1 : round(alpha, 2);
+};
 
 //---Harmony
 const harmony = (color: HSLObject, angles: number[], mode: Mix): HSLObject[] =>
@@ -220,7 +229,7 @@ export const getRGBObjectFromString = {
             b: Math.min(b, 255)
         };
         if (a !== undefined) {
-            object.a = normalizeAlpha(+a);
+            object.a = normalizeAlpha(a);
         }
         return object;
     },
@@ -232,7 +241,7 @@ export const getRGBObjectFromString = {
         const a = match[4] || match[8];
         const rgb = hslToRGB(h, s, l);
         if (a !== undefined) {
-            rgb.a = normalizeAlpha(+a);
+            rgb.a = normalizeAlpha(a);
         }
         return rgb;
     },
@@ -245,7 +254,7 @@ export const getRGBObjectFromString = {
         const a = match[5] || match[10];
         const rgb = cmykToRGB(c, m, y, k);
         if (a !== undefined) {
-            rgb.a = normalizeAlpha(+a);
+            rgb.a = normalizeAlpha(a);
         }
         return rgb;
     }
