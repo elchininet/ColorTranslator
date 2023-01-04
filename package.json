@@ -24,7 +24,7 @@
     "finish": "./scripts/finish.sh",
     "build": "yarn clean && rollup --config rollup.config.js --bundleConfigAsCjs && yarn finish",
     "demo": "webpack serve --open --config webpack.demo.config.js",
-    "docs": "webpack --config webpack.demo.publish.js --mode production",
+    "docs": "webpack --config webpack.demo.publish.js --mode production && yarn build",
     "compile:regexps": "yarn plop",
     "prepare": "npm run build",
     "prepublishOnly": "npm run lint && npm run test",
