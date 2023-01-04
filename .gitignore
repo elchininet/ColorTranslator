@@ -2,7 +2,7 @@ node_modules/
 .DS_Store
 **/.DS_Store
 coverage/
-esm/
-web/
-index.d.ts
-index.js
+/esm/
+/web/
+/index.d.ts
+/index.js
