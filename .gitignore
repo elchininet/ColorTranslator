@@ -3,6 +3,6 @@ node_modules/
 **/.DS_Store
 coverage/
 esm/
-dist/
+web/
 index.d.ts
 index.js
