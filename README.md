@@ -100,6 +100,7 @@ The most wonderful thing about `colortranslator` is that you don‘t need to spe
 | `#F0F`                            | Shorthand hexadecimal color                                |
 | `#FF00FF80`                       | Hexadecimal color with alpha                               |
 | `rgb(255, 0, 255)`                | Functional RGB notation                                    |
+
 | `rgba(255, 0, 255, 0.5)`          | Functional RGB notation with alpha                         |
 | `hsl(300, 100%, 50%)`             | Functional HSL notation                                    |
 | `hsla(300, 100%, 50%, 0.5)`       | Functional HSL notation with alpha                         |

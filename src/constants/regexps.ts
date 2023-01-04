@@ -50,7 +50,7 @@ const COLOR_REGEXP_STRINGS = {
                     (${NUMBER_WITH_DECIMALS}%?)
                     (?:
                         ${SLASH}
-                        (${NUMBER_WITH_DECIMALS})
+                        (${NUMBER_WITH_DECIMALS}%?)
                     )?
             )
             ${SPACE}
@@ -77,7 +77,7 @@ const COLOR_REGEXP_STRINGS = {
                     (${NUMBER_WITH_DECIMALS})%
                     (?:
                         ${SLASH}
-                        (${NUMBER_WITH_DECIMALS})
+                        (${NUMBER_WITH_DECIMALS}%?)
                     )?
             )
             ${SPACE}
@@ -109,7 +109,7 @@ const COLOR_REGEXP_STRINGS = {
                 (${NUMBER_WITH_DECIMALS}%?)
                 (?:
                     ${SLASH}
-                    (${NUMBER_WITH_DECIMALS})
+                    (${NUMBER_WITH_DECIMALS}%?)
                 )?
             )
             ${SPACE}

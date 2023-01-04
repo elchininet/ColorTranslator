@@ -9,7 +9,7 @@ export default (ColorTranslator) => {
 
     for (let r = 0; r < hue.length; r++) {
 
-        color.H = hue[r];
+        color.setH(hue[r]);
 
         const bow = document.createElement('div');
 
