@@ -25,7 +25,7 @@ module.exports = {
     },
     overrides: [
         {
-            files: ['webpack*.js'],
+            files: ['webpack*.js', 'plopfile.js'],
             rules: {
                 '@typescript-eslint/no-var-requires': 'off'
             }
