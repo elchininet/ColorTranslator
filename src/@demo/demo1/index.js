@@ -9,9 +9,8 @@ export default (ColorTranslator) => {
 
         for (let col = 0; col < 10; col++) {
 
-            color
-                .setS(row * 10)
-                .setL(col * 5 + 30);
+            color.S = row * 10;
+            color.L = col * 5 + 30;
                 
             const box = document.createElement('div');
 

@@ -1,4 +1,4 @@
-import { ColorTranslator } from './data/data';
+import { ColorTranslator } from '../src';
 
 describe('ColorTranslator blending tests', (): void => {
 
@@ -34,7 +34,7 @@ describe('ColorTranslator blending tests', (): void => {
             expect(obj.blendFn(from, to)).toMatchObject(r3);
             expect(obj.blendFn(from, to, r1.length, false)).toMatchObject(r4);
             expect(obj.blendFn(from, to, r2.length, false)).toMatchObject(r5);
-            expect(obj.blendFn(from, to, undefined, false)).toMatchObject(r6);
+            expect(obj.blendFn(from, to, 0, false)).toMatchObject(r6);
 
         });
         

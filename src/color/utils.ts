@@ -49,7 +49,6 @@ import {
 import { CSS } from '#color/css';
 
 type HarmonyFunction = (color: HSLObject, mode: Mix) => HSLObject[];
-type ColorModelKeys = keyof typeof ColorModel;
 
 //---Normalize hue
 const pi2 = 360;
@@ -110,46 +109,54 @@ const getColorModelFromString = (color: string): ColorModel => {
     return model;
 };
 
+const VALID_COLOR_OBJECTS = Object.entries(ColorModel).reduce((acc: Record<string, ColorModel>, entry: [string, ColorModel]) => {
+    const [key, value] = entry;
+    if (key !== ColorModel.HEX) {
+        const ordered = getOrderedArrayString(key.split(''));
+        acc[ordered] = value;
+        acc['A' + ordered] = value;
+    }
+    return acc;
+}, {});
+
 //---Detect the color model from an object
 const getColorModelFromObject = (color: Color): ColorModel => {
-    let model;
-    let different = false;
+
+    let model: ColorModel;
+    let invalid = false;
     const props = getOrderedArrayString(Object.keys(color));
-    const keys = Object.keys(ColorModel).filter((key: ColorModelKeys) => key !== ColorModel.HEX);
-    keys.some((p: ColorModelKeys): boolean => {
-        if (getOrderedArrayString(p.split('')) === props) {
-            model = p;
-            return true;
+    
+    if(VALID_COLOR_OBJECTS[props]) {
+        model = VALID_COLOR_OBJECTS[props];
+    }
+
+    if (model && model === ColorModel.RGB) {
+
+        const hasInvalidHex = Object.entries(color).some((item: [string, string | number]): boolean => {
+            return !HEX.test(`${item[1]}`);
+        });
+
+        const hasInvalidRegb = Object.entries(color).some((item: [string, string | number]): boolean => {
+            return !(
+                PCENT.test(`${item[1]}`) ||
+                (
+                    !HEX.test(`${item[1]}`) &&
+                    !isNaN(+item[1]) &&
+                    +item[1] <= 255
+                )
+            );
+        });
+
+        if (hasInvalidHex && hasInvalidRegb) {
+            invalid = true;
         }
-    });
-    if (model && model === ColorModel.RGB || model === ColorModel.RGBA) {
-
-        const isHEX = Object.entries(color).map((item: [string, string | number]): boolean =>
-            HEX.test(`${item[1]}`));
-        const isRGB = Object.entries(color).map((item: [string, string | number]): boolean =>
-            PCENT.test(`${item[1]}`) || (!HEX.test(`${item[1]}`) && !isNaN(+item[1]) && +item[1] <= 255));
         
-        const differentHEX = isHEX.some((item: boolean, index: number): boolean => {
-            if (index > 0 && item !== isHEX[index - 1]) {
-                return true;
-            }
-            return false;
-        });
-
-        const differentRGB = isRGB.some((item: boolean, index: number): boolean => {
-            if (index > 0 && item !== isRGB[index - 1]) {
-                return true;
-            }
-            return false;
-        });
-
-        different = differentHEX || differentRGB || (!isHEX[0] && !isRGB[0]);
-
-        if (!different && isHEX[0]) {
+        if (!hasInvalidHex) {
             model = ColorModel.HEX;
         }
+
     }
-    if (!model || different) {
+    if (!model || invalid) {
         throw new Error(ERRORS.NOT_ACCEPTED_OBJECT_INPUT);
     }
     return model as ColorModel;
@@ -180,54 +187,44 @@ export const getRGBObjectFromString = {
     },
     [ColorModel.RGB](color: string): RGBObject {
         const match = color.match(COLORREGS.RGB);
-        const r = getBase255Number(match[1] || match[4]);
-        const g = getBase255Number(match[2] || match[5]);
-        const b = getBase255Number(match[3] || match[6]);
-        const object = {
+        const r = getBase255Number(match[1] || match[5]);
+        const g = getBase255Number(match[2] || match[6]);
+        const b = getBase255Number(match[3] || match[7]);
+        const a = match[4] || match[8];
+        const object: RGBObject = {
             r: Math.min(r, 255),
             g: Math.min(g, 255),
             b: Math.min(b, 255)
         };
-        return object;
-    },
-    [ColorModel.RGBA](color: string): RGBObject {
-        const match = color.match(COLORREGS.RGBA);
-        const r = getBase255Number(match[1] || match[4]);
-        const g = getBase255Number(match[2] || match[5]);
-        const b = getBase255Number(match[3] || match[6]);
-        const a = +match[7];
-        const object = {
-            r: Math.min(r, 255),
-            g: Math.min(g, 255),
-            b: Math.min(b, 255),
-            a: normalizeAlpha(a)
-        };
+        if (a !== undefined) {
+            object.a = normalizeAlpha(+a);
+        }
         return object;
     },
     [ColorModel.HSL](color: string): RGBObject {
         const match = color.match(COLORREGS.HSL);
-        const h = normalizeHue(+match[1]);
-        const s = percent(match[2]);
-        const l = percent(match[3]);
-        return hslToRGB(h, s, l);
-    },
-    [ColorModel.HSLA](color: string): RGBObject {
-        const match = color.match(COLORREGS.HSLA);
-        const h = normalizeHue(+match[1]);
-        const s = percent(match[2]);
-        const l = percent(match[3]);
-        const a = +match[4];
+        const h = normalizeHue(+(match[1] || match[5]));
+        const s = percent(match[2] || match[6]);
+        const l = percent(match[3] || match[7]);
+        const a = match[4] || match[8];
         const rgb = hslToRGB(h, s, l);
-        rgb.a = normalizeAlpha(a);
+        if (a !== undefined) {
+            rgb.a = normalizeAlpha(+a);
+        }
         return rgb;
     },
     [ColorModel.CMYK](color: string): RGBObject {
         const match = color.match(COLORREGS.CMYK);
-        const c = getCMYKNumber(match[1] || match[5]);
-        const m = getCMYKNumber(match[2] || match[6]);
-        const y = getCMYKNumber(match[3] || match[7]);
-        const k = getCMYKNumber(match[4] || match[8]);
-        return cmykToRGB(c, m, y, k);
+        const c = getCMYKNumber(match[1] || match[6]);
+        const m = getCMYKNumber(match[2] || match[7]);
+        const y = getCMYKNumber(match[3] || match[8]);
+        const k = getCMYKNumber(match[4] || match[9]);
+        const a = match[5] || match[10];
+        const rgb = cmykToRGB(c, m, y, k);
+        if (a !== undefined) {
+            rgb.a = normalizeAlpha(+a);
+        }
+        return rgb;
     }
 };
 
@@ -239,27 +236,21 @@ export const getRGBObjectFromObject = {
             g: getBase255Number(`${color.g}`),
             b: getBase255Number(`${color.b}`)
         };
-        object.a = hasProp<RGBObjectGeneric>(color, 'a')
-            ? Math.min(getBase255Number(`${color.a}`, true), 1)
-            : 1;
+        if (hasProp<RGBObjectGeneric>(color, 'a')) {
+            object.a = Math.min(getBase255Number(`${color.a}`, true), 1);
+        }
         return object;
     },
     [ColorModel.RGB](color: RGBObjectGeneric): RGBObject {
-        const rgbColor = this.HEX(color);
-        delete rgbColor.a;
-        return rgbColor;
-    },
-    [ColorModel.RGBA](color: RGBObjectGeneric): RGBObject {
         return this.HEX(color);
     },
     [ColorModel.HSL](color: HSLObjectGeneric): RGBObject {
         const s = percent(`${color.s}`);
         const l = percent(`${color.l}`);
-        return hslToRGB(normalizeHue(color.h), s, l);
-    },
-    [ColorModel.HSLA](color: HSLObjectGeneric): RGBObject {
-        const rgb = this.HSL(color);
-        rgb.a = normalizeAlpha(color.a);
+        const rgb = hslToRGB(normalizeHue(color.h), s, l);
+        if (hasProp<HSLObjectGeneric>(color, 'a')) {
+            rgb.a = normalizeAlpha(color.a);
+        }
         return rgb;
     },
     [ColorModel.CMYK](color: CMYKObjectGeneric): RGBObject {
@@ -267,7 +258,11 @@ export const getRGBObjectFromObject = {
         const m = getCMYKNumber(`${color.m}`);
         const y = getCMYKNumber(`${color.y}`);
         const k = getCMYKNumber(`${color.k}`);
-        return cmykToRGB(c, m, y, k);
+        const rgb = cmykToRGB(c, m, y, k);
+        if (hasProp<CMYKObjectGeneric>(color, 'a')) {
+            rgb.a = normalizeAlpha(color.a);
+        }
+        return rgb;
     }
 };
 
@@ -284,7 +279,7 @@ export const translateColor = {
         return {
             r: getHEX(color.r),
             g: getHEX(color.g),
-            b: getHEX(color.b),
+            b: getHEX(color.b)
         };
     },
 
@@ -303,7 +298,7 @@ export const translateColor = {
         return color;
     },
 
-    [ColorModel.RGBA](color: RGBObject): RGBObject {
+    RGBA(color: RGBObject): RGBObject {
         color.a = hasProp<RGBObject>(color, 'a')
             ? round(color.a, 2)
             : 1;
@@ -316,7 +311,7 @@ export const translateColor = {
         return hsl;
     },
 
-    [ColorModel.HSLA](color: RGBObject): HSLObject {
+    HSLA(color: RGBObject): HSLObject {
         const hsl = translateColor.HSL(color);
         hsl.a = hasProp<RGBObject>(color, 'a')
             ? round(color.a, 2)
@@ -326,6 +321,14 @@ export const translateColor = {
 
     [ColorModel.CMYK](color: RGBObject): CMYKObject {
         return rgbToCMYK(color.r, color.g, color.b);
+    },
+
+    CMYKA(color: RGBObject): CMYKObject {
+        const cmyk = rgbToCMYK(color.r, color.g, color.b);
+        cmyk.a = hasProp<RGBObject>(color, 'a')
+            ? round(color.a, 2)
+            : 1;
+        return cmyk;
     }
 };
 
@@ -383,7 +386,6 @@ export const getColorMixture = (color: ColorInputWithoutCMYK, steps: number, sha
                             : translateColor.HEX(rgbColor);
                 });
         case ColorModel.RGB:
-        case ColorModel.RGBA:
             return hslMap.map((hslColor: HSLObject): RGBOutput => {
                 const rgbColor = hslToRGB(hslColor.h, hslColor.s, hslColor.l);
                 if (hasAlpha) rgbColor.a = hslColor.a;
@@ -394,7 +396,6 @@ export const getColorMixture = (color: ColorInputWithoutCMYK, steps: number, sha
                         : translateColor.RGB(rgbColor);
             });
         case ColorModel.HSL:
-        case ColorModel.HSLA:
             return hslMap.map((hslColor: HSLObject): HSLOutput => {
                 return isCSS
                     ? CSS.HSL(hslColor)
@@ -425,13 +426,13 @@ export const colorHarmony = {
                     ? this.HEXA(hsl, harmonyFunction, mode, isCSS)
                     : this.HEX(hsl, harmonyFunction, mode, isCSS);
             case ColorModel.HSL:
-                return this.HSL(hsl, harmonyFunction, mode, isCSS);
-            case ColorModel.HSLA:
-                return this.HSLA(hsl, harmonyFunction, mode, isCSS);
+                return hasAlpha
+                    ? this.HSLA(hsl, harmonyFunction, mode, isCSS)
+                    : this.HSL(hsl, harmonyFunction, mode, isCSS);
             case ColorModel.RGB:
-                return this.RGB(hsl, harmonyFunction, mode, isCSS);
-            case ColorModel.RGBA:
-                return this.RGBA(hsl, harmonyFunction, mode, isCSS);
+                return hasAlpha
+                    ? this.RGBA(hsl, harmonyFunction, mode, isCSS)
+                    : this.RGB(hsl, harmonyFunction, mode, isCSS);
         }
     },
 
@@ -483,7 +484,7 @@ export const colorHarmony = {
         );
     },
 
-    [ColorModel.RGBA](
+    RGBA(
         color: HSLObject,
         harmonyFunction: HarmonyFunction,
         mode: Mix,
@@ -515,7 +516,7 @@ export const colorHarmony = {
         );
     },
 
-    [ColorModel.HSLA](
+    HSLA(
         color: HSLObject,
         harmonyFunction: HarmonyFunction,
         mode: Mix,
@@ -620,7 +621,7 @@ export const colorMixer = {
             ? CSS.RGB(mix)
             : translateColor.RGB(mix);
     },
-    [ColorModel.RGBA](colors: ColorInput[], mode: Mix, css: boolean): RGBOutput {
+    RGBA(colors: ColorInput[], mode: Mix, css: boolean): RGBOutput {
         const mix = this.mix(colors, mode);
         return css
             ? CSS.RGB(mix)
@@ -635,7 +636,7 @@ export const colorMixer = {
             ? CSS.HSL(hsl)
             : translateColor.HSL(mix);
     },
-    [ColorModel.HSLA](colors: ColorInput[], mode: Mix, css: boolean): HSLOutput {
+    HSLA(colors: ColorInput[], mode: Mix, css: boolean): HSLOutput {
         const mix = this.mix(colors, mode);
         const hsl = rgbToHSL(mix.r, mix.g, mix.b, mix.a);
         return css

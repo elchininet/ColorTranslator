@@ -1,11 +1,12 @@
-import { COLORS, ColorProps, ColorTranslator } from './data/data';
+import { ColorTranslator } from '../src';
+import { COLORS } from './tests.constants';
 
 // Test class properties
-COLORS.forEach((item: ColorProps): void => {
+COLORS.forEach((item): void => {
 
-    const instance = new ColorTranslator(item.rgbObject);
+    const instance = new ColorTranslator(item.hex);
 
-    describe(`Test properties of ${JSON.stringify(item.rgbObject)}`, (): void => {
+    describe(`Test properties of ${item.hex}`, (): void => {
 
         it('check R, G, B, and A properties', (): void => {
 
@@ -22,103 +23,103 @@ COLORS.forEach((item: ColorProps): void => {
             const K = instance.K;
 
             // Test A
-            instance.setA(0.5);
+            instance.A = 0.5;
             expect(instance.A).toBe(0.5);
-            instance.setA(-1);
+            instance.A = -1;
             expect(instance.A).toBe(0);
-            instance.setA(2);
+            instance.A = 2;
             expect(instance.A).toBe(1);
-            instance.setA(A);
+            instance.A = A;
 
             // Test R
-            instance.setR(128);
+            instance.R = 128;
             expect(instance.R).toBe(128);
-            instance.setR(-255);
+            instance.R = -255;
             expect(instance.R).toBe(0);
-            instance.setR(500);
+            instance.R = 500;
             expect(instance.R).toBe(255);
-            instance.setR(R);
+            instance.R = R;
 
             // Test G
-            instance.setG(128);
+            instance.G = 128;
             expect(instance.G).toBe(128);
-            instance.setG(-255);
+            instance.G = -255;
             expect(instance.G).toBe(0);
-            instance.setG(500);
+            instance.G = 500;
             expect(instance.G).toBe(255);
-            instance.setG(G);
+            instance.G = G;
 
             // Test B
-            instance.setB(128);
+            instance.B = 128;
             expect(instance.B).toBe(128);
-            instance.setB(-255);
+            instance.B = -255;
             expect(instance.B).toBe(0);
-            instance.setB(500);
+            instance.B = 500;
             expect(instance.B).toBe(255);
-            instance.setB(B);
+            instance.B = B;
 
             // Test H
-            instance.setH(128);
+            instance.H = 128;
             expect(instance.H).toBe(128);
-            instance.setH(-128);
+            instance.H = -128;
             expect(instance.H).toBe(232);
-            instance.setH(488);
+            instance.H = 488;
             expect(instance.H).toBe(128);
-            instance.setH(H);
+            instance.H = H;
 
             // Test S
-            instance.setS(50);
+            instance.S = 50;
             expect(instance.S).toBe(50);
-            instance.setS(-100);
+            instance.S = -100;
             expect(instance.S).toBe(0);
-            instance.setS(200);
+            instance.S = 200;
             expect(instance.S).toBe(100);
-            instance.setS(S);
+            instance.S = S;
 
             // Test L
-            instance.setL(50);
+            instance.L = 50;
             expect(instance.L).toBe(50);
-            instance.setL(-100);
+            instance.L = -100;
             expect(instance.L).toBe(0);
-            instance.setL(200);
+            instance.L = 200;
             expect(instance.L).toBe(100);
-            instance.setS(L);
+            instance.L = L;
 
             // Test C
-            instance.setC(50);
+            instance.C = 50;
             expect(instance.C).toBe(50);
-            instance.setC(-100);
+            instance.C = -100;
             expect(instance.C).toBe(0);
-            instance.setC(200);
+            instance.C = 200;
             expect(instance.C).toBe(100);
-            instance.setC(C);
+            instance.C = C;
 
             // Test M
-            instance.setM(50);
+            instance.M = 50;
             expect(instance.M).toBe(50);
-            instance.setM(-100);
+            instance.M = -100;
             expect(instance.M).toBe(0);
-            instance.setM(200);
+            instance.M = 200;
             expect(instance.M).toBe(100);
-            instance.setM(M);
+            instance.M = M;
 
             // Test Y
-            instance.setY(50);
+            instance.Y = 50;
             expect(instance.Y).toBe(50);
-            instance.setY(-100);
+            instance.Y = -100;
             expect(instance.Y).toBe(0);
-            instance.setY(200);
+            instance.Y = 200;
             expect(instance.Y).toBe(100);
-            instance.setY(Y);
+            instance.Y = Y;
 
             // Test K
-            instance.setK(50);
+            instance.K = 50;
             expect(instance.K).toBe(50);
-            instance.setK(-100);
+            instance.K = -100;
             expect(instance.K).toBe(0);
-            instance.setK(200);
+            instance.K = 200;
             expect(instance.K).toBe(100);
-            instance.setK(K);
+            instance.K = K;
     
         });
 

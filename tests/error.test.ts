@@ -1,4 +1,4 @@
-import { ColorTranslator } from './data/data';
+import { ColorTranslator } from '../src';
 import { ColorInput } from '../src/@types';
 import { ERRORS } from '../src/constants';
 

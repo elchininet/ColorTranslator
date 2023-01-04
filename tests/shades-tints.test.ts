@@ -1,4 +1,4 @@
-import { ColorTranslator } from './data/data';
+import { ColorTranslator } from '../src';
 import { HEXObject, RGBObject, HSLObjectGeneric } from '../src/@types';
 
 describe('ColorTranslator shades and tints tests', (): void => {    

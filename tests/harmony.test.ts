@@ -1,4 +1,4 @@
-import { ColorTranslator } from './data/data';
+import { ColorTranslator } from '../src';
 import { Harmony, Mix } from '../src/constants';
 import { HEXObject, RGBObject, HSLObjectGeneric } from '../src/@types';
 
