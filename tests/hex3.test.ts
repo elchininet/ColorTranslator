@@ -1,4 +1,5 @@
-import { HEX3, ColorTranslator } from './data/data';
+import { ColorTranslator } from '../src';
+import { HEX3 } from './tests.constants';
 
 type HexProps = typeof HEX3[0];
 type Props = Exclude<keyof HexProps, 'keyword'>;

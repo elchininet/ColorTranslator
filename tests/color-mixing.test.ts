@@ -1,6 +1,7 @@
-import { ColorTranslator, ADDITIVE_MIXES, SUBTRACTIVE_MIXES } from './data/data';
+import { ColorTranslator } from '../src';
 import { RGBOutput, HSLOutput, HEXOutput } from '../src/@types';
 import { Mix } from '../src/constants';
+import { ADDITIVE_MIXES, SUBTRACTIVE_MIXES } from './tests.constants';
 
 type MixObject = typeof ADDITIVE_MIXES[0];
 

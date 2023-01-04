@@ -40,6 +40,7 @@ export interface CMYKObject {
     m: number;
     y: number;
     k: number;
+    a?: number;
 }
 
 export interface CMYKObjectGeneric {
@@ -47,6 +48,7 @@ export interface CMYKObjectGeneric {
     m: NumberOrString;
     y: NumberOrString;
     k: NumberOrString;
+    a?: number;
 }
 
 export interface RYBObject {

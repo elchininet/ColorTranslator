@@ -1,159 +1,163 @@
-import { ColorInput, CMYKObjectGeneric } from '../../src/@types';
-import { ColorTranslator as ct, Harmony, RGBObject, HSLObject, CMYKObject } from '../../src/';
-
-export interface ColorProps {
-    rgb: ColorInput;
-    rgbObject: ColorInput;
-    rgba: ColorInput;
-    rgbaObject: ColorInput;
-    hex: ColorInput;
-    hexObject: ColorInput;
-    hexa: ColorInput;
-    hexaObject: ColorInput;
-    hsl: ColorInput;
-    hslObject: ColorInput;
-    hsla: ColorInput;
-    hslaObject: ColorInput;
-}
-
-export type ColorPropsWithKeyword = ColorProps & { keyword: string };
-
-export interface CMYKProps {
-    rgb: string;
-    cmyk: string;
-    cmykint: string;
-    cmykObject: CMYKObjectGeneric;
-    cmykIntObject: CMYKObject;
-    cmykIntObject100: CMYKObject;
-}
-
-export interface ColorFunction {
-    name: string;
-    func: (color: ColorInput, css?: boolean) => RGBObject | HSLObject | CMYKObject | string;
-    css: boolean;
-}
-
-export interface ColorFunctionProps {
-    rgb: ColorFunction;
-    rgbObject: ColorFunction;
-    rgba: ColorFunction;
-    rgbaObject: ColorFunction;
-    hex: ColorFunction;
-    hexObject: ColorFunction;
-    hexa: ColorFunction;
-    hexaObject: ColorFunction;
-    hsl: ColorFunction;
-    hslObject: ColorFunction;
-    hsla: ColorFunction;
-    hslaObject: ColorFunction;
-    cmyk: ColorFunction;
-    cmykObject: ColorFunction;
-}
-
 export const COLORS = [
     {
         keyword: 'red',
         rgb: 'rgb(255,0,0)',
-        rgbObject: { r: 255, g: 0, b: 0 },
+        rgbWithAlpha: 'rgb(255,0,0,1)',
+        rgbSpaces: 'rgb(255 0 0)',
+        rgbSpacesWithAlpha: 'rgb(255 0 0 / 1)',
         rgba: 'rgba(255,0,0,1)',
+        rgbaSpaces: 'rgba(255 0 0 / 1)',
+        rgbObject: { r: 255, g: 0, b: 0 },
         rgbaObject: { r: 255, g: 0, b: 0, a: 1 },
         hex: '#FF0000',
         hexObject: { r: '0xFF', g: '0x00', b: '0x00' },
         hexa: '#FF0000FF',
         hexaObject: { r: '0xFF', g: '0x00', b: '0x00', a: '0xFF' },
         hsl: 'hsl(0,100%,50%)',
-        hslObject: { h: 0, s: 100, l: 50 },
+        hslWithAlpha: 'hsl(0,100%,50%,1)',
+        hslSpaces: 'hsl(0 100% 50%)',
+        hslSpacesWithAlpha: 'hsl(0 100% 50% / 1)',
         hsla: 'hsla(0,100%,50%,1)',
+        hslaSpaces: 'hsla(0 100% 50% / 1)',
+        hslObject: { h: 0, s: 100, l: 50 },
         hslaObject: { h: 0, s: 100, l: 50, a: 1 }
     },
     {
         keyword: 'lime',
         rgb: 'rgb(0,255,0)',
-        rgbObject: { r: 0, g: 255, b: 0 },
+        rgbWithAlpha: 'rgb(0,255,0,1)',
+        rgbSpaces: 'rgb(0 255 0)',
+        rgbSpacesWithAlpha: 'rgb(0 255 0 / 1)',
         rgba: 'rgba(0,255,0,1)',
+        rgbaSpaces: 'rgb(0 255 0 / 1)',
+        rgbObject: { r: 0, g: 255, b: 0 },
         rgbaObject: { r: 0, g: 255, b: 0, a: 1 },
         hex: '#00FF00',
         hexObject: { r: '0x00', g: '0xFF', b: '0x00' },
         hexa: '#00FF00FF',
         hexaObject: { r: '0x00', g: '0xFF', b: '0x00', a: '0xFF' },
         hsl: 'hsl(120,100%,50%)',
-        hslObject: { h: 120, s: 100, l: 50 },
+        hslWithAlpha: 'hsl(120,100%,50%,1)',
+        hslSpaces: 'hsl(120 100% 50%)',
+        hslSpacesWithAlpha: 'hsl(120 100% 50% / 1)',
         hsla: 'hsla(120,100%,50%,1)',
+        hslaSpaces: 'hsla(120 100% 50% / 1)',
+        hslObject: { h: 120, s: 100, l: 50 },
         hslaObject: { h: 120, s: 100, l: 50, a: 1 }
     },
     {
         keyword: 'blue',
         rgb: 'rgb(0,0,255)',
-        rgbObject: { r: 0, g: 0, b: 255 },
+        rgbWithAlpha: 'rgb(0,0,255,1)',
+        rgbSpaces: 'rgb(0 0 255)',
+        rgbSpacesWithAlpha: 'rgb(0,0,255,1)',
         rgba: 'rgba(0,0,255,1)',
+        rgbaSpaces: 'rgba(0 0 255 / 1)',
+        rgbObject: { r: 0, g: 0, b: 255 },
         rgbaObject: { r: 0, g: 0, b: 255, a: 1 },
         hex: '#0000FF',
         hexObject: { r: '0x00', g: '0x00', b: '0xFF' },
         hexa: '#0000FFFF',
         hexaObject: { r: '0x00', g: '0x00', b: '0xFF', a: '0xFF' },
         hsl: 'hsl(240,100%,50%)',
-        hslObject: { h: 240, s: 100, l: 50 },
+        hslWithAlpha: 'hsl(240,100%,50%,1)',
+        hslSpaces: 'hsl(240 100% 50%)',
+        hslSpacesWithAlpha: 'hsl(240 100% 50% / 1)',
         hsla: 'hsla(240,100%,50%,1)',
+        hslaSpaces: 'hsl(240 100% 50% / 1)',
+        hslObject: { h: 240, s: 100, l: 50 },
         hslaObject: { h: 240, s: 100, l: 50, a: 1 }
     },
     {
         keyword: 'magenta',
         rgb: 'rgb(255,0,255)',
-        rgbObject: { r: 255, g: 0, b: 255 },
+        rgbWithAlpha: 'rgb(255,0,255,1)',
+        rgbSpaces: 'rgb(255 0 255)',
+        rgbSpacesWithAlpha: 'rgb(255 0 255 / 1)',
         rgba: 'rgba(255,0,255,1)',
+        rgbaSpaces: 'rgba(255 0 255 / 1)',
+        rgbObject: { r: 255, g: 0, b: 255 },
         rgbaObject: { r: 255, g: 0, b: 255, a: 1 },
         hex: '#FF00FF',
         hexObject: { r: '0xFF', g: '0x00', b: '0xFF' },
         hexa: '#FF00FFFF',
         hexaObject: { r: '0xFF', g: '0x00', b: '0xFF', a: '0xFF' },
         hsl: 'hsl(300,100%,50%)',
-        hslObject: { h: 300, s: 100, l: 50 },
+        hslWithAlpha: 'hsl(300,100%,50%,1)',
+        hslSpaces: 'hsl(300 100% 50%)',
+        hslSpacesWithAlpha: 'hsl(300 100% 50% / 1)',
         hsla: 'hsla(300,100%,50%,1)',
+        hslaSpaces: 'hsla(300 100% 50% / 1)',
+        hslObject: { h: 300, s: 100, l: 50 },
         hslaObject: { h: 300, s: 100, l: 50, a: 1 }
     },
     {
         keyword: 'white',
         rgb: 'rgb(255,255,255)',
-        rgbObject: { r: 255, g: 255, b: 255 },
+        rgbWithAlpha: 'rgb(255,255,255,1)',
+        rgbSpaces: 'rgb(255 255 255)',
+        rgbSpacesWithAlpha: 'rgb(255 255 255 / 1)',
         rgba: 'rgba(255,255,255,1)',
+        rgbaSpaces: 'rgba(255 255 255 / 1)',
+        rgbObject: { r: 255, g: 255, b: 255 },
         rgbaObject: { r: 255, g: 255, b: 255, a: 1 },
         hex: '#FFFFFF',
         hexObject: { r: '0xFF', g: '0xFF', b: '0xFF' },
         hexa: '#FFFFFFFF',
         hexaObject: { r: '0xFF', g: '0xFF', b: '0xFF', a: '0xFF' },
         hsl: 'hsl(0,0%,100%)',
-        hslObject: { h: 0, s: 0, l: 100 },
+        hslWithAlpha: 'hsl(0,0%,100%,1)',
+        hslSpaces: 'hsl(0 0% 100%)',
+        hslSpacesWithAlpha: 'hsl(0 0% 100% / 1)',
         hsla: 'hsla(0,0%,100%,1)',
+        hslaSpaces: 'hsl(0 0% 100% / 1)',
+        hslObject: { h: 0, s: 0, l: 100 },
         hslaObject: { h: 0, s: 0, l: 100, a: 1 }
     },
     {
         keyword: 'black',
         rgb: 'rgb(0,0,0)',
-        rgbObject: { r: 0, g: 0, b: 0 },
+        rgbWithAlpha: 'rgb(0,0,0,1)',
+        rgbSpaces: 'rgb(0 0 0)',
+        rgbSpacesWithAlpha: 'rgb(0 0 0 / 1)',
         rgba: 'rgba(0,0,0,1)',
+        rgbaSpaces: 'rgb(0 0 0 / 1)',
+        rgbObject: { r: 0, g: 0, b: 0 },
         rgbaObject: { r: 0, g: 0, b: 0, a: 1 },
         hex: '#000000',
         hexObject: { r: '0x00', g: '0x00', b: '0x00' },
         hexa: '#000000FF',
         hexaObject: { r: '0x00', g: '0x00', b: '0x00', a: '0xFF' },
         hsl: 'hsl(0,0%,0%)',
-        hslObject: { h: 0, s: 0, l: 0 },
+        hslWithAlpha: 'hsl(0,0%,0%,1)',
+        hslSpaces: 'hsl(0 0% 0%)',
+        hslSpacesWithAlpha: 'hsl(0,0%,0%,1)',
         hsla: 'hsla(0,0%,0%,1)',
+        hslaSpaces: 'hsl(0 0% 0% / 1)',
+        hslObject: { h: 0, s: 0, l: 0 },
         hslaObject: { h: 0, s: 0, l: 0, a: 1 }
     },
     {
         keyword: 'gray',
         rgb: 'rgb(128,128,128)',
-        rgbObject: { r: 128, g: 128, b: 128 },
+        rgbWithAlpha: 'rgb(128,128,128,1)',
+        rgbSpaces: 'rgb(128 128 128)',
+        rgbSpacesWithAlpha: 'rgb(128,128,128,1)',
         rgba: 'rgba(128,128,128,1)',
+        rgbaSpaces: 'rgb(128 128 128 / 1)',
+        rgbObject: { r: 128, g: 128, b: 128 },
         rgbaObject: { r: 128, g: 128, b: 128, a: 1 },
         hex: '#808080',
         hexObject: { r: '0x80', g: '0x80', b: '0x80' },
         hexa: '#808080FF',
         hexaObject: { r: '0x80', g: '0x80', b: '0x80', a: '0xFF' },
         hsl: 'hsl(0,0%,50%)',
-        hslObject: { h: 0, s: 0, l: 50 },
+        hslWithAlpha: 'hsl(0,0%,50%,1)',
+        hslSpaces: 'hsl(0 0% 50%)',
+        hslSpacesWithAlpha: 'hsl(0 0% 50% / 1)',
         hsla: 'hsla(0,0%,50%,1)',
+        hslaSpaces: 'hsl(0 0% 50% / 1)',
+        hslObject: { h: 0, s: 0, l: 50 },
         hslaObject: { h: 0, s: 0, l: 50, a: 1 }
     }
 ];
@@ -275,73 +279,104 @@ export const HEX3 = [
     }
 ];
 
-export const CMYK = [
+export const CMYK_COLORS = [
     {
         rgb: '#F00',
         cmyk: 'cmyk(0%,100%,100%,0%)',
+        cmykSpaces: 'cmyk(0% 100% 100% 0%)',
+        cmykWithAlpha: 'cmyk(0%,100%,100%,0%,1)',
+        cmykSpacesWithAlpha: 'cmyk(0% 100% 100% 0% / 1)',
         cmykint: 'cmyk(0,1,1,0)',
+        cmykintSpaces: 'cmyk(0 1 1 0)',
+        cmykintWithAlpha: 'cmyk(0,1,1,0,1)',
+        cmykintSpacesWithAlpha: 'cmyk(0 1 1 0 / 1)',
         cmykObject: {c: '0%', m: '100%', y: '100%', k: '0%'},
         cmykIntObject: {c: 0, m: 1, y: 1, k: 0},
-        cmykIntObject100: {c: 0, m: 100, y: 100, k: 0}
+        cmykIntObjectWithAlpha: {c: 0, m: 1, y: 1, k: 0, a: 1},
+        cmykIntObject100: {c: 0, m: 100, y: 100, k: 0},
+        cmykIntObject100WithAlpha: {c: 0, m: 100, y: 100, k: 0, a: 1}
     },
     {
         rgb: '#0F0',
         cmyk: 'cmyk(100%,0%,100%,0%)',
+        cmykSpaces: 'cmyk(100% 0% 100% 0%)',
+        cmykWithAlpha: 'cmyk(100%,0%,100%,0%,1)',
+        cmykSpacesWithAlpha: 'cmyk(100% 0% 100% 0% / 1)',
         cmykint: 'cmyk(1,0,1,0)',
+        cmykintSpaces: 'cmyk(1 0 1 0)',
+        cmykintWithAlpha: 'cmyk(1,0,1,0,1)',
+        cmykintSpacesWithAlpha: 'cmyk(1 0 1 0 / 1)',
         cmykObject: {c: '100%', m: '0%', y: '100%', k: '0%'},
         cmykIntObject: {c: 1, m: 0, y: 1, k: 0},
-        cmykIntObject100: {c: 100, m: 0, y: 100, k: 0}
+        cmykIntObjectWithAlpha: {c: 1, m: 0, y: 1, k: 0, a: 1},
+        cmykIntObject100: {c: 100, m: 0, y: 100, k: 0},
+        cmykIntObject100WithAlpha: {c: 100, m: 0, y: 100, k: 0, a: 1}
     },
     {
         rgb: '#00F',
         cmyk: 'cmyk(100%,100%,0%,0%)',
+        cmykSpaces: 'cmyk(100% 100% 0% 0%)',
+        cmykWithAlpha: 'cmyk(100%,100%,0%,0%,1)',
+        cmykSpacesWithAlpha: 'cmyk(100% 100% 0% 0% / 1)',
         cmykint: 'cmyk(1,1,0,0)',
+        cmykintSpaces: 'cmyk(1 1 0 0)',
+        cmykintWithAlpha: 'cmyk(1,1,0,0,1)',
+        cmykintSpacesWithAlpha: 'cmyk(1 1 0 0 / 1)',
         cmykObject: {c: '100%', m: '100%', y: '0%', k: '0%'},
         cmykIntObject: {c: 1, m: 1, y: 0, k: 0},
-        cmykIntObject100: {c: 100, m: 100, y: 0, k: 0}
+        cmykIntObjectWithAlpha: {c: 1, m: 1, y: 0, k: 0, a: 1},
+        cmykIntObject100: {c: 100, m: 100, y: 0, k: 0},
+        cmykIntObject100WithAlpha: {c: 100, m: 100, y: 0, k: 0, a: 1}
     },
     {
         rgb: '#0FF',
         cmyk: 'cmyk(100%,0%,0%,0%)',
+        cmykSpaces: 'cmyk(100% 0% 0% 0%)',
+        cmykWithAlpha: 'cmyk(100%,0%,0%,0%,1)',
+        cmykSpacesWithAlpha: 'cmyk(100% 0% 0% 0% / 1)',
         cmykint: 'cmyk(1,0,0,0)',
+        cmykintSpaces: 'cmyk(1 0 0 0)',
+        cmykintWithAlpha: 'cmyk(1,0,0,0,1)',
+        cmykintSpacesWithAlpha: 'cmyk(1 0 0 0 / 1)',
         cmykObject: {c: '100%', m: '0%', y: '0%', k: '0%'},
         cmykIntObject: {c: 1, m: 0, y: 0, k: 0},
-        cmykIntObject100: {c: 100, m: 0, y: 0, k: 0}
+        cmykIntObjectWithAlpha: {c: 1, m: 0, y: 0, k: 0, a: 1},
+        cmykIntObject100: {c: 100, m: 0, y: 0, k: 0},
+        cmykIntObject100WithAlpha: {c: 100, m: 0, y: 0, k: 0, a: 1}
     },
     {
         rgb: '#FF0',
         cmyk: 'cmyk(0%,0%,100%,0%)',
+        cmykSpaces: 'cmyk(0% 0% 100% 0%)',
+        cmykWithAlpha: 'cmyk(0%,0%,100%,0%,1)',
+        cmykSpacesWithAlpha: 'cmyk(0% 0% 100% 0% / 1)',
         cmykint: 'cmyk(0,0,1,0)',
+        cmykintSpaces: 'cmyk(0 0 1 0)',
+        cmykintWithAlpha: 'cmyk(0,0,1,0,1)',
+        cmykintSpacesWithAlpha: 'cmyk(0 0 1 0 / 1)',
         cmykObject: {c: '0%', m: '0%', y: '100%', k: '0%'},
         cmykIntObject: {c: 0, m: 0, y: 1, k: 0},
-        cmykIntObject100: {c: 0, m: 0, y: 100, k: 0}
+        cmykIntObjectWithAlpha: {c: 0, m: 0, y: 1, k: 0, a: 1},
+        cmykIntObject100: {c: 0, m: 0, y: 100, k: 0},
+        cmykIntObject100WithAlpha: {c: 0, m: 0, y: 100, k: 0, a: 1}
     },
     {
         rgb: '#F0F',
         cmyk: 'cmyk(0%,100%,0%,0%)',
+        cmykSpaces: 'cmyk(0% 100% 0% 0%)',
+        cmykWithAlpha: 'cmyk(0%,100%,0%,0%,1)',
+        cmykSpacesWithAlpha: 'cmyk(0% 100% 0% 0% / 1)',
         cmykint: 'cmyk(0,1,0,0)',
+        cmykintSpaces: 'cmyk(0 1 0 0)',
+        cmykintWithAlpha: 'cmyk(0,1,0,0,1)',
+        cmykintSpacesWithAlpha: 'cmyk(0 1 0 0 / 1)',
         cmykObject: {c: '0%', m: '100%', y: '0%', k: '0%'},
         cmykIntObject: {c: 0, m: 1, y: 0, k: 0},
-        cmykIntObject100: {c: 0, m: 100, y: 0, k: 0}
+        cmykIntObjectWithAlpha: {c: 0, m: 1, y: 0, k: 0, a: 1},
+        cmykIntObject100: {c: 0, m: 100, y: 0, k: 0},
+        cmykIntObject100WithAlpha: {c: 0, m: 100, y: 0, k: 0, a: 1}
     }
 ];
-
-export const FUNCTIONS = {
-    rgb: { name: 'RGB CSS', func: ct.toRGB, css: true },
-    rgbObject: { name: 'RGB object', func: ct.toRGB, css: false },
-    rgba: { name: 'RGBA CSS', func: ct.toRGBA, css: true },
-    rgbaObject: { name: 'RGBA object', func: ct.toRGBA, css: false },
-    hex: { name: 'HEX CSS', func: ct.toHEX, css: true },
-    hexObject: { name: 'HEX object', func: ct.toHEX, css: false },
-    hexa: { name: 'HEXA CSS', func: ct.toHEXA, css: true },
-    hexaObject: { name: 'HEXA object', func: ct.toHEXA, css: false },
-    hsl: { name: 'HSL CSS', func: ct.toHSL, css: true },
-    hslObject: { name: 'HSL object', func: ct.toHSL, css: false },
-    hsla: { name: 'HSLA CSS', func: ct.toHSLA, css: true },
-    hslaObject: { name: 'HSLA object', func: ct.toHSLA, css: false },
-    cmyk: { name: 'CMYK CSS', func: ct.toCMYK, css: true },
-    cmykObject: { name: 'CMYK object', func: ct.toCMYK, css: false }
-};
 
 export const ADDITIVE_MIXES = [
     {
@@ -382,5 +417,3 @@ export const SUBTRACTIVE_MIXES = [
     }
 
 ];
-
-export const ColorTranslator = ct;

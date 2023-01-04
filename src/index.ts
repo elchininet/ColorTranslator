@@ -19,8 +19,6 @@ import * as utils from '#color/utils';
 import { CSS } from '#color/css';
 import { round, minmax } from '#helpers';
 
-const check = (color: ColorInput, css: boolean): boolean => (typeof color === 'string' && css || typeof color === 'object' && !css);
-
 const getReturn = <T>(
     color: ColorInput,
     model: ColorModel,
@@ -90,81 +88,19 @@ export class ColorTranslator {
         this.cmyk = rgbToCMYK(this.rgb.r, this.rgb.g, this.rgb.b);
     }
 
-    private updateRGBAndCMYK(): ColorTranslator {
+    private updateRGBAndCMYK(): void {
         this.updateRGB();
         this.updateCMYK();
-        return this;
     }
 
-    private updateHSLAndCMYK(): ColorTranslator {
+    private updateHSLAndCMYK(): void {
         this.updateHSL();
         this.updateCMYK();
-        return this;
     }
 
-    private updateRGBAndHSL(): ColorTranslator {
+    private updateRGBAndHSL(): void {
         this.updateRGBFromCMYK();
         this.updateHSL();
-        return this;
-    }
-
-    // Public HSL methods
-    public setH(h: number): ColorTranslator {
-        this.hsl.h = utils.normalizeHue(h);
-        return this.updateRGBAndCMYK();
-    }
-
-    public setS(s: number): ColorTranslator {
-        this.hsl.s = minmax(s, 0, 100);
-        return this.updateRGBAndCMYK();
-    }
-
-    public setL(l: number): ColorTranslator {
-        this.hsl.l = minmax(l, 0, 100);
-        return this.updateRGBAndCMYK();
-    }
-
-    // Public RGB methods
-    public setR(r: number): ColorTranslator {
-        this.rgb.r = minmax(r, 0, 255);
-        return this.updateHSLAndCMYK();
-    }
-
-    public setG(g: number): ColorTranslator {
-        this.rgb.g = minmax(g, 0, 255);
-        return this.updateHSLAndCMYK();
-    }
-
-    public setB(b: number): ColorTranslator {
-        this.rgb.b = minmax(b, 0, 255);
-        return this.updateHSLAndCMYK();
-    }
-
-    // Public alpha method
-    public setA(a: number): ColorTranslator {
-        this.hsl.a = this.rgb.a = minmax(a, 0, 1);
-        return this;
-    }
-
-    // Public CMYK methods
-    public setC(c: number): ColorTranslator {
-        this.cmyk.c = minmax(c, 0, 100);
-        return this.updateRGBAndHSL();
-    }
-
-    public setM(m: number): ColorTranslator {
-        this.cmyk.m = minmax(m, 0, 100);
-        return this.updateRGBAndHSL();
-    }
-
-    public setY(y: number): ColorTranslator {
-        this.cmyk.y = minmax(y, 0, 100);
-        return this.updateRGBAndHSL();
-    }
-
-    public setK(k: number): ColorTranslator {
-        this.cmyk.k = minmax(k, 0, 100);
-        return this.updateRGBAndHSL();
     }
 
     // Public HSL properties
@@ -172,12 +108,27 @@ export class ColorTranslator {
         return round(this.hsl.h);
     }
 
+    public set H(h: number) {
+        this.hsl.h = utils.normalizeHue(h);
+        this.updateRGBAndCMYK();
+    }
+
     public get S(): number {
         return round(this.hsl.s);
     }
 
+    public set S(s: number) {
+        this.hsl.s = minmax(s, 0, 100);
+        this.updateRGBAndCMYK();
+    }
+
     public get L(): number {
         return round(this.hsl.l);
+    }
+
+    public set L(l: number) {
+        this.hsl.l = minmax(l, 0, 100);
+        this.updateRGBAndCMYK();
     }
 
     // Public RGB properties
@@ -185,12 +136,27 @@ export class ColorTranslator {
         return round(this.rgb.r);
     }
 
+    public set R(r: number) {
+        this.rgb.r = minmax(r, 0, 255);
+        this.updateHSLAndCMYK();
+    }
+
     public get G(): number {
         return round(this.rgb.g);
     }
 
+    public set G(g: number) {
+        this.rgb.g = minmax(g, 0, 255);
+        this.updateHSLAndCMYK();
+    }
+
     public get B(): number {
         return round(this.rgb.b);
+    }
+
+    public set B(b: number) {
+        this.rgb.b = minmax(b, 0, 255);
+        this.updateHSLAndCMYK();
     }
 
     // Public alpha property
@@ -198,21 +164,45 @@ export class ColorTranslator {
         return round(this.hsl.a, 2);
     }
 
+    public set A(a: number) {
+        this.hsl.a = this.rgb.a = minmax(a, 0, 1);
+    }
+
     // Public CMYK properties
     public get C(): number {
         return round(this.cmyk.c);
+    }
+
+    public set C(c: number) {
+        this.cmyk.c = minmax(c, 0, 100);
+        this.updateRGBAndHSL();
     }
 
     public get M(): number {
         return round(this.cmyk.m);
     }
 
+    public set M(m: number) {
+        this.cmyk.m = minmax(m, 0, 100);
+        this.updateRGBAndHSL();
+    }
+
     public get Y(): number {
         return round(this.cmyk.y);
     }
 
+    public set Y(y: number) {
+        this.cmyk.y = minmax(y, 0, 100);
+        this.updateRGBAndHSL();
+    }
+
     public get K(): number {
         return round(this.cmyk.k);
+    }
+
+    public set K(k: number) {
+        this.cmyk.k = minmax(k, 0, 100);
+        this.updateRGBAndHSL();
     }
 
     // Object public properties
@@ -263,6 +253,16 @@ export class ColorTranslator {
         };
     }
 
+    public get CMYKAObject(): CMYKObject {
+        return {
+            c: this.C,
+            m: this.M,
+            y: this.Y,
+            k: this.K,
+            a: this.A
+        };
+    }
+
     // CSS public properties
     public get HEX(): string {
         const { r, g, b } = this.rgb;
@@ -300,6 +300,13 @@ export class ColorTranslator {
 
     public get CMYK(): string {
         return CSS.CMYK(this.cmyk);
+    }
+
+    public get CMYKA(): string {
+        return CSS.CMYK({
+            ...this.cmyk,
+            a: this.A
+        });
     }
 
     // Color Conversion Static Methods
@@ -340,9 +347,6 @@ export class ColorTranslator {
     public static toHSL(color: ColorInput, css: false): HSLObject;
     public static toHSL(color: ColorInput, css = true): HSLOutput {
         const model = utils.getColorModel(color);
-        if (model === ColorModel.HSL && check(color, css)) {
-            return color as HSLOutput;
-        }
         return getReturn<HSLObject>(color, model, css, utils.translateColor.HSL, CSS.HSL);
     }
 
@@ -351,9 +355,6 @@ export class ColorTranslator {
     public static toHSLA(color: ColorInput, css: false): HSLObject;
     public static toHSLA(color: ColorInput, css = true): HSLOutput {
         const model = utils.getColorModel(color);
-        if (model === ColorModel.HSLA && check(color, css)) {
-            return color as HSLOutput;
-        }
         return getReturn<HSLObject>(color, model, css, utils.translateColor.HSLA, CSS.HSL);
     }
 
@@ -362,10 +363,15 @@ export class ColorTranslator {
     public static toCMYK(color: ColorInput, css: false): CMYKObject;
     public static toCMYK(color: ColorInput, css = true): CMYKOutput {
         const model = utils.getColorModel(color);
-        if (model === ColorModel.CMYK && check(color, css)) {
-            return color as CMYKOutput;
-        }
         return getReturn<CMYKObject>(color, model, css, utils.translateColor.CMYK, CSS.CMYK);
+    }
+
+    public static toCMYKA(color: ColorInput): string;
+    public static toCMYKA(color: ColorInput, css: true): string;
+    public static toCMYKA(color: ColorInput, css: false): CMYKObject;
+    public static toCMYKA(color: ColorInput, css = true): CMYKOutput {
+        const model = utils.getColorModel(color);
+        return getReturn<CMYKObject>(color, model, css, utils.translateColor.CMYKA, CSS.CMYK);
     }
 
     // Color Blending Static Methods

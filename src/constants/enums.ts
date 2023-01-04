@@ -1,9 +1,7 @@
 export enum ColorModel {
     HEX = 'HEX',
     RGB = 'RGB',
-    RGBA = 'RGBA',
     HSL = 'HSL',
-    HSLA = 'HSLA',
     CMYK = 'CMYK'
 }
 
