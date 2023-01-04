@@ -88,19 +88,81 @@ export class ColorTranslator {
         this.cmyk = rgbToCMYK(this.rgb.r, this.rgb.g, this.rgb.b);
     }
 
-    private updateRGBAndCMYK(): void {
+    private updateRGBAndCMYK(): ColorTranslator {
         this.updateRGB();
         this.updateCMYK();
+        return this;
     }
 
-    private updateHSLAndCMYK(): void {
+    private updateHSLAndCMYK(): ColorTranslator {
         this.updateHSL();
         this.updateCMYK();
+        return this;
     }
 
-    private updateRGBAndHSL(): void {
+    private updateRGBAndHSL(): ColorTranslator {
         this.updateRGBFromCMYK();
         this.updateHSL();
+        return this;
+    }
+
+    // Public HSL methods
+    public setH(h: number): ColorTranslator {
+        this.hsl.h = utils.normalizeHue(h);
+        return this.updateRGBAndCMYK();
+    }
+
+    public setS(s: number): ColorTranslator {
+        this.hsl.s = minmax(s, 0, 100);
+        return this.updateRGBAndCMYK();
+    }
+
+    public setL(l: number): ColorTranslator {
+        this.hsl.l = minmax(l, 0, 100);
+        return this.updateRGBAndCMYK();
+    }
+
+    // Public RGB methods
+    public setR(r: number): ColorTranslator {
+        this.rgb.r = minmax(r, 0, 255);
+        return this.updateHSLAndCMYK();
+    }
+
+    public setG(g: number): ColorTranslator {
+        this.rgb.g = minmax(g, 0, 255);
+        return this.updateHSLAndCMYK();
+    }
+
+    public setB(b: number): ColorTranslator {
+        this.rgb.b = minmax(b, 0, 255);
+        return this.updateHSLAndCMYK();
+    }
+
+    // Public alpha method
+    public setA(a: number): ColorTranslator {
+        this.hsl.a = this.rgb.a = minmax(a, 0, 1);
+        return this;
+    }
+
+    // Public CMYK methods
+    public setC(c: number): ColorTranslator {
+        this.cmyk.c = minmax(c, 0, 100);
+        return this.updateRGBAndHSL();
+    }
+
+    public setM(m: number): ColorTranslator {
+        this.cmyk.m = minmax(m, 0, 100);
+        return this.updateRGBAndHSL();
+    }
+
+    public setY(y: number): ColorTranslator {
+        this.cmyk.y = minmax(y, 0, 100);
+        return this.updateRGBAndHSL();
+    }
+
+    public setK(k: number): ColorTranslator {
+        this.cmyk.k = minmax(k, 0, 100);
+        return this.updateRGBAndHSL();
     }
 
     // Public HSL properties
@@ -108,27 +170,12 @@ export class ColorTranslator {
         return round(this.hsl.h);
     }
 
-    public set H(h: number) {
-        this.hsl.h = utils.normalizeHue(h);
-        this.updateRGBAndCMYK();
-    }
-
     public get S(): number {
         return round(this.hsl.s);
     }
 
-    public set S(s: number) {
-        this.hsl.s = minmax(s, 0, 100);
-        this.updateRGBAndCMYK();
-    }
-
     public get L(): number {
         return round(this.hsl.l);
-    }
-
-    public set L(l: number) {
-        this.hsl.l = minmax(l, 0, 100);
-        this.updateRGBAndCMYK();
     }
 
     // Public RGB properties
@@ -136,27 +183,12 @@ export class ColorTranslator {
         return round(this.rgb.r);
     }
 
-    public set R(r: number) {
-        this.rgb.r = minmax(r, 0, 255);
-        this.updateHSLAndCMYK();
-    }
-
     public get G(): number {
         return round(this.rgb.g);
     }
 
-    public set G(g: number) {
-        this.rgb.g = minmax(g, 0, 255);
-        this.updateHSLAndCMYK();
-    }
-
     public get B(): number {
         return round(this.rgb.b);
-    }
-
-    public set B(b: number) {
-        this.rgb.b = minmax(b, 0, 255);
-        this.updateHSLAndCMYK();
     }
 
     // Public alpha property
@@ -164,45 +196,21 @@ export class ColorTranslator {
         return round(this.hsl.a, 2);
     }
 
-    public set A(a: number) {
-        this.hsl.a = this.rgb.a = minmax(a, 0, 1);
-    }
-
     // Public CMYK properties
     public get C(): number {
         return round(this.cmyk.c);
-    }
-
-    public set C(c: number) {
-        this.cmyk.c = minmax(c, 0, 100);
-        this.updateRGBAndHSL();
     }
 
     public get M(): number {
         return round(this.cmyk.m);
     }
 
-    public set M(m: number) {
-        this.cmyk.m = minmax(m, 0, 100);
-        this.updateRGBAndHSL();
-    }
-
     public get Y(): number {
         return round(this.cmyk.y);
     }
 
-    public set Y(y: number) {
-        this.cmyk.y = minmax(y, 0, 100);
-        this.updateRGBAndHSL();
-    }
-
     public get K(): number {
         return round(this.cmyk.k);
-    }
-
-    public set K(k: number) {
-        this.cmyk.k = minmax(k, 0, 100);
-        this.updateRGBAndHSL();
     }
 
     // Object public properties

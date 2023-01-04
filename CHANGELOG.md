@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.10.0] - 2023-01-05
+
+- Support for CSS Colors 4 inputs
+
 ## [1.9.4] - 2023-01-02
 
 - Fixed a bug that didn‘t allow leading zeros
