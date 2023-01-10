@@ -127,7 +127,7 @@ export const rybToRGB = (r: number, y: number, b: number): RGBObject => {
     const bRYB = b - Iw;
     const minYB = Math.min(yRYB, bRYB);
     const rRGB = rRYB + yRYB - minYB;
-    const gRGB = yRYB + 2 * minYB;
+    const gRGB = yRYB + minYB;
     const bRGB = 2 * (bRYB - minYB);
     const n = Math.max(rRGB, gRGB, bRGB) / Math.max(rRYB, yRYB, bRYB);
     const N = isNaN(n) || n === Infinity || n <= 0 ? 1 : n;
