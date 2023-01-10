@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.10.1] - 2023-01-10
+
+- Fix RYB to RGB conversion (thanks to @jagracar)
+
 ## [1.10.0] - 2023-01-05
 
 - Support for CSS Colors 4 inputs
