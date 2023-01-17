@@ -68,11 +68,11 @@ describe('ColorTranslator set instance properties', () => {
         instance.setA(0.5);
         expect(instance.A).toBe(0.5);
         expect(instance.HEX).toBe(TEST_COLORS.red.hex);
-        expect(instance.HEXA).toBe(TEST_COLORS.red.hex + '7F');
+        expect(instance.HEXA).toBe(TEST_COLORS.red.hex + '80');
         expect(instance.HEXObject).toMatchObject(TEST_COLORS.red.hexObject);
         expect(instance.HEXAObject).toMatchObject({
             ...TEST_COLORS.red.hexObject,
-            a: '0x7F'
+            a: '0x80'
         });
         expect(instance.RGB).toBe(TEST_COLORS.red.rgb);
         expect(instance.RGBA).toBe(TEST_COLORS.red.rgba.replace(REG, '$10.5$3'));

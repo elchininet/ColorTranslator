@@ -25,7 +25,8 @@ import {
     COLORREGS,
     COLOR_KEYS,
     ERRORS,
-    HSL_HUE
+    HSL_HUE,
+    MAX_DECIMALS
 } from '#constants';
 import {
     getOrderedArrayString,
@@ -92,7 +93,7 @@ export const normalizeAlpha = (alpha: number | string | undefined | null): numbe
             alpha = +alpha;
         }
     }
-    return (isNaN(+alpha) || alpha > 1) ? 1 : round(alpha, 2);
+    return (isNaN(+alpha) || alpha > 1) ? 1 : round(alpha, MAX_DECIMALS);
 };
 
 //---Harmony
@@ -411,7 +412,7 @@ export const getColorMixture = (color: ColorInputWithoutCMYK, steps: number, sha
                     if (hasAlpha) rgbColor.a = hslColor.a;
                     return isCSS
                         ? hasAlpha
-                            ? CSS.HEX({ ...rgbColor, a: round(rgbColor.a * 255, 2) })
+                            ? CSS.HEX({ ...rgbColor, a: round(rgbColor.a * 255, MAX_DECIMALS) })
                             : CSS.HEX(rgbColor)
                         : hasAlpha
                             ? translateColor.HEXA(rgbColor)
