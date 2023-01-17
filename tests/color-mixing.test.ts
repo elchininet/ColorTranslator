@@ -57,7 +57,7 @@ describe('Color mixing with alphas', (): void => {
         const mix = ColorTranslator.getMixHEXA(colors);
         it(`Regular CSS additive mix with alpha using getMixHEXA ${JSON.stringify(colors)} => ${mix}`, (): void => {
             if (colors.length === 3) {
-                expect(mix.slice(-2)).toBe('B2');
+                expect(mix.slice(-2)).toBe('B3');
             } else {
                 expect(mix.slice(-2)).toBe('8E');
             }            
@@ -70,7 +70,7 @@ describe('Color mixing with alphas', (): void => {
         const mix = ColorTranslator.getMixHEXA(colors);
         it(`Regular CSS subtractive mix with alpha using getMixHEXA ${JSON.stringify(colors)} => ${mix}`, (): void => {
             if (colors.length === 3) {
-                expect(mix.slice(-2)).toBe('B2');
+                expect(mix.slice(-2)).toBe('B3');
             } else {
                 expect(mix.slice(-2)).toBe('8E');
             }            

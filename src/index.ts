@@ -13,8 +13,18 @@ import {
     CMYKOutput,
     ColorOutput
 } from '@types';
-import { ColorModel, Harmony, Mix } from '#constants';
-import { rgbToHSL, hslToRGB, rgbToCMYK, cmykToRGB } from '#color/translators';
+import {
+    ColorModel,
+    Harmony,
+    Mix,
+    MIN_DECIMALS
+} from '#constants';
+import {
+    rgbToHSL,
+    hslToRGB,
+    rgbToCMYK,
+    cmykToRGB
+} from '#color/translators';
 import * as utils from '#color/utils';
 import { CSS } from '#color/css';
 import { round, minmax } from '#helpers';
@@ -193,7 +203,7 @@ export class ColorTranslator {
 
     // Public alpha property
     public get A(): number {
-        return round(this.hsl.a, 2);
+        return round(this.hsl.a, MIN_DECIMALS);
     }
 
     // Public CMYK properties
@@ -233,7 +243,7 @@ export class ColorTranslator {
     public get RGBAObject(): RGBObject {
         return {
             ...this.RGBObject,
-            a: this.A
+            a: this.hsl.a
         };
     }
 
@@ -248,7 +258,7 @@ export class ColorTranslator {
     public get HSLAObject(): HSLObject {
         return {
             ...this.HSLObject,
-            a: this.A
+            a: this.hsl.a
         };
     }
 
@@ -267,7 +277,7 @@ export class ColorTranslator {
             m: this.M,
             y: this.Y,
             k: this.K,
-            a: this.A
+            a: this.hsl.a
         };
     }
 
@@ -280,7 +290,7 @@ export class ColorTranslator {
 
     public get HEXA(): string {
         const { r, g, b } = this.rgb;
-        const rgb = { r, g, b, a: this.A * 255 };
+        const rgb = { r, g, b, a: this.hsl.a * 255 };
         return CSS.HEX(rgb);
     }
 
@@ -292,7 +302,7 @@ export class ColorTranslator {
 
     public get RGBA(): string {
         const { r, g, b } = this.rgb;
-        const rgb = { r, g, b, a: this.A };
+        const rgb = { r, g, b, a: this.hsl.a };
         return CSS.RGB(rgb);
     }
 
@@ -313,7 +323,7 @@ export class ColorTranslator {
     public get CMYKA(): string {
         return CSS.CMYK({
             ...this.cmyk,
-            a: this.A
+            a: this.hsl.a
         });
     }
 

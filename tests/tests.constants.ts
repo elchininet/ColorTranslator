@@ -441,11 +441,11 @@ export const SUBTRACTIVE_MIXES = [
 
     {
         colors: ['#FFFF00', '#FF0000'],
-        mix: '#FF7F00'
+        mix: '#FF8000'
     },
     {
         colors: ['#FF0000', '#0000FF'],
-        mix: '#7F00FF'
+        mix: '#8000FF'
     },
     {
         colors: ['#0000FF', '#FFFF00'],

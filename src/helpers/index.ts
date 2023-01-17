@@ -1,5 +1,5 @@
 import { NumberOrString } from '@types';
-import { PCENT, HEX } from '#constants';
+import { PCENT, HEX, MAX_DECIMALS } from '#constants';
 
 //---Has property
 export const hasProp = <T>(obj: T, prop: string): boolean => Object.prototype.hasOwnProperty.call(obj, prop);
@@ -17,14 +17,14 @@ export const getDEC = (hex: string): number => {
 
 //---Convert to hexadecimal
 export const getHEX = (number: NumberOrString): string => {
-    const hex = parseInt(`${number}`).toString(16).toUpperCase();
+    const hex = round(number).toString(16).toUpperCase();
     if (hex.length === 1) { return `0x0${hex}`; }
     return `0x${hex}`;
 };
 
 //---Convert to final hexadecimal
 export const toHEX = (h: number | string): string => {
-    let hex = parseInt(`${h}`).toString(16).toUpperCase();
+    let hex = round(h).toString(16).toUpperCase();
     if (hex.length === 1) {
         hex = `0${hex}`;
     }
@@ -43,8 +43,8 @@ export const getBase255Number = (color: string, alpha = false): number => {
                 : parseInt(color + color.slice(-1));
         }
         return alpha
-            ? parseInt(color) / 255
-            : parseInt(color);
+            ? round(color, MAX_DECIMALS) / 255
+            : round(color, MAX_DECIMALS);
     }
     return Math.min(+color, alpha ? 1 : 255);
 };
