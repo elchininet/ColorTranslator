@@ -2,34 +2,35 @@ import { ColorTranslator } from '../src';
 import { COLORS, CMYK_COLORS } from './tests.constants';
 
 COLORS.forEach((color): void => {
-
     let instance: ColorTranslator;
 
-    Object.values(color).forEach((colorValue) => {
-
+    Object.values(color).forEach(colorValue => {
         const colorValueStr = JSON.stringify(colorValue);
 
         describe(`ColorTranslator instance properties for ${colorValueStr}`, () => {
-
             instance = new ColorTranslator(colorValue);
 
             // HEX
             it(`HEX property => ${color.hex}`, () => {
                 expect(instance.HEX).toBe(color.hex);
             });
-            
+
             // HEXA
             it(`HEXA property => ${color.hexa}`, () => {
                 expect(instance.HEXA).toBe(color.hexa);
             });
 
             // HEXObject
-            it(`HEXObject property => ${JSON.stringify(color.hexObject)}`, () => {
+            it(`HEXObject property => ${JSON.stringify(
+                color.hexObject
+            )}`, () => {
                 expect(instance.HEXObject).toMatchObject(color.hexObject);
             });
 
             // HEXAObject
-            it(`HEXAObject property => ${JSON.stringify(color.hexaObject)}`, () => {
+            it(`HEXAObject property => ${JSON.stringify(
+                color.hexaObject
+            )}`, () => {
                 expect(instance.HEXAObject).toMatchObject(color.hexaObject);
             });
 
@@ -44,12 +45,16 @@ COLORS.forEach((color): void => {
             });
 
             // RGBObject
-            it(`RGBObject property => ${JSON.stringify(color.rgbObject)}`, () => {
+            it(`RGBObject property => ${JSON.stringify(
+                color.rgbObject
+            )}`, () => {
                 expect(instance.RGBObject).toMatchObject(color.rgbObject);
             });
 
             // RGBAObject
-            it(`RGBAObject property => ${JSON.stringify(color.rgbaObject)}`, () => {
+            it(`RGBAObject property => ${JSON.stringify(
+                color.rgbaObject
+            )}`, () => {
                 expect(instance.RGBAObject).toMatchObject(color.rgbaObject);
             });
 
@@ -64,12 +69,16 @@ COLORS.forEach((color): void => {
             });
 
             // HSLObject
-            it(`HSLObject property => ${JSON.stringify(color.hslObject)}`, () => {
+            it(`HSLObject property => ${JSON.stringify(
+                color.hslObject
+            )}`, () => {
                 expect(instance.HSLObject).toMatchObject(color.hslObject);
             });
 
             // HSLAObject
-            it(`HSLAObject property => ${JSON.stringify(color.hslaObject)}`, () => {
+            it(`HSLAObject property => ${JSON.stringify(
+                color.hslaObject
+            )}`, () => {
                 expect(instance.HSLAObject).toMatchObject(color.hslaObject);
             });
 
@@ -107,23 +116,17 @@ COLORS.forEach((color): void => {
             it(`A property => ${color.rgbaObject.a}`, () => {
                 expect(instance.A).toBe(color.rgbaObject.a);
             });
-
         });
-
     });
-
 });
 
-CMYK_COLORS.forEach((color) => {
-
+CMYK_COLORS.forEach(color => {
     let instance: ColorTranslator;
 
-    Object.values(color).forEach((colorValue) => {
-
+    Object.values(color).forEach(colorValue => {
         const colorValueStr = JSON.stringify(colorValue);
 
         describe(`ColorTranslator CMYK instance properties ${colorValueStr}`, () => {
-
             instance = new ColorTranslator(colorValue);
 
             // CMYK
@@ -137,13 +140,21 @@ CMYK_COLORS.forEach((color) => {
             });
 
             // CMYKObject
-            it(`CMYKObject property => ${JSON.stringify(color.cmykIntObject100)}`, () => {
-                expect(instance.CMYKObject).toMatchObject(color.cmykIntObject100);
+            it(`CMYKObject property => ${JSON.stringify(
+                color.cmykIntObject100
+            )}`, () => {
+                expect(instance.CMYKObject).toMatchObject(
+                    color.cmykIntObject100
+                );
             });
 
             // CMYKAObject
-            it(`CMYKAObject property => ${JSON.stringify(color.cmykIntObject100WithAlpha)}`, () => {
-                expect(instance.CMYKAObject).toMatchObject(color.cmykIntObject100WithAlpha);
+            it(`CMYKAObject property => ${JSON.stringify(
+                color.cmykIntObject100WithAlpha
+            )}`, () => {
+                expect(instance.CMYKAObject).toMatchObject(
+                    color.cmykIntObject100WithAlpha
+                );
             });
 
             // C
@@ -165,9 +176,6 @@ CMYK_COLORS.forEach((color) => {
             it(`K property => ${color.cmykIntObject100.k}`, () => {
                 expect(instance.K).toBe(color.cmykIntObject100.k);
             });
-
         });
-
     });
-
 });

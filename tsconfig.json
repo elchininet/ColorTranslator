@@ -1,21 +1,22 @@
 {
-  "compilerOptions": {
-    "outDir": "./dist/",
-    "module": "esnext",
-    "target": "es5",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "declaration": true,
-    "noImplicitAny": true,
-    "removeComments": true,
-    "baseUrl": "./src",
-    "paths": {
-      "@types": ["@types"],
-      "#helpers": ["helpers"],
-      "#constants": ["constants"],
-      "#color/*": ["color/*"]
-    }
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "module": "esnext",
+        "target": "es5",
+        "lib": ["ES2017"],
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "declaration": true,
+        "noImplicitAny": true,
+        "removeComments": true,
+        "baseUrl": "./src",
+        "paths": {
+            "@types": ["@types"],
+            "#helpers": ["helpers"],
+            "#constants": ["constants"],
+            "#color/*": ["color/*"]
+        }
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules"]
 }

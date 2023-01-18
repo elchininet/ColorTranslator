@@ -1,0 +1,14 @@
+.plop
+dist
+docs
+esm
+web
+
+LICENSE.md
+CHANGELOG.md
+
+index.js
+index.d.ts
+yarn.lock
+
+src/@demo

@@ -8,7 +8,7 @@
 
 [![Deployment Status](https://github.com/elchininet/ColorTranslator/actions/workflows/deploy.yaml/badge.svg)](https://github.com/elchininet/ColorTranslator/actions/workflows/deploy.yaml) &nbsp; [![Coverage Status](https://coveralls.io/repos/github/elchininet/ColorTranslator/badge.svg?branch=master)](https://coveralls.io/github/elchininet/ColorTranslator?branch=master) &nbsp; [![npm version](https://badge.fury.io/js/colortranslator.svg)](https://badge.fury.io/js/colortranslator)
 
-## Demo 
+## Demo
 
 https://elchininet.github.io/ColorTranslator/
 
@@ -135,7 +135,6 @@ The most wonderful thing about `colortranslator` is that you don‘t need to spe
 | `device-cmyk(0 1 1 0 / 1)`            | Device-dependent functional CMYK notation with numbers and alpha (CSS Colors 4 space-separated)                    |
 | `device-cmyk(0 1 1 0 / 100%)`         | Device-dependent functional CMYK notation with numbers and alpha in percentages (CSS Colors 4 space-separated)     |
 
-
 ###### Object inputs
 
 | Example of object inputs                       | Description                               |
@@ -198,15 +197,9 @@ You can also consult the [demo 1](https://elchininet.github.io/ColorTranslator/#
 ```javascript
 const color = new ColorTranslator('#FF00FF');
 
-color
-  .setH(120)
-  .setS(80)
-  .setA(0.5);
+color.setH(120).setS(80).setA(0.5);
 
-color
-  .setR(255)
-  .setG(150)
-  .setA(0.25);
+color.setR(255).setG(150).setA(0.25);
 ```
 
 #### Class public readonly properties
@@ -281,17 +274,18 @@ convertColorStaticMethod(
   css: boolean = true
 )
 ```
+
 ###### Color conversion static methods description
 
-| Static method | Description                                    |
-| ------------- | ---------------------------------------------- |
-| toHEX         | Convert to an hexadecimal notation             |
-| toHEXA        | Convert to an hexadecimal notation with alpha  |
-| toRGB         | Convert to an RGB notation                     |
-| toRGBA        | Convert to an RGB notation with alpha          |
-| toHSL         | Convert to an HSL notation                     |
-| toHSLA        | Convert to an HSL notation with alpha          |
-| toCMYK        | Convert to a CMYK notation                     |
+| Static method | Description                                   |
+| ------------- | --------------------------------------------- |
+| toHEX         | Convert to an hexadecimal notation            |
+| toHEXA        | Convert to an hexadecimal notation with alpha |
+| toRGB         | Convert to an RGB notation                    |
+| toRGBA        | Convert to an RGB notation with alpha         |
+| toHSL         | Convert to an HSL notation                    |
+| toHSLA        | Convert to an HSL notation with alpha         |
+| toCMYK        | Convert to a CMYK notation                    |
 
 ###### Color conversion static methods examples
 
@@ -334,7 +328,7 @@ getBlendColorsStaticMethod(
 
 | Static method | Description                                                                                 |
 | ------------- | ------------------------------------------------------------------------------------------- |
-| getBlendHEX   | Create an array relative to the blend between two colors in hexadecimal notation            |  
+| getBlendHEX   | Create an array relative to the blend between two colors in hexadecimal notation            |
 | getBlendHEXA  | Create an array relative to the blend between two colors in hexadecimal notation with alpha |
 | getBlendRGB   | Create an array relative to the blend between two colors in RGB notation                    |
 | getBlendRGBA  | Create an array relative to the blend between two colors in RGB notation with alpha         |
@@ -393,11 +387,10 @@ getTints(
 
 ###### Color shades and color tints static methods description
 
-| Static method | Description                                                                                 |
-| ------------- | ------------------------------------------------------------------------------------------- |
-| getShades     | Get shades of a colour (mix the color with black increasing its darkness)                   |  
-| getTints      | Get tints of a colour (mix the color with white increasing its lightness)                   |
-
+| Static method | Description                                                               |
+| ------------- | ------------------------------------------------------------------------- |
+| getShades     | Get shades of a colour (mix the color with black increasing its darkness) |
+| getTints      | Get tints of a colour (mix the color with white increasing its lightness) |
 
 ###### Color shades and color tints static methods examples
 
@@ -412,7 +405,7 @@ ColorTranslator.getShades('#FF0000', 5);
 //   "#2A0000"
 // ]
 
-ColorTranslator.getTints({r: 255, g: 0, b: 0, a: 0.5}, 5);
+ColorTranslator.getTints({ r: 255, g: 0, b: 0, a: 0.5 }, 5);
 
 // [
 //   {r: 255, g: 43, b: 43, a: 0.5},
@@ -442,8 +435,8 @@ getMixColorsStaticMethod(
 ###### Color mix static methods description
 
 | Static method | Description                                                        |
-| ------------- | -------------------------------------------------------------------|
-| getMixHEX     | Get the mix of the input colors in hexadecimal notation            |  
+| ------------- | ------------------------------------------------------------------ |
+| getMixHEX     | Get the mix of the input colors in hexadecimal notation            |
 | getMixHEXA    | Get the mix of the input colors in hexadecimal notation with alpha |
 | getMixRGB     | Get the mix of the input colors in RGB notation                    |
 | getMixRGBA    | Get the mix of the input colors in RGB notation with alpha         |
@@ -486,8 +479,8 @@ getHarmony(
 
 ###### Color harmonies static method description
 
-| Static method | Description                                                                  |
-| ------------- | ---------------------------------------------------------------------------- |
+| Static method | Description                                                                                                            |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | getHarmony    | Return an array of colors representing the harmony requested. The color output will be the same that was sent as input |
 
 ###### Available armonies
@@ -516,7 +509,10 @@ ColorTranslator.getHarmony('rgba(0, 255, 255, 0.5)', Harmony.ANALOGOUS);
 //   "rgba(0,255,128,0.5)"
 // ]
 
-ColorTranslator.getHarmony({ r: 115, g: 200, b: 150, a: 0.5 }, Harmony.COMPLEMENTARY);
+ColorTranslator.getHarmony(
+    { r: 115, g: 200, b: 150, a: 0.5 },
+    Harmony.COMPLEMENTARY
+);
 
 // [
 //   {r: 115, g: 201, b: 151, a: 0.5},
@@ -526,7 +522,6 @@ ColorTranslator.getHarmony({ r: 115, g: 200, b: 150, a: 0.5 }, Harmony.COMPLEMEN
 ColorTranslator.getHarmony('#FF0000', Harmony.COMPLEMENTARY, Mix.SUBTRACTIVE);
 
 // ["#FF0000", "#00FF00"]
-
 ```
 
 You can also consult the [demo 9](https://elchininet.github.io/ColorTranslator/#demo9) and [demo 10](https://elchininet.github.io/ColorTranslator/#demo10) to check the use of this static method.

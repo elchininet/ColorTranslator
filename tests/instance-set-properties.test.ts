@@ -19,7 +19,6 @@ const TEST_CMYK_COLORS = {
 };
 
 describe('ColorTranslator set instance properties', () => {
-
     it('Set property H', () => {
         const instance = new ColorTranslator(TEST_COLORS.red.hex);
         instance.setH(240);
@@ -75,32 +74,32 @@ describe('ColorTranslator set instance properties', () => {
             a: '0x80'
         });
         expect(instance.RGB).toBe(TEST_COLORS.red.rgb);
-        expect(instance.RGBA).toBe(TEST_COLORS.red.rgba.replace(REG, '$10.5$3'));
+        expect(instance.RGBA).toBe(
+            TEST_COLORS.red.rgba.replace(REG, '$10.5$3')
+        );
         expect(instance.RGBObject).toMatchObject(TEST_COLORS.red.rgbObject);
         expect(instance.RGBAObject).toMatchObject({
             ...TEST_COLORS.red.rgbObject,
             a: 0.5
         });
         expect(instance.HSL).toBe(TEST_COLORS.red.hsl);
-        expect(instance.HSLA).toBe(TEST_COLORS.red.hsla.replace(REG, '$10.5$3'));
+        expect(instance.HSLA).toBe(
+            TEST_COLORS.red.hsla.replace(REG, '$10.5$3')
+        );
         expect(instance.HSLObject).toMatchObject(TEST_COLORS.red.hslObject);
         expect(instance.HSLAObject).toMatchObject({
             ...TEST_COLORS.red.hslObject,
             a: 0.5
         });
     });
-
 });
 
 // Test class properties
 describe('Properties boundaries', (): void => {
-
     COLORS.forEach((item): void => {
-
         const instance = new ColorTranslator(item.hex);
 
         it(`check R, G, B, and A properties for color ${item.hex}`, (): void => {
-
             const R = instance.R;
             const G = instance.G;
             const B = instance.B;
@@ -211,15 +210,11 @@ describe('Properties boundaries', (): void => {
             instance.setK(200);
             expect(instance.K).toBe(100);
             instance.setK(K);
-    
         });
-
     });
-
 });
 
 describe('ColorTranslator set CMYK instance properties', () => {
-
     it('Set property C', () => {
         const instance = new ColorTranslator(TEST_CMYK_COLORS.lime.rgb);
         instance.setC(0);
@@ -247,5 +242,4 @@ describe('ColorTranslator set CMYK instance properties', () => {
         expect(instance.K).toBe(100);
         expect(instance.CMYK).toBe('cmyk(0%,100%,100%,100%)');
     });
-
 });

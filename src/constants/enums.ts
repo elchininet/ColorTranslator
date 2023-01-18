@@ -19,6 +19,7 @@ export enum Mix {
     SUBTRACTIVE = 'SUBTRACTIVE'
 }
 
+// prettier-ignore
 export enum ColorKeywords {
     'black'                = '#000000',
     'silver'               = '#C0C0C0',

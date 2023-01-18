@@ -2,8 +2,12 @@ import { RGBObject, HSLObject, CMYKObject, RYBObject } from '@types';
 
 //---HUE to RGB
 export const hueToRGB = (t1: number, t2: number, hue: number): number => {
-    if (hue < 0) { hue += 6; }
-    if (hue >= 6) { hue -= 6; }
+    if (hue < 0) {
+        hue += 6;
+    }
+    if (hue >= 6) {
+        hue -= 6;
+    }
     if (hue < 1) {
         return Math.round(((t2 - t1) * hue + t1) * 255);
     } else if (hue < 3) {
@@ -20,9 +24,7 @@ export const hslToRGB = (h: number, s: number, l: number): RGBObject => {
     h /= 60;
     s /= 100;
     l /= 100;
-    const t2 = (l <= .5)
-        ? l * (s + 1)
-        : l + s - (l * s);
+    const t2 = l <= 0.5 ? l * (s + 1) : l + s - l * s;
     const t1 = l * 2 - t2;
     const r = hueToRGB(t1, t2, h + 2);
     const g = hueToRGB(t1, t2, h);
@@ -31,7 +33,12 @@ export const hslToRGB = (h: number, s: number, l: number): RGBObject => {
 };
 
 //---CMYK To RGB
-export const cmykToRGB = (c: number, m: number, y: number, k: number): RGBObject => {
+export const cmykToRGB = (
+    c: number,
+    m: number,
+    y: number,
+    k: number
+): RGBObject => {
     k = 1 - k;
     const r = Math.round(255 * (1 - c) * k);
     const g = Math.round(255 * (1 - m) * k);
@@ -69,10 +76,7 @@ export const rgbToHSL = (r: number, g: number, b: number, a = 1): HSLObject => {
     let h = 0;
     let s = 0;
     const l = (max + min) / 2;
-    if (d === 0) {
-        h = 0;
-        s = 0;
-    } else {
+    if (d !== 0) {
         switch (max) {
             case r:
                 h = ((g - b) / d) % 6;
@@ -85,7 +89,9 @@ export const rgbToHSL = (r: number, g: number, b: number, a = 1): HSLObject => {
                 break;
         }
         h = Math.round(h * 60);
-        if (h < 0) { h += 360; }
+        if (h < 0) {
+            h += 360;
+        }
         s = d / (1 - Math.abs(2 * l - 1));
     }
     return {
@@ -98,8 +104,8 @@ export const rgbToHSL = (r: number, g: number, b: number, a = 1): HSLObject => {
 
 //---RGB to RYB and RYB to RGB for color mixes
 /*
-* http://nishitalab.org/user/UEI/publication/Sugita_IWAIT2015.pdf
-*/
+ * http://nishitalab.org/user/UEI/publication/Sugita_IWAIT2015.pdf
+ */
 export const rgbToRYB = (r: number, g: number, b: number): RYBObject => {
     const Iw = Math.min(r, g, b);
     const Ib = Math.min(255 - r, 255 - g, 255 - b);
@@ -140,14 +146,23 @@ export const rybToRGB = (r: number, y: number, b: number): RGBObject => {
 
 //---Hue RYB
 export const hueRYB = (hue: number, toRYB: boolean): number => {
-    
     if (hue < 0) hue += 360;
     if (hue > 360) hue -= 360;
 
     if (hue === 360 || hue === 0) return hue;
 
-    const map1 = [[0, 120], [120, 180], [180, 240], [240, 360]];
-    const map2 = [[0, 60], [60, 120], [120, 240], [240, 360]];
+    const map1: [number, number][] = [
+        [0, 120],
+        [120, 180],
+        [180, 240],
+        [240, 360]
+    ];
+    const map2: [number, number][] = [
+        [0, 60],
+        [60, 120],
+        [120, 240],
+        [240, 360]
+    ];
     const from = toRYB ? map1 : map2;
     const to = toRYB ? map2 : map1;
 
@@ -156,17 +171,17 @@ export const hueRYB = (hue: number, toRYB: boolean): number => {
     let c = 0;
     let d = 0;
 
-    from.find((arr: [number, number], index: number): boolean => {
-        if (hue >= arr[0] && hue < arr[1]) {
-            a = arr[0];
-            b = arr[1];
-            c = to[index][0];
-            d = to[index][1];
-            return true;
+    for (let i = 0; i < from.length; i++) {
+        const fromArr = from[i];
+        const toArr = to[i];
+        if (hue >= fromArr[0] && hue < fromArr[1]) {
+            a = fromArr[0];
+            b = fromArr[1];
+            c = toArr[0];
+            d = toArr[1];
+            break;
         }
-        return false;
-    });
+    }
 
     return c + (hue - a) * ((d - c) / (b - a));
-
 };

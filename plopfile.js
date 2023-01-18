@@ -1,8 +1,13 @@
-const { COLOR_REGEXP_STRINGS, HSL_HUE, toRegExp } = require('./.plop/regexps-strings');
+const {
+    COLOR_REGEXP_STRINGS,
+    HSL_HUE,
+    toRegExp
+} = require('./.plop/regexps-strings');
 
-module.exports = (plop) => {
+module.exports = plop => {
     plop.setGenerator('Compile RegExps', {
-        description: 'Compile the regular library regular expressions from a template file',
+        description:
+            'Compile the regular library regular expressions from a template file',
         prompts: [],
         actions: [
             {

@@ -320,11 +320,11 @@ export const CMYK_COLORS = [
         cmykintWithAlpha: 'cmyk(0,1,1,0,1)',
         cmykintSpacesWithAlpha: 'cmyk(0 1 1 0 / 1)',
         cmykintSpacesWithAlphaInPercentages: 'cmyk(0 1 1 0 / 100%)',
-        cmykObject: {c: '0%', m: '100%', y: '100%', k: '0%'},
-        cmykIntObject: {c: 0, m: 1, y: 1, k: 0},
-        cmykIntObjectWithAlpha: {c: 0, m: 1, y: 1, k: 0, a: 1},
-        cmykIntObject100: {c: 0, m: 100, y: 100, k: 0},
-        cmykIntObject100WithAlpha: {c: 0, m: 100, y: 100, k: 0, a: 1}
+        cmykObject: { c: '0%', m: '100%', y: '100%', k: '0%' },
+        cmykIntObject: { c: 0, m: 1, y: 1, k: 0 },
+        cmykIntObjectWithAlpha: { c: 0, m: 1, y: 1, k: 0, a: 1 },
+        cmykIntObject100: { c: 0, m: 100, y: 100, k: 0 },
+        cmykIntObject100WithAlpha: { c: 0, m: 100, y: 100, k: 0, a: 1 }
     },
     {
         rgb: '#0F0',
@@ -338,11 +338,11 @@ export const CMYK_COLORS = [
         cmykintWithAlpha: 'cmyk(1,0,1,0,1)',
         cmykintSpacesWithAlpha: 'cmyk(1 0 1 0 / 1)',
         cmykintSpacesWithAlphaInPercentages: 'cmyk(1 0 1 0 / 100%)',
-        cmykObject: {c: '100%', m: '0%', y: '100%', k: '0%'},
-        cmykIntObject: {c: 1, m: 0, y: 1, k: 0},
-        cmykIntObjectWithAlpha: {c: 1, m: 0, y: 1, k: 0, a: 1},
-        cmykIntObject100: {c: 100, m: 0, y: 100, k: 0},
-        cmykIntObject100WithAlpha: {c: 100, m: 0, y: 100, k: 0, a: 1}
+        cmykObject: { c: '100%', m: '0%', y: '100%', k: '0%' },
+        cmykIntObject: { c: 1, m: 0, y: 1, k: 0 },
+        cmykIntObjectWithAlpha: { c: 1, m: 0, y: 1, k: 0, a: 1 },
+        cmykIntObject100: { c: 100, m: 0, y: 100, k: 0 },
+        cmykIntObject100WithAlpha: { c: 100, m: 0, y: 100, k: 0, a: 1 }
     },
     {
         rgb: '#00F',
@@ -356,11 +356,11 @@ export const CMYK_COLORS = [
         cmykintWithAlpha: 'cmyk(1,1,0,0,1)',
         cmykintSpacesWithAlpha: 'cmyk(1 1 0 0 / 1)',
         cmykintSpacesWithAlphaInPercentages: 'cmyk(1 1 0 0 / 100%)',
-        cmykObject: {c: '100%', m: '100%', y: '0%', k: '0%'},
-        cmykIntObject: {c: 1, m: 1, y: 0, k: 0},
-        cmykIntObjectWithAlpha: {c: 1, m: 1, y: 0, k: 0, a: 1},
-        cmykIntObject100: {c: 100, m: 100, y: 0, k: 0},
-        cmykIntObject100WithAlpha: {c: 100, m: 100, y: 0, k: 0, a: 1}
+        cmykObject: { c: '100%', m: '100%', y: '0%', k: '0%' },
+        cmykIntObject: { c: 1, m: 1, y: 0, k: 0 },
+        cmykIntObjectWithAlpha: { c: 1, m: 1, y: 0, k: 0, a: 1 },
+        cmykIntObject100: { c: 100, m: 100, y: 0, k: 0 },
+        cmykIntObject100WithAlpha: { c: 100, m: 100, y: 0, k: 0, a: 1 }
     },
     {
         rgb: '#0FF',
@@ -374,11 +374,11 @@ export const CMYK_COLORS = [
         cmykintWithAlpha: 'cmyk(1,0,0,0,1)',
         cmykintSpacesWithAlpha: 'cmyk(1 0 0 0 / 1)',
         cmykintSpacesWithAlphaInPercentages: 'cmyk(1 0 0 0 / 100%)',
-        cmykObject: {c: '100%', m: '0%', y: '0%', k: '0%'},
-        cmykIntObject: {c: 1, m: 0, y: 0, k: 0},
-        cmykIntObjectWithAlpha: {c: 1, m: 0, y: 0, k: 0, a: 1},
-        cmykIntObject100: {c: 100, m: 0, y: 0, k: 0},
-        cmykIntObject100WithAlpha: {c: 100, m: 0, y: 0, k: 0, a: 1}
+        cmykObject: { c: '100%', m: '0%', y: '0%', k: '0%' },
+        cmykIntObject: { c: 1, m: 0, y: 0, k: 0 },
+        cmykIntObjectWithAlpha: { c: 1, m: 0, y: 0, k: 0, a: 1 },
+        cmykIntObject100: { c: 100, m: 0, y: 0, k: 0 },
+        cmykIntObject100WithAlpha: { c: 100, m: 0, y: 0, k: 0, a: 1 }
     },
     {
         rgb: '#FF0',
@@ -392,11 +392,11 @@ export const CMYK_COLORS = [
         cmykintWithAlpha: 'cmyk(0,0,1,0,1)',
         cmykintSpacesWithAlpha: 'cmyk(0 0 1 0 / 1)',
         cmykintSpacesWithAlphaInPercentages: 'cmyk(0 0 1 0 / 100%)',
-        cmykObject: {c: '0%', m: '0%', y: '100%', k: '0%'},
-        cmykIntObject: {c: 0, m: 0, y: 1, k: 0},
-        cmykIntObjectWithAlpha: {c: 0, m: 0, y: 1, k: 0, a: 1},
-        cmykIntObject100: {c: 0, m: 0, y: 100, k: 0},
-        cmykIntObject100WithAlpha: {c: 0, m: 0, y: 100, k: 0, a: 1}
+        cmykObject: { c: '0%', m: '0%', y: '100%', k: '0%' },
+        cmykIntObject: { c: 0, m: 0, y: 1, k: 0 },
+        cmykIntObjectWithAlpha: { c: 0, m: 0, y: 1, k: 0, a: 1 },
+        cmykIntObject100: { c: 0, m: 0, y: 100, k: 0 },
+        cmykIntObject100WithAlpha: { c: 0, m: 0, y: 100, k: 0, a: 1 }
     },
     {
         rgb: '#F0F',
@@ -410,11 +410,11 @@ export const CMYK_COLORS = [
         cmykintWithAlpha: 'cmyk(0,1,0,0,1)',
         cmykintSpacesWithAlpha: 'cmyk(0 1 0 0 / 1)',
         cmykintSpacesWithAlphaInPercentages: 'cmyk(0 1 0 0 / 100%)',
-        cmykObject: {c: '0%', m: '100%', y: '0%', k: '0%'},
-        cmykIntObject: {c: 0, m: 1, y: 0, k: 0},
-        cmykIntObjectWithAlpha: {c: 0, m: 1, y: 0, k: 0, a: 1},
-        cmykIntObject100: {c: 0, m: 100, y: 0, k: 0},
-        cmykIntObject100WithAlpha: {c: 0, m: 100, y: 0, k: 0, a: 1}
+        cmykObject: { c: '0%', m: '100%', y: '0%', k: '0%' },
+        cmykIntObject: { c: 0, m: 1, y: 0, k: 0 },
+        cmykIntObjectWithAlpha: { c: 0, m: 1, y: 0, k: 0, a: 1 },
+        cmykIntObject100: { c: 0, m: 100, y: 0, k: 0 },
+        cmykIntObject100WithAlpha: { c: 0, m: 100, y: 0, k: 0, a: 1 }
     }
 ];
 
@@ -438,7 +438,6 @@ export const ADDITIVE_MIXES = [
 ];
 
 export const SUBTRACTIVE_MIXES = [
-
     {
         colors: ['#FFFF00', '#FF0000'],
         mix: '#FF8000'
@@ -455,5 +454,4 @@ export const SUBTRACTIVE_MIXES = [
         colors: ['#FFFF00', '#FF0000', '#0000FF'],
         mix: '#000000'
     }
-
 ];
