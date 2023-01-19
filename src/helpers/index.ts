@@ -58,7 +58,11 @@ export const getBase255Number = (color: string, alpha = false): number => {
 export const getCMYKNumber = (color: string): number => Math.min(PCENT.test(color) ? +(color.replace(PCENT, '$1')) / 100 : +color, 1);
 
 //---Return an ordered string from an array values
-export const getOrderedArrayString = (keys: string[]): string => keys.sort().join('').toUpperCase();
+export const getOrderedArrayString = (keys: string[]): string => {
+    const resultKeys = [...keys];
+    resultKeys.sort();
+    return resultKeys.join('').toUpperCase();
+};
 
 //---Round value
 export const round = (value: NumberOrString, decimals = 0): number => {
