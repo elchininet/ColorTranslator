@@ -72,7 +72,7 @@ export const normalizeHue = (hue: number | string): number => {
                 break;
             case 'deg':
             case 'grad':
-            default:                
+            default:
                 hue = value;
         }
     }
@@ -82,7 +82,7 @@ export const normalizeHue = (hue: number | string): number => {
     }
 
     return hue;
-}; 
+};
 
 //---Normalize alpha
 export const normalizeAlpha = (alpha: number | string | undefined | null): number => {
@@ -100,7 +100,7 @@ export const normalizeAlpha = (alpha: number | string | undefined | null): numbe
 const harmony = (color: HSLObject, angles: number[], mode: Mix): HSLObject[] =>
     angles.reduce(
         (arr: HSLObject[], num: number): HSLObject[] =>
-            (                
+            (
                 [
                     ...arr,
                     {
@@ -158,7 +158,7 @@ const getColorModelFromObject = (color: Color): ColorModel => {
     let model: ColorModel;
     let invalid = false;
     const props = getOrderedArrayString(Object.keys(color));
-    
+
     if(VALID_COLOR_OBJECTS[props]) {
         model = VALID_COLOR_OBJECTS[props];
     }
@@ -183,7 +183,7 @@ const getColorModelFromObject = (color: Color): ColorModel => {
         if (hasInvalidHex && hasInvalidRegb) {
             invalid = true;
         }
-        
+
         if (!hasInvalidHex) {
             model = ColorModel.HEX;
         }
@@ -436,7 +436,7 @@ export const getColorMixture = (color: ColorInputWithoutCMYK, steps: number, sha
                         ? translateColor.HSLA({ ...hslToRGB(hslColor.h, hslColor.s, hslColor.l), a: hslColor.a })
                         : translateColor.HSL(hslToRGB(hslColor.h, hslColor.s, hslColor.l));
             });
-        
+
     }
 };
 
@@ -623,7 +623,7 @@ export const colorMixer = {
             mix = rybToRGB(ryb.r, ryb.y, ryb.b);
             mix.a = ryb.a;
         }
-        
+
         return {
             r: round(mix.r, 2),
             g: round(mix.g, 2),
