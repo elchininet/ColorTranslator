@@ -146,8 +146,18 @@ export const hueRYB = (hue: number, toRYB: boolean): number => {
 
     if (hue === 360 || hue === 0) return hue;
 
-    const map1 = [[0, 120], [120, 180], [180, 240], [240, 360]];
-    const map2 = [[0, 60], [60, 120], [120, 240], [240, 360]];
+    const map1: [number, number][] = [
+        [0, 120],
+        [120, 180],
+        [180, 240],
+        [240, 360]
+    ];
+    const map2: [number, number][] = [
+        [0, 60],
+        [60, 120],
+        [120, 240],
+        [240, 360]
+    ];
     const from = toRYB ? map1 : map2;
     const to = toRYB ? map2 : map1;
 
@@ -156,16 +166,17 @@ export const hueRYB = (hue: number, toRYB: boolean): number => {
     let c = 0;
     let d = 0;
 
-    from.find((arr: [number, number], index: number): boolean => {
-        if (hue >= arr[0] && hue < arr[1]) {
-            a = arr[0];
-            b = arr[1];
-            c = to[index][0];
-            d = to[index][1];
-            return true;
+    for (let i = 0; i < from.length; i++) {
+        const fromArr = from[i];
+        const toArr = to[i];
+        if (hue >= fromArr[0] && hue < fromArr[1]) {
+            a = fromArr[0];
+            b = fromArr[1];
+            c = toArr[0];
+            d = toArr[1];
+            break;
         }
-        return false;
-    });
+    }
 
     return c + (hue - a) * ((d - c) / (b - a));
 

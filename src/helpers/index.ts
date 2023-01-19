@@ -23,13 +23,17 @@ export const getHEX = (number: NumberOrString): string => {
 };
 
 //---Convert to final hexadecimal
-export const toHEX = (h: number | string): string => {
+export const toHEX = (h: NumberOrString): string => {
     let hex = round(h).toString(16).toUpperCase();
     if (hex.length === 1) {
         hex = `0${hex}`;
     }
     return hex;
 };
+
+//---Convert all to final hexadecimal
+export const toHEXAll = (values: NumberOrString[]): string[] =>
+    values.map(value => toHEX(value));
 
 //---Calculate a decimal 255 from an RGB color
 export const getBase255Number = (color: string, alpha = false): number => {
@@ -61,6 +65,10 @@ export const round = (value: NumberOrString, decimals = 0): number => {
     const exp = Math.pow(10, decimals);
     return Math.round(+value * exp) / exp;
 };
+
+//---Round all values
+export const roundAll = (values: NumberOrString[], decimals = 0): number[] =>
+    values.map(value => round(value, decimals));
 
 //---Minimum and maximum
 export const minmax = (n: number, min: number, max: number): number => Math.max(min, Math.min(n, max));
