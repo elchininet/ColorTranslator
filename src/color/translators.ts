@@ -69,10 +69,7 @@ export const rgbToHSL = (r: number, g: number, b: number, a = 1): HSLObject => {
     let h = 0;
     let s = 0;
     const l = (max + min) / 2;
-    if (d === 0) {
-        h = 0;
-        s = 0;
-    } else {
+    if (d !== 0) {
         switch (max) {
             case r:
                 h = ((g - b) / d) % 6;
