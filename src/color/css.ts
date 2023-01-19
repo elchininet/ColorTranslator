@@ -32,9 +32,7 @@ export const CSS = {
         const { h, s, l } = color;
         const hasAlpha = hasProp<HSLObject>(color, 'a');
         const alphaText = hasAlpha ? `,${round(color.a, MIN_DECIMALS)}` : '';
-        return `hsl${hasAlpha ? 'a' : ''}(${round(h)},${round(s)}%,${round(
-            l
-        )}%${alphaText})`;
+        return `hsl${hasAlpha ? 'a' : ''}(${round(h)},${round(s)}%,${round(l)}%${alphaText})`;
     },
     [ColorModel.CMYK]: (color: CMYKObject): string => {
         const { c, m, y, k } = color;
