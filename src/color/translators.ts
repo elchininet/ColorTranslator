@@ -137,7 +137,7 @@ export const rybToRGB = (r: number, y: number, b: number): RGBObject => {
 
 //---Hue RYB
 export const hueRYB = (hue: number, toRYB: boolean): number => {
-    
+
     if (hue < 0) hue += 360;
     if (hue > 360) hue -= 360;
 

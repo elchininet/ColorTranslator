@@ -5,12 +5,12 @@ import {
     HSLObject,
     CMYKObject
 } from '@types';
-import { 
-    toHEX, 
-    hasProp, 
-    round, 
-    roundAll, 
-    toHEXAll 
+import {
+    toHEX,
+    hasProp,
+    round,
+    roundAll,
+    toHEXAll
 } from '#helpers';
 
 export const CSS = {
