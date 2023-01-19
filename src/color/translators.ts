@@ -163,17 +163,16 @@ export const hueRYB = (hue: number, toRYB: boolean): number => {
     let c = 0;
     let d = 0;
 
-    for (let i = 0; i < from.length; i++) {
-        const fromArr = from[i];
-        const toArr = to[i];
-        if (hue >= fromArr[0] && hue < fromArr[1]) {
-            a = fromArr[0];
-            b = fromArr[1];
-            c = toArr[0];
-            d = toArr[1];
-            break;
+    from.find((arr: [number, number], index: number): boolean => {
+        if (hue >= arr[0] && hue < arr[1]) {
+            a = arr[0];
+            b = arr[1];
+            c = to[index][0];
+            d = to[index][1];
+            return true;
         }
-    }
+        return false;
+    });
 
     return c + (hue - a) * ((d - c) / (b - a));
 
