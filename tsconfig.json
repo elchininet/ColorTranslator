@@ -3,6 +3,7 @@
     "outDir": "./dist/",
     "module": "esnext",
     "target": "es5",
+    "lib": ["ES2017"],
     "moduleResolution": "node",
     "esModuleInterop": true,
     "declaration": true,
