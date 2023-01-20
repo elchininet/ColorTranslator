@@ -34,11 +34,11 @@ export default (ColorTranslator, { Harmony }) => {
             .then((svgCode) => {
                 const harmonyColors = ColorTranslator.getHarmony(baseColor, item.value);
                 const selector = 'path' + harmonyColors.map((color) => `:not([fill="${color}"])`).join('');
-                wheel.innerHTML = svgCode;                
-                harmonyColors.forEach((hex) => createElement('box', harmony).style.background = hex);                
+                wheel.innerHTML = svgCode;
+                harmonyColors.forEach((hex) => createElement('box', harmony).style.background = hex);
                 wheel.querySelectorAll(selector).forEach((path) => path.setAttribute('fill-opacity', '0.25'));
             });
-            
+
     };
 
     harmonies.forEach((item) => createHarmony(item));

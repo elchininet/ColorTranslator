@@ -12,7 +12,7 @@ export default (ColorTranslator) => {
             color
                 .setS(row * 10)
                 .setL(col * 5 + 30);
-                
+
             const box = document.createElement('div');
 
             box.classList.add('box');
