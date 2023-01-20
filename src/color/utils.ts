@@ -26,7 +26,8 @@ import {
     COLOR_KEYS,
     ERRORS,
     HSL_HUE,
-    MAX_DECIMALS
+    MAX_DECIMALS,
+    VALID_COLOR_OBJECTS
 } from '#constants';
 import {
     getOrderedArrayString,
@@ -142,16 +143,6 @@ const getColorModelFromString = (color: string): ColorModel => {
     return model;
 };
 
-const VALID_COLOR_OBJECTS = Object.entries(ColorModel).reduce((acc: Record<string, ColorModel>, entry: [string, ColorModel]) => {
-    const [key, value] = entry;
-    if (key !== ColorModel.HEX) {
-        const ordered = getOrderedArrayString(key.split(''));
-        acc[ordered] = value;
-        acc['A' + ordered] = value;
-    }
-    return acc;
-}, {});
-
 //---Detect the color model from an object
 const getColorModelFromObject = (color: Color): ColorModel => {
 
@@ -192,7 +183,7 @@ const getColorModelFromObject = (color: Color): ColorModel => {
     if (!model || invalid) {
         throw new Error(ERRORS.NOT_ACCEPTED_OBJECT_INPUT);
     }
-    return model as ColorModel;
+    return model;
 };
 
 //---Detect the color model

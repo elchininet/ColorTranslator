@@ -171,3 +171,17 @@ export enum ColorKeywords {
 }
 
 export const COLOR_KEYS = Object.keys(ColorKeywords);
+export const COLOR_PROPS = {
+    HEX: ['r', 'g', 'b', 'a'],
+    RGB: ['r', 'g', 'b', 'a'],
+    HSL: ['h', 's', 'l', 'a'],
+    CMYK: ['c', 'm', 'y', 'k', 'a']
+};
+export const VALID_COLOR_OBJECTS: Record<string, ColorModel> = {
+    BGR: ColorModel.RGB,
+    ABGR: ColorModel.RGB,
+    HLS: ColorModel.HSL,
+    AHLS: ColorModel.HSL,
+    CKMY: ColorModel.CMYK,
+    ACKMY: ColorModel.CMYK
+};

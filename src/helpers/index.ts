@@ -1,5 +1,9 @@
 import { NumberOrString } from '@types';
-import { PCENT, HEX, MAX_DECIMALS } from '#constants';
+import {
+    PCENT,
+    HEX,
+    MAX_DECIMALS
+} from '#constants';
 
 //---Has property
 export const hasProp = <T>(obj: T, prop: string): boolean => Object.prototype.hasOwnProperty.call(obj, prop);
@@ -31,10 +35,6 @@ export const toHEX = (h: NumberOrString): string => {
     return hex;
 };
 
-//---Convert all to final hexadecimal
-export const toHEXAll = (values: NumberOrString[]): string[] =>
-    values.map(value => toHEX(value));
-
 //---Calculate a decimal 255 from an RGB color
 export const getBase255Number = (color: string, alpha = false): number => {
     if (!alpha && PCENT.test(color)) {
@@ -65,10 +65,6 @@ export const round = (value: NumberOrString, decimals = 0): number => {
     const exp = Math.pow(10, decimals);
     return Math.round(+value * exp) / exp;
 };
-
-//---Round all values
-export const roundAll = (values: NumberOrString[], decimals = 0): number[] =>
-    values.map(value => round(value, decimals));
 
 //---Minimum and maximum
 export const minmax = (n: number, min: number, max: number): number => Math.max(min, Math.min(n, max));

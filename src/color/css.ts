@@ -1,44 +1,82 @@
-import { ColorModel, MIN_DECIMALS } from '#constants';
 import {
     HEXObject,
     RGBObject,
     HSLObject,
-    CMYKObject
+    CMYKObject,
+    Color,
+    NumberOrString
 } from '@types';
 import {
+    ColorModel,
+    TEMPLATE_VAR,
+    MIN_DECIMALS,
+    COLOR_PROPS,
+    VALID_COLOR_OBJECTS
+} from '#constants';
+import {
     toHEX,
-    hasProp,
     round,
-    roundAll,
-    toHEXAll
+    getOrderedArrayString
 } from '#helpers';
+
+const prepareColorForCss = (color: Color, isHex = false): NumberOrString[] => {
+    const props = getOrderedArrayString(Object.keys(color));
+    const model = VALID_COLOR_OBJECTS[props];
+    const keys = COLOR_PROPS[model];
+    return keys.reduce((result: NumberOrString[], key: keyof typeof color): NumberOrString[] => {
+        const value = color[key];
+        if (typeof value !== 'undefined') {
+            if (isHex) {
+                result.push(
+                    toHEX(value)
+                );
+            } else {
+                result.push(
+                    round(
+                        value,
+                        key === 'a' && MIN_DECIMALS
+                    )
+                );
+            }
+        }
+        return result;
+    }, []);
+};
+
+const getResultFromTemplate = (template: string, vars: NumberOrString[]): string => {
+    return template.replace(TEMPLATE_VAR, (__match: string, indexStr: string): string => {
+        const index = +indexStr - 1;
+        return `${vars[index]}`;
+    });
+};
 
 export const CSS = {
     [ColorModel.HEX]: (color: HEXObject | RGBObject): string => {
-        const { r, g, b } = color;
-        const values = toHEXAll([r, g, b]);
-        const hasAlpha = hasProp(color, 'a');
-        const alphaText = hasAlpha ? toHEX(color.a) : '';
-        return `#${values.join('')}${alphaText}`;
+        const values = prepareColorForCss(color, true);
+        const template = values.length === 4
+            ? '#{1}{2}{3}{4}'
+            : '#{1}{2}{3}';
+        return getResultFromTemplate(template, values);
     },
     [ColorModel.RGB]: (color: RGBObject): string => {
-        const { r, g, b } = color;
-        const values = roundAll([r, g, b]);
-        const hasAlpha = hasProp<RGBObject>(color, 'a');
-        const alphaText = hasAlpha ? `,${round(color.a, MIN_DECIMALS)}` : '';
-        return `rgb${hasAlpha ? 'a' : ''}(${values.join(',')}${alphaText})`;
+        const values = prepareColorForCss(color);
+        const template = values.length === 4
+            ? 'rgba({1},{2},{3},{4})'
+            : 'rgb({1},{2},{3})';
+        return getResultFromTemplate(template, values);
     },
     [ColorModel.HSL]: (color: HSLObject): string => {
-        const { h, s, l } = color;
-        const hasAlpha = hasProp<HSLObject>(color, 'a');
-        const alphaText = hasAlpha ? `,${round(color.a, MIN_DECIMALS)}` : '';
-        return `hsl${hasAlpha ? 'a' : ''}(${round(h)},${round(s)}%,${round(l)}%${alphaText})`;
+        const values = prepareColorForCss(color);
+        const template = values.length === 4
+            ? 'hsla({1},{2}%,{3}%,{4})'
+            : 'hsl({1},{2}%,{3}%)';
+        return getResultFromTemplate(template, values);
     },
     [ColorModel.CMYK]: (color: CMYKObject): string => {
-        const { c, m, y, k } = color;
-        const values = roundAll([c, m, y, k]);
-        const hasAlpha = hasProp<CMYKObject>(color, 'a');
-        const alphaText = hasAlpha ? `,${round(color.a, MIN_DECIMALS)}` : '';
-        return `cmyk(${values.join('%,')}%${alphaText})`;
+        const values = prepareColorForCss(color);
+        const template = values.length === 5
+            ? 'cmyk({1}%,{2}%,{3}%,{4}%,{5})'
+            : 'cmyk({1}%,{2}%,{3}%,{4}%)';
+        return getResultFromTemplate(template, values);
     }
 };

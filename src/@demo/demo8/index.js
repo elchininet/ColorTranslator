@@ -13,7 +13,7 @@ export default (ColorTranslator, { Mix }) => {
         [2, 3],
         [1, 2, 3]
     ];
-    
+
     const fillPlanes = () => {
         const planes = container.querySelectorAll('#planes path');
         planes.forEach((plane, index) => {
@@ -22,8 +22,8 @@ export default (ColorTranslator, { Mix }) => {
                 color = mixes[index];
             } else if(mixes[index]) {
                 const colors = mixes[index].map((i) => mixes[i - 1]);
-                color = mixes[index] = ColorTranslator.getMixHEX(colors, Mix.SUBTRACTIVE);           
-            }  
+                color = mixes[index] = ColorTranslator.getMixHEX(colors, Mix.SUBTRACTIVE);
+            }
             plane.setAttribute('fill', color);
         });
     };

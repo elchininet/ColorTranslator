@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const demo = document.getElementById(div);
         const container = document.createElement('div');
         const wrapper = document.createElement('div');
-        
+
         container.classList.add('demo-container');
         wrapper.classList.add('demo-wrapper');
 
