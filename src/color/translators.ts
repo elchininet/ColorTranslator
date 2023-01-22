@@ -46,9 +46,9 @@ export const rgbToCMYK = (r: number, g: number, b: number): CMYKObject => {
     b /= 255;
     const k = 1 - Math.max(r, g, b);
     const k1 = 1 - k;
-    const c = k1 !== 0 ? (k1 - r) / k1 : 0;
-    const m = k1 !== 0 ? (k1 - g) / k1 : 0;
-    const y = k1 !== 0 ? (k1 - b) / k1 : 0;
+    const c = k1 && (k1 - r) / k1;
+    const m = k1 && (k1 - g) / k1;
+    const y = k1 && (k1 - b) / k1;
     return {
         c: Math.round(c * 100),
         m: Math.round(m * 100),
