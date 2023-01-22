@@ -415,7 +415,25 @@ export const CMYK_COLORS = [
         cmykIntObjectWithAlpha: {c: 0, m: 1, y: 0, k: 0, a: 1},
         cmykIntObject100: {c: 0, m: 100, y: 0, k: 0},
         cmykIntObject100WithAlpha: {c: 0, m: 100, y: 0, k: 0, a: 1}
-    }
+    },
+    {
+        rgb: '#000',
+        cmyk: 'cmyk(0%,0%,0%,100%)',
+        cmykSpaces: 'cmyk(0% 0% 0% 100%)',
+        cmykWithAlpha: 'cmyk(0%,0%,0%,100%,1)',
+        cmykSpacesWithAlpha: 'cmyk(0% 0% 0% 100% / 1)',
+        cmykSpacesWithAlphaInPercentages: 'cmyk(0% 0% 0% 100% / 100%)',
+        cmykint: 'cmyk(0,0,0,1)',
+        cmykintSpaces: 'cmyk(0 0 0 1)',
+        cmykintWithAlpha: 'cmyk(0,0,0,1,1)',
+        cmykintSpacesWithAlpha: 'cmyk(0 0 0 1 / 1)',
+        cmykintSpacesWithAlphaInPercentages: 'cmyk(0 0 0 1 / 100%)',
+        cmykObject: {c: '0%', m: '0%', y: '0%', k: '100%'},
+        cmykIntObject: {c: 0, m: 0, y: 0, k: 1},
+        cmykIntObjectWithAlpha: {c: 0, m: 0, y: 0, k: 1, a: 1},
+        cmykIntObject100: {c: 0, m: 0, y: 0, k: 100},
+        cmykIntObject100WithAlpha: {c: 0, m: 0, y: 0, k: 100, a: 1}
+    },
 ];
 
 export const ADDITIVE_MIXES = [
