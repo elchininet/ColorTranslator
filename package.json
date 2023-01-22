@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "test": "jest --verbose",
-    "lint": "eslint \"src/**/*.{js,ts}\"",
+    "lint": "eslint \"src/**/*.{js,ts}\" \"tests/**/*.ts\"",
     "clean": "./scripts/clean.sh",
     "finish": "./scripts/finish.sh",
     "build": "yarn clean && rollup --config rollup.config.js --bundleConfigAsCjs && yarn finish",

@@ -13,7 +13,7 @@ COLORS.forEach((color): void => {
             it(`toHEX method as CSS from ${colorValueStr} => ${color.hex}`, () => {
                 expect(ColorTranslator.toHEX(colorValue)).toBe(color.hex);
             });
-    
+
             it(`toHEX method as Object from ${colorValueStr} => ${JSON.stringify(color.hexObject)}`, () => {
                 expect(ColorTranslator.toHEX(colorValue, false)).toMatchObject(color.hexObject);
             });

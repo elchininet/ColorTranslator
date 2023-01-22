@@ -2,7 +2,7 @@ import { ColorTranslator } from '../src';
 import { Harmony, Mix } from '../src/constants';
 import { HEXObject, RGBObject, HSLObjectGeneric } from '../src/@types';
 
-describe('ColorTranslator harmony tests', (): void => {    
+describe('ColorTranslator harmony tests', (): void => {
 
     const colorFunctions = [
         ColorTranslator.toHEX,
@@ -14,7 +14,7 @@ describe('ColorTranslator harmony tests', (): void => {
     ];
 
     const base = '#FF0000';
-    
+
     const additive_results = [
         ['#FF0000', '#FF8000', '#FF0080'],
         ['#FF0000', '#00FFFF'],
@@ -50,7 +50,7 @@ describe('ColorTranslator harmony tests', (): void => {
                     : ColorTranslator.getHarmony(css, Harmony[harmony as Harmony]);
                 expect(colors).toMatchObject(additiveResultCSS[index]);
             });
-            
+
             it(`Additive Harmony deep equals: ${harmony} for ${JSON.stringify(obj)} => ${JSON.stringify(additiveResultObject[index])}`, (): void => {
                 const colors = harmony === Harmony.COMPLEMENTARY
                     ? ColorTranslator.getHarmony(obj)
@@ -62,7 +62,7 @@ describe('ColorTranslator harmony tests', (): void => {
                 const colors = ColorTranslator.getHarmony(css, Harmony[harmony as Harmony], Mix.SUBTRACTIVE);
                 expect(colors).toMatchObject(subtractiveResultCSS[index]);
             });
-            
+
             it(`Subtractive Harmony deep equals: ${harmony} for ${JSON.stringify(obj)} => ${JSON.stringify(subtractiveResultObject[index])}`, (): void => {
                 const colors = ColorTranslator.getHarmony(obj, Harmony[harmony as Harmony], Mix.SUBTRACTIVE);
                 expect(colors).toMatchObject(subtractiveResultObject[index]);
@@ -73,7 +73,7 @@ describe('ColorTranslator harmony tests', (): void => {
                 expect(colors[1]).toBe('#FF8000');
             });
 
-        });  
+        });
 
     });
 
