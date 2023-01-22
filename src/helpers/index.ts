@@ -21,13 +21,18 @@ export const getDEC = (hex: string): number => {
 
 //---Convert to hexadecimal
 export const getHEX = (number: NumberOrString): string => {
-    const hex = round(number).toString(16).toUpperCase().padStart(2,'0');
+    const hex = round(number).toString(16).toUpperCase();
+    if (hex.length === 1) { return `0x0${hex}`; }
     return `0x${hex}`;
 };
 
 //---Convert to final hexadecimal
 export const toHEX = (h: NumberOrString): string => {
-    return round(h).toString(16).toUpperCase().padStart(2,'0');
+    let hex = round(h).toString(16).toUpperCase();
+    if (hex.length === 1) {
+        hex = `0${hex}`;
+    }
+    return hex;
 };
 
 //---Calculate a decimal 255 from an RGB color
