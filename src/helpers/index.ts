@@ -21,18 +21,13 @@ export const getDEC = (hex: string): number => {
 
 //---Convert to hexadecimal
 export const getHEX = (number: NumberOrString): string => {
-    const hex = round(number).toString(16).toUpperCase();
-    if (hex.length === 1) { return `0x0${hex}`; }
+    const hex = round(number).toString(16).toUpperCase().padStart(2,'0');
     return `0x${hex}`;
 };
 
 //---Convert to final hexadecimal
 export const toHEX = (h: NumberOrString): string => {
-    let hex = round(h).toString(16).toUpperCase();
-    if (hex.length === 1) {
-        hex = `0${hex}`;
-    }
-    return hex;
+    return round(h).toString(16).toUpperCase().padStart(2,'0');
 };
 
 //---Calculate a decimal 255 from an RGB color
@@ -42,9 +37,7 @@ export const getBase255Number = (color: string, alpha = false): number => {
     }
     if (HEX.test(color)) {
         if (color.length === 3) {
-            return alpha
-                ? parseInt(color + color.slice(-1)) / 255
-                : parseInt(color + color.slice(-1));
+            color += color.slice(-1);
         }
         return alpha
             ? round(color, MAX_DECIMALS) / 255
@@ -55,7 +48,7 @@ export const getBase255Number = (color: string, alpha = false): number => {
 
 
 //---Calculate a decimal 0-1 value from CMYK value
-export const getCMYKNumber = (color: string): number => Math.min(PCENT.test(color) ? +(color.replace(PCENT, '$1')) / 100 : +color, 1);
+export const getCMYKNumber = (color: string): number => Math.min(PCENT.test(color) ? percent(color) / 100 : +color, 1);
 
 //---Return an ordered string from an array values
 export const getOrderedArrayString = (keys: string[]): string => [...keys].sort().join('').toUpperCase();
