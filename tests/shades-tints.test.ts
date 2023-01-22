@@ -1,7 +1,7 @@
 import { ColorTranslator } from '../src';
 import { HEXObject, RGBObject, HSLObjectGeneric } from '../src/@types';
 
-describe('ColorTranslator shades and tints tests', (): void => {    
+describe('ColorTranslator shades and tints tests', (): void => {
 
     const colorFunctions = [
         ColorTranslator.toHEX,
@@ -16,7 +16,6 @@ describe('ColorTranslator shades and tints tests', (): void => {
     const shades_results = ['#D40000', '#AA0000', '#800000', '#550000', '#2A0000'];
     const tints_results = ['#FF2B2B', '#FF5555', '#FF8080', '#FFAAAA', '#FFD5D5'];
 
-    
     colorFunctions.forEach((fn): void => {
         const inputCSS = fn(base);
         const inputObject = fn(base, false) as (HEXObject & RGBObject & HSLObjectGeneric);

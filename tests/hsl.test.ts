@@ -85,7 +85,7 @@ COLORS.forEach((item): void => {
         });
 
         it(`Hue in deg ${hslDeg}`, () => {
-            
+
             expect(ColorTranslator.toRGB(hslDeg)).toBe(item.rgb);
             expect(ColorTranslator.toRGB(hslDeg, false)).toMatchObject(item.rgbObject);
 
@@ -95,7 +95,7 @@ COLORS.forEach((item): void => {
         });
 
         it(`Hue in grad ${hslGrad}`, () => {
-            
+
             expect(ColorTranslator.toRGB(hslGrad)).toBe(item.rgb);
             expect(ColorTranslator.toRGB(hslGrad, false)).toMatchObject(item.rgbObject);
 
@@ -105,7 +105,7 @@ COLORS.forEach((item): void => {
         });
 
         it(`Hue in rad ${hslRadians}`, () => {
-            
+
             expect(ColorTranslator.toRGB(hslRadians)).toBe(item.rgb);
             expect(ColorTranslator.toRGB(hslRadians, false)).toMatchObject(item.rgbObject);
 
@@ -115,7 +115,7 @@ COLORS.forEach((item): void => {
         });
 
         it(`Hue in turn ${hslTurns}`, () => {
-            
+
             expect(ColorTranslator.toRGB(hslTurns)).toBe(item.rgb);
             expect(ColorTranslator.toRGB(hslTurns, false)).toMatchObject(item.rgbObject);
 

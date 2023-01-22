@@ -211,7 +211,7 @@ describe('Properties boundaries', (): void => {
             instance.setK(200);
             expect(instance.K).toBe(100);
             instance.setK(K);
-    
+
         });
 
     });

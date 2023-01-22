@@ -17,7 +17,7 @@ COLORS.forEach((color): void => {
             it(`HEX property => ${color.hex}`, () => {
                 expect(instance.HEX).toBe(color.hex);
             });
-            
+
             // HEXA
             it(`HEXA property => ${color.hexa}`, () => {
                 expect(instance.HEXA).toBe(color.hexa);

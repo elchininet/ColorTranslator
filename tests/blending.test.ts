@@ -37,11 +37,11 @@ describe('ColorTranslator blending tests', (): void => {
             expect(obj.blendFn(from, to, 0, false)).toMatchObject(r6);
 
         });
-        
+
         // Check default steps
         expect(ColorTranslator.getBlendHEX(from, to)).toMatchObject(ColorTranslator.getBlendHEX(from, to, 5));
         expect(ColorTranslator.getBlendHEX(from, to, -5)).toMatchObject(ColorTranslator.getBlendHEX(from, to, 5));
-        
+
     });
 
 });
