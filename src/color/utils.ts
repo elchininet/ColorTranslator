@@ -14,7 +14,8 @@ import {
     RGBOutput,
     HSLOutput,
     HEXOutput,
-    ColorOutput
+    ColorOutput,
+    NumberOrString
 } from '@types';
 import {
     HEX,
@@ -89,12 +90,17 @@ export const normalizeHue = (hue: number | string): number => {
 export const normalizeAlpha = (alpha: number | string | undefined | null): number => {
     if (typeof alpha === 'string') {
         if(PCENT.test(alpha)) {
-            alpha = +alpha.replace(PCENT, '$1') / 100;
+            alpha = percentNumber(alpha) / 100;
         } else {
             alpha = +alpha;
         }
     }
     return (isNaN(+alpha) || alpha > 1) ? 1 : round(alpha, MAX_DECIMALS);
+};
+
+//---Get percent number
+export const percentNumber = (percent: NumberOrString): number => {
+    return +`${percent}`.replace(PCENT, '$1');
 };
 
 //---Harmony

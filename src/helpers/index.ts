@@ -4,13 +4,14 @@ import {
     HEX,
     MAX_DECIMALS
 } from '#constants';
+import { percentNumber } from '#color/utils';
 
 //---Has property
 export const hasProp = <T>(obj: T, prop: string): boolean => Object.prototype.hasOwnProperty.call(obj, prop);
 
 //---Get a percentage
 export const percent = (percent: NumberOrString): number => PCENT.test(`${percent}`)
-    ? +(`${percent}`.replace(PCENT, '$1'))
+    ? percentNumber(percent)
     : Math.min(+percent, 100);
 
 //---Convert to decimal
@@ -38,7 +39,7 @@ export const toHEX = (h: NumberOrString): string => {
 //---Calculate a decimal 255 from an RGB color
 export const getBase255Number = (color: string, alpha = false): number => {
     if (!alpha && PCENT.test(color)) {
-        return Math.min(255 * +(color.replace(PCENT, '$1')) / 100, 255);
+        return Math.min(255 * percentNumber(color) / 100, 255);
     }
     if (HEX.test(color)) {
         if (color.length === 3) {
@@ -53,7 +54,7 @@ export const getBase255Number = (color: string, alpha = false): number => {
 
 
 //---Calculate a decimal 0-1 value from CMYK value
-export const getCMYKNumber = (color: string): number => Math.min(PCENT.test(color) ? percent(color) / 100 : +color, 1);
+export const getCMYKNumber = (color: string): number => Math.min(PCENT.test(color) ? percentNumber(color) / 100 : +color, 1);
 
 //---Return an ordered string from an array values
 export const getOrderedArrayString = (keys: string[]): string => [...keys].sort().join('').toUpperCase();
