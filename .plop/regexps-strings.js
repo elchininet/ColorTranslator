@@ -41,7 +41,7 @@ module.exports = {
                         ${SPACE}
                         (${NUMBER_WITH_DECIMALS}%?)
                         (?:
-                            ${SLASH}
+                            (?:${SPACE}|${SLASH})
                             (${NUMBER_WITH_DECIMALS}%?)
                         )?
                 )
@@ -68,7 +68,7 @@ module.exports = {
                         ${SPACE}
                         (${NUMBER_WITH_DECIMALS})%
                         (?:
-                            ${SLASH}
+                            (?:${SPACE}|${SLASH})
                             (${NUMBER_WITH_DECIMALS}%?)
                         )?
                 )
@@ -100,7 +100,7 @@ module.exports = {
                     ${SPACE}
                     (${NUMBER_WITH_DECIMALS}%?)
                     (?:
-                        ${SLASH}
+                        (?:${SPACE}|${SLASH})
                         (${NUMBER_WITH_DECIMALS}%?)
                     )?
                 )
