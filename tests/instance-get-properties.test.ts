@@ -11,7 +11,7 @@ COLORS.forEach((color): void => {
 
         describe(`ColorTranslator instance properties for ${colorValueStr}`, () => {
 
-            instance = new ColorTranslator(colorValue);
+            instance = new ColorTranslator(colorValue, 0);
 
             // HEX
             it(`HEX property => ${color.hex}`, () => {
@@ -124,7 +124,7 @@ CMYK_COLORS.forEach((color) => {
 
         describe(`ColorTranslator CMYK instance properties ${colorValueStr}`, () => {
 
-            instance = new ColorTranslator(colorValue);
+            instance = new ColorTranslator(colorValue, 0);
 
             // CMYK
             it(`CMYK property => ${color.cmyk}`, () => {

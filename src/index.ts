@@ -34,11 +34,12 @@ const getColorReturn = <T>(
     color: ColorInput,
     model: ColorModel,
     css: boolean,
-    translateFunction: (color: Color) => T,
+    decimals: number,
+    translateFunction: (color: Color, decimals: number) => T,
     cssFunction: (color: T) => string
 ): T | string => {
     const rgbObject = utils.getRGBObject(color, model);
-    const translated = translateFunction(rgbObject);
+    const translated = translateFunction(rgbObject, decimals);
     if (!css) {
         return translated;
     }
@@ -50,7 +51,8 @@ const getBlendReturn = <T>(
     to: ColorInput,
     steps: number,
     css: boolean,
-    translateFunction: (color: Color) => T,
+    decimals: number,
+    translateFunction: (color: Color, decimals: number) => T,
     cssFunction: (color: T) => string
 ): (T | string)[] => {
     if (steps < 1) steps = DEFAULT_BLEND_STEPS;
@@ -58,7 +60,7 @@ const getBlendReturn = <T>(
     const toRGBObject = utils.getRGBObject(to);
     const blendArray = utils.blend(fromRGBObject, toRGBObject, steps);
     return blendArray.map((color: RGBObject): T | string => {
-        const translated = translateFunction(color);
+        const translated = translateFunction(color, decimals);
         if (!css) {
             return translated;
         }
@@ -69,15 +71,16 @@ const getBlendReturn = <T>(
 const getHarmonyReturn = (
     harmony: Harmony,
     color: ColorInputWithoutCMYK,
-    mode?: Mix
+    decimals: number,
+    mode?: Mix,
 ): ColorOutput[] => {
     return ({
-        [Harmony.ANALOGOUS]:           utils.colorHarmony.buildHarmony(color, utils.analogous, mode),
-        [Harmony.COMPLEMENTARY]:       utils.colorHarmony.buildHarmony(color, utils.complementary, mode),
-        [Harmony.SPLIT_COMPLEMENTARY]: utils.colorHarmony.buildHarmony(color, utils.splitComplementary, mode),
-        [Harmony.TRIADIC]:             utils.colorHarmony.buildHarmony(color, utils.triadic, mode),
-        [Harmony.TETRADIC]:            utils.colorHarmony.buildHarmony(color, utils.tetradic, mode),
-        [Harmony.SQUARE]:              utils.colorHarmony.buildHarmony(color, utils.square, mode)
+        [Harmony.ANALOGOUS]:           utils.colorHarmony.buildHarmony(color, utils.analogous, mode, decimals),
+        [Harmony.COMPLEMENTARY]:       utils.colorHarmony.buildHarmony(color, utils.complementary, mode, decimals),
+        [Harmony.SPLIT_COMPLEMENTARY]: utils.colorHarmony.buildHarmony(color, utils.splitComplementary, mode, decimals),
+        [Harmony.TRIADIC]:             utils.colorHarmony.buildHarmony(color, utils.triadic, mode, decimals),
+        [Harmony.TETRADIC]:            utils.colorHarmony.buildHarmony(color, utils.tetradic, mode, decimals),
+        [Harmony.SQUARE]:              utils.colorHarmony.buildHarmony(color, utils.square, mode, decimals)
     })[harmony];
 };
 
@@ -300,56 +303,78 @@ export class ColorTranslator {
 
     public get CMYKAObject(): CMYKObject {
         return {
-            c: this.C,
-            m: this.M,
-            y: this.Y,
-            k: this.K,
+            ...this.CMYKObject,
             a: this.A
         };
     }
 
     // CSS public properties
     public get HEX(): string {
-        const { r, g, b } = this.rgb;
-        const rgb = { r, g, b };
-        return CSS.HEX(rgb);
+        return CSS.HEX({
+            r: this.R,
+            g: this.G,
+            b: this.B
+        });
     }
 
     public get HEXA(): string {
-        const { r, g, b } = this.rgb;
-        const rgb = { r, g, b, a: this.hsl.a * 255 };
-        return CSS.HEX(rgb);
+        return CSS.HEX({
+            r: this.R,
+            g: this.G,
+            b: this.B,
+            a: this.A * 255
+        });
     }
 
     public get RGB(): string {
-        const { r, g, b } = this.rgb;
-        const rgb = { r, g, b };
-        return CSS.RGB(rgb);
+        return CSS.RGB({
+            r: this.R,
+            g: this.G,
+            b: this.B
+        });
     }
 
     public get RGBA(): string {
-        const { r, g, b } = this.rgb;
-        const rgb = { r, g, b, a: this.hsl.a };
-        return CSS.RGB(rgb);
+        return CSS.RGB({
+            r: this.R,
+            g: this.G,
+            b: this.B,
+            a: this.A
+        });
     }
 
     public get HSL(): string {
-        const { h, s, l } = this.hsl;
-        const hsl = { h, s, l };
-        return CSS.HSL(hsl);
+        return CSS.HSL({
+            h: this.H,
+            s: this.S,
+            l: this.L
+        });
     }
 
     public get HSLA(): string {
-        return CSS.HSL(this.hsl);
+        return CSS.HSL({
+            h: this.H,
+            s: this.S,
+            l: this.L,
+            a: this.A
+        });
     }
 
     public get CMYK(): string {
-        return CSS.CMYK(this.cmyk);
+        return CSS.CMYK({
+            c: this.C,
+            m: this.M,
+            y: this.Y,
+            k: this.K
+        });
     }
 
     public get CMYKA(): string {
         return CSS.CMYK({
-            ...this.cmyk,
+            c: this.C,
+            m: this.M,
+            y: this.Y,
+            k: this.K,
             a: this.A
         });
     }
@@ -360,7 +385,14 @@ export class ColorTranslator {
     public static toHEX(color: ColorInput, css: false): HEXObject;
     public static toHEX(color: ColorInput, css = true): HEXOutput {
         const model = utils.getColorModel(color);
-        return getColorReturn<HEXObject>(color, model, css, utils.translateColor.HEX, CSS.HEX);
+        return getColorReturn<HEXObject>(
+            color,
+            model,
+            css,
+            0,
+            utils.translateColor.HEX,
+            CSS.HEX
+        );
     }
 
     public static toHEXA(color: ColorInput): string;
@@ -368,98 +400,195 @@ export class ColorTranslator {
     public static toHEXA(color: ColorInput, css: false): HEXObject;
     public static toHEXA(color: ColorInput, css = true): HEXOutput {
         const model = utils.getColorModel(color);
-        return getColorReturn<HEXObject>(color, model, css, utils.translateColor.HEXA, CSS.HEX);
+        return getColorReturn<HEXObject>(
+            color,
+            model,
+            css,
+            0,
+            utils.translateColor.HEXA,
+            CSS.HEX
+        );
     }
 
     public static toRGB(color: ColorInput): string;
-    public static toRGB(color: ColorInput, css: true): string;
-    public static toRGB(color: ColorInput, css: false): RGBObject;
-    public static toRGB(color: ColorInput, css = true): RGBOutput {
+    public static toRGB(color: ColorInput, css: true, decimals?: number): string;
+    public static toRGB(color: ColorInput, css: false, decimals?: number): RGBObject;
+    public static toRGB(color: ColorInput, css = true, decimals = MAX_DECIMALS): RGBOutput {
         const model = utils.getColorModel(color);
-        return getColorReturn<RGBObject>(color, model, css, utils.translateColor.RGB, CSS.RGB);
+        return getColorReturn<RGBObject>(
+            color,
+            model,
+            css,
+            decimals,
+            utils.translateColor.RGB,
+            CSS.RGB
+        );
     }
 
     public static toRGBA(color: ColorInput): string;
-    public static toRGBA(color: ColorInput, css: true): string;
-    public static toRGBA(color: ColorInput, css: false): RGBObject;
-    public static toRGBA(color: ColorInput, css = true): RGBOutput {
+    public static toRGBA(color: ColorInput, css: true, decimals?: number): string;
+    public static toRGBA(color: ColorInput, css: false, decimals?: number): RGBObject;
+    public static toRGBA(color: ColorInput, css = true, decimals = MAX_DECIMALS): RGBOutput {
         const model = utils.getColorModel(color);
-        return getColorReturn<RGBObject>(color, model, css, utils.translateColor.RGBA, CSS.RGB);
+        return getColorReturn<RGBObject>(
+            color,
+            model,
+            css,
+            decimals,
+            utils.translateColor.RGBA,
+            CSS.RGB
+        );
     }
 
     public static toHSL(color: ColorInput): string;
-    public static toHSL(color: ColorInput, css: true): string;
-    public static toHSL(color: ColorInput, css: false): HSLObject;
-    public static toHSL(color: ColorInput, css = true): HSLOutput {
+    public static toHSL(color: ColorInput, css: true, decimals?: number): string;
+    public static toHSL(color: ColorInput, css: false, decimals?: number): HSLObject;
+    public static toHSL(color: ColorInput, css = true, decimals = MAX_DECIMALS): HSLOutput {
         const model = utils.getColorModel(color);
-        return getColorReturn<HSLObject>(color, model, css, utils.translateColor.HSL, CSS.HSL);
+        return getColorReturn<HSLObject>(
+            color,
+            model,
+            css,
+            decimals,
+            utils.translateColor.HSL,
+            CSS.HSL
+        );
     }
 
     public static toHSLA(color: ColorInput): string;
-    public static toHSLA(color: ColorInput, css: true): string;
-    public static toHSLA(color: ColorInput, css: false): HSLObject;
-    public static toHSLA(color: ColorInput, css = true): HSLOutput {
+    public static toHSLA(color: ColorInput, css: true, decimals?: number): string;
+    public static toHSLA(color: ColorInput, css: false, decimals?: number): HSLObject;
+    public static toHSLA(color: ColorInput, css = true, decimals = MAX_DECIMALS): HSLOutput {
         const model = utils.getColorModel(color);
-        return getColorReturn<HSLObject>(color, model, css, utils.translateColor.HSLA, CSS.HSL);
+        return getColorReturn<HSLObject>(
+            color,
+            model,
+            css,
+            decimals,
+            utils.translateColor.HSLA,
+            CSS.HSL
+        );
     }
 
     public static toCMYK(color: ColorInput): string;
-    public static toCMYK(color: ColorInput, css: true): string;
-    public static toCMYK(color: ColorInput, css: false): CMYKObject;
-    public static toCMYK(color: ColorInput, css = true): CMYKOutput {
+    public static toCMYK(color: ColorInput, css: true, decimals?: number): string;
+    public static toCMYK(color: ColorInput, css: false, decimals?: number): CMYKObject;
+    public static toCMYK(color: ColorInput, css = true, decimals = MAX_DECIMALS): CMYKOutput {
         const model = utils.getColorModel(color);
-        return getColorReturn<CMYKObject>(color, model, css, utils.translateColor.CMYK, CSS.CMYK);
+        return getColorReturn<CMYKObject>(
+            color,
+            model,
+            css,
+            decimals,
+            utils.translateColor.CMYK,
+            CSS.CMYK
+        );
     }
 
     public static toCMYKA(color: ColorInput): string;
-    public static toCMYKA(color: ColorInput, css: true): string;
-    public static toCMYKA(color: ColorInput, css: false): CMYKObject;
-    public static toCMYKA(color: ColorInput, css = true): CMYKOutput {
+    public static toCMYKA(color: ColorInput, css: true, decimals?: number): string;
+    public static toCMYKA(color: ColorInput, css: false, decimals?: number): CMYKObject;
+    public static toCMYKA(color: ColorInput, css = true, decimals = MAX_DECIMALS): CMYKOutput {
         const model = utils.getColorModel(color);
-        return getColorReturn<CMYKObject>(color, model, css, utils.translateColor.CMYKA, CSS.CMYK);
+        return getColorReturn<CMYKObject>(
+            color,
+            model,
+            css,
+            decimals,
+            utils.translateColor.CMYKA,
+            CSS.CMYK
+        );
     }
 
     // Color Blending Static Methods
     public static getBlendHEX(from: ColorInput, to: ColorInput, steps?: number): string[];
-    public static getBlendHEX(from: ColorInput, to: ColorInput, steps: number, css: true): string[];
-    public static getBlendHEX(from: ColorInput, to: ColorInput, steps: number, css: false): HEXObject[];
-    public static getBlendHEX(from: ColorInput, to: ColorInput, steps: number = DEFAULT_BLEND_STEPS, css = true): HEXOutput[] {
-        return getBlendReturn<HEXObject>(from, to, steps, css, utils.translateColor.HEX, CSS.HEX);
+    public static getBlendHEX(from: ColorInput, to: ColorInput, steps: number, css: true, decimals?: number): string[];
+    public static getBlendHEX(from: ColorInput, to: ColorInput, steps: number, css: false, decimals?: number): HEXObject[];
+    public static getBlendHEX(from: ColorInput, to: ColorInput, steps: number = DEFAULT_BLEND_STEPS, css = true, decimals = MAX_DECIMALS): HEXOutput[] {
+        return getBlendReturn<HEXObject>(
+            from,
+            to,
+            steps,
+            css,
+            decimals,
+            utils.translateColor.HEX,
+            CSS.HEX
+        );
     }
 
     public static getBlendHEXA(from: ColorInput, to: ColorInput, steps?: number): string[];
-    public static getBlendHEXA(from: ColorInput, to: ColorInput, steps: number, css: true): string[];
-    public static getBlendHEXA(from: ColorInput, to: ColorInput, steps: number, css: false): HEXObject[];
-    public static getBlendHEXA(from: ColorInput, to: ColorInput, steps: number = DEFAULT_BLEND_STEPS, css = true): HEXOutput[] {
-        return getBlendReturn<HEXObject>(from, to, steps, css, utils.translateColor.HEXA, CSS.HEX);
+    public static getBlendHEXA(from: ColorInput, to: ColorInput, steps: number, css: true, decimals?: number): string[];
+    public static getBlendHEXA(from: ColorInput, to: ColorInput, steps: number, css: false, decimals?: number): HEXObject[];
+    public static getBlendHEXA(from: ColorInput, to: ColorInput, steps: number = DEFAULT_BLEND_STEPS, css = true, decimals = MAX_DECIMALS): HEXOutput[] {
+        return getBlendReturn<HEXObject>(
+            from,
+            to,
+            steps,
+            css,
+            decimals,
+            utils.translateColor.HEXA,
+            CSS.HEX
+        );
     }
 
     public static getBlendRGB(from: ColorInput, to: ColorInput, steps?: number): string[];
-    public static getBlendRGB(from: ColorInput, to: ColorInput, steps: number, css: true): string[];
-    public static getBlendRGB(from: ColorInput, to: ColorInput, steps: number, css: false): RGBObject[];
-    public static getBlendRGB(from: ColorInput, to: ColorInput, steps: number = DEFAULT_BLEND_STEPS, css = true): RGBOutput[] {
-        return getBlendReturn<RGBObject>(from, to, steps, css, utils.translateColor.RGB, CSS.RGB);
+    public static getBlendRGB(from: ColorInput, to: ColorInput, steps: number, css: true, decimals?: number): string[];
+    public static getBlendRGB(from: ColorInput, to: ColorInput, steps: number, css: false, decimals?: number): RGBObject[];
+    public static getBlendRGB(from: ColorInput, to: ColorInput, steps: number = DEFAULT_BLEND_STEPS, css = true, decimals = MAX_DECIMALS): RGBOutput[] {
+        return getBlendReturn<RGBObject>(
+            from,
+            to,
+            steps,
+            css,
+            decimals,
+            utils.translateColor.RGB,
+            CSS.RGB
+        );
     }
 
     public static getBlendRGBA(from: ColorInput, to: ColorInput, steps: number): string[];
-    public static getBlendRGBA(from: ColorInput, to: ColorInput, steps: number, css: true): string[];
-    public static getBlendRGBA(from: ColorInput, to: ColorInput, steps: number, css: false): RGBObject[];
-    public static getBlendRGBA(from: ColorInput, to: ColorInput, steps: number = DEFAULT_BLEND_STEPS, css = true): RGBOutput[] {
-        return getBlendReturn<RGBObject>(from, to, steps, css, utils.translateColor.RGBA, CSS.RGB);
+    public static getBlendRGBA(from: ColorInput, to: ColorInput, steps: number, css: true, decimals?: number): string[];
+    public static getBlendRGBA(from: ColorInput, to: ColorInput, steps: number, css: false, decimals?: number): RGBObject[];
+    public static getBlendRGBA(from: ColorInput, to: ColorInput, steps: number = DEFAULT_BLEND_STEPS, css = true, decimals = MAX_DECIMALS): RGBOutput[] {
+        return getBlendReturn<RGBObject>(
+            from,
+            to,
+            steps,
+            css,
+            decimals,
+            utils.translateColor.RGBA,
+            CSS.RGB
+        );
     }
 
     public static getBlendHSL(from: ColorInput, to: ColorInput, steps?: number): string[];
-    public static getBlendHSL(from: ColorInput, to: ColorInput, steps: number, css: true): string[];
-    public static getBlendHSL(from: ColorInput, to: ColorInput, steps: number, css: false): HSLObject[];
-    public static getBlendHSL(from: ColorInput, to: ColorInput, steps: number = DEFAULT_BLEND_STEPS, css = true): HSLOutput[] {
-        return getBlendReturn<HSLObject>(from, to, steps, css, utils.translateColor.HSL, CSS.HSL);
+    public static getBlendHSL(from: ColorInput, to: ColorInput, steps: number, css: true, decimals?: number): string[];
+    public static getBlendHSL(from: ColorInput, to: ColorInput, steps: number, css: false, decimals?: number): HSLObject[];
+    public static getBlendHSL(from: ColorInput, to: ColorInput, steps: number = DEFAULT_BLEND_STEPS, css = true, decimals = MAX_DECIMALS): HSLOutput[] {
+        return getBlendReturn<HSLObject>(
+            from,
+            to,
+            steps,
+            css,
+            decimals,
+            utils.translateColor.HSL,
+            CSS.HSL
+        );
     }
 
     public static getBlendHSLA(from: ColorInput, to: ColorInput, steps?: number): string[];
-    public static getBlendHSLA(from: ColorInput, to: ColorInput, steps: number, css: true): string[];
-    public static getBlendHSLA(from: ColorInput, to: ColorInput, steps: number, css: false): HSLObject[];
-    public static getBlendHSLA(from: ColorInput, to: ColorInput, steps: number = DEFAULT_BLEND_STEPS, css = true): HSLOutput[] {
-        return getBlendReturn<HSLObject>(from, to, steps, css, utils.translateColor.HSLA, CSS.HSL);
+    public static getBlendHSLA(from: ColorInput, to: ColorInput, steps: number, css: true, decimals?: number): string[];
+    public static getBlendHSLA(from: ColorInput, to: ColorInput, steps: number, css: false, decimals?: number): HSLObject[];
+    public static getBlendHSLA(from: ColorInput, to: ColorInput, steps: number = DEFAULT_BLEND_STEPS, css = true, decimals = MAX_DECIMALS): HSLOutput[] {
+        return getBlendReturn<HSLObject>(
+            from,
+            to,
+            steps,
+            css,
+            decimals,
+            utils.translateColor.HSLA,
+            CSS.HSL
+        );
     }
 
     // Color Mix Static Methods
@@ -481,61 +610,61 @@ export class ColorTranslator {
 
     public static getMixRGB(colors: ColorInput[]): string;
     public static getMixRGB(colors: ColorInput[], mode: Mix): string;
-    public static getMixRGB(colors: ColorInput[], mode: Mix, css: true): string;
-    public static getMixRGB(colors: ColorInput[], mode: Mix, css: false): RGBObject;
-    public static getMixRGB(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true): RGBOutput {
-        return utils.colorMixer.RGB(colors, mode, css);
+    public static getMixRGB(colors: ColorInput[], mode: Mix, css: true, decimals?: number): string;
+    public static getMixRGB(colors: ColorInput[], mode: Mix, css: false, decimals?: number): RGBObject;
+    public static getMixRGB(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true, decimals = MAX_DECIMALS): RGBOutput {
+        return utils.colorMixer.RGB(colors, mode, css, decimals);
     }
 
     public static getMixRGBA(colors: ColorInput[]): string;
     public static getMixRGBA(colors: ColorInput[], mode: Mix): string;
-    public static getMixRGBA(colors: ColorInput[], mode: Mix, css: true): string;
-    public static getMixRGBA(colors: ColorInput[], mode: Mix, css: false): RGBObject;
-    public static getMixRGBA(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true): RGBOutput {
-        return utils.colorMixer.RGBA(colors, mode, css);
+    public static getMixRGBA(colors: ColorInput[], mode: Mix, css: true, decimals?: number): string;
+    public static getMixRGBA(colors: ColorInput[], mode: Mix, css: false, decimals?: number): RGBObject;
+    public static getMixRGBA(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true, decimals = MAX_DECIMALS): RGBOutput {
+        return utils.colorMixer.RGBA(colors, mode, css, decimals);
     }
 
     public static getMixHSL(colors: ColorInput[]): string;
     public static getMixHSL(colors: ColorInput[], mode: Mix): string;
-    public static getMixHSL(colors: ColorInput[], mode: Mix, css: true): string;
-    public static getMixHSL(colors: ColorInput[], mode: Mix, css: false): HSLObject;
-    public static getMixHSL(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true): HSLOutput {
-        return utils.colorMixer.HSL(colors, mode, css);
+    public static getMixHSL(colors: ColorInput[], mode: Mix, css: true, decimals?: number): string;
+    public static getMixHSL(colors: ColorInput[], mode: Mix, css: false, decimals?: number): HSLObject;
+    public static getMixHSL(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true, decimals = MAX_DECIMALS): HSLOutput {
+        return utils.colorMixer.HSL(colors, mode, css, decimals);
     }
 
     public static getMixHSLA(colors: ColorInput[]): string;
     public static getMixHSLA(colors: ColorInput[], mode: Mix): string;
-    public static getMixHSLA(colors: ColorInput[], mode: Mix, css: true): string;
-    public static getMixHSLA(colors: ColorInput[], mode: Mix, css: false): HSLObject;
-    public static getMixHSLA(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true): HSLOutput {
-        return utils.colorMixer.HSLA(colors, mode, css);
+    public static getMixHSLA(colors: ColorInput[], mode: Mix, css: true, decimals?: number): string;
+    public static getMixHSLA(colors: ColorInput[], mode: Mix, css: false, decimals?: number): HSLObject;
+    public static getMixHSLA(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true, decimals = MAX_DECIMALS): HSLOutput {
+        return utils.colorMixer.HSLA(colors, mode, css, decimals);
     }
 
     // Get shades static method
-    public static getShades(color: string, shades: number): string[];
-    public static getShades(color: HEXObject, shades: number): HEXObject[];
-    public static getShades(color: RGBObject, shades: number): RGBObject[];
-    public static getShades(color: HSLObjectGeneric, shades: number): HSLObject[];
-    public static getShades(color: ColorInputWithoutCMYK, shades: number): ColorOutput[] {
-        return utils.getColorMixture(color, shades, true);
+    public static getShades(color: string, shades: number, decimals?: number): string[];
+    public static getShades(color: HEXObject, shades: number, decimals?: number): HEXObject[];
+    public static getShades(color: RGBObject, shades: number, decimals?: number): RGBObject[];
+    public static getShades(color: HSLObjectGeneric, shades: number, decimals?: number): HSLObject[];
+    public static getShades(color: ColorInputWithoutCMYK, shades: number, decimals = MAX_DECIMALS): ColorOutput[] {
+        return utils.getColorMixture(color, shades, true, decimals);
     }
 
     // Get tints static method
-    public static getTints(color: string, tints: number): string[];
-    public static getTints(color: HEXObject, tints: number): HEXObject[];
-    public static getTints(color: RGBObject, tints: number): RGBObject[];
-    public static getTints(color: HSLObjectGeneric, tints: number): HSLObject[];
-    public static getTints(color: ColorInputWithoutCMYK, tints: number): ColorOutput[] {
-        return utils.getColorMixture(color, tints, false);
+    public static getTints(color: string, tints: number, decimals?: number): string[];
+    public static getTints(color: HEXObject, tints: number, decimals?: number): HEXObject[];
+    public static getTints(color: RGBObject, tints: number, decimals?: number): RGBObject[];
+    public static getTints(color: HSLObjectGeneric, tints: number, decimals?: number): HSLObject[];
+    public static getTints(color: ColorInputWithoutCMYK, tints: number, decimals = MAX_DECIMALS): ColorOutput[] {
+        return utils.getColorMixture(color, tints, false, decimals);
     }
 
     // Color Harmony Static Method
-    public static getHarmony(color: string, harmony?: Harmony, mode?: Mix): string[];
-    public static getHarmony(color: HEXObject, harmony?: Harmony, mode?: Mix): HEXObject[];
-    public static getHarmony(color: RGBObject, harmony?: Harmony, mode?: Mix): RGBObject[];
-    public static getHarmony(color: HSLObjectGeneric, harmony?: Harmony, mode?: Mix): HSLObject[];
-    public static getHarmony(color: ColorInputWithoutCMYK, harmony: Harmony = Harmony.COMPLEMENTARY, mode: Mix = Mix.ADDITIVE): ColorOutput[] {
-        return getHarmonyReturn(harmony, color, mode);
+    public static getHarmony(color: string, harmony?: Harmony, mode?: Mix, decimals?: number): string[];
+    public static getHarmony(color: HEXObject, harmony?: Harmony, mode?: Mix, decimals?: number): HEXObject[];
+    public static getHarmony(color: RGBObject, harmony?: Harmony, mode?: Mix, decimals?: number): RGBObject[];
+    public static getHarmony(color: HSLObjectGeneric, harmony?: Harmony, mode?: Mix, decimals?: number): HSLObject[];
+    public static getHarmony(color: ColorInputWithoutCMYK, harmony: Harmony = Harmony.COMPLEMENTARY, mode: Mix = Mix.ADDITIVE, decimals = MAX_DECIMALS): ColorOutput[] {
+        return getHarmonyReturn(harmony, color, decimals, mode);
     }
 }
 
