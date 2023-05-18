@@ -90,6 +90,13 @@ describe('ColorTranslator set instance properties', () => {
         });
     });
 
+    it('Set property decimals', () => {
+        const instance = new ColorTranslator(TEST_COLORS.red.hex, 3);
+        expect(instance.decimals).toBe(3);
+        instance.setDecimals(5);
+        expect(instance.decimals).toBe(5);
+    });
+
 });
 
 // Test class properties

@@ -27,12 +27,12 @@ const prepareColorForCss = (color: Color, isHex = false): NumberOrString[] => {
         if (typeof value !== 'undefined') {
             if (isHex) {
                 result.push(
-                    toHEX(value)
+                    toHEX(
+                        round(value, 0)
+                    )
                 );
             } else {
-                result.push(
-                    round(value)
-                );
+                result.push(value);
             }
         }
         return result;

@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColorTranslator blending tests Blending with decimals snapshots 1`] = `
+[
+  "rgb(255,0,0)",
+  "rgb(191.25,0,63.75)",
+  "rgb(127.5,0,127.5)",
+  "rgb(63.75,0,191.25)",
+  "rgb(0,0,255)",
+]
+`;
+
+exports[`ColorTranslator blending tests Blending with decimals snapshots 2`] = `
+[
+  "rgba(255,0,0,1)",
+  "rgba(191.25,0,63.75,1)",
+  "rgba(127.5,0,127.5,1)",
+  "rgba(63.75,0,191.25,1)",
+  "rgba(0,0,255,1)",
+]
+`;
+
+exports[`ColorTranslator blending tests Blending with decimals snapshots 3`] = `
+[
+  "hsl(0,100%,50%)",
+  "hsl(340,100%,37.5%)",
+  "hsl(300,100%,25%)",
+  "hsl(260,100%,37.5%)",
+  "hsl(240,100%,50%)",
+]
+`;
+
+exports[`ColorTranslator blending tests Blending with decimals snapshots 4`] = `
+[
+  "hsla(0,100%,50%,1)",
+  "hsla(340,100%,37.5%,1)",
+  "hsla(300,100%,25%,1)",
+  "hsla(260,100%,37.5%,1)",
+  "hsla(240,100%,50%,1)",
+]
+`;
