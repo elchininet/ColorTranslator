@@ -4,10 +4,14 @@ import {
     HEX,
     MAX_DECIMALS
 } from '#constants';
-import { percentNumber } from '#color/utils';
 
 //---Has property
 export const hasProp = <T>(obj: T, prop: string): boolean => Object.prototype.hasOwnProperty.call(obj, prop);
+
+//---Get percent number
+export const percentNumber = (percent: NumberOrString): number => {
+    return +`${percent}`.replace(PCENT, '$1');
+};
 
 //---Get a percentage
 export const percent = (percent: NumberOrString): number => PCENT.test(`${percent}`)
