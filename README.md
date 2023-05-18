@@ -155,6 +155,10 @@ The most wonderful thing about `colortranslator` is that you don‘t need to spe
 
 #### Class instantiation
 
+```javascript
+ColorTranslator(color: ColorInput, decimals?: number = 6)
+```
+
 It is possible to instantiate the class using any of the previous inputs:
 
 ###### Class instantiation examples
@@ -177,19 +181,20 @@ const cmyk = new ColorTranslator({ c: 100, m: 100, y: 0, k: 0 });
 
 There are 11 chainable public methods and all of them accept a number as input:
 
-| Public methods | Input           | Description                                        |
-| -------------- | --------------- | -------------------------------------------------- |
-| setH           | 0 ≤ input ≤ 360 | Set the color hue                                  |
-| setS           | 0 ≤ input ≤ 100 | Set the color saturation percentage                |
-| setL           | 0 ≤ input ≤ 100 | Set the color lightness percentage                 |
-| setR           | 0 ≤ input ≤ 255 | Set the red value of the color                     |
-| setG           | 0 ≤ input ≤ 255 | Set the green value of the color                   |
-| setB           | 0 ≤ input ≤ 255 | Set the blue value of the color                    |
-| setC           | 0 ≤ input ≤ 100 | Set the CMYK cyan percentage value of the color    |
-| setM           | 0 ≤ input ≤ 100 | Set the CMYK magenta percentage value of the color |
-| setY           | 0 ≤ input ≤ 100 | Set the CMYK yellow percentage value of the color  |
-| setK           | 0 ≤ input ≤ 100 | Set the CMYK black percentage value of the color   |
-| setA           | 0 ≤ input ≤ 1   | Set the alpha value of the color                   |
+| Public methods | Input           | Description                                             |
+| -------------- | --------------- | ------------------------------------------------------- |
+| setH           | 0 ≤ input ≤ 360 | Set the color hue                                       |
+| setS           | 0 ≤ input ≤ 100 | Set the color saturation percentage                     |
+| setL           | 0 ≤ input ≤ 100 | Set the color lightness percentage                      |
+| setR           | 0 ≤ input ≤ 255 | Set the red value of the color                          |
+| setG           | 0 ≤ input ≤ 255 | Set the green value of the color                        |
+| setB           | 0 ≤ input ≤ 255 | Set the blue value of the color                         |
+| setC           | 0 ≤ input ≤ 100 | Set the CMYK cyan percentage value of the color         |
+| setM           | 0 ≤ input ≤ 100 | Set the CMYK magenta percentage value of the color      |
+| setY           | 0 ≤ input ≤ 100 | Set the CMYK yellow percentage value of the color       |
+| setK           | 0 ≤ input ≤ 100 | Set the CMYK black percentage value of the color        |
+| setA           | 0 ≤ input ≤ 1   | Set the alpha value of the color                        |
+| setDecimals    | number          | Set the maximum number of decimals for the color values |
 
 ###### Class public methods examples
 
@@ -251,18 +256,26 @@ There are 11 properties to get the individual color values:
 | K        | Get the CMYK black percentage value of the color   |
 | A        | Get the alpha value of the color                   |
 
+And a property to get the maximum number of decimals for the color calculations
+
+| Property | Description                                                      |
+| -------- | ---------------------------------------------------------------- |
+| decimals | Get maximum number of decimals for the color values calculations |
+
+
 ###### Class public properties examples
 
 You can also consult the [demo 1](https://elchininet.github.io/ColorTranslator/#demo1) and the [demo 2](https://elchininet.github.io/ColorTranslator/#demo2) to check the use of the public properties.
 
 ```javascript
-const color = new ColorTranslator('#FF00FF');
+const color = new ColorTranslator('#FF00FF', 2);
 
 color.R; // 255
 color.G; // 0
 color.B; // 255
 color.RGB; // rgb(255,0,255)
 color.HSLA; // hsla(300,100%,50%,1)
+color.decimals; // 2
 ```
 
 #### Class static methods
@@ -273,12 +286,13 @@ There are 22 static methods available, 7 of them to convert colors, 6 to create 
 
 ###### Color conversion static methods
 
-The static methods to convert colors accept any of the mentioned inputs as the first parameter. The second parameter is optional and it specifies if the output should be a CSS string or an object:
+The static methods to convert colors accept any of the mentioned inputs as the first parameter. The second parameter is optional and it specifies if the output should be a CSS string or an object. The third parameter is also optional and it indicates the maximum number of decimals for the color values calculations (by default `6`):
 
 ```typescript
 convertColorStaticMethod(
   color: string | object,
-  css: boolean = true
+  css: boolean = true,
+  decimals: number = 6
 )
 ```
 ###### Color conversion static methods description
@@ -300,7 +314,7 @@ ColorTranslator.toHEX('gold'); // #FFD700
 
 ColorTranslator.toRGB('#FF00FF'); // rgb(255,0,255)
 
-ColorTranslator.toRGBA('hsl(50, 20%, 90%)'); // rgba(235,233,224,1)
+ColorTranslator.toRGBA('hsl(50, 20%, 90%)', true, 0); // rgba(235,233,224,1)
 
 ColorTranslator.toHSL('rgb(255, 0, 0)'); // hsl(0,100%,50%)
 
@@ -310,23 +324,26 @@ ColorTranslator.toCMYK('#F0F', false); // {c: 0, m: 100, y: 0, k: 0}
 
 ColorTranslator.toCMYK('#F0F'); // cmyk(0%,100%,0%,0%)
 
-ColorTranslator.toRGB({ h: 115, s: '70%', l: '45%' }); // rgb(48,195,34)
+ColorTranslator.toRGB({ h: 115, s: '70%', l: '45%' }, true, 0); // rgb(48,195,34)
 
-ColorTranslator.toHSLA({ r: 115, g: 200, b: 150, a: 0.5 }); // hsla(145,44%,62%,0.5)
+ColorTranslator.toHSLA({ r: 115, g: 200, b: 150, a: 0.5 }, true, 1); // hsla(144.7,43.6%,61.8%,0.5)
+
+ColorTranslator.toHSLA({ r: 95, g: 23, b: 12, a: Math.SQRT1_2 }, true, 4); // hsla(7.9518,77.5701%,20.9804%,0.7071)
 ```
 
 You can also consult the [demo 3](https://elchininet.github.io/ColorTranslator/#demo3), and the [demo 4](https://elchininet.github.io/ColorTranslator/#demo4) to check the use of these static methods.
 
 ###### Color blends static methods
 
-The static methods to create color blends accept any of the mentioned inputs as the first and second parameter, the third parameter is optional and it is the number of steps of the blending, and the fourth parameter is also optional and it specifies if the output colors should be CSS strings or objects:
+The static methods to create color blends accept any of the mentioned inputs as the first and second parameter, the third parameter is optional and it is the number of steps of the blending. The fourth parameter is also optional and it specifies if the output colors should be CSS strings or objects. And the fifth parameter is also optional and it indicates the maximum number of decimals for the color values calculations (by default `6`):
 
 ```typescript
 getBlendColorsStaticMethod(
   fromColor: string | object,
   toColor: string | object,
   steps: number = 5,
-  css: boolean = true
+  css: boolean = true,
+  decimals: number = 6
 )
 ```
 
@@ -377,17 +394,19 @@ You can also consult the [demo 5](https://elchininet.github.io/ColorTranslator/#
 
 ###### Color shades and color tints static methods
 
-The static methods to get [shades or tints of a color](https://en.m.wikipedia.org/wiki/Tints_and_shades) accept any of the mentioned inputs as the first parameter, and a second parameter that specifies the number of shades or tints that should be returned. This method will return the colors in the same format that was sent as input:
+The static methods to get [shades or tints of a color](https://en.m.wikipedia.org/wiki/Tints_and_shades) accept any of the mentioned inputs as the first parameter. The second parameter specifies the number of shades or tints that should be returned and the third parameter is optional and it indicates the maximum number of decimals for the color values calculations (by default `6`). This method will return the colors in the same format that was sent as input:
 
 ```typescript
 getShades(
   color: string | object,
-  shades: number
+  shades: number,
+  decimals: number = 6
 )
 
 getTints(
   color: string | object,
-  tints: number
+  tints: number,
+  decimals: number = 6
 )
 ```
 
@@ -415,11 +434,11 @@ ColorTranslator.getShades('#FF0000', 5);
 ColorTranslator.getTints({r: 255, g: 0, b: 0, a: 0.5}, 5);
 
 // [
-//   {r: 255, g: 43, b: 43, a: 0.5},
+//   {r: 255, g: 42.5, b: 42.5, a: 0.5},
 //   {r: 255, g: 85, b: 85, a: 0.5},
-//   {r: 255, g: 128, b: 128, a: 0.5},
+//   {r: 255, g: 127.5, b: 127.5, a: 0.5},
 //   {r: 255, g: 170, b: 170, a: 0.5},
-//   {r: 255, g: 213, b: 213, a: 0.5}
+//   {r: 255, g: 212.5, b: 212.5, a: 0.5}
 // ]
 ```
 
@@ -427,7 +446,7 @@ You can also consult the [demo 6](https://elchininet.github.io/ColorTranslator/#
 
 ###### Color mix static methods
 
-The static methods to mix colors accept an array of any of the mentioned inputs as the first parameter. The second parameter is optional and specifies the mixing mode (by default it will be `Mix.ADDITIVE`). The third parameter is also optional and it specifies if the output should be a CSS string or an object:
+The static methods to mix colors accept an array of any of the mentioned inputs as the first parameter. The second parameter is optional and specifies the mixing mode (by default it will be `Mix.ADDITIVE`). The third parameter is also optional and it specifies if the output should be a CSS string or an object, and the fourth parameter is also optional and it indicates the maximum number of decimals for the color values calculations (by default `6`):
 
 > **Note:** The subtractive mix simulates the mixing of pigments, to achieve this, the rgb colors are converted to ryb color model, the addition is performed in this mode and at the end the result is converted back to rgb. The result is OK most of the time, but as this is not a real mix of pigments, sometimes the result could differ from the reality.
 
@@ -435,7 +454,8 @@ The static methods to mix colors accept an array of any of the mentioned inputs 
 getMixColorsStaticMethod(
   colors: [string | object][],
   mode: Mix = Mix.ADDITIVE,
-  css: boolean = true
+  css: boolean = true,
+  decimals: number = 6
 )
 ```
 
@@ -461,26 +481,27 @@ ColorTranslator.getMixHSL(['rgba(255, 0, 0, 1)', '#00FF00']);
 
 // hsl(60,100%,50%)
 
-ColorTranslator.getMixHEXA(['#F00', 'rgb(0, 0, 255)'], Mix.ADDITIVE, true);
+ColorTranslator.getMixHEXA(['#F00', 'rgb(0, 0, 255)'], Mix.ADDITIVE, false);
 
 // { r: '0xFF', g: '0x00', b: '0xFF', a: '0xFF' }
 
 ColorTranslator.getMixHEX(['#FF0', '#F00'], Mix.SUBTRACTIVE);
 
-// #FF7F00
+// #FF8800
 ```
 
 You can also consult the [demo 7](https://elchininet.github.io/ColorTranslator/#demo7) and [demo 8](https://elchininet.github.io/ColorTranslator/#demo8) to check the use of these static methods.
 
 ###### Color harmonies static method
 
-The static method to create color harmonies accepts three parmeters, the first one could be any of the mentioned inputs, the second one is optional and it is to specify the kind of harmony (by default it will be `Harmony.COMPLEMENTARY`), and the third one is also optional and it specifies if the returned harmony is based on additive or subtractive colors (by default it will be `Mix.ADDITIVE`). This method will return the colors in the same format that was sent as input:
+The static method to create color harmonies accepts four parmeters, the first one could be any of the mentioned inputs, the second one is optional and it is to specify the kind of harmony (by default it will be `Harmony.COMPLEMENTARY`), the third one is also optional and it specifies if the returned harmony is based on additive or subtractive colors (by default it will be `Mix.ADDITIVE`), and the fourth parameter is also optional and it indicates the maximum number of decimals for the color values calculations (by default `6`). This method will return the colors in the same format that was sent as input:
 
 ```typescript
 getHarmony(
   color: string | object
   harmony: Harmony = Harmony.COMPLEMENTARY,
-  mode: Mix = Mix.ADDITIVE
+  mode: Mix = Mix.ADDITIVE,
+  decimals: number = 6
 )
 ```
 
@@ -512,15 +533,15 @@ ColorTranslator.getHarmony('rgba(0, 255, 255, 0.5)', Harmony.ANALOGOUS);
 
 // [
 //   "rgba(0,255,255,0.5)",
-//   "rgba(0,128,255,0.5)",
-//   "rgba(0,255,128,0.5)"
+//   "rgba(0,127.5,255,0.5)",
+//   "rgba(0,255,127.5,0.5)"
 // ]
 
-ColorTranslator.getHarmony({ r: 115, g: 200, b: 150, a: 0.5 }, Harmony.COMPLEMENTARY);
+ColorTranslator.getHarmony({ r: 115, g: 200, b: 150, a: 0.5 }, Harmony.COMPLEMENTARY, false, 2);
 
 // [
-//   {r: 115, g: 201, b: 151, a: 0.5},
-//   {r: 201, g: 115, b: 165, a: 0.5}
+//   {r: 115, g: 200, b: 150, a: 0.5},
+//   {r: 200, g: 123.75, b: 115, a: 0.5}
 // ]
 
 ColorTranslator.getHarmony('#FF0000', Harmony.COMPLEMENTARY, Mix.SUBTRACTIVE);
