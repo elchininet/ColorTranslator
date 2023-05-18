@@ -17,8 +17,8 @@ import {
     ColorModel,
     Harmony,
     Mix,
-    MIN_DECIMALS,
-    DEFAULT_BLEND_STEPS
+    DEFAULT_BLEND_STEPS,
+    MAX_DECIMALS
 } from '#constants';
 import {
     rgbToHSL,
@@ -84,8 +84,9 @@ const getHarmonyReturn = (
 export class ColorTranslator {
 
     // Constructor
-    public constructor(color: ColorInput) {
+    public constructor(color: ColorInput, decimals = MAX_DECIMALS) {
         this.rgb = utils.getRGBObject(color);
+        this._decimals = decimals;
         this.updateHSL();
         this.updateCMYK();
     }
@@ -94,6 +95,7 @@ export class ColorTranslator {
     private rgb: RGBObject;
     private hsl: HSLObject;
     private cmyk: CMYKObject;
+    private _decimals: number;
 
     // Private methods
     private updateRGB(): void {
@@ -127,6 +129,12 @@ export class ColorTranslator {
     private updateRGBAndHSL(): ColorTranslator {
         this.updateRGBFromCMYK();
         this.updateHSL();
+        return this;
+    }
+
+    // Public decimal method
+    public setDecimals(decimals: number): ColorTranslator {
+        this._decimals = decimals;
         return this;
     }
 
@@ -189,52 +197,57 @@ export class ColorTranslator {
         return this.updateRGBAndHSL();
     }
 
+    // Public decimals property
+    public get decimals(): number {
+        return this._decimals;
+    }
+
     // Public HSL properties
     public get H(): number {
-        return round(this.hsl.h);
+        return round(this.hsl.h, this.decimals);
     }
 
     public get S(): number {
-        return round(this.hsl.s);
+        return round(this.hsl.s, this.decimals);
     }
 
     public get L(): number {
-        return round(this.hsl.l);
+        return round(this.hsl.l, this.decimals);
     }
 
     // Public RGB properties
     public get R(): number {
-        return round(this.rgb.r);
+        return round(this.rgb.r, this.decimals);
     }
 
     public get G(): number {
-        return round(this.rgb.g);
+        return round(this.rgb.g, this.decimals);
     }
 
     public get B(): number {
-        return round(this.rgb.b);
+        return round(this.rgb.b, this.decimals);
     }
 
     // Public alpha property
     public get A(): number {
-        return round(this.hsl.a, MIN_DECIMALS);
+        return round(this.hsl.a, this.decimals);
     }
 
     // Public CMYK properties
     public get C(): number {
-        return round(this.cmyk.c);
+        return round(this.cmyk.c, this.decimals);
     }
 
     public get M(): number {
-        return round(this.cmyk.m);
+        return round(this.cmyk.m, this.decimals);
     }
 
     public get Y(): number {
-        return round(this.cmyk.y);
+        return round(this.cmyk.y, this.decimals);
     }
 
     public get K(): number {
-        return round(this.cmyk.k);
+        return round(this.cmyk.k, this.decimals);
     }
 
     // Object public properties
@@ -257,7 +270,7 @@ export class ColorTranslator {
     public get RGBAObject(): RGBObject {
         return {
             ...this.RGBObject,
-            a: this.hsl.a
+            a: this.A
         };
     }
 
@@ -272,7 +285,7 @@ export class ColorTranslator {
     public get HSLAObject(): HSLObject {
         return {
             ...this.HSLObject,
-            a: this.hsl.a
+            a: this.A
         };
     }
 
@@ -291,7 +304,7 @@ export class ColorTranslator {
             m: this.M,
             y: this.Y,
             k: this.K,
-            a: this.hsl.a
+            a: this.A
         };
     }
 
@@ -337,7 +350,7 @@ export class ColorTranslator {
     public get CMYKA(): string {
         return CSS.CMYK({
             ...this.cmyk,
-            a: this.hsl.a
+            a: this.A
         });
     }
 

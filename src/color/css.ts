@@ -9,7 +9,6 @@ import {
 import {
     ColorModel,
     TEMPLATE_VAR,
-    MIN_DECIMALS,
     COLOR_PROPS,
     VALID_COLOR_OBJECTS
 } from '#constants';
@@ -32,10 +31,7 @@ const prepareColorForCss = (color: Color, isHex = false): NumberOrString[] => {
                 );
             } else {
                 result.push(
-                    round(
-                        value,
-                        key === 'a' && MIN_DECIMALS
-                    )
+                    round(value)
                 );
             }
         }

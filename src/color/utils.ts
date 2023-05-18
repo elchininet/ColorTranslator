@@ -67,10 +67,10 @@ export const normalizeHue = (hue: number | string): number => {
         const units = matches[2];
         switch(units) {
             case 'rad':
-                hue = Math.round(grades(value));
+                hue = round(grades(value));
                 break;
             case 'turn':
-                hue = Math.round(value * 360);
+                hue = round(value * 360);
                 break;
             case 'deg':
             case 'grad':
@@ -95,7 +95,7 @@ export const normalizeAlpha = (alpha: number | string | undefined | null): numbe
             alpha = +alpha;
         }
     }
-    return (isNaN(+alpha) || alpha > 1) ? 1 : round(alpha, MAX_DECIMALS);
+    return (isNaN(+alpha) || alpha > 1) ? 1 : round(alpha);
 };
 
 //---Harmony
@@ -325,7 +325,7 @@ export const translateColor = {
 
     RGBA(color: RGBObject): RGBObject {
         color.a = hasProp<RGBObject>(color, 'a')
-            ? round(color.a, 2)
+            ? round(color.a)
             : 1;
         return color;
     },
@@ -339,7 +339,7 @@ export const translateColor = {
     HSLA(color: RGBObject): HSLObject {
         const hsl = translateColor.HSL(color);
         hsl.a = hasProp<RGBObject>(color, 'a')
-            ? round(color.a, 2)
+            ? round(color.a)
             : 1;
         return hsl;
     },
@@ -351,7 +351,7 @@ export const translateColor = {
     CMYKA(color: RGBObject): CMYKObject {
         const cmyk = rgbToCMYK(color.r, color.g, color.b);
         cmyk.a = hasProp<RGBObject>(color, 'a')
-            ? round(color.a, 2)
+            ? round(color.a)
             : 1;
         return cmyk;
     }
@@ -373,7 +373,7 @@ export const blend = (from: RGBObject, to: RGBObject, steps: number): RGBObject[
             r: round(from.r + diffR * i),
             g: round(from.g + diffG * i),
             b: round(from.b + diffB * i),
-            a: round(fromA + diffA * i, 2)
+            a: round(fromA + diffA * i)
         };
     });
 };
@@ -404,7 +404,7 @@ export const getColorMixture = (color: ColorInputWithoutCMYK, steps: number, sha
                     if (hasAlpha) rgbColor.a = hslColor.a;
                     return isCSS
                         ? hasAlpha
-                            ? CSS.HEX({ ...rgbColor, a: round(rgbColor.a * 255, MAX_DECIMALS) })
+                            ? CSS.HEX({ ...rgbColor, a: round(rgbColor.a * 255) })
                             : CSS.HEX(rgbColor)
                         : hasAlpha
                             ? translateColor.HEXA(rgbColor)
@@ -617,9 +617,9 @@ export const colorMixer = {
         }
 
         return {
-            r: round(mix.r, 2),
-            g: round(mix.g, 2),
-            b: round(mix.b, 2),
+            r: round(mix.r),
+            g: round(mix.g),
+            b: round(mix.b),
             a: minmax(mix.a, 0, 1)
         };
     },
