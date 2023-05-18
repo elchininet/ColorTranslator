@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.0.0] - 2023-05-18
+
+- [BREAKING CHANGE]: Complete refactoring of the library, if no specified all colors will be calculated with 6 decimals in its values
+- Implemented a way to control de decimals for the color conversion
+
 ## [1.10.2] - 2023-01-17
 
 - Fixed rounded values of hexadecimal colors

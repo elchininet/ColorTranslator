@@ -15,13 +15,13 @@ export default (ColorTranslator) => {
 
     for (let row = 0; row < total; row++) {
 
-        const hsl = ColorTranslator.toHSL(colors[row], false);
+        const hsl = ColorTranslator.toHSL(colors[row], false, 0);
         const step = hsl.s / (total - 1);
 
         for (let col = 0; col < total; col++) {
 
-            const rgb = ColorTranslator.toHEX(hsl);
-            const cmyk = ColorTranslator.toCMYK(hsl, false);
+            const rgb = ColorTranslator.toHEX(hsl, true, 0);
+            const cmyk = ColorTranslator.toCMYK(hsl, false, 0);
 
             const box = document.createElement('div');
             box.classList.add('box');
