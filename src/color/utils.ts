@@ -14,8 +14,7 @@ import {
     RGBOutput,
     HSLOutput,
     HEXOutput,
-    ColorOutput,
-    NumberOrString
+    ColorOutput
 } from '@types';
 import {
     HEX,
@@ -38,6 +37,7 @@ import {
     getCMYKNumber,
     hasProp,
     percent,
+    percentNumber,
     round,
     minmax,
     grades
@@ -96,11 +96,6 @@ export const normalizeAlpha = (alpha: number | string | undefined | null): numbe
         }
     }
     return (isNaN(+alpha) || alpha > 1) ? 1 : round(alpha, MAX_DECIMALS);
-};
-
-//---Get percent number
-export const percentNumber = (percent: NumberOrString): number => {
-    return +`${percent}`.replace(PCENT, '$1');
 };
 
 //---Harmony
