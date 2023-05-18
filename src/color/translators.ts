@@ -1,17 +1,18 @@
 import { RGBObject, HSLObject, CMYKObject, RYBObject } from '@types';
+import { round } from '#helpers';
 
 //---HUE to RGB
 export const hueToRGB = (t1: number, t2: number, hue: number): number => {
     if (hue < 0) { hue += 6; }
     if (hue >= 6) { hue -= 6; }
     if (hue < 1) {
-        return Math.round(((t2 - t1) * hue + t1) * 255);
+        return round(((t2 - t1) * hue + t1) * 255);
     } else if (hue < 3) {
-        return Math.round(t2 * 255);
+        return round(t2 * 255);
     } else if (hue < 4) {
-        return Math.round(((t2 - t1) * (4 - hue) + t1) * 255);
+        return round(((t2 - t1) * (4 - hue) + t1) * 255);
     } else {
-        return Math.round(t1 * 255);
+        return round(t1 * 255);
     }
 };
 
@@ -33,9 +34,9 @@ export const hslToRGB = (h: number, s: number, l: number): RGBObject => {
 //---CMYK To RGB
 export const cmykToRGB = (c: number, m: number, y: number, k: number): RGBObject => {
     k = 1 - k;
-    const r = Math.round(255 * (1 - c) * k);
-    const g = Math.round(255 * (1 - m) * k);
-    const b = Math.round(255 * (1 - y) * k);
+    const r = round(255 * (1 - c) * k);
+    const g = round(255 * (1 - m) * k);
+    const b = round(255 * (1 - y) * k);
     return { r, g, b };
 };
 
@@ -50,10 +51,10 @@ export const rgbToCMYK = (r: number, g: number, b: number): CMYKObject => {
     const m = k1 && (k1 - g) / k1;
     const y = k1 && (k1 - b) / k1;
     return {
-        c: Math.round(c * 100),
-        m: Math.round(m * 100),
-        y: Math.round(y * 100),
-        k: Math.round(k * 100)
+        c: round(c * 100),
+        m: round(m * 100),
+        y: round(y * 100),
+        k: round(k * 100)
     };
 };
 
@@ -81,14 +82,14 @@ export const rgbToHSL = (r: number, g: number, b: number, a = 1): HSLObject => {
                 h = (r - g) / d + 4;
                 break;
         }
-        h = Math.round(h * 60);
+        h = round(h * 60);
         if (h < 0) { h += 360; }
         s = d / (1 - Math.abs(2 * l - 1));
     }
     return {
         h,
-        s: Math.round(s * 100),
-        l: Math.round(l * 100),
+        s: round(s * 100),
+        l: round(l * 100),
         a
     };
 };

@@ -26,14 +26,14 @@ export const getDEC = (hex: string): number => {
 
 //---Convert to hexadecimal
 export const getHEX = (number: NumberOrString): string => {
-    const hex = round(number).toString(16).toUpperCase();
+    const hex = round(number, 0).toString(16).toUpperCase();
     if (hex.length === 1) { return `0x0${hex}`; }
     return `0x${hex}`;
 };
 
 //---Convert to final hexadecimal
 export const toHEX = (h: NumberOrString): string => {
-    let hex = round(h).toString(16).toUpperCase();
+    let hex = round(h, 0).toString(16).toUpperCase();
     if (hex.length === 1) {
         hex = `0${hex}`;
     }
@@ -50,8 +50,8 @@ export const getBase255Number = (color: string, alpha = false): number => {
             color += color.slice(-1);
         }
         return alpha
-            ? round(color, MAX_DECIMALS) / 255
-            : round(color, MAX_DECIMALS);
+            ? round(color) / 255
+            : round(color);
     }
     return Math.min(+color, alpha ? 1 : 255);
 };
@@ -64,7 +64,7 @@ export const getCMYKNumber = (color: string): number => Math.min(PCENT.test(colo
 export const getOrderedArrayString = (keys: string[]): string => [...keys].sort().join('').toUpperCase();
 
 //---Round value
-export const round = (value: NumberOrString, decimals = 0): number => {
+export const round = (value: NumberOrString, decimals = MAX_DECIMALS): number => {
     const exp = Math.pow(10, decimals);
     return Math.round(+value * exp) / exp;
 };
