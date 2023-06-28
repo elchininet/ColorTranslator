@@ -7,7 +7,8 @@ import {
     ColorModel,
     TEMPLATE_VAR,
     COLOR_PROPS,
-    VALID_COLOR_OBJECTS
+    VALID_COLOR_OBJECTS,
+    DEFAULT_COLOR_LEVEL_4
 } from '#constants';
 import {
     toHEX,
@@ -36,7 +37,7 @@ const getResultFromTemplate = (template: string, vars: NumberOrString[]): string
 };
 
 
-export function CSS<T extends ColorModel>(colorModel: T, color: ColorModelInput[T], CSSColorLevel4 = false) { // TODO: specify legacy when calling
+export function CSS<T extends ColorModel>(colorModel: T, color: ColorModelInput[T], colorLevel4 = DEFAULT_COLOR_LEVEL_4) {
     let values = prepareColorForCss(color);
     let template: string;
     switch (colorModel) {
@@ -49,7 +50,7 @@ export function CSS<T extends ColorModel>(colorModel: T, color: ColorModelInput[
                 : `#{1}{2}{3}`;
             break;
         case ColorModel.RGB:
-            if(CSSColorLevel4) {
+            if(colorLevel4) {
                 template = values.length === 4
                 ? `rgb({1} {2} {3} / {4})`
                 : `rgb({1} {2} {3})`;
@@ -60,7 +61,7 @@ export function CSS<T extends ColorModel>(colorModel: T, color: ColorModelInput[
             }
             break;
         case ColorModel.HSL:
-            if(CSSColorLevel4) {
+            if(colorLevel4) {
                 template = values.length === 4
                 ? `hsl({1} {2}% {3}% / {4})`
                 : `hsl({1} {2}% {3}%)`;
@@ -71,7 +72,7 @@ export function CSS<T extends ColorModel>(colorModel: T, color: ColorModelInput[
             }
             break;
         case ColorModel.CMYK:
-            if(CSSColorLevel4) {
+            if(colorLevel4) {
                 template = values.length === 5
                     ? `cmyk({1}% {2}% {3}% {4}% / {5})`
                     : `cmyk({1}% {2}% {3}% {4}%)`;
