@@ -44,9 +44,9 @@ export function CSS<T extends ColorModel>(colorModel: T, color: ColorModelInput[
             values = values.map(value => toHEX(
                 round(value, 0)
             ));
-                template = values.length === 4
-                    ? `#{1}{2}{3}{4}`
-                    : `#{1}{2}{3}`;
+            template = values.length === 4
+                ? `#{1}{2}{3}{4}`
+                : `#{1}{2}{3}`;
             break;
         case ColorModel.RGB:
             if(CSSColorLevel4) {
