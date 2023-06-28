@@ -1,3 +1,5 @@
+import { ColorModel } from '#constants';
+
 export type NumberOrString = number | string;
 
 export interface HEXObject {
@@ -73,4 +75,18 @@ export type ColorOutput = HEXOutput | RGBOutput | HSLOutput;
 
 export interface ObjectProps<T> {
     [key: string]: T;
+}
+
+export interface ColorModelInput {
+    [ColorModel.HEX]: HEXObject | RGBObject
+    [ColorModel.RGB]: RGBObject
+    [ColorModel.HSL]: HSLObject
+    [ColorModel.CMYK]: CMYKObject
+}
+
+export interface ColorModelOutput {
+    [ColorModel.HEX]: HEXObject
+    [ColorModel.RGB]: RGBObject
+    [ColorModel.HSL]: HSLObject
+    [ColorModel.CMYK]: CMYKObject
 }

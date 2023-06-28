@@ -1,41 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ColorTranslator shades and tints tests Shades tests from "hsl(0,100%,50%)" with decimals 1`] = `
+exports[`ColorTranslator shades and tints tests Shades tests from "hsl(0, 100%, 50%)" with decimals 1`] = `
 [
-  "hsl(0,100%,42%)",
-  "hsl(0,100%,33%)",
-  "hsl(0,100%,25%)",
-  "hsl(0,100%,17%)",
-  "hsl(0,100%,8%)",
+  "hsl(0, 100%, 42%)",
+  "hsl(0, 100%, 33%)",
+  "hsl(0, 100%, 25%)",
+  "hsl(0, 100%, 17%)",
+  "hsl(0, 100%, 8%)",
 ]
 `;
 
-exports[`ColorTranslator shades and tints tests Shades tests from "hsla(0,100%,50%,1)" with decimals 1`] = `
+exports[`ColorTranslator shades and tints tests Shades tests from "hsla(0, 100%, 50%, 1)" with decimals 1`] = `
 [
-  "hsla(0,100%,42%,1)",
-  "hsla(0,100%,33%,1)",
-  "hsla(0,100%,25%,1)",
-  "hsla(0,100%,17%,1)",
-  "hsla(0,100%,8%,1)",
+  "hsla(0, 100%, 42%, 1)",
+  "hsla(0, 100%, 33%, 1)",
+  "hsla(0, 100%, 25%, 1)",
+  "hsla(0, 100%, 17%, 1)",
+  "hsla(0, 100%, 8%, 1)",
 ]
 `;
 
-exports[`ColorTranslator shades and tints tests Shades tests from "rgb(255,0,0)" with decimals 1`] = `
+exports[`ColorTranslator shades and tints tests Shades tests from "rgb(255, 0, 0)" with decimals 1`] = `
 [
-  "rgb(213,0,0)",
-  "rgb(170,0,0)",
-  "rgb(128,0,0)",
-  "rgb(85,0,0)",
-  "rgb(43,0,0)",
+  "rgb(213, 0, 0)",
+  "rgb(170, 0, 0)",
+  "rgb(128, 0, 0)",
+  "rgb(85, 0, 0)",
+  "rgb(43, 0, 0)",
 ]
 `;
 
-exports[`ColorTranslator shades and tints tests Shades tests from "rgba(255,0,0,1)" with decimals 1`] = `
+exports[`ColorTranslator shades and tints tests Shades tests from "rgba(255, 0, 0, 1)" with decimals 1`] = `
 [
-  "rgba(213,0,0,1)",
-  "rgba(170,0,0,1)",
-  "rgba(128,0,0,1)",
-  "rgba(85,0,0,1)",
-  "rgba(43,0,0,1)",
+  "rgba(213, 0, 0, 1)",
+  "rgba(170, 0, 0, 1)",
+  "rgba(128, 0, 0, 1)",
+  "rgba(85, 0, 0, 1)",
+  "rgba(43, 0, 0, 1)",
 ]
 `;

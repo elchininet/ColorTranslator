@@ -1,449 +1,449 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ColorTranslator static CMYK color conversion for "#000" toCMYK method with decimals as CSS from "#000" 1`] = `"cmyk(0%,0%,0%,100%)"`;
+exports[`ColorTranslator static CMYK color conversion for "#000" toCMYK method with decimals as CSS from "#000" 1`] = `"cmyk(0%, 0%, 0%, 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "#000" toCMYKA method with decimals as CSS from "#000" 1`] = `"cmyk(0%,0%,0%,100%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "#000" toCMYKA method with decimals as CSS from "#000" 1`] = `"cmyk(0%, 0%, 0%, 100%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "#00F" toCMYK method with decimals as CSS from "#00F" 1`] = `"cmyk(100%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "#00F" toCMYK method with decimals as CSS from "#00F" 1`] = `"cmyk(100%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "#00F" toCMYKA method with decimals as CSS from "#00F" 1`] = `"cmyk(100%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "#00F" toCMYKA method with decimals as CSS from "#00F" 1`] = `"cmyk(100%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "#0F0" toCMYK method with decimals as CSS from "#0F0" 1`] = `"cmyk(100%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "#0F0" toCMYK method with decimals as CSS from "#0F0" 1`] = `"cmyk(100%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "#0F0" toCMYKA method with decimals as CSS from "#0F0" 1`] = `"cmyk(100%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "#0F0" toCMYKA method with decimals as CSS from "#0F0" 1`] = `"cmyk(100%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "#0FF" toCMYK method with decimals as CSS from "#0FF" 1`] = `"cmyk(100%,0%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "#0FF" toCMYK method with decimals as CSS from "#0FF" 1`] = `"cmyk(100%, 0%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "#0FF" toCMYKA method with decimals as CSS from "#0FF" 1`] = `"cmyk(100%,0%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "#0FF" toCMYKA method with decimals as CSS from "#0FF" 1`] = `"cmyk(100%, 0%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "#F00" toCMYK method with decimals as CSS from "#F00" 1`] = `"cmyk(0%,100%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "#F00" toCMYK method with decimals as CSS from "#F00" 1`] = `"cmyk(0%, 100%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "#F00" toCMYKA method with decimals as CSS from "#F00" 1`] = `"cmyk(0%,100%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "#F00" toCMYKA method with decimals as CSS from "#F00" 1`] = `"cmyk(0%, 100%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "#F0F" toCMYK method with decimals as CSS from "#F0F" 1`] = `"cmyk(0%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "#F0F" toCMYK method with decimals as CSS from "#F0F" 1`] = `"cmyk(0%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "#F0F" toCMYKA method with decimals as CSS from "#F0F" 1`] = `"cmyk(0%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "#F0F" toCMYKA method with decimals as CSS from "#F0F" 1`] = `"cmyk(0%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "#FF0" toCMYK method with decimals as CSS from "#FF0" 1`] = `"cmyk(0%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "#FF0" toCMYK method with decimals as CSS from "#FF0" 1`] = `"cmyk(0%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "#FF0" toCMYKA method with decimals as CSS from "#FF0" 1`] = `"cmyk(0%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "#FF0" toCMYKA method with decimals as CSS from "#FF0" 1`] = `"cmyk(0%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 0 1 / 1)" toCMYK method with decimals as CSS from "cmyk(0 0 0 1 / 1)" 1`] = `"cmyk(0%,0%,0%,100%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 0 1 / 1)" toCMYK method with decimals as CSS from "cmyk(0 0 0 1 / 1)" 1`] = `"cmyk(0%, 0%, 0%, 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 0 1 / 1)" toCMYKA method with decimals as CSS from "cmyk(0 0 0 1 / 1)" 1`] = `"cmyk(0%,0%,0%,100%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 0 1 / 1)" toCMYKA method with decimals as CSS from "cmyk(0 0 0 1 / 1)" 1`] = `"cmyk(0%, 0%, 0%, 100%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 0 1 / 100%)" toCMYK method with decimals as CSS from "cmyk(0 0 0 1 / 100%)" 1`] = `"cmyk(0%,0%,0%,100%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 0 1 / 100%)" toCMYK method with decimals as CSS from "cmyk(0 0 0 1 / 100%)" 1`] = `"cmyk(0%, 0%, 0%, 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 0 1 / 100%)" toCMYKA method with decimals as CSS from "cmyk(0 0 0 1 / 100%)" 1`] = `"cmyk(0%,0%,0%,100%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 0 1 / 100%)" toCMYKA method with decimals as CSS from "cmyk(0 0 0 1 / 100%)" 1`] = `"cmyk(0%, 0%, 0%, 100%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 0 1)" toCMYK method with decimals as CSS from "cmyk(0 0 0 1)" 1`] = `"cmyk(0%,0%,0%,100%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 0 1)" toCMYK method with decimals as CSS from "cmyk(0 0 0 1)" 1`] = `"cmyk(0%, 0%, 0%, 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 0 1)" toCMYKA method with decimals as CSS from "cmyk(0 0 0 1)" 1`] = `"cmyk(0%,0%,0%,100%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 0 1)" toCMYKA method with decimals as CSS from "cmyk(0 0 0 1)" 1`] = `"cmyk(0%, 0%, 0%, 100%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 1 0 / 1)" toCMYK method with decimals as CSS from "cmyk(0 0 1 0 / 1)" 1`] = `"cmyk(0%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 1 0 / 1)" toCMYK method with decimals as CSS from "cmyk(0 0 1 0 / 1)" 1`] = `"cmyk(0%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 1 0 / 1)" toCMYKA method with decimals as CSS from "cmyk(0 0 1 0 / 1)" 1`] = `"cmyk(0%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 1 0 / 1)" toCMYKA method with decimals as CSS from "cmyk(0 0 1 0 / 1)" 1`] = `"cmyk(0%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 1 0 / 100%)" toCMYK method with decimals as CSS from "cmyk(0 0 1 0 / 100%)" 1`] = `"cmyk(0%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 1 0 / 100%)" toCMYK method with decimals as CSS from "cmyk(0 0 1 0 / 100%)" 1`] = `"cmyk(0%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 1 0 / 100%)" toCMYKA method with decimals as CSS from "cmyk(0 0 1 0 / 100%)" 1`] = `"cmyk(0%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 1 0 / 100%)" toCMYKA method with decimals as CSS from "cmyk(0 0 1 0 / 100%)" 1`] = `"cmyk(0%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 1 0)" toCMYK method with decimals as CSS from "cmyk(0 0 1 0)" 1`] = `"cmyk(0%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 1 0)" toCMYK method with decimals as CSS from "cmyk(0 0 1 0)" 1`] = `"cmyk(0%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 1 0)" toCMYKA method with decimals as CSS from "cmyk(0 0 1 0)" 1`] = `"cmyk(0%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 0 1 0)" toCMYKA method with decimals as CSS from "cmyk(0 0 1 0)" 1`] = `"cmyk(0%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 0 0 / 1)" toCMYK method with decimals as CSS from "cmyk(0 1 0 0 / 1)" 1`] = `"cmyk(0%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 0 0 / 1)" toCMYK method with decimals as CSS from "cmyk(0 1 0 0 / 1)" 1`] = `"cmyk(0%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 0 0 / 1)" toCMYKA method with decimals as CSS from "cmyk(0 1 0 0 / 1)" 1`] = `"cmyk(0%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 0 0 / 1)" toCMYKA method with decimals as CSS from "cmyk(0 1 0 0 / 1)" 1`] = `"cmyk(0%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 0 0 / 100%)" toCMYK method with decimals as CSS from "cmyk(0 1 0 0 / 100%)" 1`] = `"cmyk(0%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 0 0 / 100%)" toCMYK method with decimals as CSS from "cmyk(0 1 0 0 / 100%)" 1`] = `"cmyk(0%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 0 0 / 100%)" toCMYKA method with decimals as CSS from "cmyk(0 1 0 0 / 100%)" 1`] = `"cmyk(0%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 0 0 / 100%)" toCMYKA method with decimals as CSS from "cmyk(0 1 0 0 / 100%)" 1`] = `"cmyk(0%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 0 0)" toCMYK method with decimals as CSS from "cmyk(0 1 0 0)" 1`] = `"cmyk(0%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 0 0)" toCMYK method with decimals as CSS from "cmyk(0 1 0 0)" 1`] = `"cmyk(0%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 0 0)" toCMYKA method with decimals as CSS from "cmyk(0 1 0 0)" 1`] = `"cmyk(0%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 0 0)" toCMYKA method with decimals as CSS from "cmyk(0 1 0 0)" 1`] = `"cmyk(0%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 1 0 / 1)" toCMYK method with decimals as CSS from "cmyk(0 1 1 0 / 1)" 1`] = `"cmyk(0%,100%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 1 0 / 1)" toCMYK method with decimals as CSS from "cmyk(0 1 1 0 / 1)" 1`] = `"cmyk(0%, 100%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 1 0 / 1)" toCMYKA method with decimals as CSS from "cmyk(0 1 1 0 / 1)" 1`] = `"cmyk(0%,100%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 1 0 / 1)" toCMYKA method with decimals as CSS from "cmyk(0 1 1 0 / 1)" 1`] = `"cmyk(0%, 100%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 1 0 / 100%)" toCMYK method with decimals as CSS from "cmyk(0 1 1 0 / 100%)" 1`] = `"cmyk(0%,100%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 1 0 / 100%)" toCMYK method with decimals as CSS from "cmyk(0 1 1 0 / 100%)" 1`] = `"cmyk(0%, 100%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 1 0 / 100%)" toCMYKA method with decimals as CSS from "cmyk(0 1 1 0 / 100%)" 1`] = `"cmyk(0%,100%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 1 0 / 100%)" toCMYKA method with decimals as CSS from "cmyk(0 1 1 0 / 100%)" 1`] = `"cmyk(0%, 100%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 1 0)" toCMYK method with decimals as CSS from "cmyk(0 1 1 0)" 1`] = `"cmyk(0%,100%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 1 0)" toCMYK method with decimals as CSS from "cmyk(0 1 1 0)" 1`] = `"cmyk(0%, 100%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 1 0)" toCMYKA method with decimals as CSS from "cmyk(0 1 1 0)" 1`] = `"cmyk(0%,100%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0 1 1 0)" toCMYKA method with decimals as CSS from "cmyk(0 1 1 0)" 1`] = `"cmyk(0%, 100%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 0% 100% / 1)" toCMYK method with decimals as CSS from "cmyk(0% 0% 0% 100% / 1)" 1`] = `"cmyk(0%,0%,0%,100%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 0% 100% / 1)" toCMYK method with decimals as CSS from "cmyk(0% 0% 0% 100% / 1)" 1`] = `"cmyk(0%, 0%, 0%, 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 0% 100% / 1)" toCMYKA method with decimals as CSS from "cmyk(0% 0% 0% 100% / 1)" 1`] = `"cmyk(0%,0%,0%,100%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 0% 100% / 1)" toCMYKA method with decimals as CSS from "cmyk(0% 0% 0% 100% / 1)" 1`] = `"cmyk(0%, 0%, 0%, 100%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 0% 100% / 100%)" toCMYK method with decimals as CSS from "cmyk(0% 0% 0% 100% / 100%)" 1`] = `"cmyk(0%,0%,0%,100%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 0% 100% / 100%)" toCMYK method with decimals as CSS from "cmyk(0% 0% 0% 100% / 100%)" 1`] = `"cmyk(0%, 0%, 0%, 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 0% 100% / 100%)" toCMYKA method with decimals as CSS from "cmyk(0% 0% 0% 100% / 100%)" 1`] = `"cmyk(0%,0%,0%,100%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 0% 100% / 100%)" toCMYKA method with decimals as CSS from "cmyk(0% 0% 0% 100% / 100%)" 1`] = `"cmyk(0%, 0%, 0%, 100%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 0% 100%)" toCMYK method with decimals as CSS from "cmyk(0% 0% 0% 100%)" 1`] = `"cmyk(0%,0%,0%,100%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 0% 100%)" toCMYK method with decimals as CSS from "cmyk(0% 0% 0% 100%)" 1`] = `"cmyk(0%, 0%, 0%, 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 0% 100%)" toCMYKA method with decimals as CSS from "cmyk(0% 0% 0% 100%)" 1`] = `"cmyk(0%,0%,0%,100%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 0% 100%)" toCMYKA method with decimals as CSS from "cmyk(0% 0% 0% 100%)" 1`] = `"cmyk(0%, 0%, 0%, 100%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 100% 0% / 1)" toCMYK method with decimals as CSS from "cmyk(0% 0% 100% 0% / 1)" 1`] = `"cmyk(0%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 100% 0% / 1)" toCMYK method with decimals as CSS from "cmyk(0% 0% 100% 0% / 1)" 1`] = `"cmyk(0%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 100% 0% / 1)" toCMYKA method with decimals as CSS from "cmyk(0% 0% 100% 0% / 1)" 1`] = `"cmyk(0%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 100% 0% / 1)" toCMYKA method with decimals as CSS from "cmyk(0% 0% 100% 0% / 1)" 1`] = `"cmyk(0%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 100% 0% / 100%)" toCMYK method with decimals as CSS from "cmyk(0% 0% 100% 0% / 100%)" 1`] = `"cmyk(0%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 100% 0% / 100%)" toCMYK method with decimals as CSS from "cmyk(0% 0% 100% 0% / 100%)" 1`] = `"cmyk(0%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 100% 0% / 100%)" toCMYKA method with decimals as CSS from "cmyk(0% 0% 100% 0% / 100%)" 1`] = `"cmyk(0%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 100% 0% / 100%)" toCMYKA method with decimals as CSS from "cmyk(0% 0% 100% 0% / 100%)" 1`] = `"cmyk(0%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 100% 0%)" toCMYK method with decimals as CSS from "cmyk(0% 0% 100% 0%)" 1`] = `"cmyk(0%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 100% 0%)" toCMYK method with decimals as CSS from "cmyk(0% 0% 100% 0%)" 1`] = `"cmyk(0%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 100% 0%)" toCMYKA method with decimals as CSS from "cmyk(0% 0% 100% 0%)" 1`] = `"cmyk(0%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 0% 100% 0%)" toCMYKA method with decimals as CSS from "cmyk(0% 0% 100% 0%)" 1`] = `"cmyk(0%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 0% 0% / 1)" toCMYK method with decimals as CSS from "cmyk(0% 100% 0% 0% / 1)" 1`] = `"cmyk(0%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 0% 0% / 1)" toCMYK method with decimals as CSS from "cmyk(0% 100% 0% 0% / 1)" 1`] = `"cmyk(0%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 0% 0% / 1)" toCMYKA method with decimals as CSS from "cmyk(0% 100% 0% 0% / 1)" 1`] = `"cmyk(0%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 0% 0% / 1)" toCMYKA method with decimals as CSS from "cmyk(0% 100% 0% 0% / 1)" 1`] = `"cmyk(0%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 0% 0% / 100%)" toCMYK method with decimals as CSS from "cmyk(0% 100% 0% 0% / 100%)" 1`] = `"cmyk(0%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 0% 0% / 100%)" toCMYK method with decimals as CSS from "cmyk(0% 100% 0% 0% / 100%)" 1`] = `"cmyk(0%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 0% 0% / 100%)" toCMYKA method with decimals as CSS from "cmyk(0% 100% 0% 0% / 100%)" 1`] = `"cmyk(0%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 0% 0% / 100%)" toCMYKA method with decimals as CSS from "cmyk(0% 100% 0% 0% / 100%)" 1`] = `"cmyk(0%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 0% 0%)" toCMYK method with decimals as CSS from "cmyk(0% 100% 0% 0%)" 1`] = `"cmyk(0%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 0% 0%)" toCMYK method with decimals as CSS from "cmyk(0% 100% 0% 0%)" 1`] = `"cmyk(0%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 0% 0%)" toCMYKA method with decimals as CSS from "cmyk(0% 100% 0% 0%)" 1`] = `"cmyk(0%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 0% 0%)" toCMYKA method with decimals as CSS from "cmyk(0% 100% 0% 0%)" 1`] = `"cmyk(0%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 100% 0% / 1)" toCMYK method with decimals as CSS from "cmyk(0% 100% 100% 0% / 1)" 1`] = `"cmyk(0%,100%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 100% 0% / 1)" toCMYK method with decimals as CSS from "cmyk(0% 100% 100% 0% / 1)" 1`] = `"cmyk(0%, 100%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 100% 0% / 1)" toCMYKA method with decimals as CSS from "cmyk(0% 100% 100% 0% / 1)" 1`] = `"cmyk(0%,100%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 100% 0% / 1)" toCMYKA method with decimals as CSS from "cmyk(0% 100% 100% 0% / 1)" 1`] = `"cmyk(0%, 100%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 100% 0% / 100%)" toCMYK method with decimals as CSS from "cmyk(0% 100% 100% 0% / 100%)" 1`] = `"cmyk(0%,100%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 100% 0% / 100%)" toCMYK method with decimals as CSS from "cmyk(0% 100% 100% 0% / 100%)" 1`] = `"cmyk(0%, 100%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 100% 0% / 100%)" toCMYKA method with decimals as CSS from "cmyk(0% 100% 100% 0% / 100%)" 1`] = `"cmyk(0%,100%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 100% 0% / 100%)" toCMYKA method with decimals as CSS from "cmyk(0% 100% 100% 0% / 100%)" 1`] = `"cmyk(0%, 100%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 100% 0%)" toCMYK method with decimals as CSS from "cmyk(0% 100% 100% 0%)" 1`] = `"cmyk(0%,100%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 100% 0%)" toCMYK method with decimals as CSS from "cmyk(0% 100% 100% 0%)" 1`] = `"cmyk(0%, 100%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 100% 0%)" toCMYKA method with decimals as CSS from "cmyk(0% 100% 100% 0%)" 1`] = `"cmyk(0%,100%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0% 100% 100% 0%)" toCMYKA method with decimals as CSS from "cmyk(0% 100% 100% 0%)" 1`] = `"cmyk(0%, 100%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0%,0%,0%,100%)" toCMYK method with decimals as CSS from "cmyk(0%,0%,0%,100%)" 1`] = `"cmyk(0%,0%,0%,100%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0%, 0%, 0%, 100%)" toCMYK method with decimals as CSS from "cmyk(0%, 0%, 0%, 100%)" 1`] = `"cmyk(0%, 0%, 0%, 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0%,0%,0%,100%)" toCMYKA method with decimals as CSS from "cmyk(0%,0%,0%,100%)" 1`] = `"cmyk(0%,0%,0%,100%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0%, 0%, 0%, 100%)" toCMYKA method with decimals as CSS from "cmyk(0%, 0%, 0%, 100%)" 1`] = `"cmyk(0%, 0%, 0%, 100%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0%,0%,0%,100%,1)" toCMYK method with decimals as CSS from "cmyk(0%,0%,0%,100%,1)" 1`] = `"cmyk(0%,0%,0%,100%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0%, 0%, 0%, 100%, 1)" toCMYK method with decimals as CSS from "cmyk(0%, 0%, 0%, 100%, 1)" 1`] = `"cmyk(0%, 0%, 0%, 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0%,0%,0%,100%,1)" toCMYKA method with decimals as CSS from "cmyk(0%,0%,0%,100%,1)" 1`] = `"cmyk(0%,0%,0%,100%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0%, 0%, 0%, 100%, 1)" toCMYKA method with decimals as CSS from "cmyk(0%, 0%, 0%, 100%, 1)" 1`] = `"cmyk(0%, 0%, 0%, 100%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0%,0%,100%,0%)" toCMYK method with decimals as CSS from "cmyk(0%,0%,100%,0%)" 1`] = `"cmyk(0%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0%, 0%, 100%, 0%)" toCMYK method with decimals as CSS from "cmyk(0%, 0%, 100%, 0%)" 1`] = `"cmyk(0%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0%,0%,100%,0%)" toCMYKA method with decimals as CSS from "cmyk(0%,0%,100%,0%)" 1`] = `"cmyk(0%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0%, 0%, 100%, 0%)" toCMYKA method with decimals as CSS from "cmyk(0%, 0%, 100%, 0%)" 1`] = `"cmyk(0%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0%,0%,100%,0%,1)" toCMYK method with decimals as CSS from "cmyk(0%,0%,100%,0%,1)" 1`] = `"cmyk(0%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0%, 0%, 100%, 0%, 1)" toCMYK method with decimals as CSS from "cmyk(0%, 0%, 100%, 0%, 1)" 1`] = `"cmyk(0%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0%,0%,100%,0%,1)" toCMYKA method with decimals as CSS from "cmyk(0%,0%,100%,0%,1)" 1`] = `"cmyk(0%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0%, 0%, 100%, 0%, 1)" toCMYKA method with decimals as CSS from "cmyk(0%, 0%, 100%, 0%, 1)" 1`] = `"cmyk(0%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0%,100%,0%,0%)" toCMYK method with decimals as CSS from "cmyk(0%,100%,0%,0%)" 1`] = `"cmyk(0%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0%, 100%, 0%, 0%)" toCMYK method with decimals as CSS from "cmyk(0%, 100%, 0%, 0%)" 1`] = `"cmyk(0%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0%,100%,0%,0%)" toCMYKA method with decimals as CSS from "cmyk(0%,100%,0%,0%)" 1`] = `"cmyk(0%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0%, 100%, 0%, 0%)" toCMYKA method with decimals as CSS from "cmyk(0%, 100%, 0%, 0%)" 1`] = `"cmyk(0%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0%,100%,0%,0%,1)" toCMYK method with decimals as CSS from "cmyk(0%,100%,0%,0%,1)" 1`] = `"cmyk(0%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0%, 100%, 0%, 0%, 1)" toCMYK method with decimals as CSS from "cmyk(0%, 100%, 0%, 0%, 1)" 1`] = `"cmyk(0%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0%,100%,0%,0%,1)" toCMYKA method with decimals as CSS from "cmyk(0%,100%,0%,0%,1)" 1`] = `"cmyk(0%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0%, 100%, 0%, 0%, 1)" toCMYKA method with decimals as CSS from "cmyk(0%, 100%, 0%, 0%, 1)" 1`] = `"cmyk(0%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0%,100%,100%,0%)" toCMYK method with decimals as CSS from "cmyk(0%,100%,100%,0%)" 1`] = `"cmyk(0%,100%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0%, 100%, 100%, 0%)" toCMYK method with decimals as CSS from "cmyk(0%, 100%, 100%, 0%)" 1`] = `"cmyk(0%, 100%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0%,100%,100%,0%)" toCMYKA method with decimals as CSS from "cmyk(0%,100%,100%,0%)" 1`] = `"cmyk(0%,100%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0%, 100%, 100%, 0%)" toCMYKA method with decimals as CSS from "cmyk(0%, 100%, 100%, 0%)" 1`] = `"cmyk(0%, 100%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0%,100%,100%,0%,1)" toCMYK method with decimals as CSS from "cmyk(0%,100%,100%,0%,1)" 1`] = `"cmyk(0%,100%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0%, 100%, 100%, 0%, 1)" toCMYK method with decimals as CSS from "cmyk(0%, 100%, 100%, 0%, 1)" 1`] = `"cmyk(0%, 100%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0%,100%,100%,0%,1)" toCMYKA method with decimals as CSS from "cmyk(0%,100%,100%,0%,1)" 1`] = `"cmyk(0%,100%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0%, 100%, 100%, 0%, 1)" toCMYKA method with decimals as CSS from "cmyk(0%, 100%, 100%, 0%, 1)" 1`] = `"cmyk(0%, 100%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0,0,0,1)" toCMYK method with decimals as CSS from "cmyk(0,0,0,1)" 1`] = `"cmyk(0%,0%,0%,100%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0, 0, 0, 1)" toCMYK method with decimals as CSS from "cmyk(0, 0, 0, 1)" 1`] = `"cmyk(0%, 0%, 0%, 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0,0,0,1)" toCMYKA method with decimals as CSS from "cmyk(0,0,0,1)" 1`] = `"cmyk(0%,0%,0%,100%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0, 0, 0, 1)" toCMYKA method with decimals as CSS from "cmyk(0, 0, 0, 1)" 1`] = `"cmyk(0%, 0%, 0%, 100%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0,0,0,1,1)" toCMYK method with decimals as CSS from "cmyk(0,0,0,1,1)" 1`] = `"cmyk(0%,0%,0%,100%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0, 0, 0, 1, 1)" toCMYK method with decimals as CSS from "cmyk(0, 0, 0, 1, 1)" 1`] = `"cmyk(0%, 0%, 0%, 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0,0,0,1,1)" toCMYKA method with decimals as CSS from "cmyk(0,0,0,1,1)" 1`] = `"cmyk(0%,0%,0%,100%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0, 0, 0, 1, 1)" toCMYKA method with decimals as CSS from "cmyk(0, 0, 0, 1, 1)" 1`] = `"cmyk(0%, 0%, 0%, 100%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0,0,1,0)" toCMYK method with decimals as CSS from "cmyk(0,0,1,0)" 1`] = `"cmyk(0%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0, 0, 1, 0)" toCMYK method with decimals as CSS from "cmyk(0, 0, 1, 0)" 1`] = `"cmyk(0%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0,0,1,0)" toCMYKA method with decimals as CSS from "cmyk(0,0,1,0)" 1`] = `"cmyk(0%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0, 0, 1, 0)" toCMYKA method with decimals as CSS from "cmyk(0, 0, 1, 0)" 1`] = `"cmyk(0%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0,0,1,0,1)" toCMYK method with decimals as CSS from "cmyk(0,0,1,0,1)" 1`] = `"cmyk(0%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0, 0, 1, 0, 1)" toCMYK method with decimals as CSS from "cmyk(0, 0, 1, 0, 1)" 1`] = `"cmyk(0%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0,0,1,0,1)" toCMYKA method with decimals as CSS from "cmyk(0,0,1,0,1)" 1`] = `"cmyk(0%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0, 0, 1, 0, 1)" toCMYKA method with decimals as CSS from "cmyk(0, 0, 1, 0, 1)" 1`] = `"cmyk(0%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0,1,0,0)" toCMYK method with decimals as CSS from "cmyk(0,1,0,0)" 1`] = `"cmyk(0%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0, 1, 0, 0)" toCMYK method with decimals as CSS from "cmyk(0, 1, 0, 0)" 1`] = `"cmyk(0%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0,1,0,0)" toCMYKA method with decimals as CSS from "cmyk(0,1,0,0)" 1`] = `"cmyk(0%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0, 1, 0, 0)" toCMYKA method with decimals as CSS from "cmyk(0, 1, 0, 0)" 1`] = `"cmyk(0%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0,1,0,0,1)" toCMYK method with decimals as CSS from "cmyk(0,1,0,0,1)" 1`] = `"cmyk(0%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0, 1, 0, 0, 1)" toCMYK method with decimals as CSS from "cmyk(0, 1, 0, 0, 1)" 1`] = `"cmyk(0%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0,1,0,0,1)" toCMYKA method with decimals as CSS from "cmyk(0,1,0,0,1)" 1`] = `"cmyk(0%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0, 1, 0, 0, 1)" toCMYKA method with decimals as CSS from "cmyk(0, 1, 0, 0, 1)" 1`] = `"cmyk(0%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0,1,1,0)" toCMYK method with decimals as CSS from "cmyk(0,1,1,0)" 1`] = `"cmyk(0%,100%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0, 1, 1, 0)" toCMYK method with decimals as CSS from "cmyk(0, 1, 1, 0)" 1`] = `"cmyk(0%, 100%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0,1,1,0)" toCMYKA method with decimals as CSS from "cmyk(0,1,1,0)" 1`] = `"cmyk(0%,100%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0, 1, 1, 0)" toCMYKA method with decimals as CSS from "cmyk(0, 1, 1, 0)" 1`] = `"cmyk(0%, 100%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0,1,1,0,1)" toCMYK method with decimals as CSS from "cmyk(0,1,1,0,1)" 1`] = `"cmyk(0%,100%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0, 1, 1, 0, 1)" toCMYK method with decimals as CSS from "cmyk(0, 1, 1, 0, 1)" 1`] = `"cmyk(0%, 100%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(0,1,1,0,1)" toCMYKA method with decimals as CSS from "cmyk(0,1,1,0,1)" 1`] = `"cmyk(0%,100%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(0, 1, 1, 0, 1)" toCMYKA method with decimals as CSS from "cmyk(0, 1, 1, 0, 1)" 1`] = `"cmyk(0%, 100%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 0 0 / 1)" toCMYK method with decimals as CSS from "cmyk(1 0 0 0 / 1)" 1`] = `"cmyk(100%,0%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 0 0 / 1)" toCMYK method with decimals as CSS from "cmyk(1 0 0 0 / 1)" 1`] = `"cmyk(100%, 0%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 0 0 / 1)" toCMYKA method with decimals as CSS from "cmyk(1 0 0 0 / 1)" 1`] = `"cmyk(100%,0%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 0 0 / 1)" toCMYKA method with decimals as CSS from "cmyk(1 0 0 0 / 1)" 1`] = `"cmyk(100%, 0%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 0 0 / 100%)" toCMYK method with decimals as CSS from "cmyk(1 0 0 0 / 100%)" 1`] = `"cmyk(100%,0%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 0 0 / 100%)" toCMYK method with decimals as CSS from "cmyk(1 0 0 0 / 100%)" 1`] = `"cmyk(100%, 0%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 0 0 / 100%)" toCMYKA method with decimals as CSS from "cmyk(1 0 0 0 / 100%)" 1`] = `"cmyk(100%,0%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 0 0 / 100%)" toCMYKA method with decimals as CSS from "cmyk(1 0 0 0 / 100%)" 1`] = `"cmyk(100%, 0%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 0 0)" toCMYK method with decimals as CSS from "cmyk(1 0 0 0)" 1`] = `"cmyk(100%,0%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 0 0)" toCMYK method with decimals as CSS from "cmyk(1 0 0 0)" 1`] = `"cmyk(100%, 0%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 0 0)" toCMYKA method with decimals as CSS from "cmyk(1 0 0 0)" 1`] = `"cmyk(100%,0%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 0 0)" toCMYKA method with decimals as CSS from "cmyk(1 0 0 0)" 1`] = `"cmyk(100%, 0%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 1 0 / 1)" toCMYK method with decimals as CSS from "cmyk(1 0 1 0 / 1)" 1`] = `"cmyk(100%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 1 0 / 1)" toCMYK method with decimals as CSS from "cmyk(1 0 1 0 / 1)" 1`] = `"cmyk(100%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 1 0 / 1)" toCMYKA method with decimals as CSS from "cmyk(1 0 1 0 / 1)" 1`] = `"cmyk(100%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 1 0 / 1)" toCMYKA method with decimals as CSS from "cmyk(1 0 1 0 / 1)" 1`] = `"cmyk(100%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 1 0 / 100%)" toCMYK method with decimals as CSS from "cmyk(1 0 1 0 / 100%)" 1`] = `"cmyk(100%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 1 0 / 100%)" toCMYK method with decimals as CSS from "cmyk(1 0 1 0 / 100%)" 1`] = `"cmyk(100%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 1 0 / 100%)" toCMYKA method with decimals as CSS from "cmyk(1 0 1 0 / 100%)" 1`] = `"cmyk(100%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 1 0 / 100%)" toCMYKA method with decimals as CSS from "cmyk(1 0 1 0 / 100%)" 1`] = `"cmyk(100%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 1 0)" toCMYK method with decimals as CSS from "cmyk(1 0 1 0)" 1`] = `"cmyk(100%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 1 0)" toCMYK method with decimals as CSS from "cmyk(1 0 1 0)" 1`] = `"cmyk(100%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 1 0)" toCMYKA method with decimals as CSS from "cmyk(1 0 1 0)" 1`] = `"cmyk(100%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1 0 1 0)" toCMYKA method with decimals as CSS from "cmyk(1 0 1 0)" 1`] = `"cmyk(100%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1 1 0 0 / 1)" toCMYK method with decimals as CSS from "cmyk(1 1 0 0 / 1)" 1`] = `"cmyk(100%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1 1 0 0 / 1)" toCMYK method with decimals as CSS from "cmyk(1 1 0 0 / 1)" 1`] = `"cmyk(100%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1 1 0 0 / 1)" toCMYKA method with decimals as CSS from "cmyk(1 1 0 0 / 1)" 1`] = `"cmyk(100%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1 1 0 0 / 1)" toCMYKA method with decimals as CSS from "cmyk(1 1 0 0 / 1)" 1`] = `"cmyk(100%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1 1 0 0 / 100%)" toCMYK method with decimals as CSS from "cmyk(1 1 0 0 / 100%)" 1`] = `"cmyk(100%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1 1 0 0 / 100%)" toCMYK method with decimals as CSS from "cmyk(1 1 0 0 / 100%)" 1`] = `"cmyk(100%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1 1 0 0 / 100%)" toCMYKA method with decimals as CSS from "cmyk(1 1 0 0 / 100%)" 1`] = `"cmyk(100%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1 1 0 0 / 100%)" toCMYKA method with decimals as CSS from "cmyk(1 1 0 0 / 100%)" 1`] = `"cmyk(100%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1 1 0 0)" toCMYK method with decimals as CSS from "cmyk(1 1 0 0)" 1`] = `"cmyk(100%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1 1 0 0)" toCMYK method with decimals as CSS from "cmyk(1 1 0 0)" 1`] = `"cmyk(100%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1 1 0 0)" toCMYKA method with decimals as CSS from "cmyk(1 1 0 0)" 1`] = `"cmyk(100%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1 1 0 0)" toCMYKA method with decimals as CSS from "cmyk(1 1 0 0)" 1`] = `"cmyk(100%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1,0,0,0)" toCMYK method with decimals as CSS from "cmyk(1,0,0,0)" 1`] = `"cmyk(100%,0%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1, 0, 0, 0)" toCMYK method with decimals as CSS from "cmyk(1, 0, 0, 0)" 1`] = `"cmyk(100%, 0%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1,0,0,0)" toCMYKA method with decimals as CSS from "cmyk(1,0,0,0)" 1`] = `"cmyk(100%,0%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1, 0, 0, 0)" toCMYKA method with decimals as CSS from "cmyk(1, 0, 0, 0)" 1`] = `"cmyk(100%, 0%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1,0,0,0,1)" toCMYK method with decimals as CSS from "cmyk(1,0,0,0,1)" 1`] = `"cmyk(100%,0%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1, 0, 0, 0, 1)" toCMYK method with decimals as CSS from "cmyk(1, 0, 0, 0, 1)" 1`] = `"cmyk(100%, 0%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1,0,0,0,1)" toCMYKA method with decimals as CSS from "cmyk(1,0,0,0,1)" 1`] = `"cmyk(100%,0%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1, 0, 0, 0, 1)" toCMYKA method with decimals as CSS from "cmyk(1, 0, 0, 0, 1)" 1`] = `"cmyk(100%, 0%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1,0,1,0)" toCMYK method with decimals as CSS from "cmyk(1,0,1,0)" 1`] = `"cmyk(100%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1, 0, 1, 0)" toCMYK method with decimals as CSS from "cmyk(1, 0, 1, 0)" 1`] = `"cmyk(100%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1,0,1,0)" toCMYKA method with decimals as CSS from "cmyk(1,0,1,0)" 1`] = `"cmyk(100%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1, 0, 1, 0)" toCMYKA method with decimals as CSS from "cmyk(1, 0, 1, 0)" 1`] = `"cmyk(100%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1,0,1,0,1)" toCMYK method with decimals as CSS from "cmyk(1,0,1,0,1)" 1`] = `"cmyk(100%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1, 0, 1, 0, 1)" toCMYK method with decimals as CSS from "cmyk(1, 0, 1, 0, 1)" 1`] = `"cmyk(100%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1,0,1,0,1)" toCMYKA method with decimals as CSS from "cmyk(1,0,1,0,1)" 1`] = `"cmyk(100%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1, 0, 1, 0, 1)" toCMYKA method with decimals as CSS from "cmyk(1, 0, 1, 0, 1)" 1`] = `"cmyk(100%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1,1,0,0)" toCMYK method with decimals as CSS from "cmyk(1,1,0,0)" 1`] = `"cmyk(100%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1, 1, 0, 0)" toCMYK method with decimals as CSS from "cmyk(1, 1, 0, 0)" 1`] = `"cmyk(100%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1,1,0,0)" toCMYKA method with decimals as CSS from "cmyk(1,1,0,0)" 1`] = `"cmyk(100%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1, 1, 0, 0)" toCMYKA method with decimals as CSS from "cmyk(1, 1, 0, 0)" 1`] = `"cmyk(100%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1,1,0,0,1)" toCMYK method with decimals as CSS from "cmyk(1,1,0,0,1)" 1`] = `"cmyk(100%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1, 1, 0, 0, 1)" toCMYK method with decimals as CSS from "cmyk(1, 1, 0, 0, 1)" 1`] = `"cmyk(100%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(1,1,0,0,1)" toCMYKA method with decimals as CSS from "cmyk(1,1,0,0,1)" 1`] = `"cmyk(100%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(1, 1, 0, 0, 1)" toCMYKA method with decimals as CSS from "cmyk(1, 1, 0, 0, 1)" 1`] = `"cmyk(100%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 0% 0% / 1)" toCMYK method with decimals as CSS from "cmyk(100% 0% 0% 0% / 1)" 1`] = `"cmyk(100%,0%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 0% 0% / 1)" toCMYK method with decimals as CSS from "cmyk(100% 0% 0% 0% / 1)" 1`] = `"cmyk(100%, 0%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 0% 0% / 1)" toCMYKA method with decimals as CSS from "cmyk(100% 0% 0% 0% / 1)" 1`] = `"cmyk(100%,0%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 0% 0% / 1)" toCMYKA method with decimals as CSS from "cmyk(100% 0% 0% 0% / 1)" 1`] = `"cmyk(100%, 0%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 0% 0% / 100%)" toCMYK method with decimals as CSS from "cmyk(100% 0% 0% 0% / 100%)" 1`] = `"cmyk(100%,0%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 0% 0% / 100%)" toCMYK method with decimals as CSS from "cmyk(100% 0% 0% 0% / 100%)" 1`] = `"cmyk(100%, 0%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 0% 0% / 100%)" toCMYKA method with decimals as CSS from "cmyk(100% 0% 0% 0% / 100%)" 1`] = `"cmyk(100%,0%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 0% 0% / 100%)" toCMYKA method with decimals as CSS from "cmyk(100% 0% 0% 0% / 100%)" 1`] = `"cmyk(100%, 0%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 0% 0%)" toCMYK method with decimals as CSS from "cmyk(100% 0% 0% 0%)" 1`] = `"cmyk(100%,0%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 0% 0%)" toCMYK method with decimals as CSS from "cmyk(100% 0% 0% 0%)" 1`] = `"cmyk(100%, 0%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 0% 0%)" toCMYKA method with decimals as CSS from "cmyk(100% 0% 0% 0%)" 1`] = `"cmyk(100%,0%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 0% 0%)" toCMYKA method with decimals as CSS from "cmyk(100% 0% 0% 0%)" 1`] = `"cmyk(100%, 0%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 100% 0% / 1)" toCMYK method with decimals as CSS from "cmyk(100% 0% 100% 0% / 1)" 1`] = `"cmyk(100%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 100% 0% / 1)" toCMYK method with decimals as CSS from "cmyk(100% 0% 100% 0% / 1)" 1`] = `"cmyk(100%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 100% 0% / 1)" toCMYKA method with decimals as CSS from "cmyk(100% 0% 100% 0% / 1)" 1`] = `"cmyk(100%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 100% 0% / 1)" toCMYKA method with decimals as CSS from "cmyk(100% 0% 100% 0% / 1)" 1`] = `"cmyk(100%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 100% 0% / 100%)" toCMYK method with decimals as CSS from "cmyk(100% 0% 100% 0% / 100%)" 1`] = `"cmyk(100%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 100% 0% / 100%)" toCMYK method with decimals as CSS from "cmyk(100% 0% 100% 0% / 100%)" 1`] = `"cmyk(100%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 100% 0% / 100%)" toCMYKA method with decimals as CSS from "cmyk(100% 0% 100% 0% / 100%)" 1`] = `"cmyk(100%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 100% 0% / 100%)" toCMYKA method with decimals as CSS from "cmyk(100% 0% 100% 0% / 100%)" 1`] = `"cmyk(100%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 100% 0%)" toCMYK method with decimals as CSS from "cmyk(100% 0% 100% 0%)" 1`] = `"cmyk(100%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 100% 0%)" toCMYK method with decimals as CSS from "cmyk(100% 0% 100% 0%)" 1`] = `"cmyk(100%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 100% 0%)" toCMYKA method with decimals as CSS from "cmyk(100% 0% 100% 0%)" 1`] = `"cmyk(100%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 0% 100% 0%)" toCMYKA method with decimals as CSS from "cmyk(100% 0% 100% 0%)" 1`] = `"cmyk(100%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 100% 0% 0% / 1)" toCMYK method with decimals as CSS from "cmyk(100% 100% 0% 0% / 1)" 1`] = `"cmyk(100%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 100% 0% 0% / 1)" toCMYK method with decimals as CSS from "cmyk(100% 100% 0% 0% / 1)" 1`] = `"cmyk(100%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 100% 0% 0% / 1)" toCMYKA method with decimals as CSS from "cmyk(100% 100% 0% 0% / 1)" 1`] = `"cmyk(100%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 100% 0% 0% / 1)" toCMYKA method with decimals as CSS from "cmyk(100% 100% 0% 0% / 1)" 1`] = `"cmyk(100%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 100% 0% 0% / 100%)" toCMYK method with decimals as CSS from "cmyk(100% 100% 0% 0% / 100%)" 1`] = `"cmyk(100%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 100% 0% 0% / 100%)" toCMYK method with decimals as CSS from "cmyk(100% 100% 0% 0% / 100%)" 1`] = `"cmyk(100%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 100% 0% 0% / 100%)" toCMYKA method with decimals as CSS from "cmyk(100% 100% 0% 0% / 100%)" 1`] = `"cmyk(100%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 100% 0% 0% / 100%)" toCMYKA method with decimals as CSS from "cmyk(100% 100% 0% 0% / 100%)" 1`] = `"cmyk(100%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 100% 0% 0%)" toCMYK method with decimals as CSS from "cmyk(100% 100% 0% 0%)" 1`] = `"cmyk(100%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 100% 0% 0%)" toCMYK method with decimals as CSS from "cmyk(100% 100% 0% 0%)" 1`] = `"cmyk(100%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 100% 0% 0%)" toCMYKA method with decimals as CSS from "cmyk(100% 100% 0% 0%)" 1`] = `"cmyk(100%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100% 100% 0% 0%)" toCMYKA method with decimals as CSS from "cmyk(100% 100% 0% 0%)" 1`] = `"cmyk(100%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100%,0%,0%,0%)" toCMYK method with decimals as CSS from "cmyk(100%,0%,0%,0%)" 1`] = `"cmyk(100%,0%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100%, 0%, 0%, 0%)" toCMYK method with decimals as CSS from "cmyk(100%, 0%, 0%, 0%)" 1`] = `"cmyk(100%, 0%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100%,0%,0%,0%)" toCMYKA method with decimals as CSS from "cmyk(100%,0%,0%,0%)" 1`] = `"cmyk(100%,0%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100%, 0%, 0%, 0%)" toCMYKA method with decimals as CSS from "cmyk(100%, 0%, 0%, 0%)" 1`] = `"cmyk(100%, 0%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100%,0%,0%,0%,1)" toCMYK method with decimals as CSS from "cmyk(100%,0%,0%,0%,1)" 1`] = `"cmyk(100%,0%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100%, 0%, 0%, 0%, 1)" toCMYK method with decimals as CSS from "cmyk(100%, 0%, 0%, 0%, 1)" 1`] = `"cmyk(100%, 0%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100%,0%,0%,0%,1)" toCMYKA method with decimals as CSS from "cmyk(100%,0%,0%,0%,1)" 1`] = `"cmyk(100%,0%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100%, 0%, 0%, 0%, 1)" toCMYKA method with decimals as CSS from "cmyk(100%, 0%, 0%, 0%, 1)" 1`] = `"cmyk(100%, 0%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100%,0%,100%,0%)" toCMYK method with decimals as CSS from "cmyk(100%,0%,100%,0%)" 1`] = `"cmyk(100%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100%, 0%, 100%, 0%)" toCMYK method with decimals as CSS from "cmyk(100%, 0%, 100%, 0%)" 1`] = `"cmyk(100%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100%,0%,100%,0%)" toCMYKA method with decimals as CSS from "cmyk(100%,0%,100%,0%)" 1`] = `"cmyk(100%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100%, 0%, 100%, 0%)" toCMYKA method with decimals as CSS from "cmyk(100%, 0%, 100%, 0%)" 1`] = `"cmyk(100%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100%,0%,100%,0%,1)" toCMYK method with decimals as CSS from "cmyk(100%,0%,100%,0%,1)" 1`] = `"cmyk(100%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100%, 0%, 100%, 0%, 1)" toCMYK method with decimals as CSS from "cmyk(100%, 0%, 100%, 0%, 1)" 1`] = `"cmyk(100%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100%,0%,100%,0%,1)" toCMYKA method with decimals as CSS from "cmyk(100%,0%,100%,0%,1)" 1`] = `"cmyk(100%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100%, 0%, 100%, 0%, 1)" toCMYKA method with decimals as CSS from "cmyk(100%, 0%, 100%, 0%, 1)" 1`] = `"cmyk(100%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100%,100%,0%,0%)" toCMYK method with decimals as CSS from "cmyk(100%,100%,0%,0%)" 1`] = `"cmyk(100%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100%, 100%, 0%, 0%)" toCMYK method with decimals as CSS from "cmyk(100%, 100%, 0%, 0%)" 1`] = `"cmyk(100%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100%,100%,0%,0%)" toCMYKA method with decimals as CSS from "cmyk(100%,100%,0%,0%)" 1`] = `"cmyk(100%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100%, 100%, 0%, 0%)" toCMYKA method with decimals as CSS from "cmyk(100%, 100%, 0%, 0%)" 1`] = `"cmyk(100%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100%,100%,0%,0%,1)" toCMYK method with decimals as CSS from "cmyk(100%,100%,0%,0%,1)" 1`] = `"cmyk(100%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100%, 100%, 0%, 0%, 1)" toCMYK method with decimals as CSS from "cmyk(100%, 100%, 0%, 0%, 1)" 1`] = `"cmyk(100%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for "cmyk(100%,100%,0%,0%,1)" toCMYKA method with decimals as CSS from "cmyk(100%,100%,0%,0%,1)" 1`] = `"cmyk(100%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for "cmyk(100%, 100%, 0%, 0%, 1)" toCMYKA method with decimals as CSS from "cmyk(100%, 100%, 0%, 0%, 1)" 1`] = `"cmyk(100%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"0%","k":"100%"} toCMYK method with decimals as CSS from {"c":"0%","m":"0%","y":"0%","k":"100%"} 1`] = `"cmyk(0%,0%,0%,100%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"0%","k":"100%"} toCMYK method with decimals as CSS from {"c":"0%","m":"0%","y":"0%","k":"100%"} 1`] = `"cmyk(0%, 0%, 0%, 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"0%","k":"100%"} toCMYKA method with decimals as CSS from {"c":"0%","m":"0%","y":"0%","k":"100%"} 1`] = `"cmyk(0%,0%,0%,100%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"0%","k":"100%"} toCMYKA method with decimals as CSS from {"c":"0%","m":"0%","y":"0%","k":"100%"} 1`] = `"cmyk(0%, 0%, 0%, 100%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"100%","k":"0%"} toCMYK method with decimals as CSS from {"c":"0%","m":"0%","y":"100%","k":"0%"} 1`] = `"cmyk(0%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"100%","k":"0%"} toCMYK method with decimals as CSS from {"c":"0%","m":"0%","y":"100%","k":"0%"} 1`] = `"cmyk(0%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"100%","k":"0%"} toCMYKA method with decimals as CSS from {"c":"0%","m":"0%","y":"100%","k":"0%"} 1`] = `"cmyk(0%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"100%","k":"0%"} toCMYKA method with decimals as CSS from {"c":"0%","m":"0%","y":"100%","k":"0%"} 1`] = `"cmyk(0%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"0%","k":"0%"} toCMYK method with decimals as CSS from {"c":"0%","m":"100%","y":"0%","k":"0%"} 1`] = `"cmyk(0%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"0%","k":"0%"} toCMYK method with decimals as CSS from {"c":"0%","m":"100%","y":"0%","k":"0%"} 1`] = `"cmyk(0%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"0%","k":"0%"} toCMYKA method with decimals as CSS from {"c":"0%","m":"100%","y":"0%","k":"0%"} 1`] = `"cmyk(0%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"0%","k":"0%"} toCMYKA method with decimals as CSS from {"c":"0%","m":"100%","y":"0%","k":"0%"} 1`] = `"cmyk(0%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"100%","k":"0%"} toCMYK method with decimals as CSS from {"c":"0%","m":"100%","y":"100%","k":"0%"} 1`] = `"cmyk(0%,100%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"100%","k":"0%"} toCMYK method with decimals as CSS from {"c":"0%","m":"100%","y":"100%","k":"0%"} 1`] = `"cmyk(0%, 100%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"100%","k":"0%"} toCMYKA method with decimals as CSS from {"c":"0%","m":"100%","y":"100%","k":"0%"} 1`] = `"cmyk(0%,100%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"100%","k":"0%"} toCMYKA method with decimals as CSS from {"c":"0%","m":"100%","y":"100%","k":"0%"} 1`] = `"cmyk(0%, 100%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"0%","k":"0%"} toCMYK method with decimals as CSS from {"c":"100%","m":"0%","y":"0%","k":"0%"} 1`] = `"cmyk(100%,0%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"0%","k":"0%"} toCMYK method with decimals as CSS from {"c":"100%","m":"0%","y":"0%","k":"0%"} 1`] = `"cmyk(100%, 0%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"0%","k":"0%"} toCMYKA method with decimals as CSS from {"c":"100%","m":"0%","y":"0%","k":"0%"} 1`] = `"cmyk(100%,0%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"0%","k":"0%"} toCMYKA method with decimals as CSS from {"c":"100%","m":"0%","y":"0%","k":"0%"} 1`] = `"cmyk(100%, 0%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"100%","k":"0%"} toCMYK method with decimals as CSS from {"c":"100%","m":"0%","y":"100%","k":"0%"} 1`] = `"cmyk(100%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"100%","k":"0%"} toCMYK method with decimals as CSS from {"c":"100%","m":"0%","y":"100%","k":"0%"} 1`] = `"cmyk(100%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"100%","k":"0%"} toCMYKA method with decimals as CSS from {"c":"100%","m":"0%","y":"100%","k":"0%"} 1`] = `"cmyk(100%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"100%","k":"0%"} toCMYKA method with decimals as CSS from {"c":"100%","m":"0%","y":"100%","k":"0%"} 1`] = `"cmyk(100%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"100%","y":"0%","k":"0%"} toCMYK method with decimals as CSS from {"c":"100%","m":"100%","y":"0%","k":"0%"} 1`] = `"cmyk(100%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"100%","y":"0%","k":"0%"} toCMYK method with decimals as CSS from {"c":"100%","m":"100%","y":"0%","k":"0%"} 1`] = `"cmyk(100%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"100%","y":"0%","k":"0%"} toCMYKA method with decimals as CSS from {"c":"100%","m":"100%","y":"0%","k":"0%"} 1`] = `"cmyk(100%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"100%","y":"0%","k":"0%"} toCMYKA method with decimals as CSS from {"c":"100%","m":"100%","y":"0%","k":"0%"} 1`] = `"cmyk(100%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1,"a":1} toCMYK method with decimals as CSS from {"c":0,"m":0,"y":0,"k":1,"a":1} 1`] = `"cmyk(0%,0%,0%,100%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1,"a":1} toCMYK method with decimals as CSS from {"c":0,"m":0,"y":0,"k":1,"a":1} 1`] = `"cmyk(0%, 0%, 0%, 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1,"a":1} toCMYKA method with decimals as CSS from {"c":0,"m":0,"y":0,"k":1,"a":1} 1`] = `"cmyk(0%,0%,0%,100%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1,"a":1} toCMYKA method with decimals as CSS from {"c":0,"m":0,"y":0,"k":1,"a":1} 1`] = `"cmyk(0%, 0%, 0%, 100%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1} toCMYK method with decimals as CSS from {"c":0,"m":0,"y":0,"k":1} 1`] = `"cmyk(0%,0%,0%,100%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1} toCMYK method with decimals as CSS from {"c":0,"m":0,"y":0,"k":1} 1`] = `"cmyk(0%, 0%, 0%, 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1} toCMYKA method with decimals as CSS from {"c":0,"m":0,"y":0,"k":1} 1`] = `"cmyk(0%,0%,0%,100%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1} toCMYKA method with decimals as CSS from {"c":0,"m":0,"y":0,"k":1} 1`] = `"cmyk(0%, 0%, 0%, 100%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100,"a":1} toCMYK method with decimals as CSS from {"c":0,"m":0,"y":0,"k":100,"a":1} 1`] = `"cmyk(0%,0%,0%,100%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100,"a":1} toCMYK method with decimals as CSS from {"c":0,"m":0,"y":0,"k":100,"a":1} 1`] = `"cmyk(0%, 0%, 0%, 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100,"a":1} toCMYKA method with decimals as CSS from {"c":0,"m":0,"y":0,"k":100,"a":1} 1`] = `"cmyk(0%,0%,0%,100%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100,"a":1} toCMYKA method with decimals as CSS from {"c":0,"m":0,"y":0,"k":100,"a":1} 1`] = `"cmyk(0%, 0%, 0%, 100%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100} toCMYK method with decimals as CSS from {"c":0,"m":0,"y":0,"k":100} 1`] = `"cmyk(0%,0%,0%,100%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100} toCMYK method with decimals as CSS from {"c":0,"m":0,"y":0,"k":100} 1`] = `"cmyk(0%, 0%, 0%, 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100} toCMYKA method with decimals as CSS from {"c":0,"m":0,"y":0,"k":100} 1`] = `"cmyk(0%,0%,0%,100%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100} toCMYKA method with decimals as CSS from {"c":0,"m":0,"y":0,"k":100} 1`] = `"cmyk(0%, 0%, 0%, 100%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":0,"m":0,"y":1,"k":0,"a":1} 1`] = `"cmyk(0%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":0,"m":0,"y":1,"k":0,"a":1} 1`] = `"cmyk(0%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":0,"m":0,"y":1,"k":0,"a":1} 1`] = `"cmyk(0%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":0,"m":0,"y":1,"k":0,"a":1} 1`] = `"cmyk(0%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0} toCMYK method with decimals as CSS from {"c":0,"m":0,"y":1,"k":0} 1`] = `"cmyk(0%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0} toCMYK method with decimals as CSS from {"c":0,"m":0,"y":1,"k":0} 1`] = `"cmyk(0%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0} toCMYKA method with decimals as CSS from {"c":0,"m":0,"y":1,"k":0} 1`] = `"cmyk(0%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0} toCMYKA method with decimals as CSS from {"c":0,"m":0,"y":1,"k":0} 1`] = `"cmyk(0%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":0,"m":0,"y":100,"k":0,"a":1} 1`] = `"cmyk(0%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":0,"m":0,"y":100,"k":0,"a":1} 1`] = `"cmyk(0%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":0,"m":0,"y":100,"k":0,"a":1} 1`] = `"cmyk(0%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":0,"m":0,"y":100,"k":0,"a":1} 1`] = `"cmyk(0%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0} toCMYK method with decimals as CSS from {"c":0,"m":0,"y":100,"k":0} 1`] = `"cmyk(0%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0} toCMYK method with decimals as CSS from {"c":0,"m":0,"y":100,"k":0} 1`] = `"cmyk(0%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0} toCMYKA method with decimals as CSS from {"c":0,"m":0,"y":100,"k":0} 1`] = `"cmyk(0%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0} toCMYKA method with decimals as CSS from {"c":0,"m":0,"y":100,"k":0} 1`] = `"cmyk(0%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":0,"m":1,"y":0,"k":0,"a":1} 1`] = `"cmyk(0%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":0,"m":1,"y":0,"k":0,"a":1} 1`] = `"cmyk(0%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":0,"m":1,"y":0,"k":0,"a":1} 1`] = `"cmyk(0%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":0,"m":1,"y":0,"k":0,"a":1} 1`] = `"cmyk(0%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0} toCMYK method with decimals as CSS from {"c":0,"m":1,"y":0,"k":0} 1`] = `"cmyk(0%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0} toCMYK method with decimals as CSS from {"c":0,"m":1,"y":0,"k":0} 1`] = `"cmyk(0%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0} toCMYKA method with decimals as CSS from {"c":0,"m":1,"y":0,"k":0} 1`] = `"cmyk(0%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0} toCMYKA method with decimals as CSS from {"c":0,"m":1,"y":0,"k":0} 1`] = `"cmyk(0%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":0,"m":1,"y":1,"k":0,"a":1} 1`] = `"cmyk(0%,100%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":0,"m":1,"y":1,"k":0,"a":1} 1`] = `"cmyk(0%, 100%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":0,"m":1,"y":1,"k":0,"a":1} 1`] = `"cmyk(0%,100%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":0,"m":1,"y":1,"k":0,"a":1} 1`] = `"cmyk(0%, 100%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0} toCMYK method with decimals as CSS from {"c":0,"m":1,"y":1,"k":0} 1`] = `"cmyk(0%,100%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0} toCMYK method with decimals as CSS from {"c":0,"m":1,"y":1,"k":0} 1`] = `"cmyk(0%, 100%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0} toCMYKA method with decimals as CSS from {"c":0,"m":1,"y":1,"k":0} 1`] = `"cmyk(0%,100%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0} toCMYKA method with decimals as CSS from {"c":0,"m":1,"y":1,"k":0} 1`] = `"cmyk(0%, 100%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":0,"m":100,"y":0,"k":0,"a":1} 1`] = `"cmyk(0%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":0,"m":100,"y":0,"k":0,"a":1} 1`] = `"cmyk(0%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":0,"m":100,"y":0,"k":0,"a":1} 1`] = `"cmyk(0%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":0,"m":100,"y":0,"k":0,"a":1} 1`] = `"cmyk(0%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0} toCMYK method with decimals as CSS from {"c":0,"m":100,"y":0,"k":0} 1`] = `"cmyk(0%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0} toCMYK method with decimals as CSS from {"c":0,"m":100,"y":0,"k":0} 1`] = `"cmyk(0%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0} toCMYKA method with decimals as CSS from {"c":0,"m":100,"y":0,"k":0} 1`] = `"cmyk(0%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0} toCMYKA method with decimals as CSS from {"c":0,"m":100,"y":0,"k":0} 1`] = `"cmyk(0%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":0,"m":100,"y":100,"k":0,"a":1} 1`] = `"cmyk(0%,100%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":0,"m":100,"y":100,"k":0,"a":1} 1`] = `"cmyk(0%, 100%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":0,"m":100,"y":100,"k":0,"a":1} 1`] = `"cmyk(0%,100%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":0,"m":100,"y":100,"k":0,"a":1} 1`] = `"cmyk(0%, 100%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0} toCMYK method with decimals as CSS from {"c":0,"m":100,"y":100,"k":0} 1`] = `"cmyk(0%,100%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0} toCMYK method with decimals as CSS from {"c":0,"m":100,"y":100,"k":0} 1`] = `"cmyk(0%, 100%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0} toCMYKA method with decimals as CSS from {"c":0,"m":100,"y":100,"k":0} 1`] = `"cmyk(0%,100%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0} toCMYKA method with decimals as CSS from {"c":0,"m":100,"y":100,"k":0} 1`] = `"cmyk(0%, 100%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":1,"m":0,"y":0,"k":0,"a":1} 1`] = `"cmyk(100%,0%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":1,"m":0,"y":0,"k":0,"a":1} 1`] = `"cmyk(100%, 0%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":1,"m":0,"y":0,"k":0,"a":1} 1`] = `"cmyk(100%,0%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":1,"m":0,"y":0,"k":0,"a":1} 1`] = `"cmyk(100%, 0%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0} toCMYK method with decimals as CSS from {"c":1,"m":0,"y":0,"k":0} 1`] = `"cmyk(100%,0%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0} toCMYK method with decimals as CSS from {"c":1,"m":0,"y":0,"k":0} 1`] = `"cmyk(100%, 0%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0} toCMYKA method with decimals as CSS from {"c":1,"m":0,"y":0,"k":0} 1`] = `"cmyk(100%,0%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0} toCMYKA method with decimals as CSS from {"c":1,"m":0,"y":0,"k":0} 1`] = `"cmyk(100%, 0%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":1,"m":0,"y":1,"k":0,"a":1} 1`] = `"cmyk(100%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":1,"m":0,"y":1,"k":0,"a":1} 1`] = `"cmyk(100%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":1,"m":0,"y":1,"k":0,"a":1} 1`] = `"cmyk(100%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":1,"m":0,"y":1,"k":0,"a":1} 1`] = `"cmyk(100%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0} toCMYK method with decimals as CSS from {"c":1,"m":0,"y":1,"k":0} 1`] = `"cmyk(100%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0} toCMYK method with decimals as CSS from {"c":1,"m":0,"y":1,"k":0} 1`] = `"cmyk(100%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0} toCMYKA method with decimals as CSS from {"c":1,"m":0,"y":1,"k":0} 1`] = `"cmyk(100%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0} toCMYKA method with decimals as CSS from {"c":1,"m":0,"y":1,"k":0} 1`] = `"cmyk(100%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":1,"m":1,"y":0,"k":0,"a":1} 1`] = `"cmyk(100%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":1,"m":1,"y":0,"k":0,"a":1} 1`] = `"cmyk(100%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":1,"m":1,"y":0,"k":0,"a":1} 1`] = `"cmyk(100%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":1,"m":1,"y":0,"k":0,"a":1} 1`] = `"cmyk(100%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0} toCMYK method with decimals as CSS from {"c":1,"m":1,"y":0,"k":0} 1`] = `"cmyk(100%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0} toCMYK method with decimals as CSS from {"c":1,"m":1,"y":0,"k":0} 1`] = `"cmyk(100%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0} toCMYKA method with decimals as CSS from {"c":1,"m":1,"y":0,"k":0} 1`] = `"cmyk(100%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0} toCMYKA method with decimals as CSS from {"c":1,"m":1,"y":0,"k":0} 1`] = `"cmyk(100%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":100,"m":0,"y":0,"k":0,"a":1} 1`] = `"cmyk(100%,0%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":100,"m":0,"y":0,"k":0,"a":1} 1`] = `"cmyk(100%, 0%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":100,"m":0,"y":0,"k":0,"a":1} 1`] = `"cmyk(100%,0%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":100,"m":0,"y":0,"k":0,"a":1} 1`] = `"cmyk(100%, 0%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0} toCMYK method with decimals as CSS from {"c":100,"m":0,"y":0,"k":0} 1`] = `"cmyk(100%,0%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0} toCMYK method with decimals as CSS from {"c":100,"m":0,"y":0,"k":0} 1`] = `"cmyk(100%, 0%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0} toCMYKA method with decimals as CSS from {"c":100,"m":0,"y":0,"k":0} 1`] = `"cmyk(100%,0%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0} toCMYKA method with decimals as CSS from {"c":100,"m":0,"y":0,"k":0} 1`] = `"cmyk(100%, 0%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":100,"m":0,"y":100,"k":0,"a":1} 1`] = `"cmyk(100%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":100,"m":0,"y":100,"k":0,"a":1} 1`] = `"cmyk(100%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":100,"m":0,"y":100,"k":0,"a":1} 1`] = `"cmyk(100%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":100,"m":0,"y":100,"k":0,"a":1} 1`] = `"cmyk(100%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0} toCMYK method with decimals as CSS from {"c":100,"m":0,"y":100,"k":0} 1`] = `"cmyk(100%,0%,100%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0} toCMYK method with decimals as CSS from {"c":100,"m":0,"y":100,"k":0} 1`] = `"cmyk(100%, 0%, 100%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0} toCMYKA method with decimals as CSS from {"c":100,"m":0,"y":100,"k":0} 1`] = `"cmyk(100%,0%,100%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0} toCMYKA method with decimals as CSS from {"c":100,"m":0,"y":100,"k":0} 1`] = `"cmyk(100%, 0%, 100%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":100,"m":100,"y":0,"k":0,"a":1} 1`] = `"cmyk(100%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0,"a":1} toCMYK method with decimals as CSS from {"c":100,"m":100,"y":0,"k":0,"a":1} 1`] = `"cmyk(100%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":100,"m":100,"y":0,"k":0,"a":1} 1`] = `"cmyk(100%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0,"a":1} toCMYKA method with decimals as CSS from {"c":100,"m":100,"y":0,"k":0,"a":1} 1`] = `"cmyk(100%, 100%, 0%, 0%, 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0} toCMYK method with decimals as CSS from {"c":100,"m":100,"y":0,"k":0} 1`] = `"cmyk(100%,100%,0%,0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0} toCMYK method with decimals as CSS from {"c":100,"m":100,"y":0,"k":0} 1`] = `"cmyk(100%, 100%, 0%, 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0} toCMYKA method with decimals as CSS from {"c":100,"m":100,"y":0,"k":0} 1`] = `"cmyk(100%,100%,0%,0%,1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0} toCMYKA method with decimals as CSS from {"c":100,"m":100,"y":0,"k":0} 1`] = `"cmyk(100%, 100%, 0%, 0%, 1)"`;

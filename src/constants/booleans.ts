@@ -1,0 +1,1 @@
+export const DEFAULT_COLOR_LEVEL_4 = false;

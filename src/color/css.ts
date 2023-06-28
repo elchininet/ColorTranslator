@@ -1,9 +1,6 @@
 import {
-    HEXObject,
-    RGBObject,
-    HSLObject,
-    CMYKObject,
     Color,
+    ColorModelInput,
     NumberOrString
 } from '@types';
 import {
@@ -18,22 +15,14 @@ import {
     getOrderedArrayString
 } from '#helpers';
 
-const prepareColorForCss = (color: Color, isHex = false): NumberOrString[] => {
+const prepareColorForCss = (color: Color): NumberOrString[] => {
     const props = getOrderedArrayString(Object.keys(color));
     const model = VALID_COLOR_OBJECTS[props];
     const keys = COLOR_PROPS[model];
     return keys.reduce((result: NumberOrString[], key: keyof typeof color): NumberOrString[] => {
         const value = color[key];
         if (typeof value !== 'undefined') {
-            if (isHex) {
-                result.push(
-                    toHEX(
-                        round(value, 0)
-                    )
-                );
-            } else {
-                result.push(value);
-            }
+            result.push(value);
         }
         return result;
     }, []);
@@ -46,33 +35,52 @@ const getResultFromTemplate = (template: string, vars: NumberOrString[]): string
     });
 };
 
-export const CSS = {
-    [ColorModel.HEX]: (color: HEXObject | RGBObject): string => {
-        const values = prepareColorForCss(color, true);
-        const template = values.length === 4
-            ? '#{1}{2}{3}{4}'
-            : '#{1}{2}{3}';
-        return getResultFromTemplate(template, values);
-    },
-    [ColorModel.RGB]: (color: RGBObject): string => {
-        const values = prepareColorForCss(color);
-        const template = values.length === 4
-            ? 'rgba({1},{2},{3},{4})'
-            : 'rgb({1},{2},{3})';
-        return getResultFromTemplate(template, values);
-    },
-    [ColorModel.HSL]: (color: HSLObject): string => {
-        const values = prepareColorForCss(color);
-        const template = values.length === 4
-            ? 'hsla({1},{2}%,{3}%,{4})'
-            : 'hsl({1},{2}%,{3}%)';
-        return getResultFromTemplate(template, values);
-    },
-    [ColorModel.CMYK]: (color: CMYKObject): string => {
-        const values = prepareColorForCss(color);
-        const template = values.length === 5
-            ? 'cmyk({1}%,{2}%,{3}%,{4}%,{5})'
-            : 'cmyk({1}%,{2}%,{3}%,{4}%)';
-        return getResultFromTemplate(template, values);
+
+export function CSS<T extends ColorModel>(colorModel: T, color: ColorModelInput[T], CSSColorLevel4 = false) { // TODO: specify legacy when calling
+    let values = prepareColorForCss(color);
+    let template: string;
+    switch (colorModel) {
+        case ColorModel.HEX:
+            values = values.map(value => toHEX(
+                round(value, 0)
+            ));
+                template = values.length === 4
+                    ? `#{1}{2}{3}{4}`
+                    : `#{1}{2}{3}`;
+            break;
+        case ColorModel.RGB:
+            if(CSSColorLevel4) {
+                template = values.length === 4
+                ? `rgb({1} {2} {3} / {4})`
+                : `rgb({1} {2} {3})`;
+            } else {
+                template = values.length === 4
+                ? `rgba({1}, {2}, {3}, {4})`
+                : `rgb({1}, {2}, {3})`;
+            }
+            break;
+        case ColorModel.HSL:
+            if(CSSColorLevel4) {
+                template = values.length === 4
+                ? `hsl({1} {2}% {3}% / {4})`
+                : `hsl({1} {2}% {3}%)`;
+            } else {
+                template = values.length === 4
+                ? `hsla({1}, {2}%, {3}%, {4})`
+                : `hsl({1}, {2}%, {3}%)`;
+            }
+            break;
+        case ColorModel.CMYK:
+            if(CSSColorLevel4) {
+                template = values.length === 5
+                    ? `cmyk({1}% {2}% {3}% {4}% / {5})`
+                    : `cmyk({1}% {2}% {3}% {4}%)`;
+            } else {
+                template = values.length === 5
+                    ? `cmyk({1}%, {2}%, {3}%, {4}%, {5})`
+                    : `cmyk({1}%, {2}%, {3}%, {4}%)`;
+            }
+            break;
     }
-};
+    return getResultFromTemplate(template, values);
+}
