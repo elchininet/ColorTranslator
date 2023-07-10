@@ -22,7 +22,8 @@ module.exports = {
     rules: {
         quotes: ['error', 'single', { 'avoidEscape': true, 'allowTemplateLiterals': true }],
         semi: ['error', 'always'],
-        'no-trailing-spaces': ['error']
+        'no-trailing-spaces': ['error'],
+        '@typescript-eslint/no-duplicate-enum-values': 'off'
     },
     overrides: [
         {
