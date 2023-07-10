@@ -74,3 +74,7 @@ export type ColorOutput = HEXOutput | RGBOutput | HSLOutput;
 export interface ObjectProps<T> {
     [key: string]: T;
 }
+
+export interface Options {
+    decimals: number;
+}
