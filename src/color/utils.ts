@@ -14,7 +14,8 @@ import {
     RGBOutput,
     HSLOutput,
     HEXOutput,
-    ColorOutput
+    ColorOutput,
+    Options
 } from '@types';
 import {
     HEX,
@@ -39,7 +40,8 @@ import {
     percentNumber,
     round,
     minmax,
-    grades
+    grades,
+    parseOptions
 } from '#helpers';
 import {
     rgbToHSL,
@@ -381,7 +383,9 @@ export const blend = (from: RGBObject, to: RGBObject, steps: number): RGBObject[
 };
 
 //---Shades
-export const getColorMixture = (color: ColorInputWithoutCMYK, steps: number, shades: boolean, decimals: number): ColorOutput[] => {
+export const getColorMixture = (color: ColorInputWithoutCMYK, steps: number, shades: boolean, options: Partial<Options>): ColorOutput[] => {
+    const parsedOptions = parseOptions(options);
+    const { decimals } = parsedOptions;
     const model = getColorModel(color);
     const isCSS = typeof color === 'string';
     const rgb = getRGBObject(color, model);
@@ -412,7 +416,7 @@ export const getColorMixture = (color: ColorInputWithoutCMYK, steps: number, sha
                                         ...rgbColor,
                                         a: round(rgbColor.a * 255)
                                     },
-                                    decimals
+                                    parsedOptions.decimals
                                 )
                             )
                             : CSS.HEX(
@@ -738,20 +742,23 @@ export const colorMixer = {
             ? CSS.HEX(mix)
             : translateColor.HEXA(mix);
     },
-    [ColorModel.RGB](colors: ColorInput[], mode: Mix, css: boolean, decimals: number): RGBOutput {
+    [ColorModel.RGB](colors: ColorInput[], mode: Mix, css: boolean, options: Partial<Options>): RGBOutput {
+        const { decimals } = parseOptions(options);
         const mix = this.mix(colors, mode);
         delete mix.a;
         return css
             ? CSS.RGB(mix)
             : translateColor.RGB(mix, decimals);
     },
-    RGBA(colors: ColorInput[], mode: Mix, css: boolean, decimals: number): RGBOutput {
+    RGBA(colors: ColorInput[], mode: Mix, css: boolean, options: Partial<Options>): RGBOutput {
+        const { decimals } = parseOptions(options);
         const mix = this.mix(colors, mode);
         return css
             ? CSS.RGB(mix)
             : translateColor.RGBA(mix, decimals);
     },
-    [ColorModel.HSL](colors: ColorInput[], mode: Mix, css: boolean, decimals: number): HSLOutput {
+    [ColorModel.HSL](colors: ColorInput[], mode: Mix, css: boolean, options: Partial<Options>): HSLOutput {
+        const { decimals } = parseOptions(options);
         const mix = this.mix(colors, mode);
         const hsl = rgbToHSL(mix.r, mix.g, mix.b);
         delete mix.a;
@@ -760,7 +767,8 @@ export const colorMixer = {
             ? CSS.HSL(hsl)
             : translateColor.HSL(mix, decimals);
     },
-    HSLA(colors: ColorInput[], mode: Mix, css: boolean, decimals: number): HSLOutput {
+    HSLA(colors: ColorInput[], mode: Mix, css: boolean, options: Partial<Options>): HSLOutput {
+        const { decimals } = parseOptions(options);
         const mix = this.mix(colors, mode);
         const hsl = rgbToHSL(mix.r, mix.g, mix.b, mix.a);
         return css

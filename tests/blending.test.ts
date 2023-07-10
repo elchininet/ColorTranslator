@@ -15,6 +15,8 @@ const blendFunctions = [
     { colorFn: ColorTranslator.toHSLA, blendFn: ColorTranslator.getBlendHSLA }
 ];
 
+const options = { decimals: 0 };
+
 describe('ColorTranslator blending tests', (): void => {
 
     it('Blending deep equals', (): void => {
@@ -40,15 +42,15 @@ describe('ColorTranslator blending tests', (): void => {
         });
 
         blendFunctions.forEach((obj): void => {
-            const r1 = result1.map(c => obj.colorFn(c, true, 0));
-            const r2 = result2.map(c => obj.colorFn(c, true, 0));
-            const r3 = result1.map(c => obj.colorFn(c, false, 0));
-            const r4 = result2.map(c => obj.colorFn(c, false, 0));
+            const r1 = result1.map(c => obj.colorFn(c, true, options));
+            const r2 = result2.map(c => obj.colorFn(c, true, options));
+            const r3 = result1.map(c => obj.colorFn(c, false, options));
+            const r4 = result2.map(c => obj.colorFn(c, false, options));
 
-            expect(obj.blendFn(from, to, r1.length, true, 0)).toMatchObject(r1);
-            expect(obj.blendFn(from, to, r2.length, true, 0)).toMatchObject(r2);
-            expect(obj.blendFn(from, to, r3.length, false, 0)).toMatchObject(r3);
-            expect(obj.blendFn(from, to, r4.length, false, 0)).toMatchObject(r4);
+            expect(obj.blendFn(from, to, r1.length, true, options)).toMatchObject(r1);
+            expect(obj.blendFn(from, to, r2.length, true, options)).toMatchObject(r2);
+            expect(obj.blendFn(from, to, r3.length, false, options)).toMatchObject(r3);
+            expect(obj.blendFn(from, to, r4.length, false, options)).toMatchObject(r4);
 
             expect(obj.blendFn(from, to).length).toBe(5);
 
