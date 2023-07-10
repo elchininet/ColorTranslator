@@ -156,10 +156,18 @@ The most wonderful thing about `colortranslator` is that you don‘t need to spe
 #### Class instantiation
 
 ```javascript
-ColorTranslator(color: ColorInput, decimals?: number = 6)
+ColorTranslator(color: ColorInput, options?: Options)
 ```
 
-It is possible to instantiate the class using any of the previous inputs:
+It is possible to instantiate the class using any of the previous inputs.
+
+###### Options object
+
+```typescript
+interface Options {
+  decimals?: number; // defaults to 6 
+}
+```
 
 ###### Class instantiation examples
 
@@ -179,22 +187,22 @@ const cmyk = new ColorTranslator({ c: 100, m: 100, y: 0, k: 0 });
 
 #### Class public methods
 
-There are 11 chainable public methods and all of them accept a number as input:
+There are 12 chainable public methods and 11 of them accept a number as input. The last one accepts an [options object](#options-object):
 
-| Public methods | Input           | Description                                             |
-| -------------- | --------------- | ------------------------------------------------------- |
-| setH           | 0 ≤ input ≤ 360 | Set the color hue                                       |
-| setS           | 0 ≤ input ≤ 100 | Set the color saturation percentage                     |
-| setL           | 0 ≤ input ≤ 100 | Set the color lightness percentage                      |
-| setR           | 0 ≤ input ≤ 255 | Set the red value of the color                          |
-| setG           | 0 ≤ input ≤ 255 | Set the green value of the color                        |
-| setB           | 0 ≤ input ≤ 255 | Set the blue value of the color                         |
-| setC           | 0 ≤ input ≤ 100 | Set the CMYK cyan percentage value of the color         |
-| setM           | 0 ≤ input ≤ 100 | Set the CMYK magenta percentage value of the color      |
-| setY           | 0 ≤ input ≤ 100 | Set the CMYK yellow percentage value of the color       |
-| setK           | 0 ≤ input ≤ 100 | Set the CMYK black percentage value of the color        |
-| setA           | 0 ≤ input ≤ 1   | Set the alpha value of the color                        |
-| setDecimals    | number          | Set the maximum number of decimals for the color values |
+| Public methods | Input           | Description                                              |
+| -------------- | --------------- | -------------------------------------------------------- |
+| setH           | 0 ≤ input ≤ 360 | Sets the color hue                                       |
+| setS           | 0 ≤ input ≤ 100 | Sets the color saturation percentage                     |
+| setL           | 0 ≤ input ≤ 100 | Sets the color lightness percentage                      |
+| setR           | 0 ≤ input ≤ 255 | Sets the red value of the color                          |
+| setG           | 0 ≤ input ≤ 255 | Sets the green value of the color                        |
+| setB           | 0 ≤ input ≤ 255 | Sets the blue value of the color                         |
+| setC           | 0 ≤ input ≤ 100 | Sets the CMYK cyan percentage value of the color         |
+| setM           | 0 ≤ input ≤ 100 | Sets the CMYK magenta percentage value of the color      |
+| setY           | 0 ≤ input ≤ 100 | Sets the CMYK yellow percentage value of the color       |
+| setK           | 0 ≤ input ≤ 100 | Sets the CMYK black percentage value of the color        |
+| setA           | 0 ≤ input ≤ 1   | Sets the alpha value of the color                        |
+| setOptions     | Options         | Sets an object that would work as configuration options  |
 
 ###### Class public methods examples
 
@@ -218,49 +226,49 @@ color
 
 There are 7 properties to get the CSS representation of the color:
 
-| Property | Description                                         |
-| -------- | --------------------------------------------------- |
-| HEX      | Get the the object hex representation of the color  |
-| HEXA     | Get the the object hexa representation of the color |
-| RGB      | Get the the object rgb representation of the color  |
-| RGBA     | Get the the object rgba representation of the color |
-| HSL      | Get the the object hsl representation of the color  |
-| HSLA     | Get the the object hsla representation of the color |
-| CMYK     | Get the the object cmyk representation of the color |
+| Property | Description                                          |
+| -------- | ---------------------------------------------------- |
+| HEX      | Gets the the object hex representation of the color  |
+| HEXA     | Gets the the object hexa representation of the color |
+| RGB      | Gets the the object rgb representation of the color  |
+| RGBA     | Gets the the object rgba representation of the color |
+| HSL      | Gets the the object hsl representation of the color  |
+| HSLA     | Gets the the object hsla representation of the color |
+| CMYK     | Gets the the object cmyk representation of the color |
 
 There are 7 properties to get the object representation of the color:
 
-| Property   | Description                                         |
-| ---------- | --------------------------------------------------- |
-| HEXObject  | Get the the object hex representation of the color  |
-| HEXAObject | Get the the object hexa representation of the color |
-| RGBObject  | Get the the object rgb representation of the color  |
-| RGBAObject | Get the the object rgba representation of the color |
-| HSLObject  | Get the the object hsl representation of the color  |
-| HSLAObject | Get the the object hsla representation of the color |
-| CMYKObject | Get the the object cmyk representation of the color |
+| Property   | Description                                          |
+| ---------- | ---------------------------------------------------- |
+| HEXObject  | Gets the the object hex representation of the color  |
+| HEXAObject | Gets the the object hexa representation of the color |
+| RGBObject  | Gets the the object rgb representation of the color  |
+| RGBAObject | Gets the the object rgba representation of the color |
+| HSLObject  | Gets the the object hsl representation of the color  |
+| HSLAObject | Gets the the object hsla representation of the color |
+| CMYKObject | Gets the the object cmyk representation of the color |
 
 There are 11 properties to get the individual color values:
 
-| Property | Description                                        |
-| -------- | -------------------------------------------------- |
-| H        | Get the color hue                                  |
-| S        | Get the color saturation percentage                |
-| L        | Get the color lightness percentage                 |
-| R        | Get the red value of the color                     |
-| G        | Get the green value of the color                   |
-| B        | Get the blue value of the color                    |
-| C        | Get the CMYK cyan percentage value of the color    |
-| M        | Get the CMYK magenta percentage value of the color |
-| Y        | Get the CMYK yellow percentage value of the color  |
-| K        | Get the CMYK black percentage value of the color   |
-| A        | Get the alpha value of the color                   |
+| Property | Description                                         |
+| -------- | --------------------------------------------------- |
+| H        | Gets the color hue                                  |
+| S        | Gets the color saturation percentage                |
+| L        | Gets the color lightness percentage                 |
+| R        | Gets the red value of the color                     |
+| G        | Gets the green value of the color                   |
+| B        | Gets the blue value of the color                    |
+| C        | Gets the CMYK cyan percentage value of the color    |
+| M        | Gets the CMYK magenta percentage value of the color |
+| Y        | Gets the CMYK yellow percentage value of the color  |
+| K        | Gets the CMYK black percentage value of the color   |
+| A        | Gets the alpha value of the color                   |
 
-And a property to get the maximum number of decimals for the color calculations
+And a property to get the options object that acts as a [configuration object](#options-object) for the outputs
 
-| Property | Description                                                      |
-| -------- | ---------------------------------------------------------------- |
-| decimals | Get maximum number of decimals for the color values calculations |
+| Property | Description                        |
+| -------- | ---------------------------------- |
+| options  | Get the configuration object value |
 
 
 ###### Class public properties examples
@@ -268,14 +276,14 @@ And a property to get the maximum number of decimals for the color calculations
 You can also consult the [demo 1](https://elchininet.github.io/ColorTranslator/#demo1) and the [demo 2](https://elchininet.github.io/ColorTranslator/#demo2) to check the use of the public properties.
 
 ```javascript
-const color = new ColorTranslator('#FF00FF', 2);
+const color = new ColorTranslator('#FF00FF', { decimals: 2 });
 
 color.R; // 255
 color.G; // 0
 color.B; // 255
 color.RGB; // rgb(255,0,255)
 color.HSLA; // hsla(300,100%,50%,1)
-color.decimals; // 2
+color.options; // { decimals: 2 }
 ```
 
 #### Class static methods
@@ -286,26 +294,26 @@ There are 22 static methods available, 7 of them to convert colors, 6 to create 
 
 ###### Color conversion static methods
 
-The static methods to convert colors accept any of the mentioned inputs as the first parameter. The second parameter is optional and it specifies if the output should be a CSS string or an object. The third parameter is also optional and it indicates the maximum number of decimals for the color values calculations (by default `6`):
+The static methods to convert colors accept any of the mentioned inputs as the first parameter. The second parameter is optional and it specifies if the output should be a CSS string or an object. The third parameter is also optional and it is an [options object](#options-object):
 
 ```typescript
 convertColorStaticMethod(
   color: string | object,
   css: boolean = true,
-  decimals: number = 6
+  options?: Options
 )
 ```
 ###### Color conversion static methods description
 
-| Static method | Description                                    |
-| ------------- | ---------------------------------------------- |
-| toHEX         | Convert to an hexadecimal notation             |
-| toHEXA        | Convert to an hexadecimal notation with alpha  |
-| toRGB         | Convert to an RGB notation                     |
-| toRGBA        | Convert to an RGB notation with alpha          |
-| toHSL         | Convert to an HSL notation                     |
-| toHSLA        | Convert to an HSL notation with alpha          |
-| toCMYK        | Convert to a CMYK notation                     |
+| Static method | Description                                     |
+| ------------- | ----------------------------------------------- |
+| toHEX         | Converts to an hexadecimal notation             |
+| toHEXA        | Converts to an hexadecimal notation with alpha  |
+| toRGB         | Converts to an RGB notation                     |
+| toRGBA        | Converts to an RGB notation with alpha          |
+| toHSL         | Converts to an HSL notation                     |
+| toHSLA        | Converts to an HSL notation with alpha          |
+| toCMYK        | Converts to a CMYK notation                     |
 
 ###### Color conversion static methods examples
 
@@ -314,7 +322,11 @@ ColorTranslator.toHEX('gold'); // #FFD700
 
 ColorTranslator.toRGB('#FF00FF'); // rgb(255,0,255)
 
-ColorTranslator.toRGBA('hsl(50, 20%, 90%)', true, 0); // rgba(235,233,224,1)
+ColorTranslator.toRGBA(
+  'hsl(50, 20%, 90%)',
+  true,
+  { decimals: 0 }
+); // rgba(235,233,224,1)
 
 ColorTranslator.toHSL('rgb(255, 0, 0)'); // hsl(0,100%,50%)
 
@@ -324,18 +336,30 @@ ColorTranslator.toCMYK('#F0F', false); // {c: 0, m: 100, y: 0, k: 0}
 
 ColorTranslator.toCMYK('#F0F'); // cmyk(0%,100%,0%,0%)
 
-ColorTranslator.toRGB({ h: 115, s: '70%', l: '45%' }, true, 0); // rgb(48,195,34)
+ColorTranslator.toRGB(
+  { h: 115, s: '70%', l: '45%' },
+  true,
+  { decimals: 0 }
+); // rgb(48,195,34)
 
-ColorTranslator.toHSLA({ r: 115, g: 200, b: 150, a: 0.5 }, true, 1); // hsla(144.7,43.6%,61.8%,0.5)
+ColorTranslator.toHSLA(
+  { r: 115, g: 200, b: 150, a: 0.5 },
+  true,
+  { decimals: 1 }
+); // hsla(144.7,43.6%,61.8%,0.5)
 
-ColorTranslator.toHSLA({ r: 95, g: 23, b: 12, a: Math.SQRT1_2 }, true, 4); // hsla(7.9518,77.5701%,20.9804%,0.7071)
+ColorTranslator.toHSLA(
+  { r: 95, g: 23, b: 12, a: Math.SQRT1_2 },
+  true,
+  { decimals: 4 }
+); // hsla(7.9518,77.5701%,20.9804%,0.7071)
 ```
 
 You can also consult the [demo 3](https://elchininet.github.io/ColorTranslator/#demo3), and the [demo 4](https://elchininet.github.io/ColorTranslator/#demo4) to check the use of these static methods.
 
 ###### Color blends static methods
 
-The static methods to create color blends accept any of the mentioned inputs as the first and second parameter, the third parameter is optional and it is the number of steps of the blending. The fourth parameter is also optional and it specifies if the output colors should be CSS strings or objects. And the fifth parameter is also optional and it indicates the maximum number of decimals for the color values calculations (by default `6`):
+The static methods to create color blends accept any of the mentioned inputs as the first and second parameter, the third parameter is optional and it is the number of steps of the blending. The fourth parameter is also optional and it specifies if the output colors should be CSS strings or objects. And the fifth parameter is also optional and it is an [options object](#options-object):
 
 ```typescript
 getBlendColorsStaticMethod(
@@ -343,20 +367,20 @@ getBlendColorsStaticMethod(
   toColor: string | object,
   steps: number = 5,
   css: boolean = true,
-  decimals: number = 6
+  options?: Options
 )
 ```
 
 ###### Color blends static methods description
 
-| Static method | Description                                                                                 |
-| ------------- | ------------------------------------------------------------------------------------------- |
-| getBlendHEX   | Create an array relative to the blend between two colors in hexadecimal notation            |  
-| getBlendHEXA  | Create an array relative to the blend between two colors in hexadecimal notation with alpha |
-| getBlendRGB   | Create an array relative to the blend between two colors in RGB notation                    |
-| getBlendRGBA  | Create an array relative to the blend between two colors in RGB notation with alpha         |
-| getBlendHSL   | Create an array relative to the blend between two colors in HSL notation                    |
-| getBlendHSLA  | Create an array relative to the blend between two colors in HSL notation with alpha         |
+| Static method | Description                                                                                  |
+| ------------- | -------------------------------------------------------------------------------------------- |
+| getBlendHEX   | Creates an array relative to the blend between two colors in hexadecimal notation            |  
+| getBlendHEXA  | Creates an array relative to the blend between two colors in hexadecimal notation with alpha |
+| getBlendRGB   | Creates an array relative to the blend between two colors in RGB notation                    |
+| getBlendRGBA  | Creates an array relative to the blend between two colors in RGB notation with alpha         |
+| getBlendHSL   | Creates an array relative to the blend between two colors in HSL notation                    |
+| getBlendHSLA  | Creates an array relative to the blend between two colors in HSL notation with alpha         |
 
 ###### Color blends static methods examples
 
@@ -394,28 +418,28 @@ You can also consult the [demo 5](https://elchininet.github.io/ColorTranslator/#
 
 ###### Color shades and color tints static methods
 
-The static methods to get [shades or tints of a color](https://en.m.wikipedia.org/wiki/Tints_and_shades) accept any of the mentioned inputs as the first parameter. The second parameter specifies the number of shades or tints that should be returned and the third parameter is optional and it indicates the maximum number of decimals for the color values calculations (by default `6`). This method will return the colors in the same format that was sent as input:
+The static methods to get [shades or tints of a color](https://en.m.wikipedia.org/wiki/Tints_and_shades) accept any of the mentioned inputs as the first parameter. The second parameter specifies the number of shades or tints that should be returned and the third parameter is optional and it is an [options object](#options-object). This method will return the colors in the same format that was sent as input:
 
 ```typescript
 getShades(
   color: string | object,
   shades: number,
-  decimals: number = 6
+  options?: Options
 )
 
 getTints(
   color: string | object,
   tints: number,
-  decimals: number = 6
+  options?: Options
 )
 ```
 
 ###### Color shades and color tints static methods description
 
-| Static method | Description                                                                                 |
-| ------------- | ------------------------------------------------------------------------------------------- |
-| getShades     | Get shades of a colour (mix the color with black increasing its darkness)                   |  
-| getTints      | Get tints of a colour (mix the color with white increasing its lightness)                   |
+| Static method | Description                                                                |
+| ------------- | ---------------------------------------------------------------------------|
+| getShades     | Gets shades of a colour (mix the color with black increasing its darkness) |  
+| getTints      | Gets tints of a colour (mix the color with white increasing its lightness) |
 
 
 ###### Color shades and color tints static methods examples
@@ -446,7 +470,7 @@ You can also consult the [demo 6](https://elchininet.github.io/ColorTranslator/#
 
 ###### Color mix static methods
 
-The static methods to mix colors accept an array of any of the mentioned inputs as the first parameter. The second parameter is optional and specifies the mixing mode (by default it will be `Mix.ADDITIVE`). The third parameter is also optional and it specifies if the output should be a CSS string or an object, and the fourth parameter is also optional and it indicates the maximum number of decimals for the color values calculations (by default `6`):
+The static methods to mix colors accept an array of any of the mentioned inputs as the first parameter. The second parameter is optional and specifies the mixing mode (by default it will be `Mix.ADDITIVE`). The third parameter is also optional and it specifies if the output should be a CSS string or an object, and the fourth parameter is also optional and it is an [options object](#options-object):
 
 > **Note:** The subtractive mix simulates the mixing of pigments, to achieve this, the rgb colors are converted to ryb color model, the addition is performed in this mode and at the end the result is converted back to rgb. The result is OK most of the time, but as this is not a real mix of pigments, sometimes the result could differ from the reality.
 
@@ -455,20 +479,20 @@ getMixColorsStaticMethod(
   colors: [string | object][],
   mode: Mix = Mix.ADDITIVE,
   css: boolean = true,
-  decimals: number = 6
+  options?: Options
 )
 ```
 
 ###### Color mix static methods description
 
-| Static method | Description                                                        |
-| ------------- | -------------------------------------------------------------------|
-| getMixHEX     | Get the mix of the input colors in hexadecimal notation            |  
-| getMixHEXA    | Get the mix of the input colors in hexadecimal notation with alpha |
-| getMixRGB     | Get the mix of the input colors in RGB notation                    |
-| getMixRGBA    | Get the mix of the input colors in RGB notation with alpha         |
-| getMixHSL     | Get the mix of the input colors in HSL notation                    |
-| getMixHSLA    | Get the mix of the input colors in HSL notation with alpha         |
+| Static method | Description                                                         |
+| ------------- | --------------------------------------------------------------------|
+| getMixHEX     | Gets the mix of the input colors in hexadecimal notation            |  
+| getMixHEXA    | Gets the mix of the input colors in hexadecimal notation with alpha |
+| getMixRGB     | Gets the mix of the input colors in RGB notation                    |
+| getMixRGBA    | Gets the mix of the input colors in RGB notation with alpha         |
+| getMixHSL     | Gets the mix of the input colors in HSL notation                    |
+| getMixHSLA    | Gets the mix of the input colors in HSL notation with alpha         |
 
 ###### Color mix static methods examples
 
@@ -494,14 +518,14 @@ You can also consult the [demo 7](https://elchininet.github.io/ColorTranslator/#
 
 ###### Color harmonies static method
 
-The static method to create color harmonies accepts four parmeters, the first one could be any of the mentioned inputs, the second one is optional and it is to specify the kind of harmony (by default it will be `Harmony.COMPLEMENTARY`), the third one is also optional and it specifies if the returned harmony is based on additive or subtractive colors (by default it will be `Mix.ADDITIVE`), and the fourth parameter is also optional and it indicates the maximum number of decimals for the color values calculations (by default `6`). This method will return the colors in the same format that was sent as input:
+The static method to create color harmonies accepts four parmeters, the first one could be any of the mentioned inputs, the second one is optional and it is to specify the kind of harmony (by default it will be `Harmony.COMPLEMENTARY`), the third one is also optional and it specifies if the returned harmony is based on additive or subtractive colors (by default it will be `Mix.ADDITIVE`), and the fourth parameter is also optional and it is an [options object](#options-object). This method will return the colors in the same format that was sent as input:
 
 ```typescript
 getHarmony(
   color: string | object
   harmony: Harmony = Harmony.COMPLEMENTARY,
   mode: Mix = Mix.ADDITIVE,
-  decimals: number = 6
+  options?: Options
 )
 ```
 
@@ -509,7 +533,7 @@ getHarmony(
 
 | Static method | Description                                                                  |
 | ------------- | ---------------------------------------------------------------------------- |
-| getHarmony    | Return an array of colors representing the harmony requested. The color output will be the same that was sent as input |
+| getHarmony    | Returns an array of colors representing the harmony requested. The color output will be the same that was sent as input |
 
 ###### Available armonies
 
@@ -537,7 +561,12 @@ ColorTranslator.getHarmony('rgba(0, 255, 255, 0.5)', Harmony.ANALOGOUS);
 //   "rgba(0,255,127.5,0.5)"
 // ]
 
-ColorTranslator.getHarmony({ r: 115, g: 200, b: 150, a: 0.5 }, Harmony.COMPLEMENTARY, false, 2);
+ColorTranslator.getHarmony(
+  { r: 115, g: 200, b: 150, a: 0.5 },
+  Harmony.COMPLEMENTARY,
+  false,
+  { decimals: 2 }
+);
 
 // [
 //   {r: 115, g: 200, b: 150, a: 0.5},
