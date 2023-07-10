@@ -69,54 +69,55 @@ describe('ColorTranslator shades and tints tests', (): void => {
     });
 
     colorFunctions.forEach((fn): void => {
-        const inputCSS = fn(base, true, 0);
-        const inputObject = fn(base, false, 0) as (HEXObject & RGBObject & HSLObjectGeneric);
+        const options = { decimals: 0 };
+        const inputCSS = fn(base, true, options);
+        const inputObject = fn(base, false, options) as (HEXObject & RGBObject & HSLObjectGeneric);
         const alpha = '80';
-        const inputCSSWithAlpha = fn(base + alpha, true, 0);
-        const inputObjectWithAlpha = fn(base + alpha, false, 0) as (HEXObject & RGBObject & HSLObjectGeneric);
+        const inputCSSWithAlpha = fn(base + alpha, true, options);
+        const inputObjectWithAlpha = fn(base + alpha, false, options) as (HEXObject & RGBObject & HSLObjectGeneric);
         it(`Shades tests from ${JSON.stringify(inputCSS)}`, (): void => {
-            const output = shades_results.map((color: string) => fn(color, true, 0));
-            const shades = ColorTranslator.getShades(inputCSS, 5, 0);
+            const output = shades_results.map((color: string) => fn(color, true, options));
+            const shades = ColorTranslator.getShades(inputCSS, 5, options);
             expect(shades).toMatchObject(output);
         });
         it(`Shades tests from ${JSON.stringify(inputObject)}`, (): void => {
-            const output = shades_results.map((color: string) => fn(color, false, 0));
-            const shades = ColorTranslator.getShades(inputObject, 5, 0) as (HEXObject | RGBObject | HSLObjectGeneric)[];
+            const output = shades_results.map((color: string) => fn(color, false, options));
+            const shades = ColorTranslator.getShades(inputObject, 5, options) as (HEXObject | RGBObject | HSLObjectGeneric)[];
             expect(shades).toMatchObject(output);
         });
         it(`Shades tests with alpha from ${JSON.stringify(inputCSSWithAlpha)}`, (): void => {
-            const output = shades_results.map((color: string) => fn(color + alpha, true, 0));
-            const shades = ColorTranslator.getShades(inputCSSWithAlpha, 5, 0);
+            const output = shades_results.map((color: string) => fn(color + alpha, true, options));
+            const shades = ColorTranslator.getShades(inputCSSWithAlpha, 5, options);
             expect(shades).toMatchObject(output);
         });
         it(`Shades tests with alpha from ${JSON.stringify(inputObjectWithAlpha)}`, (): void => {
-            const output = shades_results.map((color: string) => fn(color + alpha, false, 0));
-            const shades = ColorTranslator.getShades(inputObjectWithAlpha, 5, 0) as (HEXObject | RGBObject | HSLObjectGeneric)[];
+            const output = shades_results.map((color: string) => fn(color + alpha, false, options));
+            const shades = ColorTranslator.getShades(inputObjectWithAlpha, 5, options) as (HEXObject | RGBObject | HSLObjectGeneric)[];
             expect(shades).toMatchObject(output);
         });
 
         it(`Tints tests from ${JSON.stringify(inputCSS)}`, (): void => {
-            const output = tints_results.map((color: string) => fn(color, true, 0));
-            const shades = ColorTranslator.getTints(inputCSS, 5, 0);
+            const output = tints_results.map((color: string) => fn(color, true, options));
+            const shades = ColorTranslator.getTints(inputCSS, 5, options);
             expect(shades).toMatchObject(output);
         });
         it(`Tints tests from ${JSON.stringify(inputObject)}`, (): void => {
-            const output = tints_results.map((color: string) => fn(color, false, 0));
-            const shades = ColorTranslator.getTints(inputObject, 5, 0) as (HEXObject | RGBObject | HSLObjectGeneric)[];
+            const output = tints_results.map((color: string) => fn(color, false, options));
+            const shades = ColorTranslator.getTints(inputObject, 5, options) as (HEXObject | RGBObject | HSLObjectGeneric)[];
             expect(shades).toMatchObject(output);
         });
         it(`Tints tests with alpha from ${JSON.stringify(inputCSSWithAlpha)}`, (): void => {
-            const output = tints_results.map((color: string) => fn(color + alpha, true, 0));
-            const shades = ColorTranslator.getTints(inputCSSWithAlpha, 5, 0);
+            const output = tints_results.map((color: string) => fn(color + alpha, true, options));
+            const shades = ColorTranslator.getTints(inputCSSWithAlpha, 5, options);
             expect(shades).toMatchObject(output);
         });
         it(`Tints tests with alpha from ${JSON.stringify(inputObjectWithAlpha)}`, (): void => {
-            const output = tints_results.map((color: string) => fn(color + alpha, false, 0));
-            const shades = ColorTranslator.getTints(inputObjectWithAlpha, 5, 0) as (HEXObject | RGBObject | HSLObjectGeneric)[];
+            const output = tints_results.map((color: string) => fn(color + alpha, false, options));
+            const shades = ColorTranslator.getTints(inputObjectWithAlpha, 5, options) as (HEXObject | RGBObject | HSLObjectGeneric)[];
             expect(shades).toMatchObject(output);
         });
         it(`Shades tests from ${JSON.stringify(inputCSS)} with decimals`, (): void => {
-            const shades = ColorTranslator.getShades(inputCSS, 5, 0);
+            const shades = ColorTranslator.getShades(inputCSS, 5, options);
             expect(shades).toMatchSnapshot();
         });
     });

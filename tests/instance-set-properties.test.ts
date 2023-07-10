@@ -91,10 +91,14 @@ describe('ColorTranslator set instance properties', () => {
     });
 
     it('Set property decimals', () => {
-        const instance = new ColorTranslator(TEST_COLORS.red.hex, 3);
-        expect(instance.decimals).toBe(3);
-        instance.setDecimals(5);
-        expect(instance.decimals).toBe(5);
+        const instance = new ColorTranslator(TEST_COLORS.red.hex, { decimals: 3 });
+        expect(instance.options.decimals).toBe(3);
+        instance.setOptions({ decimals: 5 });
+        expect(instance.options.decimals).toBe(5);
+        instance.setOptions();
+        expect(instance.options.decimals).toBe(5);
+        instance.setOptions({});
+        expect(instance.options.decimals).toBe(5);
     });
 
 });

@@ -1,8 +1,9 @@
-import { NumberOrString } from '@types';
+import { NumberOrString, Options } from '@types';
 import {
     PCENT,
     HEX,
-    MAX_DECIMALS
+    MAX_DECIMALS,
+    DEFAULT_OPTIONS
 } from '#constants';
 
 //---Has property
@@ -74,3 +75,8 @@ export const minmax = (n: number, min: number, max: number): number => Math.max(
 
 //--Radian to grades
 export const grades = (radian: number): number => radian * 180 / Math.PI;
+
+export const parseOptions = (options: Partial<Options>): Options => ({
+    ...DEFAULT_OPTIONS,
+    ...options
+});

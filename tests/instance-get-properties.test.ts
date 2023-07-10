@@ -1,6 +1,8 @@
 import { ColorTranslator } from '../src';
 import { COLORS, CMYK_COLORS } from './tests.constants';
 
+const options = { decimals: 0 };
+
 COLORS.forEach((color): void => {
 
     let instance: ColorTranslator;
@@ -11,7 +13,7 @@ COLORS.forEach((color): void => {
 
         describe(`ColorTranslator instance properties for ${colorValueStr}`, () => {
 
-            instance = new ColorTranslator(colorValue, 0);
+            instance = new ColorTranslator(colorValue, options);
 
             // HEX
             it(`HEX property => ${color.hex}`, () => {
@@ -124,7 +126,7 @@ CMYK_COLORS.forEach((color) => {
 
         describe(`ColorTranslator CMYK instance properties ${colorValueStr}`, () => {
 
-            instance = new ColorTranslator(colorValue, 0);
+            instance = new ColorTranslator(colorValue, options);
 
             // CMYK
             it(`CMYK property => ${color.cmyk}`, () => {
