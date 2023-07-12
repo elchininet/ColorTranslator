@@ -88,3 +88,18 @@ describe('Strong additive colors mixing', (): void => {
         expect(ColorTranslator.getMixHEX(['#000000', '#FFFFFF'], Mix.SUBTRACTIVE)).toBe('#000000');
     });
 });
+
+describe('legacyCSS auto detection', (): void => {
+    it('All colors legacy, output should be legacy', () => {
+        expect(ColorTranslator.getMixRGB(['rgb(0,0,0)', 'rgb(0,0,0)'])).toBe('rgb(0,0,0)');
+    });
+    it('Only one color is legacy, output should be non-legacy', () => {
+        expect(ColorTranslator.getMixRGBA(['rgb(0,0,0)', 'rgb(0 0 0)'])).toBe('rgb(0 0 0 / 1)');
+    });
+    it('No way to detect if the color is legacy, output should be non-legacy', () => {
+        expect(ColorTranslator.getMixRGB(['#000', '#000000'])).toBe('rgb(0 0 0)');
+    });
+    it('Only one color is css and it is legacy, output should be legacy', () => {
+        expect(ColorTranslator.getMixHSLA([{r: 0, g: 0, b: 0}, 'rgba(0,0,0)'])).toBe('hsla(0,0%,0%,1)');
+    });
+});

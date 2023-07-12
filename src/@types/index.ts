@@ -77,6 +77,7 @@ export interface ObjectProps<T> {
 
 export interface Options {
     decimals: number;
+    legacyCSS: boolean;
 }
 
 export type InputOptions = Partial<Options>;

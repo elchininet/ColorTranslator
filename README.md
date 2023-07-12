@@ -103,8 +103,8 @@ The most wonderful thing about `colortranslator` is that you don‘t need to spe
 | `rgb(255, 0, 255)`                    | Functional RGB notation                                                                                            |
 | `rgba(255, 0, 255, 0.5)`              | Functional RGB notation with alpha                                                                                 |
 | `rgb(255 0 255)`                      | Functional RGB notation (CSS Colors 4 space-separated)                                                             |
-| `rgba(255 0 255 / 0.5)`               | Functional RGB notation with alpha (CSS Colors 4 space-separated)                                                  |
-| `rgba(255 0 255 / 50%)`               | Functional RGB notation CSS with alpha in percenatages (Colors 4 space-separated)                                  |
+| `rgb(255 0 255 / 0.5)`                | Functional RGB notation with alpha (CSS Colors 4 space-separated)                                                  |
+| `rgb(255 0 255 / 50%)`                | Functional RGB notation CSS with alpha in percenatages (Colors 4 space-separated)                                  |
 | `hsl(300, 100%, 50%)`                 | Functional HSL notation                                                                                            |
 | `hsl(300grad, 100%, 50%)`             | Functional HSL notation with hue in grads                                                                          |
 | `hsl(300deg, 100%, 50%)`              | Functional HSL notation with hue in degrees                                                                        |
@@ -112,8 +112,8 @@ The most wonderful thing about `colortranslator` is that you don‘t need to spe
 | `hsl(0.83turn, 100%, 50%)`            | Functional HSL notation with hue in turns                                                                          |
 | `hsla(300, 100%, 50%, 0.5)`           | Functional HSL notation with alpha                                                                                 |
 | `hsl(300 100% 50%)`                   | Functional HSL notation (CSS Colors 4 space-separated)                                                             |
-| `hsla(300 100% 50% / 0.5)`            | Functional HSL notation with alpha (CSS Colors 4 space-separated)                                                  |
-| `hsla(300 100% 50% / 50%)`            | Functional HSL notation with alpha in percentages (CSS Colors 4 space-separated)                                   |
+| `hsl(300 100% 50% / 0.5)`             | Functional HSL notation with alpha (CSS Colors 4 space-separated)                                                  |
+| `hsl(300 100% 50% / 50%)`             | Functional HSL notation with alpha in percentages (CSS Colors 4 space-separated)                                   |
 | `cmyk(0%, 100%, 100%, 0%)`            | Functional CMYK notation with percentages                                                                          |
 | `cmyk(0%, 100%, 100%, 0%, 1)`         | Functional CMYK notation with percentages and alpha                                                                |
 | `cmyk(0% 100% 100% 0%)`               | Functional CMYK notation with percentages (CSS Colors 4 space-separated)                                           |
@@ -165,7 +165,8 @@ It is possible to instantiate the class using any of the previous inputs.
 
 ```typescript
 interface Options {
-  decimals?: number; // defaults to 6 
+  decimals?: number;  // defaults to 6
+  legacyCSS: boolean; // defaults to false 
 }
 ```
 
@@ -178,7 +179,7 @@ const hex = new ColorTranslator('#FF00FF');
 
 const rgb = new ColorTranslator('rgb(255, 0, 0)');
 
-const hsl = new ColorTranslator('hsl(50, 20%, 90%)');
+const hsl = new ColorTranslator('hsl(50 20% 90% / 0.5)');
 
 const hsla = new ColorTranslator({ r: 115, g: 200, b: 150, a: 0.5 });
 
@@ -281,8 +282,8 @@ const color = new ColorTranslator('#FF00FF', { decimals: 2 });
 color.R; // 255
 color.G; // 0
 color.B; // 255
-color.RGB; // rgb(255,0,255)
-color.HSLA; // hsla(300,100%,50%,1)
+color.RGB; // rgb(255 0 255)
+color.HSLA; // hsl(300 100% 50% / 1)
 color.options; // { decimals: 2 }
 ```
 
@@ -291,6 +292,10 @@ color.options; // { decimals: 2 }
 For the static methods, it is not needed to specify the input color model, the API will detect the format automatically. It is only needed to specify to which color model one wants to convert calling the specific static method.
 
 There are 43 static methods available, 16 of them to convert colors, 12 to create color blends, 12 to mix colors, one to get shades, one to get tints, and one to create color harmonies.
+
+>Note: the library tries to detect some options automatically if you don‘t send them in the [options object](#options-object). These are the rules for this autodetection:
+>
+> * `legacyCSS`: if this option is set, then its value prevail, if it is not set, and all the CSS inputs are provided in CSS Level 3, then this option will be `true`, otherwise it will take its default value which is `false`.
 
 ###### Color conversion static methods
 
@@ -326,35 +331,35 @@ convertColorStaticMethod(
 ```javascript
 ColorTranslator.toHEX('gold'); // #FFD700
 
-ColorTranslator.toRGB('#FF00FF'); // rgb(255,0,255)
+ColorTranslator.toRGB('#FF00FF'); // rgb(255 0 255)
 
 ColorTranslator.toRGBA(
   'hsl(50, 20%, 90%)',
   { decimals: 0 }
 ); // rgba(235,233,224,1)
 
-ColorTranslator.toHSL('rgb(255, 0, 0)'); // hsl(0,100%,50%)
+ColorTranslator.toHSL('rgb(255 0 0)'); // hsl(0 100% 50%)
 
 ColorTranslator.toHSLA('rgba(0, 255, 255, 0.5)'); // hsla(180,100%,50%,0.5)
 
 ColorTranslator.toCMYKObject('#F0F'); // {c: 0, m: 100, y: 0, k: 0}
 
-ColorTranslator.toCMYK('#F0F'); // cmyk(0%,100%,0%,0%)
+ColorTranslator.toCMYK('#F0F'); // cmyk(0% 100% 0% 0%)
 
 ColorTranslator.toRGB(
   { h: 115, s: '70%', l: '45%' },
   { decimals: 0 }
-); // rgb(48,195,34)
+); // rgb(48 195 34)
 
 ColorTranslator.toHSLA(
   { r: 115, g: 200, b: 150, a: 0.5 },
   { decimals: 1 }
-); // hsla(144.7,43.6%,61.8%,0.5)
+); // hsl(144.7 43.6% 61.8% / 0.5)
 
 ColorTranslator.toHSLA(
   { r: 95, g: 23, b: 12, a: Math.SQRT1_2 },
   { decimals: 4 }
-); // hsla(7.9518,77.5701%,20.9804%,0.7071)
+); // hsl(7.9518 77.5701% 20.9804% / 0.7071)
 ```
 
 You can also consult the [demo 3](https://elchininet.github.io/ColorTranslator/#demo3), and the [demo 4](https://elchininet.github.io/ColorTranslator/#demo4) to check the use of these static methods.
@@ -405,9 +410,9 @@ ColorTranslator.getBlendHEX('#FF0000', '#0000FF', 5);
 ColorTranslator.getBlendHSLA('#FF000000', '#0000FFFF', 3);
 
 // [
-//   "hsla(0,100%,50%,0)",
-//   "hsla(300,100%,25%,0.5)",
-//   "hsla(240,100%,50%,1)"
+//   "hsl(0 100% 50% / 0)",
+//   "hsl(300 100% 25% / 0.5)",
+//   "hsl(240 100% 50% / 1)"
 // ]
 
 ColorTranslator.getBlendRGBAObject('#F000', 'rgba(0,0,255,1)', 5);
@@ -463,7 +468,7 @@ ColorTranslator.getMixHEX(['#FF0000', '#0000FF']);
 
 ColorTranslator.getMixHSL(['rgba(255, 0, 0, 1)', '#00FF00']);
 
-// hsl(60,100%,50%)
+// hsl(60 100% 50%)
 
 ColorTranslator.getMixHEXAObject(['#F00', 'rgb(0, 0, 255)'], Mix.ADDITIVE);
 
@@ -565,12 +570,12 @@ ColorTranslator.getHarmony('#FF00FF');
 
 // ["#FF00FF", "#00FF00"]
 
-ColorTranslator.getHarmony('rgba(0, 255, 255, 0.5)', Harmony.ANALOGOUS);
+ColorTranslator.getHarmony('rgba(0 255 255 / 0.5)', Harmony.ANALOGOUS);
 
 // [
-//   "rgba(0,255,255,0.5)",
-//   "rgba(0,127.5,255,0.5)",
-//   "rgba(0,255,127.5,0.5)"
+//   "rgba(0 255 255 / 0.5)",
+//   "rgba(0 127.5 255 / 0.5)",
+//   "rgba(0 255 127.5 / 0.5)"
 // ]
 
 ColorTranslator.getHarmony(

@@ -256,7 +256,7 @@ describe('ColorTranslator set CMYK instance properties', () => {
         const instance = new ColorTranslator(TEST_CMYK_COLORS.red.rgb);
         instance.setK(100);
         expect(instance.K).toBe(100);
-        expect(instance.CMYK).toBe('cmyk(0%,100%,100%,100%)');
+        expect(instance.CMYK).toBe('device-cmyk(0% 100% 100% 100%)');
     });
 
 });

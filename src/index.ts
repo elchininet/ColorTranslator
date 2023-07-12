@@ -25,7 +25,12 @@ import {
 } from '#color/translators';
 import * as utils from '#color/utils';
 import { CSS } from '#color/css';
-import { round, minmax, parseOptions } from '#helpers';
+import {
+    round,
+    minmax,
+    parseOptions,
+    getOptionsFromColorInput
+} from '#helpers';
 
 const getColorReturn = <T>(
     color: ColorInput,
@@ -58,17 +63,16 @@ const getBlendReturn = <T>(
 const getHarmonyReturn = (
     harmony: Harmony,
     color: ColorInputWithoutCMYK,
-    options: InputOptions,
-    mode?: Mix,
+    mode: Mix,
+    options: Options,
 ): ColorOutput[] => {
-    const { decimals } = parseOptions(options);
     return ({
-        [Harmony.ANALOGOUS]:           utils.colorHarmony.buildHarmony(color, utils.analogous, mode, decimals),
-        [Harmony.COMPLEMENTARY]:       utils.colorHarmony.buildHarmony(color, utils.complementary, mode, decimals),
-        [Harmony.SPLIT_COMPLEMENTARY]: utils.colorHarmony.buildHarmony(color, utils.splitComplementary, mode, decimals),
-        [Harmony.TRIADIC]:             utils.colorHarmony.buildHarmony(color, utils.triadic, mode, decimals),
-        [Harmony.TETRADIC]:            utils.colorHarmony.buildHarmony(color, utils.tetradic, mode, decimals),
-        [Harmony.SQUARE]:              utils.colorHarmony.buildHarmony(color, utils.square, mode, decimals)
+        [Harmony.ANALOGOUS]:           utils.colorHarmony.buildHarmony(color, utils.analogous, mode, options),
+        [Harmony.COMPLEMENTARY]:       utils.colorHarmony.buildHarmony(color, utils.complementary, mode, options),
+        [Harmony.SPLIT_COMPLEMENTARY]: utils.colorHarmony.buildHarmony(color, utils.splitComplementary, mode, options),
+        [Harmony.TRIADIC]:             utils.colorHarmony.buildHarmony(color, utils.triadic, mode, options),
+        [Harmony.TETRADIC]:            utils.colorHarmony.buildHarmony(color, utils.tetradic, mode, options),
+        [Harmony.SQUARE]:              utils.colorHarmony.buildHarmony(color, utils.square, mode, options)
     })[harmony];
 };
 
@@ -318,56 +322,74 @@ export class ColorTranslator {
     }
 
     public get RGB(): string {
-        return CSS.RGB({
-            r: this.R,
-            g: this.G,
-            b: this.B
-        });
+        return CSS.RGB(
+            {
+                r: this.R,
+                g: this.G,
+                b: this.B
+            },
+            this.options
+        );
     }
 
     public get RGBA(): string {
-        return CSS.RGB({
-            r: this.R,
-            g: this.G,
-            b: this.B,
-            a: this.A
-        });
+        return CSS.RGB(
+            {
+                r: this.R,
+                g: this.G,
+                b: this.B,
+                a: this.A
+            },
+            this.options
+        );
     }
 
     public get HSL(): string {
-        return CSS.HSL({
-            h: this.H,
-            s: this.S,
-            l: this.L
-        });
+        return CSS.HSL(
+            {
+                h: this.H,
+                s: this.S,
+                l: this.L
+            },
+            this.options
+        );
     }
 
     public get HSLA(): string {
-        return CSS.HSL({
-            h: this.H,
-            s: this.S,
-            l: this.L,
-            a: this.A
-        });
+        return CSS.HSL(
+            {
+                h: this.H,
+                s: this.S,
+                l: this.L,
+                a: this.A
+            },
+            this.options
+        );
     }
 
     public get CMYK(): string {
-        return CSS.CMYK({
-            c: this.C,
-            m: this.M,
-            y: this.Y,
-            k: this.K
-        });
+        return CSS.CMYK(
+            {
+                c: this.C,
+                m: this.M,
+                y: this.Y,
+                k: this.K
+            },
+            this.options
+        );
     }
 
     public get CMYKA(): string {
-        return CSS.CMYK({
-            c: this.C,
-            m: this.M,
-            y: this.Y,
-            k: this.K,
-            a: this.A
-        });
+        return CSS.CMYK(
+            {
+                c: this.C,
+                m: this.M,
+                y: this.Y,
+                k: this.K,
+                a: this.A
+            },
+            this.options
+        );
     }
 
     // Color Conversion Static Methods
@@ -415,7 +437,8 @@ export class ColorTranslator {
 
     public static toRGB(color: ColorInput, options: InputOptions = {}): string {
         return CSS.RGB(
-            ColorTranslator.toRGBObject(color, options)
+            ColorTranslator.toRGBObject(color, options),
+            getOptionsFromColorInput(options, color)
         );
     }
 
@@ -431,7 +454,8 @@ export class ColorTranslator {
 
     public static toRGBA(color: ColorInput, options: InputOptions = {}): string {
         return CSS.RGB(
-            ColorTranslator.toRGBAObject(color, options)
+            ColorTranslator.toRGBAObject(color, options),
+            getOptionsFromColorInput(options, color)
         );
     }
 
@@ -447,7 +471,8 @@ export class ColorTranslator {
 
     public static toHSL(color: ColorInput, options: InputOptions = {}): string {
         return CSS.HSL(
-            ColorTranslator.toHSLObject(color, options)
+            ColorTranslator.toHSLObject(color, options),
+            getOptionsFromColorInput(options, color)
         );
     }
 
@@ -463,7 +488,8 @@ export class ColorTranslator {
 
     public static toHSLA(color: ColorInput, options: InputOptions = {}): string {
         return CSS.HSL(
-            ColorTranslator.toHSLAObject(color, options)
+            ColorTranslator.toHSLAObject(color, options),
+            getOptionsFromColorInput(options, color)
         );
     }
 
@@ -479,7 +505,8 @@ export class ColorTranslator {
 
     public static toCMYK(color: ColorInput, options: InputOptions = {}): string {
         return CSS.CMYK(
-            ColorTranslator.toCMYKObject(color, options)
+            ColorTranslator.toCMYKObject(color, options),
+            getOptionsFromColorInput(options, color)
         );
     }
 
@@ -495,7 +522,8 @@ export class ColorTranslator {
 
     public static toCMYKA(color: ColorInput, options: InputOptions = {}): string {
         return CSS.CMYK(
-            ColorTranslator.toCMYKAObject(color, options)
+            ColorTranslator.toCMYKAObject(color, options),
+            getOptionsFromColorInput(options, color)
         );
     }
 
@@ -568,7 +596,12 @@ export class ColorTranslator {
         options: InputOptions = {}
     ): string[] {
         return ColorTranslator.getBlendRGBObject(from, to, steps, options)
-            .map((color: RGBObject): string => CSS.RGB(color));
+            .map((color: RGBObject): string => {
+                return CSS.RGB(
+                    color,
+                    getOptionsFromColorInput(options, from, to)
+                );
+            });
     }
 
     public static getBlendRGBAObject(
@@ -593,7 +626,12 @@ export class ColorTranslator {
         options: InputOptions = {}
     ): string[] {
         return ColorTranslator.getBlendRGBAObject(from, to, steps, options)
-            .map((color: RGBObject): string => CSS.RGB(color));
+            .map((color: RGBObject): string => {
+                return CSS.RGB(
+                    color,
+                    getOptionsFromColorInput(options, from, to)
+                );
+            });
     }
 
     public static getBlendHSLObject(
@@ -618,7 +656,12 @@ export class ColorTranslator {
         options: InputOptions = {}
     ): string[] {
         return ColorTranslator.getBlendHSLObject(from, to, steps, options)
-            .map((color: HSLObject) => CSS.HSL(color));
+            .map((color: HSLObject) => {
+                return CSS.HSL(
+                    color,
+                    getOptionsFromColorInput(options, from, to)
+                );
+            });
     }
 
     public static getBlendHSLAObject(
@@ -643,7 +686,12 @@ export class ColorTranslator {
         options: InputOptions = {}
     ): string[] {
         return ColorTranslator.getBlendHSLAObject(from, to, steps, options)
-            .map((color: HSLObject): string => CSS.HSL(color));
+            .map((color: HSLObject): string => {
+                return CSS.HSL(
+                    color,
+                    getOptionsFromColorInput(options, from, to)
+                );
+            });
     }
 
     // Color Mix Static Methods
@@ -668,7 +716,12 @@ export class ColorTranslator {
         mode: Mix = Mix.ADDITIVE,
         options: InputOptions = {}
     ): RGBObject {
-        return utils.colorMixer.RGB(colors, mode, false, options);
+        return utils.colorMixer.RGB(
+            colors,
+            mode,
+            false,
+            parseOptions(options)
+        );
     }
 
     public static getMixRGB(
@@ -676,7 +729,12 @@ export class ColorTranslator {
         mode: Mix = Mix.ADDITIVE,
         options: InputOptions = {}
     ): string {
-        return utils.colorMixer.RGB(colors, mode, true, options);
+        return utils.colorMixer.RGB(
+            colors,
+            mode,
+            true,
+            getOptionsFromColorInput(options, ...colors)
+        );
     }
 
     public static getMixRGBAObject(
@@ -684,7 +742,12 @@ export class ColorTranslator {
         mode: Mix = Mix.ADDITIVE,
         options: InputOptions = {}
     ): RGBObject {
-        return utils.colorMixer.RGBA(colors, mode, false, options);
+        return utils.colorMixer.RGBA(
+            colors,
+            mode,
+            false,
+            parseOptions(options)
+        );
     }
 
     public static getMixRGBA(
@@ -692,7 +755,12 @@ export class ColorTranslator {
         mode: Mix = Mix.ADDITIVE,
         options: InputOptions = {}
     ): string {
-        return utils.colorMixer.RGBA(colors, mode, true, options);
+        return utils.colorMixer.RGBA(
+            colors,
+            mode,
+            true,
+            getOptionsFromColorInput(options, ...colors)
+        );
     }
 
     public static getMixHSLObject(
@@ -700,7 +768,12 @@ export class ColorTranslator {
         mode: Mix = Mix.ADDITIVE,
         options: InputOptions = {}
     ): HSLObject {
-        return utils.colorMixer.HSL(colors, mode, false, options);
+        return utils.colorMixer.HSL(
+            colors,
+            mode,
+            false,
+            parseOptions(options)
+        );
     }
 
     public static getMixHSL(
@@ -708,7 +781,12 @@ export class ColorTranslator {
         mode: Mix = Mix.ADDITIVE,
         options: InputOptions = {}
     ): string {
-        return utils.colorMixer.HSL(colors, mode, true, options);
+        return utils.colorMixer.HSL(
+            colors,
+            mode,
+            true,
+            getOptionsFromColorInput(options, ...colors)
+        );
     }
 
     public static getMixHSLAObject(
@@ -716,7 +794,12 @@ export class ColorTranslator {
         mode: Mix = Mix.ADDITIVE,
         options: InputOptions = {}
     ): HSLObject {
-        return utils.colorMixer.HSLA(colors, mode, false, options);
+        return utils.colorMixer.HSLA(
+            colors,
+            mode,
+            false,
+            parseOptions(options)
+        );
     }
 
     public static getMixHSLA(
@@ -724,7 +807,12 @@ export class ColorTranslator {
         mode: Mix = Mix.ADDITIVE,
         options: InputOptions = {}
     ): string {
-        return utils.colorMixer.HSLA(colors, mode, true, options);
+        return utils.colorMixer.HSLA(
+            colors,
+            mode,
+            true,
+            getOptionsFromColorInput(options, ...colors)
+        );
     }
 
     // Get shades static method
@@ -733,7 +821,12 @@ export class ColorTranslator {
     public static getShades(color: RGBObject, shades: number, options?: InputOptions): RGBObject[];
     public static getShades(color: HSLObjectGeneric, shades: number, options?: InputOptions): HSLObject[];
     public static getShades(color: ColorInputWithoutCMYK, shades: number, options = {}): ColorOutput[] {
-        return utils.getColorMixture(color, shades, true, options);
+        return utils.getColorMixture(
+            color,
+            shades,
+            true,
+            getOptionsFromColorInput(options, color)
+        );
     }
 
     // Get tints static method
@@ -742,7 +835,12 @@ export class ColorTranslator {
     public static getTints(color: RGBObject, tints: number, options?: InputOptions): RGBObject[];
     public static getTints(color: HSLObjectGeneric, tints: number, options?: InputOptions): HSLObject[];
     public static getTints(color: ColorInputWithoutCMYK, tints: number, options = {}): ColorOutput[] {
-        return utils.getColorMixture(color, tints, false, options);
+        return utils.getColorMixture(
+            color,
+            tints,
+            false,
+            getOptionsFromColorInput(options, color)
+        );
     }
 
     // Color Harmony Static Method
@@ -751,7 +849,12 @@ export class ColorTranslator {
     public static getHarmony(color: RGBObject, harmony?: Harmony, mode?: Mix, options?: InputOptions): RGBObject[];
     public static getHarmony(color: HSLObjectGeneric, harmony?: Harmony, mode?: Mix, options?: InputOptions): HSLObject[];
     public static getHarmony(color: ColorInputWithoutCMYK, harmony: Harmony = Harmony.COMPLEMENTARY, mode: Mix = Mix.ADDITIVE, options = {}): ColorOutput[] {
-        return getHarmonyReturn(harmony, color, options, mode);
+        return getHarmonyReturn(
+            harmony,
+            color,
+            mode,
+            getOptionsFromColorInput(options, color)
+        );
     }
 }
 

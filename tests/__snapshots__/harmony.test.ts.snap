@@ -1,198 +1,198 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsl(0,100%,50%)" 1`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsl(0 100% 50% / 1)" 1`] = `
 [
-  "hsl(0,100%,50%)",
-  "hsl(30,100%,50%)",
-  "hsl(330,100%,50%)",
+  "hsl(0 100% 50% / 1)",
+  "hsl(30 100% 50% / 1)",
+  "hsl(330 100% 50% / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsl(0,100%,50%)" 2`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsl(0 100% 50% / 1)" 2`] = `
 [
-  "hsl(0,100%,50%)",
-  "hsl(180,100%,50%)",
+  "hsl(0 100% 50% / 1)",
+  "hsl(180 100% 50% / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsl(0,100%,50%)" 3`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsl(0 100% 50% / 1)" 3`] = `
 [
-  "hsl(0,100%,50%)",
-  "hsl(150,100%,50%)",
-  "hsl(210,100%,50%)",
+  "hsl(0 100% 50% / 1)",
+  "hsl(150 100% 50% / 1)",
+  "hsl(210 100% 50% / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsl(0,100%,50%)" 4`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsl(0 100% 50% / 1)" 4`] = `
 [
-  "hsl(0,100%,50%)",
-  "hsl(120,100%,50%)",
-  "hsl(240,100%,50%)",
+  "hsl(0 100% 50% / 1)",
+  "hsl(120 100% 50% / 1)",
+  "hsl(240 100% 50% / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsl(0,100%,50%)" 5`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsl(0 100% 50% / 1)" 5`] = `
 [
-  "hsl(0,100%,50%)",
-  "hsl(60,100%,50%)",
-  "hsl(240,100%,50%)",
-  "hsl(180,100%,50%)",
+  "hsl(0 100% 50% / 1)",
+  "hsl(60 100% 50% / 1)",
+  "hsl(240 100% 50% / 1)",
+  "hsl(180 100% 50% / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsl(0,100%,50%)" 6`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsl(0 100% 50% / 1)" 6`] = `
 [
-  "hsl(0,100%,50%)",
-  "hsl(90,100%,50%)",
-  "hsl(270,100%,50%)",
-  "hsl(180,100%,50%)",
+  "hsl(0 100% 50% / 1)",
+  "hsl(90 100% 50% / 1)",
+  "hsl(270 100% 50% / 1)",
+  "hsl(180 100% 50% / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsla(0,100%,50%,1)" 1`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsl(0 100% 50%)" 1`] = `
 [
-  "hsla(0,100%,50%,1)",
-  "hsla(30,100%,50%,1)",
-  "hsla(330,100%,50%,1)",
+  "hsl(0 100% 50%)",
+  "hsl(30 100% 50%)",
+  "hsl(330 100% 50%)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsla(0,100%,50%,1)" 2`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsl(0 100% 50%)" 2`] = `
 [
-  "hsla(0,100%,50%,1)",
-  "hsla(180,100%,50%,1)",
+  "hsl(0 100% 50%)",
+  "hsl(180 100% 50%)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsla(0,100%,50%,1)" 3`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsl(0 100% 50%)" 3`] = `
 [
-  "hsla(0,100%,50%,1)",
-  "hsla(150,100%,50%,1)",
-  "hsla(210,100%,50%,1)",
+  "hsl(0 100% 50%)",
+  "hsl(150 100% 50%)",
+  "hsl(210 100% 50%)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsla(0,100%,50%,1)" 4`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsl(0 100% 50%)" 4`] = `
 [
-  "hsla(0,100%,50%,1)",
-  "hsla(120,100%,50%,1)",
-  "hsla(240,100%,50%,1)",
+  "hsl(0 100% 50%)",
+  "hsl(120 100% 50%)",
+  "hsl(240 100% 50%)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsla(0,100%,50%,1)" 5`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsl(0 100% 50%)" 5`] = `
 [
-  "hsla(0,100%,50%,1)",
-  "hsla(60,100%,50%,1)",
-  "hsla(240,100%,50%,1)",
-  "hsla(180,100%,50%,1)",
+  "hsl(0 100% 50%)",
+  "hsl(60 100% 50%)",
+  "hsl(240 100% 50%)",
+  "hsl(180 100% 50%)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsla(0,100%,50%,1)" 6`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "hsl(0 100% 50%)" 6`] = `
 [
-  "hsla(0,100%,50%,1)",
-  "hsla(90,100%,50%,1)",
-  "hsla(270,100%,50%,1)",
-  "hsla(180,100%,50%,1)",
+  "hsl(0 100% 50%)",
+  "hsl(90 100% 50%)",
+  "hsl(270 100% 50%)",
+  "hsl(180 100% 50%)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(255,0,0)" 1`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(255 0 0 / 1)" 1`] = `
 [
-  "rgb(255,0,0)",
-  "rgb(255,127.5,0)",
-  "rgb(255,0,127.5)",
+  "rgb(255 0 0 / 1)",
+  "rgb(255 127.5 0 / 1)",
+  "rgb(255 0 127.5 / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(255,0,0)" 2`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(255 0 0 / 1)" 2`] = `
 [
-  "rgb(255,0,0)",
-  "rgb(0,255,255)",
+  "rgb(255 0 0 / 1)",
+  "rgb(0 255 255 / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(255,0,0)" 3`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(255 0 0 / 1)" 3`] = `
 [
-  "rgb(255,0,0)",
-  "rgb(0,255,127.5)",
-  "rgb(0,127.5,255)",
+  "rgb(255 0 0 / 1)",
+  "rgb(0 255 127.5 / 1)",
+  "rgb(0 127.5 255 / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(255,0,0)" 4`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(255 0 0 / 1)" 4`] = `
 [
-  "rgb(255,0,0)",
-  "rgb(0,255,0)",
-  "rgb(0,0,255)",
+  "rgb(255 0 0 / 1)",
+  "rgb(0 255 0 / 1)",
+  "rgb(0 0 255 / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(255,0,0)" 5`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(255 0 0 / 1)" 5`] = `
 [
-  "rgb(255,0,0)",
-  "rgb(255,255,0)",
-  "rgb(0,0,255)",
-  "rgb(0,255,255)",
+  "rgb(255 0 0 / 1)",
+  "rgb(255 255 0 / 1)",
+  "rgb(0 0 255 / 1)",
+  "rgb(0 255 255 / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(255,0,0)" 6`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(255 0 0 / 1)" 6`] = `
 [
-  "rgb(255,0,0)",
-  "rgb(127.5,255,0)",
-  "rgb(127.5,0,255)",
-  "rgb(0,255,255)",
+  "rgb(255 0 0 / 1)",
+  "rgb(127.5 255 0 / 1)",
+  "rgb(127.5 0 255 / 1)",
+  "rgb(0 255 255 / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgba(255,0,0,1)" 1`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(255 0 0)" 1`] = `
 [
-  "rgba(255,0,0,1)",
-  "rgba(255,127.5,0,1)",
-  "rgba(255,0,127.5,1)",
+  "rgb(255 0 0)",
+  "rgb(255 127.5 0)",
+  "rgb(255 0 127.5)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgba(255,0,0,1)" 2`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(255 0 0)" 2`] = `
 [
-  "rgba(255,0,0,1)",
-  "rgba(0,255,255,1)",
+  "rgb(255 0 0)",
+  "rgb(0 255 255)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgba(255,0,0,1)" 3`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(255 0 0)" 3`] = `
 [
-  "rgba(255,0,0,1)",
-  "rgba(0,255,127.5,1)",
-  "rgba(0,127.5,255,1)",
+  "rgb(255 0 0)",
+  "rgb(0 255 127.5)",
+  "rgb(0 127.5 255)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgba(255,0,0,1)" 4`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(255 0 0)" 4`] = `
 [
-  "rgba(255,0,0,1)",
-  "rgba(0,255,0,1)",
-  "rgba(0,0,255,1)",
+  "rgb(255 0 0)",
+  "rgb(0 255 0)",
+  "rgb(0 0 255)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgba(255,0,0,1)" 5`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(255 0 0)" 5`] = `
 [
-  "rgba(255,0,0,1)",
-  "rgba(255,255,0,1)",
-  "rgba(0,0,255,1)",
-  "rgba(0,255,255,1)",
+  "rgb(255 0 0)",
+  "rgb(255 255 0)",
+  "rgb(0 0 255)",
+  "rgb(0 255 255)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgba(255,0,0,1)" 6`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(255 0 0)" 6`] = `
 [
-  "rgba(255,0,0,1)",
-  "rgba(127.5,255,0,1)",
-  "rgba(127.5,0,255,1)",
-  "rgba(0,255,255,1)",
+  "rgb(255 0 0)",
+  "rgb(127.5 255 0)",
+  "rgb(127.5 0 255)",
+  "rgb(0 255 255)",
 ]
 `;
 
@@ -734,199 +734,751 @@ exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"r":2
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsl(0,100%,50%)" 1`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "hsl(0 100% 50% / 1)" 1`] = `
 [
-  "hsl(0,100%,50%)",
-  "hsl(15,100%,50%)",
-  "hsl(330,100%,50%)",
+  "hsl(0 100% 50% / 1)",
+  "hsl(180 100% 50% / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsl(0,100%,50%)" 2`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "hsl(0 100% 50% / 1)" 2`] = `
 [
-  "hsl(0,100%,50%)",
-  "hsl(120,100%,50%)",
+  "hsl(0 100% 50% / 1)",
+  "hsl(180 100% 50% / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsl(0,100%,50%)" 3`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "hsl(0 100% 50% / 1)" 3`] = `
 [
-  "hsl(0,100%,50%)",
-  "hsl(90,100%,50%)",
-  "hsl(180,100%,50%)",
+  "hsl(0 100% 50% / 1)",
+  "hsl(180 100% 50% / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsl(0,100%,50%)" 4`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "hsl(0 100% 50% / 1)" 4`] = `
 [
-  "hsl(0,100%,50%)",
-  "hsl(60,100%,50%)",
-  "hsl(240,100%,50%)",
+  "hsl(0 100% 50% / 1)",
+  "hsl(180 100% 50% / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsl(0,100%,50%)" 5`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "hsl(0 100% 50% / 1)" 5`] = `
 [
-  "hsl(0,100%,50%)",
-  "hsl(30,100%,50%)",
-  "hsl(240,100%,50%)",
-  "hsl(120,100%,50%)",
+  "hsl(0 100% 50% / 1)",
+  "hsl(180 100% 50% / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsl(0,100%,50%)" 6`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "hsl(0 100% 50% / 1)" 6`] = `
 [
-  "hsl(0,100%,50%)",
-  "hsl(45,100%,50%)",
-  "hsl(270,100%,50%)",
-  "hsl(120,100%,50%)",
+  "hsl(0 100% 50% / 1)",
+  "hsl(180 100% 50% / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsla(0,100%,50%,1)" 1`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "hsl(0 100% 50%)" 1`] = `
 [
-  "hsla(0,100%,50%,1)",
-  "hsla(15,100%,50%,1)",
-  "hsla(330,100%,50%,1)",
+  "hsl(0 100% 50%)",
+  "hsl(180 100% 50%)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsla(0,100%,50%,1)" 2`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "hsl(0 100% 50%)" 2`] = `
 [
-  "hsla(0,100%,50%,1)",
-  "hsla(120,100%,50%,1)",
+  "hsl(0 100% 50%)",
+  "hsl(180 100% 50%)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsla(0,100%,50%,1)" 3`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "hsl(0 100% 50%)" 3`] = `
 [
-  "hsla(0,100%,50%,1)",
-  "hsla(90,100%,50%,1)",
-  "hsla(180,100%,50%,1)",
+  "hsl(0 100% 50%)",
+  "hsl(180 100% 50%)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsla(0,100%,50%,1)" 4`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "hsl(0 100% 50%)" 4`] = `
 [
-  "hsla(0,100%,50%,1)",
-  "hsla(60,100%,50%,1)",
-  "hsla(240,100%,50%,1)",
+  "hsl(0 100% 50%)",
+  "hsl(180 100% 50%)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsla(0,100%,50%,1)" 5`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "hsl(0 100% 50%)" 5`] = `
 [
-  "hsla(0,100%,50%,1)",
-  "hsla(30,100%,50%,1)",
-  "hsla(240,100%,50%,1)",
-  "hsla(120,100%,50%,1)",
+  "hsl(0 100% 50%)",
+  "hsl(180 100% 50%)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsla(0,100%,50%,1)" 6`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "hsl(0 100% 50%)" 6`] = `
 [
-  "hsla(0,100%,50%,1)",
-  "hsla(45,100%,50%,1)",
-  "hsla(270,100%,50%,1)",
-  "hsla(120,100%,50%,1)",
+  "hsl(0 100% 50%)",
+  "hsl(180 100% 50%)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgb(255,0,0)" 1`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "rgb(255 0 0 / 1)" 1`] = `
 [
-  "rgb(255,0,0)",
-  "rgb(255,63.75,0)",
-  "rgb(255,0,127.5)",
+  "rgb(255 0 0 / 1)",
+  "rgb(0 255 255 / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgb(255,0,0)" 2`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "rgb(255 0 0 / 1)" 2`] = `
 [
-  "rgb(255,0,0)",
-  "rgb(0,255,0)",
+  "rgb(255 0 0 / 1)",
+  "rgb(0 255 255 / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgb(255,0,0)" 3`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "rgb(255 0 0 / 1)" 3`] = `
 [
-  "rgb(255,0,0)",
-  "rgb(127.5,255,0)",
-  "rgb(0,255,255)",
+  "rgb(255 0 0 / 1)",
+  "rgb(0 255 255 / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgb(255,0,0)" 4`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "rgb(255 0 0 / 1)" 4`] = `
 [
-  "rgb(255,0,0)",
-  "rgb(255,255,0)",
-  "rgb(0,0,255)",
+  "rgb(255 0 0 / 1)",
+  "rgb(0 255 255 / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgb(255,0,0)" 5`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "rgb(255 0 0 / 1)" 5`] = `
 [
-  "rgb(255,0,0)",
-  "rgb(255,127.5,0)",
-  "rgb(0,0,255)",
-  "rgb(0,255,0)",
+  "rgb(255 0 0 / 1)",
+  "rgb(0 255 255 / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgb(255,0,0)" 6`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "rgb(255 0 0 / 1)" 6`] = `
 [
-  "rgb(255,0,0)",
-  "rgb(255,191.25,0)",
-  "rgb(127.5,0,255)",
-  "rgb(0,255,0)",
+  "rgb(255 0 0 / 1)",
+  "rgb(0 255 255 / 1)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgba(255,0,0,1)" 1`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "rgb(255 0 0)" 1`] = `
 [
-  "rgba(255,0,0,1)",
-  "rgba(255,63.75,0,1)",
-  "rgba(255,0,127.5,1)",
+  "rgb(255 0 0)",
+  "rgb(0 255 255)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgba(255,0,0,1)" 2`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "rgb(255 0 0)" 2`] = `
 [
-  "rgba(255,0,0,1)",
-  "rgba(0,255,0,1)",
+  "rgb(255 0 0)",
+  "rgb(0 255 255)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgba(255,0,0,1)" 3`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "rgb(255 0 0)" 3`] = `
 [
-  "rgba(255,0,0,1)",
-  "rgba(127.5,255,0,1)",
-  "rgba(0,255,255,1)",
+  "rgb(255 0 0)",
+  "rgb(0 255 255)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgba(255,0,0,1)" 4`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "rgb(255 0 0)" 4`] = `
 [
-  "rgba(255,0,0,1)",
-  "rgba(255,255,0,1)",
-  "rgba(0,0,255,1)",
+  "rgb(255 0 0)",
+  "rgb(0 255 255)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgba(255,0,0,1)" 5`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "rgb(255 0 0)" 5`] = `
 [
-  "rgba(255,0,0,1)",
-  "rgba(255,127.5,0,1)",
-  "rgba(0,0,255,1)",
-  "rgba(0,255,0,1)",
+  "rgb(255 0 0)",
+  "rgb(0 255 255)",
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgba(255,0,0,1)" 6`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "rgb(255 0 0)" 6`] = `
 [
-  "rgba(255,0,0,1)",
-  "rgba(255,191.25,0,1)",
-  "rgba(127.5,0,255,1)",
-  "rgba(0,255,0,1)",
+  "rgb(255 0 0)",
+  "rgb(0 255 255)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50,"a":1} 1`] = `
+[
+  {
+    "a": 1,
+    "h": 0,
+    "l": 50,
+    "s": 100,
+  },
+  {
+    "a": 1,
+    "h": 180,
+    "l": 50,
+    "s": 100,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50,"a":1} 2`] = `
+[
+  {
+    "a": 1,
+    "h": 0,
+    "l": 50,
+    "s": 100,
+  },
+  {
+    "a": 1,
+    "h": 180,
+    "l": 50,
+    "s": 100,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50,"a":1} 3`] = `
+[
+  {
+    "a": 1,
+    "h": 0,
+    "l": 50,
+    "s": 100,
+  },
+  {
+    "a": 1,
+    "h": 180,
+    "l": 50,
+    "s": 100,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50,"a":1} 4`] = `
+[
+  {
+    "a": 1,
+    "h": 0,
+    "l": 50,
+    "s": 100,
+  },
+  {
+    "a": 1,
+    "h": 180,
+    "l": 50,
+    "s": 100,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50,"a":1} 5`] = `
+[
+  {
+    "a": 1,
+    "h": 0,
+    "l": 50,
+    "s": 100,
+  },
+  {
+    "a": 1,
+    "h": 180,
+    "l": 50,
+    "s": 100,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50,"a":1} 6`] = `
+[
+  {
+    "a": 1,
+    "h": 0,
+    "l": 50,
+    "s": 100,
+  },
+  {
+    "a": 1,
+    "h": 180,
+    "l": 50,
+    "s": 100,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50} 1`] = `
+[
+  {
+    "h": 0,
+    "l": 50,
+    "s": 100,
+  },
+  {
+    "h": 180,
+    "l": 50,
+    "s": 100,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50} 2`] = `
+[
+  {
+    "h": 0,
+    "l": 50,
+    "s": 100,
+  },
+  {
+    "h": 180,
+    "l": 50,
+    "s": 100,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50} 3`] = `
+[
+  {
+    "h": 0,
+    "l": 50,
+    "s": 100,
+  },
+  {
+    "h": 180,
+    "l": 50,
+    "s": 100,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50} 4`] = `
+[
+  {
+    "h": 0,
+    "l": 50,
+    "s": 100,
+  },
+  {
+    "h": 180,
+    "l": 50,
+    "s": 100,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50} 5`] = `
+[
+  {
+    "h": 0,
+    "l": 50,
+    "s": 100,
+  },
+  {
+    "h": 180,
+    "l": 50,
+    "s": 100,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50} 6`] = `
+[
+  {
+    "h": 0,
+    "l": 50,
+    "s": 100,
+  },
+  {
+    "h": 180,
+    "l": 50,
+    "s": 100,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0,"a":1} 1`] = `
+[
+  {
+    "a": 1,
+    "b": 0,
+    "g": 0,
+    "r": 255,
+  },
+  {
+    "a": 1,
+    "b": 255,
+    "g": 255,
+    "r": 0,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0,"a":1} 2`] = `
+[
+  {
+    "a": 1,
+    "b": 0,
+    "g": 0,
+    "r": 255,
+  },
+  {
+    "a": 1,
+    "b": 255,
+    "g": 255,
+    "r": 0,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0,"a":1} 3`] = `
+[
+  {
+    "a": 1,
+    "b": 0,
+    "g": 0,
+    "r": 255,
+  },
+  {
+    "a": 1,
+    "b": 255,
+    "g": 255,
+    "r": 0,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0,"a":1} 4`] = `
+[
+  {
+    "a": 1,
+    "b": 0,
+    "g": 0,
+    "r": 255,
+  },
+  {
+    "a": 1,
+    "b": 255,
+    "g": 255,
+    "r": 0,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0,"a":1} 5`] = `
+[
+  {
+    "a": 1,
+    "b": 0,
+    "g": 0,
+    "r": 255,
+  },
+  {
+    "a": 1,
+    "b": 255,
+    "g": 255,
+    "r": 0,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0,"a":1} 6`] = `
+[
+  {
+    "a": 1,
+    "b": 0,
+    "g": 0,
+    "r": 255,
+  },
+  {
+    "a": 1,
+    "b": 255,
+    "g": 255,
+    "r": 0,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0} 1`] = `
+[
+  {
+    "b": 0,
+    "g": 0,
+    "r": 255,
+  },
+  {
+    "b": 255,
+    "g": 255,
+    "r": 0,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0} 2`] = `
+[
+  {
+    "b": 0,
+    "g": 0,
+    "r": 255,
+  },
+  {
+    "b": 255,
+    "g": 255,
+    "r": 0,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0} 3`] = `
+[
+  {
+    "b": 0,
+    "g": 0,
+    "r": 255,
+  },
+  {
+    "b": 255,
+    "g": 255,
+    "r": 0,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0} 4`] = `
+[
+  {
+    "b": 0,
+    "g": 0,
+    "r": 255,
+  },
+  {
+    "b": 255,
+    "g": 255,
+    "r": 0,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0} 5`] = `
+[
+  {
+    "b": 0,
+    "g": 0,
+    "r": 255,
+  },
+  {
+    "b": 255,
+    "g": 255,
+    "r": 0,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0} 6`] = `
+[
+  {
+    "b": 0,
+    "g": 0,
+    "r": 255,
+  },
+  {
+    "b": 255,
+    "g": 255,
+    "r": 0,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsl(0 100% 50% / 1)" 1`] = `
+[
+  "hsl(0 100% 50% / 1)",
+  "hsl(15 100% 50% / 1)",
+  "hsl(330 100% 50% / 1)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsl(0 100% 50% / 1)" 2`] = `
+[
+  "hsl(0 100% 50% / 1)",
+  "hsl(120 100% 50% / 1)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsl(0 100% 50% / 1)" 3`] = `
+[
+  "hsl(0 100% 50% / 1)",
+  "hsl(90 100% 50% / 1)",
+  "hsl(180 100% 50% / 1)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsl(0 100% 50% / 1)" 4`] = `
+[
+  "hsl(0 100% 50% / 1)",
+  "hsl(60 100% 50% / 1)",
+  "hsl(240 100% 50% / 1)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsl(0 100% 50% / 1)" 5`] = `
+[
+  "hsl(0 100% 50% / 1)",
+  "hsl(30 100% 50% / 1)",
+  "hsl(240 100% 50% / 1)",
+  "hsl(120 100% 50% / 1)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsl(0 100% 50% / 1)" 6`] = `
+[
+  "hsl(0 100% 50% / 1)",
+  "hsl(45 100% 50% / 1)",
+  "hsl(270 100% 50% / 1)",
+  "hsl(120 100% 50% / 1)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsl(0 100% 50%)" 1`] = `
+[
+  "hsl(0 100% 50%)",
+  "hsl(15 100% 50%)",
+  "hsl(330 100% 50%)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsl(0 100% 50%)" 2`] = `
+[
+  "hsl(0 100% 50%)",
+  "hsl(120 100% 50%)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsl(0 100% 50%)" 3`] = `
+[
+  "hsl(0 100% 50%)",
+  "hsl(90 100% 50%)",
+  "hsl(180 100% 50%)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsl(0 100% 50%)" 4`] = `
+[
+  "hsl(0 100% 50%)",
+  "hsl(60 100% 50%)",
+  "hsl(240 100% 50%)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsl(0 100% 50%)" 5`] = `
+[
+  "hsl(0 100% 50%)",
+  "hsl(30 100% 50%)",
+  "hsl(240 100% 50%)",
+  "hsl(120 100% 50%)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "hsl(0 100% 50%)" 6`] = `
+[
+  "hsl(0 100% 50%)",
+  "hsl(45 100% 50%)",
+  "hsl(270 100% 50%)",
+  "hsl(120 100% 50%)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgb(255 0 0 / 1)" 1`] = `
+[
+  "rgb(255 0 0 / 1)",
+  "rgb(255 63.75 0 / 1)",
+  "rgb(255 0 127.5 / 1)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgb(255 0 0 / 1)" 2`] = `
+[
+  "rgb(255 0 0 / 1)",
+  "rgb(0 255 0 / 1)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgb(255 0 0 / 1)" 3`] = `
+[
+  "rgb(255 0 0 / 1)",
+  "rgb(127.5 255 0 / 1)",
+  "rgb(0 255 255 / 1)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgb(255 0 0 / 1)" 4`] = `
+[
+  "rgb(255 0 0 / 1)",
+  "rgb(255 255 0 / 1)",
+  "rgb(0 0 255 / 1)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgb(255 0 0 / 1)" 5`] = `
+[
+  "rgb(255 0 0 / 1)",
+  "rgb(255 127.5 0 / 1)",
+  "rgb(0 0 255 / 1)",
+  "rgb(0 255 0 / 1)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgb(255 0 0 / 1)" 6`] = `
+[
+  "rgb(255 0 0 / 1)",
+  "rgb(255 191.25 0 / 1)",
+  "rgb(127.5 0 255 / 1)",
+  "rgb(0 255 0 / 1)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgb(255 0 0)" 1`] = `
+[
+  "rgb(255 0 0)",
+  "rgb(255 63.75 0)",
+  "rgb(255 0 127.5)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgb(255 0 0)" 2`] = `
+[
+  "rgb(255 0 0)",
+  "rgb(0 255 0)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgb(255 0 0)" 3`] = `
+[
+  "rgb(255 0 0)",
+  "rgb(127.5 255 0)",
+  "rgb(0 255 255)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgb(255 0 0)" 4`] = `
+[
+  "rgb(255 0 0)",
+  "rgb(255 255 0)",
+  "rgb(0 0 255)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgb(255 0 0)" 5`] = `
+[
+  "rgb(255 0 0)",
+  "rgb(255 127.5 0)",
+  "rgb(0 0 255)",
+  "rgb(0 255 0)",
+]
+`;
+
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rgb(255 0 0)" 6`] = `
+[
+  "rgb(255 0 0)",
+  "rgb(255 191.25 0)",
+  "rgb(127.5 0 255)",
+  "rgb(0 255 0)",
 ]
 `;
 

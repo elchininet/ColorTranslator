@@ -1,7 +1,9 @@
 import { ColorTranslator } from '../src';
 import { COLORS, CMYK_COLORS } from './tests.constants';
 
-const options = { decimals: 0 };
+const optionsNoLegacy = { legacyCSS: false };
+const optionsNoDecimals = { decimals: 0 };
+const options = { ...optionsNoLegacy, ...optionsNoDecimals };
 
 COLORS.forEach((color): void => {
 
@@ -71,6 +73,28 @@ COLORS.forEach((color): void => {
 
 });
 
+COLORS.forEach((color): void => {
+
+    describe('ColorTranslator static color conversion with auto legacyCSS detection', () => {
+
+        it('Non legacy conversion', () => {
+            expect(ColorTranslator.toRGB(color.hex)).toBe(color.rgb);
+            expect(ColorTranslator.toRGBA(color.hexObject)).toBe(color.rgba);
+            expect(ColorTranslator.toHSL(color.rgb, optionsNoDecimals)).toBe(color.hsl);
+            expect(ColorTranslator.toHSLA(color.rgbObject, optionsNoDecimals)).toBe(color.hsla);
+        });
+
+        it('Legacy conversion', () => {
+            expect(ColorTranslator.toRGB(color.hslLegacy, optionsNoDecimals)).toBe(color.rgbLegacy);
+            expect(ColorTranslator.toRGBA(color.hslaLegacy, optionsNoDecimals)).toBe(color.rgbaLegacy);
+            expect(ColorTranslator.toHSL(color.rgbaLegacy, optionsNoDecimals)).toBe(color.hslLegacy);
+            expect(ColorTranslator.toHSLA(color.rgbLegacy, optionsNoDecimals)).toBe(color.hslaLegacy);
+        });
+
+    });
+
+});
+
 CMYK_COLORS.forEach((color) => {
 
     Object.values(color).forEach((colorValue) => {
@@ -98,6 +122,10 @@ CMYK_COLORS.forEach((color) => {
             });
 
             it(`toCMYK method with decimals from ${colorValueStr}`, () => {
+                expect(ColorTranslator.toCMYK(colorValue, optionsNoLegacy)).toMatchSnapshot();
+            });
+
+            it(`toCMYK method with decimals and auto legacyCSS from ${colorValueStr}`, () => {
                 expect(ColorTranslator.toCMYK(colorValue)).toMatchSnapshot();
             });
 
@@ -106,6 +134,10 @@ CMYK_COLORS.forEach((color) => {
             });
 
             it(`toCMYKA method with decimals from ${colorValueStr}`, () => {
+                expect(ColorTranslator.toCMYKA(colorValue, optionsNoLegacy)).toMatchSnapshot();
+            });
+
+            it(`toCMYKA method with decimals and auto legacyCSS from ${colorValueStr}`, () => {
                 expect(ColorTranslator.toCMYKA(colorValue)).toMatchSnapshot();
             });
 
