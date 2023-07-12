@@ -39,3 +39,133 @@ exports[`ColorTranslator shades and tints tests Shades tests from "rgba(255,0,0,
   "rgba(43,0,0,1)",
 ]
 `;
+
+exports[`ColorTranslator shades and tints tests Shades tests from {"h":0,"s":100,"l":50,"a":1} with decimals 1`] = `
+[
+  {
+    "a": 1,
+    "h": 0,
+    "l": 42,
+    "s": 100,
+  },
+  {
+    "a": 1,
+    "h": 0,
+    "l": 33,
+    "s": 100,
+  },
+  {
+    "a": 1,
+    "h": 0,
+    "l": 25,
+    "s": 100,
+  },
+  {
+    "a": 1,
+    "h": 0,
+    "l": 17,
+    "s": 100,
+  },
+  {
+    "a": 1,
+    "h": 0,
+    "l": 8,
+    "s": 100,
+  },
+]
+`;
+
+exports[`ColorTranslator shades and tints tests Shades tests from {"h":0,"s":100,"l":50} with decimals 1`] = `
+[
+  {
+    "h": 0,
+    "l": 42,
+    "s": 100,
+  },
+  {
+    "h": 0,
+    "l": 33,
+    "s": 100,
+  },
+  {
+    "h": 0,
+    "l": 25,
+    "s": 100,
+  },
+  {
+    "h": 0,
+    "l": 17,
+    "s": 100,
+  },
+  {
+    "h": 0,
+    "l": 8,
+    "s": 100,
+  },
+]
+`;
+
+exports[`ColorTranslator shades and tints tests Shades tests from {"r":255,"g":0,"b":0,"a":1} with decimals 1`] = `
+[
+  {
+    "a": 1,
+    "b": 0,
+    "g": 0,
+    "r": 213,
+  },
+  {
+    "a": 1,
+    "b": 0,
+    "g": 0,
+    "r": 170,
+  },
+  {
+    "a": 1,
+    "b": 0,
+    "g": 0,
+    "r": 128,
+  },
+  {
+    "a": 1,
+    "b": 0,
+    "g": 0,
+    "r": 85,
+  },
+  {
+    "a": 1,
+    "b": 0,
+    "g": 0,
+    "r": 43,
+  },
+]
+`;
+
+exports[`ColorTranslator shades and tints tests Shades tests from {"r":255,"g":0,"b":0} with decimals 1`] = `
+[
+  {
+    "b": 0,
+    "g": 0,
+    "r": 213,
+  },
+  {
+    "b": 0,
+    "g": 0,
+    "r": 170,
+  },
+  {
+    "b": 0,
+    "g": 0,
+    "r": 128,
+  },
+  {
+    "b": 0,
+    "g": 0,
+    "r": 85,
+  },
+  {
+    "b": 0,
+    "g": 0,
+    "r": 43,
+  },
+]
+`;

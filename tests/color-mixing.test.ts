@@ -1,5 +1,4 @@
 import { ColorTranslator } from '../src';
-import { RGBOutput, HSLOutput, HEXOutput } from '../src/@types';
 import { Mix } from '../src/constants';
 import { ADDITIVE_MIXES, SUBTRACTIVE_MIXES } from './tests.constants';
 
@@ -12,22 +11,25 @@ const mixFunctions = [
     { name: 'getMixRGBA', mixFn: ColorTranslator.getMixRGBA, fn: ColorTranslator.toRGBA },
     { name: 'getMixHSL',  mixFn: ColorTranslator.getMixHSL,  fn: ColorTranslator.toHSL },
     { name: 'getMixHSLA', mixFn: ColorTranslator.getMixHSLA, fn: ColorTranslator.toHSLA },
+    { name: 'getMixHEXObject',  mixFn: ColorTranslator.getMixHEXObject,  fn: ColorTranslator.toHEXObject },
+    { name: 'getMixHEXAObject', mixFn: ColorTranslator.getMixHEXAObject, fn: ColorTranslator.toHEXAObject },
+    { name: 'getMixRGBObject',  mixFn: ColorTranslator.getMixRGBObject,  fn: ColorTranslator.toRGBObject },
+    { name: 'getMixRGBAObject', mixFn: ColorTranslator.getMixRGBAObject, fn: ColorTranslator.toRGBAObject },
+    { name: 'getMixHSLObject',  mixFn: ColorTranslator.getMixHSLObject,  fn: ColorTranslator.toHSLObject },
+    { name: 'getMixHSLAObject', mixFn: ColorTranslator.getMixHSLAObject, fn: ColorTranslator.toHSLAObject }
 ];
 
 describe('Additive Color mixing', (): void => {
     mixFunctions.forEach((fnObject): void => {
         ADDITIVE_MIXES.forEach((item: MixObject): void => {
-            const colors = item.colors.map((c): string => fnObject.fn(c));
+            const colors = item.colors.map((c) => fnObject.fn(c));
             const mix = fnObject.mixFn(colors);
-            it(`Regular CSS additive mix using ${fnObject.name} ${JSON.stringify(colors)} => ${mix}`, (): void => {
-                expect(mix).toBe(fnObject.fn(item.mix));
-            });
-        });
-        ADDITIVE_MIXES.forEach((item: MixObject): void => {
-            const colors = item.colors.map((c): RGBOutput | HSLOutput | HEXOutput => fnObject.fn(c, false));
-            const mix = fnObject.mixFn(colors, Mix.ADDITIVE, false);
-            it(`Regular Object additive mix using ${fnObject.name} ${JSON.stringify(colors)} => ${JSON.stringify(mix)}`, (): void => {
-                expect(mix).toMatchObject(fnObject.fn(item.mix, false));
+            it(`Regular additive mix using ${fnObject.name} ${JSON.stringify(colors)} => ${JSON.stringify(mix)}`, (): void => {
+                if (typeof mix === 'string') {
+                    expect(mix).toBe(fnObject.fn(item.mix));
+                } else {
+                    expect(mix).toMatchObject(fnObject.fn(item.mix));
+                }
             });
         });
     });

@@ -3,7 +3,7 @@ import './styles.scss';
 export default (ColorTranslator) => {
 
     const container = document.createElement('div');
-    const color = new ColorTranslator('hsl(180,100%,50%)', 0);
+    const color = new ColorTranslator('hsl(180,100%,50%)', { decimals: 0 });
 
     for (let row = 0; row < 10; row++) {
 

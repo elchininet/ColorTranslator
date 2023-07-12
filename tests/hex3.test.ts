@@ -19,8 +19,8 @@ HEX3.forEach((item: HexProps): void => {
             });
 
             it('Object RGB', (): void => {
-                expect(ColorTranslator.toRGB(item[prop], false)).toMatchObject(item.rgbObject);
-                expect(ColorTranslator.toRGB(item.keyword, false)).toMatchObject(item.rgbObject);
+                expect(ColorTranslator.toRGBObject(item[prop])).toMatchObject(item.rgbObject);
+                expect(ColorTranslator.toRGBObject(item.keyword)).toMatchObject(item.rgbObject);
             });
 
             it('CSS RGBA', (): void => {
@@ -29,8 +29,8 @@ HEX3.forEach((item: HexProps): void => {
             });
 
             it('Object RGBA', (): void => {
-                expect(ColorTranslator.toRGBA(item[prop], false)).toMatchObject(item.rgbaObject);
-                expect(ColorTranslator.toRGBA(item.keyword, false)).toMatchObject(item.rgbaObject);
+                expect(ColorTranslator.toRGBAObject(item[prop])).toMatchObject(item.rgbaObject);
+                expect(ColorTranslator.toRGBAObject(item.keyword)).toMatchObject(item.rgbaObject);
             });
 
             it('CSS HSL', (): void => {
@@ -39,8 +39,8 @@ HEX3.forEach((item: HexProps): void => {
             });
 
             it('Object HSL', (): void => {
-                expect(ColorTranslator.toHSL(item[prop], false)).toMatchObject(item.hslObject);
-                expect(ColorTranslator.toHSL(item.keyword, false)).toMatchObject(item.hslObject);
+                expect(ColorTranslator.toHSLObject(item[prop])).toMatchObject(item.hslObject);
+                expect(ColorTranslator.toHSLObject(item.keyword)).toMatchObject(item.hslObject);
             });
 
             it('CSS HSLA', (): void => {
@@ -49,8 +49,8 @@ HEX3.forEach((item: HexProps): void => {
             });
 
             it('Object HSLA', (): void => {
-                expect(ColorTranslator.toHSLA(item[prop], false)).toMatchObject(item.hslaObject);
-                expect(ColorTranslator.toHSLA(item.keyword, false)).toMatchObject(item.hslaObject);
+                expect(ColorTranslator.toHSLAObject(item[prop])).toMatchObject(item.hslaObject);
+                expect(ColorTranslator.toHSLAObject(item.keyword)).toMatchObject(item.hslaObject);
             });
 
         });
