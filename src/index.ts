@@ -7,12 +7,9 @@ import {
     RGBObject,
     HSLObject,
     CMYKObject,
-    HEXOutput,
-    RGBOutput,
-    HSLOutput,
-    CMYKOutput,
     ColorOutput,
-    Options
+    Options,
+    InputOptions
 } from '@types';
 import {
     ColorModel,
@@ -33,47 +30,35 @@ import { round, minmax, parseOptions } from '#helpers';
 const getColorReturn = <T>(
     color: ColorInput,
     model: ColorModel,
-    css: boolean,
-    options: Partial<Options>,
-    translateFunction: (color: Color, decimals: number) => T,
-    cssFunction: (color: T) => string
-): T | string => {
+    options: InputOptions,
+    translateFunction: (color: Color, decimals: number) => T
+): T => {
     const { decimals } = parseOptions(options);
     const rgbObject = utils.getRGBObject(color, model);
-    const translated = translateFunction(rgbObject, decimals);
-    if (!css) {
-        return translated;
-    }
-    return cssFunction(translated);
+    return translateFunction(rgbObject, decimals);
 };
 
 const getBlendReturn = <T>(
     from: ColorInput,
     to: ColorInput,
     steps: number,
-    css: boolean,
-    options: Partial<Options>,
-    translateFunction: (color: Color, decimals: number) => T,
-    cssFunction: (color: T) => string
-): (T | string)[] => {
+    options: InputOptions,
+    translateFunction: (color: Color, decimals: number) => T
+): T[] => {
     const { decimals } = parseOptions(options);
     if (steps < 1) steps = DEFAULT_BLEND_STEPS;
     const fromRGBObject = utils.getRGBObject(from);
     const toRGBObject = utils.getRGBObject(to);
     const blendArray = utils.blend(fromRGBObject, toRGBObject, steps);
-    return blendArray.map((color: RGBObject): T | string => {
-        const translated = translateFunction(color, decimals);
-        if (!css) {
-            return translated;
-        }
-        return cssFunction(translated);
+    return blendArray.map((color: RGBObject): T => {
+        return translateFunction(color, decimals);
     });
 };
 
 const getHarmonyReturn = (
     harmony: Harmony,
     color: ColorInputWithoutCMYK,
-    options: Partial<Options>,
+    options: InputOptions,
     mode?: Mix,
 ): ColorOutput[] => {
     const { decimals } = parseOptions(options);
@@ -90,7 +75,7 @@ const getHarmonyReturn = (
 export class ColorTranslator {
 
     // Constructor
-    public constructor(color: ColorInput, options: Partial<Options> = {}) {
+    public constructor(color: ColorInput, options: InputOptions = {}) {
         this._options = parseOptions(options);
         this.rgb = utils.getRGBObject(color);
         this.updateHSL();
@@ -139,7 +124,7 @@ export class ColorTranslator {
     }
 
     // Public options method
-    public setOptions(options: Partial<Options> = {}): ColorTranslator {
+    public setOptions(options: InputOptions = {}): ColorTranslator {
         this._options = {
             ...this._options,
             ...options
@@ -386,289 +371,385 @@ export class ColorTranslator {
     }
 
     // Color Conversion Static Methods
-    public static toHEX(color: ColorInput): string;
-    public static toHEX(color: ColorInput, css: true): string;
-    public static toHEX(color: ColorInput, css: false): HEXObject;
-    public static toHEX(color: ColorInput, css = true): HEXOutput {
+    public static toHEXObject(color: ColorInput): HEXObject {
         const model = utils.getColorModel(color);
         return getColorReturn<HEXObject>(
             color,
             model,
-            css,
             { decimals: 0 },
-            utils.translateColor.HEX,
-            CSS.HEX
+            utils.translateColor.HEX
         );
     }
 
-    public static toHEXA(color: ColorInput): string;
-    public static toHEXA(color: ColorInput, css: true): string;
-    public static toHEXA(color: ColorInput, css: false): HEXObject;
-    public static toHEXA(color: ColorInput, css = true): HEXOutput {
+    public static toHEX(color: ColorInput): string {
+        return CSS.HEX(
+            ColorTranslator.toHEXObject(color)
+        );
+    }
+
+    public static toHEXAObject(color: ColorInput): HEXObject {
         const model = utils.getColorModel(color);
         return getColorReturn<HEXObject>(
             color,
             model,
-            css,
             { decimals: 0 },
-            utils.translateColor.HEXA,
-            CSS.HEX
+            utils.translateColor.HEXA
         );
     }
 
-    public static toRGB(color: ColorInput): string;
-    public static toRGB(color: ColorInput, css: true, options?: Partial<Options>): string;
-    public static toRGB(color: ColorInput, css: false, options?: Partial<Options>): RGBObject;
-    public static toRGB(color: ColorInput, css = true, options = {}): RGBOutput {
+    public static toHEXA(color: ColorInput): string {
+        return CSS.HEX(
+            ColorTranslator.toHEXAObject(color)
+        );
+    }
+
+    public static toRGBObject(color: ColorInput, options: InputOptions = {}): RGBObject {
         const model = utils.getColorModel(color);
         return getColorReturn<RGBObject>(
             color,
             model,
-            css,
             options,
-            utils.translateColor.RGB,
-            CSS.RGB
+            utils.translateColor.RGB
         );
     }
 
-    public static toRGBA(color: ColorInput): string;
-    public static toRGBA(color: ColorInput, css: true, options?: Partial<Options>): string;
-    public static toRGBA(color: ColorInput, css: false, options?: Partial<Options>): RGBObject;
-    public static toRGBA(color: ColorInput, css = true, options = {}): RGBOutput {
+    public static toRGB(color: ColorInput, options: InputOptions = {}): string {
+        return CSS.RGB(
+            ColorTranslator.toRGBObject(color, options)
+        );
+    }
+
+    public static toRGBAObject(color: ColorInput, options: InputOptions = {}): RGBObject {
         const model = utils.getColorModel(color);
         return getColorReturn<RGBObject>(
             color,
             model,
-            css,
             options,
-            utils.translateColor.RGBA,
-            CSS.RGB
+            utils.translateColor.RGBA
         );
     }
 
-    public static toHSL(color: ColorInput): string;
-    public static toHSL(color: ColorInput, css: true, options?: Partial<Options>): string;
-    public static toHSL(color: ColorInput, css: false, options?: Partial<Options>): HSLObject;
-    public static toHSL(color: ColorInput, css = true, options = {}): HSLOutput {
+    public static toRGBA(color: ColorInput, options: InputOptions = {}): string {
+        return CSS.RGB(
+            ColorTranslator.toRGBAObject(color, options)
+        );
+    }
+
+    public static toHSLObject(color: ColorInput, options: InputOptions = {}): HSLObject {
         const model = utils.getColorModel(color);
         return getColorReturn<HSLObject>(
             color,
             model,
-            css,
             options,
-            utils.translateColor.HSL,
-            CSS.HSL
+            utils.translateColor.HSL
         );
     }
 
-    public static toHSLA(color: ColorInput): string;
-    public static toHSLA(color: ColorInput, css: true, options?: Partial<Options>): string;
-    public static toHSLA(color: ColorInput, css: false, options?: Partial<Options>): HSLObject;
-    public static toHSLA(color: ColorInput, css = true, options = {}): HSLOutput {
+    public static toHSL(color: ColorInput, options: InputOptions = {}): string {
+        return CSS.HSL(
+            ColorTranslator.toHSLObject(color, options)
+        );
+    }
+
+    public static toHSLAObject(color: ColorInput, options: InputOptions = {}): HSLObject {
         const model = utils.getColorModel(color);
         return getColorReturn<HSLObject>(
             color,
             model,
-            css,
             options,
-            utils.translateColor.HSLA,
-            CSS.HSL
+            utils.translateColor.HSLA
         );
     }
 
-    public static toCMYK(color: ColorInput): string;
-    public static toCMYK(color: ColorInput, css: true, options?: Partial<Options>): string;
-    public static toCMYK(color: ColorInput, css: false, options?: Partial<Options>): CMYKObject;
-    public static toCMYK(color: ColorInput, css = true, options = {}): CMYKOutput {
+    public static toHSLA(color: ColorInput, options: InputOptions = {}): string {
+        return CSS.HSL(
+            ColorTranslator.toHSLAObject(color, options)
+        );
+    }
+
+    public static toCMYKObject(color: ColorInput, options: InputOptions = {}): CMYKObject {
         const model = utils.getColorModel(color);
         return getColorReturn<CMYKObject>(
             color,
             model,
-            css,
             options,
-            utils.translateColor.CMYK,
-            CSS.CMYK
+            utils.translateColor.CMYK
         );
     }
 
-    public static toCMYKA(color: ColorInput): string;
-    public static toCMYKA(color: ColorInput, css: true, options?: Partial<Options>): string;
-    public static toCMYKA(color: ColorInput, css: false, options?: Partial<Options>): CMYKObject;
-    public static toCMYKA(color: ColorInput, css = true, options = {}): CMYKOutput {
+    public static toCMYK(color: ColorInput, options: InputOptions = {}): string {
+        return CSS.CMYK(
+            ColorTranslator.toCMYKObject(color, options)
+        );
+    }
+
+    public static toCMYKAObject(color: ColorInput, options: InputOptions = {}): CMYKObject {
         const model = utils.getColorModel(color);
         return getColorReturn<CMYKObject>(
             color,
             model,
-            css,
             options,
-            utils.translateColor.CMYKA,
-            CSS.CMYK
+            utils.translateColor.CMYKA
+        );
+    }
+
+    public static toCMYKA(color: ColorInput, options: InputOptions = {}): string {
+        return CSS.CMYK(
+            ColorTranslator.toCMYKAObject(color, options)
         );
     }
 
     // Color Blending Static Methods
-    public static getBlendHEX(from: ColorInput, to: ColorInput, steps?: number): string[];
-    public static getBlendHEX(from: ColorInput, to: ColorInput, steps: number, css: true, options?: Partial<Options>): string[];
-    public static getBlendHEX(from: ColorInput, to: ColorInput, steps: number, css: false, options?: Partial<Options>): HEXObject[];
-    public static getBlendHEX(from: ColorInput, to: ColorInput, steps: number = DEFAULT_BLEND_STEPS, css = true, options = {}): HEXOutput[] {
+    public static getBlendHEXObject(
+        from: ColorInput,
+        to: ColorInput,
+        steps: number = DEFAULT_BLEND_STEPS
+    ): HEXObject[] {
         return getBlendReturn<HEXObject>(
             from,
             to,
             steps,
-            css,
-            options,
-            utils.translateColor.HEX,
-            CSS.HEX
+            { decimals: 0 },
+            utils.translateColor.HEX
         );
     }
 
-    public static getBlendHEXA(from: ColorInput, to: ColorInput, steps?: number): string[];
-    public static getBlendHEXA(from: ColorInput, to: ColorInput, steps: number, css: true, options?: Partial<Options>): string[];
-    public static getBlendHEXA(from: ColorInput, to: ColorInput, steps: number, css: false, options?: Partial<Options>): HEXObject[];
-    public static getBlendHEXA(from: ColorInput, to: ColorInput, steps: number = DEFAULT_BLEND_STEPS, css = true, options = {}): HEXOutput[] {
+    public static getBlendHEX(
+        from: ColorInput,
+        to: ColorInput,
+        steps: number = DEFAULT_BLEND_STEPS,
+    ): string[] {
+        return ColorTranslator.getBlendHEXObject(from, to, steps)
+            .map((color: HEXObject): string => CSS.HEX(color));
+    }
+
+    public static getBlendHEXAObject(
+        from: ColorInput,
+        to: ColorInput,
+        steps: number = DEFAULT_BLEND_STEPS
+    ): HEXObject[] {
         return getBlendReturn<HEXObject>(
             from,
             to,
             steps,
-            css,
-            options,
-            utils.translateColor.HEXA,
-            CSS.HEX
+            { decimals: 0 },
+            utils.translateColor.HEXA
         );
     }
 
-    public static getBlendRGB(from: ColorInput, to: ColorInput, steps?: number): string[];
-    public static getBlendRGB(from: ColorInput, to: ColorInput, steps: number, css: true, options?: Partial<Options>): string[];
-    public static getBlendRGB(from: ColorInput, to: ColorInput, steps: number, css: false, options?: Partial<Options>): RGBObject[];
-    public static getBlendRGB(from: ColorInput, to: ColorInput, steps: number = DEFAULT_BLEND_STEPS, css = true, options = {}): RGBOutput[] {
+    public static getBlendHEXA(
+        from: ColorInput,
+        to: ColorInput,
+        steps: number = DEFAULT_BLEND_STEPS
+    ): string[] {
+        return ColorTranslator.getBlendHEXAObject(from, to, steps)
+            .map((color: HEXObject): string => CSS.HEX(color));
+    }
+
+    public static getBlendRGBObject(
+        from: ColorInput,
+        to: ColorInput,
+        steps: number = DEFAULT_BLEND_STEPS,
+        options: InputOptions = {}
+    ): RGBObject[] {
         return getBlendReturn<RGBObject>(
             from,
             to,
             steps,
-            css,
             options,
-            utils.translateColor.RGB,
-            CSS.RGB
+            utils.translateColor.RGB
         );
     }
 
-    public static getBlendRGBA(from: ColorInput, to: ColorInput, steps: number): string[];
-    public static getBlendRGBA(from: ColorInput, to: ColorInput, steps: number, css: true, options?: Partial<Options>): string[];
-    public static getBlendRGBA(from: ColorInput, to: ColorInput, steps: number, css: false, options?: Partial<Options>): RGBObject[];
-    public static getBlendRGBA(from: ColorInput, to: ColorInput, steps: number = DEFAULT_BLEND_STEPS, css = true, options = {}): RGBOutput[] {
+    public static getBlendRGB(
+        from: ColorInput,
+        to: ColorInput,
+        steps: number = DEFAULT_BLEND_STEPS,
+        options: InputOptions = {}
+    ): string[] {
+        return ColorTranslator.getBlendRGBObject(from, to, steps, options)
+            .map((color: RGBObject): string => CSS.RGB(color));
+    }
+
+    public static getBlendRGBAObject(
+        from: ColorInput,
+        to: ColorInput,
+        steps: number = DEFAULT_BLEND_STEPS,
+        options: InputOptions = {}
+    ): RGBObject[] {
         return getBlendReturn<RGBObject>(
             from,
             to,
             steps,
-            css,
             options,
-            utils.translateColor.RGBA,
-            CSS.RGB
+            utils.translateColor.RGBA
         );
     }
 
-    public static getBlendHSL(from: ColorInput, to: ColorInput, steps?: number): string[];
-    public static getBlendHSL(from: ColorInput, to: ColorInput, steps: number, css: true, options?: Partial<Options>): string[];
-    public static getBlendHSL(from: ColorInput, to: ColorInput, steps: number, css: false, options?: Partial<Options>): HSLObject[];
-    public static getBlendHSL(from: ColorInput, to: ColorInput, steps: number = DEFAULT_BLEND_STEPS, css = true, options = {}): HSLOutput[] {
+    public static getBlendRGBA(
+        from: ColorInput,
+        to: ColorInput,
+        steps: number = DEFAULT_BLEND_STEPS,
+        options: InputOptions = {}
+    ): string[] {
+        return ColorTranslator.getBlendRGBAObject(from, to, steps, options)
+            .map((color: RGBObject): string => CSS.RGB(color));
+    }
+
+    public static getBlendHSLObject(
+        from: ColorInput,
+        to: ColorInput,
+        steps: number = DEFAULT_BLEND_STEPS,
+        options: InputOptions = {}
+    ): HSLObject[] {
         return getBlendReturn<HSLObject>(
             from,
             to,
             steps,
-            css,
             options,
-            utils.translateColor.HSL,
-            CSS.HSL
+            utils.translateColor.HSL
         );
     }
 
-    public static getBlendHSLA(from: ColorInput, to: ColorInput, steps?: number): string[];
-    public static getBlendHSLA(from: ColorInput, to: ColorInput, steps: number, css: true, options?: Partial<Options>): string[];
-    public static getBlendHSLA(from: ColorInput, to: ColorInput, steps: number, css: false, options?: Partial<Options>): HSLObject[];
-    public static getBlendHSLA(from: ColorInput, to: ColorInput, steps: number = DEFAULT_BLEND_STEPS, css = true, options = {}): HSLOutput[] {
+    public static getBlendHSL(
+        from: ColorInput,
+        to: ColorInput,
+        steps: number = DEFAULT_BLEND_STEPS,
+        options: InputOptions = {}
+    ): string[] {
+        return ColorTranslator.getBlendHSLObject(from, to, steps, options)
+            .map((color: HSLObject) => CSS.HSL(color));
+    }
+
+    public static getBlendHSLAObject(
+        from: ColorInput,
+        to: ColorInput,
+        steps: number = DEFAULT_BLEND_STEPS,
+        options: InputOptions = {}
+    ): HSLObject[] {
         return getBlendReturn<HSLObject>(
             from,
             to,
             steps,
-            css,
             options,
-            utils.translateColor.HSLA,
-            CSS.HSL
+            utils.translateColor.HSLA
         );
+    }
+
+    public static getBlendHSLA(
+        from: ColorInput,
+        to: ColorInput,
+        steps: number = DEFAULT_BLEND_STEPS,
+        options: InputOptions = {}
+    ): string[] {
+        return ColorTranslator.getBlendHSLAObject(from, to, steps, options)
+            .map((color: HSLObject): string => CSS.HSL(color));
     }
 
     // Color Mix Static Methods
-    public static getMixHEX(colors: ColorInput[]): string;
-    public static getMixHEX(colors: ColorInput[], mode: Mix): string;
-    public static getMixHEX(colors: ColorInput[], mode: Mix, css: true): string;
-    public static getMixHEX(colors: ColorInput[], mode: Mix, css: false): HEXObject;
-    public static getMixHEX(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true): HEXOutput {
-        return utils.colorMixer.HEX(colors, mode, css);
+    public static getMixHEXObject(colors: ColorInput[], mode: Mix = Mix.ADDITIVE): HEXObject {
+        return utils.colorMixer.HEX(colors, mode, false);
     }
 
-    public static getMixHEXA(colors: ColorInput[]): string;
-    public static getMixHEXA(colors: ColorInput[], mode: Mix): string;
-    public static getMixHEXA(colors: ColorInput[], mode: Mix, css: true): string;
-    public static getMixHEXA(colors: ColorInput[], mode: Mix, css: false): HEXObject;
-    public static getMixHEXA(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true): HEXOutput {
-        return utils.colorMixer.HEXA(colors, mode, css);
+    public static getMixHEX(colors: ColorInput[], mode: Mix = Mix.ADDITIVE): string {
+        return utils.colorMixer.HEX(colors, mode, true);
     }
 
-    public static getMixRGB(colors: ColorInput[]): string;
-    public static getMixRGB(colors: ColorInput[], mode: Mix): string;
-    public static getMixRGB(colors: ColorInput[], mode: Mix, css: true, options?: Partial<Options>): string;
-    public static getMixRGB(colors: ColorInput[], mode: Mix, css: false, options?: Partial<Options>): RGBObject;
-    public static getMixRGB(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true, options = {}): RGBOutput {
-        return utils.colorMixer.RGB(colors, mode, css, options);
+    public static getMixHEXAObject(colors: ColorInput[], mode: Mix = Mix.ADDITIVE): HEXObject {
+        return utils.colorMixer.HEXA(colors, mode, false);
     }
 
-    public static getMixRGBA(colors: ColorInput[]): string;
-    public static getMixRGBA(colors: ColorInput[], mode: Mix): string;
-    public static getMixRGBA(colors: ColorInput[], mode: Mix, css: true, options?: Partial<Options>): string;
-    public static getMixRGBA(colors: ColorInput[], mode: Mix, css: false, options?: Partial<Options>): RGBObject;
-    public static getMixRGBA(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true, options = {}): RGBOutput {
-        return utils.colorMixer.RGBA(colors, mode, css, options);
+    public static getMixHEXA(colors: ColorInput[], mode: Mix = Mix.ADDITIVE): string {
+        return utils.colorMixer.HEXA(colors, mode, true);
     }
 
-    public static getMixHSL(colors: ColorInput[]): string;
-    public static getMixHSL(colors: ColorInput[], mode: Mix): string;
-    public static getMixHSL(colors: ColorInput[], mode: Mix, css: true, options?: Partial<Options>): string;
-    public static getMixHSL(colors: ColorInput[], mode: Mix, css: false, options?: Partial<Options>): HSLObject;
-    public static getMixHSL(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true, options = {}): HSLOutput {
-        return utils.colorMixer.HSL(colors, mode, css, options);
+    public static getMixRGBObject(
+        colors: ColorInput[],
+        mode: Mix = Mix.ADDITIVE,
+        options: InputOptions = {}
+    ): RGBObject {
+        return utils.colorMixer.RGB(colors, mode, false, options);
     }
 
-    public static getMixHSLA(colors: ColorInput[]): string;
-    public static getMixHSLA(colors: ColorInput[], mode: Mix): string;
-    public static getMixHSLA(colors: ColorInput[], mode: Mix, css: true, options?: Partial<Options>): string;
-    public static getMixHSLA(colors: ColorInput[], mode: Mix, css: false, options?: Partial<Options>): HSLObject;
-    public static getMixHSLA(colors: ColorInput[], mode: Mix = Mix.ADDITIVE, css = true, options = {}): HSLOutput {
-        return utils.colorMixer.HSLA(colors, mode, css, options);
+    public static getMixRGB(
+        colors: ColorInput[],
+        mode: Mix = Mix.ADDITIVE,
+        options: InputOptions = {}
+    ): string {
+        return utils.colorMixer.RGB(colors, mode, true, options);
+    }
+
+    public static getMixRGBAObject(
+        colors: ColorInput[],
+        mode: Mix = Mix.ADDITIVE,
+        options: InputOptions = {}
+    ): RGBObject {
+        return utils.colorMixer.RGBA(colors, mode, false, options);
+    }
+
+    public static getMixRGBA(
+        colors: ColorInput[],
+        mode: Mix = Mix.ADDITIVE,
+        options: InputOptions = {}
+    ): string {
+        return utils.colorMixer.RGBA(colors, mode, true, options);
+    }
+
+    public static getMixHSLObject(
+        colors: ColorInput[],
+        mode: Mix = Mix.ADDITIVE,
+        options: InputOptions = {}
+    ): HSLObject {
+        return utils.colorMixer.HSL(colors, mode, false, options);
+    }
+
+    public static getMixHSL(
+        colors: ColorInput[],
+        mode: Mix = Mix.ADDITIVE,
+        options: InputOptions = {}
+    ): string {
+        return utils.colorMixer.HSL(colors, mode, true, options);
+    }
+
+    public static getMixHSLAObject(
+        colors: ColorInput[],
+        mode: Mix = Mix.ADDITIVE,
+        options: InputOptions = {}
+    ): HSLObject {
+        return utils.colorMixer.HSLA(colors, mode, false, options);
+    }
+
+    public static getMixHSLA(
+        colors: ColorInput[],
+        mode: Mix = Mix.ADDITIVE,
+        options: InputOptions = {}
+    ): string {
+        return utils.colorMixer.HSLA(colors, mode, true, options);
     }
 
     // Get shades static method
-    public static getShades(color: string, shades: number, options?: Partial<Options>): string[];
-    public static getShades(color: HEXObject, shades: number, options?: Partial<Options>): HEXObject[];
-    public static getShades(color: RGBObject, shades: number, options?: Partial<Options>): RGBObject[];
-    public static getShades(color: HSLObjectGeneric, shades: number, options?: Partial<Options>): HSLObject[];
+    public static getShades(color: string, shades: number, options?: InputOptions): string[];
+    public static getShades(color: HEXObject, shades: number, options?: InputOptions): HEXObject[];
+    public static getShades(color: RGBObject, shades: number, options?: InputOptions): RGBObject[];
+    public static getShades(color: HSLObjectGeneric, shades: number, options?: InputOptions): HSLObject[];
     public static getShades(color: ColorInputWithoutCMYK, shades: number, options = {}): ColorOutput[] {
         return utils.getColorMixture(color, shades, true, options);
     }
 
     // Get tints static method
-    public static getTints(color: string, tints: number, options?: Partial<Options>): string[];
-    public static getTints(color: HEXObject, tints: number, options?: Partial<Options>): HEXObject[];
-    public static getTints(color: RGBObject, tints: number, options?: Partial<Options>): RGBObject[];
-    public static getTints(color: HSLObjectGeneric, tints: number, options?: Partial<Options>): HSLObject[];
+    public static getTints(color: string, tints: number, options?: InputOptions): string[];
+    public static getTints(color: HEXObject, tints: number, options?: InputOptions): HEXObject[];
+    public static getTints(color: RGBObject, tints: number, options?: InputOptions): RGBObject[];
+    public static getTints(color: HSLObjectGeneric, tints: number, options?: InputOptions): HSLObject[];
     public static getTints(color: ColorInputWithoutCMYK, tints: number, options = {}): ColorOutput[] {
         return utils.getColorMixture(color, tints, false, options);
     }
 
     // Color Harmony Static Method
-    public static getHarmony(color: string, harmony?: Harmony, mode?: Mix, options?: Partial<Options>): string[];
-    public static getHarmony(color: HEXObject, harmony?: Harmony, mode?: Mix, options?: Partial<Options>): HEXObject[];
-    public static getHarmony(color: RGBObject, harmony?: Harmony, mode?: Mix, options?: Partial<Options>): RGBObject[];
-    public static getHarmony(color: HSLObjectGeneric, harmony?: Harmony, mode?: Mix, options?: Partial<Options>): HSLObject[];
+    public static getHarmony(color: string, harmony?: Harmony, mode?: Mix, options?: InputOptions): string[];
+    public static getHarmony(color: HEXObject, harmony?: Harmony, mode?: Mix, options?: InputOptions): HEXObject[];
+    public static getHarmony(color: RGBObject, harmony?: Harmony, mode?: Mix, options?: InputOptions): RGBObject[];
+    public static getHarmony(color: HSLObjectGeneric, harmony?: Harmony, mode?: Mix, options?: InputOptions): HSLObject[];
     public static getHarmony(color: ColorInputWithoutCMYK, harmony: Harmony = Harmony.COMPLEMENTARY, mode: Mix = Mix.ADDITIVE, options = {}): ColorOutput[] {
         return getHarmonyReturn(harmony, color, options, mode);
     }

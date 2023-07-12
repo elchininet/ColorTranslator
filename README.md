@@ -290,30 +290,36 @@ color.options; // { decimals: 2 }
 
 For the static methods, it is not needed to specify the input color model, the API will detect the format automatically. It is only needed to specify to which color model one wants to convert calling the specific static method.
 
-There are 22 static methods available, 7 of them to convert colors, 6 to create color blends, one to get shades, one to get tints, 6 to mix colors, and one to create color harmonies.
+There are 43 static methods available, 16 of them to convert colors, 12 to create color blends, 12 to mix colors, one to get shades, one to get tints, and one to create color harmonies.
 
 ###### Color conversion static methods
 
-The static methods to convert colors accept any of the mentioned inputs as the first parameter. The second parameter is optional and it specifies if the output should be a CSS string or an object. The third parameter is also optional and it is an [options object](#options-object):
+The static methods to convert colors accept any of the mentioned inputs as the first parameter, the second parameter is optional and it is an [options object](#options-object) (this second option is not present in the methods to generate HEX colors):
 
 ```typescript
 convertColorStaticMethod(
   color: string | object,
-  css: boolean = true,
   options?: Options
 )
 ```
 ###### Color conversion static methods description
 
-| Static method | Description                                     |
-| ------------- | ----------------------------------------------- |
-| toHEX         | Converts to an hexadecimal notation             |
-| toHEXA        | Converts to an hexadecimal notation with alpha  |
-| toRGB         | Converts to an RGB notation                     |
-| toRGBA        | Converts to an RGB notation with alpha          |
-| toHSL         | Converts to an HSL notation                     |
-| toHSLA        | Converts to an HSL notation with alpha          |
-| toCMYK        | Converts to a CMYK notation                     |
+| Static method | Description                                               |
+| ------------- | --------------------------------------------------------- |
+| toHEX         | Converts to an hexadecimal notation                       |
+| toHEXObject   | Converts to an object in hexadecimal notation             |
+| toHEXA        | Converts to an hexadecimal notation with alpha            |
+| toHEXAObject  | Converts to an object in hexadecimal notation with alpha  |
+| toRGB         | Converts to an RGB notation                               |
+| toRGBObject   | Converts to an object in RGB notation                     |
+| toRGBA        | Converts to an RGB notation with alpha                    |
+| toRGBAObject  | Converts to an object in RGB notation with alpha          |
+| toHSL         | Converts to an HSL notation                               |
+| toHSLObject   | Converts to an object in HSL notation                     |
+| toHSLA        | Converts to an HSL notation with alpha                    |
+| toHSLAObject  | Converts to an object in HSL notation with alpha          |
+| toCMYK        | Converts to a CMYK notation                               |
+| toCMYKObject  | Converts to an object in CMYK notation                    |
 
 ###### Color conversion static methods examples
 
@@ -324,7 +330,6 @@ ColorTranslator.toRGB('#FF00FF'); // rgb(255,0,255)
 
 ColorTranslator.toRGBA(
   'hsl(50, 20%, 90%)',
-  true,
   { decimals: 0 }
 ); // rgba(235,233,224,1)
 
@@ -332,25 +337,22 @@ ColorTranslator.toHSL('rgb(255, 0, 0)'); // hsl(0,100%,50%)
 
 ColorTranslator.toHSLA('rgba(0, 255, 255, 0.5)'); // hsla(180,100%,50%,0.5)
 
-ColorTranslator.toCMYK('#F0F', false); // {c: 0, m: 100, y: 0, k: 0}
+ColorTranslator.toCMYKObject('#F0F'); // {c: 0, m: 100, y: 0, k: 0}
 
 ColorTranslator.toCMYK('#F0F'); // cmyk(0%,100%,0%,0%)
 
 ColorTranslator.toRGB(
   { h: 115, s: '70%', l: '45%' },
-  true,
   { decimals: 0 }
 ); // rgb(48,195,34)
 
 ColorTranslator.toHSLA(
   { r: 115, g: 200, b: 150, a: 0.5 },
-  true,
   { decimals: 1 }
 ); // hsla(144.7,43.6%,61.8%,0.5)
 
 ColorTranslator.toHSLA(
   { r: 95, g: 23, b: 12, a: Math.SQRT1_2 },
-  true,
   { decimals: 4 }
 ); // hsla(7.9518,77.5701%,20.9804%,0.7071)
 ```
@@ -359,28 +361,33 @@ You can also consult the [demo 3](https://elchininet.github.io/ColorTranslator/#
 
 ###### Color blends static methods
 
-The static methods to create color blends accept any of the mentioned inputs as the first and second parameter, the third parameter is optional and it is the number of steps of the blending. The fourth parameter is also optional and it specifies if the output colors should be CSS strings or objects. And the fifth parameter is also optional and it is an [options object](#options-object):
+The static methods to create color blends accept any of the mentioned inputs as the first and second parameter, the third parameter is optional and it is the number of steps of the blending. And the fourth parameter is also optional and it is an [options object](#options-object) (this fourth option is not present in the methods to generate HEX colors):
 
 ```typescript
 getBlendColorsStaticMethod(
   fromColor: string | object,
   toColor: string | object,
   steps: number = 5,
-  css: boolean = true,
   options?: Options
 )
 ```
 
 ###### Color blends static methods description
 
-| Static method | Description                                                                                  |
-| ------------- | -------------------------------------------------------------------------------------------- |
-| getBlendHEX   | Creates an array relative to the blend between two colors in hexadecimal notation            |  
-| getBlendHEXA  | Creates an array relative to the blend between two colors in hexadecimal notation with alpha |
-| getBlendRGB   | Creates an array relative to the blend between two colors in RGB notation                    |
-| getBlendRGBA  | Creates an array relative to the blend between two colors in RGB notation with alpha         |
-| getBlendHSL   | Creates an array relative to the blend between two colors in HSL notation                    |
-| getBlendHSLA  | Creates an array relative to the blend between two colors in HSL notation with alpha         |
+| Static method      | Description                                                                                             |
+| ------------------ | ------------------------------------------------------------------------------------------------------- |
+| getBlendHEX        | Creates an array relative to the blend between two colors in hexadecimal notation                       |
+| getBlendHEXObject  | Creates an array of objects relative to the blend between two colors in hexadecimal notation            |
+| getBlendHEXA       | Creates an array relative to the blend between two colors in hexadecimal notation with alpha            |
+| getBlendHEXAObject | Creates an array of objects relative to the blend between two colors in hexadecimal notation with alpha |
+| getBlendRGB        | Creates an array relative to the blend between two colors in RGB notation                               |
+| getBlendRGBObject  | Creates an array of objects relative to the blend between two colors in RGB notation                    |
+| getBlendRGBA       | Creates an array relative to the blend between two colors in RGB notation with alpha                    |
+| getBlendRGBAObject | Creates an array of objects relative to the blend between two colors in RGB notation with alpha         |
+| getBlendHSL        | Creates an array relative to the blend between two colors in HSL notation                               |
+| getBlendHSLObject  | Creates an array of objects relative to the blend between two colors in HSL notation                    |
+| getBlendHSLA       | Creates an array relative to the blend between two colors in HSL notation with alpha                    |
+| getBlendHSLAObject | Creates an array of objects relative to the blend between two colors in HSL notation with alpha         |
 
 ###### Color blends static methods examples
 
@@ -403,7 +410,7 @@ ColorTranslator.getBlendHSLA('#FF000000', '#0000FFFF', 3);
 //   "hsla(240,100%,50%,1)"
 // ]
 
-ColorTranslator.getBlendRGBA('#F000', 'rgba(0,0,255,1)', 5, false);
+ColorTranslator.getBlendRGBAObject('#F000', 'rgba(0,0,255,1)', 5);
 
 // [
 //   {r: 255, g: 0, b: 0, a: 0},
@@ -415,6 +422,59 @@ ColorTranslator.getBlendRGBA('#F000', 'rgba(0,0,255,1)', 5, false);
 ```
 
 You can also consult the [demo 5](https://elchininet.github.io/ColorTranslator/#demo5) to check the use of these static methods.
+
+###### Color mix static methods
+
+The static methods to mix colors accept an array of any of the mentioned inputs as the first parameter. The second parameter is optional and specifies the mixing mode (by default it will be `Mix.ADDITIVE`). And the third parameter is also optional and it is an [options object](#options-object) (this third option is not present in the methods to generate HEX colors):
+
+> **Note:** The subtractive mix simulates the mixing of pigments, to achieve this, the rgb colors are converted to ryb color model, the addition is performed in this mode and at the end the result is converted back to rgb. The result is OK most of the time, but as this is not a real mix of pigments, sometimes the result could differ from the reality.
+
+```typescript
+getMixColorsStaticMethod(
+  colors: [string | object][],
+  mode: Mix = Mix.ADDITIVE,
+  options?: Options
+)
+```
+
+###### Color mix static methods description
+
+| Static method    | Description                                                                      |
+| ---------------- | -------------------------------------------------------------------------------- |
+| getMixHEX        | Gets the mix of the input colors in hexadecimal notation                         |
+| getMixHEXObject  | Gets the mix of the input colors in an object in hexadecimal notation            |
+| getMixHEXA       | Gets the mix of the input colors in hexadecimal notation with alpha              |
+| getMixHEXAObject | Gets the mix of the input colors in an object in hexadecimal notation with alpha |
+| getMixRGB        | Gets the mix of the input colors in RGB notation                                 |
+| getMixRGBObject  | Gets the mix of the input colors in an object in RGB notation                    |
+| getMixRGBA       | Gets the mix of the input colors in RGB notation with alpha                      |
+| getMixRGBAObject | Gets the mix of the input colors in an object in RGB notation with alpha         |
+| getMixHSL        | Gets the mix of the input colors in HSL notation                                 |
+| getMixHSLObject  | Gets the mix of the input colors in an object in HSL notation                    |
+| getMixHSLA       | Gets the mix of the input colors in HSL notation with alpha                      |
+| getMixHSLAObject | Gets the mix of the input colors in an object in HSL notation with alpha         |
+
+###### Color mix static methods examples
+
+```javascript
+ColorTranslator.getMixHEX(['#FF0000', '#0000FF']);
+
+// #FF00FF
+
+ColorTranslator.getMixHSL(['rgba(255, 0, 0, 1)', '#00FF00']);
+
+// hsl(60,100%,50%)
+
+ColorTranslator.getMixHEXAObject(['#F00', 'rgb(0, 0, 255)'], Mix.ADDITIVE);
+
+// { r: '0xFF', g: '0x00', b: '0xFF', a: '0xFF' }
+
+ColorTranslator.getMixHEX(['#FF0', '#F00'], Mix.SUBTRACTIVE);
+
+// #FF8800
+```
+
+You can also consult the [demo 7](https://elchininet.github.io/ColorTranslator/#demo7) and [demo 8](https://elchininet.github.io/ColorTranslator/#demo8) to check the use of these static methods.
 
 ###### Color shades and color tints static methods
 
@@ -468,54 +528,6 @@ ColorTranslator.getTints({r: 255, g: 0, b: 0, a: 0.5}, 5);
 
 You can also consult the [demo 6](https://elchininet.github.io/ColorTranslator/#demo6) to check the use of these static methods.
 
-###### Color mix static methods
-
-The static methods to mix colors accept an array of any of the mentioned inputs as the first parameter. The second parameter is optional and specifies the mixing mode (by default it will be `Mix.ADDITIVE`). The third parameter is also optional and it specifies if the output should be a CSS string or an object, and the fourth parameter is also optional and it is an [options object](#options-object):
-
-> **Note:** The subtractive mix simulates the mixing of pigments, to achieve this, the rgb colors are converted to ryb color model, the addition is performed in this mode and at the end the result is converted back to rgb. The result is OK most of the time, but as this is not a real mix of pigments, sometimes the result could differ from the reality.
-
-```typescript
-getMixColorsStaticMethod(
-  colors: [string | object][],
-  mode: Mix = Mix.ADDITIVE,
-  css: boolean = true,
-  options?: Options
-)
-```
-
-###### Color mix static methods description
-
-| Static method | Description                                                         |
-| ------------- | --------------------------------------------------------------------|
-| getMixHEX     | Gets the mix of the input colors in hexadecimal notation            |  
-| getMixHEXA    | Gets the mix of the input colors in hexadecimal notation with alpha |
-| getMixRGB     | Gets the mix of the input colors in RGB notation                    |
-| getMixRGBA    | Gets the mix of the input colors in RGB notation with alpha         |
-| getMixHSL     | Gets the mix of the input colors in HSL notation                    |
-| getMixHSLA    | Gets the mix of the input colors in HSL notation with alpha         |
-
-###### Color mix static methods examples
-
-```javascript
-ColorTranslator.getMixHEX(['#FF0000', '#0000FF']);
-
-// #FF00FF
-
-ColorTranslator.getMixHSL(['rgba(255, 0, 0, 1)', '#00FF00']);
-
-// hsl(60,100%,50%)
-
-ColorTranslator.getMixHEXA(['#F00', 'rgb(0, 0, 255)'], Mix.ADDITIVE, false);
-
-// { r: '0xFF', g: '0x00', b: '0xFF', a: '0xFF' }
-
-ColorTranslator.getMixHEX(['#FF0', '#F00'], Mix.SUBTRACTIVE);
-
-// #FF8800
-```
-
-You can also consult the [demo 7](https://elchininet.github.io/ColorTranslator/#demo7) and [demo 8](https://elchininet.github.io/ColorTranslator/#demo8) to check the use of these static methods.
-
 ###### Color harmonies static method
 
 The static method to create color harmonies accepts four parmeters, the first one could be any of the mentioned inputs, the second one is optional and it is to specify the kind of harmony (by default it will be `Harmony.COMPLEMENTARY`), the third one is also optional and it specifies if the returned harmony is based on additive or subtractive colors (by default it will be `Mix.ADDITIVE`), and the fourth parameter is also optional and it is an [options object](#options-object). This method will return the colors in the same format that was sent as input:
@@ -564,7 +576,7 @@ ColorTranslator.getHarmony('rgba(0, 255, 255, 0.5)', Harmony.ANALOGOUS);
 ColorTranslator.getHarmony(
   { r: 115, g: 200, b: 150, a: 0.5 },
   Harmony.COMPLEMENTARY,
-  false,
+  Mix.ADDITIVE,
   { decimals: 2 }
 );
 
@@ -587,7 +599,7 @@ The package has its own type definitions, so it can be used in a `TypeScript` pr
 
 ###### HEXObject
 
-This type is returned by the `HEXObject`, and `HEXAObject` properties, the `toHEX`, `toHEXA`, `getBlendHEX`, `getBlendHEXA`, `getMixHEX`, and `getMixHEXA` methods (when the `css` property is `false`), and the `getHarmony` method (when the input is an `HEXObject`).
+This type is returned by the `HEXObject`, and `HEXAObject` properties, the `toHEXObject`, `toHEXAObject`, `getBlendHEXObject`, `getBlendHEXAObject`, `getMixHEXObject`, and the `getMixHEXAObject` methods, and the `getHarmony` method (when the input is an `HEXObject`).
 
 ```typescript
 interface HEXObject {
@@ -600,7 +612,7 @@ interface HEXObject {
 
 ###### RGBObject
 
-This type is returned by the `RGBObject`, and `RGBAObject` properties, the `toRGB`, `toRGBA`, `getBlendRGB`, `getBlendRGBA`, `getMixRGB`, and `getMixRGBA` methods (when the `css` property is `false`), and the `getHarmony` method (when the input is an `RGBObject`).
+This type is returned by the `RGBObject`, and `RGBAObject` properties, the `toRGBObject`, `toRGBAObject`, `getBlendRGBObject`, `getBlendRGBAObject`, `getMixRGBObject`, and the `getMixRGBAObject` methods, and the `getHarmony` method (when the input is an `RGBObject`).
 
 ```typescript
 interface RGBObject {
@@ -613,7 +625,7 @@ interface RGBObject {
 
 ###### HSLObject
 
-This type is returned by the `HSLObject`, and `HSLAObject` properties, the `toHSL`, `toHSLA`, `getBlendHSL`, `getBlendHSLA`, `getMixHSL`, and `getMixHSLA` methods (when the `css` property is `false`), and the `getHarmony` method (when the input is an `HSLObject`).
+This type is returned by the `HSLObject`, and `HSLAObject` properties, the `toHSLObject`, `toHSLAObject`, `getBlendHSLObject`, `getBlendHSLAObject`, `getMixHSLObject`, and the `getMixHSLAObject` methods, and the `getHarmony` method (when the input is an `HSLObject`).
 
 ```typescript
 interface HSLObject {
@@ -626,7 +638,7 @@ interface HSLObject {
 
 ###### CMYKObject
 
-This type is returned by the `CMYKObject` property, and the `toCMYK` method.
+This type is returned by the `CMYKObject` property, and the `toCMYKObject` and `toCMYKAObject` methods.
 
 ```typescript
 interface CMYKObject {
