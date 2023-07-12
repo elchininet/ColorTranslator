@@ -52,7 +52,7 @@ describe('ColorTranslator shades and tints tests', (): void => {
     });
 
     colorFunctions.forEach((fn): void => {
-        const options = { decimals: 0 };
+        const options = { decimals: 0, legacyCSS: false };
         const input = fn(base, options) as string & HEXObject & RGBObject & HSLObjectGeneric;
         const alpha = '80';
         const inputWithAlpha = fn(base + alpha, options) as string & HEXObject & RGBObject & HSLObjectGeneric;

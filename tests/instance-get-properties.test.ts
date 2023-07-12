@@ -2,10 +2,12 @@ import { ColorTranslator } from '../src';
 import { COLORS, CMYK_COLORS } from './tests.constants';
 
 const options = { decimals: 0 };
+const legacyOptions = { ...options, legacyCSS: true };
 
 COLORS.forEach((color): void => {
 
     let instance: ColorTranslator;
+    let legacyInstance: ColorTranslator;
 
     Object.values(color).forEach((colorValue) => {
 
@@ -14,6 +16,7 @@ COLORS.forEach((color): void => {
         describe(`ColorTranslator instance properties for ${colorValueStr}`, () => {
 
             instance = new ColorTranslator(colorValue, options);
+            legacyInstance = new ColorTranslator(colorValue, legacyOptions);
 
             // HEX
             it(`HEX property => ${color.hex}`, () => {
@@ -38,11 +41,13 @@ COLORS.forEach((color): void => {
             // RGB
             it(`RGB property => ${color.rgb}`, () => {
                 expect(instance.RGB).toBe(color.rgb);
+                expect(legacyInstance.RGB).toBe(color.rgbLegacy);
             });
 
             // RGBA
             it(`RGBA property => ${color.rgba}`, () => {
                 expect(instance.RGBA).toBe(color.rgba);
+                expect(legacyInstance.RGBA).toBe(color.rgbaLegacy);
             });
 
             // RGBObject
@@ -58,11 +63,13 @@ COLORS.forEach((color): void => {
             // HSL
             it(`HSL property => ${color.hsl}`, () => {
                 expect(instance.HSL).toBe(color.hsl);
+                expect(legacyInstance.HSL).toBe(color.hslLegacy);
             });
 
             // HSLA
             it(`HSLA property => ${color.hsla}`, () => {
                 expect(instance.HSLA).toBe(color.hsla);
+                expect(legacyInstance.HSLA).toBe(color.hslaLegacy);
             });
 
             // HSLObject
@@ -119,6 +126,7 @@ COLORS.forEach((color): void => {
 CMYK_COLORS.forEach((color) => {
 
     let instance: ColorTranslator;
+    let legacyInstance: ColorTranslator;
 
     Object.values(color).forEach((colorValue) => {
 
@@ -127,15 +135,18 @@ CMYK_COLORS.forEach((color) => {
         describe(`ColorTranslator CMYK instance properties ${colorValueStr}`, () => {
 
             instance = new ColorTranslator(colorValue, options);
+            legacyInstance = new ColorTranslator(colorValue, legacyOptions);
 
             // CMYK
             it(`CMYK property => ${color.cmyk}`, () => {
                 expect(instance.CMYK).toBe(color.cmyk);
+                expect(legacyInstance.CMYK).toBe(color.cmykLegacy);
             });
 
             // CMYKA
             it(`CMYKA property => ${color.cmykWithAlpha}`, () => {
                 expect(instance.CMYKA).toBe(color.cmykWithAlpha);
+                expect(legacyInstance.CMYKA).toBe(color.cmykLegacyWithAlpha);
             });
 
             // CMYKObject
