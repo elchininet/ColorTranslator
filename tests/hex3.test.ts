@@ -13,9 +13,13 @@ HEX3.forEach((item: HexProps): void => {
 
         describe(`ColorTranslator dynamic test for the HEX3 color: ${JSON.stringify(item[prop])}`, (): void => {
 
+            const options = { legacyCSS: true };
+
             it('CSS RGB', (): void => {
                 expect(ColorTranslator.toRGB(item[prop])).toBe(item.rgb);
                 expect(ColorTranslator.toRGB(item.keyword)).toBe(item.rgb);
+                expect(ColorTranslator.toRGB(item[prop], options)).toBe(item.rgbLegacy);
+                expect(ColorTranslator.toRGB(item.keyword, options)).toBe(item.rgbLegacy);
             });
 
             it('Object RGB', (): void => {
@@ -26,6 +30,8 @@ HEX3.forEach((item: HexProps): void => {
             it('CSS RGBA', (): void => {
                 expect(ColorTranslator.toRGBA(item[prop])).toBe(item.rgba);
                 expect(ColorTranslator.toRGBA(item.keyword)).toBe(item.rgba);
+                expect(ColorTranslator.toRGBA(item[prop], options)).toBe(item.rgbaLegacy);
+                expect(ColorTranslator.toRGBA(item.keyword, options)).toBe(item.rgbaLegacy);
             });
 
             it('Object RGBA', (): void => {
@@ -36,6 +42,8 @@ HEX3.forEach((item: HexProps): void => {
             it('CSS HSL', (): void => {
                 expect(ColorTranslator.toHSL(item[prop])).toBe(item.hsl);
                 expect(ColorTranslator.toHSL(item.keyword)).toBe(item.hsl);
+                expect(ColorTranslator.toHSL(item[prop], options)).toBe(item.hslLegacy);
+                expect(ColorTranslator.toHSL(item.keyword, options)).toBe(item.hslLegacy);
             });
 
             it('Object HSL', (): void => {
@@ -46,6 +54,8 @@ HEX3.forEach((item: HexProps): void => {
             it('CSS HSLA', (): void => {
                 expect(ColorTranslator.toHSLA(item[prop])).toBe(item.hsla);
                 expect(ColorTranslator.toHSLA(item.keyword)).toBe(item.hsla);
+                expect(ColorTranslator.toHSLA(item[prop], options)).toBe(item.hslaLegacy);
+                expect(ColorTranslator.toHSLA(item.keyword, options)).toBe(item.hslaLegacy);
             });
 
             it('Object HSLA', (): void => {

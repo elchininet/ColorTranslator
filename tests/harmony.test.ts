@@ -46,24 +46,25 @@ describe('ColorTranslator harmony tests', (): void => {
 
         hexColorFunctions.forEach((fn): void => {
 
+            const options = { decimals: 0, legacyCSS: false };
             const color = fn(base) as string & HEXObject & RGBObject & HSLObjectGeneric;
             const additiveResult = additive_results.map(colors => colors.map(color => fn(color)));
             const subtractiveResult = subtractive_results.map(colors => colors.map(color => fn(color)));
 
             it(`Additive Harmony deep equals: ${harmony} for ${color} => ${JSON.stringify(additiveResult[index])}`, (): void => {
                 const colors = harmony === Harmony.COMPLEMENTARY
-                    ? ColorTranslator.getHarmony(color)
-                    : ColorTranslator.getHarmony(color, Harmony[harmony as Harmony]);
+                    ? ColorTranslator.getHarmony(color, Harmony.COMPLEMENTARY, Mix.ADDITIVE, options)
+                    : ColorTranslator.getHarmony(color, Harmony[harmony as Harmony], Mix.ADDITIVE, options);
                 expect(colors).toMatchObject(additiveResult[index]);
             });
 
             it(`Subtractive Harmony deep equals: ${harmony} for ${color} => ${JSON.stringify(subtractiveResult[index])}`, (): void => {
-                const colors = ColorTranslator.getHarmony(color, Harmony[harmony as Harmony], Mix.SUBTRACTIVE);
+                const colors = ColorTranslator.getHarmony(color, Harmony[harmony as Harmony], Mix.SUBTRACTIVE, options);
                 expect(colors).toMatchObject(subtractiveResult[index]);
             });
 
             it('Additive Complementary > 360º', (): void => {
-                const colors = ColorTranslator.getHarmony('#0000FF', Harmony.COMPLEMENTARY, Mix.SUBTRACTIVE);
+                const colors = ColorTranslator.getHarmony('#0000FF', Harmony.COMPLEMENTARY, Mix.SUBTRACTIVE, options);
                 expect(colors[1]).toBe('#FF8000');
             });
 
@@ -71,7 +72,8 @@ describe('ColorTranslator harmony tests', (): void => {
 
         colorFunctions.forEach((fn): void => {
 
-            const options = { decimals: 0 };
+            const optionsWithDecimals = { legacyCSS: false };
+            const options = { ...optionsWithDecimals, decimals: 0 };
             const color = fn(base, options) as string & HEXObject & RGBObject & HSLObjectGeneric;
             const additiveResult = additive_results.map(colors => colors.map(color => fn(color, options)));
             const subtractiveResult = subtractive_results.map(colors => colors.map(color => fn(color, options)));
@@ -82,13 +84,18 @@ describe('ColorTranslator harmony tests', (): void => {
             });
 
             it(`Additive Harmony with decimals for ${JSON.stringify(color)}`, (): void => {
-                const colors = ColorTranslator.getHarmony(color, Harmony[harmony as Harmony], Mix.ADDITIVE);
+                const colors = ColorTranslator.getHarmony(color, Harmony[harmony as Harmony]);
                 expect(colors).toMatchSnapshot();
             });
 
             it(`Subtractive Harmony deep equals: ${harmony} for ${color} => ${JSON.stringify(subtractiveResult[index])}`, (): void => {
                 const colors = ColorTranslator.getHarmony(color, Harmony[harmony as Harmony], Mix.SUBTRACTIVE, options);
                 expect(colors).toMatchObject(subtractiveResult[index]);
+            });
+
+            it(`Subtractive Harmony with decimals and auto legacyCSS for ${JSON.stringify(color)}`, (): void => {
+                const colors = ColorTranslator.getHarmony(color);
+                expect(colors).toMatchSnapshot();
             });
 
             it(`Subtractive Harmony with decimals for ${JSON.stringify(color)}`, (): void => {

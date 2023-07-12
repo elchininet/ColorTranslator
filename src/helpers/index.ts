@@ -1,4 +1,9 @@
-import { NumberOrString, Options } from '@types';
+import {
+    Options,
+    InputOptions,
+    NumberOrString,
+    ColorInput
+} from '@types';
 import {
     PCENT,
     HEX,
@@ -80,3 +85,18 @@ export const parseOptions = (options: Partial<Options>): Options => ({
     ...DEFAULT_OPTIONS,
     ...options
 });
+
+export const getOptionsFromColorInput = (options: InputOptions, ...colors: ColorInput[]): Options => {
+    const cssColors = colors.filter((color: ColorInput): boolean => typeof color === 'string') as string[];
+    const allLegacy = cssColors.every((color: string): boolean => {
+        return color.includes(',');
+    });
+    return {
+        decimals: typeof options.decimals === 'number'
+            ? options.decimals
+            : DEFAULT_OPTIONS.decimals,
+        legacyCSS: typeof options.legacyCSS === 'boolean'
+            ? options.legacyCSS
+            : Boolean(cssColors.length && allLegacy) || DEFAULT_OPTIONS.legacyCSS
+    };
+};
