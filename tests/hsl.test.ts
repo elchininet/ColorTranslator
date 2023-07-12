@@ -27,11 +27,11 @@ COLORS.forEach((item): void => {
 
         it(`HSL with percentages ${JSON.stringify(hslPercentages)}`, (): void => {
 
-            expect(ColorTranslator.toRGB(hslPercentages, true, options)).toBe(item.rgb);
-            expect(ColorTranslator.toRGB(hslPercentages, false, options)).toMatchObject(item.rgbObject);
+            expect(ColorTranslator.toRGB(hslPercentages, options)).toBe(item.rgb);
+            expect(ColorTranslator.toRGBObject(hslPercentages, options)).toMatchObject(item.rgbObject);
 
-            expect(ColorTranslator.toHSL(hslPercentages, true, options)).toBe(item.hsl);
-            expect(ColorTranslator.toHSL(hslPercentages, false, options)).toMatchObject(item.hslObject);
+            expect(ColorTranslator.toHSL(hslPercentages, options)).toBe(item.hsl);
+            expect(ColorTranslator.toHSLObject(hslPercentages, options)).toMatchObject(item.hslObject);
 
             expect(ColorTranslator.toRGB(hslPercentages)).toMatchSnapshot();
             expect(ColorTranslator.toHSL(hslPercentages)).toMatchSnapshot();
@@ -40,11 +40,11 @@ COLORS.forEach((item): void => {
 
         it(`HSLA with percentages ${JSON.stringify(hslaPercentages)}`, (): void => {
 
-            expect(ColorTranslator.toRGBA(hslaPercentages, true, options)).toBe(item.rgba);
-            expect(ColorTranslator.toRGBA(hslaPercentages, false, options)).toMatchObject(item.rgbaObject);
+            expect(ColorTranslator.toRGBA(hslaPercentages, options)).toBe(item.rgba);
+            expect(ColorTranslator.toRGBAObject(hslaPercentages, options)).toMatchObject(item.rgbaObject);
 
-            expect(ColorTranslator.toHSLA(hslaPercentages, true, options)).toBe(item.hsla);
-            expect(ColorTranslator.toHSLA(hslaPercentages, false, options)).toMatchObject(item.hslaObject);
+            expect(ColorTranslator.toHSLA(hslaPercentages, options)).toBe(item.hsla);
+            expect(ColorTranslator.toHSLAObject(hslaPercentages, options)).toMatchObject(item.hslaObject);
 
             expect(ColorTranslator.toRGBA(hslPercentages)).toMatchSnapshot();
             expect(ColorTranslator.toHSLA(hslPercentages)).toMatchSnapshot();
@@ -53,81 +53,81 @@ COLORS.forEach((item): void => {
 
         it(`HSL big hue ${JSON.stringify(hslBigHue)}`, (): void => {
 
-            expect(ColorTranslator.toRGB(hslBigHue, true, options)).toBe(item.rgb);
-            expect(ColorTranslator.toRGB(hslBigHue, false, options)).toMatchObject(item.rgbObject);
+            expect(ColorTranslator.toRGB(hslBigHue, options)).toBe(item.rgb);
+            expect(ColorTranslator.toRGBObject(hslBigHue, options)).toMatchObject(item.rgbObject);
 
-            expect(ColorTranslator.toHSL(hslBigHue, true, options)).toBe(item.hsl);
-            expect(ColorTranslator.toHSL(hslBigHue, false, options)).toMatchObject(item.hslObject);
+            expect(ColorTranslator.toHSL(hslBigHue, options)).toBe(item.hsl);
+            expect(ColorTranslator.toHSLObject(hslBigHue, options)).toMatchObject(item.hslObject);
 
         });
 
         it(`HSLA big hue ${JSON.stringify(hslaBigHue)}`, (): void => {
 
-            expect(ColorTranslator.toRGBA(hslaBigHue, true, options)).toBe(item.rgba);
-            expect(ColorTranslator.toRGBA(hslaBigHue, false, options)).toMatchObject(item.rgbaObject);
+            expect(ColorTranslator.toRGBA(hslaBigHue, options)).toBe(item.rgba);
+            expect(ColorTranslator.toRGBAObject(hslaBigHue, options)).toMatchObject(item.rgbaObject);
 
-            expect(ColorTranslator.toHSLA(hslaBigHue, true, options)).toBe(item.hsla);
-            expect(ColorTranslator.toHSLA(hslaBigHue, false, options)).toMatchObject(item.hslaObject);
+            expect(ColorTranslator.toHSLA(hslaBigHue, options)).toBe(item.hsla);
+            expect(ColorTranslator.toHSLAObject(hslaBigHue, options)).toMatchObject(item.hslaObject);
 
         });
 
         it(`HSL low hue ${JSON.stringify(hslLowHue)}`, (): void => {
 
-            expect(ColorTranslator.toRGB(hslLowHue, true, options)).toBe(item.rgb);
-            expect(ColorTranslator.toRGB(hslLowHue, false, options)).toMatchObject(item.rgbObject);
+            expect(ColorTranslator.toRGB(hslLowHue, options)).toBe(item.rgb);
+            expect(ColorTranslator.toRGBObject(hslLowHue, options)).toMatchObject(item.rgbObject);
 
-            expect(ColorTranslator.toHSL(hslLowHue, true, options)).toBe(item.hsl);
-            expect(ColorTranslator.toHSL(hslLowHue, false, options)).toMatchObject(item.hslObject);
+            expect(ColorTranslator.toHSL(hslLowHue, options)).toBe(item.hsl);
+            expect(ColorTranslator.toHSLObject(hslLowHue, options)).toMatchObject(item.hslObject);
 
         });
 
         it(`HSLA low hue ${JSON.stringify(hslaLowHue)}`, (): void => {
 
-            expect(ColorTranslator.toRGBA(hslaLowHue, true, options)).toBe(item.rgba);
-            expect(ColorTranslator.toRGBA(hslaLowHue, false, options)).toMatchObject(item.rgbaObject);
+            expect(ColorTranslator.toRGBA(hslaLowHue, options)).toBe(item.rgba);
+            expect(ColorTranslator.toRGBAObject(hslaLowHue, options)).toMatchObject(item.rgbaObject);
 
-            expect(ColorTranslator.toHSLA(hslaLowHue, true, options)).toBe(item.hsla);
-            expect(ColorTranslator.toHSLA(hslaLowHue, false, options)).toMatchObject(item.hslaObject);
+            expect(ColorTranslator.toHSLA(hslaLowHue, options)).toBe(item.hsla);
+            expect(ColorTranslator.toHSLAObject(hslaLowHue, options)).toMatchObject(item.hslaObject);
 
         });
 
         it(`Hue in deg ${hslDeg}`, () => {
 
-            expect(ColorTranslator.toRGB(hslDeg, true, options)).toBe(item.rgb);
-            expect(ColorTranslator.toRGB(hslDeg, false, options)).toMatchObject(item.rgbObject);
+            expect(ColorTranslator.toRGB(hslDeg, options)).toBe(item.rgb);
+            expect(ColorTranslator.toRGBObject(hslDeg, options)).toMatchObject(item.rgbObject);
 
-            expect(ColorTranslator.toHSL(hslDeg, true, options)).toBe(item.hsl);
-            expect(ColorTranslator.toHSL(hslDeg, false, options)).toMatchObject(item.hslObject);
+            expect(ColorTranslator.toHSL(hslDeg, options)).toBe(item.hsl);
+            expect(ColorTranslator.toHSLObject(hslDeg, options)).toMatchObject(item.hslObject);
 
         });
 
         it(`Hue in grad ${hslGrad}`, () => {
 
-            expect(ColorTranslator.toRGB(hslGrad, true, options)).toBe(item.rgb);
-            expect(ColorTranslator.toRGB(hslGrad, false, options)).toMatchObject(item.rgbObject);
+            expect(ColorTranslator.toRGB(hslGrad, options)).toBe(item.rgb);
+            expect(ColorTranslator.toRGBObject(hslGrad, options)).toMatchObject(item.rgbObject);
 
-            expect(ColorTranslator.toHSL(hslGrad, true, options)).toBe(item.hsl);
-            expect(ColorTranslator.toHSL(hslGrad, false, options)).toMatchObject(item.hslObject);
+            expect(ColorTranslator.toHSL(hslGrad, options)).toBe(item.hsl);
+            expect(ColorTranslator.toHSLObject(hslGrad, options)).toMatchObject(item.hslObject);
 
         });
 
         it(`Hue in rad ${hslRadians}`, () => {
 
-            expect(ColorTranslator.toRGB(hslRadians, true, options)).toBe(item.rgb);
-            expect(ColorTranslator.toRGB(hslRadians, false, options)).toMatchObject(item.rgbObject);
+            expect(ColorTranslator.toRGB(hslRadians, options)).toBe(item.rgb);
+            expect(ColorTranslator.toRGBObject(hslRadians, options)).toMatchObject(item.rgbObject);
 
-            expect(ColorTranslator.toHSL(hslRadians, true, options)).toBe(item.hsl);
-            expect(ColorTranslator.toHSL(hslRadians, false, options)).toMatchObject(item.hslObject);
+            expect(ColorTranslator.toHSL(hslRadians, options)).toBe(item.hsl);
+            expect(ColorTranslator.toHSLObject(hslRadians, options)).toMatchObject(item.hslObject);
 
         });
 
         it(`Hue in turn ${hslTurns}`, () => {
 
-            expect(ColorTranslator.toRGB(hslTurns, true, options)).toBe(item.rgb);
-            expect(ColorTranslator.toRGB(hslTurns, false, options)).toMatchObject(item.rgbObject);
+            expect(ColorTranslator.toRGB(hslTurns, options)).toBe(item.rgb);
+            expect(ColorTranslator.toRGBObject(hslTurns, options)).toMatchObject(item.rgbObject);
 
-            expect(ColorTranslator.toHSL(hslTurns, true, options)).toBe(item.hsl);
-            expect(ColorTranslator.toHSL(hslTurns, false, options)).toMatchObject(item.hslObject);
+            expect(ColorTranslator.toHSL(hslTurns, options)).toBe(item.hsl);
+            expect(ColorTranslator.toHSLObject(hslTurns, options)).toMatchObject(item.hslObject);
 
         });
 

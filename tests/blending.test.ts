@@ -6,13 +6,19 @@ const to = '#0000FF';
 const hexBlendFunctions = [
     { colorFn: ColorTranslator.toHEX,  blendFn: ColorTranslator.getBlendHEX  },
     { colorFn: ColorTranslator.toHEXA, blendFn: ColorTranslator.getBlendHEXA },
+    { colorFn: ColorTranslator.toHEXObject,  blendFn: ColorTranslator.getBlendHEXObject  },
+    { colorFn: ColorTranslator.toHEXAObject, blendFn: ColorTranslator.getBlendHEXAObject }
 ];
 
 const blendFunctions = [
     { colorFn: ColorTranslator.toRGB,  blendFn: ColorTranslator.getBlendRGB  },
     { colorFn: ColorTranslator.toRGBA, blendFn: ColorTranslator.getBlendRGBA },
     { colorFn: ColorTranslator.toHSL,  blendFn: ColorTranslator.getBlendHSL  },
-    { colorFn: ColorTranslator.toHSLA, blendFn: ColorTranslator.getBlendHSLA }
+    { colorFn: ColorTranslator.toHSLA, blendFn: ColorTranslator.getBlendHSLA },
+    { colorFn: ColorTranslator.toRGBObject,  blendFn: ColorTranslator.getBlendRGBObject  },
+    { colorFn: ColorTranslator.toRGBAObject, blendFn: ColorTranslator.getBlendRGBAObject },
+    { colorFn: ColorTranslator.toHSLObject,  blendFn: ColorTranslator.getBlendHSLObject  },
+    { colorFn: ColorTranslator.toHSLAObject, blendFn: ColorTranslator.getBlendHSLAObject }
 ];
 
 const options = { decimals: 0 };
@@ -29,28 +35,19 @@ describe('ColorTranslator blending tests', (): void => {
             const r1 = result1.map(c => obj.colorFn(c));
             const r2 = result2.map(c => obj.colorFn(c));
             const r3 = result3.map(c => obj.colorFn(c));
-            const r4 = result1.map(c => obj.colorFn(c, false));
-            const r5 = result2.map(c => obj.colorFn(c, false));
-            const r6 = result3.map(c => obj.colorFn(c, false));
 
             expect(obj.blendFn(from, to, r1.length)).toMatchObject(r1);
             expect(obj.blendFn(from, to, r2.length)).toMatchObject(r2);
             expect(obj.blendFn(from, to)).toMatchObject(r3);
-            expect(obj.blendFn(from, to, r1.length, false)).toMatchObject(r4);
-            expect(obj.blendFn(from, to, r2.length, false)).toMatchObject(r5);
-            expect(obj.blendFn(from, to, 0, false)).toMatchObject(r6);
+            expect(obj.blendFn(from, to, 0)).toMatchObject(r3);
         });
 
         blendFunctions.forEach((obj): void => {
-            const r1 = result1.map(c => obj.colorFn(c, true, options));
-            const r2 = result2.map(c => obj.colorFn(c, true, options));
-            const r3 = result1.map(c => obj.colorFn(c, false, options));
-            const r4 = result2.map(c => obj.colorFn(c, false, options));
+            const r1 = result1.map(c => obj.colorFn(c, options));
+            const r2 = result2.map(c => obj.colorFn(c, options));
 
-            expect(obj.blendFn(from, to, r1.length, true, options)).toMatchObject(r1);
-            expect(obj.blendFn(from, to, r2.length, true, options)).toMatchObject(r2);
-            expect(obj.blendFn(from, to, r3.length, false, options)).toMatchObject(r3);
-            expect(obj.blendFn(from, to, r4.length, false, options)).toMatchObject(r4);
+            expect(obj.blendFn(from, to, r1.length, options)).toMatchObject(r1);
+            expect(obj.blendFn(from, to, r2.length, options)).toMatchObject(r2);
 
             expect(obj.blendFn(from, to).length).toBe(5);
 

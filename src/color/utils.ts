@@ -15,7 +15,8 @@ import {
     HSLOutput,
     HEXOutput,
     ColorOutput,
-    Options
+    Options,
+    InputOptions
 } from '@types';
 import {
     HEX,
@@ -726,54 +727,94 @@ export const colorMixer = {
             a: minmax(mix.a, 0, 1)
         };
     },
-    [ColorModel.HEX](colors: ColorInput[], mode: Mix, css: boolean): HEXOutput {
+    [ColorModel.HEX]<CSS extends boolean, R = CSS extends true ? string : HEXObject>(
+        colors: ColorInput[],
+        mode: Mix,
+        css: CSS
+    ): R {
         const mix = this.mix(colors, mode);
         delete mix.a;
-        return css
-            ? CSS.HEX(mix)
-            : translateColor.HEX(mix);
+        return (
+            css
+                ? CSS.HEX(mix)
+                : translateColor.HEX(mix)
+        ) as R;
     },
-    HEXA(colors: ColorInput[], mode: Mix, css: boolean): HEXOutput {
+    HEXA<CSS extends boolean, R = CSS extends true ? string : HEXObject >(
+        colors: ColorInput[],
+        mode: Mix,
+        css: CSS
+    ): R {
         const mix = this.mix(colors, mode);
         mix.a = css
             ? normalizeAlpha(mix.a) * 255
             : normalizeAlpha(mix.a);
-        return css
-            ? CSS.HEX(mix)
-            : translateColor.HEXA(mix);
+        return (
+            css
+                ? CSS.HEX(mix)
+                : translateColor.HEXA(mix)
+        ) as R;
     },
-    [ColorModel.RGB](colors: ColorInput[], mode: Mix, css: boolean, options: Partial<Options>): RGBOutput {
+    [ColorModel.RGB]<CSS extends boolean, R = CSS extends true ? string : RGBObject>(
+        colors: ColorInput[],
+        mode: Mix,
+        css: CSS,
+        options: InputOptions
+    ): R {
         const { decimals } = parseOptions(options);
         const mix = this.mix(colors, mode);
         delete mix.a;
-        return css
-            ? CSS.RGB(mix)
-            : translateColor.RGB(mix, decimals);
+        return (
+            css
+                ? CSS.RGB(mix)
+                : translateColor.RGB(mix, decimals)
+        ) as R;
     },
-    RGBA(colors: ColorInput[], mode: Mix, css: boolean, options: Partial<Options>): RGBOutput {
+    RGBA<CSS extends boolean, R = CSS extends true ? string : RGBObject>(
+        colors: ColorInput[],
+        mode: Mix,
+        css: CSS,
+        options: InputOptions
+    ): R {
         const { decimals } = parseOptions(options);
         const mix = this.mix(colors, mode);
-        return css
-            ? CSS.RGB(mix)
-            : translateColor.RGBA(mix, decimals);
+        return (
+            css
+                ? CSS.RGB(mix)
+                : translateColor.RGBA(mix, decimals)
+        ) as R;
     },
-    [ColorModel.HSL](colors: ColorInput[], mode: Mix, css: boolean, options: Partial<Options>): HSLOutput {
+    [ColorModel.HSL]<CSS extends boolean, R = CSS extends true ? string : HSLObject>(
+        colors: ColorInput[],
+        mode: Mix,
+        css: CSS,
+        options: InputOptions
+    ): R {
         const { decimals } = parseOptions(options);
         const mix = this.mix(colors, mode);
         const hsl = rgbToHSL(mix.r, mix.g, mix.b);
         delete mix.a;
         delete hsl.a;
-        return css
-            ? CSS.HSL(hsl)
-            : translateColor.HSL(mix, decimals);
+        return (
+            css
+                ? CSS.HSL(hsl)
+                : translateColor.HSL(mix, decimals)
+        ) as R;
     },
-    HSLA(colors: ColorInput[], mode: Mix, css: boolean, options: Partial<Options>): HSLOutput {
+    HSLA<CSS extends boolean, R = CSS extends true ? string : HSLObject>(
+        colors: ColorInput[],
+        mode: Mix,
+        css: CSS,
+        options: InputOptions
+    ): R {
         const { decimals } = parseOptions(options);
         const mix = this.mix(colors, mode);
         const hsl = rgbToHSL(mix.r, mix.g, mix.b, mix.a);
-        return css
-            ? CSS.HSL(hsl)
-            : translateColor.HSLA(mix, decimals);
+        return (
+            css
+                ? CSS.HSL(hsl)
+                : translateColor.HSLA(mix, decimals)
+        ) as R;
     }
 };
 
