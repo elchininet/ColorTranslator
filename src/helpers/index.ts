@@ -2,13 +2,16 @@ import {
     Options,
     InputOptions,
     NumberOrString,
-    ColorInput
+    ColorInput,
+    AnglesUnitEnum
 } from '@types';
 import {
     PCENT,
     HEX,
     MAX_DECIMALS,
     DEFAULT_OPTIONS,
+    COLORREGS,
+    HSL_HUE,
     TypeOf
 } from '#constants';
 
@@ -78,24 +81,88 @@ export const round = (value: NumberOrString, decimals = MAX_DECIMALS): number =>
 //---Minimum and maximum
 export const minmax = (n: number, min: number, max: number): number => Math.max(min, Math.min(n, max));
 
-//--Radian to grades
-export const grades = (radian: number): number => radian * 180 / Math.PI;
+//--Radians to degrees
+export const degrees = (radian: number): number => radian * 180 / Math.PI;
 
-export const parseOptions = (options: Partial<Options>): Options => ({
-    ...DEFAULT_OPTIONS,
-    ...options
-});
+//--Degrees to radians
+export const radians = (degrees: number): number => degrees * Math.PI / 180;
 
-interface MatchOptions {
-    legacyCSS: number;
-    spacesAfterCommas: number;
-}
+//---Normalize hue
+const pi2 = 360;
+
+export const normalizeHue = (hue: number | string): number => {
+
+    if (typeof hue === 'string') {
+
+        const matches = hue.match(HSL_HUE) as string[];
+        const value = +matches[1];
+        const units = matches[2] as AnglesUnitEnum;
+        switch(units) {
+            case AnglesUnitEnum.RADIANS:
+                hue = round(degrees(value));
+                break;
+            case AnglesUnitEnum.TURNS:
+                hue = round(value * pi2);
+                break;
+            case AnglesUnitEnum.GRADIANS:
+                hue = round(9 / 10 * value);
+                break;
+            case AnglesUnitEnum.DEGREES:
+            default:
+                hue = value;
+        }
+    }
+
+    if (hue > 360 || hue < 0) {
+        hue -= Math.floor(hue / pi2) * pi2;
+    }
+
+    return hue;
+};
+
+export const translateDegrees = (degrees: number, units: AnglesUnitEnum): number => {
+
+    let hue: number;
+
+    switch(units) {
+        case AnglesUnitEnum.RADIANS:
+            hue = round(radians(degrees));
+            break;
+        case AnglesUnitEnum.TURNS:
+            hue = round(degrees / pi2);
+            break;
+        case AnglesUnitEnum.GRADIANS:
+            hue = round(10 / 9 * degrees);
+            break;
+        case AnglesUnitEnum.DEGREES:
+        case AnglesUnitEnum.NONE:
+        default:
+            hue = degrees;
+    }
+
+    return hue;
+};
+
+type MatchOptions<T = Omit<Options, 'decimals'>> = {
+    [K in keyof T]: number;
+};
 
 export const getOptionsFromColorInput = (options: InputOptions, ...colors: ColorInput[]): Options => {
     const cssColors = colors.filter((color: ColorInput): boolean => typeof color === 'string') as string[];
+    const hslColors = cssColors
+        .filter((color: string): boolean => COLORREGS.HSL.test(color))
+        .map((color: string) => {
+            const hslMatch = color.match(COLORREGS.HSL);
+            const angle = hslMatch[1] || hslMatch[5];
+            const unit = angle.match(HSL_HUE)[2];
+            return unit === ''
+                ? AnglesUnitEnum.NONE
+                : unit as AnglesUnitEnum;
+        });
     const matchOptions: MatchOptions = {
         legacyCSS: 0,
-        spacesAfterCommas: 0
+        spacesAfterCommas: 0,
+        anglesUnit: 0
     };
     cssColors.forEach((color: string): void => {
         if (color.includes(',')){
@@ -124,6 +191,13 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
             : Boolean(
                 cssColors.length &&
                 matchOptions.spacesAfterCommas === cssColors.length
-            ) || DEFAULT_OPTIONS.spacesAfterCommas
+            ) || DEFAULT_OPTIONS.spacesAfterCommas,
+        anglesUnit: options.anglesUnit
+            ? options.anglesUnit as AnglesUnitEnum
+            : (
+                new Set(hslColors).size === 1
+                    ? hslColors[0]
+                    : DEFAULT_OPTIONS.anglesUnit
+            )
     };
 };

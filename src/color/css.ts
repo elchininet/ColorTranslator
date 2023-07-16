@@ -5,7 +5,8 @@ import {
     CMYKObject,
     Color,
     NumberOrString,
-    Options
+    Options,
+    AnglesUnitEnum
 } from '@types';
 import {
     ColorModel,
@@ -77,19 +78,26 @@ export const CSS = {
         return getResultFromTemplate(template, values);
     },
     [ColorModel.HSL]: (color: HSLObject, options: Options): string => {
-        const { legacyCSS, spacesAfterCommas } = options;
+        const {
+            legacyCSS,
+            spacesAfterCommas,
+            anglesUnit
+        } = options;
         const comma = getComma(spacesAfterCommas);
         const values = prepareColorForCss(color);
+        const units = anglesUnit === AnglesUnitEnum.NONE
+            ? ''
+            : anglesUnit;
         const template = legacyCSS
             ? (
                 values.length === 4
-                    ? `hsla({1}${comma}{2}%${comma}{3}%${comma}{4})`
-                    : `hsl({1}${comma}{2}%${comma}{3}%)`
+                    ? `hsla({1}${units}${comma}{2}%${comma}{3}%${comma}{4})`
+                    : `hsl({1}${units}${comma}{2}%${comma}{3}%)`
             )
             : (
                 values.length === 4
-                    ? 'hsl({1} {2}% {3}% / {4})'
-                    : 'hsl({1} {2}% {3}%)'
+                    ? `hsl({1}${units} {2}% {3}% / {4})`
+                    : `hsl({1}${units} {2}% {3}%)`
             );
         return getResultFromTemplate(template, values);
     },

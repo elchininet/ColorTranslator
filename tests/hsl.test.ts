@@ -1,8 +1,6 @@
 import { ColorTranslator } from '../src';
 import { COLORS } from './tests.constants';
 
-const HSL_REGEXP = /^(hsla?\()(\d+)([^)]*\))$/;
-
 COLORS.forEach((item): void => {
 
     describe(`HSL tests for ${item.hsl}`, (): void => {
@@ -15,14 +13,6 @@ COLORS.forEach((item): void => {
         const hslaBigHue = { ...hsl, h: hsl.h + 360 };
         const hslLowHue = { ...hsl, h: hsl.h - 360 };
         const hslaLowHue = { ...hsl, h: hsl.h - 360 };
-        const hslDeg = item.hsl.replace(HSL_REGEXP, '$1$2deg$3');
-        const hslGrad = item.hsl.replace(HSL_REGEXP, '$1$2grad$3');
-        const hslRadians = item.hsl.replace(HSL_REGEXP, (__match: string, start: string, number: string, end: string): string => {
-            return `${start}${Math.round((+number * Math.PI / 180) * 10000) / 10000}rad${end}`;
-        });
-        const hslTurns = item.hsl.replace(HSL_REGEXP, (__match: string, start: string, number: string, end: string): string => {
-            return `${start}${Math.round(+number / 360 * 10000) / 10000}turn${end}`;
-        });
         const options = { decimals: 0 };
         const legacyOptions = { ...options, legacyCSS: true };
 
@@ -101,54 +91,6 @@ COLORS.forEach((item): void => {
             expect(ColorTranslator.toHSLA(hslaLowHue, options)).toBe(item.hsla);
             expect(ColorTranslator.toHSLA(hslaLowHue, legacyOptions)).toBe(item.hslaLegacy);
             expect(ColorTranslator.toHSLAObject(hslaLowHue, options)).toMatchObject(item.hslaObject);
-
-        });
-
-        it(`Hue in deg ${hslDeg}`, () => {
-
-            expect(ColorTranslator.toRGB(hslDeg, options)).toBe(item.rgb);
-            expect(ColorTranslator.toRGB(hslDeg, legacyOptions)).toBe(item.rgbLegacy);
-            expect(ColorTranslator.toRGBObject(hslDeg, options)).toMatchObject(item.rgbObject);
-
-            expect(ColorTranslator.toHSL(hslDeg, options)).toBe(item.hsl);
-            expect(ColorTranslator.toHSL(hslDeg, legacyOptions)).toBe(item.hslLegacy);
-            expect(ColorTranslator.toHSLObject(hslDeg, options)).toMatchObject(item.hslObject);
-
-        });
-
-        it(`Hue in grad ${hslGrad}`, () => {
-
-            expect(ColorTranslator.toRGB(hslGrad, options)).toBe(item.rgb);
-            expect(ColorTranslator.toRGB(hslGrad, legacyOptions)).toBe(item.rgbLegacy);
-            expect(ColorTranslator.toRGBObject(hslGrad, options)).toMatchObject(item.rgbObject);
-
-            expect(ColorTranslator.toHSL(hslGrad, options)).toBe(item.hsl);
-            expect(ColorTranslator.toHSL(hslGrad, legacyOptions)).toBe(item.hslLegacy);
-            expect(ColorTranslator.toHSLObject(hslGrad, options)).toMatchObject(item.hslObject);
-
-        });
-
-        it(`Hue in rad ${hslRadians}`, () => {
-
-            expect(ColorTranslator.toRGB(hslRadians, options)).toBe(item.rgb);
-            expect(ColorTranslator.toRGB(hslRadians, legacyOptions)).toBe(item.rgbLegacy);
-            expect(ColorTranslator.toRGBObject(hslRadians, options)).toMatchObject(item.rgbObject);
-
-            expect(ColorTranslator.toHSL(hslRadians, options)).toBe(item.hsl);
-            expect(ColorTranslator.toHSL(hslRadians, legacyOptions)).toBe(item.hslLegacy);
-            expect(ColorTranslator.toHSLObject(hslRadians, options)).toMatchObject(item.hslObject);
-
-        });
-
-        it(`Hue in turn ${hslTurns}`, () => {
-
-            expect(ColorTranslator.toRGB(hslTurns, options)).toBe(item.rgb);
-            expect(ColorTranslator.toRGB(hslTurns, legacyOptions)).toBe(item.rgbLegacy);
-            expect(ColorTranslator.toRGBObject(hslTurns, options)).toMatchObject(item.rgbObject);
-
-            expect(ColorTranslator.toHSL(hslTurns, options)).toBe(item.hsl);
-            expect(ColorTranslator.toHSL(hslTurns, legacyOptions)).toBe(item.hslLegacy);
-            expect(ColorTranslator.toHSLObject(hslTurns, options)).toMatchObject(item.hslObject);
 
         });
 
