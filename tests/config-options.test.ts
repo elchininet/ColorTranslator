@@ -90,6 +90,22 @@ describe('ColorTranslator CSS config options', () => {
             hsl: 'hsl(0.833333turn 100% 50%)',
             hsla: 'hsl(0.833333turn 100% 50% / 1)',
             isDefault: false
+        },
+        {
+            options: { rgbUnit: 'none' },
+            rgb: 'rgb(255 0 255)',
+            rgba: 'rgb(255 0 255 / 1)',
+            hsl: 'hsl(300 100% 50%)',
+            hsla: 'hsl(300 100% 50% / 1)',
+            isDefault: true
+        },
+        {
+            options: { rgbUnit: 'percent' },
+            rgb: 'rgb(100% 0% 100%)',
+            rgba: 'rgb(100% 0% 100% / 1)',
+            hsl: 'hsl(300 100% 50%)',
+            hsla: 'hsl(300 100% 50% / 1)',
+            isDefault: false
         }
     ];
 
@@ -146,12 +162,32 @@ describe('ColorTranslator CSS config options autodetection', () => {
 
     it(`legacyCSS auto detection`, () => {
 
+        const instanceLegacy = new ColorTranslator('rgba(255,0,255)');
+
+        expect(instanceLegacy.HSL).toBe('hsl(300,100%,50%)');
+        expect(instanceLegacy.RGBA).toBe('rgba(255,0,255,1)');
+
+        const instance = new ColorTranslator('hsl(300 100% 50% / 0.5)');
+
+        expect(instance.RGB).toBe('rgb(255 0 255)');
+        expect(instance.HSL).toBe('hsl(300 100% 50%)');
+
         expect(ColorTranslator.toRGB('rgba(255,0,255)')).toBe('rgb(255,0,255)');
         expect(ColorTranslator.toHSLA('rgba(255 0 255 / 1)')).toBe('hsl(300 100% 50% / 1)');
 
     });
 
     it(`spacesAfterCommas auto detection`, () => {
+
+        const instanceWithoutSpaces = new ColorTranslator('rgba(255,0,255)');
+
+        expect(instanceWithoutSpaces.RGB).toBe('rgb(255,0,255)');
+        expect(instanceWithoutSpaces.HSLA).toBe('hsla(300,100%,50%,1)');
+
+        const instanceWithSpaces = new ColorTranslator('rgb(255, 0, 255)');
+
+        expect(instanceWithSpaces.RGBA).toBe('rgba(255, 0, 255, 1)');
+        expect(instanceWithSpaces.HSL).toBe('hsl(300, 100%, 50%)');
 
         expect(ColorTranslator.toRGBA('rgba(255,0,255)')).toBe('rgba(255,0,255,1)');
         expect(ColorTranslator.toRGBA('rgba(255, 0,255)')).toBe('rgba(255,0,255,1)');
@@ -198,6 +234,23 @@ describe('ColorTranslator CSS config options autodetection', () => {
             expect(ColorTranslator.toHSL(testCase.color)).toBe(testCase.result);
 
         });
+
+    });
+
+    it(`rgbUnit auto detection`, () => {
+
+        const instancePercentage = new ColorTranslator('rgb(100% 100% 0%)');
+
+        expect(instancePercentage.RGBA).toBe('rgb(100% 100% 0% / 1)');
+        expect(instancePercentage.RGB).toBe('rgb(100% 100% 0%)');
+
+        const instanceNone = new ColorTranslator('rgb(255 255 0)');
+
+        expect(instanceNone.RGBA).toBe('rgb(255 255 0 / 1)');
+        expect(instanceNone.RGB).toBe('rgb(255 255 0)');
+
+        expect(ColorTranslator.toRGBA('rgba(255 0 255)')).toBe('rgb(255 0 255 / 1)');
+        expect(ColorTranslator.toRGB('rgb(100% 100% 0% / 0.5)')).toBe('rgb(100% 100% 0%)');
 
     });
 

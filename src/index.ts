@@ -323,23 +323,29 @@ export class ColorTranslator {
 
     public get RGB(): string {
         return CSS.RGB(
-            {
-                r: this.R,
-                g: this.G,
-                b: this.B
-            },
+            utils.roundRGBObject(
+                {
+                    r: this.R,
+                    g: this.G,
+                    b: this.B
+                },
+                this.options
+            ),
             this.options
         );
     }
 
     public get RGBA(): string {
         return CSS.RGB(
-            {
-                r: this.R,
-                g: this.G,
-                b: this.B,
-                a: this.A
-            },
+            utils.roundRGBObject(
+                {
+                    r: this.R,
+                    g: this.G,
+                    b: this.B,
+                    a: this.A
+                },
+                this.options
+            ),
             this.options
         );
     }
@@ -442,9 +448,11 @@ export class ColorTranslator {
     }
 
     public static toRGB(color: ColorInput, options: InputOptions = {}): string {
+        const rgb = ColorTranslator.toRGBObject(color, options);
+        const detectedOptions = getOptionsFromColorInput(options, color);
         return CSS.RGB(
-            ColorTranslator.toRGBObject(color, options),
-            getOptionsFromColorInput(options, color)
+            utils.roundRGBObject(rgb, detectedOptions),
+            detectedOptions
         );
     }
 
@@ -459,9 +467,11 @@ export class ColorTranslator {
     }
 
     public static toRGBA(color: ColorInput, options: InputOptions = {}): string {
+        const rgb = ColorTranslator.toRGBAObject(color, options);
+        const detectedOptions = getOptionsFromColorInput(options, color);
         return CSS.RGB(
-            ColorTranslator.toRGBAObject(color, options),
-            getOptionsFromColorInput(options, color)
+            utils.roundRGBObject(rgb, detectedOptions),
+            detectedOptions
         );
     }
 

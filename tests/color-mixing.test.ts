@@ -19,16 +19,27 @@ const mixFunctions = [
     { name: 'getMixHSLAObject', mixFn: ColorTranslator.getMixHSLAObject, fn: ColorTranslator.toHSLAObject }
 ];
 
+const options = { rgbUnit: 'none' };
+
 describe('Additive Color mixing', (): void => {
     mixFunctions.forEach((fnObject): void => {
         ADDITIVE_MIXES.forEach((item: MixObject): void => {
             const colors = item.colors.map((c) => fnObject.fn(c));
-            const mix = fnObject.mixFn(colors);
+            const mix = fnObject.mixFn(colors, Mix.ADDITIVE, options);
             it(`Regular additive mix using ${fnObject.name} ${JSON.stringify(colors)} => ${JSON.stringify(mix)}`, (): void => {
                 if (typeof mix === 'string') {
-                    expect(mix).toBe(fnObject.fn(item.mix));
+                    expect(mix).toBe(fnObject.fn(item.mix, options));
                 } else {
-                    expect(mix).toMatchObject(fnObject.fn(item.mix));
+                    expect(mix).toMatchObject(fnObject.fn(item.mix, options));
+                }
+            });
+            it('Default mixing should be ADDITIVE', () => {
+                const mixAdditive = fnObject.mixFn(colors, Mix.ADDITIVE);
+                const mixDefault = fnObject.mixFn(colors);
+                if (typeof mixAdditive === 'string') {
+                    expect(mixAdditive).toBe(mixDefault);
+                } else {
+                    expect(mixAdditive).toMatchObject(mixDefault);
                 }
             });
         });
@@ -101,5 +112,17 @@ describe('legacyCSS auto detection', (): void => {
     });
     it('Only one color is css and it is legacy, output should be legacy', () => {
         expect(ColorTranslator.getMixHSLA([{r: 0, g: 0, b: 0}, 'rgba(0,0,0)'])).toBe('hsla(0,0%,0%,1)');
+    });
+});
+
+describe('rgbUnit auto detection', (): void => {
+    it('All rgb colors without rgb units, output should be without rgb units', () => {
+        expect(ColorTranslator.getMixRGB(['rgb(255 0 0)', 'rgb(255 0 0)'])).toBe('rgb(255 0 0)');
+    });
+    it('All rgb colors with rgb units, output should be with rgb units', () => {
+        expect(ColorTranslator.getMixRGB(['rgb(100% 100% 100%)', 'rgb(100% 100% 100%)'])).toBe('rgb(100% 100% 100%)');
+    });
+    it('Rgb units mixed, output should be the default: none', () => {
+        expect(ColorTranslator.getMixRGB(['rgb(100% 100% 100%)', 'rgb(255 255 255)'])).toBe('rgb(255 255 255)');
     });
 });

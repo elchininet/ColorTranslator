@@ -3,7 +3,8 @@ import { COLORS, CMYK_COLORS } from './tests.constants';
 
 const optionsNoLegacy = { legacyCSS: false };
 const optionsNoDecimals = { decimals: 0 };
-const options = { ...optionsNoLegacy, ...optionsNoDecimals };
+const optionsRgbUnitNone = { rgbUnit: 'none' };
+const options = { ...optionsNoLegacy, ...optionsNoDecimals, ...optionsRgbUnitNone };
 
 COLORS.forEach((color): void => {
 
