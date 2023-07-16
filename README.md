@@ -166,8 +166,8 @@ It is possible to instantiate the class using any of the previous inputs.
 ```typescript
 interface Options {
   decimals?: number;  // defaults to 6
-  legacyCSS: boolean; // defaults to false 
-  spacesAfterCommas: boolean; // defaults to false
+  legacyCSS?: boolean; // defaults to false 
+  spacesAfterCommas?: boolean; // defaults to false
 }
 ```
 
