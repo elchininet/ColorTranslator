@@ -168,6 +168,7 @@ interface Options {
   decimals?: number;  // defaults to 6
   legacyCSS?: boolean; // defaults to false 
   spacesAfterCommas?: boolean; // defaults to false
+  anglesUnit?: 'none' | 'deg' | 'grad' | 'rad' | 'turn'; // defaults to 'none'
 }
 ```
 
@@ -176,6 +177,13 @@ interface Options {
 | decimals          | no                  | This options set what is the maximum number of decimals for the outputs                                        |
 | legacyCSS         | yes                 | This options decides if the CSS output should be CSS Level 3 (legacy) or CSS Level 4                           |
 | spacesAfterCommas | yes                 | This options only takes place if `legacyCSS` is set to true. It decides if the comas should have a space after |
+| anglesUnit        | yes                 | This options only takes place if the output is an HSL CSS output. It sets the degrees units of the HSL hue angle. If `none` is used, the output will not have any unit but its value will be the `deg` one (degrees) |
+
+>Note: the library tries to detect some options automatically if you don‘t send them in the options object. These are the rules for this autodetection:
+>
+> * `legacyCSS`: if this option is set, then its value prevails, if it is not set, and the CSS input is provided in CSS Level 3, then this option will be `true`, otherwise it will take its default value which is `false`.
+> * `spacesAfterCommas`: if this option is set, then its value prevails, if it is not set, and the CSS input is provided with spaces after the commas, then this option will be `true`. If the input is not consistent in this aspect, then it will take its default value which is `false` (This option only takes place if `legacyCSS` is `true` or it has been autodetected as `true`)
+> * `anglesUnit`: if this option is set, then its value prevails, if it is not set, and the HSL CSS input is provided with an angle unit, then it will take that value, otherwise it will use the default one wich is `none`.
 
 ###### Class instantiation examples
 
@@ -300,10 +308,7 @@ For the static methods, it is not needed to specify the input color model, the A
 
 There are 43 static methods available, 16 of them to convert colors, 12 to create color blends, 12 to mix colors, one to get shades, one to get tints, and one to create color harmonies.
 
->Note: the library tries to detect some options automatically if you don‘t send them in the [options object](#options-object). These are the rules for this autodetection:
->
-> * `legacyCSS`: if this option is set, then its value prevails, if it is not set, and all the CSS inputs are provided in CSS Level 3, then this option will be `true`, otherwise it will take its default value which is `false`.
-> * `spacesAfterCommas`: if this option is set, then its value prevails, if it is not set, and all the CSS inputs are provided with spaces after the commas, then this option will be `true`. If the inputs are not consistent in this aspect, then it will take its default value which is `false` (This option only takes place if `legacyCSS` is `true` or it has been autodetected as `true`)
+>Note: The static methods also count with the options-autodetection feature that was explained in the [options object section](#options-object), but in this case it scans all the inputs that are CSS, and it tries to detect the options in each one of them. If one of the autodetected options is consistent in all the inputs, then it takes the autodetected value, otherwise it will use the default one.
 
 ###### Color conversion static methods
 

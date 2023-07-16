@@ -75,10 +75,23 @@ export interface ObjectProps<T> {
     [key: string]: T;
 }
 
+export enum AnglesUnitEnum {
+    NONE = 'none',
+    DEGREES = 'deg',
+    GRADIANS = 'grad',
+    RADIANS = 'rad',
+    TURNS = 'turn'
+}
+
+export type AnglesUnit = `${AnglesUnitEnum}`;
+
 export interface Options {
     decimals: number;
     legacyCSS: boolean;
     spacesAfterCommas: boolean;
+    anglesUnit: AnglesUnitEnum;
 }
 
-export type InputOptions = Partial<Options>;
+export type InputOptions = Partial<Omit<Options, 'anglesUnit'>> & {
+    anglesUnit?: AnglesUnit;
+};
