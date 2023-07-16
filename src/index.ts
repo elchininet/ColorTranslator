@@ -28,19 +28,19 @@ import { CSS } from '#color/css';
 import {
     round,
     minmax,
-    parseOptions,
-    getOptionsFromColorInput
+    getOptionsFromColorInput,
+    normalizeHue
 } from '#helpers';
 
 const getColorReturn = <T>(
     color: ColorInput,
     model: ColorModel,
     options: InputOptions,
-    translateFunction: (color: Color, decimals: number) => T
+    translateFunction: (color: Color, options: Options) => T
 ): T => {
-    const { decimals } = parseOptions(options);
+    const optionsFromInput = getOptionsFromColorInput(options, color);
     const rgbObject = utils.getRGBObject(color, model);
-    return translateFunction(rgbObject, decimals);
+    return translateFunction(rgbObject, optionsFromInput);
 };
 
 const getBlendReturn = <T>(
@@ -48,15 +48,15 @@ const getBlendReturn = <T>(
     to: ColorInput,
     steps: number,
     options: InputOptions,
-    translateFunction: (color: Color, decimals: number) => T
+    translateFunction: (color: Color, options: Options) => T
 ): T[] => {
-    const { decimals } = parseOptions(options);
+    const optionsFromInput = getOptionsFromColorInput(options, from, to);
     if (steps < 1) steps = DEFAULT_BLEND_STEPS;
     const fromRGBObject = utils.getRGBObject(from);
     const toRGBObject = utils.getRGBObject(to);
     const blendArray = utils.blend(fromRGBObject, toRGBObject, steps);
     return blendArray.map((color: RGBObject): T => {
-        return translateFunction(color, decimals);
+        return translateFunction(color, optionsFromInput);
     });
 };
 
@@ -80,7 +80,7 @@ export class ColorTranslator {
 
     // Constructor
     public constructor(color: ColorInput, options: InputOptions = {}) {
-        this._options = parseOptions(options);
+        this._options = getOptionsFromColorInput(options, color);
         this.rgb = utils.getRGBObject(color);
         this.updateHSL();
         this.updateCMYK();
@@ -132,13 +132,13 @@ export class ColorTranslator {
         this._options = {
             ...this._options,
             ...options
-        };
+        } as Options;
         return this;
     }
 
     // Public HSL methods
     public setH(h: number): ColorTranslator {
-        this.hsl.h = utils.normalizeHue(h);
+        this.hsl.h = normalizeHue(h);
         return this.updateRGBAndCMYK();
     }
 
@@ -346,23 +346,29 @@ export class ColorTranslator {
 
     public get HSL(): string {
         return CSS.HSL(
-            {
-                h: this.H,
-                s: this.S,
-                l: this.L
-            },
+            utils.roundHSLObject(
+                {
+                    h: this.H,
+                    s: this.S,
+                    l: this.L
+                },
+                this.options
+            ),
             this.options
         );
     }
 
     public get HSLA(): string {
         return CSS.HSL(
-            {
-                h: this.H,
-                s: this.S,
-                l: this.L,
-                a: this.A
-            },
+            utils.roundHSLObject(
+                {
+                    h: this.H,
+                    s: this.S,
+                    l: this.L,
+                    a: this.A
+                },
+                this.options
+            ),
             this.options
         );
     }
@@ -470,9 +476,11 @@ export class ColorTranslator {
     }
 
     public static toHSL(color: ColorInput, options: InputOptions = {}): string {
+        const hsl = ColorTranslator.toHSLObject(color, options);
+        const detectedOptions = getOptionsFromColorInput(options, color);
         return CSS.HSL(
-            ColorTranslator.toHSLObject(color, options),
-            getOptionsFromColorInput(options, color)
+            utils.roundHSLObject(hsl, detectedOptions),
+            detectedOptions
         );
     }
 
@@ -487,9 +495,11 @@ export class ColorTranslator {
     }
 
     public static toHSLA(color: ColorInput, options: InputOptions = {}): string {
+        const hsla = ColorTranslator.toHSLAObject(color, options);
+        const detectedOptions = getOptionsFromColorInput(options, color);
         return CSS.HSL(
-            ColorTranslator.toHSLAObject(color, options),
-            getOptionsFromColorInput(options, color)
+            utils.roundHSLObject(hsla, detectedOptions),
+            detectedOptions
         );
     }
 
@@ -655,11 +665,12 @@ export class ColorTranslator {
         steps: number = DEFAULT_BLEND_STEPS,
         options: InputOptions = {}
     ): string[] {
+        const detectedOptions = getOptionsFromColorInput(options, from, to);
         return ColorTranslator.getBlendHSLObject(from, to, steps, options)
             .map((color: HSLObject) => {
                 return CSS.HSL(
-                    color,
-                    getOptionsFromColorInput(options, from, to)
+                    utils.roundHSLObject(color, detectedOptions),
+                    detectedOptions
                 );
             });
     }
@@ -685,11 +696,12 @@ export class ColorTranslator {
         steps: number = DEFAULT_BLEND_STEPS,
         options: InputOptions = {}
     ): string[] {
+        const detectedOptions = getOptionsFromColorInput(options, from, to);
         return ColorTranslator.getBlendHSLAObject(from, to, steps, options)
             .map((color: HSLObject): string => {
                 return CSS.HSL(
-                    color,
-                    getOptionsFromColorInput(options, from, to)
+                    utils.roundHSLObject(color, detectedOptions),
+                    detectedOptions
                 );
             });
     }
@@ -720,7 +732,7 @@ export class ColorTranslator {
             colors,
             mode,
             false,
-            parseOptions(options)
+            getOptionsFromColorInput(options, ...colors)
         );
     }
 
@@ -746,7 +758,7 @@ export class ColorTranslator {
             colors,
             mode,
             false,
-            parseOptions(options)
+            getOptionsFromColorInput(options, ...colors)
         );
     }
 
@@ -772,7 +784,7 @@ export class ColorTranslator {
             colors,
             mode,
             false,
-            parseOptions(options)
+            getOptionsFromColorInput(options, ...colors)
         );
     }
 
@@ -798,7 +810,7 @@ export class ColorTranslator {
             colors,
             mode,
             false,
-            parseOptions(options)
+            getOptionsFromColorInput(options, ...colors)
         );
     }
 
