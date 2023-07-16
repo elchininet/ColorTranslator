@@ -185,3 +185,8 @@ export const VALID_COLOR_OBJECTS: Record<string, ColorModel> = {
     CKMY: ColorModel.CMYK,
     ACKMY: ColorModel.CMYK
 };
+
+export enum TypeOf {
+    NUMBER = 'number',
+    BOOLEAN = 'boolean'
+}

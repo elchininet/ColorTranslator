@@ -859,6 +859,7 @@ export class ColorTranslator {
 }
 
 export {
+    InputOptions,
     Harmony,
     Mix,
     HEXObject,

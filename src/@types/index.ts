@@ -78,6 +78,7 @@ export interface ObjectProps<T> {
 export interface Options {
     decimals: number;
     legacyCSS: boolean;
+    spacesAfterCommas: boolean;
 }
 
 export type InputOptions = Partial<Options>;
