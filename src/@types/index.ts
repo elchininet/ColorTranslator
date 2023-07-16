@@ -83,15 +83,28 @@ export enum AnglesUnitEnum {
     TURNS = 'turn'
 }
 
+export enum ColorUnitEnum {
+    NONE = 'none',
+    PERCENT = 'percent',
+}
+
 export type AnglesUnit = `${AnglesUnitEnum}`;
+export type ColorUnit = `${ColorUnitEnum}`;
 
 export interface Options {
     decimals: number;
     legacyCSS: boolean;
     spacesAfterCommas: boolean;
     anglesUnit: AnglesUnitEnum;
+    rgbUnit: ColorUnitEnum;
 }
 
-export type InputOptions = Partial<Omit<Options, 'anglesUnit'>> & {
-    anglesUnit?: AnglesUnit;
+export type InputOptions = Partial<
+    Omit<
+        Options,
+        'anglesUnit' | 'rgbUnit'
+    >
+> & {
+    anglesUnit?: string;
+    rgbUnit?: string;
 };

@@ -14,11 +14,13 @@ HEX3.forEach((item: HexProps): void => {
         describe(`ColorTranslator dynamic test for the HEX3 color: ${JSON.stringify(item[prop])}`, (): void => {
 
             const options = { legacyCSS: true };
+            const optionsRgbNone = { rgbUnit: 'none' };
+            const optionsLegacyRgbNone = { ...options, ...optionsRgbNone };
 
             it('CSS RGB', (): void => {
-                expect(ColorTranslator.toRGB(item[prop])).toBe(item.rgb);
+                expect(ColorTranslator.toRGB(item[prop], optionsRgbNone)).toBe(item.rgb);
                 expect(ColorTranslator.toRGB(item.keyword)).toBe(item.rgb);
-                expect(ColorTranslator.toRGB(item[prop], options)).toBe(item.rgbLegacy);
+                expect(ColorTranslator.toRGB(item[prop], optionsLegacyRgbNone)).toBe(item.rgbLegacy);
                 expect(ColorTranslator.toRGB(item.keyword, options)).toBe(item.rgbLegacy);
             });
 
@@ -28,9 +30,9 @@ HEX3.forEach((item: HexProps): void => {
             });
 
             it('CSS RGBA', (): void => {
-                expect(ColorTranslator.toRGBA(item[prop])).toBe(item.rgba);
+                expect(ColorTranslator.toRGBA(item[prop], optionsRgbNone)).toBe(item.rgba);
                 expect(ColorTranslator.toRGBA(item.keyword)).toBe(item.rgba);
-                expect(ColorTranslator.toRGBA(item[prop], options)).toBe(item.rgbaLegacy);
+                expect(ColorTranslator.toRGBA(item[prop], optionsLegacyRgbNone)).toBe(item.rgbaLegacy);
                 expect(ColorTranslator.toRGBA(item.keyword, options)).toBe(item.rgbaLegacy);
             });
 
