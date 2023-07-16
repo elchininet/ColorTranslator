@@ -8,7 +8,8 @@ import {
     PCENT,
     HEX,
     MAX_DECIMALS,
-    DEFAULT_OPTIONS
+    DEFAULT_OPTIONS,
+    TypeOf
 } from '#constants';
 
 //---Has property
@@ -62,7 +63,6 @@ export const getBase255Number = (color: string, alpha = false): number => {
     return Math.min(+color, alpha ? 1 : 255);
 };
 
-
 //---Calculate a decimal 0-1 value from CMYK value
 export const getCMYKNumber = (color: string): number => Math.min(PCENT.test(color) ? percentNumber(color) / 100 : +color, 1);
 
@@ -86,17 +86,44 @@ export const parseOptions = (options: Partial<Options>): Options => ({
     ...options
 });
 
+interface MatchOptions {
+    legacyCSS: number;
+    spacesAfterCommas: number;
+}
+
 export const getOptionsFromColorInput = (options: InputOptions, ...colors: ColorInput[]): Options => {
     const cssColors = colors.filter((color: ColorInput): boolean => typeof color === 'string') as string[];
-    const allLegacy = cssColors.every((color: string): boolean => {
-        return color.includes(',');
+    const matchOptions: MatchOptions = {
+        legacyCSS: 0,
+        spacesAfterCommas: 0
+    };
+    cssColors.forEach((color: string): void => {
+        if (color.includes(',')){
+            matchOptions.legacyCSS ++;
+            const commasWithNextCharacter = color.match(/,( +|\d+)/g);
+            if (
+                new Set(commasWithNextCharacter).size === 1 &&
+                / +/.test(commasWithNextCharacter[0].slice(1))
+            ) {
+                matchOptions.spacesAfterCommas ++;
+            }
+        }
     });
     return {
-        decimals: typeof options.decimals === 'number'
+        decimals: typeof options.decimals === TypeOf.NUMBER
             ? options.decimals
             : DEFAULT_OPTIONS.decimals,
-        legacyCSS: typeof options.legacyCSS === 'boolean'
+        legacyCSS: typeof options.legacyCSS === TypeOf.BOOLEAN
             ? options.legacyCSS
-            : Boolean(cssColors.length && allLegacy) || DEFAULT_OPTIONS.legacyCSS
+            : Boolean(
+                cssColors.length &&
+                matchOptions.legacyCSS === cssColors.length
+            ) || DEFAULT_OPTIONS.legacyCSS,
+        spacesAfterCommas: typeof options.spacesAfterCommas === TypeOf.BOOLEAN
+            ? options.spacesAfterCommas
+            : Boolean(
+                cssColors.length &&
+                matchOptions.spacesAfterCommas === cssColors.length
+            ) || DEFAULT_OPTIONS.spacesAfterCommas
     };
 };

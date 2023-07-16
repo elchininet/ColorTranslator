@@ -19,6 +19,10 @@ import {
     getOrderedArrayString
 } from '#helpers';
 
+const getComma = (withSpace: boolean): string => withSpace
+    ? ', '
+    : ',';
+
 const prepareColorForCss = (color: Color, isHex = false): NumberOrString[] => {
     const props = getOrderedArrayString(Object.keys(color));
     const model = VALID_COLOR_OBJECTS[props];
@@ -56,13 +60,14 @@ export const CSS = {
         return getResultFromTemplate(template, values);
     },
     [ColorModel.RGB]: (color: RGBObject, options: Options): string => {
-        const { legacyCSS } = options;
+        const { legacyCSS, spacesAfterCommas } = options;
+        const comma = getComma(spacesAfterCommas);
         const values = prepareColorForCss(color);
         const template = legacyCSS
             ? (
                 values.length === 4
-                    ? 'rgba({1},{2},{3},{4})'
-                    : 'rgb({1},{2},{3})'
+                    ? `rgba({1}${comma}{2}${comma}{3}${comma}{4})`
+                    : `rgb({1}${comma}{2}${comma}{3})`
             )
             : (
                 values.length === 4
@@ -72,13 +77,14 @@ export const CSS = {
         return getResultFromTemplate(template, values);
     },
     [ColorModel.HSL]: (color: HSLObject, options: Options): string => {
-        const { legacyCSS } = options;
+        const { legacyCSS, spacesAfterCommas } = options;
+        const comma = getComma(spacesAfterCommas);
         const values = prepareColorForCss(color);
         const template = legacyCSS
             ? (
                 values.length === 4
-                    ? 'hsla({1},{2}%,{3}%,{4})'
-                    : 'hsl({1},{2}%,{3}%)'
+                    ? `hsla({1}${comma}{2}%${comma}{3}%${comma}{4})`
+                    : `hsl({1}${comma}{2}%${comma}{3}%)`
             )
             : (
                 values.length === 4
@@ -88,13 +94,14 @@ export const CSS = {
         return getResultFromTemplate(template, values);
     },
     [ColorModel.CMYK]: (color: CMYKObject, options: Options): string => {
-        const { legacyCSS } = options;
+        const { legacyCSS, spacesAfterCommas } = options;
+        const comma = getComma(spacesAfterCommas);
         const values = prepareColorForCss(color);
         const template = legacyCSS
             ? (
                 values.length === 5
-                    ? 'device-cmyk({1}%,{2}%,{3}%,{4}%,{5})'
-                    : 'device-cmyk({1}%,{2}%,{3}%,{4}%)'
+                    ? `device-cmyk({1}%${comma}{2}%${comma}{3}%${comma}{4}%${comma}{5})`
+                    : `device-cmyk({1}%${comma}{2}%${comma}{3}%${comma}{4}%)`
             )
             : (
                 values.length === 5
