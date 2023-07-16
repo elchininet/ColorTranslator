@@ -3,7 +3,8 @@ import {
     InputOptions,
     NumberOrString,
     ColorInput,
-    AnglesUnitEnum
+    AnglesUnitEnum,
+    ColorUnitEnum
 } from '@types';
 import {
     PCENT,
@@ -49,6 +50,9 @@ export const toHEX = (h: NumberOrString): string => {
     }
     return hex;
 };
+
+//---Convert from decimal 255 to percent
+export const from255NumberToPercent = (value: number, decimals: number): number => round(value / 255 * 100, decimals);
 
 //---Calculate a decimal 255 from an RGB color
 export const getBase255Number = (color: string, alpha = false): number => {
@@ -143,7 +147,7 @@ export const translateDegrees = (degrees: number, units: AnglesUnitEnum): number
     return hue;
 };
 
-type MatchOptions<T = Omit<Options, 'decimals'>> = {
+type MatchOptions<T = Omit<Options, 'decimals' | 'anglesUnit' | 'rgbUnit'>> = {
     [K in keyof T]: number;
 };
 
@@ -152,17 +156,29 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
     const hslColors = cssColors
         .filter((color: string): boolean => COLORREGS.HSL.test(color))
         .map((color: string) => {
-            const hslMatch = color.match(COLORREGS.HSL);
-            const angle = hslMatch[1] || hslMatch[5];
+            const match = color.match(COLORREGS.HSL);
+            const angle = match[1] || match[5];
             const unit = angle.match(HSL_HUE)[2];
             return unit === ''
                 ? AnglesUnitEnum.NONE
                 : unit as AnglesUnitEnum;
         });
+    const rgbColors = cssColors
+        .filter((color: string): boolean => COLORREGS.RGB.test(color))
+        .map((color: string) => {
+            const match = color.match(COLORREGS.RGB);
+            const r = match[1] || match[5];
+            const g = match[2] || match[6];
+            const b = match[3] || match[7];
+            return (
+                PCENT.test(r) &&
+                PCENT.test(g) &&
+                PCENT.test(b)
+            );
+        });
     const matchOptions: MatchOptions = {
         legacyCSS: 0,
-        spacesAfterCommas: 0,
-        anglesUnit: 0
+        spacesAfterCommas: 0
     };
     cssColors.forEach((color: string): void => {
         if (color.includes(',')){
@@ -176,6 +192,7 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
             }
         }
     });
+
     return {
         decimals: typeof options.decimals === TypeOf.NUMBER
             ? options.decimals
@@ -198,6 +215,13 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
                 new Set(hslColors).size === 1
                     ? hslColors[0]
                     : DEFAULT_OPTIONS.anglesUnit
+            ),
+        rgbUnit: options.rgbUnit
+            ? options.rgbUnit as ColorUnitEnum
+            : (
+                new Set(rgbColors).size === 1 && rgbColors[0]
+                    ? ColorUnitEnum.PERCENT
+                    : DEFAULT_OPTIONS.rgbUnit
             )
     };
 };

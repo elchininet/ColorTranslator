@@ -16,7 +16,8 @@ import {
     HEXOutput,
     ColorOutput,
     Options,
-    AnglesUnitEnum
+    AnglesUnitEnum,
+    ColorUnitEnum
 } from '@types';
 import {
     HEX,
@@ -34,6 +35,7 @@ import {
     getDEC,
     getHEX,
     getBase255Number,
+    from255NumberToPercent,
     getCMYKNumber,
     hasProp,
     percent,
@@ -291,23 +293,36 @@ export const translateColor = {
     },
 
     [ColorModel.RGB](color: RGBObject, options: Options): RGBObject {
-        if (hasProp<RGBObject>(color, 'a')) {
-            delete color.a;
+        const rgb = roundRGBObject(
+            color,
+            {
+                ...options,
+                rgbUnit: ColorUnitEnum.NONE
+            }
+        );
+        if (hasProp<RGBObject>(rgb, 'a')) {
+            delete rgb.a;
         }
-        return roundRGBObject(color, options);
+        return rgb;
     },
 
     RGBA(color: RGBObject, options: Options): RGBObject {
-        color.a = hasProp<RGBObject>(color, 'a')
+        const rgb = translateColor.RGB(color, options);
+        rgb.a = hasProp<RGBObject>(color, 'a')
             ? round(color.a)
             : 1;
-        return roundRGBObject(color, options);
+        return rgb;
     },
 
     [ColorModel.HSL](color: RGBObject, options: Options): HSLObject {
         const hsl = rgbToHSL(color.r, color.g, color.b);
         delete hsl.a;
-        return roundHSLObject(hsl, options, false);
+        return roundHSLObject(
+            hsl,
+            {
+                ...options,
+                anglesUnit: AnglesUnitEnum.NONE
+            });
     },
 
     HSLA(color: RGBObject, options: Options): HSLObject {
@@ -753,7 +768,10 @@ export const colorMixer = {
         delete mix.a;
         return (
             css
-                ? CSS.RGB(mix, options)
+                ? CSS.RGB(
+                    roundRGBObject(mix, options),
+                    options
+                )
                 : translateColor.RGB(mix, options)
         ) as R;
     },
@@ -766,7 +784,10 @@ export const colorMixer = {
         const mix = this.mix(colors, mode);
         return (
             css
-                ? CSS.RGB(mix, options)
+                ? CSS.RGB(
+                    roundRGBObject(mix, options),
+                    options
+                )
                 : translateColor.RGBA(mix, options)
         ) as R;
     },
@@ -809,11 +830,24 @@ export const colorMixer = {
 };
 
 export const roundRGBObject = (color: RGBObject, options: Options): RGBObject => {
-    const { decimals } = options;
+    const {
+        decimals,
+        rgbUnit
+    } = options;
+    const inPercentage = rgbUnit === ColorUnitEnum.PERCENT;
+    const r = inPercentage
+        ? from255NumberToPercent(color.r, decimals)
+        : round(color.r, decimals);
+    const g = inPercentage
+        ? from255NumberToPercent(color.g, decimals)
+        : round(color.g, decimals);
+    const b = inPercentage
+        ? from255NumberToPercent(color.b, decimals)
+        : round(color.b, decimals);
     return {
-        r: round(color.r, decimals),
-        g: round(color.g, decimals),
-        b: round(color.b, decimals),
+        r,
+        g,
+        b,
         ...(
             hasProp<RGBObject>(color, 'a')
                 ? {
@@ -824,7 +858,10 @@ export const roundRGBObject = (color: RGBObject, options: Options): RGBObject =>
     };
 };
 
-export const roundHSLObject = (color: HSLObject, options: Options | null, applyDegreesConvertion = true): HSLObject => {
+export const roundHSLObject = (
+    color: HSLObject,
+    options: Options | null
+): HSLObject => {
     const decimals = options
         ? options.decimals
         : 0;
@@ -832,7 +869,7 @@ export const roundHSLObject = (color: HSLObject, options: Options | null, applyD
         ? options.anglesUnit
         : AnglesUnitEnum.NONE;
     return {
-        h: applyDegreesConvertion
+        h: anglesUnits !== AnglesUnitEnum.NONE
             ? round(
                 translateDegrees(
                     color.h,
