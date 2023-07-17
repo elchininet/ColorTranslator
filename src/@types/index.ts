@@ -98,15 +98,17 @@ export interface Options {
     anglesUnit: AnglesUnitEnum;
     rgbUnit: ColorUnitEnum;
     cmykUnit: ColorUnitEnum;
+    alphaUnit: ColorUnitEnum;
 }
 
 export type InputOptions = Partial<
     Omit<
         Options,
-        'anglesUnit' | 'rgbUnit' | 'cmykUnit'
+        'anglesUnit' | 'rgbUnit' | 'cmykUnit' | 'alphaUnit'
     >
 > & {
     anglesUnit?: string;
     rgbUnit?: string;
     cmykUnit?: string;
+    alphaUnit?: string;
 };
