@@ -1,11 +1,11 @@
-import { ColorTranslator } from '../src';
+import { ColorTranslator, InputOptions } from '../src';
 import { COLORS, CMYK_COLORS } from './tests.constants';
 
-const optionsNoLegacy = { legacyCSS: false };
-const optionsNoDecimals = { decimals: 0 };
-const optionsRgbUnitNone = { rgbUnit: 'none' };
-const optionsCmykUnitPercent = { cmykUnit: 'percent' };
-const optionsAlphaUnitNone = { alphaUnit: 'none' };
+const optionsNoLegacy: InputOptions = { legacyCSS: false };
+const optionsNoDecimals: InputOptions = { decimals: 0 };
+const optionsRgbUnitNone: InputOptions = { rgbUnit: 'none' };
+const optionsCmykUnitPercent: InputOptions = { cmykUnit: 'percent' };
+const optionsAlphaUnitNone: InputOptions = { alphaUnit: 'none' };
 const options = {
     ...optionsNoLegacy,
     ...optionsNoDecimals,

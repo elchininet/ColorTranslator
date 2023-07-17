@@ -1,4 +1,4 @@
-import { ColorTranslator } from '../src';
+import { ColorTranslator, InputOptions } from '../src';
 import { Mix } from '../src/constants';
 import { ADDITIVE_MIXES, SUBTRACTIVE_MIXES } from './tests.constants';
 
@@ -19,7 +19,7 @@ const mixFunctions = [
     { name: 'getMixHSLAObject', mixFn: ColorTranslator.getMixHSLAObject, fn: ColorTranslator.toHSLAObject }
 ];
 
-const options = { rgbUnit: 'none' };
+const options: InputOptions = { rgbUnit: 'none' };
 
 describe('Additive Color mixing', (): void => {
     mixFunctions.forEach((fnObject): void => {
