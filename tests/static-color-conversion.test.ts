@@ -4,7 +4,13 @@ import { COLORS, CMYK_COLORS } from './tests.constants';
 const optionsNoLegacy = { legacyCSS: false };
 const optionsNoDecimals = { decimals: 0 };
 const optionsRgbUnitNone = { rgbUnit: 'none' };
-const options = { ...optionsNoLegacy, ...optionsNoDecimals, ...optionsRgbUnitNone };
+const optionsCmykUnitPercent = { cmykUnit: 'percent' };
+const options = {
+    ...optionsNoLegacy,
+    ...optionsNoDecimals,
+    ...optionsRgbUnitNone,
+    ...optionsCmykUnitPercent
+};
 
 COLORS.forEach((color): void => {
 
@@ -123,11 +129,11 @@ CMYK_COLORS.forEach((color) => {
             });
 
             it(`toCMYK method with decimals from ${colorValueStr}`, () => {
-                expect(ColorTranslator.toCMYK(colorValue, optionsNoLegacy)).toMatchSnapshot();
+                expect(ColorTranslator.toCMYK(colorValue, { ...optionsNoLegacy, ...optionsCmykUnitPercent })).toMatchSnapshot();
             });
 
             it(`toCMYK method with decimals and auto legacyCSS from ${colorValueStr}`, () => {
-                expect(ColorTranslator.toCMYK(colorValue)).toMatchSnapshot();
+                expect(ColorTranslator.toCMYK(colorValue, optionsCmykUnitPercent)).toMatchSnapshot();
             });
 
             it(`toCMYKObject method with decimals from ${colorValueStr}`, () => {
@@ -135,11 +141,11 @@ CMYK_COLORS.forEach((color) => {
             });
 
             it(`toCMYKA method with decimals from ${colorValueStr}`, () => {
-                expect(ColorTranslator.toCMYKA(colorValue, optionsNoLegacy)).toMatchSnapshot();
+                expect(ColorTranslator.toCMYKA(colorValue, { ...optionsNoLegacy, ...optionsCmykUnitPercent })).toMatchSnapshot();
             });
 
             it(`toCMYKA method with decimals and auto legacyCSS from ${colorValueStr}`, () => {
-                expect(ColorTranslator.toCMYKA(colorValue)).toMatchSnapshot();
+                expect(ColorTranslator.toCMYKA(colorValue, optionsCmykUnitPercent)).toMatchSnapshot();
             });
 
             it(`toCMYKAObject method with decimals from ${colorValueStr}`, () => {

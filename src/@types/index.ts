@@ -97,14 +97,16 @@ export interface Options {
     spacesAfterCommas: boolean;
     anglesUnit: AnglesUnitEnum;
     rgbUnit: ColorUnitEnum;
+    cmykUnit: ColorUnitEnum;
 }
 
 export type InputOptions = Partial<
     Omit<
         Options,
-        'anglesUnit' | 'rgbUnit'
+        'anglesUnit' | 'rgbUnit' | 'cmykUnit'
     >
 > & {
     anglesUnit?: string;
     rgbUnit?: string;
+    cmykUnit?: string;
 };

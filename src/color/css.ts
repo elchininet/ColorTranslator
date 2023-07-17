@@ -130,21 +130,32 @@ export const CSS = {
         const {
             decimals,
             legacyCSS,
-            spacesAfterCommas
+            spacesAfterCommas,
+            cmykUnit
         } = options;
         const comma = getComma(spacesAfterCommas);
-        const transformer = (value: number): number => round(value, decimals);
+        const transformer = (value: number, index: number): NumberOrString => {
+            if (
+                cmykUnit === ColorUnitEnum.PERCENT &&
+                index < 4
+            ) {
+                return `${round(value, decimals)}%`;
+            }
+            return index < 4
+                ? round(value / 100, decimals)
+                : round(value, decimals);
+        };
         const values = prepareColorForCss(color, transformer);
         const template = legacyCSS
             ? (
                 values.length === 5
-                    ? `device-cmyk({1}%${comma}{2}%${comma}{3}%${comma}{4}%${comma}{5})`
-                    : `device-cmyk({1}%${comma}{2}%${comma}{3}%${comma}{4}%)`
+                    ? `device-cmyk({1}${comma}{2}${comma}{3}${comma}{4}${comma}{5})`
+                    : `device-cmyk({1}${comma}{2}${comma}{3}${comma}{4})`
             )
             : (
                 values.length === 5
-                    ? 'device-cmyk({1}% {2}% {3}% {4}% / {5})'
-                    : 'device-cmyk({1}% {2}% {3}% {4}%)'
+                    ? 'device-cmyk({1} {2} {3} {4} / {5})'
+                    : 'device-cmyk({1} {2} {3} {4})'
             );
         return getResultFromTemplate(template, values);
     }
