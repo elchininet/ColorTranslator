@@ -11,6 +11,8 @@ import {
     HEX,
     MAX_DECIMALS,
     DEFAULT_OPTIONS,
+    COMMAS_AND_NEXT_CHARS,
+    SPACES,
     COLORREGS,
     HSL_HUE,
     TypeOf
@@ -147,52 +149,80 @@ export const translateDegrees = (degrees: number, units: AnglesUnitEnum): number
     return hue;
 };
 
-type MatchOptions<T = Omit<Options, 'decimals' | 'anglesUnit' | 'rgbUnit'>> = {
-    [K in keyof T]: number;
+type MatchOptions = {
+    [K in keyof Pick<Options, 'legacyCSS' | 'spacesAfterCommas'>]: number;
 };
 
 export const getOptionsFromColorInput = (options: InputOptions, ...colors: ColorInput[]): Options => {
-    const cssColors = colors.filter((color: ColorInput): boolean => typeof color === 'string') as string[];
-    const hslColors = cssColors
-        .filter((color: string): boolean => COLORREGS.HSL.test(color))
-        .map((color: string) => {
-            const match = color.match(COLORREGS.HSL);
-            const angle = match[1] || match[5];
-            const unit = angle.match(HSL_HUE)[2];
-            return unit === ''
-                ? AnglesUnitEnum.NONE
-                : unit as AnglesUnitEnum;
-        });
-    const rgbColors = cssColors
-        .filter((color: string): boolean => COLORREGS.RGB.test(color))
-        .map((color: string) => {
-            const match = color.match(COLORREGS.RGB);
-            const r = match[1] || match[5];
-            const g = match[2] || match[6];
-            const b = match[3] || match[7];
-            return (
-                PCENT.test(r) &&
-                PCENT.test(g) &&
-                PCENT.test(b)
-            );
-        });
+    const cssColors: string[] = [];
+    const hslColors: AnglesUnitEnum[] = [];
+    const rgbColors: boolean[] = [];
+    const cmykColors: boolean[] = [];
+
     const matchOptions: MatchOptions = {
         legacyCSS: 0,
         spacesAfterCommas: 0
     };
-    cssColors.forEach((color: string): void => {
-        if (color.includes(',')){
-            matchOptions.legacyCSS ++;
-            const commasWithNextCharacter = color.match(/,( +|\d+)/g);
-            if (
-                new Set(commasWithNextCharacter).size === 1 &&
-                / +/.test(commasWithNextCharacter[0].slice(1))
-            ) {
-                matchOptions.spacesAfterCommas ++;
-            }
-        }
-    });
 
+    for(const color of colors) {
+
+        if (typeof color === 'string') {
+
+            cssColors.push(color);
+
+            if (color.includes(',')){
+                matchOptions.legacyCSS ++;
+                const commasWithNextCharacter = color.match(COMMAS_AND_NEXT_CHARS);
+                if (
+                    new Set(commasWithNextCharacter).size === 1 &&
+                    SPACES.test(commasWithNextCharacter[0].slice(1))
+                ) {
+                    matchOptions.spacesAfterCommas ++;
+                }
+            }
+
+            if (color.match(COLORREGS.HSL)) {
+                const match = color.match(COLORREGS.HSL);
+                const angle = match[1] || match[5];
+                const unit = angle.match(HSL_HUE)[2];
+                hslColors.push(
+                    unit === ''
+                        ? AnglesUnitEnum.NONE
+                        : unit as AnglesUnitEnum
+                );
+                continue;
+            }
+
+            if (COLORREGS.RGB.test(color)) {
+                const match = color.match(COLORREGS.RGB);
+                const r = match[1] || match[5];
+                const g = match[2] || match[6];
+                const b = match[3] || match[7];
+                rgbColors.push(
+                    PCENT.test(r) &&
+                    PCENT.test(g) &&
+                    PCENT.test(b)
+                );
+                continue;
+            }
+
+            if (color.match(COLORREGS.CMYK)) {
+                const match = color.match(COLORREGS.CMYK);
+                const c = match[1] || match[6];
+                const m = match[2] || match[7];
+                const y = match[3] || match[8];
+                const k = match[4] || match[9];
+                cmykColors.push(
+                    PCENT.test(c) &&
+                    PCENT.test(m) &&
+                    PCENT.test(y) &&
+                    PCENT.test(k)
+                );
+            }
+
+        }
+
+    }
     return {
         decimals: typeof options.decimals === TypeOf.NUMBER
             ? options.decimals
@@ -222,6 +252,13 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
                 new Set(rgbColors).size === 1 && rgbColors[0]
                     ? ColorUnitEnum.PERCENT
                     : DEFAULT_OPTIONS.rgbUnit
+            ),
+        cmykUnit: options.cmykUnit
+            ? options.cmykUnit as ColorUnitEnum
+            : (
+                new Set(cmykColors).size === 1 && !cmykColors[0]
+                    ? ColorUnitEnum.NONE
+                    : DEFAULT_OPTIONS.cmykUnit
             )
     };
 };
