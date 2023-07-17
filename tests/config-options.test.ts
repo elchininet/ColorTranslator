@@ -150,6 +150,26 @@ describe('ColorTranslator CSS config options', () => {
             cmyk: 'device-cmyk(0 1 0 0)',
             cmyka: 'device-cmyk(0 1 0 0 / 1)',
             isDefault: false
+        },
+        {
+            options: { alphaUnit: 'none' },
+            rgb: 'rgb(255 0 255)',
+            rgba: 'rgb(255 0 255 / 1)',
+            hsl: 'hsl(300 100% 50%)',
+            hsla: 'hsl(300 100% 50% / 1)',
+            cmyk: 'device-cmyk(0% 100% 0% 0%)',
+            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
+            isDefault: true
+        },
+        {
+            options: { alphaUnit: 'percent' },
+            rgb: 'rgb(255 0 255)',
+            rgba: 'rgb(255 0 255 / 100%)',
+            hsl: 'hsl(300 100% 50%)',
+            hsla: 'hsl(300 100% 50% / 100%)',
+            cmyk: 'device-cmyk(0% 100% 0% 0%)',
+            cmyka: 'device-cmyk(0% 100% 0% 0% / 100%)',
+            isDefault: false
         }
     ];
 
@@ -322,6 +342,33 @@ describe('ColorTranslator CSS config options autodetection', () => {
 
         expect(ColorTranslator.toCMYK('device-cmyk(100% 100% 100% 100% / 0.5)')).toBe('device-cmyk(0% 0% 0% 100%)');
         expect(ColorTranslator.toCMYKA('device-cmyk(1 1 1 1)')).toBe('device-cmyk(0 0 0 1 / 1)');
+
+    });
+
+    it(`alphaUnit auto detection`, () => {
+
+        const regNone = /^.* \/ 0\.5\)$/;
+        const regPercent = /^.* \/ 50%\)$/;
+        const instanceAlphaNone = new ColorTranslator('rgb(255 0 255 / 0.5)');
+
+        expect(instanceAlphaNone.HSLA).toBe('hsl(300 100% 50% / 0.5)');
+        expect(instanceAlphaNone.RGBA).toBe('rgb(255 0 255 / 0.5)');
+        expect(regNone.test(instanceAlphaNone.CMYKA)).toBe(true);
+
+        const instanceAlphaPercentage = new ColorTranslator('rgb(255 0 255 / 50%)');
+
+        expect(instanceAlphaPercentage.HSLA).toBe('hsl(300 100% 50% / 50%)');
+        expect(instanceAlphaPercentage.RGBA).toBe('rgb(255 0 255 / 50%)');
+        expect(regPercent.test(instanceAlphaPercentage.CMYKA)).toBe(true);
+
+        expect(ColorTranslator.toHSLA('rgb(255 0 255 / 0.5)')).toBe('hsl(300 100% 50% / 0.5)');
+        expect(ColorTranslator.toRGBA('rgb(255 0 255 / 0.5)')).toBe('rgb(255 0 255 / 0.5)');
+        expect(regNone.test(ColorTranslator.toCMYKA('rgb(255 0 255 / 0.5)'))).toBe(true);
+
+        expect(ColorTranslator.toHSLA('rgb(255 0 255 / 80%)')).toBe('hsl(300 100% 50% / 80%)');
+        expect(ColorTranslator.toRGBA('rgb(255 0 255 / 5%)')).toBe('rgb(255 0 255 / 5%)');
+        expect(regPercent.test(ColorTranslator.toCMYKA('rgb(255 0 255 / 50%)'))).toBe(true);
+
 
     });
 

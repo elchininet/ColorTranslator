@@ -5,11 +5,13 @@ const optionsNoLegacy = { legacyCSS: false };
 const optionsNoDecimals = { decimals: 0 };
 const optionsRgbUnitNone = { rgbUnit: 'none' };
 const optionsCmykUnitPercent = { cmykUnit: 'percent' };
+const optionsAlphaUnitNone = { alphaUnit: 'none' };
 const options = {
     ...optionsNoLegacy,
     ...optionsNoDecimals,
     ...optionsRgbUnitNone,
-    ...optionsCmykUnitPercent
+    ...optionsCmykUnitPercent,
+    ...optionsAlphaUnitNone
 };
 
 COLORS.forEach((color): void => {
@@ -141,11 +143,11 @@ CMYK_COLORS.forEach((color) => {
             });
 
             it(`toCMYKA method with decimals from ${colorValueStr}`, () => {
-                expect(ColorTranslator.toCMYKA(colorValue, { ...optionsNoLegacy, ...optionsCmykUnitPercent })).toMatchSnapshot();
+                expect(ColorTranslator.toCMYKA(colorValue, { ...optionsNoLegacy, ...optionsCmykUnitPercent, ...optionsAlphaUnitNone })).toMatchSnapshot();
             });
 
             it(`toCMYKA method with decimals and auto legacyCSS from ${colorValueStr}`, () => {
-                expect(ColorTranslator.toCMYKA(colorValue, optionsCmykUnitPercent)).toMatchSnapshot();
+                expect(ColorTranslator.toCMYKA(colorValue, { ...optionsCmykUnitPercent, ...optionsAlphaUnitNone })).toMatchSnapshot();
             });
 
             it(`toCMYKAObject method with decimals from ${colorValueStr}`, () => {

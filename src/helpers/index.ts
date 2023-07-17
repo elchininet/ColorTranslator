@@ -158,6 +158,7 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
     const hslColors: AnglesUnitEnum[] = [];
     const rgbColors: boolean[] = [];
     const cmykColors: boolean[] = [];
+    const alphaValues: boolean[] = [];
 
     const matchOptions: MatchOptions = {
         legacyCSS: 0,
@@ -184,11 +185,15 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
             if (color.match(COLORREGS.HSL)) {
                 const match = color.match(COLORREGS.HSL);
                 const angle = match[1] || match[5];
-                const unit = angle.match(HSL_HUE)[2];
+                const alpha = match[8];
+                const angleUnit = angle.match(HSL_HUE)[2];
                 hslColors.push(
-                    unit === ''
+                    angleUnit === ''
                         ? AnglesUnitEnum.NONE
-                        : unit as AnglesUnitEnum
+                        : angleUnit as AnglesUnitEnum
+                );
+                alphaValues.push(
+                    PCENT.test(alpha)
                 );
                 continue;
             }
@@ -198,10 +203,14 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
                 const r = match[1] || match[5];
                 const g = match[2] || match[6];
                 const b = match[3] || match[7];
+                const a = match[8];
                 rgbColors.push(
                     PCENT.test(r) &&
                     PCENT.test(g) &&
                     PCENT.test(b)
+                );
+                alphaValues.push(
+                    PCENT.test(a)
                 );
                 continue;
             }
@@ -212,11 +221,15 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
                 const m = match[2] || match[7];
                 const y = match[3] || match[8];
                 const k = match[4] || match[9];
+                const a = match[10];
                 cmykColors.push(
                     PCENT.test(c) &&
                     PCENT.test(m) &&
                     PCENT.test(y) &&
                     PCENT.test(k)
+                );
+                alphaValues.push(
+                    PCENT.test(a)
                 );
             }
 
@@ -259,6 +272,13 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
                 new Set(cmykColors).size === 1 && !cmykColors[0]
                     ? ColorUnitEnum.NONE
                     : DEFAULT_OPTIONS.cmykUnit
+            ),
+        alphaUnit: options.alphaUnit
+            ? options.alphaUnit as ColorUnitEnum
+            : (
+                new Set(alphaValues).size === 1 && alphaValues[0]
+                    ? ColorUnitEnum.PERCENT
+                    : DEFAULT_OPTIONS.alphaUnit
             )
     };
 };

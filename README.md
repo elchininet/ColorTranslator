@@ -171,6 +171,7 @@ interface Options {
   anglesUnit?: 'none' | 'deg' | 'grad' | 'rad' | 'turn'; // defaults to 'none'
   rgbUnit?: 'none' | 'percent'; // defaults to 'none'
   cmykUnit?: 'none' | 'percent'; // defaults to 'percent'
+  alphaUnit?: 'none' | 'percent'; // defaults to 'none'
 }
 ```
 
@@ -182,6 +183,7 @@ interface Options {
 | anglesUnit        | yes                 | This option only takes place if the output is an HSL CSS output. It sets the degrees units of the HSL hue angle. If `none` is used, the output will not have any unit but its value will be the `deg` one (degrees) |
 | rgbUnit           | yes                 | This option only takes place if the output is an RGB CSS output. It sets the color units of the RGB and RGBA CSS outputs. If `none` is used the color values will be decimal between `0` and `255`. If `percent` is used, the color values will be decimal with percentages between `0%` and `100%`. |
 | cmykUnit          | yes                 | This option sets the color units of the CMYK and CMYKA CSS outputs. If `none` is used the color values will be decimal between `0` and `1`. If `percent` is used, the color values will be decimal with percentages between `0%` and `100%`. |
+| alphaUnit         | yes                 | This option only takes place if the output is a CSS Level 4 output (`legacyCSS` has not been set, or it has been set to `false` or it has been autodetected as `false`). This option sets the alpha units of the CSS Level 4 outputs. If `none` is used the alpha values will be decimal between `0` and `1`. If `percent` is used, the alpha values will be decimal with percentages between `0%` and `100%`. |
 
 >Note: the library tries to detect some options automatically if you don‘t send them in the options object. These are the rules for this autodetection:
 >
@@ -190,6 +192,7 @@ interface Options {
 > * `anglesUnit`: if this option is set, then its value prevails, if it is not set, and the HSL CSS input is provided with an angle unit, then it will take that value, otherwise it will use the default one wich is `none`.
 > * `rgbUnit`: if this option is set, then its value prevails, if it is not set, and the RGB CSS input is provided with percentages in its color values, then it will take the `pcent` value, otherwise it will use the default one wich is `none`.
 > * `cmykUnit`: if this option is set, then its value prevails, if it is not set, and the CMYK CSS input is provided without percentages in its color values, then it will take the `none` value, otherwise it will use the default one wich is `percent`.
+> * `alphaUnit`: if this option is set, then its value prevails, if it is not set, and the CSS input (must be CSS Level 4) is provided with percentages in its alpha value, then it will take the `percent` value, otherwise it will use the default one wich is `none`.
 
 ###### Class instantiation examples
 
