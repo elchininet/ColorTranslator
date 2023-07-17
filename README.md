@@ -170,16 +170,18 @@ interface Options {
   spacesAfterCommas?: boolean; // defaults to false
   anglesUnit?: 'none' | 'deg' | 'grad' | 'rad' | 'turn'; // defaults to 'none'
   rgbUnit?: 'none' | 'percent'; // defaults to 'none'
+  cmykUnit?: 'none' | 'percent'; // defaults to 'percent'
 }
 ```
 
 | Option            | Only for CSS output | Description                                                                                                    |
 | ----------------- | ------------------- | -------------------------------------------------------------------------------------------------------------- |
-| decimals          | no                  | This options set what is the maximum number of decimals for the outputs                                        |
-| legacyCSS         | yes                 | This options decides if the CSS output should be CSS Level 3 (legacy) or CSS Level 4                           |
-| spacesAfterCommas | yes                 | This options only takes place if `legacyCSS` is set to true. It decides if the comas should have a space after |
-| anglesUnit        | yes                 | This options only takes place if the output is an HSL CSS output. It sets the degrees units of the HSL hue angle. If `none` is used, the output will not have any unit but its value will be the `deg` one (degrees) |
-| rgbUnit           | yes                 | This options only takes place if the output is an RGB CSS output. It sets the color units of the output. If `none` is used the color values will be decimal between `0` and `255`. If percentages is used, the color values will be decimal with percentages between `0%` and `100%`. |
+| decimals          | no                  | This option sets what is the maximum number of decimals for the outputs                                        |
+| legacyCSS         | yes                 | This option decides if the CSS output should be CSS Level 3 (legacy) or CSS Level 4                           |
+| spacesAfterCommas | yes                 | This option only takes place if `legacyCSS` is set to true. It decides if the comas should have a space after |
+| anglesUnit        | yes                 | This option only takes place if the output is an HSL CSS output. It sets the degrees units of the HSL hue angle. If `none` is used, the output will not have any unit but its value will be the `deg` one (degrees) |
+| rgbUnit           | yes                 | This option only takes place if the output is an RGB CSS output. It sets the color units of the RGB and RGBA CSS outputs. If `none` is used the color values will be decimal between `0` and `255`. If `percent` is used, the color values will be decimal with percentages between `0%` and `100%`. |
+| cmykUnit          | yes                 | This option sets the color units of the CMYK and CMYKA CSS outputs. If `none` is used the color values will be decimal between `0` and `1`. If `percent` is used, the color values will be decimal with percentages between `0%` and `100%`. |
 
 >Note: the library tries to detect some options automatically if you don‘t send them in the options object. These are the rules for this autodetection:
 >
@@ -187,6 +189,7 @@ interface Options {
 > * `spacesAfterCommas`: if this option is set, then its value prevails, if it is not set, and the CSS input is provided with spaces after the commas, then this option will be `true`. If the input is not consistent in this aspect, then it will take its default value which is `false` (This option only takes place if `legacyCSS` is `true` or it has been autodetected as `true`)
 > * `anglesUnit`: if this option is set, then its value prevails, if it is not set, and the HSL CSS input is provided with an angle unit, then it will take that value, otherwise it will use the default one wich is `none`.
 > * `rgbUnit`: if this option is set, then its value prevails, if it is not set, and the RGB CSS input is provided with percentages in its color values, then it will take the `pcent` value, otherwise it will use the default one wich is `none`.
+> * `cmykUnit`: if this option is set, then its value prevails, if it is not set, and the CMYK CSS input is provided without percentages in its color values, then it will take the `none` value, otherwise it will use the default one wich is `percent`.
 
 ###### Class instantiation examples
 

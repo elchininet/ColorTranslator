@@ -9,6 +9,8 @@ interface TestCase {
     rgba: string;
     hsl: string;
     hsla: string;
+    cmyk: string;
+    cmyka: string;
     isDefault: boolean;
 }
 
@@ -23,6 +25,8 @@ describe('ColorTranslator CSS config options', () => {
             rgba: 'rgba(255,0,255,1)',
             hsl: 'hsl(300,100%,50%)',
             hsla: 'hsla(300,100%,50%,1)',
+            cmyk: 'device-cmyk(0%,100%,0%,0%)',
+            cmyka: 'device-cmyk(0%,100%,0%,0%,1)',
             isDefault: false
         },
         {
@@ -31,6 +35,8 @@ describe('ColorTranslator CSS config options', () => {
             rgba: 'rgb(255 0 255 / 1)',
             hsl: 'hsl(300 100% 50%)',
             hsla: 'hsl(300 100% 50% / 1)',
+            cmyk: 'device-cmyk(0% 100% 0% 0%)',
+            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
         },
         {
@@ -40,6 +46,8 @@ describe('ColorTranslator CSS config options', () => {
             rgba: 'rgba(255, 0, 255, 1)',
             hsl: 'hsl(300, 100%, 50%)',
             hsla: 'hsla(300, 100%, 50%, 1)',
+            cmyk: 'device-cmyk(0%, 100%, 0%, 0%)',
+            cmyka: 'device-cmyk(0%, 100%, 0%, 0%, 1)',
             isDefault: false
         },
         {
@@ -49,6 +57,8 @@ describe('ColorTranslator CSS config options', () => {
             rgba: 'rgba(255,0,255,1)',
             hsl: 'hsl(300,100%,50%)',
             hsla: 'hsla(300,100%,50%,1)',
+            cmyk: 'device-cmyk(0%,100%,0%,0%)',
+            cmyka: 'device-cmyk(0%,100%,0%,0%,1)',
             isDefault: true
         },
         {
@@ -57,6 +67,8 @@ describe('ColorTranslator CSS config options', () => {
             rgba: 'rgb(255 0 255 / 1)',
             hsl: 'hsl(300 100% 50%)',
             hsla: 'hsl(300 100% 50% / 1)',
+            cmyk: 'device-cmyk(0% 100% 0% 0%)',
+            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
         },
         {
@@ -65,6 +77,8 @@ describe('ColorTranslator CSS config options', () => {
             rgba: 'rgb(255 0 255 / 1)',
             hsl: 'hsl(300deg 100% 50%)',
             hsla: 'hsl(300deg 100% 50% / 1)',
+            cmyk: 'device-cmyk(0% 100% 0% 0%)',
+            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
         },
         {
@@ -73,6 +87,8 @@ describe('ColorTranslator CSS config options', () => {
             rgba: 'rgb(255 0 255 / 1)',
             hsl: 'hsl(333.333333grad 100% 50%)',
             hsla: 'hsl(333.333333grad 100% 50% / 1)',
+            cmyk: 'device-cmyk(0% 100% 0% 0%)',
+            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
         },
         {
@@ -81,6 +97,8 @@ describe('ColorTranslator CSS config options', () => {
             rgba: 'rgb(255 0 255 / 1)',
             hsl: 'hsl(5.235988rad 100% 50%)',
             hsla: 'hsl(5.235988rad 100% 50% / 1)',
+            cmyk: 'device-cmyk(0% 100% 0% 0%)',
+            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
         },
         {
@@ -89,6 +107,8 @@ describe('ColorTranslator CSS config options', () => {
             rgba: 'rgb(255 0 255 / 1)',
             hsl: 'hsl(0.833333turn 100% 50%)',
             hsla: 'hsl(0.833333turn 100% 50% / 1)',
+            cmyk: 'device-cmyk(0% 100% 0% 0%)',
+            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
         },
         {
@@ -97,6 +117,8 @@ describe('ColorTranslator CSS config options', () => {
             rgba: 'rgb(255 0 255 / 1)',
             hsl: 'hsl(300 100% 50%)',
             hsla: 'hsl(300 100% 50% / 1)',
+            cmyk: 'device-cmyk(0% 100% 0% 0%)',
+            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
         },
         {
@@ -105,6 +127,28 @@ describe('ColorTranslator CSS config options', () => {
             rgba: 'rgb(100% 0% 100% / 1)',
             hsl: 'hsl(300 100% 50%)',
             hsla: 'hsl(300 100% 50% / 1)',
+            cmyk: 'device-cmyk(0% 100% 0% 0%)',
+            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
+            isDefault: false
+        },
+        {
+            options: { cmykUnit: 'percent' },
+            rgb: 'rgb(255 0 255)',
+            rgba: 'rgb(255 0 255 / 1)',
+            hsl: 'hsl(300 100% 50%)',
+            hsla: 'hsl(300 100% 50% / 1)',
+            cmyk: 'device-cmyk(0% 100% 0% 0%)',
+            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
+            isDefault: true
+        },
+        {
+            options: { cmykUnit: 'none' },
+            rgb: 'rgb(255 0 255)',
+            rgba: 'rgb(255 0 255 / 1)',
+            hsl: 'hsl(300 100% 50%)',
+            hsla: 'hsl(300 100% 50% / 1)',
+            cmyk: 'device-cmyk(0 1 0 0)',
+            cmyka: 'device-cmyk(0 1 0 0 / 1)',
             isDefault: false
         }
     ];
@@ -118,6 +162,8 @@ describe('ColorTranslator CSS config options', () => {
             rgba,
             hsl,
             hsla,
+            cmyk,
+            cmyka,
             isDefault
         } = testCase;
 
@@ -128,10 +174,14 @@ describe('ColorTranslator CSS config options', () => {
             expect(instance.RGBA).toBe(rgba);
             expect(instance.HSL).toBe(hsl);
             expect(instance.HSLA).toBe(hsla);
+            expect(instance.CMYK).toBe(cmyk);
+            expect(instance.CMYKA).toBe(cmyka);
             expect(ColorTranslator.toRGB(COLOR, mergedOptions)).toBe(rgb);
             expect(ColorTranslator.toRGBA(COLOR, mergedOptions)).toBe(rgba);
             expect(ColorTranslator.toHSL(COLOR, mergedOptions)).toBe(hsl);
             expect(ColorTranslator.toHSLA(COLOR, mergedOptions)).toBe(hsla);
+            expect(ColorTranslator.toCMYK(COLOR, mergedOptions)).toBe(cmyk);
+            expect(ColorTranslator.toCMYKA(COLOR, mergedOptions)).toBe(cmyka);
         });
 
         if (isDefault) {
@@ -146,10 +196,14 @@ describe('ColorTranslator CSS config options', () => {
                 expect(instance.RGBA).toBe(rgba);
                 expect(instance.HSL).toBe(hsl);
                 expect(instance.HSLA).toBe(hsla);
+                expect(instance.CMYK).toBe(cmyk);
+                expect(instance.CMYKA).toBe(cmyka);
                 expect(ColorTranslator.toRGB(COLOR, mergedOptions)).toBe(rgb);
                 expect(ColorTranslator.toRGBA(COLOR, mergedOptions)).toBe(rgba);
                 expect(ColorTranslator.toHSL(COLOR, mergedOptions)).toBe(hsl);
                 expect(ColorTranslator.toHSLA(COLOR, mergedOptions)).toBe(hsla);
+                expect(ColorTranslator.toCMYK(COLOR, mergedOptions)).toBe(cmyk);
+                expect(ColorTranslator.toCMYKA(COLOR, mergedOptions)).toBe(cmyka);
             });
 
         }
@@ -251,6 +305,23 @@ describe('ColorTranslator CSS config options autodetection', () => {
 
         expect(ColorTranslator.toRGBA('rgba(255 0 255)')).toBe('rgb(255 0 255 / 1)');
         expect(ColorTranslator.toRGB('rgb(100% 100% 0% / 0.5)')).toBe('rgb(100% 100% 0%)');
+
+    });
+
+    it(`cmykUnit auto detection`, () => {
+
+        const instancePercentage = new ColorTranslator('device-cmyk(100% 100% 100% 100%)');
+
+        expect(instancePercentage.CMYK).toBe('device-cmyk(0% 0% 0% 100%)');
+        expect(instancePercentage.CMYKA).toBe('device-cmyk(0% 0% 0% 100% / 1)');
+
+        const instanceNone = new ColorTranslator('device-cmyk(1 1 1 1)');
+
+        expect(instanceNone.CMYK).toBe('device-cmyk(0 0 0 1)');
+        expect(instanceNone.CMYKA).toBe('device-cmyk(0 0 0 1 / 1)');
+
+        expect(ColorTranslator.toCMYK('device-cmyk(100% 100% 100% 100% / 0.5)')).toBe('device-cmyk(0% 0% 0% 100%)');
+        expect(ColorTranslator.toCMYKA('device-cmyk(1 1 1 1)')).toBe('device-cmyk(0 0 0 1 / 1)');
 
     });
 

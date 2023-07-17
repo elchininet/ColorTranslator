@@ -10,5 +10,6 @@ export const DEFAULT_OPTIONS: Options = {
     legacyCSS: false,
     spacesAfterCommas: false,
     anglesUnit: AnglesUnitEnum.NONE,
-    rgbUnit: ColorUnitEnum.NONE
+    rgbUnit: ColorUnitEnum.NONE,
+    cmykUnit: ColorUnitEnum.PERCENT
 };
