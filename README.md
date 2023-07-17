@@ -690,6 +690,23 @@ You can also consult the [demo 9](https://elchininet.github.io/ColorTranslator/#
 
 The package has its own type definitions, so it can be used in a `TypeScript` project without any issues. The next interfaces are exposed and can be imported in your project:
 
+###### InputOptions
+
+This is the type of the [options object](#options-object) that can be sent to the class constructor or to the static methods.
+
+```typescript
+interface InputOptions {
+    decimals?: number;
+    legacyCSS?: boolean;
+    spacesAfterCommas?: boolean;
+    anglesUnit?: 'none' | 'deg' | 'grad' | 'rad' | 'turn';
+    rgbUnit?: 'none' | 'percent';
+    cmykUnit?: 'none' | 'percent';
+    alphaUnit?: 'none' | 'percent';
+    cmykFunction?: 'device-cmyk' | 'cmyk';
+}
+```
+
 ###### HEXObject
 
 This type is returned by the `HEXObject`, and `HEXAObject` properties, the `toHEXObject`, `toHEXAObject`, `getBlendHEXObject`, `getBlendHEXAObject`, `getMixHEXObject`, and the `getMixHEXAObject` methods, and the `getHarmony` method (when the input is an `HEXObject`).
