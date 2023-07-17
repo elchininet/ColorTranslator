@@ -15,7 +15,8 @@ import {
     ColorModel,
     Harmony,
     Mix,
-    DEFAULT_BLEND_STEPS
+    DEFAULT_BLEND_STEPS,
+    MAX_DECIMALS
 } from '#constants';
 import {
     rgbToHSL,
@@ -35,28 +36,26 @@ import {
 const getColorReturn = <T>(
     color: ColorInput,
     model: ColorModel,
-    options: InputOptions,
-    translateFunction: (color: Color, options: Options) => T
+    decimals: number,
+    translateFunction: (color: Color, decimals: number) => T
 ): T => {
-    const optionsFromInput = getOptionsFromColorInput(options, color);
     const rgbObject = utils.getRGBObject(color, model);
-    return translateFunction(rgbObject, optionsFromInput);
+    return translateFunction(rgbObject, decimals);
 };
 
 const getBlendReturn = <T>(
     from: ColorInput,
     to: ColorInput,
     steps: number,
-    options: InputOptions,
-    translateFunction: (color: Color, options: Options) => T
+    decimals: number,
+    translateFunction: (color: Color, decimals: number) => T
 ): T[] => {
-    const optionsFromInput = getOptionsFromColorInput(options, from, to);
     if (steps < 1) steps = DEFAULT_BLEND_STEPS;
     const fromRGBObject = utils.getRGBObject(from);
     const toRGBObject = utils.getRGBObject(to);
     const blendArray = utils.blend(fromRGBObject, toRGBObject, steps);
     return blendArray.map((color: RGBObject): T => {
-        return translateFunction(color, optionsFromInput);
+        return translateFunction(color, decimals);
     });
 };
 
@@ -323,58 +322,46 @@ export class ColorTranslator {
 
     public get RGB(): string {
         return CSS.RGB(
-            utils.roundRGBObject(
-                {
-                    r: this.R,
-                    g: this.G,
-                    b: this.B
-                },
-                this.options
-            ),
+            {
+                r: this.R,
+                g: this.G,
+                b: this.B
+            },
             this.options
         );
     }
 
     public get RGBA(): string {
         return CSS.RGB(
-            utils.roundRGBObject(
-                {
-                    r: this.R,
-                    g: this.G,
-                    b: this.B,
-                    a: this.A
-                },
-                this.options
-            ),
+            {
+                r: this.R,
+                g: this.G,
+                b: this.B,
+                a: this.A
+            },
             this.options
         );
     }
 
     public get HSL(): string {
         return CSS.HSL(
-            utils.roundHSLObject(
-                {
-                    h: this.H,
-                    s: this.S,
-                    l: this.L
-                },
-                this.options
-            ),
+            {
+                h: this.H,
+                s: this.S,
+                l: this.L
+            },
             this.options
         );
     }
 
     public get HSLA(): string {
         return CSS.HSL(
-            utils.roundHSLObject(
-                {
-                    h: this.H,
-                    s: this.S,
-                    l: this.L,
-                    a: this.A
-                },
-                this.options
-            ),
+            {
+                h: this.H,
+                s: this.S,
+                l: this.L,
+                a: this.A
+            },
             this.options
         );
     }
@@ -410,7 +397,7 @@ export class ColorTranslator {
         return getColorReturn<HEXObject>(
             color,
             model,
-            { decimals: 0 },
+            0,
             utils.translateColor.HEX
         );
     }
@@ -426,7 +413,7 @@ export class ColorTranslator {
         return getColorReturn<HEXObject>(
             color,
             model,
-            { decimals: 0 },
+            0,
             utils.translateColor.HEXA
         );
     }
@@ -442,18 +429,21 @@ export class ColorTranslator {
         return getColorReturn<RGBObject>(
             color,
             model,
-            options,
+            options.decimals,
             utils.translateColor.RGB
         );
     }
 
     public static toRGB(color: ColorInput, options: InputOptions = {}): string {
-        const rgb = ColorTranslator.toRGBObject(color, options);
+        const model = utils.getColorModel(color);
         const detectedOptions = getOptionsFromColorInput(options, color);
-        return CSS.RGB(
-            utils.roundRGBObject(rgb, detectedOptions),
-            detectedOptions
+        const rgb = getColorReturn<RGBObject>(
+            color,
+            model,
+            MAX_DECIMALS,
+            utils.translateColor.RGB
         );
+        return CSS.RGB(rgb, detectedOptions);
     }
 
     public static toRGBAObject(color: ColorInput, options: InputOptions = {}): RGBObject {
@@ -461,18 +451,21 @@ export class ColorTranslator {
         return getColorReturn<RGBObject>(
             color,
             model,
-            options,
+            options.decimals,
             utils.translateColor.RGBA
         );
     }
 
     public static toRGBA(color: ColorInput, options: InputOptions = {}): string {
-        const rgb = ColorTranslator.toRGBAObject(color, options);
+        const model = utils.getColorModel(color);
         const detectedOptions = getOptionsFromColorInput(options, color);
-        return CSS.RGB(
-            utils.roundRGBObject(rgb, detectedOptions),
-            detectedOptions
+        const rgba = getColorReturn<RGBObject>(
+            color,
+            model,
+            MAX_DECIMALS,
+            utils.translateColor.RGBA
         );
+        return CSS.RGB(rgba, detectedOptions);
     }
 
     public static toHSLObject(color: ColorInput, options: InputOptions = {}): HSLObject {
@@ -480,18 +473,21 @@ export class ColorTranslator {
         return getColorReturn<HSLObject>(
             color,
             model,
-            options,
+            options.decimals,
             utils.translateColor.HSL
         );
     }
 
     public static toHSL(color: ColorInput, options: InputOptions = {}): string {
-        const hsl = ColorTranslator.toHSLObject(color, options);
+        const model = utils.getColorModel(color);
         const detectedOptions = getOptionsFromColorInput(options, color);
-        return CSS.HSL(
-            utils.roundHSLObject(hsl, detectedOptions),
-            detectedOptions
+        const hsl = getColorReturn<HSLObject>(
+            color,
+            model,
+            MAX_DECIMALS,
+            utils.translateColor.HSL
         );
+        return CSS.HSL(hsl, detectedOptions);
     }
 
     public static toHSLAObject(color: ColorInput, options: InputOptions = {}): HSLObject {
@@ -499,18 +495,21 @@ export class ColorTranslator {
         return getColorReturn<HSLObject>(
             color,
             model,
-            options,
+            options.decimals,
             utils.translateColor.HSLA
         );
     }
 
     public static toHSLA(color: ColorInput, options: InputOptions = {}): string {
-        const hsla = ColorTranslator.toHSLAObject(color, options);
+        const model = utils.getColorModel(color);
         const detectedOptions = getOptionsFromColorInput(options, color);
-        return CSS.HSL(
-            utils.roundHSLObject(hsla, detectedOptions),
-            detectedOptions
+        const hsla = getColorReturn<HSLObject>(
+            color,
+            model,
+            MAX_DECIMALS,
+            utils.translateColor.HSLA
         );
+        return CSS.HSL(hsla, detectedOptions);
     }
 
     public static toCMYKObject(color: ColorInput, options: InputOptions = {}): CMYKObject {
@@ -518,16 +517,21 @@ export class ColorTranslator {
         return getColorReturn<CMYKObject>(
             color,
             model,
-            options,
+            options.decimals,
             utils.translateColor.CMYK
         );
     }
 
     public static toCMYK(color: ColorInput, options: InputOptions = {}): string {
-        return CSS.CMYK(
-            ColorTranslator.toCMYKObject(color, options),
-            getOptionsFromColorInput(options, color)
+        const model = utils.getColorModel(color);
+        const detectedOptions = getOptionsFromColorInput(options, color);
+        const cmyk = getColorReturn<CMYKObject>(
+            color,
+            model,
+            MAX_DECIMALS,
+            utils.translateColor.CMYK
         );
+        return CSS.CMYK(cmyk, detectedOptions);
     }
 
     public static toCMYKAObject(color: ColorInput, options: InputOptions = {}): CMYKObject {
@@ -535,16 +539,21 @@ export class ColorTranslator {
         return getColorReturn<CMYKObject>(
             color,
             model,
-            options,
+            options.decimals,
             utils.translateColor.CMYKA
         );
     }
 
     public static toCMYKA(color: ColorInput, options: InputOptions = {}): string {
-        return CSS.CMYK(
-            ColorTranslator.toCMYKAObject(color, options),
-            getOptionsFromColorInput(options, color)
+        const model = utils.getColorModel(color);
+        const detectedOptions = getOptionsFromColorInput(options, color);
+        const cmyka = getColorReturn<CMYKObject>(
+            color,
+            model,
+            MAX_DECIMALS,
+            utils.translateColor.CMYKA
         );
+        return CSS.CMYK(cmyka, detectedOptions);
     }
 
     // Color Blending Static Methods
@@ -557,7 +566,7 @@ export class ColorTranslator {
             from,
             to,
             steps,
-            { decimals: 0 },
+            0,
             utils.translateColor.HEX
         );
     }
@@ -580,7 +589,7 @@ export class ColorTranslator {
             from,
             to,
             steps,
-            { decimals: 0 },
+            0,
             utils.translateColor.HEXA
         );
     }
@@ -604,7 +613,7 @@ export class ColorTranslator {
             from,
             to,
             steps,
-            options,
+            options.decimals,
             utils.translateColor.RGB
         );
     }
@@ -634,7 +643,7 @@ export class ColorTranslator {
             from,
             to,
             steps,
-            options,
+            options.decimals,
             utils.translateColor.RGBA
         );
     }
@@ -664,7 +673,7 @@ export class ColorTranslator {
             from,
             to,
             steps,
-            options,
+            options.decimals,
             utils.translateColor.HSL
         );
     }
@@ -678,10 +687,7 @@ export class ColorTranslator {
         const detectedOptions = getOptionsFromColorInput(options, from, to);
         return ColorTranslator.getBlendHSLObject(from, to, steps, options)
             .map((color: HSLObject) => {
-                return CSS.HSL(
-                    utils.roundHSLObject(color, detectedOptions),
-                    detectedOptions
-                );
+                return CSS.HSL(color, detectedOptions);
             });
     }
 
@@ -695,7 +701,7 @@ export class ColorTranslator {
             from,
             to,
             steps,
-            options,
+            options.decimals,
             utils.translateColor.HSLA
         );
     }
@@ -709,10 +715,7 @@ export class ColorTranslator {
         const detectedOptions = getOptionsFromColorInput(options, from, to);
         return ColorTranslator.getBlendHSLAObject(from, to, steps, options)
             .map((color: HSLObject): string => {
-                return CSS.HSL(
-                    utils.roundHSLObject(color, detectedOptions),
-                    detectedOptions
-                );
+                return CSS.HSL(color, detectedOptions);
             });
     }
 

@@ -15,9 +15,7 @@ import {
     HSLOutput,
     HEXOutput,
     ColorOutput,
-    Options,
-    AnglesUnitEnum,
-    ColorUnitEnum
+    Options
 } from '@types';
 import {
     HEX,
@@ -35,15 +33,13 @@ import {
     getDEC,
     getHEX,
     getBase255Number,
-    from255NumberToPercent,
     getCMYKNumber,
     hasProp,
     percent,
     percentNumber,
     round,
     minmax,
-    normalizeHue,
-    translateDegrees
+    normalizeHue
 } from '#helpers';
 import {
     rgbToHSL,
@@ -292,58 +288,45 @@ export const translateColor = {
         return rgb;
     },
 
-    [ColorModel.RGB](color: RGBObject, options: Options): RGBObject {
-        const rgb = roundRGBObject(
-            color,
-            {
-                ...options,
-                rgbUnit: ColorUnitEnum.NONE
-            }
-        );
+    [ColorModel.RGB](color: RGBObject, decimals: number): RGBObject {
+        const rgb = roundRGBObject(color, decimals);
         if (hasProp<RGBObject>(rgb, 'a')) {
             delete rgb.a;
         }
         return rgb;
     },
 
-    RGBA(color: RGBObject, options: Options): RGBObject {
-        const rgb = translateColor.RGB(color, options);
+    RGBA(color: RGBObject, decimals: number): RGBObject {
+        const rgb = translateColor.RGB(color, decimals);
         rgb.a = hasProp<RGBObject>(color, 'a')
             ? round(color.a)
             : 1;
         return rgb;
     },
 
-    [ColorModel.HSL](color: RGBObject, options: Options): HSLObject {
+    [ColorModel.HSL](color: RGBObject, decimals: number): HSLObject {
         const hsl = rgbToHSL(color.r, color.g, color.b);
         delete hsl.a;
-        return roundHSLObject(
-            hsl,
-            {
-                ...options,
-                anglesUnit: AnglesUnitEnum.NONE
-            });
+        return roundHSLObject(hsl, decimals);
     },
 
-    HSLA(color: RGBObject, options: Options): HSLObject {
-        const { decimals } = options;
-        const hsl = translateColor.HSL(color, options);
+    HSLA(color: RGBObject, decimals: number): HSLObject {
+        const hsl = translateColor.HSL(color, decimals);
         hsl.a = hasProp<RGBObject>(color, 'a')
             ? round(color.a, decimals)
             : 1;
         return hsl;
     },
 
-    [ColorModel.CMYK](color: RGBObject, options: Options): CMYKObject {
+    [ColorModel.CMYK](color: RGBObject, decimals: number): CMYKObject {
         return roundCMYKObject(
             rgbToCMYK(color.r, color.g, color.b),
-            options
+            decimals
         );
     },
 
-    CMYKA(color: RGBObject, options: Options): CMYKObject {
-        const { decimals } = options;
-        const cmyk = translateColor.CMYK(color, options);
+    CMYKA(color: RGBObject, decimals: number): CMYKObject {
+        const cmyk = translateColor.CMYK(color, decimals);
         cmyk.a = hasProp<RGBObject>(color, 'a')
             ? round(color.a, decimals)
             : 1;
@@ -404,17 +387,12 @@ export const getColorMixture = (
                     return isCSS
                         ? hasAlpha
                             ? CSS.HEX(
-                                roundRGBObject(
-                                    {
-                                        ...rgbColor,
-                                        a: round(rgbColor.a * 255)
-                                    },
-                                    options
-                                )
+                                {
+                                    ...rgbColor,
+                                    a: round(rgbColor.a * 255)
+                                }
                             )
-                            : CSS.HEX(
-                                roundRGBObject(rgbColor, options)
-                            )
+                            : CSS.HEX(rgbColor)
                         : hasAlpha
                             ? translateColor.HEXA(rgbColor)
                             : translateColor.HEX(rgbColor);
@@ -424,32 +402,26 @@ export const getColorMixture = (
                 const rgbColor = hslToRGB(hslColor.h, hslColor.s, hslColor.l);
                 if (hasAlpha) rgbColor.a = hslColor.a;
                 return isCSS
-                    ? CSS.RGB(
-                        roundRGBObject(rgbColor, options),
-                        options
-                    )
+                    ? CSS.RGB(rgbColor, options)
                     : hasAlpha
-                        ? translateColor.RGBA(rgbColor, options)
-                        : translateColor.RGB(rgbColor, options);
+                        ? translateColor.RGBA(rgbColor, options.decimals)
+                        : translateColor.RGB(rgbColor, options.decimals);
             });
         case ColorModel.HSL:
             return hslMap.map((hslColor: HSLObject): HSLOutput => {
                 return isCSS
-                    ? CSS.HSL(
-                        roundHSLObject(hslColor, options),
-                        options
-                    )
+                    ? CSS.HSL(hslColor, options)
                     : hasAlpha
                         ? translateColor.HSLA(
                             {
                                 ...hslToRGB(hslColor.h, hslColor.s, hslColor.l),
                                 a: hslColor.a
                             },
-                            options
+                            options.decimals
                         )
                         : translateColor.HSL(
                             hslToRGB(hslColor.h, hslColor.s, hslColor.l),
-                            options
+                            options.decimals
                         );
             });
 
@@ -478,13 +450,13 @@ export const colorHarmony = {
             default:
                 return hasAlpha
                     ? this.HEXA(
-                        roundHSLObject(hsl, null),
+                        roundHSLObject(hsl, 0),
                         harmonyFunction,
                         mode,
                         isCSS
                     )
                     : this.HEX(
-                        roundHSLObject(hsl, null),
+                        roundHSLObject(hsl, 0),
                         harmonyFunction,
                         mode,
                         isCSS
@@ -556,15 +528,12 @@ export const colorHarmony = {
             (c: HSLObject): RGBOutput => (
                 css
                     ? CSS.RGB(
-                        roundRGBObject(
-                            hslToRGB(c.h, c.s, c.l),
-                            options
-                        ),
+                        hslToRGB(c.h, c.s, c.l),
                         options
                     )
                     : translateColor.RGB(
                         hslToRGB(c.h, c.s, c.l),
-                        options
+                        options.decimals
                     )
             )
         );
@@ -582,13 +551,10 @@ export const colorHarmony = {
             (c: HSLObject): RGBOutput => (
                 css
                     ? CSS.RGB(
-                        roundRGBObject(
-                            {
-                                ...hslToRGB(c.h, c.s, c.l),
-                                a: normalizeAlpha(c.a)
-                            },
-                            options
-                        ),
+                        {
+                            ...hslToRGB(c.h, c.s, c.l),
+                            a: normalizeAlpha(c.a)
+                        },
                         options
                     )
                     : translateColor.RGBA(
@@ -596,7 +562,7 @@ export const colorHarmony = {
                             ...hslToRGB(c.h, c.s, c.l),
                             a: normalizeAlpha(c.a)
                         },
-                        options
+                        options.decimals
                     )
             )
         );
@@ -614,19 +580,16 @@ export const colorHarmony = {
             (c: HSLObject): HSLOutput => (
                 css
                     ? CSS.HSL(
-                        roundHSLObject(
-                            {
-                                h: c.h,
-                                s: c.s,
-                                l: c.l
-                            },
-                            options
-                        ),
+                        {
+                            h: c.h,
+                            s: c.s,
+                            l: c.l
+                        },
                         options
                     )
                     : translateColor.HSL(
                         hslToRGB(c.h, c.s, c.l),
-                        options
+                        options.decimals
                     )
             )
         );
@@ -644,13 +607,10 @@ export const colorHarmony = {
             (c: HSLObject): HSLOutput => (
                 css
                     ? CSS.HSL(
-                        roundHSLObject(
-                            {
-                                ...c,
-                                a: normalizeAlpha(c.a)
-                            },
-                            options
-                        ),
+                        {
+                            ...c,
+                            a: normalizeAlpha(c.a)
+                        },
                         options
                     )
                     : translateColor.HSLA(
@@ -658,7 +618,7 @@ export const colorHarmony = {
                             ...hslToRGB(c.h, c.s, c.l),
                             a: normalizeAlpha(c.a)
                         },
-                        options
+                        options.decimals
                     )
             )
         );
@@ -768,11 +728,8 @@ export const colorMixer = {
         delete mix.a;
         return (
             css
-                ? CSS.RGB(
-                    roundRGBObject(mix, options),
-                    options
-                )
-                : translateColor.RGB(mix, options)
+                ? CSS.RGB(mix, options)
+                : translateColor.RGB(mix, options.decimals)
         ) as R;
     },
     RGBA<CSS extends boolean, R = CSS extends true ? string : RGBObject>(
@@ -784,11 +741,8 @@ export const colorMixer = {
         const mix = this.mix(colors, mode);
         return (
             css
-                ? CSS.RGB(
-                    roundRGBObject(mix, options),
-                    options
-                )
-                : translateColor.RGBA(mix, options)
+                ? CSS.RGB(mix, options)
+                : translateColor.RGBA(mix, options.decimals)
         ) as R;
     },
     [ColorModel.HSL]<CSS extends boolean, R = CSS extends true ? string : HSLObject>(
@@ -803,11 +757,8 @@ export const colorMixer = {
         delete hsl.a;
         return (
             css
-                ? CSS.HSL(
-                    roundHSLObject(hsl, options),
-                    options
-                )
-                : translateColor.HSL(mix, options)
+                ? CSS.HSL(hsl, options)
+                : translateColor.HSL(mix, options.decimals)
         ) as R;
     },
     HSLA<CSS extends boolean, R = CSS extends true ? string : HSLObject>(
@@ -820,30 +771,19 @@ export const colorMixer = {
         const hsl = rgbToHSL(mix.r, mix.g, mix.b, mix.a);
         return (
             css
-                ? CSS.HSL(
-                    roundHSLObject(hsl, options),
-                    options
-                )
-                : translateColor.HSLA(mix, options)
+                ? CSS.HSL(hsl, options)
+                : translateColor.HSLA(mix, options.decimals)
         ) as R;
     }
 };
 
-export const roundRGBObject = (color: RGBObject, options: Options): RGBObject => {
-    const {
-        decimals,
-        rgbUnit
-    } = options;
-    const inPercentage = rgbUnit === ColorUnitEnum.PERCENT;
-    const r = inPercentage
-        ? from255NumberToPercent(color.r, decimals)
-        : round(color.r, decimals);
-    const g = inPercentage
-        ? from255NumberToPercent(color.g, decimals)
-        : round(color.g, decimals);
-    const b = inPercentage
-        ? from255NumberToPercent(color.b, decimals)
-        : round(color.b, decimals);
+export const roundRGBObject = (
+    color: RGBObject,
+    decimals: number
+): RGBObject => {
+    const r = round(color.r, decimals);
+    const g = round(color.g, decimals);
+    const b = round(color.b, decimals);
     return {
         r,
         g,
@@ -860,24 +800,10 @@ export const roundRGBObject = (color: RGBObject, options: Options): RGBObject =>
 
 export const roundHSLObject = (
     color: HSLObject,
-    options: Options | null
+    decimals: number
 ): HSLObject => {
-    const decimals = options
-        ? options.decimals
-        : 0;
-    const anglesUnits = options
-        ? options.anglesUnit
-        : AnglesUnitEnum.NONE;
     return {
-        h: anglesUnits !== AnglesUnitEnum.NONE
-            ? round(
-                translateDegrees(
-                    color.h,
-                    anglesUnits
-                ),
-                decimals
-            )
-            : round(color.h, decimals),
+        h: round(color.h, decimals),
         s: round(color.s, decimals),
         l: round(color.l, decimals),
         ...(
@@ -890,8 +816,10 @@ export const roundHSLObject = (
     };
 };
 
-export const roundCMYKObject = (color: CMYKObject, options: Options): CMYKObject => {
-    const { decimals } = options;
+export const roundCMYKObject = (
+    color: CMYKObject,
+    decimals: number
+): CMYKObject => {
     return {
         c: round(color.c, decimals),
         m: round(color.m, decimals),
