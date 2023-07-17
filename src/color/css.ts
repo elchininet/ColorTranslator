@@ -145,7 +145,8 @@ export const CSS = {
             decimals,
             legacyCSS,
             spacesAfterCommas,
-            cmykUnit
+            cmykUnit,
+            cmykFunction
         } = options;
         const comma = getComma(spacesAfterCommas);
         const transformer = (value: number, index: number): NumberOrString => {
@@ -163,13 +164,13 @@ export const CSS = {
         const template = legacyCSS
             ? (
                 values.length === 5
-                    ? `device-cmyk({1}${comma}{2}${comma}{3}${comma}{4}${comma}{5})`
-                    : `device-cmyk({1}${comma}{2}${comma}{3}${comma}{4})`
+                    ? `${cmykFunction}({1}${comma}{2}${comma}{3}${comma}{4}${comma}{5})`
+                    : `${cmykFunction}({1}${comma}{2}${comma}{3}${comma}{4})`
             )
             : (
                 values.length === 5
-                    ? 'device-cmyk({1} {2} {3} {4} / {5})'
-                    : 'device-cmyk({1} {2} {3} {4})'
+                    ? `${cmykFunction}({1} {2} {3} {4} / {5})`
+                    : `${cmykFunction}({1} {2} {3} {4})`
             );
         return getResultFromTemplate(template, values);
     }

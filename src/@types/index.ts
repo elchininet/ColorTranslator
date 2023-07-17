@@ -88,8 +88,10 @@ export enum ColorUnitEnum {
     PERCENT = 'percent',
 }
 
-export type AnglesUnit = `${AnglesUnitEnum}`;
-export type ColorUnit = `${ColorUnitEnum}`;
+export enum CMYKFunctionEnum {
+    DEVICE_CMYK = 'device-cmyk',
+    CMYK = 'cmyk'
+}
 
 export interface Options {
     decimals: number;
@@ -99,16 +101,18 @@ export interface Options {
     rgbUnit: ColorUnitEnum;
     cmykUnit: ColorUnitEnum;
     alphaUnit: ColorUnitEnum;
+    cmykFunction: CMYKFunctionEnum
 }
 
 export type InputOptions = Partial<
     Omit<
         Options,
-        'anglesUnit' | 'rgbUnit' | 'cmykUnit' | 'alphaUnit'
+        'anglesUnit' | 'rgbUnit' | 'cmykUnit' | 'alphaUnit' | 'cmykFunction'
     >
 > & {
-    anglesUnit?: string;
-    rgbUnit?: string;
-    cmykUnit?: string;
-    alphaUnit?: string;
+    anglesUnit?: `${AnglesUnitEnum}`;
+    rgbUnit?: `${ColorUnitEnum}`;
+    cmykUnit?: `${ColorUnitEnum}`;
+    alphaUnit?: `${ColorUnitEnum}`;
+    cmykFunction?: `${CMYKFunctionEnum}`
 };

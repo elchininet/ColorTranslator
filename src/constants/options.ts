@@ -1,7 +1,8 @@
 import {
     Options,
     AnglesUnitEnum,
-    ColorUnitEnum
+    ColorUnitEnum,
+    CMYKFunctionEnum
 } from '@types';
 import { MAX_DECIMALS } from './numbers';
 
@@ -12,5 +13,6 @@ export const DEFAULT_OPTIONS: Options = {
     anglesUnit: AnglesUnitEnum.NONE,
     rgbUnit: ColorUnitEnum.NONE,
     cmykUnit: ColorUnitEnum.PERCENT,
-    alphaUnit: ColorUnitEnum.NONE
+    alphaUnit: ColorUnitEnum.NONE,
+    cmykFunction: CMYKFunctionEnum.DEVICE_CMYK
 };

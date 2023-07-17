@@ -4,7 +4,8 @@ import {
     NumberOrString,
     ColorInput,
     AnglesUnitEnum,
-    ColorUnitEnum
+    ColorUnitEnum,
+    CMYKFunctionEnum
 } from '@types';
 import {
     PCENT,
@@ -150,7 +151,7 @@ export const translateDegrees = (degrees: number, units: AnglesUnitEnum): number
 };
 
 type MatchOptions = {
-    [K in keyof Pick<Options, 'legacyCSS' | 'spacesAfterCommas'>]: number;
+    [K in keyof Pick<Options, 'legacyCSS' | 'spacesAfterCommas' | 'cmykFunction'>]: number;
 };
 
 export const getOptionsFromColorInput = (options: InputOptions, ...colors: ColorInput[]): Options => {
@@ -159,10 +160,14 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
     const rgbColors: boolean[] = [];
     const cmykColors: boolean[] = [];
     const alphaValues: boolean[] = [];
+    const anglesUnitValues = Object.values<string>(AnglesUnitEnum);
+    const colorUnitValues = Object.values<string>(ColorUnitEnum);
+    const cmykFunctionValues = Object.values<string>(CMYKFunctionEnum);
 
     const matchOptions: MatchOptions = {
         legacyCSS: 0,
-        spacesAfterCommas: 0
+        spacesAfterCommas: 0,
+        cmykFunction: 0
     };
 
     for(const color of colors) {
@@ -228,6 +233,9 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
                     PCENT.test(y) &&
                     PCENT.test(k)
                 );
+                if (color.startsWith('cmyk')) {
+                    matchOptions.cmykFunction ++;
+                }
                 alphaValues.push(
                     PCENT.test(a)
                 );
@@ -252,33 +260,40 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
                 cssColors.length &&
                 matchOptions.spacesAfterCommas === cssColors.length
             ) || DEFAULT_OPTIONS.spacesAfterCommas,
-        anglesUnit: options.anglesUnit
+        anglesUnit: options.anglesUnit && anglesUnitValues.includes(options.anglesUnit)
             ? options.anglesUnit as AnglesUnitEnum
             : (
                 new Set(hslColors).size === 1
                     ? hslColors[0]
                     : DEFAULT_OPTIONS.anglesUnit
             ),
-        rgbUnit: options.rgbUnit
+        rgbUnit: options.rgbUnit && colorUnitValues.includes(options.rgbUnit)
             ? options.rgbUnit as ColorUnitEnum
             : (
                 new Set(rgbColors).size === 1 && rgbColors[0]
                     ? ColorUnitEnum.PERCENT
                     : DEFAULT_OPTIONS.rgbUnit
             ),
-        cmykUnit: options.cmykUnit
+        cmykUnit: options.cmykUnit && colorUnitValues.includes(options.cmykUnit)
             ? options.cmykUnit as ColorUnitEnum
             : (
                 new Set(cmykColors).size === 1 && !cmykColors[0]
                     ? ColorUnitEnum.NONE
                     : DEFAULT_OPTIONS.cmykUnit
             ),
-        alphaUnit: options.alphaUnit
+        alphaUnit: options.alphaUnit && colorUnitValues.includes(options.alphaUnit)
             ? options.alphaUnit as ColorUnitEnum
             : (
                 new Set(alphaValues).size === 1 && alphaValues[0]
                     ? ColorUnitEnum.PERCENT
                     : DEFAULT_OPTIONS.alphaUnit
+            ),
+        cmykFunction: options.cmykFunction && cmykFunctionValues.includes(options.cmykFunction)
+            ? options.cmykFunction as CMYKFunctionEnum
+            : (
+                cmykColors.length && cmykColors.length === matchOptions.cmykFunction
+                    ? CMYKFunctionEnum.CMYK
+                    : DEFAULT_OPTIONS.cmykFunction
             )
     };
 };
