@@ -1,4 +1,4 @@
-import { ColorTranslator } from '../src';
+import { ColorTranslator, InputOptions } from '../src';
 import { HEX3 } from './tests.constants';
 
 type HexProps = typeof HEX3[0];
@@ -13,9 +13,9 @@ HEX3.forEach((item: HexProps): void => {
 
         describe(`ColorTranslator dynamic test for the HEX3 color: ${JSON.stringify(item[prop])}`, (): void => {
 
-            const options = { legacyCSS: true };
-            const optionsRgbNone = { rgbUnit: 'none' };
-            const optionsLegacyRgbNone = { ...options, ...optionsRgbNone };
+            const options: InputOptions = { legacyCSS: true };
+            const optionsRgbNone: InputOptions = { rgbUnit: 'none' };
+            const optionsLegacyRgbNone: InputOptions = { ...options, ...optionsRgbNone };
 
             it('CSS RGB', (): void => {
                 expect(ColorTranslator.toRGB(item[prop], optionsRgbNone)).toBe(item.rgb);

@@ -170,6 +170,26 @@ describe('ColorTranslator CSS config options', () => {
             cmyk: 'device-cmyk(0% 100% 0% 0%)',
             cmyka: 'device-cmyk(0% 100% 0% 0% / 100%)',
             isDefault: false
+        },
+        {
+            options: { cmykFunction: 'cmyk' },
+            rgb: 'rgb(255 0 255)',
+            rgba: 'rgb(255 0 255 / 1)',
+            hsl: 'hsl(300 100% 50%)',
+            hsla: 'hsl(300 100% 50% / 1)',
+            cmyk: 'cmyk(0% 100% 0% 0%)',
+            cmyka: 'cmyk(0% 100% 0% 0% / 1)',
+            isDefault: false
+        },
+        {
+            options: { cmykFunction: 'device-cmyk' },
+            rgb: 'rgb(255 0 255)',
+            rgba: 'rgb(255 0 255 / 1)',
+            hsl: 'hsl(300 100% 50%)',
+            hsla: 'hsl(300 100% 50% / 1)',
+            cmyk: 'device-cmyk(0% 100% 0% 0%)',
+            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
+            isDefault: true
         }
     ];
 
@@ -369,6 +389,56 @@ describe('ColorTranslator CSS config options autodetection', () => {
         expect(ColorTranslator.toRGBA('rgb(255 0 255 / 5%)')).toBe('rgb(255 0 255 / 5%)');
         expect(regPercent.test(ColorTranslator.toCMYKA('rgb(255 0 255 / 50%)'))).toBe(true);
 
+    });
+
+    it(`cmykFunction auto detection`, () => {
+
+        const cmykRegExp = /^cmyk\(/;
+        const deviceCmykRegExp = /^device-cmyk\(/;
+        const instanceCmyk = new ColorTranslator('cmyk(0 0 0 0)');
+
+        expect(instanceCmyk.CMYK).toMatch(cmykRegExp);
+        expect(instanceCmyk.CMYKA).toMatch(cmykRegExp);
+
+        const instanceDeviceCmyk = new ColorTranslator('device-cmyk(0 0 0 0)');
+
+        expect(instanceDeviceCmyk.CMYK).toMatch(deviceCmykRegExp);
+        expect(instanceDeviceCmyk.CMYKA).toMatch(deviceCmykRegExp);
+
+        expect(ColorTranslator.toCMYK('cmyk(0 0 0 0)')).toMatch(cmykRegExp);
+        expect(ColorTranslator.toCMYKA('cmyk(0 0 0 0)')).toMatch(cmykRegExp);
+
+        expect(ColorTranslator.toCMYK('device-cmyk(0 0 0 0)')).toMatch(deviceCmykRegExp);
+        expect(ColorTranslator.toCMYKA('device-cmyk(0 0 0 0)')).toMatch(deviceCmykRegExp);
+
+
+    });
+
+    it(`wrong config options`, () => {
+
+        const instanceWrong = new ColorTranslator(
+            '#FFF',
+            {
+                // @ts-ignore
+                decimals: true,
+                // @ts-ignore
+                legacyCSS: 100,
+                // @ts-ignore
+                spacesAfterCommas: 'none',
+                // @ts-ignore
+                anglesUnit: 'percent',
+                // @ts-ignore
+                rgbUnit: 'false',
+                // @ts-ignore
+                cmykUnit: 2.45,
+                // @ts-ignore
+                alphaUnit: 0,
+                // @ts-ignore
+                cmykFunction: 'my-cmyk'
+            }
+        );
+
+        expect(instanceWrong.options).toMatchObject(DEFAULT_OPTIONS);
 
     });
 
