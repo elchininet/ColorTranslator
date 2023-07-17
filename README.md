@@ -213,6 +213,62 @@ const hsla = new ColorTranslator({ r: 115, g: 200, b: 150, a: 0.5 });
 const cmyk = new ColorTranslator({ c: 100, m: 100, y: 0, k: 0 });
 ```
 
+###### Configuration options examples
+
+```javascript
+// Decimals
+new ColorTranslator('#F43227').HSL; // hsl(3.219512 90.30837% 55.490196%)
+new ColorTranslator('#F43227', { decimals: 4 }).HSL; // hsl(3.2195 90.3084% 55.4902%)
+new ColorTranslator('#F43227', { decimals: 0 }).HSL; // hsl(3 90% 55%)
+new ColorTranslator('#F43227', { decimals: 2 }).HSLObject; // {h: 3.22, s: 90.31, l: 55.49}
+
+// legacyCSS
+new ColorTranslator('#FFF').RGBA; // rgb(255 255 255 / 1)
+new ColorTranslator('#FFF', { legacyCSS: false }).RGBA; // rgb(255 255 255 / 1)
+new ColorTranslator('#FFF', { legacyCSS: true }).RGBA; // rgba(255,255,255,1)
+new ColorTranslator('hsla(100,30%,20%,0.5)').RGBA; // rgba(45.9,66.3,35.7,0.5)
+new ColorTranslator('hsl(100 30% 20% / 0.5)').RGBA; // rgb(45.9 66.3 35.7 / 0.5)
+
+// spacesAfterCommas
+new ColorTranslator('#F00', { legacyCSS: true }).RGB; // rgb(255,0,0)
+new ColorTranslator('#F00', { legacyCSS: true, spacesAfterCommas: true }).RGB; // rgb(255, 0, 0)
+new ColorTranslator('hsla(100,30%,20%,0.25)').RGB; // rgb(45.9,66.3,35.7)
+new ColorTranslator('hsl(100, 30%, 20%, 0.25)').RGB; // rgb(45.9, 66.3, 35.7)
+
+// anglesUnit
+new ColorTranslator('#0F0').HSL; // hsl(120 100% 50%)
+new ColorTranslator('#0F0', { anglesUnit: 'none' }).HSL; // hsl(120 100% 50%)
+new ColorTranslator('#0F0', { anglesUnit: 'deg' }).HSL; // hsl(120deg 100% 50%)
+new ColorTranslator('#0F0', { anglesUnit: 'grad' }).HSL; // hsl(133.333333grad 100% 50%)
+new ColorTranslator('#0F0', { anglesUnit: 'rad' }).HSL; // hsl(2.094395rad 100% 50%)
+new ColorTranslator('#0F0', { anglesUnit: 'turn' }).HSL; // hsl(0.333333turn 100% 50%)
+new ColorTranslator('hsl(0.5turn 100% 50% / 0.5)').HSL; // hsl(0.5turn 100% 50%)
+
+// rgbUnit
+new ColorTranslator('#0F0').RGB; // rgb(0 255 0)
+new ColorTranslator('#0F0', { rgbUnit: 'none' }).RGB; // rgb(0 255 0)
+new ColorTranslator('#0F0', { rgbUnit: 'percent' }).RGB; // rgb(0% 100% 0%)
+new ColorTranslator('rgb(255 255 51 / 0.5)').RGB; // rgb(255 255 51)
+new ColorTranslator('rgb(20% 100% 0% / 0.5)').RGB; // rgb(20% 100% 0%)
+
+// cmykUnit
+new ColorTranslator('#0F0').CMYK; // device-cmyk(100% 0% 100% 0%)
+new ColorTranslator('#0F0', { cmykUnit: 'percent' }).CMYK; // device-cmyk(100% 0% 100% 0%)
+new ColorTranslator('#0F0', { cmykUnit: 'none' }).CMYK; // device-cmyk(1 0 1 0)
+
+// alphaUnit
+new ColorTranslator('#0F0').RGBA; // rgb(0 255 0 / 1)
+new ColorTranslator('#0F0', { alphaUnit: 'none' }).RGBA; // rgb(0 255 0 / 1)
+new ColorTranslator('#0F0', { alphaUnit: 'percent' }).HSLA; // hsl(120 100% 50% / 100%)
+new ColorTranslator('hsl(100 50% 20% / 0.25)').RGBA; // rgb(42.5 76.5 25.5 / 0.25)
+new ColorTranslator('rgb(0 0 0 / 50%)').HSLA; // hsl(0 0% 0% / 50%)
+
+// cmykFunction
+new ColorTranslator('#00F').CMYKA; // device-cmyk(100% 100% 0% 0% / 1)
+new ColorTranslator('#00F', { cmykFunction: 'device-cmyk' }).CMYK; // device-cmyk(100% 100% 0% 0%)
+new ColorTranslator('#00F', { cmykFunction: 'cmyk' }).CMYKA; // cmyk(100% 100% 0% 0% / 1)
+```
+
 #### Class public methods
 
 There are 12 chainable public methods and 11 of them accept a number as input. The last one accepts an [options object](#options-object):
