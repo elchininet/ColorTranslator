@@ -1,5 +1,9 @@
 # Changelog
 
+## [3.0.0] - 2023-07-18
+
+- [BREAKING CHANGE]: Complete refactoring of the library, now the default CSS output is in CSS Level 4, if one wants CSS Level 3 it should be required through a configuration parameter. The new API can be consulted in the README.
+
 ## [2.0.0] - 2023-05-18
 
 - [BREAKING CHANGE]: Complete refactoring of the library, if no specified all colors will be calculated with 6 decimals in its values
