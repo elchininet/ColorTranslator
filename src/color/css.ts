@@ -52,6 +52,14 @@ const getResultFromTemplate = (template: string, vars: NumberOrString[]): string
     });
 };
 
+const getAlpha = (value: number, options: Options): NumberOrString => {
+    const { alphaUnit, legacyCSS, decimals } = options;
+    if (alphaUnit === ColorUnitEnum.PERCENT && !legacyCSS) {
+        return `${round(value * 100, decimals)}%`;
+    }
+    return round(value, decimals);
+};
+
 export const CSS = {
     [ColorModel.HEX]: (color: HEXObject | RGBObject): string => {
         const transformer = (value: NumberOrString): string => toHEX(round(value));
@@ -72,7 +80,11 @@ export const CSS = {
         const transformer = (value: number, index: number): NumberOrString => {
             return rgbUnit === ColorUnitEnum.PERCENT && index < 3
                 ?  `${from255NumberToPercent(value, decimals)}%`
-                : round(value, decimals);
+                : (
+                    index === 3
+                        ? getAlpha(value, options)
+                        : round(value, decimals)
+                );
         };
         const values = prepareColorForCss(color, transformer);
         const template = legacyCSS
@@ -110,7 +122,9 @@ export const CSS = {
                 );
                 return `${translated}${anglesUnit}`;
             }
-            return round(value, decimals);
+            return index === 3
+                ? getAlpha(value, options)
+                : round(value, decimals);
         };
         const values = prepareColorForCss(color, transformer);
         const template = legacyCSS
@@ -141,9 +155,9 @@ export const CSS = {
             ) {
                 return `${round(value, decimals)}%`;
             }
-            return index < 4
-                ? round(value / 100, decimals)
-                : round(value, decimals);
+            return index === 4
+                ? getAlpha(value, options)
+                : round(value / 100, decimals);
         };
         const values = prepareColorForCss(color, transformer);
         const template = legacyCSS

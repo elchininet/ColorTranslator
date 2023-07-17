@@ -11,5 +11,6 @@ export const DEFAULT_OPTIONS: Options = {
     spacesAfterCommas: false,
     anglesUnit: AnglesUnitEnum.NONE,
     rgbUnit: ColorUnitEnum.NONE,
-    cmykUnit: ColorUnitEnum.PERCENT
+    cmykUnit: ColorUnitEnum.PERCENT,
+    alphaUnit: ColorUnitEnum.NONE
 };
