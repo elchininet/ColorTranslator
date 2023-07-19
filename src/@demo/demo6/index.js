@@ -4,7 +4,7 @@ export default (ColorTranslator) => {
 
     const container = document.createElement('div');
 
-    const colors = ['#F00', '#FF8000', '#FF0', '#0F0', '#00F', '#AA00FF', '#FF00AA'];
+    const colors = ['#F00', '#FF8000', '#FF0', '#0F0', '#00F', '#A0F', '#F0A'];
 
     const createBox = (color, type) => {
         const box = document.createElement('div');
