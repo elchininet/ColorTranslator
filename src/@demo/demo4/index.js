@@ -15,12 +15,12 @@ export default (ColorTranslator) => {
 
     for (let row = 0; row < total; row++) {
 
-        const hsl = ColorTranslator.toHSLObject(colors[row], { decimals: 0 });
+        const hsl = ColorTranslator.toHSLObject(colors[row]);
         const step = hsl.s / (total - 1);
 
         for (let col = 0; col < total; col++) {
 
-            const rgb = ColorTranslator.toHEX(hsl, { decimals: 0 });
+            const rgb = ColorTranslator.toHEX(hsl);
             const cmyk = ColorTranslator.toCMYKObject(hsl, { decimals: 0 });
 
             const box = document.createElement('div');

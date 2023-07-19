@@ -6,9 +6,9 @@ export default (ColorTranslator) => {
     const container = document.createElement('div');
 
     const mixes = [
-        '#FF0000',
-        '#00FF00',
-        '#0000FF',
+        '#F00',
+        '#0F0',
+        '#00F',
         [1, 3],
         [1, 2],
         [2, 3],
@@ -18,7 +18,7 @@ export default (ColorTranslator) => {
     const fillPlanes = () => {
         const planes = container.querySelectorAll('#planes path');
         planes.forEach((plane, index) => {
-            let color = '#CCCCCC';
+            let color = '#CCC';
             if (typeof mixes[index] === 'string') {
                 color = mixes[index];
             } else if(mixes[index]) {
