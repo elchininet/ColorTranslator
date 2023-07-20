@@ -1,5 +1,9 @@
 # Changelog
 
+## [3.0.1] - 2023-07-20
+
+- Avoid double rounding in CSS blending static methods
+
 ## [3.0.0] - 2023-07-18
 
 - [BREAKING CHANGE]: Complete refactoring of the library, now the default CSS output is in CSS Level 4, if one wants CSS Level 3 it should be required through a configuration parameter. The new API can be consulted in the README.
