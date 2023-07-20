@@ -624,7 +624,13 @@ export class ColorTranslator {
         steps: number = DEFAULT_BLEND_STEPS,
         options: InputOptions = {}
     ): string[] {
-        return ColorTranslator.getBlendRGBObject(from, to, steps, options)
+        return getBlendReturn<RGBObject>(
+            from,
+            to,
+            steps,
+            MAX_DECIMALS,
+            utils.translateColor.RGB
+        )
             .map((color: RGBObject): string => {
                 return CSS.RGB(
                     color,
@@ -654,7 +660,13 @@ export class ColorTranslator {
         steps: number = DEFAULT_BLEND_STEPS,
         options: InputOptions = {}
     ): string[] {
-        return ColorTranslator.getBlendRGBAObject(from, to, steps, options)
+        return getBlendReturn<RGBObject>(
+            from,
+            to,
+            steps,
+            MAX_DECIMALS,
+            utils.translateColor.RGBA
+        )
             .map((color: RGBObject): string => {
                 return CSS.RGB(
                     color,
@@ -685,7 +697,13 @@ export class ColorTranslator {
         options: InputOptions = {}
     ): string[] {
         const detectedOptions = getOptionsFromColorInput(options, from, to);
-        return ColorTranslator.getBlendHSLObject(from, to, steps, options)
+        return getBlendReturn<HSLObject>(
+            from,
+            to,
+            steps,
+            MAX_DECIMALS,
+            utils.translateColor.HSL
+        )
             .map((color: HSLObject) => {
                 return CSS.HSL(color, detectedOptions);
             });
@@ -713,7 +731,13 @@ export class ColorTranslator {
         options: InputOptions = {}
     ): string[] {
         const detectedOptions = getOptionsFromColorInput(options, from, to);
-        return ColorTranslator.getBlendHSLAObject(from, to, steps, options)
+        return getBlendReturn<HSLObject>(
+            from,
+            to,
+            steps,
+            MAX_DECIMALS,
+            utils.translateColor.HSLA
+        )
             .map((color: HSLObject): string => {
                 return CSS.HSL(color, detectedOptions);
             });
