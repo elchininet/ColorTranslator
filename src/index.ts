@@ -93,19 +93,43 @@ export class ColorTranslator {
 
     // Private methods
     private updateRGB(): void {
-        this.rgb = { ...hslToRGB(this.hsl.h, this.hsl.s, this.hsl.l), a: this.hsl.a };
+        this.rgb = {
+            ...hslToRGB(
+                this.hsl.H,
+                this.hsl.S,
+                this.hsl.L
+            ),
+            A: this.hsl.A
+        };
     }
 
     private updateRGBFromCMYK(): void {
-        this.rgb = { ...cmykToRGB(this.cmyk.c, this.cmyk.m, this.cmyk.y, this.cmyk.k), a: this.rgb.a };
+        this.rgb = {
+            ...cmykToRGB(
+                this.cmyk.C,
+                this.cmyk.M,
+                this.cmyk.Y,
+                this.cmyk.K
+            ),
+            A: this.rgb.A
+        };
     }
 
     private updateHSL(): void {
-        this.hsl = rgbToHSL(this.rgb.r, this.rgb.g, this.rgb.b, this.rgb.a);
+        this.hsl = rgbToHSL(
+            this.rgb.R,
+            this.rgb.G,
+            this.rgb.B,
+            this.rgb.A
+        );
     }
 
     private updateCMYK(): void {
-        this.cmyk = rgbToCMYK(this.rgb.r, this.rgb.g, this.rgb.b);
+        this.cmyk = rgbToCMYK(
+            this.rgb.R,
+            this.rgb.G,
+            this.rgb.B
+        );
     }
 
     private updateRGBAndCMYK(): ColorTranslator {
@@ -136,61 +160,61 @@ export class ColorTranslator {
     }
 
     // Public HSL methods
-    public setH(h: number): ColorTranslator {
-        this.hsl.h = normalizeHue(h);
+    public setH(H: number): ColorTranslator {
+        this.hsl.H = normalizeHue(H);
         return this.updateRGBAndCMYK();
     }
 
-    public setS(s: number): ColorTranslator {
-        this.hsl.s = minmax(s, 0, 100);
+    public setS(S: number): ColorTranslator {
+        this.hsl.S = minmax(S, 0, 100);
         return this.updateRGBAndCMYK();
     }
 
-    public setL(l: number): ColorTranslator {
-        this.hsl.l = minmax(l, 0, 100);
+    public setL(L: number): ColorTranslator {
+        this.hsl.L = minmax(L, 0, 100);
         return this.updateRGBAndCMYK();
     }
 
     // Public RGB methods
-    public setR(r: number): ColorTranslator {
-        this.rgb.r = minmax(r, 0, 255);
+    public setR(R: number): ColorTranslator {
+        this.rgb.R = minmax(R, 0, 255);
         return this.updateHSLAndCMYK();
     }
 
-    public setG(g: number): ColorTranslator {
-        this.rgb.g = minmax(g, 0, 255);
+    public setG(G: number): ColorTranslator {
+        this.rgb.G = minmax(G, 0, 255);
         return this.updateHSLAndCMYK();
     }
 
-    public setB(b: number): ColorTranslator {
-        this.rgb.b = minmax(b, 0, 255);
+    public setB(B: number): ColorTranslator {
+        this.rgb.B = minmax(B, 0, 255);
         return this.updateHSLAndCMYK();
     }
 
     // Public alpha method
-    public setA(a: number): ColorTranslator {
-        this.hsl.a = this.rgb.a = minmax(a, 0, 1);
+    public setA(A: number): ColorTranslator {
+        this.hsl.A = this.rgb.A = minmax(A, 0, 1);
         return this;
     }
 
     // Public CMYK methods
-    public setC(c: number): ColorTranslator {
-        this.cmyk.c = minmax(c, 0, 100);
+    public setC(C: number): ColorTranslator {
+        this.cmyk.C = minmax(C, 0, 100);
         return this.updateRGBAndHSL();
     }
 
-    public setM(m: number): ColorTranslator {
-        this.cmyk.m = minmax(m, 0, 100);
+    public setM(M: number): ColorTranslator {
+        this.cmyk.M = minmax(M, 0, 100);
         return this.updateRGBAndHSL();
     }
 
-    public setY(y: number): ColorTranslator {
-        this.cmyk.y = minmax(y, 0, 100);
+    public setY(Y: number): ColorTranslator {
+        this.cmyk.Y = minmax(Y, 0, 100);
         return this.updateRGBAndHSL();
     }
 
-    public setK(k: number): ColorTranslator {
-        this.cmyk.k = minmax(k, 0, 100);
+    public setK(K: number): ColorTranslator {
+        this.cmyk.K = minmax(K, 0, 100);
         return this.updateRGBAndHSL();
     }
 
@@ -201,50 +225,50 @@ export class ColorTranslator {
 
     // Public HSL properties
     public get H(): number {
-        return round(this.hsl.h, this.options.decimals);
+        return round(this.hsl.H, this.options.decimals);
     }
 
     public get S(): number {
-        return round(this.hsl.s, this.options.decimals);
+        return round(this.hsl.S, this.options.decimals);
     }
 
     public get L(): number {
-        return round(this.hsl.l, this.options.decimals);
+        return round(this.hsl.L, this.options.decimals);
     }
 
     // Public RGB properties
     public get R(): number {
-        return round(this.rgb.r, this.options.decimals);
+        return round(this.rgb.R, this.options.decimals);
     }
 
     public get G(): number {
-        return round(this.rgb.g, this.options.decimals);
+        return round(this.rgb.G, this.options.decimals);
     }
 
     public get B(): number {
-        return round(this.rgb.b, this.options.decimals);
+        return round(this.rgb.B, this.options.decimals);
     }
 
     // Public alpha property
     public get A(): number {
-        return round(this.hsl.a, this.options.decimals);
+        return round(this.hsl.A, this.options.decimals);
     }
 
     // Public CMYK properties
     public get C(): number {
-        return round(this.cmyk.c, this.options.decimals);
+        return round(this.cmyk.C, this.options.decimals);
     }
 
     public get M(): number {
-        return round(this.cmyk.m, this.options.decimals);
+        return round(this.cmyk.M, this.options.decimals);
     }
 
     public get Y(): number {
-        return round(this.cmyk.y, this.options.decimals);
+        return round(this.cmyk.Y, this.options.decimals);
     }
 
     public get K(): number {
-        return round(this.cmyk.k, this.options.decimals);
+        return round(this.cmyk.K, this.options.decimals);
     }
 
     // Object public properties
@@ -258,74 +282,74 @@ export class ColorTranslator {
 
     public get RGBObject(): RGBObject {
         return {
-            r: this.R,
-            g: this.G,
-            b: this.B
+            R: this.R,
+            G: this.G,
+            B: this.B
         };
     }
 
     public get RGBAObject(): RGBObject {
         return {
             ...this.RGBObject,
-            a: this.A
+            A: this.A
         };
     }
 
     public get HSLObject(): HSLObject {
         return {
-            h: this.H,
-            s: this.S,
-            l: this.L
+            H: this.H,
+            S: this.S,
+            L: this.L
         };
     }
 
     public get HSLAObject(): HSLObject {
         return {
             ...this.HSLObject,
-            a: this.A
+            A: this.A
         };
     }
 
     public get CMYKObject(): CMYKObject {
         return {
-            c: this.C,
-            m: this.M,
-            y: this.Y,
-            k: this.K
+            C: this.C,
+            M: this.M,
+            Y: this.Y,
+            K: this.K
         };
     }
 
     public get CMYKAObject(): CMYKObject {
         return {
             ...this.CMYKObject,
-            a: this.A
+            A: this.A
         };
     }
 
     // CSS public properties
     public get HEX(): string {
         return CSS.HEX({
-            r: this.R,
-            g: this.G,
-            b: this.B
+            R: this.R,
+            G: this.G,
+            B: this.B
         });
     }
 
     public get HEXA(): string {
         return CSS.HEX({
-            r: this.R,
-            g: this.G,
-            b: this.B,
-            a: this.A * 255
+            R: this.R,
+            G: this.G,
+            B: this.B,
+            A: this.A * 255
         });
     }
 
     public get RGB(): string {
         return CSS.RGB(
             {
-                r: this.R,
-                g: this.G,
-                b: this.B
+                R: this.R,
+                G: this.G,
+                B: this.B
             },
             this.options
         );
@@ -334,10 +358,10 @@ export class ColorTranslator {
     public get RGBA(): string {
         return CSS.RGB(
             {
-                r: this.R,
-                g: this.G,
-                b: this.B,
-                a: this.A
+                R: this.R,
+                G: this.G,
+                B: this.B,
+                A: this.A
             },
             this.options
         );
@@ -346,9 +370,9 @@ export class ColorTranslator {
     public get HSL(): string {
         return CSS.HSL(
             {
-                h: this.H,
-                s: this.S,
-                l: this.L
+                H: this.H,
+                S: this.S,
+                L: this.L
             },
             this.options
         );
@@ -357,10 +381,10 @@ export class ColorTranslator {
     public get HSLA(): string {
         return CSS.HSL(
             {
-                h: this.H,
-                s: this.S,
-                l: this.L,
-                a: this.A
+                H: this.H,
+                S: this.S,
+                L: this.L,
+                A: this.A
             },
             this.options
         );
@@ -369,10 +393,10 @@ export class ColorTranslator {
     public get CMYK(): string {
         return CSS.CMYK(
             {
-                c: this.C,
-                m: this.M,
-                y: this.Y,
-                k: this.K
+                C: this.C,
+                M: this.M,
+                Y: this.Y,
+                K: this.K
             },
             this.options
         );
@@ -381,11 +405,11 @@ export class ColorTranslator {
     public get CMYKA(): string {
         return CSS.CMYK(
             {
-                c: this.C,
-                m: this.M,
-                y: this.Y,
-                k: this.K,
-                a: this.A
+                C: this.C,
+                M: this.M,
+                Y: this.Y,
+                K: this.K,
+                A: this.A
             },
             this.options
         );

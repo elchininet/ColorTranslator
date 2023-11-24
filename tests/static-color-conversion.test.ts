@@ -23,57 +23,57 @@ COLORS.forEach((color): void => {
         describe(`ColorTranslator static color conversion for ${colorValueStr}`, () => {
 
             // toHEX
-            it(`toHEX method from ${colorValueStr} => ${color.hex}`, () => {
-                expect(ColorTranslator.toHEX(colorValue)).toBe(color.hex);
+            it(`toHEX method from ${colorValueStr} => ${color.HEX}`, () => {
+                expect(ColorTranslator.toHEX(colorValue)).toBe(color.HEX);
             });
 
-            it(`toHEXObject method from ${colorValueStr} => ${JSON.stringify(color.hexObject)}`, () => {
-                expect(ColorTranslator.toHEXObject(colorValue)).toMatchObject(color.hexObject);
+            it(`toHEXObject method from ${colorValueStr} => ${JSON.stringify(color.HEXObject)}`, () => {
+                expect(ColorTranslator.toHEXObject(colorValue)).toMatchObject(color.HEXObject);
             });
 
             // toHEXA
-            it(`toHEXA method from ${colorValueStr} => ${color.hexa}`, () => {
-                expect(ColorTranslator.toHEXA(colorValue)).toBe(color.hexa);
+            it(`toHEXA method from ${colorValueStr} => ${color.HEXA}`, () => {
+                expect(ColorTranslator.toHEXA(colorValue)).toBe(color.HEXA);
             });
 
-            it(`toHEXAObject method from ${colorValueStr} => ${JSON.stringify(color.hexaObject)}`, () => {
-                expect(ColorTranslator.toHEXAObject(colorValue)).toMatchObject(color.hexaObject);
+            it(`toHEXAObject method from ${colorValueStr} => ${JSON.stringify(color.HEXAObject)}`, () => {
+                expect(ColorTranslator.toHEXAObject(colorValue)).toMatchObject(color.HEXAObject);
             });
 
             // toRGB
-            it(`toRGB method from ${colorValueStr} => ${color.rgb}`, () => {
-                expect(ColorTranslator.toRGB(colorValue, options)).toBe(color.rgb);
+            it(`toRGB method from ${colorValueStr} => ${color.RGB}`, () => {
+                expect(ColorTranslator.toRGB(colorValue, options)).toBe(color.RGB);
             });
 
-            it(`toRGBObject method from ${colorValueStr} => ${JSON.stringify(color.rgbObject)}`, () => {
-                expect(ColorTranslator.toRGBObject(colorValue, options)).toMatchObject(color.rgbObject);
+            it(`toRGBObject method from ${colorValueStr} => ${JSON.stringify(color.RGBObject)}`, () => {
+                expect(ColorTranslator.toRGBObject(colorValue, options)).toMatchObject(color.RGBObject);
             });
 
             // toRGBA
-            it(`toRGBA method from ${colorValueStr} => ${color.rgba}`, () => {
-                expect(ColorTranslator.toRGBA(colorValue, options)).toBe(color.rgba);
+            it(`toRGBA method from ${colorValueStr} => ${color.RGBA}`, () => {
+                expect(ColorTranslator.toRGBA(colorValue, options)).toBe(color.RGBA);
             });
 
-            it(`toRGBAObject method from ${colorValueStr} => ${JSON.stringify(color.rgbaObject)}`, () => {
-                expect(ColorTranslator.toRGBAObject(colorValue, options)).toMatchObject(color.rgbaObject);
+            it(`toRGBAObject method from ${colorValueStr} => ${JSON.stringify(color.RGBAObject)}`, () => {
+                expect(ColorTranslator.toRGBAObject(colorValue, options)).toMatchObject(color.RGBAObject);
             });
 
             // toHSL
-            it(`toHSL method from ${colorValueStr} => ${color.hsl}`, () => {
-                expect(ColorTranslator.toHSL(colorValue, options)).toBe(color.hsl);
+            it(`toHSL method from ${colorValueStr} => ${color.HSL}`, () => {
+                expect(ColorTranslator.toHSL(colorValue, options)).toBe(color.HSL);
             });
 
-            it(`toHSLObject method from ${colorValueStr} => ${JSON.stringify(color.hslObject)}`, () => {
-                expect(ColorTranslator.toHSLObject(colorValue, options)).toMatchObject(color.hslObject);
+            it(`toHSLObject method from ${colorValueStr} => ${JSON.stringify(color.HSLObject)}`, () => {
+                expect(ColorTranslator.toHSLObject(colorValue, options)).toMatchObject(color.HSLObject);
             });
 
             // toHSLA
-            it(`toHSLA method from ${colorValueStr} => ${color.hsla}`, () => {
-                expect(ColorTranslator.toHSLA(colorValue, options)).toBe(color.hsla);
+            it(`toHSLA method from ${colorValueStr} => ${color.HSLA}`, () => {
+                expect(ColorTranslator.toHSLA(colorValue, options)).toBe(color.HSLA);
             });
 
-            it(`toHSLAObject method from ${colorValueStr} => ${JSON.stringify(color.hslaObject)}`, () => {
-                expect(ColorTranslator.toHSLAObject(colorValue, options)).toMatchObject(color.hslaObject);
+            it(`toHSLAObject method from ${colorValueStr} => ${JSON.stringify(color.HSLAObject)}`, () => {
+                expect(ColorTranslator.toHSLAObject(colorValue, options)).toMatchObject(color.HSLAObject);
             });
 
         });
@@ -87,17 +87,17 @@ COLORS.forEach((color): void => {
     describe('ColorTranslator static color conversion with auto legacyCSS detection', () => {
 
         it('Non legacy conversion', () => {
-            expect(ColorTranslator.toRGB(color.hex)).toBe(color.rgb);
-            expect(ColorTranslator.toRGBA(color.hexObject)).toBe(color.rgba);
-            expect(ColorTranslator.toHSL(color.rgb, optionsNoDecimals)).toBe(color.hsl);
-            expect(ColorTranslator.toHSLA(color.rgbObject, optionsNoDecimals)).toBe(color.hsla);
+            expect(ColorTranslator.toRGB(color.HEX)).toBe(color.RGB);
+            expect(ColorTranslator.toRGBA(color.HEXObject)).toBe(color.RGBA);
+            expect(ColorTranslator.toHSL(color.RGB, optionsNoDecimals)).toBe(color.HSL);
+            expect(ColorTranslator.toHSLA(color.RGBObject, optionsNoDecimals)).toBe(color.HSLA);
         });
 
         it('Legacy conversion', () => {
-            expect(ColorTranslator.toRGB(color.hslLegacy, optionsNoDecimals)).toBe(color.rgbLegacy);
-            expect(ColorTranslator.toRGBA(color.hslaLegacy, optionsNoDecimals)).toBe(color.rgbaLegacy);
-            expect(ColorTranslator.toHSL(color.rgbaLegacy, optionsNoDecimals)).toBe(color.hslLegacy);
-            expect(ColorTranslator.toHSLA(color.rgbLegacy, optionsNoDecimals)).toBe(color.hslaLegacy);
+            expect(ColorTranslator.toRGB(color.HSLLegacy, optionsNoDecimals)).toBe(color.RGBLegacy);
+            expect(ColorTranslator.toRGBA(color.HSLALegacy, optionsNoDecimals)).toBe(color.RGBALegacy);
+            expect(ColorTranslator.toHSL(color.RGBALegacy, optionsNoDecimals)).toBe(color.HSLLegacy);
+            expect(ColorTranslator.toHSLA(color.RGBLegacy, optionsNoDecimals)).toBe(color.HSLALegacy);
         });
 
     });
@@ -113,21 +113,21 @@ CMYK_COLORS.forEach((color) => {
         describe(`ColorTranslator static CMYK color conversion for ${colorValueStr}`, () => {
 
             // toCMYK
-            it(`toCMYK method from ${colorValueStr} => ${color.cmyk}`, () => {
-                expect(ColorTranslator.toCMYK(colorValue, options)).toBe(color.cmyk);
+            it(`toCMYK method from ${colorValueStr} => ${color.CMYK}`, () => {
+                expect(ColorTranslator.toCMYK(colorValue, options)).toBe(color.CMYK);
             });
 
-            it(`toCMYKObject method from ${colorValueStr} => ${JSON.stringify(color.cmykIntObject100)}`, () => {
-                expect(ColorTranslator.toCMYKObject(colorValue, options)).toMatchObject(color.cmykIntObject100);
+            it(`toCMYKObject method from ${colorValueStr} => ${JSON.stringify(color.CMYKIntObject100)}`, () => {
+                expect(ColorTranslator.toCMYKObject(colorValue, options)).toMatchObject(color.CMYKIntObject100);
             });
 
             // toCMYKA
-            it(`toCMYKA method from ${colorValueStr} => ${color.cmykWithAlpha}`, () => {
-                expect(ColorTranslator.toCMYKA(colorValue, options)).toBe(color.cmykWithAlpha);
+            it(`toCMYKA method from ${colorValueStr} => ${color.CMYKWithAlpha}`, () => {
+                expect(ColorTranslator.toCMYKA(colorValue, options)).toBe(color.CMYKWithAlpha);
             });
 
-            it(`toCMYKAObject method from ${colorValueStr} => ${JSON.stringify(color.cmykIntObject100WithAlpha)}`, () => {
-                expect(ColorTranslator.toCMYKAObject(colorValue, options)).toMatchObject(color.cmykIntObject100WithAlpha);
+            it(`toCMYKAObject method from ${colorValueStr} => ${JSON.stringify(color.CMYKIntObject100WithAlpha)}`, () => {
+                expect(ColorTranslator.toCMYKAObject(colorValue, options)).toMatchObject(color.CMYKIntObject100WithAlpha);
             });
 
             it(`toCMYK method with decimals from ${colorValueStr}`, () => {

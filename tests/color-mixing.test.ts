@@ -111,7 +111,7 @@ describe('legacyCSS auto detection', (): void => {
         expect(ColorTranslator.getMixRGB(['#000', '#000000'])).toBe('rgb(0 0 0)');
     });
     it('Only one color is css and it is legacy, output should be legacy', () => {
-        expect(ColorTranslator.getMixHSLA([{r: 0, g: 0, b: 0}, 'rgba(0,0,0)'])).toBe('hsla(0,0%,0%,1)');
+        expect(ColorTranslator.getMixHSLA([{R: 0, G: 0, B: 0}, 'rgba(0,0,0)'])).toBe('hsla(0,0%,0%,1)');
     });
 });
 

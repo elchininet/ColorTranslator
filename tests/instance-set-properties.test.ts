@@ -21,77 +21,77 @@ const TEST_CMYK_COLORS = {
 describe('ColorTranslator set instance properties', () => {
 
     it('Set property H', () => {
-        const instance = new ColorTranslator(TEST_COLORS.red.hex);
+        const instance = new ColorTranslator(TEST_COLORS.red.HEX);
         instance.setH(240);
         expect(instance.H).toBe(240);
-        expect(instance.HEX).toBe(TEST_COLORS.blue.hex);
+        expect(instance.HEX).toBe(TEST_COLORS.blue.HEX);
     });
 
     it('Set property S', () => {
-        const instance = new ColorTranslator(TEST_COLORS.red.hex);
+        const instance = new ColorTranslator(TEST_COLORS.red.HEX);
         instance.setS(0);
         expect(instance.S).toBe(0);
-        expect(instance.HEX).toBe(TEST_COLORS.gray.hex);
+        expect(instance.HEX).toBe(TEST_COLORS.gray.HEX);
     });
 
     it('Set property L', () => {
-        const instance = new ColorTranslator(TEST_COLORS.white.hex);
+        const instance = new ColorTranslator(TEST_COLORS.white.HEX);
         instance.setL(50);
         expect(instance.L).toBe(50);
-        expect(instance.HEX).toBe(TEST_COLORS.gray.hex);
+        expect(instance.HEX).toBe(TEST_COLORS.gray.HEX);
     });
 
     it('Set property R', () => {
-        const instance = new ColorTranslator(TEST_COLORS.blue.hex);
+        const instance = new ColorTranslator(TEST_COLORS.blue.HEX);
         instance.setR(255);
         expect(instance.R).toBe(255);
-        expect(instance.HEX).toBe(TEST_COLORS.magenta.hex);
+        expect(instance.HEX).toBe(TEST_COLORS.magenta.HEX);
     });
 
     it('Set property G', () => {
-        const instance = new ColorTranslator(TEST_COLORS.white.hex);
+        const instance = new ColorTranslator(TEST_COLORS.white.HEX);
         instance.setG(0);
         expect(instance.G).toBe(0);
-        expect(instance.HEX).toBe(TEST_COLORS.magenta.hex);
+        expect(instance.HEX).toBe(TEST_COLORS.magenta.HEX);
     });
 
     it('Set property B', () => {
-        const instance = new ColorTranslator(TEST_COLORS.red.hex);
+        const instance = new ColorTranslator(TEST_COLORS.red.HEX);
         instance.setB(255);
         expect(instance.B).toBe(255);
-        expect(instance.HEX).toBe(TEST_COLORS.magenta.hex);
+        expect(instance.HEX).toBe(TEST_COLORS.magenta.HEX);
     });
 
     it('Set property A', () => {
-        const instance = new ColorTranslator(TEST_COLORS.red.hex);
+        const instance = new ColorTranslator(TEST_COLORS.red.HEX);
         const REG = /^(.*)(\d)(\))$/;
         instance.setA(0.5);
         expect(instance.A).toBe(0.5);
-        expect(instance.HEX).toBe(TEST_COLORS.red.hex);
-        expect(instance.HEXA).toBe(TEST_COLORS.red.hex + '80');
-        expect(instance.HEXObject).toMatchObject(TEST_COLORS.red.hexObject);
+        expect(instance.HEX).toBe(TEST_COLORS.red.HEX);
+        expect(instance.HEXA).toBe(TEST_COLORS.red.HEX + '80');
+        expect(instance.HEXObject).toMatchObject(TEST_COLORS.red.HEXObject);
         expect(instance.HEXAObject).toMatchObject({
-            ...TEST_COLORS.red.hexObject,
-            a: '0x80'
+            ...TEST_COLORS.red.HEXObject,
+            A: '0x80'
         });
-        expect(instance.RGB).toBe(TEST_COLORS.red.rgb);
-        expect(instance.RGBA).toBe(TEST_COLORS.red.rgba.replace(REG, '$10.5$3'));
-        expect(instance.RGBObject).toMatchObject(TEST_COLORS.red.rgbObject);
+        expect(instance.RGB).toBe(TEST_COLORS.red.RGB);
+        expect(instance.RGBA).toBe(TEST_COLORS.red.RGBA.replace(REG, '$10.5$3'));
+        expect(instance.RGBObject).toMatchObject(TEST_COLORS.red.RGBObject);
         expect(instance.RGBAObject).toMatchObject({
-            ...TEST_COLORS.red.rgbObject,
-            a: 0.5
+            ...TEST_COLORS.red.RGBObject,
+            A: 0.5
         });
-        expect(instance.HSL).toBe(TEST_COLORS.red.hsl);
-        expect(instance.HSLA).toBe(TEST_COLORS.red.hsla.replace(REG, '$10.5$3'));
-        expect(instance.HSLObject).toMatchObject(TEST_COLORS.red.hslObject);
+        expect(instance.HSL).toBe(TEST_COLORS.red.HSL);
+        expect(instance.HSLA).toBe(TEST_COLORS.red.HSLA.replace(REG, '$10.5$3'));
+        expect(instance.HSLObject).toMatchObject(TEST_COLORS.red.HSLObject);
         expect(instance.HSLAObject).toMatchObject({
-            ...TEST_COLORS.red.hslObject,
-            a: 0.5
+            ...TEST_COLORS.red.HSLObject,
+            A: 0.5
         });
     });
 
     it('Set property decimals', () => {
-        const instance = new ColorTranslator(TEST_COLORS.red.hex, { decimals: 3 });
+        const instance = new ColorTranslator(TEST_COLORS.red.HEX, { decimals: 3 });
         expect(instance.options.decimals).toBe(3);
         instance.setOptions({ decimals: 5 });
         expect(instance.options.decimals).toBe(5);
@@ -108,9 +108,9 @@ describe('Properties boundaries', (): void => {
 
     COLORS.forEach((item): void => {
 
-        const instance = new ColorTranslator(item.hex);
+        const instance = new ColorTranslator(item.HEX);
 
-        it(`check R, G, B, and A properties for color ${item.hex}`, (): void => {
+        it(`check R, G, B, and A properties for color ${item.HEX}`, (): void => {
 
             const R = instance.R;
             const G = instance.G;
@@ -232,28 +232,28 @@ describe('Properties boundaries', (): void => {
 describe('ColorTranslator set CMYK instance properties', () => {
 
     it('Set property C', () => {
-        const instance = new ColorTranslator(TEST_CMYK_COLORS.lime.rgb);
+        const instance = new ColorTranslator(TEST_CMYK_COLORS.lime.RGB);
         instance.setC(0);
         expect(instance.C).toBe(0);
-        expect(instance.CMYK).toBe(TEST_CMYK_COLORS.yellow.cmyk);
+        expect(instance.CMYK).toBe(TEST_CMYK_COLORS.yellow.CMYK);
     });
 
     it('Set property M', () => {
-        const instance = new ColorTranslator(TEST_CMYK_COLORS.red.rgb);
+        const instance = new ColorTranslator(TEST_CMYK_COLORS.red.RGB);
         instance.setM(0);
         expect(instance.M).toBe(0);
-        expect(instance.CMYK).toBe(TEST_CMYK_COLORS.yellow.cmyk);
+        expect(instance.CMYK).toBe(TEST_CMYK_COLORS.yellow.CMYK);
     });
 
     it('Set property Y', () => {
-        const instance = new ColorTranslator(TEST_CMYK_COLORS.red.rgb);
+        const instance = new ColorTranslator(TEST_CMYK_COLORS.red.RGB);
         instance.setY(0);
         expect(instance.Y).toBe(0);
-        expect(instance.CMYK).toBe(TEST_CMYK_COLORS.magenta.cmyk);
+        expect(instance.CMYK).toBe(TEST_CMYK_COLORS.magenta.CMYK);
     });
 
     it('Set property K', () => {
-        const instance = new ColorTranslator(TEST_CMYK_COLORS.red.rgb);
+        const instance = new ColorTranslator(TEST_CMYK_COLORS.red.RGB);
         instance.setK(100);
         expect(instance.K).toBe(100);
         expect(instance.CMYK).toBe('device-cmyk(0% 100% 100% 100%)');

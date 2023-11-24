@@ -24,6 +24,7 @@
     "index.js"
   ],
   "scripts": {
+    "test:ts": "tsc --noEmit",
     "test": "jest --verbose",
     "lint": "eslint \"src/**/*.{js,ts}\" \"tests/**/*.ts\"",
     "clean": "./scripts/clean.sh",
