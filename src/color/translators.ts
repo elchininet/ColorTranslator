@@ -2,7 +2,7 @@ import { RGBObject, HSLObject, CMYKObject, RYBObject } from '@types';
 import { round } from '#helpers';
 
 //---HUE to RGB
-export const hueToRGB = (t1: number, t2: number, hue: number): number => {
+const hueToRGB = (t1: number, t2: number, hue: number): number => {
     if (hue < 0) { hue += 6; }
     if (hue >= 6) { hue -= 6; }
     if (hue < 1) {
@@ -17,80 +17,80 @@ export const hueToRGB = (t1: number, t2: number, hue: number): number => {
 };
 
 //---HSL to RGB
-export const hslToRGB = (h: number, s: number, l: number): RGBObject => {
-    h /= 60;
-    s /= 100;
-    l /= 100;
-    const t2 = (l <= .5)
-        ? l * (s + 1)
-        : l + s - (l * s);
-    const t1 = l * 2 - t2;
-    const r = hueToRGB(t1, t2, h + 2);
-    const g = hueToRGB(t1, t2, h);
-    const b = hueToRGB(t1, t2, h - 2);
-    return { r, g, b };
+export const hslToRGB = (H: number, S: number, L: number): RGBObject => {
+    H /= 60;
+    S /= 100;
+    L /= 100;
+    const t2 = (L <= .5)
+        ? L * (S + 1)
+        : L + S - (L * S);
+    const t1 = L * 2 - t2;
+    const R = hueToRGB(t1, t2, H + 2);
+    const G = hueToRGB(t1, t2, H);
+    const B = hueToRGB(t1, t2, H - 2);
+    return { R, G, B };
 };
 
 //---CMYK To RGB
-export const cmykToRGB = (c: number, m: number, y: number, k: number): RGBObject => {
-    k = 1 - k;
-    const r = round(255 * (1 - c) * k);
-    const g = round(255 * (1 - m) * k);
-    const b = round(255 * (1 - y) * k);
-    return { r, g, b };
+export const cmykToRGB = (C: number, M: number, Y: number, K: number): RGBObject => {
+    K = 1 - K;
+    const R = round(255 * (1 - C) * K);
+    const G = round(255 * (1 - M) * K);
+    const B = round(255 * (1 - Y) * K);
+    return { R, G, B };
 };
 
 //---RGB to CMYK
-export const rgbToCMYK = (r: number, g: number, b: number): CMYKObject => {
-    r /= 255;
-    g /= 255;
-    b /= 255;
-    const k = 1 - Math.max(r, g, b);
-    const k1 = 1 - k;
-    const c = k1 && (k1 - r) / k1;
-    const m = k1 && (k1 - g) / k1;
-    const y = k1 && (k1 - b) / k1;
+export const rgbToCMYK = (R: number, G: number, B: number): CMYKObject => {
+    R /= 255;
+    G /= 255;
+    B /= 255;
+    const K = 1 - Math.max(R, G, B);
+    const K1 = 1 - K;
+    const C = K1 && (K1 - R) / K1;
+    const M = K1 && (K1 - G) / K1;
+    const Y = K1 && (K1 - B) / K1;
     return {
-        c: round(c * 100),
-        m: round(m * 100),
-        y: round(y * 100),
-        k: round(k * 100)
+        C: round(C * 100),
+        M: round(M * 100),
+        Y: round(Y * 100),
+        K: round(K * 100)
     };
 };
 
 //---RGB to HSL
-export const rgbToHSL = (r: number, g: number, b: number, a = 1): HSLObject => {
-    r /= 255;
-    g /= 255;
-    b /= 255;
-    a = Math.min(a, 1);
-    const max = Math.max(r, g, b);
-    const min = Math.min(r, g, b);
-    const d = max - min;
-    let h = 0;
-    let s = 0;
-    const l = (max + min) / 2;
-    if (d !== 0) {
-        switch (max) {
-            case r:
-                h = ((g - b) / d) % 6;
+export const rgbToHSL = (R: number, G: number, B: number, A = 1): HSLObject => {
+    R /= 255;
+    G /= 255;
+    B /= 255;
+    A = Math.min(A, 1);
+    const MAX = Math.max(R, G, B);
+    const MIN = Math.min(R, G, B);
+    const D = MAX - MIN;
+    let H = 0;
+    let S = 0;
+    const L = (MAX + MIN) / 2;
+    if (D !== 0) {
+        switch (MAX) {
+            case R:
+                H = ((G - B) / D) % 6;
                 break;
-            case g:
-                h = (b - r) / d + 2;
+            case G:
+                H = (B - R) / D + 2;
                 break;
-            case b:
-                h = (r - g) / d + 4;
+            case B:
+                H = (R - G) / D + 4;
                 break;
         }
-        h = round(h * 60);
-        if (h < 0) { h += 360; }
-        s = d / (1 - Math.abs(2 * l - 1));
+        H = round(H * 60);
+        if (H < 0) { H += 360; }
+        S = D / (1 - Math.abs(2 * L - 1));
     }
     return {
-        h,
-        s: round(s * 100),
-        l: round(l * 100),
-        a
+        H,
+        S: round(S * 100),
+        L: round(L * 100),
+        A
     };
 };
 
@@ -98,12 +98,12 @@ export const rgbToHSL = (r: number, g: number, b: number, a = 1): HSLObject => {
 /*
 * http://nishitalab.org/user/UEI/publication/Sugita_IWAIT2015.pdf
 */
-export const rgbToRYB = (r: number, g: number, b: number): RYBObject => {
-    const Iw = Math.min(r, g, b);
-    const Ib = Math.min(255 - r, 255 - g, 255 - b);
-    const rRGB = r - Iw;
-    const gRGB = g - Iw;
-    const bRGB = b - Iw;
+export const rgbToRYB = (R: number, G: number, B: number): RYBObject => {
+    const Iw = Math.min(R, G, B);
+    const Ib = Math.min(255 - R, 255 - G, 255 - B);
+    const rRGB = R - Iw;
+    const gRGB = G - Iw;
+    const bRGB = B - Iw;
     const minRG = Math.min(rRGB, gRGB);
     const rRYB = rRGB - minRG;
     const yRYB = (gRGB + minRG) / 2;
@@ -111,18 +111,18 @@ export const rgbToRYB = (r: number, g: number, b: number): RYBObject => {
     const n = Math.max(rRYB, yRYB, bRYB) / Math.max(rRGB, gRGB, bRGB);
     const N = isNaN(n) || n === Infinity || n <= 0 ? 1 : n;
     return {
-        r: rRYB / N + Ib,
-        y: yRYB / N + Ib,
-        b: bRYB / N + Ib
+        R: rRYB / N + Ib,
+        Y: yRYB / N + Ib,
+        B: bRYB / N + Ib
     };
 };
 
-export const rybToRGB = (r: number, y: number, b: number): RGBObject => {
-    const Iw = Math.min(r, y, b);
-    const Ib = Math.min(255 - r, 255 - y, 255 - b);
-    const rRYB = r - Iw;
-    const yRYB = y - Iw;
-    const bRYB = b - Iw;
+export const rybToRGB = (R: number, Y: number, B: number): RGBObject => {
+    const Iw = Math.min(R, Y, B);
+    const Ib = Math.min(255 - R, 255 - Y, 255 - B);
+    const rRYB = R - Iw;
+    const yRYB = Y - Iw;
+    const bRYB = B - Iw;
     const minYB = Math.min(yRYB, bRYB);
     const rRGB = rRYB + yRYB - minYB;
     const gRGB = yRYB + minYB;
@@ -130,9 +130,9 @@ export const rybToRGB = (r: number, y: number, b: number): RGBObject => {
     const n = Math.max(rRGB, gRGB, bRGB) / Math.max(rRYB, yRYB, bRYB);
     const N = isNaN(n) || n === Infinity || n <= 0 ? 1 : n;
     return {
-        r: rRGB / N + Ib,
-        g: gRGB / N + Ib,
-        b: bRGB / N + Ib
+        R: rRGB / N + Ib,
+        G: gRGB / N + Ib,
+        B: bRGB / N + Ib
     };
 };
 
@@ -159,22 +159,22 @@ export const hueRYB = (hue: number, toRYB: boolean): number => {
     const from = toRYB ? map1 : map2;
     const to = toRYB ? map2 : map1;
 
-    let a = 0;
-    let b = 0;
-    let c = 0;
-    let d = 0;
+    let A = 0;
+    let B = 0;
+    let C = 0;
+    let D = 0;
 
     from.find((arr: [number, number], index: number): boolean => {
         if (hue >= arr[0] && hue < arr[1]) {
-            a = arr[0];
-            b = arr[1];
-            c = to[index][0];
-            d = to[index][1];
+            A = arr[0];
+            B = arr[1];
+            C = to[index][0];
+            D = to[index][1];
             return true;
         }
         return false;
     });
 
-    return c + (hue - a) * ((d - c) / (b - a));
+    return C + (hue - A) * ((D - C) / (B - A));
 
 };

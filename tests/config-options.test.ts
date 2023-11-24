@@ -5,12 +5,12 @@ import { DEFAULT_OPTIONS } from '../src/constants';
 interface TestCase {
     options: InputOptions;
     extraOptions?: InputOptions;
-    rgb: string;
-    rgba: string;
-    hsl: string;
-    hsla: string;
-    cmyk: string;
-    cmyka: string;
+    RGB: string;
+    RGBA: string;
+    HSL: string;
+    HSLA: string;
+    CMYK: string;
+    CMYKA: string;
     isDefault: boolean;
 }
 
@@ -21,174 +21,174 @@ describe('ColorTranslator CSS config options', () => {
     const TEST_CASES: TestCase[] = [
         {
             options: { legacyCSS: true },
-            rgb: 'rgb(255,0,255)',
-            rgba: 'rgba(255,0,255,1)',
-            hsl: 'hsl(300,100%,50%)',
-            hsla: 'hsla(300,100%,50%,1)',
-            cmyk: 'device-cmyk(0%,100%,0%,0%)',
-            cmyka: 'device-cmyk(0%,100%,0%,0%,1)',
+            RGB: 'rgb(255,0,255)',
+            RGBA: 'rgba(255,0,255,1)',
+            HSL: 'hsl(300,100%,50%)',
+            HSLA: 'hsla(300,100%,50%,1)',
+            CMYK: 'device-cmyk(0%,100%,0%,0%)',
+            CMYKA: 'device-cmyk(0%,100%,0%,0%,1)',
             isDefault: false
         },
         {
             options: { legacyCSS: false },
-            rgb: 'rgb(255 0 255)',
-            rgba: 'rgb(255 0 255 / 1)',
-            hsl: 'hsl(300 100% 50%)',
-            hsla: 'hsl(300 100% 50% / 1)',
-            cmyk: 'device-cmyk(0% 100% 0% 0%)',
-            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
+            RGB: 'rgb(255 0 255)',
+            RGBA: 'rgb(255 0 255 / 1)',
+            HSL: 'hsl(300 100% 50%)',
+            HSLA: 'hsl(300 100% 50% / 1)',
+            CMYK: 'device-cmyk(0% 100% 0% 0%)',
+            CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
         },
         {
             options: { spacesAfterCommas: true },
             extraOptions: { legacyCSS: true },
-            rgb: 'rgb(255, 0, 255)',
-            rgba: 'rgba(255, 0, 255, 1)',
-            hsl: 'hsl(300, 100%, 50%)',
-            hsla: 'hsla(300, 100%, 50%, 1)',
-            cmyk: 'device-cmyk(0%, 100%, 0%, 0%)',
-            cmyka: 'device-cmyk(0%, 100%, 0%, 0%, 1)',
+            RGB: 'rgb(255, 0, 255)',
+            RGBA: 'rgba(255, 0, 255, 1)',
+            HSL: 'hsl(300, 100%, 50%)',
+            HSLA: 'hsla(300, 100%, 50%, 1)',
+            CMYK: 'device-cmyk(0%, 100%, 0%, 0%)',
+            CMYKA: 'device-cmyk(0%, 100%, 0%, 0%, 1)',
             isDefault: false
         },
         {
             options: { spacesAfterCommas: false },
             extraOptions: { legacyCSS: true },
-            rgb: 'rgb(255,0,255)',
-            rgba: 'rgba(255,0,255,1)',
-            hsl: 'hsl(300,100%,50%)',
-            hsla: 'hsla(300,100%,50%,1)',
-            cmyk: 'device-cmyk(0%,100%,0%,0%)',
-            cmyka: 'device-cmyk(0%,100%,0%,0%,1)',
+            RGB: 'rgb(255,0,255)',
+            RGBA: 'rgba(255,0,255,1)',
+            HSL: 'hsl(300,100%,50%)',
+            HSLA: 'hsla(300,100%,50%,1)',
+            CMYK: 'device-cmyk(0%,100%,0%,0%)',
+            CMYKA: 'device-cmyk(0%,100%,0%,0%,1)',
             isDefault: true
         },
         {
             options: { anglesUnit: 'none' },
-            rgb: 'rgb(255 0 255)',
-            rgba: 'rgb(255 0 255 / 1)',
-            hsl: 'hsl(300 100% 50%)',
-            hsla: 'hsl(300 100% 50% / 1)',
-            cmyk: 'device-cmyk(0% 100% 0% 0%)',
-            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
+            RGB: 'rgb(255 0 255)',
+            RGBA: 'rgb(255 0 255 / 1)',
+            HSL: 'hsl(300 100% 50%)',
+            HSLA: 'hsl(300 100% 50% / 1)',
+            CMYK: 'device-cmyk(0% 100% 0% 0%)',
+            CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
         },
         {
             options: { anglesUnit: 'deg' },
-            rgb: 'rgb(255 0 255)',
-            rgba: 'rgb(255 0 255 / 1)',
-            hsl: 'hsl(300deg 100% 50%)',
-            hsla: 'hsl(300deg 100% 50% / 1)',
-            cmyk: 'device-cmyk(0% 100% 0% 0%)',
-            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
+            RGB: 'rgb(255 0 255)',
+            RGBA: 'rgb(255 0 255 / 1)',
+            HSL: 'hsl(300deg 100% 50%)',
+            HSLA: 'hsl(300deg 100% 50% / 1)',
+            CMYK: 'device-cmyk(0% 100% 0% 0%)',
+            CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
         },
         {
             options: { anglesUnit: 'grad' },
-            rgb: 'rgb(255 0 255)',
-            rgba: 'rgb(255 0 255 / 1)',
-            hsl: 'hsl(333.333333grad 100% 50%)',
-            hsla: 'hsl(333.333333grad 100% 50% / 1)',
-            cmyk: 'device-cmyk(0% 100% 0% 0%)',
-            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
+            RGB: 'rgb(255 0 255)',
+            RGBA: 'rgb(255 0 255 / 1)',
+            HSL: 'hsl(333.333333grad 100% 50%)',
+            HSLA: 'hsl(333.333333grad 100% 50% / 1)',
+            CMYK: 'device-cmyk(0% 100% 0% 0%)',
+            CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
         },
         {
             options: { anglesUnit: 'rad' },
-            rgb: 'rgb(255 0 255)',
-            rgba: 'rgb(255 0 255 / 1)',
-            hsl: 'hsl(5.235988rad 100% 50%)',
-            hsla: 'hsl(5.235988rad 100% 50% / 1)',
-            cmyk: 'device-cmyk(0% 100% 0% 0%)',
-            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
+            RGB: 'rgb(255 0 255)',
+            RGBA: 'rgb(255 0 255 / 1)',
+            HSL: 'hsl(5.235988rad 100% 50%)',
+            HSLA: 'hsl(5.235988rad 100% 50% / 1)',
+            CMYK: 'device-cmyk(0% 100% 0% 0%)',
+            CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
         },
         {
             options: { anglesUnit: 'turn' },
-            rgb: 'rgb(255 0 255)',
-            rgba: 'rgb(255 0 255 / 1)',
-            hsl: 'hsl(0.833333turn 100% 50%)',
-            hsla: 'hsl(0.833333turn 100% 50% / 1)',
-            cmyk: 'device-cmyk(0% 100% 0% 0%)',
-            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
+            RGB: 'rgb(255 0 255)',
+            RGBA: 'rgb(255 0 255 / 1)',
+            HSL: 'hsl(0.833333turn 100% 50%)',
+            HSLA: 'hsl(0.833333turn 100% 50% / 1)',
+            CMYK: 'device-cmyk(0% 100% 0% 0%)',
+            CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
         },
         {
             options: { rgbUnit: 'none' },
-            rgb: 'rgb(255 0 255)',
-            rgba: 'rgb(255 0 255 / 1)',
-            hsl: 'hsl(300 100% 50%)',
-            hsla: 'hsl(300 100% 50% / 1)',
-            cmyk: 'device-cmyk(0% 100% 0% 0%)',
-            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
+            RGB: 'rgb(255 0 255)',
+            RGBA: 'rgb(255 0 255 / 1)',
+            HSL: 'hsl(300 100% 50%)',
+            HSLA: 'hsl(300 100% 50% / 1)',
+            CMYK: 'device-cmyk(0% 100% 0% 0%)',
+            CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
         },
         {
             options: { rgbUnit: 'percent' },
-            rgb: 'rgb(100% 0% 100%)',
-            rgba: 'rgb(100% 0% 100% / 1)',
-            hsl: 'hsl(300 100% 50%)',
-            hsla: 'hsl(300 100% 50% / 1)',
-            cmyk: 'device-cmyk(0% 100% 0% 0%)',
-            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
+            RGB: 'rgb(100% 0% 100%)',
+            RGBA: 'rgb(100% 0% 100% / 1)',
+            HSL: 'hsl(300 100% 50%)',
+            HSLA: 'hsl(300 100% 50% / 1)',
+            CMYK: 'device-cmyk(0% 100% 0% 0%)',
+            CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
         },
         {
             options: { cmykUnit: 'percent' },
-            rgb: 'rgb(255 0 255)',
-            rgba: 'rgb(255 0 255 / 1)',
-            hsl: 'hsl(300 100% 50%)',
-            hsla: 'hsl(300 100% 50% / 1)',
-            cmyk: 'device-cmyk(0% 100% 0% 0%)',
-            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
+            RGB: 'rgb(255 0 255)',
+            RGBA: 'rgb(255 0 255 / 1)',
+            HSL: 'hsl(300 100% 50%)',
+            HSLA: 'hsl(300 100% 50% / 1)',
+            CMYK: 'device-cmyk(0% 100% 0% 0%)',
+            CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
         },
         {
             options: { cmykUnit: 'none' },
-            rgb: 'rgb(255 0 255)',
-            rgba: 'rgb(255 0 255 / 1)',
-            hsl: 'hsl(300 100% 50%)',
-            hsla: 'hsl(300 100% 50% / 1)',
-            cmyk: 'device-cmyk(0 1 0 0)',
-            cmyka: 'device-cmyk(0 1 0 0 / 1)',
+            RGB: 'rgb(255 0 255)',
+            RGBA: 'rgb(255 0 255 / 1)',
+            HSL: 'hsl(300 100% 50%)',
+            HSLA: 'hsl(300 100% 50% / 1)',
+            CMYK: 'device-cmyk(0 1 0 0)',
+            CMYKA: 'device-cmyk(0 1 0 0 / 1)',
             isDefault: false
         },
         {
             options: { alphaUnit: 'none' },
-            rgb: 'rgb(255 0 255)',
-            rgba: 'rgb(255 0 255 / 1)',
-            hsl: 'hsl(300 100% 50%)',
-            hsla: 'hsl(300 100% 50% / 1)',
-            cmyk: 'device-cmyk(0% 100% 0% 0%)',
-            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
+            RGB: 'rgb(255 0 255)',
+            RGBA: 'rgb(255 0 255 / 1)',
+            HSL: 'hsl(300 100% 50%)',
+            HSLA: 'hsl(300 100% 50% / 1)',
+            CMYK: 'device-cmyk(0% 100% 0% 0%)',
+            CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
         },
         {
             options: { alphaUnit: 'percent' },
-            rgb: 'rgb(255 0 255)',
-            rgba: 'rgb(255 0 255 / 100%)',
-            hsl: 'hsl(300 100% 50%)',
-            hsla: 'hsl(300 100% 50% / 100%)',
-            cmyk: 'device-cmyk(0% 100% 0% 0%)',
-            cmyka: 'device-cmyk(0% 100% 0% 0% / 100%)',
+            RGB: 'rgb(255 0 255)',
+            RGBA: 'rgb(255 0 255 / 100%)',
+            HSL: 'hsl(300 100% 50%)',
+            HSLA: 'hsl(300 100% 50% / 100%)',
+            CMYK: 'device-cmyk(0% 100% 0% 0%)',
+            CMYKA: 'device-cmyk(0% 100% 0% 0% / 100%)',
             isDefault: false
         },
         {
             options: { cmykFunction: 'cmyk' },
-            rgb: 'rgb(255 0 255)',
-            rgba: 'rgb(255 0 255 / 1)',
-            hsl: 'hsl(300 100% 50%)',
-            hsla: 'hsl(300 100% 50% / 1)',
-            cmyk: 'cmyk(0% 100% 0% 0%)',
-            cmyka: 'cmyk(0% 100% 0% 0% / 1)',
+            RGB: 'rgb(255 0 255)',
+            RGBA: 'rgb(255 0 255 / 1)',
+            HSL: 'hsl(300 100% 50%)',
+            HSLA: 'hsl(300 100% 50% / 1)',
+            CMYK: 'cmyk(0% 100% 0% 0%)',
+            CMYKA: 'cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
         },
         {
             options: { cmykFunction: 'device-cmyk' },
-            rgb: 'rgb(255 0 255)',
-            rgba: 'rgb(255 0 255 / 1)',
-            hsl: 'hsl(300 100% 50%)',
-            hsla: 'hsl(300 100% 50% / 1)',
-            cmyk: 'device-cmyk(0% 100% 0% 0%)',
-            cmyka: 'device-cmyk(0% 100% 0% 0% / 1)',
+            RGB: 'rgb(255 0 255)',
+            RGBA: 'rgb(255 0 255 / 1)',
+            HSL: 'hsl(300 100% 50%)',
+            HSLA: 'hsl(300 100% 50% / 1)',
+            CMYK: 'device-cmyk(0% 100% 0% 0%)',
+            CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
         }
     ];
@@ -198,30 +198,30 @@ describe('ColorTranslator CSS config options', () => {
         const {
             options,
             extraOptions = {},
-            rgb,
-            rgba,
-            hsl,
-            hsla,
-            cmyk,
-            cmyka,
+            RGB,
+            RGBA,
+            HSL,
+            HSLA,
+            CMYK,
+            CMYKA,
             isDefault
         } = testCase;
 
         it(`Check ${JSON.stringify(options)}`, () => {
             const mergedOptions = { ...options, ...extraOptions };
             const instance = new ColorTranslator(COLOR, mergedOptions);
-            expect(instance.RGB).toBe(rgb);
-            expect(instance.RGBA).toBe(rgba);
-            expect(instance.HSL).toBe(hsl);
-            expect(instance.HSLA).toBe(hsla);
-            expect(instance.CMYK).toBe(cmyk);
-            expect(instance.CMYKA).toBe(cmyka);
-            expect(ColorTranslator.toRGB(COLOR, mergedOptions)).toBe(rgb);
-            expect(ColorTranslator.toRGBA(COLOR, mergedOptions)).toBe(rgba);
-            expect(ColorTranslator.toHSL(COLOR, mergedOptions)).toBe(hsl);
-            expect(ColorTranslator.toHSLA(COLOR, mergedOptions)).toBe(hsla);
-            expect(ColorTranslator.toCMYK(COLOR, mergedOptions)).toBe(cmyk);
-            expect(ColorTranslator.toCMYKA(COLOR, mergedOptions)).toBe(cmyka);
+            expect(instance.RGB).toBe(RGB);
+            expect(instance.RGBA).toBe(RGBA);
+            expect(instance.HSL).toBe(HSL);
+            expect(instance.HSLA).toBe(HSLA);
+            expect(instance.CMYK).toBe(CMYK);
+            expect(instance.CMYKA).toBe(CMYKA);
+            expect(ColorTranslator.toRGB(COLOR, mergedOptions)).toBe(RGB);
+            expect(ColorTranslator.toRGBA(COLOR, mergedOptions)).toBe(RGBA);
+            expect(ColorTranslator.toHSL(COLOR, mergedOptions)).toBe(HSL);
+            expect(ColorTranslator.toHSLA(COLOR, mergedOptions)).toBe(HSLA);
+            expect(ColorTranslator.toCMYK(COLOR, mergedOptions)).toBe(CMYK);
+            expect(ColorTranslator.toCMYKA(COLOR, mergedOptions)).toBe(CMYKA);
         });
 
         if (isDefault) {
@@ -232,18 +232,18 @@ describe('ColorTranslator CSS config options', () => {
             it(`Check default value of ${key}:${defaultProp}`, () => {
                 const mergedOptions = { ...defaultOptions, ...extraOptions };
                 const instance = new ColorTranslator(COLOR, mergedOptions);
-                expect(instance.RGB).toBe(rgb);
-                expect(instance.RGBA).toBe(rgba);
-                expect(instance.HSL).toBe(hsl);
-                expect(instance.HSLA).toBe(hsla);
-                expect(instance.CMYK).toBe(cmyk);
-                expect(instance.CMYKA).toBe(cmyka);
-                expect(ColorTranslator.toRGB(COLOR, mergedOptions)).toBe(rgb);
-                expect(ColorTranslator.toRGBA(COLOR, mergedOptions)).toBe(rgba);
-                expect(ColorTranslator.toHSL(COLOR, mergedOptions)).toBe(hsl);
-                expect(ColorTranslator.toHSLA(COLOR, mergedOptions)).toBe(hsla);
-                expect(ColorTranslator.toCMYK(COLOR, mergedOptions)).toBe(cmyk);
-                expect(ColorTranslator.toCMYKA(COLOR, mergedOptions)).toBe(cmyka);
+                expect(instance.RGB).toBe(RGB);
+                expect(instance.RGBA).toBe(RGBA);
+                expect(instance.HSL).toBe(HSL);
+                expect(instance.HSLA).toBe(HSLA);
+                expect(instance.CMYK).toBe(CMYK);
+                expect(instance.CMYKA).toBe(CMYKA);
+                expect(ColorTranslator.toRGB(COLOR, mergedOptions)).toBe(RGB);
+                expect(ColorTranslator.toRGBA(COLOR, mergedOptions)).toBe(RGBA);
+                expect(ColorTranslator.toHSL(COLOR, mergedOptions)).toBe(HSL);
+                expect(ColorTranslator.toHSLA(COLOR, mergedOptions)).toBe(HSLA);
+                expect(ColorTranslator.toCMYK(COLOR, mergedOptions)).toBe(CMYK);
+                expect(ColorTranslator.toCMYKA(COLOR, mergedOptions)).toBe(CMYKA);
             });
 
         }
@@ -292,32 +292,32 @@ describe('ColorTranslator CSS config options autodetection', () => {
 
     it(`anglesUnit auto detection`, () => {
 
-        const hsl = {
-            h: 720,
-            s: 100,
-            l: 50
+        const HSL = {
+            H: 720,
+            S: 100,
+            L: 50
         };
 
         const TEST_CASES = [
             {
-                color: `hsl(${hsl.h} ${hsl.s}% ${hsl.l}%)`,
-                result: `hsl(0 ${hsl.s}% ${hsl.l}%)`
+                color: `hsl(${HSL.H} ${HSL.S}% ${HSL.L}%)`,
+                result: `hsl(0 ${HSL.S}% ${HSL.L}%)`
             },
             {
-                color: `hsl(${hsl.h}deg ${hsl.s}% ${hsl.l}%)`,
-                result: `hsl(0deg ${hsl.s}% ${hsl.l}%)`
+                color: `hsl(${HSL.H}deg ${HSL.S}% ${HSL.L}%)`,
+                result: `hsl(0deg ${HSL.S}% ${HSL.L}%)`
             },
             {
-                color: `hsl(${hsl.h}grad ${hsl.s}% ${hsl.l}%)`,
-                result: `hsl(320grad ${hsl.s}% ${hsl.l}%)`
+                color: `hsl(${HSL.H}grad ${HSL.S}% ${HSL.L}%)`,
+                result: `hsl(320grad ${HSL.S}% ${HSL.L}%)`
             },
             {
-                color: `hsl(${hsl.h}turn ${hsl.s}% ${hsl.l}%)`,
-                result: `hsl(0turn ${hsl.s}% ${hsl.l}%)`
+                color: `hsl(${HSL.H}turn ${HSL.S}% ${HSL.L}%)`,
+                result: `hsl(0turn ${HSL.S}% ${HSL.L}%)`
             },
             {
-                color: `hsl(${hsl.h}rad ${hsl.s}% ${hsl.l}%)`,
-                result: `hsl(3.716875rad ${hsl.s}% ${hsl.l}%)`
+                color: `hsl(${HSL.H}rad ${HSL.S}% ${HSL.L}%)`,
+                result: `hsl(3.716875rad ${HSL.S}% ${HSL.L}%)`
             }
         ];
 

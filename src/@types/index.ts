@@ -1,61 +1,61 @@
 export type NumberOrString = number | string;
 
 export interface HEXObject {
-    r: string;
-    g: string;
-    b: string;
-    a?: string;
+    R: string;
+    G: string;
+    B: string;
+    A?: string;
 }
 
 export interface RGBObject {
-    r: number;
-    g: number;
-    b: number;
-    a?: number;
+    R: number;
+    G: number;
+    B: number;
+    A?: number;
 }
 
 export interface RGBObjectGeneric {
-    r: NumberOrString;
-    g: NumberOrString;
-    b: NumberOrString;
-    a?: NumberOrString;
+    R: NumberOrString;
+    G: NumberOrString;
+    B: NumberOrString;
+    A?: NumberOrString;
 }
 
 export interface HSLObject {
-    h: number;
-    s: number;
-    l: number;
-    a?: number;
+    H: number;
+    S: number;
+    L: number;
+    A?: number;
 }
 
 export interface HSLObjectGeneric {
-    h: number;
-    s: NumberOrString;
-    l: NumberOrString;
-    a?: number;
+    H: number;
+    S: NumberOrString;
+    L: NumberOrString;
+    A?: number;
 }
 
 export interface CMYKObject {
-    c: number;
-    m: number;
-    y: number;
-    k: number;
-    a?: number;
+    C: number;
+    M: number;
+    Y: number;
+    K: number;
+    A?: number;
 }
 
 export interface CMYKObjectGeneric {
-    c: NumberOrString;
-    m: NumberOrString;
-    y: NumberOrString;
-    k: NumberOrString;
-    a?: number;
+    C: NumberOrString;
+    M: NumberOrString;
+    Y: NumberOrString;
+    K: NumberOrString;
+    A?: number;
 }
 
 export interface RYBObject {
-    r: number;
-    y: number;
-    b: number;
-    a?: number;
+    R: number;
+    Y: number;
+    B: number;
+    A?: number;
 }
 
 export type RGYBObject = RGBObject | RYBObject;

@@ -19,102 +19,102 @@ COLORS.forEach((color): void => {
             legacyInstance = new ColorTranslator(colorValue, legacyOptions);
 
             // HEX
-            it(`HEX property => ${color.hex}`, () => {
-                expect(instance.HEX).toBe(color.hex);
+            it(`HEX property => ${color.HEX}`, () => {
+                expect(instance.HEX).toBe(color.HEX);
             });
 
             // HEXA
-            it(`HEXA property => ${color.hexa}`, () => {
-                expect(instance.HEXA).toBe(color.hexa);
+            it(`HEXA property => ${color.HEXA}`, () => {
+                expect(instance.HEXA).toBe(color.HEXA);
             });
 
             // HEXObject
-            it(`HEXObject property => ${JSON.stringify(color.hexObject)}`, () => {
-                expect(instance.HEXObject).toMatchObject(color.hexObject);
+            it(`HEXObject property => ${JSON.stringify(color.HEXObject)}`, () => {
+                expect(instance.HEXObject).toMatchObject(color.HEXObject);
             });
 
             // HEXAObject
-            it(`HEXAObject property => ${JSON.stringify(color.hexaObject)}`, () => {
-                expect(instance.HEXAObject).toMatchObject(color.hexaObject);
+            it(`HEXAObject property => ${JSON.stringify(color.HEXAObject)}`, () => {
+                expect(instance.HEXAObject).toMatchObject(color.HEXAObject);
             });
 
             // RGB
-            it(`RGB property => ${color.rgb}`, () => {
-                expect(instance.RGB).toBe(color.rgb);
-                expect(legacyInstance.RGB).toBe(color.rgbLegacy);
+            it(`RGB property => ${color.RGB}`, () => {
+                expect(instance.RGB).toBe(color.RGB);
+                expect(legacyInstance.RGB).toBe(color.RGBLegacy);
             });
 
             // RGBA
-            it(`RGBA property => ${color.rgba}`, () => {
-                expect(instance.RGBA).toBe(color.rgba);
-                expect(legacyInstance.RGBA).toBe(color.rgbaLegacy);
+            it(`RGBA property => ${color.RGBA}`, () => {
+                expect(instance.RGBA).toBe(color.RGBA);
+                expect(legacyInstance.RGBA).toBe(color.RGBALegacy);
             });
 
             // RGBObject
-            it(`RGBObject property => ${JSON.stringify(color.rgbObject)}`, () => {
-                expect(instance.RGBObject).toMatchObject(color.rgbObject);
+            it(`RGBObject property => ${JSON.stringify(color.RGBObject)}`, () => {
+                expect(instance.RGBObject).toMatchObject(color.RGBObject);
             });
 
             // RGBAObject
-            it(`RGBAObject property => ${JSON.stringify(color.rgbaObject)}`, () => {
-                expect(instance.RGBAObject).toMatchObject(color.rgbaObject);
+            it(`RGBAObject property => ${JSON.stringify(color.RGBAObject)}`, () => {
+                expect(instance.RGBAObject).toMatchObject(color.RGBAObject);
             });
 
             // HSL
-            it(`HSL property => ${color.hsl}`, () => {
-                expect(instance.HSL).toBe(color.hsl);
-                expect(legacyInstance.HSL).toBe(color.hslLegacy);
+            it(`HSL property => ${color.HSL}`, () => {
+                expect(instance.HSL).toBe(color.HSL);
+                expect(legacyInstance.HSL).toBe(color.HSLLegacy);
             });
 
             // HSLA
-            it(`HSLA property => ${color.hsla}`, () => {
-                expect(instance.HSLA).toBe(color.hsla);
-                expect(legacyInstance.HSLA).toBe(color.hslaLegacy);
+            it(`HSLA property => ${color.HSLA}`, () => {
+                expect(instance.HSLA).toBe(color.HSLA);
+                expect(legacyInstance.HSLA).toBe(color.HSLALegacy);
             });
 
             // HSLObject
-            it(`HSLObject property => ${JSON.stringify(color.hslObject)}`, () => {
-                expect(instance.HSLObject).toMatchObject(color.hslObject);
+            it(`HSLObject property => ${JSON.stringify(color.HSLObject)}`, () => {
+                expect(instance.HSLObject).toMatchObject(color.HSLObject);
             });
 
             // HSLAObject
-            it(`HSLAObject property => ${JSON.stringify(color.hslaObject)}`, () => {
-                expect(instance.HSLAObject).toMatchObject(color.hslaObject);
+            it(`HSLAObject property => ${JSON.stringify(color.HSLAObject)}`, () => {
+                expect(instance.HSLAObject).toMatchObject(color.HSLAObject);
             });
 
             // H
-            it(`H property => ${color.hslObject.h}`, () => {
-                expect(instance.H).toBe(color.hslObject.h);
+            it(`H property => ${color.HSLObject.H}`, () => {
+                expect(instance.H).toBe(color.HSLObject.H);
             });
 
             // S
-            it(`S property => ${color.hslObject.s}`, () => {
-                expect(instance.S).toBe(color.hslObject.s);
+            it(`S property => ${color.HSLObject.S}`, () => {
+                expect(instance.S).toBe(color.HSLObject.S);
             });
 
             // L
-            it(`L property => ${color.hslObject.l}`, () => {
-                expect(instance.L).toBe(color.hslObject.l);
+            it(`L property => ${color.HSLObject.L}`, () => {
+                expect(instance.L).toBe(color.HSLObject.L);
             });
 
             // R
-            it(`R property => ${color.rgbObject.r}`, () => {
-                expect(instance.R).toBe(color.rgbObject.r);
+            it(`R property => ${color.RGBObject.R}`, () => {
+                expect(instance.R).toBe(color.RGBObject.R);
             });
 
             // G
-            it(`G property => ${color.rgbObject.g}`, () => {
-                expect(instance.G).toBe(color.rgbObject.g);
+            it(`G property => ${color.RGBObject.G}`, () => {
+                expect(instance.G).toBe(color.RGBObject.G);
             });
 
             // B
-            it(`B property => ${color.rgbObject.b}`, () => {
-                expect(instance.B).toBe(color.rgbObject.b);
+            it(`B property => ${color.RGBObject.B}`, () => {
+                expect(instance.B).toBe(color.RGBObject.B);
             });
 
             // A
-            it(`A property => ${color.rgbaObject.a}`, () => {
-                expect(instance.A).toBe(color.rgbaObject.a);
+            it(`A property => ${color.RGBAObject.A}`, () => {
+                expect(instance.A).toBe(color.RGBAObject.A);
             });
 
         });
@@ -138,45 +138,45 @@ CMYK_COLORS.forEach((color) => {
             legacyInstance = new ColorTranslator(colorValue, legacyOptions);
 
             // CMYK
-            it(`CMYK property => ${color.cmyk}`, () => {
-                expect(instance.CMYK).toBe(color.cmyk);
-                expect(legacyInstance.CMYK).toBe(color.cmykLegacy);
+            it(`CMYK property => ${color.CMYK}`, () => {
+                expect(instance.CMYK).toBe(color.CMYK);
+                expect(legacyInstance.CMYK).toBe(color.CMYKLegacy);
             });
 
             // CMYKA
-            it(`CMYKA property => ${color.cmykWithAlpha}`, () => {
-                expect(instance.CMYKA).toBe(color.cmykWithAlpha);
-                expect(legacyInstance.CMYKA).toBe(color.cmykLegacyWithAlpha);
+            it(`CMYKA property => ${color.CMYKWithAlpha}`, () => {
+                expect(instance.CMYKA).toBe(color.CMYKWithAlpha);
+                expect(legacyInstance.CMYKA).toBe(color.CMYKLegacyWithAlpha);
             });
 
             // CMYKObject
-            it(`CMYKObject property => ${JSON.stringify(color.cmykIntObject100)}`, () => {
-                expect(instance.CMYKObject).toMatchObject(color.cmykIntObject100);
+            it(`CMYKObject property => ${JSON.stringify(color.CMYKIntObject100)}`, () => {
+                expect(instance.CMYKObject).toMatchObject(color.CMYKIntObject100);
             });
 
             // CMYKAObject
-            it(`CMYKAObject property => ${JSON.stringify(color.cmykIntObject100WithAlpha)}`, () => {
-                expect(instance.CMYKAObject).toMatchObject(color.cmykIntObject100WithAlpha);
+            it(`CMYKAObject property => ${JSON.stringify(color.CMYKIntObject100WithAlpha)}`, () => {
+                expect(instance.CMYKAObject).toMatchObject(color.CMYKIntObject100WithAlpha);
             });
 
             // C
-            it(`C property => ${color.cmykIntObject100.c}`, () => {
-                expect(instance.C).toBe(color.cmykIntObject100.c);
+            it(`C property => ${color.CMYKIntObject100.C}`, () => {
+                expect(instance.C).toBe(color.CMYKIntObject100.C);
             });
 
             // M
-            it(`M property => ${color.cmykIntObject100.m}`, () => {
-                expect(instance.M).toBe(color.cmykIntObject100.m);
+            it(`M property => ${color.CMYKIntObject100.M}`, () => {
+                expect(instance.M).toBe(color.CMYKIntObject100.M);
             });
 
             // Y
-            it(`Y property => ${color.cmykIntObject100.y}`, () => {
-                expect(instance.Y).toBe(color.cmykIntObject100.y);
+            it(`Y property => ${color.CMYKIntObject100.Y}`, () => {
+                expect(instance.Y).toBe(color.CMYKIntObject100.Y);
             });
 
             // K
-            it(`K property => ${color.cmykIntObject100.k}`, () => {
-                expect(instance.K).toBe(color.cmykIntObject100.k);
+            it(`K property => ${color.CMYKIntObject100.K}`, () => {
+                expect(instance.K).toBe(color.CMYKIntObject100.K);
             });
 
         });

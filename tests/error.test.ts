@@ -15,7 +15,7 @@ describe('Wrong inputs', (): void => {
     it('Wrong object', (): void => {
 
         expect(() => {
-            ColorTranslator.toHEX({p: 100, h: 20, t: 360} as unknown as ColorInput);
+            ColorTranslator.toHEX({P: 100, H: 20, T: 360} as unknown as ColorInput);
         }).toThrowError(ERRORS.NOT_ACCEPTED_OBJECT_INPUT);
 
     });
@@ -23,7 +23,7 @@ describe('Wrong inputs', (): void => {
     it('Mixed object', (): void => {
 
         expect(() => {
-            ColorTranslator.toHEX({r: '0x25', g: 20, b: '0xFF'} as unknown as ColorInput);
+            ColorTranslator.toHEX({R: '0x25', G: 20, B: '0xFF'} as unknown as ColorInput);
         }).toThrowError(ERRORS.NOT_ACCEPTED_OBJECT_INPUT);
 
     });
@@ -31,7 +31,7 @@ describe('Wrong inputs', (): void => {
     it('Wrong hex', (): void => {
 
         expect(() => {
-            ColorTranslator.toHEX({r: '0x255', g: '0x128', b: '0xFFF'} as unknown as ColorInput);
+            ColorTranslator.toHEX({R: '0x255', G: '0x128', B: '0xFFF'} as unknown as ColorInput);
         }).toThrowError(ERRORS.NOT_ACCEPTED_OBJECT_INPUT);
 
     });

@@ -1,57 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HSL tests for hsl(0 0% 0%) HSL with percentages {"h":0,"s":"0%","l":"0%"} 1`] = `"rgb(0 0 0)"`;
+exports[`HSL tests for hsl(0 0% 0%) HSL with percentages {"H":0,"S":"0%","L":"0%"} 1`] = `"rgb(0 0 0)"`;
 
-exports[`HSL tests for hsl(0 0% 0%) HSL with percentages {"h":0,"s":"0%","l":"0%"} 2`] = `"hsl(0 0% 0%)"`;
+exports[`HSL tests for hsl(0 0% 0%) HSL with percentages {"H":0,"S":"0%","L":"0%"} 2`] = `"hsl(0 0% 0%)"`;
 
-exports[`HSL tests for hsl(0 0% 0%) HSLA with percentages {"h":0,"s":"0%","l":"0%","a":1} 1`] = `"rgb(0 0 0 / 1)"`;
+exports[`HSL tests for hsl(0 0% 0%) HSLA with percentages {"H":0,"S":"0%","L":"0%"} 1`] = `"rgb(0 0 0 / 1)"`;
 
-exports[`HSL tests for hsl(0 0% 0%) HSLA with percentages {"h":0,"s":"0%","l":"0%","a":1} 2`] = `"hsl(0 0% 0% / 1)"`;
+exports[`HSL tests for hsl(0 0% 0%) HSLA with percentages {"H":0,"S":"0%","L":"0%"} 2`] = `"hsl(0 0% 0% / 1)"`;
 
-exports[`HSL tests for hsl(0 0% 50%) HSL with percentages {"h":0,"s":"0%","l":"50%"} 1`] = `"rgb(127.5 127.5 127.5)"`;
+exports[`HSL tests for hsl(0 0% 50%) HSL with percentages {"H":0,"S":"0%","L":"50%"} 1`] = `"rgb(127.5 127.5 127.5)"`;
 
-exports[`HSL tests for hsl(0 0% 50%) HSL with percentages {"h":0,"s":"0%","l":"50%"} 2`] = `"hsl(0 0% 50%)"`;
+exports[`HSL tests for hsl(0 0% 50%) HSL with percentages {"H":0,"S":"0%","L":"50%"} 2`] = `"hsl(0 0% 50%)"`;
 
-exports[`HSL tests for hsl(0 0% 50%) HSLA with percentages {"h":0,"s":"0%","l":"50%","a":1} 1`] = `"rgb(127.5 127.5 127.5 / 1)"`;
+exports[`HSL tests for hsl(0 0% 50%) HSLA with percentages {"H":0,"S":"0%","L":"50%"} 1`] = `"rgb(127.5 127.5 127.5 / 1)"`;
 
-exports[`HSL tests for hsl(0 0% 50%) HSLA with percentages {"h":0,"s":"0%","l":"50%","a":1} 2`] = `"hsl(0 0% 50% / 1)"`;
+exports[`HSL tests for hsl(0 0% 50%) HSLA with percentages {"H":0,"S":"0%","L":"50%"} 2`] = `"hsl(0 0% 50% / 1)"`;
 
-exports[`HSL tests for hsl(0 0% 100%) HSL with percentages {"h":0,"s":"0%","l":"100%"} 1`] = `"rgb(255 255 255)"`;
+exports[`HSL tests for hsl(0 0% 100%) HSL with percentages {"H":0,"S":"0%","L":"100%"} 1`] = `"rgb(255 255 255)"`;
 
-exports[`HSL tests for hsl(0 0% 100%) HSL with percentages {"h":0,"s":"0%","l":"100%"} 2`] = `"hsl(0 0% 100%)"`;
+exports[`HSL tests for hsl(0 0% 100%) HSL with percentages {"H":0,"S":"0%","L":"100%"} 2`] = `"hsl(0 0% 100%)"`;
 
-exports[`HSL tests for hsl(0 0% 100%) HSLA with percentages {"h":0,"s":"0%","l":"100%","a":1} 1`] = `"rgb(255 255 255 / 1)"`;
+exports[`HSL tests for hsl(0 0% 100%) HSLA with percentages {"H":0,"S":"0%","L":"100%"} 1`] = `"rgb(255 255 255 / 1)"`;
 
-exports[`HSL tests for hsl(0 0% 100%) HSLA with percentages {"h":0,"s":"0%","l":"100%","a":1} 2`] = `"hsl(0 0% 100% / 1)"`;
+exports[`HSL tests for hsl(0 0% 100%) HSLA with percentages {"H":0,"S":"0%","L":"100%"} 2`] = `"hsl(0 0% 100% / 1)"`;
 
-exports[`HSL tests for hsl(0 100% 50%) HSL with percentages {"h":0,"s":"100%","l":"50%"} 1`] = `"rgb(255 0 0)"`;
+exports[`HSL tests for hsl(0 100% 50%) HSL with percentages {"H":0,"S":"100%","L":"50%"} 1`] = `"rgb(255 0 0)"`;
 
-exports[`HSL tests for hsl(0 100% 50%) HSL with percentages {"h":0,"s":"100%","l":"50%"} 2`] = `"hsl(0 100% 50%)"`;
+exports[`HSL tests for hsl(0 100% 50%) HSL with percentages {"H":0,"S":"100%","L":"50%"} 2`] = `"hsl(0 100% 50%)"`;
 
-exports[`HSL tests for hsl(0 100% 50%) HSLA with percentages {"h":0,"s":"100%","l":"50%","a":1} 1`] = `"rgb(255 0 0 / 1)"`;
+exports[`HSL tests for hsl(0 100% 50%) HSLA with percentages {"H":0,"S":"100%","L":"50%"} 1`] = `"rgb(255 0 0 / 1)"`;
 
-exports[`HSL tests for hsl(0 100% 50%) HSLA with percentages {"h":0,"s":"100%","l":"50%","a":1} 2`] = `"hsl(0 100% 50% / 1)"`;
+exports[`HSL tests for hsl(0 100% 50%) HSLA with percentages {"H":0,"S":"100%","L":"50%"} 2`] = `"hsl(0 100% 50% / 1)"`;
 
-exports[`HSL tests for hsl(120 100% 50%) HSL with percentages {"h":120,"s":"100%","l":"50%"} 1`] = `"rgb(0 255 0)"`;
+exports[`HSL tests for hsl(120 100% 50%) HSL with percentages {"H":120,"S":"100%","L":"50%"} 1`] = `"rgb(0 255 0)"`;
 
-exports[`HSL tests for hsl(120 100% 50%) HSL with percentages {"h":120,"s":"100%","l":"50%"} 2`] = `"hsl(120 100% 50%)"`;
+exports[`HSL tests for hsl(120 100% 50%) HSL with percentages {"H":120,"S":"100%","L":"50%"} 2`] = `"hsl(120 100% 50%)"`;
 
-exports[`HSL tests for hsl(120 100% 50%) HSLA with percentages {"h":120,"s":"100%","l":"50%","a":1} 1`] = `"rgb(0 255 0 / 1)"`;
+exports[`HSL tests for hsl(120 100% 50%) HSLA with percentages {"H":120,"S":"100%","L":"50%"} 1`] = `"rgb(0 255 0 / 1)"`;
 
-exports[`HSL tests for hsl(120 100% 50%) HSLA with percentages {"h":120,"s":"100%","l":"50%","a":1} 2`] = `"hsl(120 100% 50% / 1)"`;
+exports[`HSL tests for hsl(120 100% 50%) HSLA with percentages {"H":120,"S":"100%","L":"50%"} 2`] = `"hsl(120 100% 50% / 1)"`;
 
-exports[`HSL tests for hsl(240 100% 50%) HSL with percentages {"h":240,"s":"100%","l":"50%"} 1`] = `"rgb(0 0 255)"`;
+exports[`HSL tests for hsl(240 100% 50%) HSL with percentages {"H":240,"S":"100%","L":"50%"} 1`] = `"rgb(0 0 255)"`;
 
-exports[`HSL tests for hsl(240 100% 50%) HSL with percentages {"h":240,"s":"100%","l":"50%"} 2`] = `"hsl(240 100% 50%)"`;
+exports[`HSL tests for hsl(240 100% 50%) HSL with percentages {"H":240,"S":"100%","L":"50%"} 2`] = `"hsl(240 100% 50%)"`;
 
-exports[`HSL tests for hsl(240 100% 50%) HSLA with percentages {"h":240,"s":"100%","l":"50%","a":1} 1`] = `"rgb(0 0 255 / 1)"`;
+exports[`HSL tests for hsl(240 100% 50%) HSLA with percentages {"H":240,"S":"100%","L":"50%"} 1`] = `"rgb(0 0 255 / 1)"`;
 
-exports[`HSL tests for hsl(240 100% 50%) HSLA with percentages {"h":240,"s":"100%","l":"50%","a":1} 2`] = `"hsl(240 100% 50% / 1)"`;
+exports[`HSL tests for hsl(240 100% 50%) HSLA with percentages {"H":240,"S":"100%","L":"50%"} 2`] = `"hsl(240 100% 50% / 1)"`;
 
-exports[`HSL tests for hsl(300 100% 50%) HSL with percentages {"h":300,"s":"100%","l":"50%"} 1`] = `"rgb(255 0 255)"`;
+exports[`HSL tests for hsl(300 100% 50%) HSL with percentages {"H":300,"S":"100%","L":"50%"} 1`] = `"rgb(255 0 255)"`;
 
-exports[`HSL tests for hsl(300 100% 50%) HSL with percentages {"h":300,"s":"100%","l":"50%"} 2`] = `"hsl(300 100% 50%)"`;
+exports[`HSL tests for hsl(300 100% 50%) HSL with percentages {"H":300,"S":"100%","L":"50%"} 2`] = `"hsl(300 100% 50%)"`;
 
-exports[`HSL tests for hsl(300 100% 50%) HSLA with percentages {"h":300,"s":"100%","l":"50%","a":1} 1`] = `"rgb(255 0 255 / 1)"`;
+exports[`HSL tests for hsl(300 100% 50%) HSLA with percentages {"H":300,"S":"100%","L":"50%"} 1`] = `"rgb(255 0 255 / 1)"`;
 
-exports[`HSL tests for hsl(300 100% 50%) HSLA with percentages {"h":300,"s":"100%","l":"50%","a":1} 2`] = `"hsl(300 100% 50% / 1)"`;
+exports[`HSL tests for hsl(300 100% 50%) HSLA with percentages {"H":300,"S":"100%","L":"50%"} 2`] = `"hsl(300 100% 50% / 1)"`;

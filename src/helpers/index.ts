@@ -20,7 +20,7 @@ import {
 } from '#constants';
 
 //---Has property
-export const hasProp = <T>(obj: T, prop: string): boolean => Object.prototype.hasOwnProperty.call(obj, prop);
+export const hasProp = <T extends object, K = keyof T>(obj: T, prop: K): boolean => Object.prototype.hasOwnProperty.call(obj, prop);
 
 //---Get percent number
 export const percentNumber = (percent: NumberOrString): number => {
@@ -205,39 +205,39 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
 
             if (COLORREGS.RGB.test(color)) {
                 const match = color.match(COLORREGS.RGB);
-                const r = match[1] || match[5];
-                const g = match[2] || match[6];
-                const b = match[3] || match[7];
-                const a = match[8];
+                const R = match[1] || match[5];
+                const G = match[2] || match[6];
+                const B = match[3] || match[7];
+                const A = match[8];
                 rgbColors.push(
-                    PCENT.test(r) &&
-                    PCENT.test(g) &&
-                    PCENT.test(b)
+                    PCENT.test(R) &&
+                    PCENT.test(G) &&
+                    PCENT.test(B)
                 );
                 alphaValues.push(
-                    PCENT.test(a)
+                    PCENT.test(A)
                 );
                 continue;
             }
 
             if (color.match(COLORREGS.CMYK)) {
                 const match = color.match(COLORREGS.CMYK);
-                const c = match[1] || match[6];
-                const m = match[2] || match[7];
-                const y = match[3] || match[8];
-                const k = match[4] || match[9];
-                const a = match[10];
+                const C = match[1] || match[6];
+                const M = match[2] || match[7];
+                const Y = match[3] || match[8];
+                const K = match[4] || match[9];
+                const A = match[10];
                 cmykColors.push(
-                    PCENT.test(c) &&
-                    PCENT.test(m) &&
-                    PCENT.test(y) &&
-                    PCENT.test(k)
+                    PCENT.test(C) &&
+                    PCENT.test(M) &&
+                    PCENT.test(Y) &&
+                    PCENT.test(K)
                 );
                 if (color.startsWith('cmyk')) {
                     matchOptions.cmykFunction ++;
                 }
                 alphaValues.push(
-                    PCENT.test(a)
+                    PCENT.test(A)
                 );
             }
 

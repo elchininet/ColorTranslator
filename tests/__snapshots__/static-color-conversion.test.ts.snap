@@ -10,20 +10,20 @@ exports[`ColorTranslator static CMYK color conversion for "#000" toCMYKA method 
 
 exports[`ColorTranslator static CMYK color conversion for "#000" toCMYKAObject method with decimals from "#000" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "#000" toCMYKObject method with decimals from "#000" 1`] = `
 {
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -37,20 +37,20 @@ exports[`ColorTranslator static CMYK color conversion for "#00F" toCMYKA method 
 
 exports[`ColorTranslator static CMYK color conversion for "#00F" toCMYKAObject method with decimals from "#00F" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "#00F" toCMYKObject method with decimals from "#00F" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -64,20 +64,20 @@ exports[`ColorTranslator static CMYK color conversion for "#0F0" toCMYKA method 
 
 exports[`ColorTranslator static CMYK color conversion for "#0F0" toCMYKAObject method with decimals from "#0F0" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "#0F0" toCMYKObject method with decimals from "#0F0" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -91,20 +91,20 @@ exports[`ColorTranslator static CMYK color conversion for "#0FF" toCMYKA method 
 
 exports[`ColorTranslator static CMYK color conversion for "#0FF" toCMYKAObject method with decimals from "#0FF" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "#0FF" toCMYKObject method with decimals from "#0FF" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -118,20 +118,20 @@ exports[`ColorTranslator static CMYK color conversion for "#F00" toCMYKA method 
 
 exports[`ColorTranslator static CMYK color conversion for "#F00" toCMYKAObject method with decimals from "#F00" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "#F00" toCMYKObject method with decimals from "#F00" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
@@ -145,20 +145,20 @@ exports[`ColorTranslator static CMYK color conversion for "#F0F" toCMYKA method 
 
 exports[`ColorTranslator static CMYK color conversion for "#F0F" toCMYKAObject method with decimals from "#F0F" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "#F0F" toCMYKObject method with decimals from "#F0F" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -172,20 +172,20 @@ exports[`ColorTranslator static CMYK color conversion for "#FF0" toCMYKA method 
 
 exports[`ColorTranslator static CMYK color conversion for "#FF0" toCMYKAObject method with decimals from "#FF0" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "#FF0" toCMYKObject method with decimals from "#FF0" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -199,20 +199,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 0 0 1 /
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 0 0 1 / 1)" toCMYKAObject method with decimals from "device-cmyk(0 0 0 1 / 1)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 0 0 1 / 1)" toCMYKObject method with decimals from "device-cmyk(0 0 0 1 / 1)" 1`] = `
 {
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -226,20 +226,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 0 0 1 /
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 0 0 1 / 100%)" toCMYKAObject method with decimals from "device-cmyk(0 0 0 1 / 100%)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 0 0 1 / 100%)" toCMYKObject method with decimals from "device-cmyk(0 0 0 1 / 100%)" 1`] = `
 {
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -253,20 +253,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 0 0 1)"
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 0 0 1)" toCMYKAObject method with decimals from "device-cmyk(0 0 0 1)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 0 0 1)" toCMYKObject method with decimals from "device-cmyk(0 0 0 1)" 1`] = `
 {
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -280,20 +280,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 0 1 0 /
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 0 1 0 / 1)" toCMYKAObject method with decimals from "device-cmyk(0 0 1 0 / 1)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 0 1 0 / 1)" toCMYKObject method with decimals from "device-cmyk(0 0 1 0 / 1)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -307,20 +307,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 0 1 0 /
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 0 1 0 / 100%)" toCMYKAObject method with decimals from "device-cmyk(0 0 1 0 / 100%)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 0 1 0 / 100%)" toCMYKObject method with decimals from "device-cmyk(0 0 1 0 / 100%)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -334,20 +334,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 0 1 0)"
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 0 1 0)" toCMYKAObject method with decimals from "device-cmyk(0 0 1 0)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 0 1 0)" toCMYKObject method with decimals from "device-cmyk(0 0 1 0)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -361,20 +361,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 1 0 0 /
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 1 0 0 / 1)" toCMYKAObject method with decimals from "device-cmyk(0 1 0 0 / 1)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 1 0 0 / 1)" toCMYKObject method with decimals from "device-cmyk(0 1 0 0 / 1)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -388,20 +388,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 1 0 0 /
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 1 0 0 / 100%)" toCMYKAObject method with decimals from "device-cmyk(0 1 0 0 / 100%)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 1 0 0 / 100%)" toCMYKObject method with decimals from "device-cmyk(0 1 0 0 / 100%)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -415,20 +415,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 1 0 0)"
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 1 0 0)" toCMYKAObject method with decimals from "device-cmyk(0 1 0 0)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 1 0 0)" toCMYKObject method with decimals from "device-cmyk(0 1 0 0)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -442,20 +442,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 1 1 0 /
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 1 1 0 / 1)" toCMYKAObject method with decimals from "device-cmyk(0 1 1 0 / 1)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 1 1 0 / 1)" toCMYKObject method with decimals from "device-cmyk(0 1 1 0 / 1)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
@@ -469,20 +469,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 1 1 0 /
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 1 1 0 / 100%)" toCMYKAObject method with decimals from "device-cmyk(0 1 1 0 / 100%)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 1 1 0 / 100%)" toCMYKObject method with decimals from "device-cmyk(0 1 1 0 / 100%)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
@@ -496,20 +496,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 1 1 0)"
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 1 1 0)" toCMYKAObject method with decimals from "device-cmyk(0 1 1 0)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0 1 1 0)" toCMYKObject method with decimals from "device-cmyk(0 1 1 0)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
@@ -523,20 +523,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 0% 0% 
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 0% 0% 100% / 1)" toCMYKAObject method with decimals from "device-cmyk(0% 0% 0% 100% / 1)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 0% 0% 100% / 1)" toCMYKObject method with decimals from "device-cmyk(0% 0% 0% 100% / 1)" 1`] = `
 {
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -550,20 +550,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 0% 0% 
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 0% 0% 100% / 100%)" toCMYKAObject method with decimals from "device-cmyk(0% 0% 0% 100% / 100%)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 0% 0% 100% / 100%)" toCMYKObject method with decimals from "device-cmyk(0% 0% 0% 100% / 100%)" 1`] = `
 {
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -577,20 +577,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 0% 0% 
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 0% 0% 100%)" toCMYKAObject method with decimals from "device-cmyk(0% 0% 0% 100%)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 0% 0% 100%)" toCMYKObject method with decimals from "device-cmyk(0% 0% 0% 100%)" 1`] = `
 {
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -604,20 +604,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 0% 100
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 0% 100% 0% / 1)" toCMYKAObject method with decimals from "device-cmyk(0% 0% 100% 0% / 1)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 0% 100% 0% / 1)" toCMYKObject method with decimals from "device-cmyk(0% 0% 100% 0% / 1)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -631,20 +631,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 0% 100
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 0% 100% 0% / 100%)" toCMYKAObject method with decimals from "device-cmyk(0% 0% 100% 0% / 100%)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 0% 100% 0% / 100%)" toCMYKObject method with decimals from "device-cmyk(0% 0% 100% 0% / 100%)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -658,20 +658,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 0% 100
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 0% 100% 0%)" toCMYKAObject method with decimals from "device-cmyk(0% 0% 100% 0%)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 0% 100% 0%)" toCMYKObject method with decimals from "device-cmyk(0% 0% 100% 0%)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -685,20 +685,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 100% 0
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 100% 0% 0% / 1)" toCMYKAObject method with decimals from "device-cmyk(0% 100% 0% 0% / 1)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 100% 0% 0% / 1)" toCMYKObject method with decimals from "device-cmyk(0% 100% 0% 0% / 1)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -712,20 +712,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 100% 0
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 100% 0% 0% / 100%)" toCMYKAObject method with decimals from "device-cmyk(0% 100% 0% 0% / 100%)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 100% 0% 0% / 100%)" toCMYKObject method with decimals from "device-cmyk(0% 100% 0% 0% / 100%)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -739,20 +739,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 100% 0
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 100% 0% 0%)" toCMYKAObject method with decimals from "device-cmyk(0% 100% 0% 0%)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 100% 0% 0%)" toCMYKObject method with decimals from "device-cmyk(0% 100% 0% 0%)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -766,20 +766,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 100% 1
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 100% 100% 0% / 1)" toCMYKAObject method with decimals from "device-cmyk(0% 100% 100% 0% / 1)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 100% 100% 0% / 1)" toCMYKObject method with decimals from "device-cmyk(0% 100% 100% 0% / 1)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
@@ -793,20 +793,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 100% 1
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 100% 100% 0% / 100%)" toCMYKAObject method with decimals from "device-cmyk(0% 100% 100% 0% / 100%)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 100% 100% 0% / 100%)" toCMYKObject method with decimals from "device-cmyk(0% 100% 100% 0% / 100%)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
@@ -820,20 +820,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 100% 1
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 100% 100% 0%)" toCMYKAObject method with decimals from "device-cmyk(0% 100% 100% 0%)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0% 100% 100% 0%)" toCMYKObject method with decimals from "device-cmyk(0% 100% 100% 0%)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
@@ -847,20 +847,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,0%,0%,
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,0%,0%,100%)" toCMYKAObject method with decimals from "device-cmyk(0%,0%,0%,100%)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,0%,0%,100%)" toCMYKObject method with decimals from "device-cmyk(0%,0%,0%,100%)" 1`] = `
 {
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -874,20 +874,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,0%,0%,
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,0%,0%,100%,1)" toCMYKAObject method with decimals from "device-cmyk(0%,0%,0%,100%,1)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,0%,0%,100%,1)" toCMYKObject method with decimals from "device-cmyk(0%,0%,0%,100%,1)" 1`] = `
 {
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -901,20 +901,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,0%,100
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,0%,100%,0%)" toCMYKAObject method with decimals from "device-cmyk(0%,0%,100%,0%)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,0%,100%,0%)" toCMYKObject method with decimals from "device-cmyk(0%,0%,100%,0%)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -928,20 +928,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,0%,100
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,0%,100%,0%,1)" toCMYKAObject method with decimals from "device-cmyk(0%,0%,100%,0%,1)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,0%,100%,0%,1)" toCMYKObject method with decimals from "device-cmyk(0%,0%,100%,0%,1)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -955,20 +955,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,100%,0
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,100%,0%,0%)" toCMYKAObject method with decimals from "device-cmyk(0%,100%,0%,0%)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,100%,0%,0%)" toCMYKObject method with decimals from "device-cmyk(0%,100%,0%,0%)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -982,20 +982,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,100%,0
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,100%,0%,0%,1)" toCMYKAObject method with decimals from "device-cmyk(0%,100%,0%,0%,1)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,100%,0%,0%,1)" toCMYKObject method with decimals from "device-cmyk(0%,100%,0%,0%,1)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -1009,20 +1009,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,100%,1
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,100%,100%,0%)" toCMYKAObject method with decimals from "device-cmyk(0%,100%,100%,0%)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,100%,100%,0%)" toCMYKObject method with decimals from "device-cmyk(0%,100%,100%,0%)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
@@ -1036,20 +1036,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,100%,1
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,100%,100%,0%,1)" toCMYKAObject method with decimals from "device-cmyk(0%,100%,100%,0%,1)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0%,100%,100%,0%,1)" toCMYKObject method with decimals from "device-cmyk(0%,100%,100%,0%,1)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
@@ -1063,20 +1063,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,0,0,1)"
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,0,0,1)" toCMYKAObject method with decimals from "device-cmyk(0,0,0,1)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,0,0,1)" toCMYKObject method with decimals from "device-cmyk(0,0,0,1)" 1`] = `
 {
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -1090,20 +1090,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,0,0,1,1
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,0,0,1,1)" toCMYKAObject method with decimals from "device-cmyk(0,0,0,1,1)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,0,0,1,1)" toCMYKObject method with decimals from "device-cmyk(0,0,0,1,1)" 1`] = `
 {
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -1117,20 +1117,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,0,1,0)"
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,0,1,0)" toCMYKAObject method with decimals from "device-cmyk(0,0,1,0)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,0,1,0)" toCMYKObject method with decimals from "device-cmyk(0,0,1,0)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -1144,20 +1144,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,0,1,0,1
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,0,1,0,1)" toCMYKAObject method with decimals from "device-cmyk(0,0,1,0,1)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,0,1,0,1)" toCMYKObject method with decimals from "device-cmyk(0,0,1,0,1)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -1171,20 +1171,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,1,0,0)"
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,1,0,0)" toCMYKAObject method with decimals from "device-cmyk(0,1,0,0)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,1,0,0)" toCMYKObject method with decimals from "device-cmyk(0,1,0,0)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -1198,20 +1198,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,1,0,0,1
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,1,0,0,1)" toCMYKAObject method with decimals from "device-cmyk(0,1,0,0,1)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,1,0,0,1)" toCMYKObject method with decimals from "device-cmyk(0,1,0,0,1)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -1225,20 +1225,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,1,1,0)"
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,1,1,0)" toCMYKAObject method with decimals from "device-cmyk(0,1,1,0)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,1,1,0)" toCMYKObject method with decimals from "device-cmyk(0,1,1,0)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
@@ -1252,20 +1252,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,1,1,0,1
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,1,1,0,1)" toCMYKAObject method with decimals from "device-cmyk(0,1,1,0,1)" 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(0,1,1,0,1)" toCMYKObject method with decimals from "device-cmyk(0,1,1,0,1)" 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
@@ -1279,20 +1279,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 0 0 0 /
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 0 0 0 / 1)" toCMYKAObject method with decimals from "device-cmyk(1 0 0 0 / 1)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 0 0 0 / 1)" toCMYKObject method with decimals from "device-cmyk(1 0 0 0 / 1)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -1306,20 +1306,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 0 0 0 /
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 0 0 0 / 100%)" toCMYKAObject method with decimals from "device-cmyk(1 0 0 0 / 100%)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 0 0 0 / 100%)" toCMYKObject method with decimals from "device-cmyk(1 0 0 0 / 100%)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -1333,20 +1333,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 0 0 0)"
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 0 0 0)" toCMYKAObject method with decimals from "device-cmyk(1 0 0 0)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 0 0 0)" toCMYKObject method with decimals from "device-cmyk(1 0 0 0)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -1360,20 +1360,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 0 1 0 /
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 0 1 0 / 1)" toCMYKAObject method with decimals from "device-cmyk(1 0 1 0 / 1)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 0 1 0 / 1)" toCMYKObject method with decimals from "device-cmyk(1 0 1 0 / 1)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -1387,20 +1387,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 0 1 0 /
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 0 1 0 / 100%)" toCMYKAObject method with decimals from "device-cmyk(1 0 1 0 / 100%)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 0 1 0 / 100%)" toCMYKObject method with decimals from "device-cmyk(1 0 1 0 / 100%)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -1414,20 +1414,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 0 1 0)"
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 0 1 0)" toCMYKAObject method with decimals from "device-cmyk(1 0 1 0)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 0 1 0)" toCMYKObject method with decimals from "device-cmyk(1 0 1 0)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -1441,20 +1441,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 1 0 0 /
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 1 0 0 / 1)" toCMYKAObject method with decimals from "device-cmyk(1 1 0 0 / 1)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 1 0 0 / 1)" toCMYKObject method with decimals from "device-cmyk(1 1 0 0 / 1)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -1468,20 +1468,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 1 0 0 /
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 1 0 0 / 100%)" toCMYKAObject method with decimals from "device-cmyk(1 1 0 0 / 100%)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 1 0 0 / 100%)" toCMYKObject method with decimals from "device-cmyk(1 1 0 0 / 100%)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -1495,20 +1495,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 1 0 0)"
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 1 0 0)" toCMYKAObject method with decimals from "device-cmyk(1 1 0 0)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1 1 0 0)" toCMYKObject method with decimals from "device-cmyk(1 1 0 0)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -1522,20 +1522,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1,0,0,0)"
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1,0,0,0)" toCMYKAObject method with decimals from "device-cmyk(1,0,0,0)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1,0,0,0)" toCMYKObject method with decimals from "device-cmyk(1,0,0,0)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -1549,20 +1549,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1,0,0,0,1
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1,0,0,0,1)" toCMYKAObject method with decimals from "device-cmyk(1,0,0,0,1)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1,0,0,0,1)" toCMYKObject method with decimals from "device-cmyk(1,0,0,0,1)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -1576,20 +1576,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1,0,1,0)"
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1,0,1,0)" toCMYKAObject method with decimals from "device-cmyk(1,0,1,0)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1,0,1,0)" toCMYKObject method with decimals from "device-cmyk(1,0,1,0)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -1603,20 +1603,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1,0,1,0,1
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1,0,1,0,1)" toCMYKAObject method with decimals from "device-cmyk(1,0,1,0,1)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1,0,1,0,1)" toCMYKObject method with decimals from "device-cmyk(1,0,1,0,1)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -1630,20 +1630,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1,1,0,0)"
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1,1,0,0)" toCMYKAObject method with decimals from "device-cmyk(1,1,0,0)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1,1,0,0)" toCMYKObject method with decimals from "device-cmyk(1,1,0,0)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -1657,20 +1657,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1,1,0,0,1
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1,1,0,0,1)" toCMYKAObject method with decimals from "device-cmyk(1,1,0,0,1)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(1,1,0,0,1)" toCMYKObject method with decimals from "device-cmyk(1,1,0,0,1)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -1684,20 +1684,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 0% 0
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 0% 0% 0% / 1)" toCMYKAObject method with decimals from "device-cmyk(100% 0% 0% 0% / 1)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 0% 0% 0% / 1)" toCMYKObject method with decimals from "device-cmyk(100% 0% 0% 0% / 1)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -1711,20 +1711,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 0% 0
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 0% 0% 0% / 100%)" toCMYKAObject method with decimals from "device-cmyk(100% 0% 0% 0% / 100%)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 0% 0% 0% / 100%)" toCMYKObject method with decimals from "device-cmyk(100% 0% 0% 0% / 100%)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -1738,20 +1738,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 0% 0
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 0% 0% 0%)" toCMYKAObject method with decimals from "device-cmyk(100% 0% 0% 0%)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 0% 0% 0%)" toCMYKObject method with decimals from "device-cmyk(100% 0% 0% 0%)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -1765,20 +1765,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 0% 1
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 0% 100% 0% / 1)" toCMYKAObject method with decimals from "device-cmyk(100% 0% 100% 0% / 1)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 0% 100% 0% / 1)" toCMYKObject method with decimals from "device-cmyk(100% 0% 100% 0% / 1)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -1792,20 +1792,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 0% 1
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 0% 100% 0% / 100%)" toCMYKAObject method with decimals from "device-cmyk(100% 0% 100% 0% / 100%)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 0% 100% 0% / 100%)" toCMYKObject method with decimals from "device-cmyk(100% 0% 100% 0% / 100%)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -1819,20 +1819,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 0% 1
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 0% 100% 0%)" toCMYKAObject method with decimals from "device-cmyk(100% 0% 100% 0%)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 0% 100% 0%)" toCMYKObject method with decimals from "device-cmyk(100% 0% 100% 0%)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -1846,20 +1846,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 100%
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 100% 0% 0% / 1)" toCMYKAObject method with decimals from "device-cmyk(100% 100% 0% 0% / 1)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 100% 0% 0% / 1)" toCMYKObject method with decimals from "device-cmyk(100% 100% 0% 0% / 1)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -1873,20 +1873,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 100%
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 100% 0% 0% / 100%)" toCMYKAObject method with decimals from "device-cmyk(100% 100% 0% 0% / 100%)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 100% 0% 0% / 100%)" toCMYKObject method with decimals from "device-cmyk(100% 100% 0% 0% / 100%)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -1900,20 +1900,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 100%
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 100% 0% 0%)" toCMYKAObject method with decimals from "device-cmyk(100% 100% 0% 0%)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100% 100% 0% 0%)" toCMYKObject method with decimals from "device-cmyk(100% 100% 0% 0%)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -1927,20 +1927,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100%,0%,0
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100%,0%,0%,0%)" toCMYKAObject method with decimals from "device-cmyk(100%,0%,0%,0%)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100%,0%,0%,0%)" toCMYKObject method with decimals from "device-cmyk(100%,0%,0%,0%)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -1954,20 +1954,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100%,0%,0
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100%,0%,0%,0%,1)" toCMYKAObject method with decimals from "device-cmyk(100%,0%,0%,0%,1)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100%,0%,0%,0%,1)" toCMYKObject method with decimals from "device-cmyk(100%,0%,0%,0%,1)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
@@ -1981,20 +1981,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100%,0%,1
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100%,0%,100%,0%)" toCMYKAObject method with decimals from "device-cmyk(100%,0%,100%,0%)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100%,0%,100%,0%)" toCMYKObject method with decimals from "device-cmyk(100%,0%,100%,0%)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -2008,20 +2008,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100%,0%,1
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100%,0%,100%,0%,1)" toCMYKAObject method with decimals from "device-cmyk(100%,0%,100%,0%,1)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100%,0%,100%,0%,1)" toCMYKObject method with decimals from "device-cmyk(100%,0%,100%,0%,1)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
@@ -2035,20 +2035,20 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100%,100%
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100%,100%,0%,0%)" toCMYKAObject method with decimals from "device-cmyk(100%,100%,0%,0%)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100%,100%,0%,0%)" toCMYKObject method with decimals from "device-cmyk(100%,100%,0%,0%)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
@@ -2062,964 +2062,964 @@ exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100%,100%
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100%,100%,0%,0%,1)" toCMYKAObject method with decimals from "device-cmyk(100%,100%,0%,0%,1)" 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
 exports[`ColorTranslator static CMYK color conversion for "device-cmyk(100%,100%,0%,0%,1)" toCMYKObject method with decimals from "device-cmyk(100%,100%,0%,0%,1)" 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"0%","k":"100%"} toCMYK method with decimals and auto legacyCSS from {"c":"0%","m":"0%","y":"0%","k":"100%"} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"0%","Y":"0%","K":"100%"} toCMYK method with decimals and auto legacyCSS from {"C":"0%","M":"0%","Y":"0%","K":"100%"} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"0%","k":"100%"} toCMYK method with decimals from {"c":"0%","m":"0%","y":"0%","k":"100%"} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"0%","Y":"0%","K":"100%"} toCMYK method with decimals from {"C":"0%","M":"0%","Y":"0%","K":"100%"} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"0%","k":"100%"} toCMYKA method with decimals and auto legacyCSS from {"c":"0%","m":"0%","y":"0%","k":"100%"} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"0%","Y":"0%","K":"100%"} toCMYKA method with decimals and auto legacyCSS from {"C":"0%","M":"0%","Y":"0%","K":"100%"} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"0%","k":"100%"} toCMYKA method with decimals from {"c":"0%","m":"0%","y":"0%","k":"100%"} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"0%","Y":"0%","K":"100%"} toCMYKA method with decimals from {"C":"0%","M":"0%","Y":"0%","K":"100%"} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"0%","k":"100%"} toCMYKAObject method with decimals from {"c":"0%","m":"0%","y":"0%","k":"100%"} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"0%","Y":"0%","K":"100%"} toCMYKAObject method with decimals from {"C":"0%","M":"0%","Y":"0%","K":"100%"} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"0%","k":"100%"} toCMYKObject method with decimals from {"c":"0%","m":"0%","y":"0%","k":"100%"} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"0%","Y":"0%","K":"100%"} toCMYKObject method with decimals from {"C":"0%","M":"0%","Y":"0%","K":"100%"} 1`] = `
 {
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"100%","k":"0%"} toCMYK method with decimals and auto legacyCSS from {"c":"0%","m":"0%","y":"100%","k":"0%"} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"0%","Y":"100%","K":"0%"} toCMYK method with decimals and auto legacyCSS from {"C":"0%","M":"0%","Y":"100%","K":"0%"} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"100%","k":"0%"} toCMYK method with decimals from {"c":"0%","m":"0%","y":"100%","k":"0%"} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"0%","Y":"100%","K":"0%"} toCMYK method with decimals from {"C":"0%","M":"0%","Y":"100%","K":"0%"} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"100%","k":"0%"} toCMYKA method with decimals and auto legacyCSS from {"c":"0%","m":"0%","y":"100%","k":"0%"} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"0%","Y":"100%","K":"0%"} toCMYKA method with decimals and auto legacyCSS from {"C":"0%","M":"0%","Y":"100%","K":"0%"} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"100%","k":"0%"} toCMYKA method with decimals from {"c":"0%","m":"0%","y":"100%","k":"0%"} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"0%","Y":"100%","K":"0%"} toCMYKA method with decimals from {"C":"0%","M":"0%","Y":"100%","K":"0%"} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"100%","k":"0%"} toCMYKAObject method with decimals from {"c":"0%","m":"0%","y":"100%","k":"0%"} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"0%","Y":"100%","K":"0%"} toCMYKAObject method with decimals from {"C":"0%","M":"0%","Y":"100%","K":"0%"} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"0%","y":"100%","k":"0%"} toCMYKObject method with decimals from {"c":"0%","m":"0%","y":"100%","k":"0%"} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"0%","Y":"100%","K":"0%"} toCMYKObject method with decimals from {"C":"0%","M":"0%","Y":"100%","K":"0%"} 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"0%","k":"0%"} toCMYK method with decimals and auto legacyCSS from {"c":"0%","m":"100%","y":"0%","k":"0%"} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"100%","Y":"0%","K":"0%"} toCMYK method with decimals and auto legacyCSS from {"C":"0%","M":"100%","Y":"0%","K":"0%"} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"0%","k":"0%"} toCMYK method with decimals from {"c":"0%","m":"100%","y":"0%","k":"0%"} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"100%","Y":"0%","K":"0%"} toCMYK method with decimals from {"C":"0%","M":"100%","Y":"0%","K":"0%"} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"0%","k":"0%"} toCMYKA method with decimals and auto legacyCSS from {"c":"0%","m":"100%","y":"0%","k":"0%"} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"100%","Y":"0%","K":"0%"} toCMYKA method with decimals and auto legacyCSS from {"C":"0%","M":"100%","Y":"0%","K":"0%"} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"0%","k":"0%"} toCMYKA method with decimals from {"c":"0%","m":"100%","y":"0%","k":"0%"} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"100%","Y":"0%","K":"0%"} toCMYKA method with decimals from {"C":"0%","M":"100%","Y":"0%","K":"0%"} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"0%","k":"0%"} toCMYKAObject method with decimals from {"c":"0%","m":"100%","y":"0%","k":"0%"} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"100%","Y":"0%","K":"0%"} toCMYKAObject method with decimals from {"C":"0%","M":"100%","Y":"0%","K":"0%"} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"0%","k":"0%"} toCMYKObject method with decimals from {"c":"0%","m":"100%","y":"0%","k":"0%"} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"100%","Y":"0%","K":"0%"} toCMYKObject method with decimals from {"C":"0%","M":"100%","Y":"0%","K":"0%"} 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"100%","k":"0%"} toCMYK method with decimals and auto legacyCSS from {"c":"0%","m":"100%","y":"100%","k":"0%"} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"100%","Y":"100%","K":"0%"} toCMYK method with decimals and auto legacyCSS from {"C":"0%","M":"100%","Y":"100%","K":"0%"} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"100%","k":"0%"} toCMYK method with decimals from {"c":"0%","m":"100%","y":"100%","k":"0%"} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"100%","Y":"100%","K":"0%"} toCMYK method with decimals from {"C":"0%","M":"100%","Y":"100%","K":"0%"} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"100%","k":"0%"} toCMYKA method with decimals and auto legacyCSS from {"c":"0%","m":"100%","y":"100%","k":"0%"} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"100%","Y":"100%","K":"0%"} toCMYKA method with decimals and auto legacyCSS from {"C":"0%","M":"100%","Y":"100%","K":"0%"} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"100%","k":"0%"} toCMYKA method with decimals from {"c":"0%","m":"100%","y":"100%","k":"0%"} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"100%","Y":"100%","K":"0%"} toCMYKA method with decimals from {"C":"0%","M":"100%","Y":"100%","K":"0%"} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"100%","k":"0%"} toCMYKAObject method with decimals from {"c":"0%","m":"100%","y":"100%","k":"0%"} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"100%","Y":"100%","K":"0%"} toCMYKAObject method with decimals from {"C":"0%","M":"100%","Y":"100%","K":"0%"} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"0%","m":"100%","y":"100%","k":"0%"} toCMYKObject method with decimals from {"c":"0%","m":"100%","y":"100%","k":"0%"} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":"0%","M":"100%","Y":"100%","K":"0%"} toCMYKObject method with decimals from {"C":"0%","M":"100%","Y":"100%","K":"0%"} 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"0%","k":"0%"} toCMYK method with decimals and auto legacyCSS from {"c":"100%","m":"0%","y":"0%","k":"0%"} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"100%","M":"0%","Y":"0%","K":"0%"} toCMYK method with decimals and auto legacyCSS from {"C":"100%","M":"0%","Y":"0%","K":"0%"} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"0%","k":"0%"} toCMYK method with decimals from {"c":"100%","m":"0%","y":"0%","k":"0%"} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"100%","M":"0%","Y":"0%","K":"0%"} toCMYK method with decimals from {"C":"100%","M":"0%","Y":"0%","K":"0%"} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"0%","k":"0%"} toCMYKA method with decimals and auto legacyCSS from {"c":"100%","m":"0%","y":"0%","k":"0%"} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"100%","M":"0%","Y":"0%","K":"0%"} toCMYKA method with decimals and auto legacyCSS from {"C":"100%","M":"0%","Y":"0%","K":"0%"} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"0%","k":"0%"} toCMYKA method with decimals from {"c":"100%","m":"0%","y":"0%","k":"0%"} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"100%","M":"0%","Y":"0%","K":"0%"} toCMYKA method with decimals from {"C":"100%","M":"0%","Y":"0%","K":"0%"} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"0%","k":"0%"} toCMYKAObject method with decimals from {"c":"100%","m":"0%","y":"0%","k":"0%"} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":"100%","M":"0%","Y":"0%","K":"0%"} toCMYKAObject method with decimals from {"C":"100%","M":"0%","Y":"0%","K":"0%"} 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"0%","k":"0%"} toCMYKObject method with decimals from {"c":"100%","m":"0%","y":"0%","k":"0%"} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":"100%","M":"0%","Y":"0%","K":"0%"} toCMYKObject method with decimals from {"C":"100%","M":"0%","Y":"0%","K":"0%"} 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"100%","k":"0%"} toCMYK method with decimals and auto legacyCSS from {"c":"100%","m":"0%","y":"100%","k":"0%"} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"100%","M":"0%","Y":"100%","K":"0%"} toCMYK method with decimals and auto legacyCSS from {"C":"100%","M":"0%","Y":"100%","K":"0%"} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"100%","k":"0%"} toCMYK method with decimals from {"c":"100%","m":"0%","y":"100%","k":"0%"} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"100%","M":"0%","Y":"100%","K":"0%"} toCMYK method with decimals from {"C":"100%","M":"0%","Y":"100%","K":"0%"} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"100%","k":"0%"} toCMYKA method with decimals and auto legacyCSS from {"c":"100%","m":"0%","y":"100%","k":"0%"} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"100%","M":"0%","Y":"100%","K":"0%"} toCMYKA method with decimals and auto legacyCSS from {"C":"100%","M":"0%","Y":"100%","K":"0%"} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"100%","k":"0%"} toCMYKA method with decimals from {"c":"100%","m":"0%","y":"100%","k":"0%"} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"100%","M":"0%","Y":"100%","K":"0%"} toCMYKA method with decimals from {"C":"100%","M":"0%","Y":"100%","K":"0%"} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"100%","k":"0%"} toCMYKAObject method with decimals from {"c":"100%","m":"0%","y":"100%","k":"0%"} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":"100%","M":"0%","Y":"100%","K":"0%"} toCMYKAObject method with decimals from {"C":"100%","M":"0%","Y":"100%","K":"0%"} 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"0%","y":"100%","k":"0%"} toCMYKObject method with decimals from {"c":"100%","m":"0%","y":"100%","k":"0%"} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":"100%","M":"0%","Y":"100%","K":"0%"} toCMYKObject method with decimals from {"C":"100%","M":"0%","Y":"100%","K":"0%"} 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"100%","y":"0%","k":"0%"} toCMYK method with decimals and auto legacyCSS from {"c":"100%","m":"100%","y":"0%","k":"0%"} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"100%","M":"100%","Y":"0%","K":"0%"} toCMYK method with decimals and auto legacyCSS from {"C":"100%","M":"100%","Y":"0%","K":"0%"} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"100%","y":"0%","k":"0%"} toCMYK method with decimals from {"c":"100%","m":"100%","y":"0%","k":"0%"} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"100%","M":"100%","Y":"0%","K":"0%"} toCMYK method with decimals from {"C":"100%","M":"100%","Y":"0%","K":"0%"} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"100%","y":"0%","k":"0%"} toCMYKA method with decimals and auto legacyCSS from {"c":"100%","m":"100%","y":"0%","k":"0%"} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"100%","M":"100%","Y":"0%","K":"0%"} toCMYKA method with decimals and auto legacyCSS from {"C":"100%","M":"100%","Y":"0%","K":"0%"} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"100%","y":"0%","k":"0%"} toCMYKA method with decimals from {"c":"100%","m":"100%","y":"0%","k":"0%"} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":"100%","M":"100%","Y":"0%","K":"0%"} toCMYKA method with decimals from {"C":"100%","M":"100%","Y":"0%","K":"0%"} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"100%","y":"0%","k":"0%"} toCMYKAObject method with decimals from {"c":"100%","m":"100%","y":"0%","k":"0%"} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":"100%","M":"100%","Y":"0%","K":"0%"} toCMYKAObject method with decimals from {"C":"100%","M":"100%","Y":"0%","K":"0%"} 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":"100%","m":"100%","y":"0%","k":"0%"} toCMYKObject method with decimals from {"c":"100%","m":"100%","y":"0%","k":"0%"} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":"100%","M":"100%","Y":"0%","K":"0%"} toCMYKObject method with decimals from {"C":"100%","M":"100%","Y":"0%","K":"0%"} 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1,"a":1} toCMYK method with decimals and auto legacyCSS from {"c":0,"m":0,"y":0,"k":1,"a":1} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":1,"A":1} toCMYK method with decimals and auto legacyCSS from {"C":0,"M":0,"Y":0,"K":1,"A":1} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1,"a":1} toCMYK method with decimals from {"c":0,"m":0,"y":0,"k":1,"a":1} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":1,"A":1} toCMYK method with decimals from {"C":0,"M":0,"Y":0,"K":1,"A":1} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1,"a":1} toCMYKA method with decimals and auto legacyCSS from {"c":0,"m":0,"y":0,"k":1,"a":1} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":1,"A":1} toCMYKA method with decimals and auto legacyCSS from {"C":0,"M":0,"Y":0,"K":1,"A":1} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1,"a":1} toCMYKA method with decimals from {"c":0,"m":0,"y":0,"k":1,"a":1} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":1,"A":1} toCMYKA method with decimals from {"C":0,"M":0,"Y":0,"K":1,"A":1} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1,"a":1} toCMYKAObject method with decimals from {"c":0,"m":0,"y":0,"k":1,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":1,"A":1} toCMYKAObject method with decimals from {"C":0,"M":0,"Y":0,"K":1,"A":1} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1,"a":1} toCMYKObject method with decimals from {"c":0,"m":0,"y":0,"k":1,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":1,"A":1} toCMYKObject method with decimals from {"C":0,"M":0,"Y":0,"K":1,"A":1} 1`] = `
 {
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1} toCMYK method with decimals and auto legacyCSS from {"c":0,"m":0,"y":0,"k":1} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":1} toCMYK method with decimals and auto legacyCSS from {"C":0,"M":0,"Y":0,"K":1} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1} toCMYK method with decimals from {"c":0,"m":0,"y":0,"k":1} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":1} toCMYK method with decimals from {"C":0,"M":0,"Y":0,"K":1} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1} toCMYKA method with decimals and auto legacyCSS from {"c":0,"m":0,"y":0,"k":1} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":1} toCMYKA method with decimals and auto legacyCSS from {"C":0,"M":0,"Y":0,"K":1} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1} toCMYKA method with decimals from {"c":0,"m":0,"y":0,"k":1} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":1} toCMYKA method with decimals from {"C":0,"M":0,"Y":0,"K":1} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1} toCMYKAObject method with decimals from {"c":0,"m":0,"y":0,"k":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":1} toCMYKAObject method with decimals from {"C":0,"M":0,"Y":0,"K":1} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":1} toCMYKObject method with decimals from {"c":0,"m":0,"y":0,"k":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":1} toCMYKObject method with decimals from {"C":0,"M":0,"Y":0,"K":1} 1`] = `
 {
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100,"a":1} toCMYK method with decimals and auto legacyCSS from {"c":0,"m":0,"y":0,"k":100,"a":1} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":100,"A":1} toCMYK method with decimals and auto legacyCSS from {"C":0,"M":0,"Y":0,"K":100,"A":1} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100,"a":1} toCMYK method with decimals from {"c":0,"m":0,"y":0,"k":100,"a":1} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":100,"A":1} toCMYK method with decimals from {"C":0,"M":0,"Y":0,"K":100,"A":1} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100,"a":1} toCMYKA method with decimals and auto legacyCSS from {"c":0,"m":0,"y":0,"k":100,"a":1} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":100,"A":1} toCMYKA method with decimals and auto legacyCSS from {"C":0,"M":0,"Y":0,"K":100,"A":1} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100,"a":1} toCMYKA method with decimals from {"c":0,"m":0,"y":0,"k":100,"a":1} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":100,"A":1} toCMYKA method with decimals from {"C":0,"M":0,"Y":0,"K":100,"A":1} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100,"a":1} toCMYKAObject method with decimals from {"c":0,"m":0,"y":0,"k":100,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":100,"A":1} toCMYKAObject method with decimals from {"C":0,"M":0,"Y":0,"K":100,"A":1} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100,"a":1} toCMYKObject method with decimals from {"c":0,"m":0,"y":0,"k":100,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":100,"A":1} toCMYKObject method with decimals from {"C":0,"M":0,"Y":0,"K":100,"A":1} 1`] = `
 {
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100} toCMYK method with decimals and auto legacyCSS from {"c":0,"m":0,"y":0,"k":100} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":100} toCMYK method with decimals and auto legacyCSS from {"C":0,"M":0,"Y":0,"K":100} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100} toCMYK method with decimals from {"c":0,"m":0,"y":0,"k":100} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":100} toCMYK method with decimals from {"C":0,"M":0,"Y":0,"K":100} 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100} toCMYKA method with decimals and auto legacyCSS from {"c":0,"m":0,"y":0,"k":100} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":100} toCMYKA method with decimals and auto legacyCSS from {"C":0,"M":0,"Y":0,"K":100} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100} toCMYKA method with decimals from {"c":0,"m":0,"y":0,"k":100} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":100} toCMYKA method with decimals from {"C":0,"M":0,"Y":0,"K":100} 1`] = `"device-cmyk(0% 0% 0% 100% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100} toCMYKAObject method with decimals from {"c":0,"m":0,"y":0,"k":100} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":100} toCMYKAObject method with decimals from {"C":0,"M":0,"Y":0,"K":100} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":0,"k":100} toCMYKObject method with decimals from {"c":0,"m":0,"y":0,"k":100} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":0,"K":100} toCMYKObject method with decimals from {"C":0,"M":0,"Y":0,"K":100} 1`] = `
 {
-  "c": 0,
-  "k": 100,
-  "m": 0,
-  "y": 0,
+  "C": 0,
+  "K": 100,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0,"a":1} toCMYK method with decimals and auto legacyCSS from {"c":0,"m":0,"y":1,"k":0,"a":1} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":1,"K":0,"A":1} toCMYK method with decimals and auto legacyCSS from {"C":0,"M":0,"Y":1,"K":0,"A":1} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0,"a":1} toCMYK method with decimals from {"c":0,"m":0,"y":1,"k":0,"a":1} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":1,"K":0,"A":1} toCMYK method with decimals from {"C":0,"M":0,"Y":1,"K":0,"A":1} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0,"a":1} toCMYKA method with decimals and auto legacyCSS from {"c":0,"m":0,"y":1,"k":0,"a":1} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":1,"K":0,"A":1} toCMYKA method with decimals and auto legacyCSS from {"C":0,"M":0,"Y":1,"K":0,"A":1} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0,"a":1} toCMYKA method with decimals from {"c":0,"m":0,"y":1,"k":0,"a":1} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":1,"K":0,"A":1} toCMYKA method with decimals from {"C":0,"M":0,"Y":1,"K":0,"A":1} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0,"a":1} toCMYKAObject method with decimals from {"c":0,"m":0,"y":1,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":1,"K":0,"A":1} toCMYKAObject method with decimals from {"C":0,"M":0,"Y":1,"K":0,"A":1} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0,"a":1} toCMYKObject method with decimals from {"c":0,"m":0,"y":1,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":1,"K":0,"A":1} toCMYKObject method with decimals from {"C":0,"M":0,"Y":1,"K":0,"A":1} 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0} toCMYK method with decimals and auto legacyCSS from {"c":0,"m":0,"y":1,"k":0} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":1,"K":0} toCMYK method with decimals and auto legacyCSS from {"C":0,"M":0,"Y":1,"K":0} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0} toCMYK method with decimals from {"c":0,"m":0,"y":1,"k":0} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":1,"K":0} toCMYK method with decimals from {"C":0,"M":0,"Y":1,"K":0} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0} toCMYKA method with decimals and auto legacyCSS from {"c":0,"m":0,"y":1,"k":0} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":1,"K":0} toCMYKA method with decimals and auto legacyCSS from {"C":0,"M":0,"Y":1,"K":0} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0} toCMYKA method with decimals from {"c":0,"m":0,"y":1,"k":0} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":1,"K":0} toCMYKA method with decimals from {"C":0,"M":0,"Y":1,"K":0} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0} toCMYKAObject method with decimals from {"c":0,"m":0,"y":1,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":1,"K":0} toCMYKAObject method with decimals from {"C":0,"M":0,"Y":1,"K":0} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":1,"k":0} toCMYKObject method with decimals from {"c":0,"m":0,"y":1,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":1,"K":0} toCMYKObject method with decimals from {"C":0,"M":0,"Y":1,"K":0} 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0,"a":1} toCMYK method with decimals and auto legacyCSS from {"c":0,"m":0,"y":100,"k":0,"a":1} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":100,"K":0,"A":1} toCMYK method with decimals and auto legacyCSS from {"C":0,"M":0,"Y":100,"K":0,"A":1} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0,"a":1} toCMYK method with decimals from {"c":0,"m":0,"y":100,"k":0,"a":1} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":100,"K":0,"A":1} toCMYK method with decimals from {"C":0,"M":0,"Y":100,"K":0,"A":1} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0,"a":1} toCMYKA method with decimals and auto legacyCSS from {"c":0,"m":0,"y":100,"k":0,"a":1} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":100,"K":0,"A":1} toCMYKA method with decimals and auto legacyCSS from {"C":0,"M":0,"Y":100,"K":0,"A":1} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0,"a":1} toCMYKA method with decimals from {"c":0,"m":0,"y":100,"k":0,"a":1} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":100,"K":0,"A":1} toCMYKA method with decimals from {"C":0,"M":0,"Y":100,"K":0,"A":1} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0,"a":1} toCMYKAObject method with decimals from {"c":0,"m":0,"y":100,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":100,"K":0,"A":1} toCMYKAObject method with decimals from {"C":0,"M":0,"Y":100,"K":0,"A":1} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0,"a":1} toCMYKObject method with decimals from {"c":0,"m":0,"y":100,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":100,"K":0,"A":1} toCMYKObject method with decimals from {"C":0,"M":0,"Y":100,"K":0,"A":1} 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0} toCMYK method with decimals and auto legacyCSS from {"c":0,"m":0,"y":100,"k":0} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":100,"K":0} toCMYK method with decimals and auto legacyCSS from {"C":0,"M":0,"Y":100,"K":0} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0} toCMYK method with decimals from {"c":0,"m":0,"y":100,"k":0} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":100,"K":0} toCMYK method with decimals from {"C":0,"M":0,"Y":100,"K":0} 1`] = `"device-cmyk(0% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0} toCMYKA method with decimals and auto legacyCSS from {"c":0,"m":0,"y":100,"k":0} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":100,"K":0} toCMYKA method with decimals and auto legacyCSS from {"C":0,"M":0,"Y":100,"K":0} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0} toCMYKA method with decimals from {"c":0,"m":0,"y":100,"k":0} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":100,"K":0} toCMYKA method with decimals from {"C":0,"M":0,"Y":100,"K":0} 1`] = `"device-cmyk(0% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0} toCMYKAObject method with decimals from {"c":0,"m":0,"y":100,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":100,"K":0} toCMYKAObject method with decimals from {"C":0,"M":0,"Y":100,"K":0} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":0,"y":100,"k":0} toCMYKObject method with decimals from {"c":0,"m":0,"y":100,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":0,"Y":100,"K":0} toCMYKObject method with decimals from {"C":0,"M":0,"Y":100,"K":0} 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0,"a":1} toCMYK method with decimals and auto legacyCSS from {"c":0,"m":1,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":0,"K":0,"A":1} toCMYK method with decimals and auto legacyCSS from {"C":0,"M":1,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0,"a":1} toCMYK method with decimals from {"c":0,"m":1,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":0,"K":0,"A":1} toCMYK method with decimals from {"C":0,"M":1,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0,"a":1} toCMYKA method with decimals and auto legacyCSS from {"c":0,"m":1,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":0,"K":0,"A":1} toCMYKA method with decimals and auto legacyCSS from {"C":0,"M":1,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0,"a":1} toCMYKA method with decimals from {"c":0,"m":1,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":0,"K":0,"A":1} toCMYKA method with decimals from {"C":0,"M":1,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0,"a":1} toCMYKAObject method with decimals from {"c":0,"m":1,"y":0,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":0,"K":0,"A":1} toCMYKAObject method with decimals from {"C":0,"M":1,"Y":0,"K":0,"A":1} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0,"a":1} toCMYKObject method with decimals from {"c":0,"m":1,"y":0,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":0,"K":0,"A":1} toCMYKObject method with decimals from {"C":0,"M":1,"Y":0,"K":0,"A":1} 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0} toCMYK method with decimals and auto legacyCSS from {"c":0,"m":1,"y":0,"k":0} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":0,"K":0} toCMYK method with decimals and auto legacyCSS from {"C":0,"M":1,"Y":0,"K":0} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0} toCMYK method with decimals from {"c":0,"m":1,"y":0,"k":0} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":0,"K":0} toCMYK method with decimals from {"C":0,"M":1,"Y":0,"K":0} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0} toCMYKA method with decimals and auto legacyCSS from {"c":0,"m":1,"y":0,"k":0} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":0,"K":0} toCMYKA method with decimals and auto legacyCSS from {"C":0,"M":1,"Y":0,"K":0} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0} toCMYKA method with decimals from {"c":0,"m":1,"y":0,"k":0} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":0,"K":0} toCMYKA method with decimals from {"C":0,"M":1,"Y":0,"K":0} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0} toCMYKAObject method with decimals from {"c":0,"m":1,"y":0,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":0,"K":0} toCMYKAObject method with decimals from {"C":0,"M":1,"Y":0,"K":0} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":0,"k":0} toCMYKObject method with decimals from {"c":0,"m":1,"y":0,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":0,"K":0} toCMYKObject method with decimals from {"C":0,"M":1,"Y":0,"K":0} 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0,"a":1} toCMYK method with decimals and auto legacyCSS from {"c":0,"m":1,"y":1,"k":0,"a":1} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":1,"K":0,"A":1} toCMYK method with decimals and auto legacyCSS from {"C":0,"M":1,"Y":1,"K":0,"A":1} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0,"a":1} toCMYK method with decimals from {"c":0,"m":1,"y":1,"k":0,"a":1} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":1,"K":0,"A":1} toCMYK method with decimals from {"C":0,"M":1,"Y":1,"K":0,"A":1} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0,"a":1} toCMYKA method with decimals and auto legacyCSS from {"c":0,"m":1,"y":1,"k":0,"a":1} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":1,"K":0,"A":1} toCMYKA method with decimals and auto legacyCSS from {"C":0,"M":1,"Y":1,"K":0,"A":1} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0,"a":1} toCMYKA method with decimals from {"c":0,"m":1,"y":1,"k":0,"a":1} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":1,"K":0,"A":1} toCMYKA method with decimals from {"C":0,"M":1,"Y":1,"K":0,"A":1} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0,"a":1} toCMYKAObject method with decimals from {"c":0,"m":1,"y":1,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":1,"K":0,"A":1} toCMYKAObject method with decimals from {"C":0,"M":1,"Y":1,"K":0,"A":1} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0,"a":1} toCMYKObject method with decimals from {"c":0,"m":1,"y":1,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":1,"K":0,"A":1} toCMYKObject method with decimals from {"C":0,"M":1,"Y":1,"K":0,"A":1} 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0} toCMYK method with decimals and auto legacyCSS from {"c":0,"m":1,"y":1,"k":0} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":1,"K":0} toCMYK method with decimals and auto legacyCSS from {"C":0,"M":1,"Y":1,"K":0} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0} toCMYK method with decimals from {"c":0,"m":1,"y":1,"k":0} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":1,"K":0} toCMYK method with decimals from {"C":0,"M":1,"Y":1,"K":0} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0} toCMYKA method with decimals and auto legacyCSS from {"c":0,"m":1,"y":1,"k":0} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":1,"K":0} toCMYKA method with decimals and auto legacyCSS from {"C":0,"M":1,"Y":1,"K":0} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0} toCMYKA method with decimals from {"c":0,"m":1,"y":1,"k":0} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":1,"K":0} toCMYKA method with decimals from {"C":0,"M":1,"Y":1,"K":0} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0} toCMYKAObject method with decimals from {"c":0,"m":1,"y":1,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":1,"K":0} toCMYKAObject method with decimals from {"C":0,"M":1,"Y":1,"K":0} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":1,"y":1,"k":0} toCMYKObject method with decimals from {"c":0,"m":1,"y":1,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":1,"Y":1,"K":0} toCMYKObject method with decimals from {"C":0,"M":1,"Y":1,"K":0} 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0,"a":1} toCMYK method with decimals and auto legacyCSS from {"c":0,"m":100,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":0,"K":0,"A":1} toCMYK method with decimals and auto legacyCSS from {"C":0,"M":100,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0,"a":1} toCMYK method with decimals from {"c":0,"m":100,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":0,"K":0,"A":1} toCMYK method with decimals from {"C":0,"M":100,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0,"a":1} toCMYKA method with decimals and auto legacyCSS from {"c":0,"m":100,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":0,"K":0,"A":1} toCMYKA method with decimals and auto legacyCSS from {"C":0,"M":100,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0,"a":1} toCMYKA method with decimals from {"c":0,"m":100,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":0,"K":0,"A":1} toCMYKA method with decimals from {"C":0,"M":100,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0,"a":1} toCMYKAObject method with decimals from {"c":0,"m":100,"y":0,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":0,"K":0,"A":1} toCMYKAObject method with decimals from {"C":0,"M":100,"Y":0,"K":0,"A":1} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0,"a":1} toCMYKObject method with decimals from {"c":0,"m":100,"y":0,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":0,"K":0,"A":1} toCMYKObject method with decimals from {"C":0,"M":100,"Y":0,"K":0,"A":1} 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0} toCMYK method with decimals and auto legacyCSS from {"c":0,"m":100,"y":0,"k":0} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":0,"K":0} toCMYK method with decimals and auto legacyCSS from {"C":0,"M":100,"Y":0,"K":0} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0} toCMYK method with decimals from {"c":0,"m":100,"y":0,"k":0} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":0,"K":0} toCMYK method with decimals from {"C":0,"M":100,"Y":0,"K":0} 1`] = `"device-cmyk(0% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0} toCMYKA method with decimals and auto legacyCSS from {"c":0,"m":100,"y":0,"k":0} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":0,"K":0} toCMYKA method with decimals and auto legacyCSS from {"C":0,"M":100,"Y":0,"K":0} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0} toCMYKA method with decimals from {"c":0,"m":100,"y":0,"k":0} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":0,"K":0} toCMYKA method with decimals from {"C":0,"M":100,"Y":0,"K":0} 1`] = `"device-cmyk(0% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0} toCMYKAObject method with decimals from {"c":0,"m":100,"y":0,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":0,"K":0} toCMYKAObject method with decimals from {"C":0,"M":100,"Y":0,"K":0} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":0,"k":0} toCMYKObject method with decimals from {"c":0,"m":100,"y":0,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":0,"K":0} toCMYKObject method with decimals from {"C":0,"M":100,"Y":0,"K":0} 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0,"a":1} toCMYK method with decimals and auto legacyCSS from {"c":0,"m":100,"y":100,"k":0,"a":1} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":100,"K":0,"A":1} toCMYK method with decimals and auto legacyCSS from {"C":0,"M":100,"Y":100,"K":0,"A":1} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0,"a":1} toCMYK method with decimals from {"c":0,"m":100,"y":100,"k":0,"a":1} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":100,"K":0,"A":1} toCMYK method with decimals from {"C":0,"M":100,"Y":100,"K":0,"A":1} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0,"a":1} toCMYKA method with decimals and auto legacyCSS from {"c":0,"m":100,"y":100,"k":0,"a":1} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":100,"K":0,"A":1} toCMYKA method with decimals and auto legacyCSS from {"C":0,"M":100,"Y":100,"K":0,"A":1} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0,"a":1} toCMYKA method with decimals from {"c":0,"m":100,"y":100,"k":0,"a":1} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":100,"K":0,"A":1} toCMYKA method with decimals from {"C":0,"M":100,"Y":100,"K":0,"A":1} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0,"a":1} toCMYKAObject method with decimals from {"c":0,"m":100,"y":100,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":100,"K":0,"A":1} toCMYKAObject method with decimals from {"C":0,"M":100,"Y":100,"K":0,"A":1} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0,"a":1} toCMYKObject method with decimals from {"c":0,"m":100,"y":100,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":100,"K":0,"A":1} toCMYKObject method with decimals from {"C":0,"M":100,"Y":100,"K":0,"A":1} 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0} toCMYK method with decimals and auto legacyCSS from {"c":0,"m":100,"y":100,"k":0} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":100,"K":0} toCMYK method with decimals and auto legacyCSS from {"C":0,"M":100,"Y":100,"K":0} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0} toCMYK method with decimals from {"c":0,"m":100,"y":100,"k":0} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":100,"K":0} toCMYK method with decimals from {"C":0,"M":100,"Y":100,"K":0} 1`] = `"device-cmyk(0% 100% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0} toCMYKA method with decimals and auto legacyCSS from {"c":0,"m":100,"y":100,"k":0} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":100,"K":0} toCMYKA method with decimals and auto legacyCSS from {"C":0,"M":100,"Y":100,"K":0} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0} toCMYKA method with decimals from {"c":0,"m":100,"y":100,"k":0} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":100,"K":0} toCMYKA method with decimals from {"C":0,"M":100,"Y":100,"K":0} 1`] = `"device-cmyk(0% 100% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0} toCMYKAObject method with decimals from {"c":0,"m":100,"y":100,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":100,"K":0} toCMYKAObject method with decimals from {"C":0,"M":100,"Y":100,"K":0} 1`] = `
 {
-  "a": 1,
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "A": 1,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":0,"m":100,"y":100,"k":0} toCMYKObject method with decimals from {"c":0,"m":100,"y":100,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":0,"M":100,"Y":100,"K":0} toCMYKObject method with decimals from {"C":0,"M":100,"Y":100,"K":0} 1`] = `
 {
-  "c": 0,
-  "k": 0,
-  "m": 100,
-  "y": 100,
+  "C": 0,
+  "K": 0,
+  "M": 100,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0,"a":1} toCMYK method with decimals and auto legacyCSS from {"c":1,"m":0,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":0,"K":0,"A":1} toCMYK method with decimals and auto legacyCSS from {"C":1,"M":0,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0,"a":1} toCMYK method with decimals from {"c":1,"m":0,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":0,"K":0,"A":1} toCMYK method with decimals from {"C":1,"M":0,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0,"a":1} toCMYKA method with decimals and auto legacyCSS from {"c":1,"m":0,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":0,"K":0,"A":1} toCMYKA method with decimals and auto legacyCSS from {"C":1,"M":0,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0,"a":1} toCMYKA method with decimals from {"c":1,"m":0,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":0,"K":0,"A":1} toCMYKA method with decimals from {"C":1,"M":0,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0,"a":1} toCMYKAObject method with decimals from {"c":1,"m":0,"y":0,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":0,"K":0,"A":1} toCMYKAObject method with decimals from {"C":1,"M":0,"Y":0,"K":0,"A":1} 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0,"a":1} toCMYKObject method with decimals from {"c":1,"m":0,"y":0,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":0,"K":0,"A":1} toCMYKObject method with decimals from {"C":1,"M":0,"Y":0,"K":0,"A":1} 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0} toCMYK method with decimals and auto legacyCSS from {"c":1,"m":0,"y":0,"k":0} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":0,"K":0} toCMYK method with decimals and auto legacyCSS from {"C":1,"M":0,"Y":0,"K":0} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0} toCMYK method with decimals from {"c":1,"m":0,"y":0,"k":0} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":0,"K":0} toCMYK method with decimals from {"C":1,"M":0,"Y":0,"K":0} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0} toCMYKA method with decimals and auto legacyCSS from {"c":1,"m":0,"y":0,"k":0} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":0,"K":0} toCMYKA method with decimals and auto legacyCSS from {"C":1,"M":0,"Y":0,"K":0} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0} toCMYKA method with decimals from {"c":1,"m":0,"y":0,"k":0} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":0,"K":0} toCMYKA method with decimals from {"C":1,"M":0,"Y":0,"K":0} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0} toCMYKAObject method with decimals from {"c":1,"m":0,"y":0,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":0,"K":0} toCMYKAObject method with decimals from {"C":1,"M":0,"Y":0,"K":0} 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":0,"k":0} toCMYKObject method with decimals from {"c":1,"m":0,"y":0,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":0,"K":0} toCMYKObject method with decimals from {"C":1,"M":0,"Y":0,"K":0} 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0,"a":1} toCMYK method with decimals and auto legacyCSS from {"c":1,"m":0,"y":1,"k":0,"a":1} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":1,"K":0,"A":1} toCMYK method with decimals and auto legacyCSS from {"C":1,"M":0,"Y":1,"K":0,"A":1} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0,"a":1} toCMYK method with decimals from {"c":1,"m":0,"y":1,"k":0,"a":1} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":1,"K":0,"A":1} toCMYK method with decimals from {"C":1,"M":0,"Y":1,"K":0,"A":1} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0,"a":1} toCMYKA method with decimals and auto legacyCSS from {"c":1,"m":0,"y":1,"k":0,"a":1} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":1,"K":0,"A":1} toCMYKA method with decimals and auto legacyCSS from {"C":1,"M":0,"Y":1,"K":0,"A":1} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0,"a":1} toCMYKA method with decimals from {"c":1,"m":0,"y":1,"k":0,"a":1} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":1,"K":0,"A":1} toCMYKA method with decimals from {"C":1,"M":0,"Y":1,"K":0,"A":1} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0,"a":1} toCMYKAObject method with decimals from {"c":1,"m":0,"y":1,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":1,"K":0,"A":1} toCMYKAObject method with decimals from {"C":1,"M":0,"Y":1,"K":0,"A":1} 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0,"a":1} toCMYKObject method with decimals from {"c":1,"m":0,"y":1,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":1,"K":0,"A":1} toCMYKObject method with decimals from {"C":1,"M":0,"Y":1,"K":0,"A":1} 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0} toCMYK method with decimals and auto legacyCSS from {"c":1,"m":0,"y":1,"k":0} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":1,"K":0} toCMYK method with decimals and auto legacyCSS from {"C":1,"M":0,"Y":1,"K":0} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0} toCMYK method with decimals from {"c":1,"m":0,"y":1,"k":0} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":1,"K":0} toCMYK method with decimals from {"C":1,"M":0,"Y":1,"K":0} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0} toCMYKA method with decimals and auto legacyCSS from {"c":1,"m":0,"y":1,"k":0} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":1,"K":0} toCMYKA method with decimals and auto legacyCSS from {"C":1,"M":0,"Y":1,"K":0} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0} toCMYKA method with decimals from {"c":1,"m":0,"y":1,"k":0} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":1,"K":0} toCMYKA method with decimals from {"C":1,"M":0,"Y":1,"K":0} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0} toCMYKAObject method with decimals from {"c":1,"m":0,"y":1,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":1,"K":0} toCMYKAObject method with decimals from {"C":1,"M":0,"Y":1,"K":0} 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":0,"y":1,"k":0} toCMYKObject method with decimals from {"c":1,"m":0,"y":1,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":0,"Y":1,"K":0} toCMYKObject method with decimals from {"C":1,"M":0,"Y":1,"K":0} 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0,"a":1} toCMYK method with decimals and auto legacyCSS from {"c":1,"m":1,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":1,"Y":0,"K":0,"A":1} toCMYK method with decimals and auto legacyCSS from {"C":1,"M":1,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0,"a":1} toCMYK method with decimals from {"c":1,"m":1,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":1,"Y":0,"K":0,"A":1} toCMYK method with decimals from {"C":1,"M":1,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0,"a":1} toCMYKA method with decimals and auto legacyCSS from {"c":1,"m":1,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":1,"Y":0,"K":0,"A":1} toCMYKA method with decimals and auto legacyCSS from {"C":1,"M":1,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0,"a":1} toCMYKA method with decimals from {"c":1,"m":1,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":1,"Y":0,"K":0,"A":1} toCMYKA method with decimals from {"C":1,"M":1,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0,"a":1} toCMYKAObject method with decimals from {"c":1,"m":1,"y":0,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":1,"Y":0,"K":0,"A":1} toCMYKAObject method with decimals from {"C":1,"M":1,"Y":0,"K":0,"A":1} 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0,"a":1} toCMYKObject method with decimals from {"c":1,"m":1,"y":0,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":1,"Y":0,"K":0,"A":1} toCMYKObject method with decimals from {"C":1,"M":1,"Y":0,"K":0,"A":1} 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0} toCMYK method with decimals and auto legacyCSS from {"c":1,"m":1,"y":0,"k":0} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":1,"Y":0,"K":0} toCMYK method with decimals and auto legacyCSS from {"C":1,"M":1,"Y":0,"K":0} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0} toCMYK method with decimals from {"c":1,"m":1,"y":0,"k":0} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":1,"Y":0,"K":0} toCMYK method with decimals from {"C":1,"M":1,"Y":0,"K":0} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0} toCMYKA method with decimals and auto legacyCSS from {"c":1,"m":1,"y":0,"k":0} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":1,"Y":0,"K":0} toCMYKA method with decimals and auto legacyCSS from {"C":1,"M":1,"Y":0,"K":0} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0} toCMYKA method with decimals from {"c":1,"m":1,"y":0,"k":0} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":1,"Y":0,"K":0} toCMYKA method with decimals from {"C":1,"M":1,"Y":0,"K":0} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0} toCMYKAObject method with decimals from {"c":1,"m":1,"y":0,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":1,"Y":0,"K":0} toCMYKAObject method with decimals from {"C":1,"M":1,"Y":0,"K":0} 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":1,"m":1,"y":0,"k":0} toCMYKObject method with decimals from {"c":1,"m":1,"y":0,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":1,"M":1,"Y":0,"K":0} toCMYKObject method with decimals from {"C":1,"M":1,"Y":0,"K":0} 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0,"a":1} toCMYK method with decimals and auto legacyCSS from {"c":100,"m":0,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":0,"K":0,"A":1} toCMYK method with decimals and auto legacyCSS from {"C":100,"M":0,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0,"a":1} toCMYK method with decimals from {"c":100,"m":0,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":0,"K":0,"A":1} toCMYK method with decimals from {"C":100,"M":0,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0,"a":1} toCMYKA method with decimals and auto legacyCSS from {"c":100,"m":0,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":0,"K":0,"A":1} toCMYKA method with decimals and auto legacyCSS from {"C":100,"M":0,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0,"a":1} toCMYKA method with decimals from {"c":100,"m":0,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":0,"K":0,"A":1} toCMYKA method with decimals from {"C":100,"M":0,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0,"a":1} toCMYKAObject method with decimals from {"c":100,"m":0,"y":0,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":0,"K":0,"A":1} toCMYKAObject method with decimals from {"C":100,"M":0,"Y":0,"K":0,"A":1} 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0,"a":1} toCMYKObject method with decimals from {"c":100,"m":0,"y":0,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":0,"K":0,"A":1} toCMYKObject method with decimals from {"C":100,"M":0,"Y":0,"K":0,"A":1} 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0} toCMYK method with decimals and auto legacyCSS from {"c":100,"m":0,"y":0,"k":0} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":0,"K":0} toCMYK method with decimals and auto legacyCSS from {"C":100,"M":0,"Y":0,"K":0} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0} toCMYK method with decimals from {"c":100,"m":0,"y":0,"k":0} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":0,"K":0} toCMYK method with decimals from {"C":100,"M":0,"Y":0,"K":0} 1`] = `"device-cmyk(100% 0% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0} toCMYKA method with decimals and auto legacyCSS from {"c":100,"m":0,"y":0,"k":0} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":0,"K":0} toCMYKA method with decimals and auto legacyCSS from {"C":100,"M":0,"Y":0,"K":0} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0} toCMYKA method with decimals from {"c":100,"m":0,"y":0,"k":0} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":0,"K":0} toCMYKA method with decimals from {"C":100,"M":0,"Y":0,"K":0} 1`] = `"device-cmyk(100% 0% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0} toCMYKAObject method with decimals from {"c":100,"m":0,"y":0,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":0,"K":0} toCMYKAObject method with decimals from {"C":100,"M":0,"Y":0,"K":0} 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":0,"k":0} toCMYKObject method with decimals from {"c":100,"m":0,"y":0,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":0,"K":0} toCMYKObject method with decimals from {"C":100,"M":0,"Y":0,"K":0} 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0,"a":1} toCMYK method with decimals and auto legacyCSS from {"c":100,"m":0,"y":100,"k":0,"a":1} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":100,"K":0,"A":1} toCMYK method with decimals and auto legacyCSS from {"C":100,"M":0,"Y":100,"K":0,"A":1} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0,"a":1} toCMYK method with decimals from {"c":100,"m":0,"y":100,"k":0,"a":1} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":100,"K":0,"A":1} toCMYK method with decimals from {"C":100,"M":0,"Y":100,"K":0,"A":1} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0,"a":1} toCMYKA method with decimals and auto legacyCSS from {"c":100,"m":0,"y":100,"k":0,"a":1} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":100,"K":0,"A":1} toCMYKA method with decimals and auto legacyCSS from {"C":100,"M":0,"Y":100,"K":0,"A":1} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0,"a":1} toCMYKA method with decimals from {"c":100,"m":0,"y":100,"k":0,"a":1} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":100,"K":0,"A":1} toCMYKA method with decimals from {"C":100,"M":0,"Y":100,"K":0,"A":1} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0,"a":1} toCMYKAObject method with decimals from {"c":100,"m":0,"y":100,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":100,"K":0,"A":1} toCMYKAObject method with decimals from {"C":100,"M":0,"Y":100,"K":0,"A":1} 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0,"a":1} toCMYKObject method with decimals from {"c":100,"m":0,"y":100,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":100,"K":0,"A":1} toCMYKObject method with decimals from {"C":100,"M":0,"Y":100,"K":0,"A":1} 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0} toCMYK method with decimals and auto legacyCSS from {"c":100,"m":0,"y":100,"k":0} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":100,"K":0} toCMYK method with decimals and auto legacyCSS from {"C":100,"M":0,"Y":100,"K":0} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0} toCMYK method with decimals from {"c":100,"m":0,"y":100,"k":0} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":100,"K":0} toCMYK method with decimals from {"C":100,"M":0,"Y":100,"K":0} 1`] = `"device-cmyk(100% 0% 100% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0} toCMYKA method with decimals and auto legacyCSS from {"c":100,"m":0,"y":100,"k":0} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":100,"K":0} toCMYKA method with decimals and auto legacyCSS from {"C":100,"M":0,"Y":100,"K":0} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0} toCMYKA method with decimals from {"c":100,"m":0,"y":100,"k":0} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":100,"K":0} toCMYKA method with decimals from {"C":100,"M":0,"Y":100,"K":0} 1`] = `"device-cmyk(100% 0% 100% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0} toCMYKAObject method with decimals from {"c":100,"m":0,"y":100,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":100,"K":0} toCMYKAObject method with decimals from {"C":100,"M":0,"Y":100,"K":0} 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":0,"y":100,"k":0} toCMYKObject method with decimals from {"c":100,"m":0,"y":100,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":0,"Y":100,"K":0} toCMYKObject method with decimals from {"C":100,"M":0,"Y":100,"K":0} 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 0,
-  "y": 100,
+  "C": 100,
+  "K": 0,
+  "M": 0,
+  "Y": 100,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0,"a":1} toCMYK method with decimals and auto legacyCSS from {"c":100,"m":100,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":100,"Y":0,"K":0,"A":1} toCMYK method with decimals and auto legacyCSS from {"C":100,"M":100,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0,"a":1} toCMYK method with decimals from {"c":100,"m":100,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":100,"Y":0,"K":0,"A":1} toCMYK method with decimals from {"C":100,"M":100,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0,"a":1} toCMYKA method with decimals and auto legacyCSS from {"c":100,"m":100,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":100,"Y":0,"K":0,"A":1} toCMYKA method with decimals and auto legacyCSS from {"C":100,"M":100,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0,"a":1} toCMYKA method with decimals from {"c":100,"m":100,"y":0,"k":0,"a":1} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":100,"Y":0,"K":0,"A":1} toCMYKA method with decimals from {"C":100,"M":100,"Y":0,"K":0,"A":1} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0,"a":1} toCMYKAObject method with decimals from {"c":100,"m":100,"y":0,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":100,"Y":0,"K":0,"A":1} toCMYKAObject method with decimals from {"C":100,"M":100,"Y":0,"K":0,"A":1} 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0,"a":1} toCMYKObject method with decimals from {"c":100,"m":100,"y":0,"k":0,"a":1} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":100,"Y":0,"K":0,"A":1} toCMYKObject method with decimals from {"C":100,"M":100,"Y":0,"K":0,"A":1} 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0} toCMYK method with decimals and auto legacyCSS from {"c":100,"m":100,"y":0,"k":0} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":100,"Y":0,"K":0} toCMYK method with decimals and auto legacyCSS from {"C":100,"M":100,"Y":0,"K":0} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0} toCMYK method with decimals from {"c":100,"m":100,"y":0,"k":0} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":100,"Y":0,"K":0} toCMYK method with decimals from {"C":100,"M":100,"Y":0,"K":0} 1`] = `"device-cmyk(100% 100% 0% 0%)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0} toCMYKA method with decimals and auto legacyCSS from {"c":100,"m":100,"y":0,"k":0} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":100,"Y":0,"K":0} toCMYKA method with decimals and auto legacyCSS from {"C":100,"M":100,"Y":0,"K":0} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0} toCMYKA method with decimals from {"c":100,"m":100,"y":0,"k":0} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":100,"Y":0,"K":0} toCMYKA method with decimals from {"C":100,"M":100,"Y":0,"K":0} 1`] = `"device-cmyk(100% 100% 0% 0% / 1)"`;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0} toCMYKAObject method with decimals from {"c":100,"m":100,"y":0,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":100,"Y":0,"K":0} toCMYKAObject method with decimals from {"C":100,"M":100,"Y":0,"K":0} 1`] = `
 {
-  "a": 1,
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "A": 1,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;
 
-exports[`ColorTranslator static CMYK color conversion for {"c":100,"m":100,"y":0,"k":0} toCMYKObject method with decimals from {"c":100,"m":100,"y":0,"k":0} 1`] = `
+exports[`ColorTranslator static CMYK color conversion for {"C":100,"M":100,"Y":0,"K":0} toCMYKObject method with decimals from {"C":100,"M":100,"Y":0,"K":0} 1`] = `
 {
-  "c": 100,
-  "k": 0,
-  "m": 100,
-  "y": 0,
+  "C": 100,
+  "K": 0,
+  "M": 100,
+  "Y": 0,
 }
 `;

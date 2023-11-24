@@ -196,540 +196,540 @@ exports[`ColorTranslator harmony tests Additive Harmony with decimals for "rgb(2
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"h":0,"s":100,"l":50,"a":1} 1`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"H":0,"S":100,"L":50,"A":1} 1`] = `
 [
   {
-    "a": 1,
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 30,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 30,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 330,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 330,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"h":0,"s":100,"l":50,"a":1} 2`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"H":0,"S":100,"L":50,"A":1} 2`] = `
 [
   {
-    "a": 1,
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"h":0,"s":100,"l":50,"a":1} 3`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"H":0,"S":100,"L":50,"A":1} 3`] = `
 [
   {
-    "a": 1,
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 150,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 150,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 210,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 210,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"h":0,"s":100,"l":50,"a":1} 4`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"H":0,"S":100,"L":50,"A":1} 4`] = `
 [
   {
-    "a": 1,
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 120,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 120,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 240,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 240,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"h":0,"s":100,"l":50,"a":1} 5`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"H":0,"S":100,"L":50,"A":1} 5`] = `
 [
   {
-    "a": 1,
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 60,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 60,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 240,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 240,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"h":0,"s":100,"l":50,"a":1} 6`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"H":0,"S":100,"L":50,"A":1} 6`] = `
 [
   {
-    "a": 1,
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 90,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 90,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 270,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 270,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"h":0,"s":100,"l":50} 1`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"H":0,"S":100,"L":50} 1`] = `
 [
   {
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 30,
-    "l": 50,
-    "s": 100,
+    "H": 30,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 330,
-    "l": 50,
-    "s": 100,
+    "H": 330,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"h":0,"s":100,"l":50} 2`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"H":0,"S":100,"L":50} 2`] = `
 [
   {
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"h":0,"s":100,"l":50} 3`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"H":0,"S":100,"L":50} 3`] = `
 [
   {
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 150,
-    "l": 50,
-    "s": 100,
+    "H": 150,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 210,
-    "l": 50,
-    "s": 100,
+    "H": 210,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"h":0,"s":100,"l":50} 4`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"H":0,"S":100,"L":50} 4`] = `
 [
   {
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 120,
-    "l": 50,
-    "s": 100,
+    "H": 120,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 240,
-    "l": 50,
-    "s": 100,
+    "H": 240,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"h":0,"s":100,"l":50} 5`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"H":0,"S":100,"L":50} 5`] = `
 [
   {
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 60,
-    "l": 50,
-    "s": 100,
+    "H": 60,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 240,
-    "l": 50,
-    "s": 100,
+    "H": 240,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"h":0,"s":100,"l":50} 6`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"H":0,"S":100,"L":50} 6`] = `
 [
   {
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 90,
-    "l": 50,
-    "s": 100,
+    "H": 90,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 270,
-    "l": 50,
-    "s": 100,
+    "H": 270,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"r":255,"g":0,"b":0,"a":1} 1`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"R":255,"G":0,"B":0,"A":1} 1`] = `
 [
   {
-    "a": 1,
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 0,
-    "g": 127.5,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 127.5,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 127.5,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 127.5,
+    "G": 0,
+    "R": 255,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"r":255,"g":0,"b":0,"a":1} 2`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"R":255,"G":0,"B":0,"A":1} 2`] = `
 [
   {
-    "a": 1,
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "A": 1,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"r":255,"g":0,"b":0,"a":1} 3`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"R":255,"G":0,"B":0,"A":1} 3`] = `
 [
   {
-    "a": 1,
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 127.5,
-    "g": 255,
-    "r": 0,
+    "A": 1,
+    "B": 127.5,
+    "G": 255,
+    "R": 0,
   },
   {
-    "a": 1,
-    "b": 255,
-    "g": 127.5,
-    "r": 0,
+    "A": 1,
+    "B": 255,
+    "G": 127.5,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"r":255,"g":0,"b":0,"a":1} 4`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"R":255,"G":0,"B":0,"A":1} 4`] = `
 [
   {
-    "a": 1,
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 0,
-    "g": 255,
-    "r": 0,
+    "A": 1,
+    "B": 0,
+    "G": 255,
+    "R": 0,
   },
   {
-    "a": 1,
-    "b": 255,
-    "g": 0,
-    "r": 0,
+    "A": 1,
+    "B": 255,
+    "G": 0,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"r":255,"g":0,"b":0,"a":1} 5`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"R":255,"G":0,"B":0,"A":1} 5`] = `
 [
   {
-    "a": 1,
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 0,
-    "g": 255,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 255,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 255,
-    "g": 0,
-    "r": 0,
+    "A": 1,
+    "B": 255,
+    "G": 0,
+    "R": 0,
   },
   {
-    "a": 1,
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "A": 1,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"r":255,"g":0,"b":0,"a":1} 6`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"R":255,"G":0,"B":0,"A":1} 6`] = `
 [
   {
-    "a": 1,
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 0,
-    "g": 255,
-    "r": 127.5,
+    "A": 1,
+    "B": 0,
+    "G": 255,
+    "R": 127.5,
   },
   {
-    "a": 1,
-    "b": 255,
-    "g": 0,
-    "r": 127.5,
+    "A": 1,
+    "B": 255,
+    "G": 0,
+    "R": 127.5,
   },
   {
-    "a": 1,
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "A": 1,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"r":255,"g":0,"b":0} 1`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"R":255,"G":0,"B":0} 1`] = `
 [
   {
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "b": 0,
-    "g": 127.5,
-    "r": 255,
+    "B": 0,
+    "G": 127.5,
+    "R": 255,
   },
   {
-    "b": 127.5,
-    "g": 0,
-    "r": 255,
+    "B": 127.5,
+    "G": 0,
+    "R": 255,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"r":255,"g":0,"b":0} 2`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"R":255,"G":0,"B":0} 2`] = `
 [
   {
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"r":255,"g":0,"b":0} 3`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"R":255,"G":0,"B":0} 3`] = `
 [
   {
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "b": 127.5,
-    "g": 255,
-    "r": 0,
+    "B": 127.5,
+    "G": 255,
+    "R": 0,
   },
   {
-    "b": 255,
-    "g": 127.5,
-    "r": 0,
+    "B": 255,
+    "G": 127.5,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"r":255,"g":0,"b":0} 4`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"R":255,"G":0,"B":0} 4`] = `
 [
   {
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "b": 0,
-    "g": 255,
-    "r": 0,
+    "B": 0,
+    "G": 255,
+    "R": 0,
   },
   {
-    "b": 255,
-    "g": 0,
-    "r": 0,
+    "B": 255,
+    "G": 0,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"r":255,"g":0,"b":0} 5`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"R":255,"G":0,"B":0} 5`] = `
 [
   {
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "b": 0,
-    "g": 255,
-    "r": 255,
+    "B": 0,
+    "G": 255,
+    "R": 255,
   },
   {
-    "b": 255,
-    "g": 0,
-    "r": 0,
+    "B": 255,
+    "G": 0,
+    "R": 0,
   },
   {
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"r":255,"g":0,"b":0} 6`] = `
+exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"R":255,"G":0,"B":0} 6`] = `
 [
   {
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "b": 0,
-    "g": 255,
-    "r": 127.5,
+    "B": 0,
+    "G": 255,
+    "R": 127.5,
   },
   {
-    "b": 255,
-    "g": 0,
-    "r": 127.5,
+    "B": 255,
+    "G": 0,
+    "R": 127.5,
   },
   {
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
@@ -902,386 +902,386 @@ exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and aut
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50,"a":1} 1`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"H":0,"S":100,"L":50,"A":1} 1`] = `
 [
   {
-    "a": 1,
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50,"a":1} 2`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"H":0,"S":100,"L":50,"A":1} 2`] = `
 [
   {
-    "a": 1,
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50,"a":1} 3`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"H":0,"S":100,"L":50,"A":1} 3`] = `
 [
   {
-    "a": 1,
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50,"a":1} 4`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"H":0,"S":100,"L":50,"A":1} 4`] = `
 [
   {
-    "a": 1,
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50,"a":1} 5`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"H":0,"S":100,"L":50,"A":1} 5`] = `
 [
   {
-    "a": 1,
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50,"a":1} 6`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"H":0,"S":100,"L":50,"A":1} 6`] = `
 [
   {
-    "a": 1,
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50} 1`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"H":0,"S":100,"L":50} 1`] = `
 [
   {
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50} 2`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"H":0,"S":100,"L":50} 2`] = `
 [
   {
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50} 3`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"H":0,"S":100,"L":50} 3`] = `
 [
   {
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50} 4`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"H":0,"S":100,"L":50} 4`] = `
 [
   {
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50} 5`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"H":0,"S":100,"L":50} 5`] = `
 [
   {
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"h":0,"s":100,"l":50} 6`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"H":0,"S":100,"L":50} 6`] = `
 [
   {
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0,"a":1} 1`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"R":255,"G":0,"B":0,"A":1} 1`] = `
 [
   {
-    "a": 1,
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "A": 1,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0,"a":1} 2`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"R":255,"G":0,"B":0,"A":1} 2`] = `
 [
   {
-    "a": 1,
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "A": 1,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0,"a":1} 3`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"R":255,"G":0,"B":0,"A":1} 3`] = `
 [
   {
-    "a": 1,
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "A": 1,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0,"a":1} 4`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"R":255,"G":0,"B":0,"A":1} 4`] = `
 [
   {
-    "a": 1,
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "A": 1,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0,"a":1} 5`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"R":255,"G":0,"B":0,"A":1} 5`] = `
 [
   {
-    "a": 1,
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "A": 1,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0,"a":1} 6`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"R":255,"G":0,"B":0,"A":1} 6`] = `
 [
   {
-    "a": 1,
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "A": 1,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0} 1`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"R":255,"G":0,"B":0} 1`] = `
 [
   {
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0} 2`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"R":255,"G":0,"B":0} 2`] = `
 [
   {
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0} 3`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"R":255,"G":0,"B":0} 3`] = `
 [
   {
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0} 4`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"R":255,"G":0,"B":0} 4`] = `
 [
   {
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0} 5`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"R":255,"G":0,"B":0} 5`] = `
 [
   {
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"r":255,"g":0,"b":0} 6`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for {"R":255,"G":0,"B":0} 6`] = `
 [
   {
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
@@ -1482,540 +1482,540 @@ exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for "rg
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"h":0,"s":100,"l":50,"a":1} 1`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"H":0,"S":100,"L":50,"A":1} 1`] = `
 [
   {
-    "a": 1,
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 15,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 15,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 330,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 330,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"h":0,"s":100,"l":50,"a":1} 2`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"H":0,"S":100,"L":50,"A":1} 2`] = `
 [
   {
-    "a": 1,
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 120,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 120,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"h":0,"s":100,"l":50,"a":1} 3`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"H":0,"S":100,"L":50,"A":1} 3`] = `
 [
   {
-    "a": 1,
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 90,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 90,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"h":0,"s":100,"l":50,"a":1} 4`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"H":0,"S":100,"L":50,"A":1} 4`] = `
 [
   {
-    "a": 1,
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 60,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 60,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 240,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 240,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"h":0,"s":100,"l":50,"a":1} 5`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"H":0,"S":100,"L":50,"A":1} 5`] = `
 [
   {
-    "a": 1,
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 30,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 30,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 240,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 240,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 120,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 120,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"h":0,"s":100,"l":50,"a":1} 6`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"H":0,"S":100,"L":50,"A":1} 6`] = `
 [
   {
-    "a": 1,
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 45,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 45,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 270,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 270,
+    "L": 50,
+    "S": 100,
   },
   {
-    "a": 1,
-    "h": 120,
-    "l": 50,
-    "s": 100,
+    "A": 1,
+    "H": 120,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"h":0,"s":100,"l":50} 1`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"H":0,"S":100,"L":50} 1`] = `
 [
   {
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 15,
-    "l": 50,
-    "s": 100,
+    "H": 15,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 330,
-    "l": 50,
-    "s": 100,
+    "H": 330,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"h":0,"s":100,"l":50} 2`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"H":0,"S":100,"L":50} 2`] = `
 [
   {
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 120,
-    "l": 50,
-    "s": 100,
+    "H": 120,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"h":0,"s":100,"l":50} 3`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"H":0,"S":100,"L":50} 3`] = `
 [
   {
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 90,
-    "l": 50,
-    "s": 100,
+    "H": 90,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 180,
-    "l": 50,
-    "s": 100,
+    "H": 180,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"h":0,"s":100,"l":50} 4`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"H":0,"S":100,"L":50} 4`] = `
 [
   {
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 60,
-    "l": 50,
-    "s": 100,
+    "H": 60,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 240,
-    "l": 50,
-    "s": 100,
+    "H": 240,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"h":0,"s":100,"l":50} 5`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"H":0,"S":100,"L":50} 5`] = `
 [
   {
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 30,
-    "l": 50,
-    "s": 100,
+    "H": 30,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 240,
-    "l": 50,
-    "s": 100,
+    "H": 240,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 120,
-    "l": 50,
-    "s": 100,
+    "H": 120,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"h":0,"s":100,"l":50} 6`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"H":0,"S":100,"L":50} 6`] = `
 [
   {
-    "h": 0,
-    "l": 50,
-    "s": 100,
+    "H": 0,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 45,
-    "l": 50,
-    "s": 100,
+    "H": 45,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 270,
-    "l": 50,
-    "s": 100,
+    "H": 270,
+    "L": 50,
+    "S": 100,
   },
   {
-    "h": 120,
-    "l": 50,
-    "s": 100,
+    "H": 120,
+    "L": 50,
+    "S": 100,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"r":255,"g":0,"b":0,"a":1} 1`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"R":255,"G":0,"B":0,"A":1} 1`] = `
 [
   {
-    "a": 1,
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 0,
-    "g": 63.75,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 63.75,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 127.5,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 127.5,
+    "G": 0,
+    "R": 255,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"r":255,"g":0,"b":0,"a":1} 2`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"R":255,"G":0,"B":0,"A":1} 2`] = `
 [
   {
-    "a": 1,
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 0,
-    "g": 255,
-    "r": 0,
+    "A": 1,
+    "B": 0,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"r":255,"g":0,"b":0,"a":1} 3`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"R":255,"G":0,"B":0,"A":1} 3`] = `
 [
   {
-    "a": 1,
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 0,
-    "g": 255,
-    "r": 127.5,
+    "A": 1,
+    "B": 0,
+    "G": 255,
+    "R": 127.5,
   },
   {
-    "a": 1,
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "A": 1,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"r":255,"g":0,"b":0,"a":1} 4`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"R":255,"G":0,"B":0,"A":1} 4`] = `
 [
   {
-    "a": 1,
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 0,
-    "g": 255,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 255,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 255,
-    "g": 0,
-    "r": 0,
+    "A": 1,
+    "B": 255,
+    "G": 0,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"r":255,"g":0,"b":0,"a":1} 5`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"R":255,"G":0,"B":0,"A":1} 5`] = `
 [
   {
-    "a": 1,
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 0,
-    "g": 127.5,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 127.5,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 255,
-    "g": 0,
-    "r": 0,
+    "A": 1,
+    "B": 255,
+    "G": 0,
+    "R": 0,
   },
   {
-    "a": 1,
-    "b": 0,
-    "g": 255,
-    "r": 0,
+    "A": 1,
+    "B": 0,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"r":255,"g":0,"b":0,"a":1} 6`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"R":255,"G":0,"B":0,"A":1} 6`] = `
 [
   {
-    "a": 1,
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 0,
-    "g": 191.25,
-    "r": 255,
+    "A": 1,
+    "B": 0,
+    "G": 191.25,
+    "R": 255,
   },
   {
-    "a": 1,
-    "b": 255,
-    "g": 0,
-    "r": 127.5,
+    "A": 1,
+    "B": 255,
+    "G": 0,
+    "R": 127.5,
   },
   {
-    "a": 1,
-    "b": 0,
-    "g": 255,
-    "r": 0,
+    "A": 1,
+    "B": 0,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"r":255,"g":0,"b":0} 1`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"R":255,"G":0,"B":0} 1`] = `
 [
   {
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "b": 0,
-    "g": 63.75,
-    "r": 255,
+    "B": 0,
+    "G": 63.75,
+    "R": 255,
   },
   {
-    "b": 127.5,
-    "g": 0,
-    "r": 255,
+    "B": 127.5,
+    "G": 0,
+    "R": 255,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"r":255,"g":0,"b":0} 2`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"R":255,"G":0,"B":0} 2`] = `
 [
   {
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "b": 0,
-    "g": 255,
-    "r": 0,
+    "B": 0,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"r":255,"g":0,"b":0} 3`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"R":255,"G":0,"B":0} 3`] = `
 [
   {
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "b": 0,
-    "g": 255,
-    "r": 127.5,
+    "B": 0,
+    "G": 255,
+    "R": 127.5,
   },
   {
-    "b": 255,
-    "g": 255,
-    "r": 0,
+    "B": 255,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"r":255,"g":0,"b":0} 4`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"R":255,"G":0,"B":0} 4`] = `
 [
   {
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "b": 0,
-    "g": 255,
-    "r": 255,
+    "B": 0,
+    "G": 255,
+    "R": 255,
   },
   {
-    "b": 255,
-    "g": 0,
-    "r": 0,
+    "B": 255,
+    "G": 0,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"r":255,"g":0,"b":0} 5`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"R":255,"G":0,"B":0} 5`] = `
 [
   {
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "b": 0,
-    "g": 127.5,
-    "r": 255,
+    "B": 0,
+    "G": 127.5,
+    "R": 255,
   },
   {
-    "b": 255,
-    "g": 0,
-    "r": 0,
+    "B": 255,
+    "G": 0,
+    "R": 0,
   },
   {
-    "b": 0,
-    "g": 255,
-    "r": 0,
+    "B": 0,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;
 
-exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"r":255,"g":0,"b":0} 6`] = `
+exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"R":255,"G":0,"B":0} 6`] = `
 [
   {
-    "b": 0,
-    "g": 0,
-    "r": 255,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "b": 0,
-    "g": 191.25,
-    "r": 255,
+    "B": 0,
+    "G": 191.25,
+    "R": 255,
   },
   {
-    "b": 255,
-    "g": 0,
-    "r": 127.5,
+    "B": 255,
+    "G": 0,
+    "R": 127.5,
   },
   {
-    "b": 0,
-    "g": 255,
-    "r": 0,
+    "B": 0,
+    "G": 255,
+    "R": 0,
   },
 ]
 `;

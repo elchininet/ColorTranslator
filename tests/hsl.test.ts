@@ -3,94 +3,94 @@ import { COLORS } from './tests.constants';
 
 COLORS.forEach((item): void => {
 
-    describe(`HSL tests for ${item.hsl}`, (): void => {
+    describe(`HSL tests for ${item.HSL}`, (): void => {
 
-        const hsl = { ...item.hslObject };
-        const hsla = { ...item.hslaObject };
-        const hslPercentages = { ...hsl, s: hsl.s + '%', l: hsl.l + '%' };
-        const hslaPercentages = { ...hsla, s: hsla.s + '%', l: hsla.l + '%' };
-        const hslBigHue = { ...hsl, h: hsl.h + 360 };
-        const hslaBigHue = { ...hsl, h: hsl.h + 360 };
-        const hslLowHue = { ...hsl, h: hsl.h - 360 };
-        const hslaLowHue = { ...hsl, h: hsl.h - 360 };
+        const HSL = { ...item.HSLObject };
+        const HSLA = { ...item.HSLObject };
+        const HSLPercentages = { ...HSL, S: HSL.S + '%', L: HSL.L + '%' };
+        const HSLAPercentages = { ...HSLA, S: HSLA.S + '%', L: HSLA.L + '%' };
+        const HSLBigHue = { ...HSL, H: HSL.H + 360 };
+        const HSLABigHue = { ...HSL, H: HSL.H + 360 };
+        const HSLLowHue = { ...HSL, H: HSL.H - 360 };
+        const HSLALowHue = { ...HSL, H: HSL.H - 360 };
         const options = { decimals: 0 };
         const legacyOptions = { ...options, legacyCSS: true };
 
-        it(`HSL with percentages ${JSON.stringify(hslPercentages)}`, (): void => {
+        it(`HSL with percentages ${JSON.stringify(HSLPercentages)}`, (): void => {
 
-            expect(ColorTranslator.toRGB(hslPercentages, options)).toBe(item.rgb);
-            expect(ColorTranslator.toRGB(hslPercentages, legacyOptions)).toBe(item.rgbLegacy);
-            expect(ColorTranslator.toRGBObject(hslPercentages, options)).toMatchObject(item.rgbObject);
+            expect(ColorTranslator.toRGB(HSLPercentages, options)).toBe(item.RGB);
+            expect(ColorTranslator.toRGB(HSLPercentages, legacyOptions)).toBe(item.RGBLegacy);
+            expect(ColorTranslator.toRGBObject(HSLPercentages, options)).toMatchObject(item.RGBObject);
 
-            expect(ColorTranslator.toHSL(hslPercentages, options)).toBe(item.hsl);
-            expect(ColorTranslator.toHSL(hslPercentages, legacyOptions)).toBe(item.hslLegacy);
-            expect(ColorTranslator.toHSLObject(hslPercentages, options)).toMatchObject(item.hslObject);
+            expect(ColorTranslator.toHSL(HSLPercentages, options)).toBe(item.HSL);
+            expect(ColorTranslator.toHSL(HSLPercentages, legacyOptions)).toBe(item.HSLLegacy);
+            expect(ColorTranslator.toHSLObject(HSLPercentages, options)).toMatchObject(item.HSLObject);
 
-            expect(ColorTranslator.toRGB(hslPercentages)).toMatchSnapshot();
-            expect(ColorTranslator.toHSL(hslPercentages)).toMatchSnapshot();
-
-        });
-
-        it(`HSLA with percentages ${JSON.stringify(hslaPercentages)}`, (): void => {
-
-            expect(ColorTranslator.toRGBA(hslaPercentages, options)).toBe(item.rgba);
-            expect(ColorTranslator.toRGBA(hslaPercentages, legacyOptions)).toBe(item.rgbaLegacy);
-            expect(ColorTranslator.toRGBAObject(hslaPercentages, options)).toMatchObject(item.rgbaObject);
-
-            expect(ColorTranslator.toHSLA(hslaPercentages, options)).toBe(item.hsla);
-            expect(ColorTranslator.toHSLA(hslaPercentages, legacyOptions)).toBe(item.hslaLegacy);
-            expect(ColorTranslator.toHSLAObject(hslaPercentages, options)).toMatchObject(item.hslaObject);
-
-            expect(ColorTranslator.toRGBA(hslPercentages)).toMatchSnapshot();
-            expect(ColorTranslator.toHSLA(hslPercentages)).toMatchSnapshot();
+            expect(ColorTranslator.toRGB(HSLPercentages)).toMatchSnapshot();
+            expect(ColorTranslator.toHSL(HSLPercentages)).toMatchSnapshot();
 
         });
 
-        it(`HSL big hue ${JSON.stringify(hslBigHue)}`, (): void => {
+        it(`HSLA with percentages ${JSON.stringify(HSLAPercentages)}`, (): void => {
 
-            expect(ColorTranslator.toRGB(hslBigHue, options)).toBe(item.rgb);
-            expect(ColorTranslator.toRGB(hslBigHue, legacyOptions)).toBe(item.rgbLegacy);
-            expect(ColorTranslator.toRGBObject(hslBigHue, options)).toMatchObject(item.rgbObject);
+            expect(ColorTranslator.toRGBA(HSLAPercentages, options)).toBe(item.RGBA);
+            expect(ColorTranslator.toRGBA(HSLAPercentages, legacyOptions)).toBe(item.RGBALegacy);
+            expect(ColorTranslator.toRGBAObject(HSLAPercentages, options)).toMatchObject(item.RGBAObject);
 
-            expect(ColorTranslator.toHSL(hslBigHue, options)).toBe(item.hsl);
-            expect(ColorTranslator.toHSL(hslBigHue, legacyOptions)).toBe(item.hslLegacy);
-            expect(ColorTranslator.toHSLObject(hslBigHue, options)).toMatchObject(item.hslObject);
+            expect(ColorTranslator.toHSLA(HSLAPercentages, options)).toBe(item.HSLA);
+            expect(ColorTranslator.toHSLA(HSLAPercentages, legacyOptions)).toBe(item.HSLALegacy);
+            expect(ColorTranslator.toHSLAObject(HSLAPercentages, options)).toMatchObject(item.HSLAObject);
 
-        });
-
-        it(`HSLA big hue ${JSON.stringify(hslaBigHue)}`, (): void => {
-
-            expect(ColorTranslator.toRGBA(hslaBigHue, options)).toBe(item.rgba);
-            expect(ColorTranslator.toRGBA(hslaBigHue, legacyOptions)).toBe(item.rgbaLegacy);
-            expect(ColorTranslator.toRGBAObject(hslaBigHue, options)).toMatchObject(item.rgbaObject);
-
-            expect(ColorTranslator.toHSLA(hslaBigHue, options)).toBe(item.hsla);
-            expect(ColorTranslator.toHSLA(hslaBigHue, legacyOptions)).toBe(item.hslaLegacy);
-            expect(ColorTranslator.toHSLAObject(hslaBigHue, options)).toMatchObject(item.hslaObject);
+            expect(ColorTranslator.toRGBA(HSLPercentages)).toMatchSnapshot();
+            expect(ColorTranslator.toHSLA(HSLPercentages)).toMatchSnapshot();
 
         });
 
-        it(`HSL low hue ${JSON.stringify(hslLowHue)}`, (): void => {
+        it(`HSL big hue ${JSON.stringify(HSLBigHue)}`, (): void => {
 
-            expect(ColorTranslator.toRGB(hslLowHue, options)).toBe(item.rgb);
-            expect(ColorTranslator.toRGB(hslLowHue, legacyOptions)).toBe(item.rgbLegacy);
-            expect(ColorTranslator.toRGBObject(hslLowHue, options)).toMatchObject(item.rgbObject);
+            expect(ColorTranslator.toRGB(HSLBigHue, options)).toBe(item.RGB);
+            expect(ColorTranslator.toRGB(HSLBigHue, legacyOptions)).toBe(item.RGBLegacy);
+            expect(ColorTranslator.toRGBObject(HSLBigHue, options)).toMatchObject(item.RGBObject);
 
-            expect(ColorTranslator.toHSL(hslLowHue, options)).toBe(item.hsl);
-            expect(ColorTranslator.toHSL(hslLowHue, legacyOptions)).toBe(item.hslLegacy);
-            expect(ColorTranslator.toHSLObject(hslLowHue, options)).toMatchObject(item.hslObject);
+            expect(ColorTranslator.toHSL(HSLBigHue, options)).toBe(item.HSL);
+            expect(ColorTranslator.toHSL(HSLBigHue, legacyOptions)).toBe(item.HSLLegacy);
+            expect(ColorTranslator.toHSLObject(HSLBigHue, options)).toMatchObject(item.HSLObject);
 
         });
 
-        it(`HSLA low hue ${JSON.stringify(hslaLowHue)}`, (): void => {
+        it(`HSLA big hue ${JSON.stringify(HSLABigHue)}`, (): void => {
 
-            expect(ColorTranslator.toRGBA(hslaLowHue, options)).toBe(item.rgba);
-            expect(ColorTranslator.toRGBA(hslaLowHue, legacyOptions)).toBe(item.rgbaLegacy);
-            expect(ColorTranslator.toRGBAObject(hslaLowHue, options)).toMatchObject(item.rgbaObject);
+            expect(ColorTranslator.toRGBA(HSLABigHue, options)).toBe(item.RGBA);
+            expect(ColorTranslator.toRGBA(HSLABigHue, legacyOptions)).toBe(item.RGBALegacy);
+            expect(ColorTranslator.toRGBAObject(HSLABigHue, options)).toMatchObject(item.RGBAObject);
 
-            expect(ColorTranslator.toHSLA(hslaLowHue, options)).toBe(item.hsla);
-            expect(ColorTranslator.toHSLA(hslaLowHue, legacyOptions)).toBe(item.hslaLegacy);
-            expect(ColorTranslator.toHSLAObject(hslaLowHue, options)).toMatchObject(item.hslaObject);
+            expect(ColorTranslator.toHSLA(HSLABigHue, options)).toBe(item.HSLA);
+            expect(ColorTranslator.toHSLA(HSLABigHue, legacyOptions)).toBe(item.HSLALegacy);
+            expect(ColorTranslator.toHSLAObject(HSLABigHue, options)).toMatchObject(item.HSLAObject);
+
+        });
+
+        it(`HSL low hue ${JSON.stringify(HSLLowHue)}`, (): void => {
+
+            expect(ColorTranslator.toRGB(HSLLowHue, options)).toBe(item.RGB);
+            expect(ColorTranslator.toRGB(HSLLowHue, legacyOptions)).toBe(item.RGBLegacy);
+            expect(ColorTranslator.toRGBObject(HSLLowHue, options)).toMatchObject(item.RGBObject);
+
+            expect(ColorTranslator.toHSL(HSLLowHue, options)).toBe(item.HSL);
+            expect(ColorTranslator.toHSL(HSLLowHue, legacyOptions)).toBe(item.HSLLegacy);
+            expect(ColorTranslator.toHSLObject(HSLLowHue, options)).toMatchObject(item.HSLObject);
+
+        });
+
+        it(`HSLA low hue ${JSON.stringify(HSLALowHue)}`, (): void => {
+
+            expect(ColorTranslator.toRGBA(HSLALowHue, options)).toBe(item.RGBA);
+            expect(ColorTranslator.toRGBA(HSLALowHue, legacyOptions)).toBe(item.RGBALegacy);
+            expect(ColorTranslator.toRGBAObject(HSLALowHue, options)).toMatchObject(item.RGBAObject);
+
+            expect(ColorTranslator.toHSLA(HSLALowHue, options)).toBe(item.HSLA);
+            expect(ColorTranslator.toHSLA(HSLALowHue, legacyOptions)).toBe(item.HSLALegacy);
+            expect(ColorTranslator.toHSLAObject(HSLALowHue, options)).toMatchObject(item.HSLAObject);
 
         });
 
