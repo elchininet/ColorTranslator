@@ -1,5 +1,5 @@
 import { ColorTranslator } from '../src';
-import { HEXObject, RGBObject, HSLObjectGeneric } from '../src/@types';
+import { HEXObject, RGBObject, HSLObjectGeneric, CIELabObjectGeneric } from '../src/@types';
 
 describe('ColorTranslator shades and tints tests', (): void => {
 
@@ -19,6 +19,13 @@ describe('ColorTranslator shades and tints tests', (): void => {
         ColorTranslator.toRGBAObject,
         ColorTranslator.toHSLObject,
         ColorTranslator.toHSLAObject
+    ];
+
+    const labColorFunctions = [
+        ColorTranslator.toCIELab,
+        ColorTranslator.toCIELabA,
+        ColorTranslator.toCIELabObject,
+        ColorTranslator.toCIELabAObject
     ];
 
     const base = '#FF0000';
@@ -79,6 +86,19 @@ describe('ColorTranslator shades and tints tests', (): void => {
         it(`Shades tests from ${JSON.stringify(input)} with decimals`, (): void => {
             const shades = ColorTranslator.getShades(input, 5, options);
             expect(shades).toMatchSnapshot();
+        });
+    });
+
+    labColorFunctions.forEach((fn): void => {
+        const options = { decimals: 0 };
+        const input = fn(base, { decimals: 10 }) as string & CIELabObjectGeneric;
+        it(`Shades snapshots with L*a*b functions from ${JSON.stringify(input)}`, (): void => {
+            const shades = ColorTranslator.getShades(input, 5, options);
+            expect(shades).toMatchSnapshot();
+        });
+        it(`Tints snapshots with L*a*b functions from ${JSON.stringify(input)}`, (): void => {
+            const tints = ColorTranslator.getTints(input, 5, options);
+            expect(tints).toMatchSnapshot();
         });
     });
 

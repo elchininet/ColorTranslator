@@ -21,6 +21,13 @@ const blendFunctions = [
     { colorFn: ColorTranslator.toHSLAObject, blendFn: ColorTranslator.getBlendHSLAObject }
 ];
 
+const blendLabFunctions = [
+    ColorTranslator.getBlendCIELab,
+    ColorTranslator.getBlendCIELabA,
+    ColorTranslator.getBlendCIELabObject,
+    ColorTranslator.getBlendCIELabAObject
+];
+
 const options = { decimals: 0 };
 
 describe('ColorTranslator blending tests', (): void => {
@@ -62,6 +69,12 @@ describe('ColorTranslator blending tests', (): void => {
     it('Blending with decimals snapshots', (): void => {
         blendFunctions.forEach((obj) => {
             expect(obj.blendFn(from, to)).toMatchSnapshot();
+        });
+    });
+
+    it('Blending with L*a*b colors', (): void => {
+        blendLabFunctions.forEach((fn) => {
+            expect(fn(from, to)).toMatchSnapshot();
         });
     });
 

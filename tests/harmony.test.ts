@@ -1,6 +1,6 @@
 import { ColorTranslator } from '../src';
 import { Harmony, Mix } from '../src/constants';
-import { HEXObject, RGBObject, HSLObjectGeneric } from '../src/@types';
+import { HEXObject, RGBObject, HSLObjectGeneric, CIELabObjectGeneric } from '../src/@types';
 
 describe('ColorTranslator harmony tests', (): void => {
 
@@ -20,6 +20,13 @@ describe('ColorTranslator harmony tests', (): void => {
         ColorTranslator.toRGBAObject,
         ColorTranslator.toHSLObject,
         ColorTranslator.toHSLAObject
+    ];
+
+    const labColorFunctions = [
+        ColorTranslator.toCIELab,
+        ColorTranslator.toCIELabA,
+        ColorTranslator.toCIELabObject,
+        ColorTranslator.toCIELabAObject
     ];
 
     const base = '#FF0000';
@@ -103,13 +110,25 @@ describe('ColorTranslator harmony tests', (): void => {
                 expect(colors).toMatchSnapshot();
             });
 
-            it('Additive Complementary > 360º', (): void => {
-                const colors = ColorTranslator.getHarmony('#0000FF', Harmony.COMPLEMENTARY, Mix.SUBTRACTIVE, options);
-                expect(colors[1]).toBe('#FF8000');
-            });
-
         });
 
+    });
+
+    it('Additive Complementary > 360º', (): void => {
+        const colors = ColorTranslator.getHarmony('#0000FF', Harmony.COMPLEMENTARY, Mix.SUBTRACTIVE, { legacyCSS: false, decimals: 0 });
+        expect(colors[1]).toBe('#FF8000');
+    });
+
+    it('L*a*b color as input', (): void => {
+        labColorFunctions.forEach((fn) => {
+            const harmony = ColorTranslator.getHarmony(
+                fn('#0000FF') as string & CIELabObjectGeneric,
+                Harmony.COMPLEMENTARY,
+                Mix.SUBTRACTIVE,
+                { decimals: 0 }
+            );
+            expect(harmony).toMatchSnapshot();
+        });
     });
 
 });

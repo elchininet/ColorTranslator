@@ -34,7 +34,7 @@ export interface HSLObjectGeneric {
     H: number;
     S: NumberOrString;
     L: NumberOrString;
-    A?: number;
+    A?: NumberOrString;
 }
 
 export interface CIELabObject {
@@ -48,7 +48,7 @@ export interface CIELabObjectGeneric {
     L: NumberOrString;
     a: NumberOrString;
     b: NumberOrString;
-    A?: number;
+    A?: NumberOrString;
 }
 
 export interface CMYKObject {
@@ -64,7 +64,7 @@ export interface CMYKObjectGeneric {
     M: NumberOrString;
     Y: NumberOrString;
     K: NumberOrString;
-    A?: number;
+    A?: NumberOrString;
 }
 
 export interface RYBObject {

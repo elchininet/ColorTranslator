@@ -184,3 +184,28 @@ CMYK_COLORS.forEach((color) => {
     });
 
 });
+
+describe('ColorTranslator L*a*b properties', () => {
+    it('CIEL, CIEa and CIEb', () => {
+        const instance = new ColorTranslator('#F00', { decimals: 0 });
+        expect(instance.CIEL).toBe(54);
+        expect(instance.CIEa).toBe(81);
+        expect(instance.CIEb).toBe(70);
+    });
+    it('CIELab, CIELabA, CIELabObject and CIELabAObject', () => {
+        const instance = new ColorTranslator('#F00', { decimals: 0 });
+        expect(instance.CIELab).toBe('lab(54 81 70)');
+        expect(instance.CIELabA).toBe('lab(54 81 70 / 1)');
+        expect(instance.CIELabObject).toMatchObject({
+            L: 54,
+            a: 81,
+            b: 70
+        });
+        expect(instance.CIELabAObject).toMatchObject({
+            L: 54,
+            a: 81,
+            b: 70,
+            A: 1
+        });
+    });
+});

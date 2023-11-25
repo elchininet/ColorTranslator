@@ -110,7 +110,7 @@ describe('Properties boundaries', (): void => {
 
         const instance = new ColorTranslator(item.HEX);
 
-        it(`check R, G, B, and A properties for color ${item.HEX}`, (): void => {
+        it(`Set properties boundaries for color ${item.HEX}`, (): void => {
 
             const R = instance.R;
             const G = instance.G;
@@ -123,6 +123,9 @@ describe('Properties boundaries', (): void => {
             const M = instance.M;
             const Y = instance.Y;
             const K = instance.K;
+            const CIEL = instance.CIEL;
+            const CIEa = instance.CIEa;
+            const CIEb = instance.CIEb;
 
             // Test A
             instance.setA(0.5);
@@ -186,6 +189,33 @@ describe('Properties boundaries', (): void => {
             instance.setL(200);
             expect(instance.L).toBe(100);
             instance.setL(L);
+
+            // Test CIEL
+            instance.setCIEL(50);
+            expect(instance.CIEL).toBe(50);
+            instance.setCIEL(-100);
+            expect(instance.CIEL).toBe(0);
+            instance.setCIEL(125);
+            expect(instance.CIEL).toBe(100);
+            instance.setL(CIEL);
+
+            // Test CIEa
+            instance.setCIEa(50);
+            expect(instance.CIEa).toBe(50);
+            instance.setCIEa(-100);
+            expect(instance.CIEa).toBe(-100);
+            instance.setCIEa(200);
+            expect(instance.CIEa).toBe(125);
+            instance.setL(CIEa);
+
+            // Test CIEb
+            instance.setCIEb(50);
+            expect(instance.CIEb).toBe(50);
+            instance.setCIEb(-120);
+            expect(instance.CIEb).toBe(-120);
+            instance.setCIEb(129);
+            expect(instance.CIEb).toBe(125);
+            instance.setL(CIEb);
 
             // Test C
             instance.setC(50);

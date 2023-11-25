@@ -7,6 +7,7 @@ import {
     RGBObject,
     HSLObject,
     CIELabObject,
+    CIELabObjectGeneric,
     CMYKObject,
     ColorOutput,
     Options,
@@ -389,15 +390,15 @@ export class ColorTranslator {
 
     public get CIELabObject(): CIELabObject {
         return {
-            L: this.lab.L,
-            a: this.lab.a,
-            b: this.lab.b
+            L: this.CIEL,
+            a: this.CIEa,
+            b: this.CIEb
         };
     }
 
     public get CIELabAObject(): CIELabObject {
         return {
-            ...this.lab,
+            ...this.CIELabObject,
             A: this.A
         };
     }
@@ -1172,6 +1173,7 @@ export class ColorTranslator {
     public static getShades(color: HEXObject, shades: number, options?: InputOptions): HEXObject[];
     public static getShades(color: RGBObject, shades: number, options?: InputOptions): RGBObject[];
     public static getShades(color: HSLObjectGeneric, shades: number, options?: InputOptions): HSLObject[];
+    public static getShades(color: CIELabObjectGeneric, shades: number, options?: InputOptions): CIELabObject[];
     public static getShades(color: ColorInputWithoutCMYK, shades: number, options = {}): ColorOutput[] {
         return utils.getColorMixture(
             color,
@@ -1186,6 +1188,7 @@ export class ColorTranslator {
     public static getTints(color: HEXObject, tints: number, options?: InputOptions): HEXObject[];
     public static getTints(color: RGBObject, tints: number, options?: InputOptions): RGBObject[];
     public static getTints(color: HSLObjectGeneric, tints: number, options?: InputOptions): HSLObject[];
+    public static getTints(color: CIELabObjectGeneric, tints: number, options?: InputOptions): CIELabObject[];
     public static getTints(color: ColorInputWithoutCMYK, tints: number, options = {}): ColorOutput[] {
         return utils.getColorMixture(
             color,
@@ -1200,6 +1203,7 @@ export class ColorTranslator {
     public static getHarmony(color: HEXObject, harmony?: Harmony, mode?: Mix, options?: InputOptions): HEXObject[];
     public static getHarmony(color: RGBObject, harmony?: Harmony, mode?: Mix, options?: InputOptions): RGBObject[];
     public static getHarmony(color: HSLObjectGeneric, harmony?: Harmony, mode?: Mix, options?: InputOptions): HSLObject[];
+    public static getHarmony(color: CIELabObjectGeneric, harmony?: Harmony, mode?: Mix, options?: InputOptions): CIELabObject[];
     public static getHarmony(color: ColorInputWithoutCMYK, harmony: Harmony = Harmony.COMPLEMENTARY, mode: Mix = Mix.ADDITIVE, options = {}): ColorOutput[] {
         return getHarmonyReturn(
             harmony,

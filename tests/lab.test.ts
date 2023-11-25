@@ -1,4 +1,4 @@
-import { ColorTranslator, Mix } from '../src';
+import { ColorTranslator } from '../src';
 import { COLORS } from './tests.constants';
 
 COLORS.forEach((item): void => {
@@ -92,10 +92,65 @@ describe('L*a*b with percentages', (): void => {
 
         });
 
-        console.log( ColorTranslator.toCIELab('#F0F', { decimals: 0 }));
-        console.log(ColorTranslator.getMixHEX(['#F00', '#00F'], Mix.ADDITIVE));
-        //console.log( ColorTranslator.toCIELab('#F00', { labUnit: 'percent' }));
+    });
 
+});
+
+describe('L*a*b with alpha', (): void => {
+
+    it('Alpha by default should be 1 if not specified', () => {
+        expect(
+            ColorTranslator.toCIELabA('rgb(255 0 0)', { decimals: 1 }).endsWith('/ 1)')
+        ).toBe(
+            true
+        );
+        expect(
+            ColorTranslator.toCIELabAObject('rgb(255 0 0)', { decimals: 1 })
+        ).toHaveProperty(
+            'A',
+            1
+        );
+    });
+
+    it('Alpha with a number should be maintained', () => {
+        expect(
+            ColorTranslator.toCIELabA('rgb(255 0 0 / 0.5)', { decimals: 1 }).endsWith('/ 0.5)')
+        ).toBe(
+            true
+        );
+        expect(
+            ColorTranslator.toCIELabAObject('rgb(255 0 0 / 0.5)', { decimals: 1 })
+        ).toHaveProperty(
+            'A',
+            0.5
+        );
+    });
+
+    it('Alpha with a percentage should be maintained', () => {
+        expect(
+            ColorTranslator.toCIELabA('rgb(255 0 0 / 50%)', { decimals: 1 }).endsWith('/ 50%)')
+        ).toBe(
+            true
+        );
+        expect(
+            ColorTranslator.toCIELabAObject('rgb(255 0 0 / 50%)', { decimals: 1 })
+        ).toHaveProperty(
+            'A',
+            0.5
+        );
+    });
+
+    it('Alpha should not be present in non-alpha methods', () => {
+        expect(
+            ColorTranslator.toCIELab('rgb(255 0 0 / 1)', { decimals: 1 }).endsWith('/ 1)')
+        ).toBe(
+            false
+        );
+        expect(
+            ColorTranslator.toCIELabObject('rgb(255 0 0 / 0.5)', { decimals: 1 })
+        ).not.toHaveProperty(
+            'A'
+        );
     });
 
 });
