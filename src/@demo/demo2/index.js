@@ -3,7 +3,7 @@ import './styles.scss';
 export default (ColorTranslator) => {
 
     const container = document.createElement('div');
-    const color = new ColorTranslator({ r: 255, g: 0, b: 0 });
+    const color = new ColorTranslator({ R: 255, G: 0, B: 0 });
     const hue = [0, 30, 60, 120, 240, 280, 320, 0];
     let rainbow;
 

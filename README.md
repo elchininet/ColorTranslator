@@ -147,18 +147,18 @@ The most wonderful thing about `colortranslator` is that you don‘t need to spe
 
 | Example of object inputs                       | Description                               |
 | ---------------------------------------------- | ----------------------------------------- |
-| `{r: "0xFF", g: "0x00", b: "0xFF"}`            | Hexadecimal color                         |
-| `{r: "0xF", g: "0x0", b: "0xF"}`               | Shorthand hexadecimal color               |
-| `{r: "0xFF", g: "0x00", b: "0xFF", a: "0x80"}` | Hexadecimal color with alpha              |
-| `{r: "0xF", g: "0x0", b: "0xF", a: "0xF"}`     | Shorthand hexadecimal color with alpha    |
-| `{r: 255, g: 0, b: 255}`                       | RGB notation                              |
-| `{r: 255, g: 0, b: 255, a: 0.5}`               | RGB notation with alpha                   |
-| `{h: 300, s: "100%", l: "50%"}`                | HSL notation using percentages            |
-| `{h: 300, s: 100, l: 50}`                      | HSL notation using numbers                |
-| `{h: 300, s: "100%", l: "50%", a: 0.5}`        | HSL notation with alpha using percentages |
-| `{h: 300, s: 100, l: 50, a: 0.5}`              | HSL notation with alpha using numbers     |
-| `{c: "0%", m: "100%", y: "100%", k: "0%"}`     | CMYK notation using percentages           |
-| `{c: 0, m: 1, y: 1, k: 0}`                     | CMYK notation using numbers               |
+| `{R: "0xFF", G: "0x00", B: "0xFF"}`            | Hexadecimal color                         |
+| `{R: "0xF", G: "0x0", B: "0xF"}`               | Shorthand hexadecimal color               |
+| `{R: "0xFF", G: "0x00", B: "0xFF", A: "0x80"}` | Hexadecimal color with alpha              |
+| `{R: "0xF", G: "0x0", G: "0xF", G: "0xF"}`     | Shorthand hexadecimal color with alpha    |
+| `{R: 255, G: 0, B: 255}`                       | RGB notation                              |
+| `{R: 255, G: 0, G: 255, A: 0.5}`               | RGB notation with alpha                   |
+| `{H: 300, S: "100%", L: "50%"}`                | HSL notation using percentages            |
+| `{H: 300, S: 100, L: 50}`                      | HSL notation using numbers                |
+| `{H: 300, S: "100%", L: "50%", A: 0.5}`        | HSL notation with alpha using percentages |
+| `{H: 300, S: 100, L: 50, A: 0.5}`              | HSL notation with alpha using numbers     |
+| `{C: "0%", M: "100%", Y: "100%", K: "0%"}`     | CMYK notation using percentages           |
+| `{C: 0, M: 1, Y: 1, K: 0}`                     | CMYK notation using numbers               |
 
 #### Class instantiation
 
@@ -215,9 +215,9 @@ const rgb = new ColorTranslator('rgb(255, 0, 0)');
 
 const hsl = new ColorTranslator('hsl(50 20% 90% / 0.5)');
 
-const hsla = new ColorTranslator({ r: 115, g: 200, b: 150, a: 0.5 });
+const hsla = new ColorTranslator({ R: 115, G: 200, B: 150, A: 0.5 });
 
-const cmyk = new ColorTranslator({ c: 100, m: 100, y: 0, k: 0 });
+const cmyk = new ColorTranslator({ C: 100, M: 100, Y: 0, K: 0 });
 ```
 
 ###### Configuration options examples
@@ -227,7 +227,7 @@ const cmyk = new ColorTranslator({ c: 100, m: 100, y: 0, k: 0 });
 new ColorTranslator('#F43227').HSL; // hsl(3.219512 90.30837% 55.490196%)
 new ColorTranslator('#F43227', { decimals: 4 }).HSL; // hsl(3.2195 90.3084% 55.4902%)
 new ColorTranslator('#F43227', { decimals: 0 }).HSL; // hsl(3 90% 55%)
-new ColorTranslator('#F43227', { decimals: 2 }).HSLObject; // {h: 3.22, s: 90.31, l: 55.49}
+new ColorTranslator('#F43227', { decimals: 2 }).HSLObject; // {H: 3.22, S: 90.31, L: 55.49}
 
 // legacyCSS
 new ColorTranslator('#FFF').RGBA; // rgb(255 255 255 / 1)
@@ -430,7 +430,7 @@ ColorTranslator.toHSL('rgb(255 0 0)'); // hsl(0 100% 50%)
 
 ColorTranslator.toHSLA('rgba(0, 255, 255, 0.5)'); // hsla(180,100%,50%,0.5)
 
-ColorTranslator.toCMYKObject('#F0F'); // {c: 0, m: 100, y: 0, k: 0}
+ColorTranslator.toCMYKObject('#F0F'); // {C: 0, M: 100, Y: 0, K: 0}
 
 ColorTranslator.toCMYK('#F0F'); // cmyk(0% 100% 0% 0%)
 
@@ -506,11 +506,11 @@ ColorTranslator.getBlendHSLA('#FF000000', '#0000FFFF', 3);
 ColorTranslator.getBlendRGBAObject('#F000', 'rgba(0,0,255,1)', 5);
 
 // [
-//   {r: 255, g: 0, b: 0, a: 0},
-//   {r: 191.25, g: 0, b: 63.75, a: 0.25},
-//   {r: 127.5, g: 0, b: 127.5, a: 0.5},
-//   {r: 63.75, g: 0, b: 191.25, a: 0.75},
-//   {r: 0, g: 0, b: 255, a: 1}
+//   {R: 255, G: 0, B: 0, A: 0},
+//   {R: 191.25, G: 0, B: 63.75, A: 0.25},
+//   {R: 127.5, G: 0, B: 127.5, A: 0.5},
+//   {R: 63.75, G: 0, B: 191.25, A: 0.75},
+//   {R: 0, G: 0, B: 255, A: 1}
 // ]
 ```
 
@@ -560,7 +560,7 @@ ColorTranslator.getMixHSL(['rgba(255, 0, 0, 1)', '#00FF00']);
 
 ColorTranslator.getMixHEXAObject(['#F00', 'rgb(0, 0, 255)'], Mix.ADDITIVE);
 
-// { r: '0xFF', g: '0x00', b: '0xFF', a: '0xFF' }
+// { R: '0xFF', G: '0x00', B: '0xFF', A: '0xFF' }
 
 ColorTranslator.getMixHEX(['#FF0', '#F00'], Mix.SUBTRACTIVE);
 
@@ -611,11 +611,11 @@ ColorTranslator.getShades('#FF0000', 5);
 ColorTranslator.getTints({r: 255, g: 0, b: 0, a: 0.5}, 5);
 
 // [
-//   {r: 255, g: 42.5, b: 42.5, a: 0.5},
-//   {r: 255, g: 85, b: 85, a: 0.5},
-//   {r: 255, g: 127.5, b: 127.5, a: 0.5},
-//   {r: 255, g: 170, b: 170, a: 0.5},
-//   {r: 255, g: 212.5, b: 212.5, a: 0.5}
+//   {R: 255, G: 42.5, B: 42.5, A: 0.5},
+//   {R: 255, G: 85, B: 85, A: 0.5},
+//   {R: 255, G: 127.5, B: 127.5, A: 0.5},
+//   {R: 255, G: 170, B: 170, A: 0.5},
+//   {R: 255, G: 212.5, B: 212.5, A: 0.5}
 // ]
 ```
 
@@ -674,8 +674,8 @@ ColorTranslator.getHarmony(
 );
 
 // [
-//   {r: 115, g: 200, b: 150, a: 0.5},
-//   {r: 200, g: 123.75, b: 115, a: 0.5}
+//   {R: 115, G: 200, B: 150, A: 0.5},
+//   {R: 200, G: 123.75, B: 115, A: 0.5}
 // ]
 
 ColorTranslator.getHarmony('#FF0000', Harmony.COMPLEMENTARY, Mix.SUBTRACTIVE);
@@ -713,10 +713,10 @@ This type is returned by the `HEXObject`, and `HEXAObject` properties, the `toHE
 
 ```typescript
 interface HEXObject {
-    r: string;
-    g: string;
-    b: string;
-    a?: string;
+    R: string;
+    G: string;
+    B: string;
+    A?: string;
 }
 ```
 
@@ -726,10 +726,10 @@ This type is returned by the `RGBObject`, and `RGBAObject` properties, the `toRG
 
 ```typescript
 interface RGBObject {
-    r: number;
-    g: number;
-    b: number;
-    a?: number;
+    R: number;
+    G: number;
+    B: number;
+    A?: number;
 }
 ```
 
@@ -739,10 +739,10 @@ This type is returned by the `HSLObject`, and `HSLAObject` properties, the `toHS
 
 ```typescript
 interface HSLObject {
-    h: number;
-    s: number;
-    l: number;
-    a?: number;
+    H: number;
+    S: number;
+    L: number;
+    A?: number;
 }
 ```
 
@@ -752,9 +752,9 @@ This type is returned by the `CMYKObject` property, and the `toCMYKObject` and `
 
 ```typescript
 interface CMYKObject {
-    c: number;
-    m: number;
-    y: number;
-    k: number;
+    C: number;
+    M: number;
+    Y: number;
+    K: number;
 }
 ```

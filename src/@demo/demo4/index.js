@@ -16,7 +16,7 @@ export default (ColorTranslator) => {
     for (let row = 0; row < total; row++) {
 
         const hsl = ColorTranslator.toHSLObject(colors[row]);
-        const step = hsl.s / (total - 1);
+        const step = hsl.S / (total - 1);
 
         for (let col = 0; col < total; col++) {
 
@@ -26,14 +26,14 @@ export default (ColorTranslator) => {
             const box = document.createElement('div');
             box.classList.add('box');
             box.style.background = rgb;
-            box.innerText = `C:${cmyk.c}
-                             M:${cmyk.m}
-                             Y:${cmyk.y}
-                             K:${cmyk.k}`;
+            box.innerText = `C:${cmyk.C}
+                             M:${cmyk.M}
+                             Y:${cmyk.Y}
+                             K:${cmyk.K}`;
 
             container.appendChild(box);
 
-            hsl.s -= step;
+            hsl.S -= step;
 
         }
     }
