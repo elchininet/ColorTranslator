@@ -1,11 +1,28 @@
 import {
+    ColorArray,
     RGBObject,
     CIELabObject,
     HSLObject,
     CMYKObject,
     RYBObject
 } from '@types';
-import { round } from '#helpers';
+import { round, minmax } from '#helpers';
+
+const MATRIX_LRGB_XYZ_D50: [ColorArray, ColorArray, ColorArray] = [
+    [0.4360747, 0.3850649, 0.1430804],
+    [0.2225045, 0.7168786, 0.0606169],
+    [0.0139322, 0.0971045, 0.7141733]
+];
+
+const MATRIX_XYZ_D50_LRGB: [ColorArray, ColorArray, ColorArray] = [
+    [3.1338561, -1.6168667, -0.4906146],
+    [-0.9787684, 1.9161415, 0.033454],
+    [0.0719453, -0.2289914, 1.4052427]
+];
+
+const TRISTIMULUS_D50 = MATRIX_LRGB_XYZ_D50.map((matrix: ColorArray): number => {
+    return matrix.reduce((sum: number, value: number): number => sum + value, 0);
+}) as ColorArray;
 
 //---HUE to RGB
 const hueToRGB = (t1: number, t2: number, hue: number): number => {
@@ -20,6 +37,67 @@ const hueToRGB = (t1: number, t2: number, hue: number): number => {
     } else {
         return round(t1 * 255);
     }
+};
+
+// RGB to linear-light RGB
+// http://www.brucelindbloom.com/index.html?Eqn_RGB_to_XYZ.html
+const rgbToLinearLightRGB = (value: number): number => {
+    return value <= 0.04045
+        ? value / 12.92
+        : ((value + 0.055) / 1.055) ** 2.4;
+};
+
+const linearLightRGBToRGB = (value: number): number => {
+    return value <= 0.0031308
+        ? 12.92 * value
+        : 1.055 * (value ** (1 / 2.4)) - 0.055;
+};
+
+// Matrix * vector multiplication
+const matrixVectorMultiplication = (
+    v1: number, v2: number, v3: number,
+    matrix: [ColorArray, ColorArray, ColorArray]
+): ColorArray => {
+    const result: ColorArray = [0, 0, 0];
+    const linearRGB = [ v1, v2, v3 ];
+    matrix.forEach((array: number[], index: number): void => {
+        array.forEach((value: number, mindex: number) => {
+            result[index] += value * linearRGB[mindex];
+        });
+    });
+    return result;
+};
+
+const from_CIE_XYZ_D50_to_CIE_LAB = (x: number, y: number, z: number): ColorArray => {
+    const f = (t: number): number => {
+        return t > (6 / 29) ** 3
+            ? Math.cbrt(t)
+            : t / (3 * (6 / 29) ** 2) + (4 / 29);
+    };
+    const fx = f(x / TRISTIMULUS_D50[0]);
+    const fy = f(y / TRISTIMULUS_D50[1]);
+    const fz = f(z / TRISTIMULUS_D50[2]);
+    return [
+        116 * fy - 16,
+        500 * (fx - fy),
+        200 * (fy - fz)
+    ];
+};
+
+const from_CIE_LAB_to_CIE_XYZ_D50 = (L: number, a: number, b: number): ColorArray => {
+    const f = (t: number): number => {
+        return t > 6 / 29
+            ? t ** 3
+            : 3 * (6 / 29) ** 2 * (t - 4 / 29);
+    };
+    const fl = (L + 16) / 116;
+    const fa = a / 500;
+    const fb = b / 200;
+    return [
+        TRISTIMULUS_D50[0] * f(fl + fa),
+        TRISTIMULUS_D50[1] * f(fl),
+        TRISTIMULUS_D50[2] * f(fl - fb)
+    ];
 };
 
 //---HSL to RGB
@@ -73,23 +151,52 @@ export const rgbToHSL = (R: number, G: number, B: number, A = 1): HSLObject => {
     };
 };
 
-//---Lab to RGB
-export const labToRgb = (L: number, a: number, b: number): RGBObject => {
-    console.log('fake lab => RGB', L, a, b);
+//--- RGB to Lab
+export const rgbToLab = (R: number, G: number, B: number): CIELabObject => {
+
+    const LINEAR_LIGHT_RGB = [
+        R / 255,
+        G / 255,
+        B / 255
+    ].map(rgbToLinearLightRGB);
+
+    const CIE_XYZ_D50 = matrixVectorMultiplication(
+        LINEAR_LIGHT_RGB[0],
+        LINEAR_LIGHT_RGB[1],
+        LINEAR_LIGHT_RGB[2],
+        MATRIX_LRGB_XYZ_D50
+    );
+    const CIE_LAB = from_CIE_XYZ_D50_to_CIE_LAB(
+        CIE_XYZ_D50[0],
+        CIE_XYZ_D50[1],
+        CIE_XYZ_D50[2]
+    );
+
     return {
-        R: 0,
-        G: 0,
-        B: 0
+        L: CIE_LAB[0],
+        a: CIE_LAB[1],
+        b: CIE_LAB[2]
     };
 };
 
-//--- RGB to Lab
-export const rgbToLab = (R: number, G: number, B: number): CIELabObject => {
-    console.log('fake RGB => lab', R, G, B);
+//---Lab to RGB
+export const labToRgb = (L: number, a: number, b: number): RGBObject => {
+
+    const CIE_XYZ_D50 = from_CIE_LAB_to_CIE_XYZ_D50(L, a, b);
+
+    const LINEAR_LIGHT_RGB = matrixVectorMultiplication(
+        CIE_XYZ_D50[0],
+        CIE_XYZ_D50[1],
+        CIE_XYZ_D50[2],
+        MATRIX_XYZ_D50_LRGB
+    );
+
+    const RGB = LINEAR_LIGHT_RGB.map(linearLightRGBToRGB) as ColorArray;
+
     return {
-        L: 0,
-        a: 0,
-        b: 0
+        R: minmax(RGB[0] * 255, 0, 255),
+        G: minmax(RGB[1] * 255, 0, 255),
+        B: minmax(RGB[2] * 255, 0, 255)
     };
 };
 

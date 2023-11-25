@@ -3,40 +3,37 @@ import './styles.scss';
 export default (ColorTranslator) => {
 
     const container = document.createElement('div');
-    const colors = [
-        'red',
-        'lime',
-        'blue',
-        'aqua',
-        'yellow',
-        'fuchsia'
+    const hexColors = [
+        '#FE2712', '#FE5409', '#FB9902',
+        '#FABD03', '#FFFE32', '#D1EA2C',
+        '#66B132', '#0392CE', '#0247FE',
+        '#3D00A5', '#8601B0', '#A7194B'
     ];
-    const total = colors.length;
 
-    for (let row = 0; row < total; row++) {
+    hexColors.forEach((color) => {
 
-        const hsl = ColorTranslator.toHSLObject(colors[row]);
-        const step = hsl.S / (total - 1);
+        const rgb = ColorTranslator.toRGB(color);
+        const hsl = ColorTranslator.toHSL(color, { decimals: 0 });
+        const lab = ColorTranslator.toCIELab(color, { decimals: 0 });
 
-        for (let col = 0; col < total; col++) {
+        const rgbDiv = document.createElement('div');
+        const hslDiv = document.createElement('div');
+        const labDiv = document.createElement('div');
 
-            const rgb = ColorTranslator.toHEX(hsl);
-            const cmyk = ColorTranslator.toCMYKObject(hsl, { decimals: 0 });
+        rgbDiv.style.backgroundColor = rgb;
+        rgbDiv.textContent = rgb;
 
-            const box = document.createElement('div');
-            box.classList.add('box');
-            box.style.background = rgb;
-            box.innerText = `C:${cmyk.C}
-                             M:${cmyk.M}
-                             Y:${cmyk.Y}
-                             K:${cmyk.K}`;
+        hslDiv.style.backgroundColor = hsl;
+        hslDiv.textContent = hsl;
 
-            container.appendChild(box);
+        labDiv.style.backgroundColor = lab;
+        labDiv.textContent = lab;
 
-            hsl.S -= step;
+        container.appendChild(rgbDiv);
+        container.appendChild(hslDiv);
+        container.appendChild(labDiv);
 
-        }
-    }
+    });
 
     return container;
 

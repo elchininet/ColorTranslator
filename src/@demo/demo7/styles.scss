@@ -1,7 +1,37 @@
 #demo7 {
   .demo-wrapper > div {
+    align-items: start;
     display: flex;
+    font-size: 18px;
     flex-shrink: 0;
     flex-wrap: wrap;
+    margin: 0 auto;
+  }
+  .box {
+    height: auto;
+    outline: 1px solid #333;
+    position: relative;
+    width: 14.2857%;
+    &::after {
+      content: "";
+      display: block;
+      padding-top: 100%;
+      width: 100%;
+    }
+    &::before {
+      content: attr(data-type);
+      display: block;
+      font-size: 10px;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &[data-type="shade"]::before {
+      color: white;
+    }
+    &[data-type="tint"]::before {
+      color: black;
+    }
   }
 }

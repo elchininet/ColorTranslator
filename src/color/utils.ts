@@ -352,7 +352,7 @@ export const translateColor = {
     },
 
     CIELabA(color: RGBObject, decimals: number): CIELabObject {
-        const Lab = translateColor.CIELabA(color, decimals);
+        const Lab = translateColor.CIELab(color, decimals);
         Lab.A = hasProp<RGBObject>(color, 'A')
             ? round(color.A, decimals)
             : 1;

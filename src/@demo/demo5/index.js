@@ -3,21 +3,39 @@ import './styles.scss';
 export default (ColorTranslator) => {
 
     const container = document.createElement('div');
-    const rows = 11;
-    const mult = 3;
+    const colors = [
+        'red',
+        'lime',
+        'blue',
+        'aqua',
+        'yellow',
+        'fuchsia'
+    ];
+    const total = colors.length;
 
-    for (let i = 0; i < rows; i++) {
+    for (let row = 0; row < total; row++) {
 
-        const blends = ColorTranslator.getBlendHEX('#F00', '#FF0', mult + i * mult);
+        const hsl = ColorTranslator.toHSLObject(colors[row]);
+        const step = hsl.S / (total - 1);
 
-        blends.forEach((blend, index) => {
+        for (let col = 0; col < total; col++) {
+
+            const rgb = ColorTranslator.toHEX(hsl);
+            const cmyk = ColorTranslator.toCMYKObject(hsl, { decimals: 0 });
+
             const box = document.createElement('div');
-            box.classList.add('box', `file${i}`);
-            box.style.background = blend;
-            box.innerText = index + 1;
-            container.appendChild(box);
-        });
+            box.classList.add('box');
+            box.style.background = rgb;
+            box.innerText = `C:${cmyk.C}
+                             M:${cmyk.M}
+                             Y:${cmyk.Y}
+                             K:${cmyk.K}`;
 
+            container.appendChild(box);
+
+            hsl.S -= step;
+
+        }
     }
 
     return container;

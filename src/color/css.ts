@@ -166,7 +166,7 @@ export const CSS = {
             }
             if (index < 3) {
                 return labUnit === ColorUnitEnum.PERCENT
-                    ? `${from125NumberToPercent(value, decimals)}`
+                    ? `${from125NumberToPercent(value, decimals)}%`
                     : round(value, decimals);
             }
             return getAlpha(value, options, true);
