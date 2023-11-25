@@ -3,7 +3,7 @@ import './styles.scss';
 export default (ColorTranslator) => {
 
     const container = document.createElement('div');
-    const hsl = { h: 0, s: '90%', l: '50%' };
+    const hsl = { H: 0, S: '90%', L: '50%' };
     const hue = [undefined, 55, 30, 0, 290, 220, 130];
     const total = hue.length;
 
@@ -15,7 +15,7 @@ export default (ColorTranslator) => {
             if (index >= total) {
                 index -= total;
             }
-            hsl.h = hue[index];
+            hsl.H = hue[index];
             const rgb = hue[index] === undefined
                 ? '#FFF'
                 : ColorTranslator.toHEX(hsl);

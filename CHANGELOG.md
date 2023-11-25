@@ -1,5 +1,9 @@
 # Changelog
 
+## [4.0.0] - 2023-xx-xx
+
+- [BREAKING CHANGE]: HEX, HEXA, RGB, RGBA, HSL, HSLA, CMYK and CMYKA Object properties are now in captital letters
+
 ## [3.0.2] - 2023-08-02
 
 - Specify types for the ESM bundle
