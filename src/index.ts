@@ -6,6 +6,7 @@ import {
     HEXObject,
     RGBObject,
     HSLObject,
+    CIELabObject,
     CMYKObject,
     ColorOutput,
     Options,
@@ -21,6 +22,8 @@ import {
 import {
     rgbToHSL,
     hslToRGB,
+    rgbToLab,
+    labToRgb,
     rgbToCMYK,
     cmykToRGB
 } from '#color/translators';
@@ -82,6 +85,7 @@ export class ColorTranslator {
         this._options = getOptionsFromColorInput(options, color);
         this.rgb = utils.getRGBObject(color);
         this.updateHSL();
+        this.updateLab();
         this.updateCMYK();
     }
 
@@ -89,6 +93,7 @@ export class ColorTranslator {
     private _options: Options;
     private rgb: RGBObject;
     private hsl: HSLObject;
+    private lab: CIELabObject;
     private cmyk: CMYKObject;
 
     // Private methods
@@ -115,6 +120,17 @@ export class ColorTranslator {
         };
     }
 
+    private updateRGBFromLab(): void {
+        this.rgb = {
+            ...labToRgb(
+                this.lab.L,
+                this.lab.a,
+                this.lab.b
+            ),
+            A: this.rgb.A
+        };
+    }
+
     private updateHSL(): void {
         this.hsl = rgbToHSL(
             this.rgb.R,
@@ -124,30 +140,23 @@ export class ColorTranslator {
         );
     }
 
+    private updateLab(): void {
+        this.lab = {
+            ...rgbToLab(
+                this.rgb.R,
+                this.rgb.G,
+                this.rgb.B
+            ),
+            A: this.rgb.A
+        };
+    }
+
     private updateCMYK(): void {
         this.cmyk = rgbToCMYK(
             this.rgb.R,
             this.rgb.G,
             this.rgb.B
         );
-    }
-
-    private updateRGBAndCMYK(): ColorTranslator {
-        this.updateRGB();
-        this.updateCMYK();
-        return this;
-    }
-
-    private updateHSLAndCMYK(): ColorTranslator {
-        this.updateHSL();
-        this.updateCMYK();
-        return this;
-    }
-
-    private updateRGBAndHSL(): ColorTranslator {
-        this.updateRGBFromCMYK();
-        this.updateHSL();
-        return this;
     }
 
     // Public options method
@@ -162,33 +171,76 @@ export class ColorTranslator {
     // Public HSL methods
     public setH(H: number): ColorTranslator {
         this.hsl.H = normalizeHue(H);
-        return this.updateRGBAndCMYK();
+        this.updateRGB();
+        this.updateLab();
+        this.updateCMYK();
+        return this;
     }
 
     public setS(S: number): ColorTranslator {
         this.hsl.S = minmax(S, 0, 100);
-        return this.updateRGBAndCMYK();
+        this.updateRGB();
+        this.updateLab();
+        this.updateCMYK();
+        return this;
     }
 
     public setL(L: number): ColorTranslator {
         this.hsl.L = minmax(L, 0, 100);
-        return this.updateRGBAndCMYK();
+        this.updateRGB();
+        this.updateLab();
+        this.updateCMYK();
+        return this;
     }
 
     // Public RGB methods
     public setR(R: number): ColorTranslator {
         this.rgb.R = minmax(R, 0, 255);
-        return this.updateHSLAndCMYK();
+        this.updateHSL();
+        this.updateLab();
+        this.updateCMYK();
+        return;
     }
 
     public setG(G: number): ColorTranslator {
         this.rgb.G = minmax(G, 0, 255);
-        return this.updateHSLAndCMYK();
+        this.updateHSL();
+        this.updateLab();
+        this.updateCMYK();
+        return this;
     }
 
     public setB(B: number): ColorTranslator {
         this.rgb.B = minmax(B, 0, 255);
-        return this.updateHSLAndCMYK();
+        this.updateHSL();
+        this.updateLab();
+        this.updateCMYK();
+        return this;
+    }
+
+    // Public Lab methods
+    public setCIEL(L: number): ColorTranslator {
+        this.lab.L = minmax(L, 0, 100);
+        this.updateRGBFromLab();
+        this.updateHSL();
+        this.updateCMYK();
+        return this;
+    }
+
+    public setCIEa(a: number): ColorTranslator {
+        this.lab.a = minmax(a, -125, 125);
+        this.updateRGBFromLab();
+        this.updateHSL();
+        this.updateCMYK();
+        return this;
+    }
+
+    public setCIEb(b: number): ColorTranslator {
+        this.lab.b = minmax(b, -125, 125);
+        this.updateRGBFromLab();
+        this.updateHSL();
+        this.updateCMYK();
+        return this;
     }
 
     // Public alpha method
@@ -200,22 +252,34 @@ export class ColorTranslator {
     // Public CMYK methods
     public setC(C: number): ColorTranslator {
         this.cmyk.C = minmax(C, 0, 100);
-        return this.updateRGBAndHSL();
+        this.updateRGBFromCMYK();
+        this.updateHSL();
+        this.updateLab();
+        return this;
     }
 
     public setM(M: number): ColorTranslator {
         this.cmyk.M = minmax(M, 0, 100);
-        return this.updateRGBAndHSL();
+        this.updateRGBFromCMYK();
+        this.updateHSL();
+        this.updateLab();
+        return this;
     }
 
     public setY(Y: number): ColorTranslator {
         this.cmyk.Y = minmax(Y, 0, 100);
-        return this.updateRGBAndHSL();
+        this.updateRGBFromCMYK();
+        this.updateHSL();
+        this.updateLab();
+        return this;
     }
 
     public setK(K: number): ColorTranslator {
         this.cmyk.K = minmax(K, 0, 100);
-        return this.updateRGBAndHSL();
+        this.updateRGBFromCMYK();
+        this.updateHSL();
+        this.updateLab();
+        return this;
     }
 
     // Public options property
@@ -234,6 +298,19 @@ export class ColorTranslator {
 
     public get L(): number {
         return round(this.hsl.L, this.options.decimals);
+    }
+
+    // Public Lab properties
+    public get CIEL(): number {
+        return round(this.lab.L, this.options.decimals);
+    }
+
+    public get CIEa(): number {
+        return round(this.lab.a, this.options.decimals);
+    }
+
+    public get CIEb(): number {
+        return round(this.lab.b, this.options.decimals);
     }
 
     // Public RGB properties
@@ -306,6 +383,21 @@ export class ColorTranslator {
     public get HSLAObject(): HSLObject {
         return {
             ...this.HSLObject,
+            A: this.A
+        };
+    }
+
+    public get CIELabObject(): CIELabObject {
+        return {
+            L: this.lab.L,
+            a: this.lab.a,
+            b: this.lab.b
+        };
+    }
+
+    public get CIELabAObject(): CIELabObject {
+        return {
+            ...this.lab,
             A: this.A
         };
     }
@@ -384,6 +476,29 @@ export class ColorTranslator {
                 H: this.H,
                 S: this.S,
                 L: this.L,
+                A: this.A
+            },
+            this.options
+        );
+    }
+
+    public get CIELab(): string {
+        return CSS.CIELab(
+            {
+                L: this.CIEL,
+                a: this.CIEa,
+                b: this.CIEb
+            },
+            this.options
+        );
+    }
+
+    public get CIELabA(): string {
+        return CSS.CIELab(
+            {
+                L: this.CIEL,
+                a: this.CIEa,
+                b: this.CIEb,
                 A: this.A
             },
             this.options
@@ -534,6 +649,50 @@ export class ColorTranslator {
             utils.translateColor.HSLA
         );
         return CSS.HSL(hsla, detectedOptions);
+    }
+
+    public static toCIELabObject(color: ColorInput, options: InputOptions = {}): CIELabObject {
+        const model = utils.getColorModel(color);
+        return getColorReturn<CIELabObject>(
+            color,
+            model,
+            options.decimals,
+            utils.translateColor.CIELab
+        );
+    }
+
+    public static toCIELab(color: ColorInput, options: InputOptions = {}): string {
+        const model = utils.getColorModel(color);
+        const detectedOptions = getOptionsFromColorInput(options, color);
+        const lab = getColorReturn<CIELabObject>(
+            color,
+            model,
+            MAX_DECIMALS,
+            utils.translateColor.CIELab
+        );
+        return CSS.CIELab(lab, detectedOptions);
+    }
+
+    public static toCIELabAObject(color: ColorInput, options: InputOptions = {}): CIELabObject {
+        const model = utils.getColorModel(color);
+        return getColorReturn<CIELabObject>(
+            color,
+            model,
+            options.decimals,
+            utils.translateColor.CIELabA
+        );
+    }
+
+    public static toCIELabA(color: ColorInput, options: InputOptions = {}): string {
+        const model = utils.getColorModel(color);
+        const detectedOptions = getOptionsFromColorInput(options, color);
+        const lab = getColorReturn<CIELabObject>(
+            color,
+            model,
+            MAX_DECIMALS,
+            utils.translateColor.CIELabA
+        );
+        return CSS.CIELab(lab, detectedOptions);
     }
 
     public static toCMYKObject(color: ColorInput, options: InputOptions = {}): CMYKObject {
@@ -767,6 +926,74 @@ export class ColorTranslator {
             });
     }
 
+    public static getBlendCIELabObject(
+        from: ColorInput,
+        to: ColorInput,
+        steps: number = DEFAULT_BLEND_STEPS,
+        options: InputOptions = {}
+    ): CIELabObject[] {
+        return getBlendReturn<CIELabObject>(
+            from,
+            to,
+            steps,
+            options.decimals,
+            utils.translateColor.CIELab
+        );
+    }
+
+    public static getBlendCIELab(
+        from: ColorInput,
+        to: ColorInput,
+        steps: number = DEFAULT_BLEND_STEPS,
+        options: InputOptions = {}
+    ): string[] {
+        const detectedOptions = getOptionsFromColorInput(options, from, to);
+        return getBlendReturn<CIELabObject>(
+            from,
+            to,
+            steps,
+            MAX_DECIMALS,
+            utils.translateColor.CIELab
+        )
+            .map((color: CIELabObject) => {
+                return CSS.CIELab(color, detectedOptions);
+            });
+    }
+
+    public static getBlendCIELabAObject(
+        from: ColorInput,
+        to: ColorInput,
+        steps: number = DEFAULT_BLEND_STEPS,
+        options: InputOptions = {}
+    ): CIELabObject[] {
+        return getBlendReturn<CIELabObject>(
+            from,
+            to,
+            steps,
+            options.decimals,
+            utils.translateColor.CIELabA
+        );
+    }
+
+    public static getBlendCIELabA(
+        from: ColorInput,
+        to: ColorInput,
+        steps: number = DEFAULT_BLEND_STEPS,
+        options: InputOptions = {}
+    ): string[] {
+        const detectedOptions = getOptionsFromColorInput(options, from, to);
+        return getBlendReturn<CIELabObject>(
+            from,
+            to,
+            steps,
+            MAX_DECIMALS,
+            utils.translateColor.CIELabA
+        )
+            .map((color: CIELabObject) => {
+                return CSS.CIELab(color, detectedOptions);
+            });
+    }
+
     // Color Mix Static Methods
     public static getMixHEXObject(colors: ColorInput[], mode: Mix = Mix.ADDITIVE): HEXObject {
         return utils.colorMixer.HEX(colors, mode, false);
@@ -881,6 +1108,58 @@ export class ColorTranslator {
         options: InputOptions = {}
     ): string {
         return utils.colorMixer.HSLA(
+            colors,
+            mode,
+            true,
+            getOptionsFromColorInput(options, ...colors)
+        );
+    }
+
+    public static getMixCIELabObject(
+        colors: ColorInput[],
+        mode: Mix = Mix.ADDITIVE,
+        options: InputOptions = {}
+    ): CIELabObject {
+        return utils.colorMixer.CIELab(
+            colors,
+            mode,
+            false,
+            getOptionsFromColorInput(options, ...colors)
+        );
+    }
+
+    public static getMixCIELab(
+        colors: ColorInput[],
+        mode: Mix = Mix.ADDITIVE,
+        options: InputOptions = {}
+    ): string {
+        return utils.colorMixer.CIELab(
+            colors,
+            mode,
+            true,
+            getOptionsFromColorInput(options, ...colors)
+        );
+    }
+
+    public static getMixCIELabAObject(
+        colors: ColorInput[],
+        mode: Mix = Mix.ADDITIVE,
+        options: InputOptions = {}
+    ): CIELabObject {
+        return utils.colorMixer.CIELabA(
+            colors,
+            mode,
+            false,
+            getOptionsFromColorInput(options, ...colors)
+        );
+    }
+
+    public static getMixCIELabA(
+        colors: ColorInput[],
+        mode: Mix = Mix.ADDITIVE,
+        options: InputOptions = {}
+    ): string {
+        return utils.colorMixer.CIELabA(
             colors,
             mode,
             true,

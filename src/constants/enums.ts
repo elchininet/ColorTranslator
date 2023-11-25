@@ -2,6 +2,7 @@ export enum ColorModel {
     HEX = 'HEX',
     RGB = 'RGB',
     HSL = 'HSL',
+    CIELab = 'CIELab',
     CMYK = 'CMYK'
 }
 
@@ -175,6 +176,7 @@ export const COLOR_PROPS = {
     HEX: ['R', 'G', 'B', 'A'],
     RGB: ['R', 'G', 'B', 'A'],
     HSL: ['H', 'S', 'L', 'A'],
+    CIELab: ['L', 'a', 'b', 'A'],
     CMYK: ['C', 'M', 'Y', 'K', 'A']
 };
 export const VALID_COLOR_OBJECTS: Record<string, ColorModel> = {
@@ -182,6 +184,8 @@ export const VALID_COLOR_OBJECTS: Record<string, ColorModel> = {
     ABGR: ColorModel.RGB,
     HLS: ColorModel.HSL,
     AHLS: ColorModel.HSL,
+    Lab: ColorModel.CIELab,
+    ALab: ColorModel.CIELab,
     CKMY: ColorModel.CMYK,
     ACKMY: ColorModel.CMYK
 };

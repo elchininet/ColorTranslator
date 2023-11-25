@@ -2,6 +2,7 @@ import {
     HEXObject,
     RGBObject,
     HSLObject,
+    CIELabObject,
     CMYKObject,
     Color,
     NumberOrString,
@@ -18,8 +19,10 @@ import {
 import {
     toHEX,
     round,
+    percent,
     getOrderedArrayString,
     from255NumberToPercent,
+    from125NumberToPercent,
     translateDegrees
 } from '#helpers';
 
@@ -52,9 +55,15 @@ const getResultFromTemplate = (template: string, vars: NumberOrString[]): string
     });
 };
 
-const getAlpha = (value: number, options: Options): NumberOrString => {
+const getAlpha = (value: number, options: Options, ignoreLegacy = false): NumberOrString => {
     const { alphaUnit, legacyCSS, decimals } = options;
-    if (alphaUnit === ColorUnitEnum.PERCENT && !legacyCSS) {
+    if (
+        alphaUnit === ColorUnitEnum.PERCENT &&
+        (
+            !legacyCSS ||
+            ignoreLegacy
+        )
+    ) {
         return `${round(value * 100, decimals)}%`;
     }
     return round(value, decimals);
@@ -138,6 +147,34 @@ export const CSS = {
                     ? `hsl({1} {2}% {3}% / {4})`
                     : `hsl({1} {2}% {3}%)`
             );
+        return getResultFromTemplate(template, values);
+    },
+    [ColorModel.CIELab]: (color: CIELabObject, options: Options) => {
+        const {
+            decimals,
+            labUnit
+        } = options;
+        const transformer = (value: number, index: number): NumberOrString => {
+            if (index === 0) {
+                const L = round(
+                    percent(value),
+                    decimals
+                );
+                return labUnit === ColorUnitEnum.PERCENT
+                    ? `${L}%`
+                    : `${L}`;
+            }
+            if (index < 3) {
+                return labUnit === ColorUnitEnum.PERCENT
+                    ? `${from125NumberToPercent(value, decimals)}`
+                    : round(value, decimals);
+            }
+            return getAlpha(value, options, true);
+        };
+        const values = prepareColorForCss(color, transformer);
+        const template = values.length === 4
+            ? `lab({1} {2} {3} / {4})`
+            : `lab({1} {2} {3})`;
         return getResultFromTemplate(template, values);
     },
     [ColorModel.CMYK]: (color: CMYKObject, options: Options): string => {

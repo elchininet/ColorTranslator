@@ -1,4 +1,10 @@
-import { RGBObject, HSLObject, CMYKObject, RYBObject } from '@types';
+import {
+    RGBObject,
+    CIELabObject,
+    HSLObject,
+    CMYKObject,
+    RYBObject
+} from '@types';
 import { round } from '#helpers';
 
 //---HUE to RGB
@@ -29,33 +35,6 @@ export const hslToRGB = (H: number, S: number, L: number): RGBObject => {
     const G = hueToRGB(t1, t2, H);
     const B = hueToRGB(t1, t2, H - 2);
     return { R, G, B };
-};
-
-//---CMYK To RGB
-export const cmykToRGB = (C: number, M: number, Y: number, K: number): RGBObject => {
-    K = 1 - K;
-    const R = round(255 * (1 - C) * K);
-    const G = round(255 * (1 - M) * K);
-    const B = round(255 * (1 - Y) * K);
-    return { R, G, B };
-};
-
-//---RGB to CMYK
-export const rgbToCMYK = (R: number, G: number, B: number): CMYKObject => {
-    R /= 255;
-    G /= 255;
-    B /= 255;
-    const K = 1 - Math.max(R, G, B);
-    const K1 = 1 - K;
-    const C = K1 && (K1 - R) / K1;
-    const M = K1 && (K1 - G) / K1;
-    const Y = K1 && (K1 - B) / K1;
-    return {
-        C: round(C * 100),
-        M: round(M * 100),
-        Y: round(Y * 100),
-        K: round(K * 100)
-    };
 };
 
 //---RGB to HSL
@@ -91,6 +70,53 @@ export const rgbToHSL = (R: number, G: number, B: number, A = 1): HSLObject => {
         S: round(S * 100),
         L: round(L * 100),
         A
+    };
+};
+
+//---Lab to RGB
+export const labToRgb = (L: number, a: number, b: number): RGBObject => {
+    console.log('fake lab => RGB', L, a, b);
+    return {
+        R: 0,
+        G: 0,
+        B: 0
+    };
+};
+
+//--- RGB to Lab
+export const rgbToLab = (R: number, G: number, B: number): CIELabObject => {
+    console.log('fake RGB => lab', R, G, B);
+    return {
+        L: 0,
+        a: 0,
+        b: 0
+    };
+};
+
+//---CMYK To RGB
+export const cmykToRGB = (C: number, M: number, Y: number, K: number): RGBObject => {
+    K = 1 - K;
+    const R = round(255 * (1 - C) * K);
+    const G = round(255 * (1 - M) * K);
+    const B = round(255 * (1 - Y) * K);
+    return { R, G, B };
+};
+
+//---RGB to CMYK
+export const rgbToCMYK = (R: number, G: number, B: number): CMYKObject => {
+    R /= 255;
+    G /= 255;
+    B /= 255;
+    const K = 1 - Math.max(R, G, B);
+    const K1 = 1 - K;
+    const C = K1 && (K1 - R) / K1;
+    const M = K1 && (K1 - G) / K1;
+    const Y = K1 && (K1 - B) / K1;
+    return {
+        C: round(C * 100),
+        M: round(M * 100),
+        Y: round(Y * 100),
+        K: round(K * 100)
     };
 };
 

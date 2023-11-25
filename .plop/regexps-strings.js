@@ -75,6 +75,23 @@ module.exports = {
                 ${SPACE}
             \\)$
         `,
+        CIELab: `
+            ^lab${SPACE}\\(
+                    ${SPACE}
+                    (?:
+                        (${NUMBER_WITH_DECIMALS}%?)
+                        ${SPACE}
+                        (-?${NUMBER_WITH_DECIMALS}%?)
+                        ${SPACE}
+                        (-?${NUMBER_WITH_DECIMALS}%?)
+                        (?:
+                            ${SLASH}
+                            (${NUMBER_WITH_DECIMALS}%?)
+                        )?
+                    )
+                    ${SPACE}
+            \\)$
+        `,
         CMYK: `
             ^(?:device-cmyk|cmyk)
             ${SPACE}
