@@ -35,6 +35,20 @@ export interface HSLObjectGeneric {
     A?: number;
 }
 
+export interface CIELabObject {
+    L: number;
+    a: number;
+    b: number;
+    A?: number;
+}
+
+export interface CIELabObjectGeneric {
+    L: NumberOrString;
+    a: NumberOrString;
+    b: NumberOrString;
+    A?: number;
+}
+
 export interface CMYKObject {
     C: number;
     M: number;
@@ -60,16 +74,17 @@ export interface RYBObject {
 
 export type RGYBObject = RGBObject | RYBObject;
 
-export type Color = RGBObjectGeneric | HSLObjectGeneric | CMYKObjectGeneric;
-export type ColorWithoutCMYK = RGBObjectGeneric | HSLObjectGeneric;
+export type Color = RGBObjectGeneric | HSLObjectGeneric | CMYKObjectGeneric | CIELabObjectGeneric;
+export type ColorWithoutCMYK = RGBObjectGeneric | HSLObjectGeneric | CIELabObjectGeneric;
 
 export type ColorInput = string | Color;
 export type ColorInputWithoutCMYK = string | ColorWithoutCMYK;
 export type HEXOutput = string | HEXObject;
 export type RGBOutput = string | RGBObject;
+export type CIELabOutput = string | CIELabObject;
 export type HSLOutput = string | HSLObject;
 export type CMYKOutput = string | CMYKObject;
-export type ColorOutput = HEXOutput | RGBOutput | HSLOutput;
+export type ColorOutput = HEXOutput | RGBOutput | HSLOutput | CIELabOutput;
 
 export interface ObjectProps<T> {
     [key: string]: T;
@@ -99,6 +114,7 @@ export interface Options {
     spacesAfterCommas: boolean;
     anglesUnit: AnglesUnitEnum;
     rgbUnit: ColorUnitEnum;
+    labUnit: ColorUnitEnum;
     cmykUnit: ColorUnitEnum;
     alphaUnit: ColorUnitEnum;
     cmykFunction: CMYKFunctionEnum
@@ -113,6 +129,7 @@ export type InputOptions = Partial<
     anglesUnit?: `${AnglesUnitEnum}`;
     rgbUnit?: `${ColorUnitEnum}`;
     cmykUnit?: `${ColorUnitEnum}`;
+    labUnit?: `${ColorUnitEnum}`,
     alphaUnit?: `${ColorUnitEnum}`;
     cmykFunction?: `${CMYKFunctionEnum}`
 };

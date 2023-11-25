@@ -13,6 +13,7 @@ module.exports = (plop) => {
                     HEX: toRegExp(COLOR_REGEXP_STRINGS.HEX, true),
                     RGB: toRegExp(COLOR_REGEXP_STRINGS.RGB),
                     HSL: toRegExp(COLOR_REGEXP_STRINGS.HSL),
+                    CIELab: toRegExp(COLOR_REGEXP_STRINGS.CIELab),
                     CMYK: toRegExp(COLOR_REGEXP_STRINGS.CMYK),
                     HSL_HUE
                 },

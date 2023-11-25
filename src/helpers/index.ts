@@ -57,6 +57,9 @@ export const toHEX = (h: NumberOrString): string => {
 //---Convert from decimal 255 to percent
 export const from255NumberToPercent = (value: number, decimals: number): number => round(value / 255 * 100, decimals);
 
+//---Convert from decimal 125 to percent
+export const from125NumberToPercent = (value: number, decimals: number): number => round(value / 125 * 100, decimals);
+
 //---Calculate a decimal 255 from an RGB color
 export const getBase255Number = (color: string, alpha = false): number => {
     if (!alpha && PCENT.test(color)) {
@@ -71,6 +74,17 @@ export const getBase255Number = (color: string, alpha = false): number => {
             : round(color);
     }
     return Math.min(+color, alpha ? 1 : 255);
+};
+
+//---Calculate a decimal 125 from an CIE Lab color
+export const getBase125Number = (color: string, alpha = false): number => {
+    if (!alpha && PCENT.test(color)) {
+        return minmax(125 * percentNumber(color) / 100, -125, 125);
+    }
+    if (alpha) {
+        return Math.min(+color, 1);
+    }
+    return minmax(+color, -125, 125);
 };
 
 //---Calculate a decimal 0-1 value from CMYK value
@@ -158,6 +172,7 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
     const cssColors: string[] = [];
     const hslColors: AnglesUnitEnum[] = [];
     const rgbColors: boolean[] = [];
+    const labColors: boolean[] = [];
     const cmykColors: boolean[] = [];
     const alphaValues: boolean[] = [];
     const anglesUnitValues = Object.values<string>(AnglesUnitEnum);
@@ -220,6 +235,23 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
                 continue;
             }
 
+            if (COLORREGS.CIELab.test(color)) {
+                const match = color.match(COLORREGS.CIELab);
+                const L = match[1];
+                const a = match[2];
+                const b = match[3];
+                const A = match[4];
+                labColors.push(
+                    PCENT.test(L) &&
+                    PCENT.test(a) &&
+                    PCENT.test(b)
+                );
+                alphaValues.push(
+                    PCENT.test(A)
+                );
+                continue;
+            }
+
             if (color.match(COLORREGS.CMYK)) {
                 const match = color.match(COLORREGS.CMYK);
                 const C = match[1] || match[6];
@@ -273,6 +305,13 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
                 new Set(rgbColors).size === 1 && rgbColors[0]
                     ? ColorUnitEnum.PERCENT
                     : DEFAULT_OPTIONS.rgbUnit
+            ),
+        labUnit: options.labUnit && colorUnitValues.includes(options.labUnit)
+            ? options.labUnit as ColorUnitEnum
+            : (
+                new Set(labColors).size === 1 && labColors[0]
+                    ? ColorUnitEnum.PERCENT
+                    : DEFAULT_OPTIONS.labUnit
             ),
         cmykUnit: options.cmykUnit && colorUnitValues.includes(options.cmykUnit)
             ? options.cmykUnit as ColorUnitEnum
