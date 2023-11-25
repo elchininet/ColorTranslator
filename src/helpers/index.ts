@@ -77,12 +77,9 @@ export const getBase255Number = (color: string, alpha = false): number => {
 };
 
 //---Calculate a decimal 125 from an CIE Lab color
-export const getBase125Number = (color: string, alpha = false): number => {
-    if (!alpha && PCENT.test(color)) {
+export const getBase125Number = (color: string): number => {
+    if (PCENT.test(color)) {
         return minmax(125 * percentNumber(color) / 100, -125, 125);
-    }
-    if (alpha) {
-        return Math.min(+color, 1);
     }
     return minmax(+color, -125, 125);
 };

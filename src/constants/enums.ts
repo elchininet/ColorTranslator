@@ -184,8 +184,8 @@ export const VALID_COLOR_OBJECTS: Record<string, ColorModel> = {
     ABGR: ColorModel.RGB,
     HLS: ColorModel.HSL,
     AHLS: ColorModel.HSL,
-    Lab: ColorModel.CIELab,
-    ALab: ColorModel.CIELab,
+    LAB: ColorModel.CIELab,
+    ALAB: ColorModel.CIELab,
     CKMY: ColorModel.CMYK,
     ACKMY: ColorModel.CMYK
 };

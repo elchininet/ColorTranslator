@@ -348,6 +348,22 @@ describe('ColorTranslator CSS config options autodetection', () => {
 
     });
 
+    it(`labUnit auto detection`, () => {
+
+        const instancePercentage = new ColorTranslator('lab(54% 64% 55%)');
+
+        const REG_PERCENT = /(\d+)(\.\d+)?%/g;
+
+        expect(instancePercentage.CIELab.match(REG_PERCENT)).toHaveLength(3);
+        expect(instancePercentage.CIELabA.match(REG_PERCENT)).toHaveLength(3);
+
+        const instanceNone = new ColorTranslator('lab(54 80 70)');
+
+        expect(instanceNone.CIELab.includes('%')).toBe(false);
+        expect(instanceNone.CIELabA.includes('%')).toBe(false);
+
+    });
+
     it(`cmykUnit auto detection`, () => {
 
         const instancePercentage = new ColorTranslator('device-cmyk(100% 100% 100% 100%)');

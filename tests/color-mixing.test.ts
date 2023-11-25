@@ -100,6 +100,23 @@ describe('Strong additive colors mixing', (): void => {
     });
 });
 
+describe('Color mixing with L*a*b colors', (): void => {
+    it('Mixing lab colors should return the same result of mising hex colors', (): void => {
+        expect(
+            ColorTranslator.getMixHEX(['lab(54.291734 80.812455 69.88504)', 'lab(29.567573 68.298653 -112.02943)'])
+        ).toBe(
+            ColorTranslator.getMixHEX(['#F00', '#00F'])
+        );
+    });
+    it('Return a mix in lab color', (): void => {
+        expect(
+            ColorTranslator.getMixCIELab(['#F00', '#00F'], Mix.ADDITIVE, { decimals: 0 })
+        ).toBe(
+            'lab(60 94 -60)'
+        );
+    });
+});
+
 describe('legacyCSS auto detection', (): void => {
     it('All colors legacy, output should be legacy', () => {
         expect(ColorTranslator.getMixRGB(['rgb(0,0,0)', 'rgb(0,0,0)'])).toBe('rgb(0,0,0)');

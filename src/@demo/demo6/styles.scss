@@ -1,37 +1,29 @@
 #demo6 {
   .demo-wrapper > div {
-    align-items: start;
     display: flex;
     font-size: 18px;
     flex-shrink: 0;
     flex-wrap: wrap;
     margin: 0 auto;
   }
+
   .box {
-    height: auto;
+    align-items: center;
+    box-sizing: border-box;
+    color: #333;
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
+    justify-content: center;
     outline: 1px solid #333;
-    position: relative;
-    width: 14.2857%;
-    &::after {
-      content: "";
-      display: block;
-      padding-top: 100%;
-      width: 100%;
-    }
-    &::before {
-      content: attr(data-type);
-      display: block;
-      font-size: 10px;
-      left: 50%;
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-    &[data-type="shade"]::before {
-      color: white;
-    }
-    &[data-type="tint"]::before {
-      color: black;
+    text-align: center;
+    @for $i from 0 through 11 {
+      $pcent: 100% / (3 + $i * 3);
+      &.file#{$i} {
+        font-size: 1em - $i / 11;
+        height: $pcent;
+        width: $pcent;
+      }
     }
   }
 }

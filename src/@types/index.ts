@@ -1,3 +1,5 @@
+export type ColorArray = [number, number, number];
+
 export type NumberOrString = number | string;
 
 export interface HEXObject {
@@ -123,7 +125,7 @@ export interface Options {
 export type InputOptions = Partial<
     Omit<
         Options,
-        'anglesUnit' | 'rgbUnit' | 'cmykUnit' | 'alphaUnit' | 'cmykFunction'
+        'anglesUnit' | 'rgbUnit' | 'labUnit' | 'cmykUnit' | 'alphaUnit' | 'cmykFunction'
     >
 > & {
     anglesUnit?: `${AnglesUnitEnum}`;
