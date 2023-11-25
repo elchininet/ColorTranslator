@@ -734,6 +734,52 @@ exports[`ColorTranslator harmony tests Additive Harmony with decimals for {"R":2
 ]
 `;
 
+exports[`ColorTranslator harmony tests L*a*b color as input 1`] = `
+[
+  "lab(30 68 -112)",
+  "lab(68 46 75)",
+]
+`;
+
+exports[`ColorTranslator harmony tests L*a*b color as input 2`] = `
+[
+  "lab(30 68 -112 / 1)",
+  "lab(68 46 75 / 1)",
+]
+`;
+
+exports[`ColorTranslator harmony tests L*a*b color as input 3`] = `
+[
+  {
+    "L": 30,
+    "a": 68,
+    "b": -112,
+  },
+  {
+    "L": 68,
+    "a": 46,
+    "b": 75,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests L*a*b color as input 4`] = `
+[
+  {
+    "A": 1,
+    "L": 30,
+    "a": 68,
+    "b": -112,
+  },
+  {
+    "A": 1,
+    "L": 68,
+    "a": 46,
+    "b": 75,
+  },
+]
+`;
+
 exports[`ColorTranslator harmony tests Subtractive Harmony with decimals and auto legacyCSS for "hsl(0 100% 50% / 1)" 1`] = `
 [
   "hsl(0 100% 50% / 1)",

@@ -468,9 +468,13 @@ export const getColorMixture = (
         case ColorModel.CIELab:
             return hslMap.map((HSLColor: HSLObject): CIELabOutput => {
                 const RGBColor = hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L);
-                const LabColor = translateColor.CIELabA(RGBColor, options.decimals);
                 return isCSS
-                    ? CSS.CIELab(LabColor, options)
+                    ? CSS.CIELab(
+                        hasAlpha
+                            ? translateColor.CIELabA(RGBColor, options.decimals)
+                            : translateColor.CIELab(RGBColor, options.decimals),
+                        options
+                    )
                     : hasAlpha
                         ? translateColor.CIELabA(
                             {
@@ -479,7 +483,7 @@ export const getColorMixture = (
                             },
                             options.decimals
                         )
-                        : translateColor.CIELabA(
+                        : translateColor.CIELab(
                             RGBColor,
                             options.decimals
                         );
@@ -934,7 +938,7 @@ export const colorMixer = {
         return (
             css
                 ? CSS.CIELab(Lab, options)
-                : translateColor.HSLA(mix, options.decimals)
+                : translateColor.CIELabA(mix, options.decimals)
         ) as R;
     }
 };
@@ -985,14 +989,7 @@ export const roundCIELabObject = (
     return {
         L: round(color.L, decimals),
         a: round(color.a, decimals),
-        b: round(color.b, decimals),
-        ...(
-            hasProp<CIELabObject>(color, 'A')
-                ? {
-                    A: round(color.A, decimals)
-                }
-                : {}
-        )
+        b: round(color.b, decimals)
     };
 };
 

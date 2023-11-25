@@ -115,6 +115,112 @@ describe('Color mixing with L*a*b colors', (): void => {
             'lab(60 94 -60)'
         );
     });
+    it('Return a mix in lab color with decimals', (): void => {
+        expect(
+            ColorTranslator.getMixCIELab(['#F00', '#00F'])
+        ).toBe(
+            'lab(60.169696 93.550025 -60.498556)'
+        );
+    });
+    it('Return a mix in lab color as an object', (): void => {
+        expect(
+            ColorTranslator.getMixCIELabObject(
+                [
+                    { R: 255, G: 0, B: 0 },
+                    { R: 0, G: 0, B: 255 }
+                ],
+                Mix.ADDITIVE,
+                { decimals: 0 }
+            )
+        ).toMatchObject(
+            { L: 60, a: 94, b: -60 }
+        );
+    });
+    it('Return a mix in lab color as an object with decimals', (): void => {
+        expect(
+            ColorTranslator.getMixCIELabObject(
+                [
+                    { R: 255, G: 0, B: 0 },
+                    { R: 0, G: 0, B: 255 }
+                ]
+            )
+        ).toMatchObject(
+            { L: 60.169696, a: 93.550025, b: -60.498556 }
+        );
+    });
+    it('Return a substractive mix in lab color as an object with decimals', (): void => {
+        expect(
+            ColorTranslator.getMixCIELabObject(
+                [
+                    { R: 255, G: 0, B: 0 },
+                    { R: 0, G: 0, B: 255 }
+                ],
+                Mix.SUBTRACTIVE
+            )
+        ).toMatchObject(
+            { L: 39.282789, a: 74.659748, b: -95.543967 }
+        );
+    });
+    it('Return a mix in lab color with alpha', (): void => {
+        expect(
+            ColorTranslator.getMixCIELabA(['#F00', '#00F'], Mix.ADDITIVE, { decimals: 0 })
+        ).toBe(
+            'lab(60 94 -60 / 1)'
+        );
+    });
+    it('Return a substractive mix in lab color with alpha', (): void => {
+        expect(
+            ColorTranslator.getMixCIELabA(['#F00', '#00F'], Mix.SUBTRACTIVE)
+        ).toBe(
+            'lab(39.282789 74.659748 -95.543967 / 1)'
+        );
+    });
+    it('Return a mix in lab color with alpha and decimals', (): void => {
+        expect(
+            ColorTranslator.getMixCIELabA(['#F00', '#00F'])
+        ).toBe(
+            'lab(60.169696 93.550025 -60.498556 / 1)'
+        );
+    });
+    it('Return a mix in lab color with alpha as an object', (): void => {
+        expect(
+            ColorTranslator.getMixCIELabAObject(
+                [
+                    { R: 255, G: 0, B: 0 },
+                    { R: 0, G: 0, B: 255 }
+                ],
+                Mix.ADDITIVE,
+                { decimals: 0 }
+            )
+        ).toMatchObject(
+            { L: 60, a: 94, b: -60, A: 1 }
+        );
+    });
+    it('Return a substractive mix in lab color with alpha as an object with decimals', (): void => {
+        expect(
+            ColorTranslator.getMixCIELabAObject(
+                [
+                    { R: 255, G: 0, B: 0 },
+                    { R: 0, G: 0, B: 255 }
+                ],
+                Mix.SUBTRACTIVE
+            )
+        ).toMatchObject(
+            { L: 39.282789, a: 74.659748, b: -95.543967, A: 1 }
+        );
+    });
+    it('Return a mix in lab color with alpha as an object with decimals', (): void => {
+        expect(
+            ColorTranslator.getMixCIELabAObject(
+                [
+                    { R: 255, G: 0, B: 0 },
+                    { R: 0, G: 0, B: 255 }
+                ]
+            )
+        ).toMatchObject(
+            { L: 60.169696, a: 93.550025, b: -60.498556, A: 1 }
+        );
+    });
 });
 
 describe('legacyCSS auto detection', (): void => {
