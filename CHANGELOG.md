@@ -2,7 +2,7 @@
 
 ## [4.0.0] - 2023-11-26
 
-- [BREAKING CHANGE]: Properties of the HEX, HEXA, RGB, RGBA, HSL, HSLA, CMYK and CMYKA objects are now in captital letters to make them more consistent with the rest of the properties and to make support for `Lab` colors with alpha (`L a b A`)
+- [BREAKING CHANGE]: Properties of the HEX, HEXA, RGB, RGBA, HSL, HSLA, CMYK and CMYKA objects are now capitalized letters to make them more consistent with the rest of the properties and to add support for `Lab` colors with alpha (`L a b A`)
 - Added support for CIE L\*a\*b colors conversion
 
 ## [3.0.2] - 2023-08-02
