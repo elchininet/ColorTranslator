@@ -2,7 +2,8 @@
 
 ## [4.0.0] - 2023-xx-xx
 
-- [BREAKING CHANGE]: HEX, HEXA, RGB, RGBA, HSL, HSLA, CMYK and CMYKA Object properties are now in captital letters
+- [BREAKING CHANGE]: Properties of the HEX, HEXA, RGB, RGBA, HSL, HSLA, CMYK and CMYKA objects are now in captital letters
+- Added support for CIE L*a*b colors conversion
 
 ## [3.0.2] - 2023-08-02
 
