@@ -85,7 +85,10 @@ Opens a development server that provides live reloading using [webpack-dev-serve
 
 ## API
 
-> **Note:** The conversion to a CMYK color is made taking a random value of black as a base (in this case, taking the greater value from red, green or blue). When a value of black is assumed, the rest of the colors can be calculated from it. The result will be visually similar to the original light color, but if you try to convert it back you will not obtain the same original value.
+> **Notes:**
+>
+>* The conversion to a CMYK color is made taking a random value of black as a base (in this case, taking the greater value from red, green or blue). When a value of black is assumed, the rest of the colors can be calculated from it. The result will be visually similar to the original light color, but if you try to convert it back you will not obtain the same original value.
+> * The conversion to a CIE L\*a\*b color may introduce a small amount of rounding error, as far as you maintain enough decimals for the calculation it should not be noticeable, but you can expect that the values change some of their decimals during the conversions.
 
 #### Input
 
@@ -121,6 +124,12 @@ The most wonderful thing about `colortranslator` is that you don‘t need to spe
 | `hsl(5.24rad, 100%, 50%)`             | Functional HSL notation with hue in radians (CSS Colors 3 comma-separated)                                         |
 | `hsl(0.83turn, 100%, 50%)`            | Functional HSL notation with hue in turns (CSS Colors 3 comma-separated)                                           |
 | `hsla(300, 100%, 50%, 0.5)`           | Functional HSL notation with alpha (CSS Colors 3 comma-separated)                                                  |
+| `lab(54 81 70)`                       | Functional LAB notation with numbers                                                                               |
+| `lab(54 81 70 / 1)`                   | Functional LAB notation with numbers and alpha                                                                     |
+| `lab(54% 65% 56%)`                    | Functional LAB notation with percentages                                                                           |
+| `lab(54% 65% 56% / 1)`                | Functional LAB notation with percentages and alpha                                                                 |
+| `lab(54 81 70 / 93%)`                 | Functional LAB notation with numbers and alpha in percentages                                                      |
+| `lab(54% 65% 56% / 93%)`              | Functional LAB notation with parcentages and alpha in percentages                                                  |
 | `device-cmyk(0% 100% 100% 0%)`        | Device-dependent functional CMYK notation with percentages                                                         |
 | `device-cmyk(0% 100% 100% 0% / 1)`    | Device-dependent functional CMYK notation with percentages and alpha                                               |
 | `device-cmyk(0% 100% 100% 0% / 100%)` | Device-dependent functional CMYK notation with percentages and alpha in percentages                                |
@@ -157,6 +166,10 @@ The most wonderful thing about `colortranslator` is that you don‘t need to spe
 | `{H: 300, S: 100, L: 50}`                      | HSL notation using numbers                |
 | `{H: 300, S: "100%", L: "50%", A: 0.5}`        | HSL notation with alpha using percentages |
 | `{H: 300, S: 100, L: 50, A: 0.5}`              | HSL notation with alpha using numbers     |
+| `{L: 54, a: 81, b: 70}`                        | LAB notation using numbers                |
+| `{L: 54, a: 81, b: 70, A: 1}`                  | LAB notation using numbers with alpha     |
+| `{L: '54%', a: '65%', b: '56%'}`               | LAB notation using percentages            |
+| `{L: '54%', a: '65%', b: '56%', A: '100%'}`    | LAB notation using percentages with alpha |
 | `{C: "0%", M: "100%", Y: "100%", K: "0%"}`     | CMYK notation using percentages           |
 | `{C: 0, M: 1, Y: 1, K: 0}`                     | CMYK notation using numbers               |
 
@@ -177,6 +190,7 @@ interface Options {
   spacesAfterCommas?: boolean; // defaults to false
   anglesUnit?: 'none' | 'deg' | 'grad' | 'rad' | 'turn'; // defaults to 'none'
   rgbUnit?: 'none' | 'percent'; // defaults to 'none'
+  labUnit?: 'none' | 'percent'; // defaults to 'none'
   cmykUnit?: 'none' | 'percent'; // defaults to 'percent'
   alphaUnit?: 'none' | 'percent'; // defaults to 'none'
   cmykFunction?: 'device-cmyk' | 'cmyk'; // defaults to 'device-cmyk'
@@ -190,6 +204,7 @@ interface Options {
 | spacesAfterCommas | yes                 | This option only takes place if `legacyCSS` is set to true. It decides if the comas should have a space after |
 | anglesUnit        | yes                 | This option only takes place if the output is an HSL CSS output. It sets the degrees units of the HSL hue angle. If `none` is used, the output will not have any unit but its value will be the `deg` one (degrees) |
 | rgbUnit           | yes                 | This option only takes place if the output is an RGB CSS output. It sets the color units of the RGB and RGBA CSS outputs. If `none` is used the color values will be decimal between `0` and `255`. If `percent` is used, the color values will be decimal with percentages between `0%` and `100%`. |
+| labUnit           | yes                 | This option only takes place if the output is a `CIE L*a*b` CSS output. It sets the color units of the `CIELab` and `CIELabA` CSS outputs. If `none` is used it will be a decimal number between `0` and `100` for the `CIE Lightness` and  a decimal number between `-125` and `125` for the `a` and `b` axis of the `CIE L*a*b` colorspace. If `percent` is used, it will be a decimal number between `0` and `100` with percentages for all the color values. |
 | cmykUnit          | yes                 | This option sets the color units of the CMYK and CMYKA CSS outputs. If `none` is used the color values will be decimal between `0` and `1`. If `percent` is used, the color values will be decimal with percentages between `0%` and `100%`. |
 | alphaUnit         | yes                 | This option only takes place if the output is a CSS Level 4 output (`legacyCSS` has not been set, or it has been set to `false` or it has been autodetected as `false`). This option sets the alpha units of the CSS Level 4 outputs. If `none` is used the alpha values will be decimal between `0` and `1`. If `percent` is used, the alpha values will be decimal with percentages between `0%` and `100%`. |
 | cmykFunction      | yes                 | This option sets the cmyk function of the CMYK and CMYKA CSS outputs.                                       |
@@ -200,6 +215,7 @@ interface Options {
 > * `spacesAfterCommas`: if this option is set, then its value prevails, if it is not set, and the CSS input is provided with spaces after the commas, then this option will be `true`. If the input is not consistent in this aspect, then it will take its default value which is `false` (This option only takes place if `legacyCSS` is `true` or it has been autodetected as `true`)
 > * `anglesUnit`: if this option is set, then its value prevails, if it is not set, and the HSL CSS input is provided with an angle unit, then it will take that value, otherwise it will use the default one wich is `none`.
 > * `rgbUnit`: if this option is set, then its value prevails, if it is not set, and the RGB CSS input is provided with percentages in its color values, then it will take the `pcent` value, otherwise it will use the default one wich is `none`.
+> * `labUnit`: if this option is set, then its value prevails, if it is not set, and the CIE L*a*b CSS input is provided with percentages in its color values, then it will take the `pcent` value, otherwise it will use the default one wich is `none`.
 > * `cmykUnit`: if this option is set, then its value prevails, if it is not set, and the CMYK CSS input is provided without percentages in its color values, then it will take the `none` value, otherwise it will use the default one wich is `percent`.
 > * `alphaUnit`: if this option is set, then its value prevails, if it is not set, and the CSS input (must be CSS Level 4) is provided with percentages in its alpha value, then it will take the `percent` value, otherwise it will use the default one wich is `none`.
 > * `cmykFunction`: if this option is set, then its value prevails, if it is not set, and the CMYK CSS input is provided using the `cmyk` function, then it will take the `cmyk` value, otherwise it will use the default one wich is `device-cmyk`.
@@ -214,6 +230,8 @@ const hex = new ColorTranslator('#FF00FF');
 const rgb = new ColorTranslator('rgb(255, 0, 0)');
 
 const hsl = new ColorTranslator('hsl(50 20% 90% / 0.5)');
+
+const lab = new ColorTranslator('lab(54 81 70)');
 
 const hsla = new ColorTranslator({ R: 115, G: 200, B: 150, A: 0.5 });
 
@@ -258,6 +276,13 @@ new ColorTranslator('#0F0', { rgbUnit: 'percent' }).RGB; // rgb(0% 100% 0%)
 new ColorTranslator('rgb(255 255 51 / 0.5)').RGB; // rgb(255 255 51)
 new ColorTranslator('rgb(20% 100% 0% / 0.5)').RGB; // rgb(20% 100% 0%)
 
+// labUnit
+new ColorTranslator('#0F0').CIELab; // lab(87.818128 -79.287281 80.990256)
+new ColorTranslator('#0F0', { labUnit: 'none' }).CIELab; // lab(87.818128 -79.287281 80.990256)
+new ColorTranslator('#0F0', { labUnit: 'percent' }).CIELab; // lab(87.818128% -63.429825% 64.792205%)
+new ColorTranslator('lab(88 -79 81)').CIELabA; // lab(87.863151 -78.89437 80.892902 / 1)
+new ColorTranslator('lab(54.291734% 64.649964% 55.908032% / 1)').CIELabA; // lab(54.291736% 64.649953% 55.90801% / 1)
+
 // cmykUnit
 new ColorTranslator('#0F0').CMYK; // device-cmyk(100% 0% 100% 0%)
 new ColorTranslator('#0F0', { cmykUnit: 'percent' }).CMYK; // device-cmyk(100% 0% 100% 0%)
@@ -278,22 +303,25 @@ new ColorTranslator('#00F', { cmykFunction: 'cmyk' }).CMYKA; // cmyk(100% 100% 0
 
 #### Class public methods
 
-There are 12 chainable public methods and 11 of them accept a number as input. The last one accepts an [options object](#options-object):
+There are 15 chainable public methods and 14 of them accept a number as input. The last one accepts an [options object](#options-object):
 
-| Public methods | Input           | Description                                              |
-| -------------- | --------------- | -------------------------------------------------------- |
-| setH           | 0 ≤ input ≤ 360 | Sets the color hue                                       |
-| setS           | 0 ≤ input ≤ 100 | Sets the color saturation percentage                     |
-| setL           | 0 ≤ input ≤ 100 | Sets the color lightness percentage                      |
-| setR           | 0 ≤ input ≤ 255 | Sets the red value of the color                          |
-| setG           | 0 ≤ input ≤ 255 | Sets the green value of the color                        |
-| setB           | 0 ≤ input ≤ 255 | Sets the blue value of the color                         |
-| setC           | 0 ≤ input ≤ 100 | Sets the CMYK cyan percentage value of the color         |
-| setM           | 0 ≤ input ≤ 100 | Sets the CMYK magenta percentage value of the color      |
-| setY           | 0 ≤ input ≤ 100 | Sets the CMYK yellow percentage value of the color       |
-| setK           | 0 ≤ input ≤ 100 | Sets the CMYK black percentage value of the color        |
-| setA           | 0 ≤ input ≤ 1   | Sets the alpha value of the color                        |
-| setOptions     | Options         | Sets an object that would work as configuration options  |
+| Public methods | Input              | Description                                              |
+| -------------- | ------------------ | -------------------------------------------------------- |
+| setH           | 0 ≤ input ≤ 360    | Sets the color hue                                       |
+| setS           | 0 ≤ input ≤ 100    | Sets the color saturation percentage                     |
+| setL           | 0 ≤ input ≤ 100    | Sets the color lightness percentage                      |
+| setR           | 0 ≤ input ≤ 255    | Sets the red value of the color                          |
+| setG           | 0 ≤ input ≤ 255    | Sets the green value of the color                        |
+| setB           | 0 ≤ input ≤ 255    | Sets the blue value of the color                         |
+| setC           | 0 ≤ input ≤ 100    | Sets the CMYK cyan percentage value of the color         |
+| setM           | 0 ≤ input ≤ 100    | Sets the CMYK magenta percentage value of the color      |
+| setY           | 0 ≤ input ≤ 100    | Sets the CMYK yellow percentage value of the color       |
+| setK           | 0 ≤ input ≤ 100    | Sets the CMYK black percentage value of the color        |
+| setCIEL        | 0 ≤ input ≤ 100    | Sets the CIE Lightness value of the color                |
+| setCIEa        | -125 ≤ input ≤ 125 | Sets the `a` axis in the CIE L\*a\*b colorspace          |
+| setCIEb        | -125 ≤ input ≤ 125 | Sets the `b` axis in the CIE L\*a\*b colorspace          |
+| setA           | 0 ≤ input ≤ 1      | Sets the alpha value of the color                        |
+| setOptions     | Options            | Sets an object that would work as configuration options  |
 
 ###### Class public methods examples
 
@@ -315,45 +343,55 @@ color
 
 #### Class public readonly properties
 
-There are 7 properties to get the CSS representation of the color:
+There are 10 properties to get the CSS representation of the color:
 
-| Property | Description                                          |
-| -------- | ---------------------------------------------------- |
-| HEX      | Gets the the object hex representation of the color  |
-| HEXA     | Gets the the object hexa representation of the color |
-| RGB      | Gets the the object rgb representation of the color  |
-| RGBA     | Gets the the object rgba representation of the color |
-| HSL      | Gets the the object hsl representation of the color  |
-| HSLA     | Gets the the object hsla representation of the color |
-| CMYK     | Gets the the object cmyk representation of the color |
+| Property | Description                                                     |
+| -------- | --------------------------------------------------------------- |
+| HEX      | Gets the css hex representation of the color                    |
+| HEXA     | Gets the css hex representation of the color with alpha         |
+| RGB      | Gets the css rgb representation of the color                    |
+| RGBA     | Gets the css rgb representation of the color with alpha         |
+| HSL      | Gets the css hsl representation of the color                    |
+| HSLA     | Gets the css hsl representation of the color with alpha         |
+| CIELab   | Gets the css CIE L\*a\*b representation of the color            |
+| CIELabA  | Gets the css CIE L\*a\*b representation of the color with alpha |
+| CMYK     | Gets css cmyk representation of the color                       |
+| CMYKA    | Gets css cmyk representation of the color with alpha            |
 
-There are 7 properties to get the object representation of the color:
+There are 10 properties to get the object representation of the color:
 
-| Property   | Description                                          |
-| ---------- | ---------------------------------------------------- |
-| HEXObject  | Gets the the object hex representation of the color  |
-| HEXAObject | Gets the the object hexa representation of the color |
-| RGBObject  | Gets the the object rgb representation of the color  |
-| RGBAObject | Gets the the object rgba representation of the color |
-| HSLObject  | Gets the the object hsl representation of the color  |
-| HSLAObject | Gets the the object hsla representation of the color |
-| CMYKObject | Gets the the object cmyk representation of the color |
+| Property      | Description                                                       |
+| ------------- | ----------------------------------------------------------------- |
+| HEXObject     | Gets the object hex representation of the color                   |
+| HEXAObject    | Gets the object hex representation of the color with alpha        |
+| RGBObject     | Gets the object rgb representation of the color                   |
+| RGBAObject    | Gets the object rgb representation of the color with alpha        |
+| HSLObject     | Gets the object hsl representation of the color                   |
+| HSLAObject    | Gets the object hsl representation of the color with alpha        |
+| CIELabObject  | Gets the object CIE L\*a\*b representation of the color           |
+| CIELabAObject |Gets the object CIE L\*a\*b representation of the color with alpha |
+| CMYKObject    | Gets the object cmyk representation of the color                  |
+| CMYKAObject   | Gets the object cmyk representation of the color with alpha       |
 
-There are 11 properties to get the individual color values:
 
-| Property | Description                                         |
-| -------- | --------------------------------------------------- |
-| H        | Gets the color hue                                  |
-| S        | Gets the color saturation percentage                |
-| L        | Gets the color lightness percentage                 |
-| R        | Gets the red value of the color                     |
-| G        | Gets the green value of the color                   |
-| B        | Gets the blue value of the color                    |
-| C        | Gets the CMYK cyan percentage value of the color    |
-| M        | Gets the CMYK magenta percentage value of the color |
-| Y        | Gets the CMYK yellow percentage value of the color  |
-| K        | Gets the CMYK black percentage value of the color   |
-| A        | Gets the alpha value of the color                   |
+There are 14 properties to get the individual color values:
+
+| Property | Description                                                  |
+| -------- | ------------------------------------------------------------ |
+| H        | Gets the color hue                                           |
+| S        | Gets the color saturation percentage                         |
+| L        | Gets the color lightness percentage                          |
+| R        | Gets the red value of the color                              |
+| G        | Gets the green value of the color                            |
+| B        | Gets the blue value of the color                             |
+| CIEL     | Gets the CIE Lightness value of the color                    |
+| CIEa     | Gets the `a` axis in the CIE L\*a\*b colorspace of the color |
+| CIEb     | Gets the `b` axis in the CIE L\*a\*b colorspace of the color |
+| C        | Gets the CMYK cyan percentage value of the color             |
+| M        | Gets the CMYK magenta percentage value of the color          |
+| Y        | Gets the CMYK yellow percentage value of the color           |
+| K        | Gets the CMYK black percentage value of the color            |
+| A        | Gets the alpha value of the color                            |
 
 And a property to get the options object that acts as a [configuration object](#options-object) for the outputs
 
@@ -374,6 +412,7 @@ color.G; // 0
 color.B; // 255
 color.RGB; // rgb(255 0 255)
 color.HSLA; // hsl(300 100% 50% / 1)
+color.CIELabObject; // {L: 60.17, a: 93.55, b: -60.5}
 color.options; // { decimals: 2 }
 ```
 
@@ -381,7 +420,7 @@ color.options; // { decimals: 2 }
 
 For the static methods, it is not needed to specify the input color model, the API will detect the format automatically. It is only needed to specify to which color model one wants to convert calling the specific static method.
 
-There are 43 static methods available, 16 of them to convert colors, 12 to create color blends, 12 to mix colors, one to get shades, one to get tints, and one to create color harmonies.
+There are 56 static methods available, 20 of them to convert colors, 16 to create color blends, 16 to mix colors, one to get shades, one to get tints, and one to create color harmonies.
 
 >Note: The static methods also count with the options-autodetection feature that was explained in the [options object section](#options-object), but in this case it scans all the inputs that are CSS, and it tries to detect the options in each one of them. If one of the autodetected options is consistent in all the inputs, then it takes the autodetected value, otherwise it will use the default one.
 
@@ -397,22 +436,28 @@ convertColorStaticMethod(
 ```
 ###### Color conversion static methods description
 
-| Static method | Description                                               |
-| ------------- | --------------------------------------------------------- |
-| toHEX         | Converts to an hexadecimal notation                       |
-| toHEXObject   | Converts to an object in hexadecimal notation             |
-| toHEXA        | Converts to an hexadecimal notation with alpha            |
-| toHEXAObject  | Converts to an object in hexadecimal notation with alpha  |
-| toRGB         | Converts to an RGB notation                               |
-| toRGBObject   | Converts to an object in RGB notation                     |
-| toRGBA        | Converts to an RGB notation with alpha                    |
-| toRGBAObject  | Converts to an object in RGB notation with alpha          |
-| toHSL         | Converts to an HSL notation                               |
-| toHSLObject   | Converts to an object in HSL notation                     |
-| toHSLA        | Converts to an HSL notation with alpha                    |
-| toHSLAObject  | Converts to an object in HSL notation with alpha          |
-| toCMYK        | Converts to a CMYK notation                               |
-| toCMYKObject  | Converts to an object in CMYK notation                    |
+| Static method   | Description                                                  |
+| --------------- | ------------------------------------------------------------ |
+| toHEX           | Converts to an hexadecimal notation                          |
+| toHEXObject     | Converts to an object in hexadecimal notation                |
+| toHEXA          | Converts to an hexadecimal notation with alpha               |
+| toHEXAObject    | Converts to an object in hexadecimal notation with alpha     |
+| toRGB           | Converts to an RGB notation                                  |
+| toRGBObject     | Converts to an object in RGB notation                        |
+| toRGBA          | Converts to an RGB notation with alpha                       |
+| toRGBAObject    | Converts to an object in RGB notation with alpha             |
+| toHSL           | Converts to an HSL notation                                  |
+| toHSLObject     | Converts to an object in HSL notation                        |
+| toHSLA          | Converts to an HSL notation with alpha                       |
+| toHSLAObject    | Converts to an object in HSL notation with alpha             |
+| toCIELab        | Converts to a CIE L\*a\*b notation                           |
+| toCIELabObject  | Converts to an object in the CIE L\*a\*b notation            |
+| toCIELabA       | Converts to a CIE L\*a\*b notation with alpha                |
+| toCIELabAObject | Converts to an object in the CIE L\*a\*b notation with alpha |
+| toCMYK          | Converts to a CMYK notation                                  |
+| toCMYKA         | Converts to a CMYK notation with alpha                       |
+| toCMYKObject    | Converts to an object in CMYK notation                       |
+| toCMYKAObject   | Converts to an object in CMYK notation with alpha            |
 
 ###### Color conversion static methods examples
 
@@ -448,9 +493,14 @@ ColorTranslator.toHSLA(
   { r: 95, g: 23, b: 12, a: Math.SQRT1_2 },
   { decimals: 4 }
 ); // hsl(7.9518 77.5701% 20.9804% / 0.7071)
+
+ColorTranslator.toCIELab(
+  '#00F',
+  { decimals: 2 }
+); // lab(29.57 68.3 -112.03)
 ```
 
-You can also consult the [demo 3](https://elchininet.github.io/ColorTranslator/#demo3), and the [demo 4](https://elchininet.github.io/ColorTranslator/#demo4) to check the use of these static methods.
+You can also consult the [demo 3](https://elchininet.github.io/ColorTranslator/#demo3), the [demo 4](https://elchininet.github.io/ColorTranslator/#demo4) and the [demo 5](https://elchininet.github.io/ColorTranslator/#demo5) to check the use of these static methods.
 
 ###### Color blends static methods
 
@@ -467,20 +517,24 @@ getBlendColorsStaticMethod(
 
 ###### Color blends static methods description
 
-| Static method      | Description                                                                                             |
-| ------------------ | ------------------------------------------------------------------------------------------------------- |
-| getBlendHEX        | Creates an array relative to the blend between two colors in hexadecimal notation                       |
-| getBlendHEXObject  | Creates an array of objects relative to the blend between two colors in hexadecimal notation            |
-| getBlendHEXA       | Creates an array relative to the blend between two colors in hexadecimal notation with alpha            |
-| getBlendHEXAObject | Creates an array of objects relative to the blend between two colors in hexadecimal notation with alpha |
-| getBlendRGB        | Creates an array relative to the blend between two colors in RGB notation                               |
-| getBlendRGBObject  | Creates an array of objects relative to the blend between two colors in RGB notation                    |
-| getBlendRGBA       | Creates an array relative to the blend between two colors in RGB notation with alpha                    |
-| getBlendRGBAObject | Creates an array of objects relative to the blend between two colors in RGB notation with alpha         |
-| getBlendHSL        | Creates an array relative to the blend between two colors in HSL notation                               |
-| getBlendHSLObject  | Creates an array of objects relative to the blend between two colors in HSL notation                    |
-| getBlendHSLA       | Creates an array relative to the blend between two colors in HSL notation with alpha                    |
-| getBlendHSLAObject | Creates an array of objects relative to the blend between two colors in HSL notation with alpha         |
+| Static method         | Description                                                                                             |
+| --------------------- | ------------------------------------------------------------------------------------------------------- |
+| getBlendHEX           | Creates an array relative to the blend between two colors in hexadecimal notation                       |
+| getBlendHEXObject     | Creates an array of objects relative to the blend between two colors in hexadecimal notation            |
+| getBlendHEXA          | Creates an array relative to the blend between two colors in hexadecimal notation with alpha            |
+| getBlendHEXAObject    | Creates an array of objects relative to the blend between two colors in hexadecimal notation with alpha |
+| getBlendRGB           | Creates an array relative to the blend between two colors in RGB notation                               |
+| getBlendRGBObject     | Creates an array of objects relative to the blend between two colors in RGB notation                    |
+| getBlendRGBA          | Creates an array relative to the blend between two colors in RGB notation with alpha                    |
+| getBlendRGBAObject    | Creates an array of objects relative to the blend between two colors in RGB notation with alpha         |
+| getBlendHSL           | Creates an array relative to the blend between two colors in HSL notation                               |
+| getBlendHSLObject     | Creates an array of objects relative to the blend between two colors in HSL notation                    |
+| getBlendHSLA          | Creates an array relative to the blend between two colors in HSL notation with alpha                    |
+| getBlendHSLAObject    | Creates an array of objects relative to the blend between two colors in HSL notation with alpha         |
+| getBlendCIELab        | Creates an array relative to the blend between two colors in CIE L\*a\*b notation                       |
+| getBlendCIELabObject  | Creates an array of objects relative to the blend between two colors in CIE L\*a\*b notation            |
+| getBlendCIELabA       | Creates an array relative to the blend between two colors in CIE L\*a\*b notation with alpha            |
+| getBlendCIELabAObject | Creates an array of objects relative to the blend between two colors in CIE L\*a\*b notation with alpha |
 
 ###### Color blends static methods examples
 
@@ -514,7 +568,7 @@ ColorTranslator.getBlendRGBAObject('#F000', 'rgba(0,0,255,1)', 5);
 // ]
 ```
 
-You can also consult the [demo 5](https://elchininet.github.io/ColorTranslator/#demo5) to check the use of these static methods.
+You can also consult the [demo 6](https://elchininet.github.io/ColorTranslator/#demo6) to check the use of these static methods.
 
 ###### Color mix static methods
 
@@ -532,20 +586,24 @@ getMixColorsStaticMethod(
 
 ###### Color mix static methods description
 
-| Static method    | Description                                                                      |
-| ---------------- | -------------------------------------------------------------------------------- |
-| getMixHEX        | Gets the mix of the input colors in hexadecimal notation                         |
-| getMixHEXObject  | Gets the mix of the input colors in an object in hexadecimal notation            |
-| getMixHEXA       | Gets the mix of the input colors in hexadecimal notation with alpha              |
-| getMixHEXAObject | Gets the mix of the input colors in an object in hexadecimal notation with alpha |
-| getMixRGB        | Gets the mix of the input colors in RGB notation                                 |
-| getMixRGBObject  | Gets the mix of the input colors in an object in RGB notation                    |
-| getMixRGBA       | Gets the mix of the input colors in RGB notation with alpha                      |
-| getMixRGBAObject | Gets the mix of the input colors in an object in RGB notation with alpha         |
-| getMixHSL        | Gets the mix of the input colors in HSL notation                                 |
-| getMixHSLObject  | Gets the mix of the input colors in an object in HSL notation                    |
-| getMixHSLA       | Gets the mix of the input colors in HSL notation with alpha                      |
-| getMixHSLAObject | Gets the mix of the input colors in an object in HSL notation with alpha         |
+| Static method       | Description                                                                            |
+| ------------------- | -------------------------------------------------------------------------------------- |
+| getMixHEX           | Gets the mix of the input colors in hexadecimal notation                               |
+| getMixHEXObject     | Gets the mix of the input colors in an object in hexadecimal notation                  |
+| getMixHEXA          | Gets the mix of the input colors in hexadecimal notation with alpha                    |
+| getMixHEXAObject    | Gets the mix of the input colors in an object in hexadecimal notation with alpha       |
+| getMixRGB           | Gets the mix of the input colors in RGB notation                                       |
+| getMixRGBObject     | Gets the mix of the input colors in an object in RGB notation                          |
+| getMixRGBA          | Gets the mix of the input colors in RGB notation with alpha                            |
+| getMixRGBAObject    | Gets the mix of the input colors in an object in RGB notation with alpha               |
+| getMixHSL           | Gets the mix of the input colors in HSL notation                                       |
+| getMixHSLObject     | Gets the mix of the input colors in an object in HSL notation                          |
+| getMixHSLA          | Gets the mix of the input colors in HSL notation with alpha                            |
+| getMixHSLAObject    | Gets the mix of the input colors in an object in HSL notation with alpha               |
+| getMixCIELab        | Gets the mix of the input colors in CIE L\*a\*b color notation                         |
+| getMixCIELabObject  | Gets the mix of the input colors in an object in CIE L\*a\*b color notation            |
+| getMixCIELabA       | Gets the mix of the input colors in CIE L\*a\*b color notation with alpha              |
+| getMixCIELabAObject | Gets the mix of the input colors in an object in CIE L\*a\*b color notation with alpha |
 
 ###### Color mix static methods examples
 
@@ -567,7 +625,7 @@ ColorTranslator.getMixHEX(['#FF0', '#F00'], Mix.SUBTRACTIVE);
 // #FF8800
 ```
 
-You can also consult the [demo 7](https://elchininet.github.io/ColorTranslator/#demo7) and [demo 8](https://elchininet.github.io/ColorTranslator/#demo8) to check the use of these static methods.
+You can also consult the [demo 8](https://elchininet.github.io/ColorTranslator/#demo8) and [demo 9](https://elchininet.github.io/ColorTranslator/#demo9) to check the use of these static methods.
 
 ###### Color shades and color tints static methods
 
@@ -619,7 +677,7 @@ ColorTranslator.getTints({r: 255, g: 0, b: 0, a: 0.5}, 5);
 // ]
 ```
 
-You can also consult the [demo 6](https://elchininet.github.io/ColorTranslator/#demo6) to check the use of these static methods.
+You can also consult the [demo 7](https://elchininet.github.io/ColorTranslator/#demo7) to check the use of these static methods.
 
 ###### Color harmonies static method
 
@@ -684,7 +742,7 @@ ColorTranslator.getHarmony('#FF0000', Harmony.COMPLEMENTARY, Mix.SUBTRACTIVE);
 
 ```
 
-You can also consult the [demo 9](https://elchininet.github.io/ColorTranslator/#demo9) and [demo 10](https://elchininet.github.io/ColorTranslator/#demo10) to check the use of this static method.
+You can also consult the [demo 10](https://elchininet.github.io/ColorTranslator/#demo10) and [demo 11](https://elchininet.github.io/ColorTranslator/#demo11) to check the use of this static method.
 
 ## TypeScript Support
 
@@ -709,7 +767,7 @@ interface InputOptions {
 
 ###### HEXObject
 
-This type is returned by the `HEXObject`, and `HEXAObject` properties, the `toHEXObject`, `toHEXAObject`, `getBlendHEXObject`, `getBlendHEXAObject`, `getMixHEXObject`, and the `getMixHEXAObject` methods, and the `getHarmony` method (when the input is an `HEXObject`).
+This type is returned by the `HEXObject`, and `HEXAObject` properties, the `toHEXObject`, `toHEXAObject`, `getBlendHEXObject`, `getBlendHEXAObject`, `getMixHEXObject`, and the `getMixHEXAObject` methods, and the `getShades`, `getTints`, and `getHarmony` methods (when the input is an `HEXObject`).
 
 ```typescript
 interface HEXObject {
@@ -722,7 +780,7 @@ interface HEXObject {
 
 ###### RGBObject
 
-This type is returned by the `RGBObject`, and `RGBAObject` properties, the `toRGBObject`, `toRGBAObject`, `getBlendRGBObject`, `getBlendRGBAObject`, `getMixRGBObject`, and the `getMixRGBAObject` methods, and the `getHarmony` method (when the input is an `RGBObject`).
+This type is returned by the `RGBObject`, and `RGBAObject` properties, the `toRGBObject`, `toRGBAObject`, `getBlendRGBObject`, `getBlendRGBAObject`, `getMixRGBObject`, and the `getMixRGBAObject` methods, and the `getShades`, `getTints`, and `getHarmony` methods (when the input is an `RGBObject`).
 
 ```typescript
 interface RGBObject {
@@ -735,13 +793,26 @@ interface RGBObject {
 
 ###### HSLObject
 
-This type is returned by the `HSLObject`, and `HSLAObject` properties, the `toHSLObject`, `toHSLAObject`, `getBlendHSLObject`, `getBlendHSLAObject`, `getMixHSLObject`, and the `getMixHSLAObject` methods, and the `getHarmony` method (when the input is an `HSLObject`).
+This type is returned by the `HSLObject`, and `HSLAObject` properties, the `toHSLObject`, `toHSLAObject`, `getBlendHSLObject`, `getBlendHSLAObject`, `getMixHSLObject`, and the `getMixHSLAObject` methods, and the `getShades`, `getTints`, and `getHarmony` methods (when the input is an `HSLObject`).
 
 ```typescript
 interface HSLObject {
     H: number;
     S: number;
     L: number;
+    A?: number;
+}
+```
+
+###### CIELabObject
+
+This type is returned by the `CIELabObject`, and `CIELabAObject` properties, the `toCIELabObject`, `toCIELabAObject`, `getBlendCIELabObject`, `getBlendCIELabAObject`, `getMixCIELabObject`, and the `getMixCIELabAObject` methods, and the `getShades`, `getTints`, and `getHarmony` methods (when the input is an `CIELabObject`).
+
+```typescript
+interface CIELabObject {
+    L: number;
+    a: number;
+    b: number;
     A?: number;
 }
 ```
