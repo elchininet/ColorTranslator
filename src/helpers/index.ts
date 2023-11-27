@@ -16,7 +16,11 @@ import {
     SPACES,
     COLORREGS,
     HSL_HUE,
-    TypeOf
+    TypeOf,
+    Harmony,
+    HarmonyString,
+    Mix,
+    MixString,
 } from '#constants';
 
 //---Has property
@@ -332,4 +336,12 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
                     : DEFAULT_OPTIONS.cmykFunction
             )
     };
+};
+
+export const isHarmony = (param: HarmonyString | MixString | InputOptions): param is HarmonyString => {
+    return `${param}` in Harmony;
+};
+
+export const isMix = (param: MixString | InputOptions): param is MixString => {
+    return `${param}` in Mix;
 };

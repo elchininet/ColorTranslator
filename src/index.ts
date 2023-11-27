@@ -16,7 +16,9 @@ import {
 import {
     ColorModel,
     Harmony,
+    HarmonyString,
     Mix,
+    MixString,
     DEFAULT_BLEND_STEPS,
     MAX_DECIMALS
 } from '#constants';
@@ -34,7 +36,9 @@ import {
     round,
     minmax,
     getOptionsFromColorInput,
-    normalizeHue
+    normalizeHue,
+    isHarmony,
+    isMix
 } from '#helpers';
 
 const getColorReturn = <T>(
@@ -64,9 +68,9 @@ const getBlendReturn = <T>(
 };
 
 const getHarmonyReturn = (
-    harmony: Harmony,
+    harmony: HarmonyString,
     color: ColorInputWithoutCMYK,
-    mode: Mix,
+    mode: MixString,
     options: Options,
 ): ColorOutput[] => {
     return ({
@@ -996,25 +1000,25 @@ export class ColorTranslator {
     }
 
     // Color Mix Static Methods
-    public static getMixHEXObject(colors: ColorInput[], mode: Mix = Mix.ADDITIVE): HEXObject {
+    public static getMixHEXObject(colors: ColorInput[], mode: MixString = Mix.ADDITIVE): HEXObject {
         return utils.colorMixer.HEX(colors, mode, false);
     }
 
-    public static getMixHEX(colors: ColorInput[], mode: Mix = Mix.ADDITIVE): string {
+    public static getMixHEX(colors: ColorInput[], mode: MixString = Mix.ADDITIVE): string {
         return utils.colorMixer.HEX(colors, mode, true);
     }
 
-    public static getMixHEXAObject(colors: ColorInput[], mode: Mix = Mix.ADDITIVE): HEXObject {
+    public static getMixHEXAObject(colors: ColorInput[], mode: MixString = Mix.ADDITIVE): HEXObject {
         return utils.colorMixer.HEXA(colors, mode, false);
     }
 
-    public static getMixHEXA(colors: ColorInput[], mode: Mix = Mix.ADDITIVE): string {
+    public static getMixHEXA(colors: ColorInput[], mode: MixString = Mix.ADDITIVE): string {
         return utils.colorMixer.HEXA(colors, mode, true);
     }
 
     public static getMixRGBObject(
         colors: ColorInput[],
-        mode: Mix = Mix.ADDITIVE,
+        mode: MixString = Mix.ADDITIVE,
         options: InputOptions = {}
     ): RGBObject {
         return utils.colorMixer.RGB(
@@ -1027,7 +1031,7 @@ export class ColorTranslator {
 
     public static getMixRGB(
         colors: ColorInput[],
-        mode: Mix = Mix.ADDITIVE,
+        mode: MixString = Mix.ADDITIVE,
         options: InputOptions = {}
     ): string {
         return utils.colorMixer.RGB(
@@ -1040,7 +1044,7 @@ export class ColorTranslator {
 
     public static getMixRGBAObject(
         colors: ColorInput[],
-        mode: Mix = Mix.ADDITIVE,
+        mode: MixString = Mix.ADDITIVE,
         options: InputOptions = {}
     ): RGBObject {
         return utils.colorMixer.RGBA(
@@ -1053,7 +1057,7 @@ export class ColorTranslator {
 
     public static getMixRGBA(
         colors: ColorInput[],
-        mode: Mix = Mix.ADDITIVE,
+        mode: MixString = Mix.ADDITIVE,
         options: InputOptions = {}
     ): string {
         return utils.colorMixer.RGBA(
@@ -1066,7 +1070,7 @@ export class ColorTranslator {
 
     public static getMixHSLObject(
         colors: ColorInput[],
-        mode: Mix = Mix.ADDITIVE,
+        mode: MixString = Mix.ADDITIVE,
         options: InputOptions = {}
     ): HSLObject {
         return utils.colorMixer.HSL(
@@ -1079,7 +1083,7 @@ export class ColorTranslator {
 
     public static getMixHSL(
         colors: ColorInput[],
-        mode: Mix = Mix.ADDITIVE,
+        mode: MixString = Mix.ADDITIVE,
         options: InputOptions = {}
     ): string {
         return utils.colorMixer.HSL(
@@ -1092,7 +1096,7 @@ export class ColorTranslator {
 
     public static getMixHSLAObject(
         colors: ColorInput[],
-        mode: Mix = Mix.ADDITIVE,
+        mode: MixString = Mix.ADDITIVE,
         options: InputOptions = {}
     ): HSLObject {
         return utils.colorMixer.HSLA(
@@ -1105,7 +1109,7 @@ export class ColorTranslator {
 
     public static getMixHSLA(
         colors: ColorInput[],
-        mode: Mix = Mix.ADDITIVE,
+        mode: MixString = Mix.ADDITIVE,
         options: InputOptions = {}
     ): string {
         return utils.colorMixer.HSLA(
@@ -1118,7 +1122,7 @@ export class ColorTranslator {
 
     public static getMixCIELabObject(
         colors: ColorInput[],
-        mode: Mix = Mix.ADDITIVE,
+        mode: MixString = Mix.ADDITIVE,
         options: InputOptions = {}
     ): CIELabObject {
         return utils.colorMixer.CIELab(
@@ -1131,7 +1135,7 @@ export class ColorTranslator {
 
     public static getMixCIELab(
         colors: ColorInput[],
-        mode: Mix = Mix.ADDITIVE,
+        mode: MixString = Mix.ADDITIVE,
         options: InputOptions = {}
     ): string {
         return utils.colorMixer.CIELab(
@@ -1144,7 +1148,7 @@ export class ColorTranslator {
 
     public static getMixCIELabAObject(
         colors: ColorInput[],
-        mode: Mix = Mix.ADDITIVE,
+        mode: MixString = Mix.ADDITIVE,
         options: InputOptions = {}
     ): CIELabObject {
         return utils.colorMixer.CIELabA(
@@ -1157,7 +1161,7 @@ export class ColorTranslator {
 
     public static getMixCIELabA(
         colors: ColorInput[],
-        mode: Mix = Mix.ADDITIVE,
+        mode: MixString = Mix.ADDITIVE,
         options: InputOptions = {}
     ): string {
         return utils.colorMixer.CIELabA(
@@ -1199,17 +1203,69 @@ export class ColorTranslator {
     }
 
     // Color Harmony Static Method
-    public static getHarmony(color: string, harmony?: Harmony, mode?: Mix, options?: InputOptions): string[];
-    public static getHarmony(color: HEXObject, harmony?: Harmony, mode?: Mix, options?: InputOptions): HEXObject[];
-    public static getHarmony(color: RGBObject, harmony?: Harmony, mode?: Mix, options?: InputOptions): RGBObject[];
-    public static getHarmony(color: HSLObjectGeneric, harmony?: Harmony, mode?: Mix, options?: InputOptions): HSLObject[];
-    public static getHarmony(color: CIELabObjectGeneric, harmony?: Harmony, mode?: Mix, options?: InputOptions): CIELabObject[];
-    public static getHarmony(color: ColorInputWithoutCMYK, harmony: Harmony = Harmony.COMPLEMENTARY, mode: Mix = Mix.ADDITIVE, options = {}): ColorOutput[] {
+    public static getHarmony(color: string, harmony?: Harmony, mode?: MixString, options?: InputOptions): string[];
+    public static getHarmony(color: HEXObject, harmony?: Harmony, mode?: MixString, options?: InputOptions): HEXObject[];
+    public static getHarmony(color: RGBObject, harmony?: Harmony, mode?: MixString, options?: InputOptions): RGBObject[];
+    public static getHarmony(color: HSLObjectGeneric, harmony?: Harmony, mode?: MixString, options?: InputOptions): HSLObject[];
+    public static getHarmony(color: CIELabObjectGeneric, harmony?: Harmony, mode?: MixString, options?: InputOptions): CIELabObject[];
+
+    public static getHarmony(color: string, harmony?: Harmony, options?: InputOptions): string[];
+    public static getHarmony(color: HEXObject, harmony?: Harmony, options?: InputOptions): HEXObject[];
+    public static getHarmony(color: RGBObject, harmony?: Harmony, options?: InputOptions): RGBObject[];
+    public static getHarmony(color: HSLObjectGeneric, harmony?: Harmony, options?: InputOptions): HSLObject[];
+    public static getHarmony(color: CIELabObjectGeneric, harmony?: Harmony, options?: InputOptions): CIELabObject[];
+
+    public static getHarmony(color: string, mode?: MixString, options?: InputOptions): string[];
+    public static getHarmony(color: HEXObject, mode?: MixString, options?: InputOptions): HEXObject[];
+    public static getHarmony(color: RGBObject, mode?: MixString, options?: InputOptions): RGBObject[];
+    public static getHarmony(color: HSLObjectGeneric, mode?: MixString, options?: InputOptions): HSLObject[];
+    public static getHarmony(color: CIELabObjectGeneric, mode?: MixString, options?: InputOptions): CIELabObject[];
+
+    public static getHarmony(color: string, options?: InputOptions): string[];
+    public static getHarmony(color: HEXObject, options?: InputOptions): HEXObject[];
+    public static getHarmony(color: RGBObject, options?: InputOptions): RGBObject[];
+    public static getHarmony(color: HSLObjectGeneric, options?: InputOptions): HSLObject[];
+    public static getHarmony(color: CIELabObjectGeneric, options?: InputOptions): CIELabObject[];
+
+    public static getHarmony(
+        color: ColorInputWithoutCMYK,
+        secondParam?: HarmonyString | MixString | InputOptions,
+        thirdParam?: MixString | InputOptions,
+        fourthParam?: InputOptions
+    ): ColorOutput[] {
+        if (isHarmony(secondParam)) {
+            return getHarmonyReturn(
+                secondParam,
+                color,
+                isMix(thirdParam)
+                    ? thirdParam
+                    : Mix.ADDITIVE,
+                getOptionsFromColorInput(
+                    isMix(thirdParam)
+                        ? (fourthParam || {})
+                        : thirdParam || {},
+                    color
+                )
+            );
+        } else if (isMix(secondParam)) {
+            return getHarmonyReturn(
+                Harmony.COMPLEMENTARY,
+                color,
+                secondParam,
+                getOptionsFromColorInput(
+                    thirdParam as InputOptions || {},
+                    color
+                )
+            );
+        }
         return getHarmonyReturn(
-            harmony,
+            Harmony.COMPLEMENTARY,
             color,
-            mode,
-            getOptionsFromColorInput(options, color)
+            Mix.ADDITIVE,
+            getOptionsFromColorInput(
+                secondParam || {},
+                color
+            )
         );
     }
 }
