@@ -25,6 +25,7 @@ import {
     PCENT,
     ColorModel,
     Mix,
+    MixString,
     ColorKeywords,
     COLORREGS,
     COLOR_KEYS,
@@ -58,7 +59,7 @@ import {
 } from '#color/translators';
 import { CSS } from '#color/css';
 
-type HarmonyFunction = (color: HSLObject, mode: Mix) => HSLObject[];
+type HarmonyFunction = (color: HSLObject, mode: MixString) => HSLObject[];
 
 //---Normalize alpha
 export const normalizeAlpha = (alpha: number | string | undefined | null): number => {
@@ -76,7 +77,7 @@ export const normalizeAlpha = (alpha: number | string | undefined | null): numbe
 const harmony = (
     color: HSLObject,
     angles: number[],
-    mode: Mix
+    mode: MixString
 ): HSLObject[] =>
     angles.reduce(
         (arr: HSLObject[], num: number): HSLObject[] =>
@@ -93,12 +94,12 @@ const harmony = (
             ), [{...color}]
     );
 
-export const analogous          = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [30, -30], mode);
-export const complementary      = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [180], mode);
-export const splitComplementary = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [150, -150], mode);
-export const triadic            = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [120, -120], mode);
-export const tetradic           = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [60, -120, 180], mode);
-export const square             = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [90, -90, 180], mode);
+export const analogous          = (color: HSLObject, mode: MixString): HSLObject[] => harmony(color, [30, -30], mode);
+export const complementary      = (color: HSLObject, mode: MixString): HSLObject[] => harmony(color, [180], mode);
+export const splitComplementary = (color: HSLObject, mode: MixString): HSLObject[] => harmony(color, [150, -150], mode);
+export const triadic            = (color: HSLObject, mode: MixString): HSLObject[] => harmony(color, [120, -120], mode);
+export const tetradic           = (color: HSLObject, mode: MixString): HSLObject[] => harmony(color, [60, -120, 180], mode);
+export const square             = (color: HSLObject, mode: MixString): HSLObject[] => harmony(color, [90, -90, 180], mode);
 
 //---Detect the color model from an string
 const getColorModelFromString = (color: string): ColorModel => {
@@ -498,7 +499,7 @@ export const colorHarmony = {
     buildHarmony(
         color: ColorInputWithoutCMYK,
         harmonyFunction: HarmonyFunction,
-        mode: Mix,
+        mode: MixString,
         options: Options
     ): ColorOutput[] {
         const model = getColorModel(color);
@@ -543,7 +544,7 @@ export const colorHarmony = {
     [ColorModel.HEX](
         color: HSLObject,
         harmonyFunction: HarmonyFunction,
-        mode: Mix,
+        mode: MixString,
         css: boolean
     ): HEXOutput[] {
         const array = harmonyFunction(color, mode);
@@ -563,7 +564,7 @@ export const colorHarmony = {
     HEXA(
         color: HSLObject,
         harmonyFunction: HarmonyFunction,
-        mode: Mix,
+        mode: MixString,
         css: boolean
     ): HEXOutput[] {
         const array = harmonyFunction(color, mode);
@@ -587,7 +588,7 @@ export const colorHarmony = {
     [ColorModel.RGB](
         color: HSLObject,
         harmonyFunction: HarmonyFunction,
-        mode: Mix,
+        mode: MixString,
         css: boolean,
         options: Options
     ): RGBOutput[] {
@@ -610,7 +611,7 @@ export const colorHarmony = {
     RGBA(
         color: HSLObject,
         harmonyFunction: HarmonyFunction,
-        mode: Mix,
+        mode: MixString,
         css: boolean,
         options: Options
     ): RGBOutput[] {
@@ -639,7 +640,7 @@ export const colorHarmony = {
     [ColorModel.HSL](
         color: HSLObject,
         harmonyFunction: HarmonyFunction,
-        mode: Mix,
+        mode: MixString,
         css: boolean,
         options: Options
     ): HSLOutput[] {
@@ -666,7 +667,7 @@ export const colorHarmony = {
     HSLA(
         color: HSLObject,
         harmonyFunction: HarmonyFunction,
-        mode: Mix,
+        mode: MixString,
         css: boolean,
         options: Options
     ): HSLOutput[] {
@@ -695,7 +696,7 @@ export const colorHarmony = {
     [ColorModel.CIELab](
         color: HSLObject,
         harmonyFunction: HarmonyFunction,
-        mode: Mix,
+        mode: MixString,
         css: boolean,
         options: Options
     ): CIELabOutput[] {
@@ -725,7 +726,7 @@ export const colorHarmony = {
     CIELabA(
         color: HSLObject,
         harmonyFunction: HarmonyFunction,
-        mode: Mix,
+        mode: MixString,
         css: boolean,
         options: Options
     ): CIELabOutput[] {
@@ -761,7 +762,7 @@ export const colorHarmony = {
 
 export const colorMixer = {
 
-    mix(colors: ColorInput[], mode: Mix): RGBObject {
+    mix(colors: ColorInput[], mode: MixString): RGBObject {
 
         const rgbMap = colors.map((color: ColorInput): RGBObject => {
             const model = getColorModel(color);
@@ -826,7 +827,7 @@ export const colorMixer = {
     },
     [ColorModel.HEX]<CSS extends boolean, R = CSS extends true ? string : HEXObject>(
         colors: ColorInput[],
-        mode: Mix,
+        mode: MixString,
         css: CSS
     ): R {
         const mix = this.mix(colors, mode);
@@ -839,7 +840,7 @@ export const colorMixer = {
     },
     HEXA<CSS extends boolean, R = CSS extends true ? string : HEXObject >(
         colors: ColorInput[],
-        mode: Mix,
+        mode: MixString,
         css: CSS
     ): R {
         const mix = this.mix(colors, mode);
@@ -854,7 +855,7 @@ export const colorMixer = {
     },
     [ColorModel.RGB]<CSS extends boolean, R = CSS extends true ? string : RGBObject>(
         colors: ColorInput[],
-        mode: Mix,
+        mode: MixString,
         css: CSS,
         options: Options
     ): R {
@@ -868,7 +869,7 @@ export const colorMixer = {
     },
     RGBA<CSS extends boolean, R = CSS extends true ? string : RGBObject>(
         colors: ColorInput[],
-        mode: Mix,
+        mode: MixString,
         css: CSS,
         options: Options
     ): R {
@@ -881,7 +882,7 @@ export const colorMixer = {
     },
     [ColorModel.HSL]<CSS extends boolean, R = CSS extends true ? string : HSLObject>(
         colors: ColorInput[],
-        mode: Mix,
+        mode: MixString,
         css: CSS,
         options: Options
     ): R {
@@ -897,7 +898,7 @@ export const colorMixer = {
     },
     HSLA<CSS extends boolean, R = CSS extends true ? string : HSLObject>(
         colors: ColorInput[],
-        mode: Mix,
+        mode: MixString,
         css: CSS,
         options: Options
     ): R {
@@ -911,7 +912,7 @@ export const colorMixer = {
     },
     [ColorModel.CIELab]<CSS extends boolean, R = CSS extends true ? string : CIELabObject>(
         colors: ColorInput[],
-        mode: Mix,
+        mode: MixString,
         css: CSS,
         options: Options
     ): R {
@@ -926,7 +927,7 @@ export const colorMixer = {
     },
     CIELabA<CSS extends boolean, R = CSS extends true ? string : CIELabObject>(
         colors: ColorInput[],
-        mode: Mix,
+        mode: MixString,
         css: CSS,
         options: Options
     ): R {

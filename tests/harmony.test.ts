@@ -131,4 +131,36 @@ describe('ColorTranslator harmony tests', (): void => {
         });
     });
 
+    it('Harmony excluding optional parameters', (): void => {
+        expect(
+            ColorTranslator.getHarmony(base, Harmony.COMPLEMENTARY, Mix.ADDITIVE)
+        ).toMatchObject(
+            ColorTranslator.getHarmony(base, Harmony.COMPLEMENTARY)
+        );
+
+        expect(
+            ColorTranslator.getHarmony(base, Harmony.COMPLEMENTARY, Mix.ADDITIVE)
+        ).toMatchObject(
+            ColorTranslator.getHarmony(base)
+        );
+
+        expect(
+            ColorTranslator.getHarmony(base, Harmony.COMPLEMENTARY, { decimals: 0 })
+        ).toMatchObject(
+            ColorTranslator.getHarmony(base, { decimals: 0 })
+        );
+
+        expect(
+            ColorTranslator.getHarmony(base, Mix.ADDITIVE)
+        ).toMatchObject(
+            ColorTranslator.getHarmony(base)
+        );
+
+        expect(
+            ColorTranslator.getHarmony(base, Mix.ADDITIVE, { decimals: 0 })
+        ).toMatchObject(
+            ColorTranslator.getHarmony(base, { decimals: 0 })
+        );
+    });
+
 });
