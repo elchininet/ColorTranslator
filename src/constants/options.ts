@@ -1,9 +1,4 @@
-import {
-    Options,
-    AnglesUnitEnum,
-    ColorUnitEnum,
-    CMYKFunctionEnum
-} from '@types';
+import { Options, AnglesUnitEnum, ColorUnitEnum, CMYKFunctionEnum } from '@types';
 import { MAX_DECIMALS } from './numbers';
 
 export const DEFAULT_OPTIONS: Options = {

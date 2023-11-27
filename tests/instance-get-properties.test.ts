@@ -5,16 +5,13 @@ const options = { decimals: 0 };
 const legacyOptions = { ...options, legacyCSS: true };
 
 COLORS.forEach((color): void => {
-
     let instance: ColorTranslator;
     let legacyInstance: ColorTranslator;
 
     Object.values(color).forEach((colorValue) => {
-
         const colorValueStr = JSON.stringify(colorValue);
 
         describe(`ColorTranslator instance properties for ${colorValueStr}`, () => {
-
             instance = new ColorTranslator(colorValue, options);
             legacyInstance = new ColorTranslator(colorValue, legacyOptions);
 
@@ -116,24 +113,18 @@ COLORS.forEach((color): void => {
             it(`A property => ${color.RGBAObject.A}`, () => {
                 expect(instance.A).toBe(color.RGBAObject.A);
             });
-
         });
-
     });
-
 });
 
 CMYK_COLORS.forEach((color) => {
-
     let instance: ColorTranslator;
     let legacyInstance: ColorTranslator;
 
     Object.values(color).forEach((colorValue) => {
-
         const colorValueStr = JSON.stringify(colorValue);
 
         describe(`ColorTranslator CMYK instance properties ${colorValueStr}`, () => {
-
             instance = new ColorTranslator(colorValue, options);
             legacyInstance = new ColorTranslator(colorValue, legacyOptions);
 
@@ -178,11 +169,8 @@ CMYK_COLORS.forEach((color) => {
             it(`K property => ${color.CMYKIntObject100.K}`, () => {
                 expect(instance.K).toBe(color.CMYKIntObject100.K);
             });
-
         });
-
     });
-
 });
 
 describe('ColorTranslator L*a*b properties', () => {

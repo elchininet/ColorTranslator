@@ -63,42 +63,38 @@ type HarmonyFunction = (color: HSLObject, mode: Mix) => HSLObject[];
 //---Normalize alpha
 export const normalizeAlpha = (alpha: number | string | undefined | null): number => {
     if (typeof alpha === 'string') {
-        if(PCENT.test(alpha)) {
+        if (PCENT.test(alpha)) {
             alpha = percentNumber(alpha) / 100;
         } else {
             alpha = +alpha;
         }
     }
-    return (isNaN(+alpha) || alpha > 1) ? 1 : round(alpha);
+    return isNaN(+alpha) || alpha > 1 ? 1 : round(alpha);
 };
 
 //---Harmony
-const harmony = (
-    color: HSLObject,
-    angles: number[],
-    mode: Mix
-): HSLObject[] =>
+const harmony = (color: HSLObject, angles: number[], mode: Mix): HSLObject[] =>
     angles.reduce(
-        (arr: HSLObject[], num: number): HSLObject[] =>
-            (
-                [
-                    ...arr,
-                    {
-                        ...color,
-                        H: mode === Mix.ADDITIVE
-                            ? normalizeHue(color.H + num)
-                            : normalizeHue(hueRYB(hueRYB(color.H, false) + num, true))
-                    }
-                ]
-            ), [{...color}]
+        (arr: HSLObject[], num: number): HSLObject[] => [
+            ...arr,
+            {
+                ...color,
+                H:
+                    mode === Mix.ADDITIVE
+                        ? normalizeHue(color.H + num)
+                        : normalizeHue(hueRYB(hueRYB(color.H, false) + num, true))
+            }
+        ],
+        [{ ...color }]
     );
 
-export const analogous          = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [30, -30], mode);
-export const complementary      = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [180], mode);
-export const splitComplementary = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [150, -150], mode);
-export const triadic            = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [120, -120], mode);
-export const tetradic           = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [60, -120, 180], mode);
-export const square             = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [90, -90, 180], mode);
+export const analogous = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [30, -30], mode);
+export const complementary = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [180], mode);
+export const splitComplementary = (color: HSLObject, mode: Mix): HSLObject[] =>
+    harmony(color, [150, -150], mode);
+export const triadic = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [120, -120], mode);
+export const tetradic = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [60, -120, 180], mode);
+export const square = (color: HSLObject, mode: Mix): HSLObject[] => harmony(color, [90, -90, 180], mode);
 
 //---Detect the color model from an string
 const getColorModelFromString = (color: string): ColorModel => {
@@ -110,10 +106,7 @@ const getColorModelFromString = (color: string): ColorModel => {
             return true;
         }
     });
-    if (
-        !model &&
-        !!~COLOR_KEYS.indexOf(color)
-    ) {
+    if (!model && !!~COLOR_KEYS.indexOf(color)) {
         model = ColorModel.HEX;
     }
     if (!model) {
@@ -124,17 +117,15 @@ const getColorModelFromString = (color: string): ColorModel => {
 
 //---Detect the color model from an object
 const getColorModelFromObject = (color: Color): ColorModel => {
-
     let model: ColorModel;
     let invalid = false;
     const props = getOrderedArrayString(Object.keys(color));
 
-    if(VALID_COLOR_OBJECTS[props]) {
+    if (VALID_COLOR_OBJECTS[props]) {
         model = VALID_COLOR_OBJECTS[props];
     }
 
     if (model && model === ColorModel.RGB) {
-
         const hasInvalidHex = Object.entries(color).some((item: [string, string | number]): boolean => {
             return !HEX.test(`${item[1]}`);
         });
@@ -142,11 +133,7 @@ const getColorModelFromObject = (color: Color): ColorModel => {
         const hasInvalidRegb = Object.entries(color).some((item: [string, string | number]): boolean => {
             return !(
                 PCENT.test(`${item[1]}`) ||
-                (
-                    !HEX.test(`${item[1]}`) &&
-                    !isNaN(+item[1]) &&
-                    +item[1] <= 255
-                )
+                (!HEX.test(`${item[1]}`) && !isNaN(+item[1]) && +item[1] <= 255)
             );
         });
 
@@ -157,7 +144,6 @@ const getColorModelFromObject = (color: Color): ColorModel => {
         if (!hasInvalidHex) {
             model = ColorModel.HEX;
         }
-
     }
     if (!model || invalid) {
         throw new Error(ERRORS.NOT_ACCEPTED_OBJECT_INPUT);
@@ -166,9 +152,8 @@ const getColorModelFromObject = (color: Color): ColorModel => {
 };
 
 //---Detect the color model
-export const getColorModel = (color: string | Color): ColorModel => typeof color === 'string'
-    ? getColorModelFromString(color)
-    : getColorModelFromObject(color);
+export const getColorModel = (color: string | Color): ColorModel =>
+    typeof color === 'string' ? getColorModelFromString(color) : getColorModelFromObject(color);
 
 //---Convert a color string to an RGB object
 export const getRGBObjectFromString = {
@@ -294,12 +279,13 @@ export const getRGBObjectFromObject = {
 export const getRGBObject = (color: ColorInput, model: ColorModel = getColorModel(color)): RGBObject => {
     return typeof color === 'string'
         ? getRGBObjectFromString[model](color)
-        : getRGBObjectFromObject[model](color as RGBObjectGeneric & HSLObjectGeneric & CIELabObjectGeneric & CMYKObjectGeneric);
+        : getRGBObjectFromObject[model](
+              color as RGBObjectGeneric & HSLObjectGeneric & CIELabObjectGeneric & CMYKObjectGeneric
+          );
 };
 
 //---Get the color values from an object
 export const translateColor = {
-
     [ColorModel.HEX](color: RGBObject): HEXObject {
         return {
             R: getHEX(color.R),
@@ -310,9 +296,7 @@ export const translateColor = {
 
     HEXA(color: RGBObject): HEXObject {
         const RGB = translateColor.HEX(color);
-        RGB.A = hasProp<RGBObject>(color, 'A')
-            ? getHEX(color.A * 255)
-            : '0xFF';
+        RGB.A = hasProp<RGBObject>(color, 'A') ? getHEX(color.A * 255) : '0xFF';
         return RGB;
     },
 
@@ -326,9 +310,7 @@ export const translateColor = {
 
     RGBA(color: RGBObject, decimals: number): RGBObject {
         const RGB = translateColor.RGB(color, decimals);
-        RGB.A = hasProp<RGBObject>(color, 'A')
-            ? round(color.A)
-            : 1;
+        RGB.A = hasProp<RGBObject>(color, 'A') ? round(color.A) : 1;
         return RGB;
     },
 
@@ -340,9 +322,7 @@ export const translateColor = {
 
     HSLA(color: RGBObject, decimals: number): HSLObject {
         const HSL = translateColor.HSL(color, decimals);
-        HSL.A = hasProp<RGBObject>(color, 'A')
-            ? round(color.A, decimals)
-            : 1;
+        HSL.A = hasProp<RGBObject>(color, 'A') ? round(color.A, decimals) : 1;
         return HSL;
     },
 
@@ -353,24 +333,17 @@ export const translateColor = {
 
     CIELabA(color: RGBObject, decimals: number): CIELabObject {
         const Lab = translateColor.CIELab(color, decimals);
-        Lab.A = hasProp<RGBObject>(color, 'A')
-            ? round(color.A, decimals)
-            : 1;
+        Lab.A = hasProp<RGBObject>(color, 'A') ? round(color.A, decimals) : 1;
         return Lab;
     },
 
     [ColorModel.CMYK](color: RGBObject, decimals: number): CMYKObject {
-        return roundCMYKObject(
-            rgbToCMYK(color.R, color.G, color.B),
-            decimals
-        );
+        return roundCMYKObject(rgbToCMYK(color.R, color.G, color.B), decimals);
     },
 
     CMYKA(color: RGBObject, decimals: number): CMYKObject {
         const CMYK = translateColor.CMYK(color, decimals);
-        CMYK.A = hasProp<RGBObject>(color, 'A')
-            ? round(color.A, decimals)
-            : 1;
+        CMYK.A = hasProp<RGBObject>(color, 'A') ? round(color.A, decimals) : 1;
         return CMYK;
     }
 };
@@ -384,16 +357,22 @@ export const blend = (from: RGBObject, to: RGBObject, steps: number): RGBObject[
     const fromA = normalizeAlpha(from.A);
     const toA = normalizeAlpha(to.A);
     const diffA = (toA - fromA) / div;
-    return Array(steps).fill(null).map((__n, i): RGBObject => {
-        if (i === 0) { return from; }
-        if (i === div) { return to; }
-        return {
-            R: round(from.R + diffR * i),
-            G: round(from.G + diffG * i),
-            B: round(from.B + diffB * i),
-            A: round(fromA + diffA * i)
-        };
-    });
+    return Array(steps)
+        .fill(null)
+        .map((__n, i): RGBObject => {
+            if (i === 0) {
+                return from;
+            }
+            if (i === div) {
+                return to;
+            }
+            return {
+                R: round(from.R + diffR * i),
+                G: round(from.G + diffG * i),
+                B: round(from.B + diffB * i),
+                A: round(fromA + diffA * i)
+            };
+        });
 };
 
 //---Shades
@@ -406,38 +385,38 @@ export const getColorMixture = (
     const model = getColorModel(color);
     const isCSS = typeof color === 'string';
     const RGB = getRGBObject(color, model);
-    const hasAlpha = (
+    const hasAlpha =
         (typeof color === 'string' && hasProp<RGBObject>(RGB, 'A')) ||
-        (typeof color !== 'string' && hasProp<RGBObjectGeneric | HSLObjectGeneric | CIELabObjectGeneric>(color, 'A'))
-    );
+        (typeof color !== 'string' &&
+            hasProp<RGBObjectGeneric | HSLObjectGeneric | CIELabObjectGeneric>(color, 'A'));
     const HSL: HSLObject = rgbToHSL(RGB.R, RGB.G, RGB.B, RGB.A);
     if (!hasAlpha) delete HSL.A;
-    const increment = shades
-        ? HSL.L / (steps + 1)
-        : (100 - HSL.L) / (steps + 1);
-    const hslMap = Array(steps).fill(null).map((__n, i): HSLObject => ({
-        ...HSL,
-        L: HSL.L + increment * (i + 1) * (1 - +shades * 2)
-    }));
-    switch(model) {
+    const increment = shades ? HSL.L / (steps + 1) : (100 - HSL.L) / (steps + 1);
+    const hslMap = Array(steps)
+        .fill(null)
+        .map(
+            (__n, i): HSLObject => ({
+                ...HSL,
+                L: HSL.L + increment * (i + 1) * (1 - +shades * 2)
+            })
+        );
+    switch (model) {
         case ColorModel.HEX:
-            default:
-                return hslMap.map((HSLColor: HSLObject): HEXOutput => {
-                    const RGBColor = hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L);
-                    if (hasAlpha) RGBColor.A = HSLColor.A;
-                    return isCSS
-                        ? hasAlpha
-                            ? CSS.HEX(
-                                {
-                                    ...RGBColor,
-                                    A: round(RGBColor.A * 255)
-                                }
-                            )
-                            : CSS.HEX(RGBColor)
-                        : hasAlpha
-                            ? translateColor.HEXA(RGBColor)
-                            : translateColor.HEX(RGBColor);
-                });
+        default:
+            return hslMap.map((HSLColor: HSLObject): HEXOutput => {
+                const RGBColor = hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L);
+                if (hasAlpha) RGBColor.A = HSLColor.A;
+                return isCSS
+                    ? hasAlpha
+                        ? CSS.HEX({
+                              ...RGBColor,
+                              A: round(RGBColor.A * 255)
+                          })
+                        : CSS.HEX(RGBColor)
+                    : hasAlpha
+                      ? translateColor.HEXA(RGBColor)
+                      : translateColor.HEX(RGBColor);
+            });
         case ColorModel.RGB:
             return hslMap.map((HSLColor: HSLObject): RGBOutput => {
                 const RGBColor = hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L);
@@ -445,56 +424,48 @@ export const getColorMixture = (
                 return isCSS
                     ? CSS.RGB(RGBColor, options)
                     : hasAlpha
-                        ? translateColor.RGBA(RGBColor, options.decimals)
-                        : translateColor.RGB(RGBColor, options.decimals);
+                      ? translateColor.RGBA(RGBColor, options.decimals)
+                      : translateColor.RGB(RGBColor, options.decimals);
             });
         case ColorModel.HSL:
             return hslMap.map((HSLColor: HSLObject): HSLOutput => {
                 return isCSS
                     ? CSS.HSL(HSLColor, options)
                     : hasAlpha
-                        ? translateColor.HSLA(
+                      ? translateColor.HSLA(
                             {
                                 ...hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L),
                                 A: HSLColor.A
                             },
                             options.decimals
                         )
-                        : translateColor.HSL(
-                            hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L),
-                            options.decimals
-                        );
+                      : translateColor.HSL(hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L), options.decimals);
             });
         case ColorModel.CIELab:
             return hslMap.map((HSLColor: HSLObject): CIELabOutput => {
                 const RGBColor = hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L);
                 return isCSS
                     ? CSS.CIELab(
-                        hasAlpha
-                            ? translateColor.CIELabA(RGBColor, options.decimals)
-                            : translateColor.CIELab(RGBColor, options.decimals),
-                        options
-                    )
+                          hasAlpha
+                              ? translateColor.CIELabA(RGBColor, options.decimals)
+                              : translateColor.CIELab(RGBColor, options.decimals),
+                          options
+                      )
                     : hasAlpha
-                        ? translateColor.CIELabA(
+                      ? translateColor.CIELabA(
                             {
                                 ...RGBColor,
                                 A: HSLColor.A
                             },
                             options.decimals
                         )
-                        : translateColor.CIELab(
-                            RGBColor,
-                            options.decimals
-                        );
+                      : translateColor.CIELab(RGBColor, options.decimals);
             });
-
     }
 };
 
 //---Harmony
 export const colorHarmony = {
-
     buildHarmony(
         color: ColorInputWithoutCMYK,
         harmonyFunction: HarmonyFunction,
@@ -504,27 +475,17 @@ export const colorHarmony = {
         const model = getColorModel(color);
         const RGB = getRGBObject(color, model);
         const HSL = rgbToHSL(RGB.R, RGB.G, RGB.B, RGB.A);
-        const hasAlpha = (
+        const hasAlpha =
             (typeof color === 'string' && hasProp<RGBObject>(RGB, 'A')) ||
-            (typeof color !== 'string' && hasProp<RGBObjectGeneric | HSLObjectGeneric | CIELabObjectGeneric>(color, 'A'))
-        );
+            (typeof color !== 'string' &&
+                hasProp<RGBObjectGeneric | HSLObjectGeneric | CIELabObjectGeneric>(color, 'A'));
         const isCSS = typeof color === 'string';
-        switch(model) {
+        switch (model) {
             case ColorModel.HEX:
             default:
                 return hasAlpha
-                    ? this.HEXA(
-                        roundHSLObject(HSL, 0),
-                        harmonyFunction,
-                        mode,
-                        isCSS
-                    )
-                    : this.HEX(
-                        roundHSLObject(HSL, 0),
-                        harmonyFunction,
-                        mode,
-                        isCSS
-                    );
+                    ? this.HEXA(roundHSLObject(HSL, 0), harmonyFunction, mode, isCSS)
+                    : this.HEX(roundHSLObject(HSL, 0), harmonyFunction, mode, isCSS);
             case ColorModel.HSL:
                 return hasAlpha
                     ? this.HSLA(HSL, harmonyFunction, mode, isCSS, options)
@@ -548,39 +509,24 @@ export const colorHarmony = {
     ): HEXOutput[] {
         const array = harmonyFunction(color, mode);
         return array.map(
-            (c: HSLObject): HEXOutput => (
-                css
-                    ? CSS.HEX(
-                        hslToRGB(c.H, c.S, c.L)
-                    )
-                    : translateColor.HEX(
-                        hslToRGB(c.H, c.S, c.L)
-                    )
-            )
+            (c: HSLObject): HEXOutput =>
+                css ? CSS.HEX(hslToRGB(c.H, c.S, c.L)) : translateColor.HEX(hslToRGB(c.H, c.S, c.L))
         );
     },
 
-    HEXA(
-        color: HSLObject,
-        harmonyFunction: HarmonyFunction,
-        mode: Mix,
-        css: boolean
-    ): HEXOutput[] {
+    HEXA(color: HSLObject, harmonyFunction: HarmonyFunction, mode: Mix, css: boolean): HEXOutput[] {
         const array = harmonyFunction(color, mode);
         return array.map(
-            (c: HSLObject): HEXOutput => (
+            (c: HSLObject): HEXOutput =>
                 css
-                    ? CSS.HEX(
-                        {
-                            ...hslToRGB(c.H, c.S, c.L),
-                            A: normalizeAlpha(c.A) * 255
-                        }
-                    )
+                    ? CSS.HEX({
+                          ...hslToRGB(c.H, c.S, c.L),
+                          A: normalizeAlpha(c.A) * 255
+                      })
                     : translateColor.HEXA({
-                        ...hslToRGB(c.H, c.S, c.L),
-                        A: normalizeAlpha(c.A)
-                    })
-            )
+                          ...hslToRGB(c.H, c.S, c.L),
+                          A: normalizeAlpha(c.A)
+                      })
         );
     },
 
@@ -593,17 +539,10 @@ export const colorHarmony = {
     ): RGBOutput[] {
         const array = harmonyFunction(color, mode);
         return array.map(
-            (c: HSLObject): RGBOutput => (
+            (c: HSLObject): RGBOutput =>
                 css
-                    ? CSS.RGB(
-                        hslToRGB(c.H, c.S, c.L),
-                        options
-                    )
-                    : translateColor.RGB(
-                        hslToRGB(c.H, c.S, c.L),
-                        options.decimals
-                    )
-            )
+                    ? CSS.RGB(hslToRGB(c.H, c.S, c.L), options)
+                    : translateColor.RGB(hslToRGB(c.H, c.S, c.L), options.decimals)
         );
     },
 
@@ -616,23 +555,22 @@ export const colorHarmony = {
     ): RGBOutput[] {
         const array = harmonyFunction(color, mode);
         return array.map(
-            (c: HSLObject): RGBOutput => (
+            (c: HSLObject): RGBOutput =>
                 css
                     ? CSS.RGB(
-                        {
-                            ...hslToRGB(c.H, c.S, c.L),
-                            A: normalizeAlpha(c.A)
-                        },
-                        options
-                    )
+                          {
+                              ...hslToRGB(c.H, c.S, c.L),
+                              A: normalizeAlpha(c.A)
+                          },
+                          options
+                      )
                     : translateColor.RGBA(
-                        {
-                            ...hslToRGB(c.H, c.S, c.L),
-                            A: normalizeAlpha(c.A)
-                        },
-                        options.decimals
-                    )
-            )
+                          {
+                              ...hslToRGB(c.H, c.S, c.L),
+                              A: normalizeAlpha(c.A)
+                          },
+                          options.decimals
+                      )
         );
     },
 
@@ -645,21 +583,17 @@ export const colorHarmony = {
     ): HSLOutput[] {
         const array = harmonyFunction(color, mode);
         return array.map(
-            (c: HSLObject): HSLOutput => (
+            (c: HSLObject): HSLOutput =>
                 css
                     ? CSS.HSL(
-                        {
-                            H: c.H,
-                            S: c.S,
-                            L: c.L
-                        },
-                        options
-                    )
-                    : translateColor.HSL(
-                        hslToRGB(c.H, c.S, c.L),
-                        options.decimals
-                    )
-            )
+                          {
+                              H: c.H,
+                              S: c.S,
+                              L: c.L
+                          },
+                          options
+                      )
+                    : translateColor.HSL(hslToRGB(c.H, c.S, c.L), options.decimals)
         );
     },
 
@@ -672,23 +606,22 @@ export const colorHarmony = {
     ): HSLOutput[] {
         const array = harmonyFunction(color, mode);
         return array.map(
-            (c: HSLObject): HSLOutput => (
+            (c: HSLObject): HSLOutput =>
                 css
                     ? CSS.HSL(
-                        {
-                            ...c,
-                            A: normalizeAlpha(c.A)
-                        },
-                        options
-                    )
+                          {
+                              ...c,
+                              A: normalizeAlpha(c.A)
+                          },
+                          options
+                      )
                     : translateColor.HSLA(
-                        {
-                            ...hslToRGB(c.H, c.S, c.L),
-                            A: normalizeAlpha(c.A)
-                        },
-                        options.decimals
-                    )
-            )
+                          {
+                              ...hslToRGB(c.H, c.S, c.L),
+                              A: normalizeAlpha(c.A)
+                          },
+                          options.decimals
+                      )
         );
     },
 
@@ -700,26 +633,12 @@ export const colorHarmony = {
         options: Options
     ): CIELabOutput[] {
         const array = harmonyFunction(color, mode);
-        return array.map(
-            (c: HSLObject): CIELabOutput => {
-                const RGB = hslToRGB(c.H, c.S, c.L);
-                return (
-                    css
-                        ? CSS.CIELab(
-                            rgbToLab(
-                                RGB.R,
-                                RGB.G,
-                                RGB.B
-                            ),
-                            options
-                        )
-                        : translateColor.CIELab(
-                            RGB,
-                            options.decimals
-                        )
-                );
-            }
-        );
+        return array.map((c: HSLObject): CIELabOutput => {
+            const RGB = hslToRGB(c.H, c.S, c.L);
+            return css
+                ? CSS.CIELab(rgbToLab(RGB.R, RGB.G, RGB.B), options)
+                : translateColor.CIELab(RGB, options.decimals);
+        });
     },
 
     CIELabA(
@@ -730,79 +649,63 @@ export const colorHarmony = {
         options: Options
     ): CIELabOutput[] {
         const array = harmonyFunction(color, mode);
-        return array.map(
-            (c: HSLObject): CIELabOutput => {
-                const RGB = hslToRGB(c.H, c.S, c.L);
-                return (
-                    css
-                        ? CSS.CIELab(
-                            {
-                                ...rgbToLab(
-                                    RGB.R,
-                                    RGB.G,
-                                    RGB.B
-                                ),
-                                A: normalizeAlpha(c.A)
-                            },
-                            options
-                        )
-                        : translateColor.CIELabA(
-                            {
-                                ...RGB,
-                                A: normalizeAlpha(c.A)
-                            },
-                            options.decimals
-                        )
-                );
-            }
-        );
+        return array.map((c: HSLObject): CIELabOutput => {
+            const RGB = hslToRGB(c.H, c.S, c.L);
+            return css
+                ? CSS.CIELab(
+                      {
+                          ...rgbToLab(RGB.R, RGB.G, RGB.B),
+                          A: normalizeAlpha(c.A)
+                      },
+                      options
+                  )
+                : translateColor.CIELabA(
+                      {
+                          ...RGB,
+                          A: normalizeAlpha(c.A)
+                      },
+                      options.decimals
+                  );
+        });
     }
 };
 
 export const colorMixer = {
-
     mix(colors: ColorInput[], mode: Mix): RGBObject {
-
         const rgbMap = colors.map((color: ColorInput): RGBObject => {
             const model = getColorModel(color);
             return getRGBObject(color, model);
         });
 
-        const rybMap = mode === Mix.SUBTRACTIVE
-            ? rgbMap.map((color: RGBObject): RYBObject => {
-                const RYB = rgbToRYB(color.R, color.G, color.B);
-                if (hasProp<RGBObject>(color, 'A')) {
-                    RYB.A = color.A;
-                }
-                return RYB;
-            })
-            : null;
+        const rybMap =
+            mode === Mix.SUBTRACTIVE
+                ? rgbMap.map((color: RGBObject): RYBObject => {
+                      const RYB = rgbToRYB(color.R, color.G, color.B);
+                      if (hasProp<RGBObject>(color, 'A')) {
+                          RYB.A = color.A;
+                      }
+                      return RYB;
+                  })
+                : null;
 
         function createMix(items: RGBObject[]): RGBObject;
         function createMix(items: RYBObject[]): RYBObject;
         function createMix(items: RGYBObject[]): RGYBObject {
-            const initial = mode === Mix.ADDITIVE
-                ? {R: 0, G: 0, B: 0, A: 0}
-                : {R: 0, Y: 0, B: 0, A: 0};
+            const initial = mode === Mix.ADDITIVE ? { R: 0, G: 0, B: 0, A: 0 } : { R: 0, Y: 0, B: 0, A: 0 };
             return items.reduce((mix: RGYBObject, color: RGYBObject): RGYBObject => {
                 const colorA = hasProp<RGYBObject>(color, 'A') ? color.A : 1;
                 const common = {
-                    R: Math.min(mix.R  + color.R * colorA, 255),
+                    R: Math.min(mix.R + color.R * colorA, 255),
                     B: Math.min(mix.B + color.B * colorA, 255),
                     A: 1 - (1 - colorA) * (1 - mix.A)
                 };
-                const mixGY = 'G' in mix
-                    ? mix.G
-                    : mix.Y;
-                const colorGY = 'G' in color
-                    ? color.G
-                    : color.Y;
+                const mixGY = 'G' in mix ? mix.G : mix.Y;
+                const colorGY = 'G' in color ? color.G : color.Y;
                 return {
                     ...common,
                     ...(mode === Mix.ADDITIVE
                         ? { G: Math.min(mixGY + colorGY * colorA, 255) }
-                        : { Y: Math.min(mixGY + colorGY * colorA, 255) }
-                    )
+                        : { Y: Math.min(mixGY + colorGY * colorA, 255) })
                 };
             }, initial);
         }
@@ -831,26 +734,16 @@ export const colorMixer = {
     ): R {
         const mix = this.mix(colors, mode);
         delete mix.A;
-        return (
-            css
-                ? CSS.HEX(mix)
-                : translateColor.HEX(mix)
-        ) as R;
+        return (css ? CSS.HEX(mix) : translateColor.HEX(mix)) as R;
     },
-    HEXA<CSS extends boolean, R = CSS extends true ? string : HEXObject >(
+    HEXA<CSS extends boolean, R = CSS extends true ? string : HEXObject>(
         colors: ColorInput[],
         mode: Mix,
         css: CSS
     ): R {
         const mix = this.mix(colors, mode);
-        mix.A = css
-            ? normalizeAlpha(mix.A) * 255
-            : normalizeAlpha(mix.A);
-        return (
-            css
-                ? CSS.HEX(mix)
-                : translateColor.HEXA(mix)
-        ) as R;
+        mix.A = css ? normalizeAlpha(mix.A) * 255 : normalizeAlpha(mix.A);
+        return (css ? CSS.HEX(mix) : translateColor.HEXA(mix)) as R;
     },
     [ColorModel.RGB]<CSS extends boolean, R = CSS extends true ? string : RGBObject>(
         colors: ColorInput[],
@@ -860,11 +753,7 @@ export const colorMixer = {
     ): R {
         const mix = this.mix(colors, mode);
         delete mix.A;
-        return (
-            css
-                ? CSS.RGB(mix, options)
-                : translateColor.RGB(mix, options.decimals)
-        ) as R;
+        return (css ? CSS.RGB(mix, options) : translateColor.RGB(mix, options.decimals)) as R;
     },
     RGBA<CSS extends boolean, R = CSS extends true ? string : RGBObject>(
         colors: ColorInput[],
@@ -873,11 +762,7 @@ export const colorMixer = {
         options: Options
     ): R {
         const mix = this.mix(colors, mode);
-        return (
-            css
-                ? CSS.RGB(mix, options)
-                : translateColor.RGBA(mix, options.decimals)
-        ) as R;
+        return (css ? CSS.RGB(mix, options) : translateColor.RGBA(mix, options.decimals)) as R;
     },
     [ColorModel.HSL]<CSS extends boolean, R = CSS extends true ? string : HSLObject>(
         colors: ColorInput[],
@@ -889,11 +774,7 @@ export const colorMixer = {
         const HSL = rgbToHSL(mix.R, mix.G, mix.B);
         delete mix.A;
         delete HSL.A;
-        return (
-            css
-                ? CSS.HSL(HSL, options)
-                : translateColor.HSL(mix, options.decimals)
-        ) as R;
+        return (css ? CSS.HSL(HSL, options) : translateColor.HSL(mix, options.decimals)) as R;
     },
     HSLA<CSS extends boolean, R = CSS extends true ? string : HSLObject>(
         colors: ColorInput[],
@@ -903,11 +784,7 @@ export const colorMixer = {
     ): R {
         const mix = this.mix(colors, mode);
         const HSL = rgbToHSL(mix.R, mix.G, mix.B, mix.A);
-        return (
-            css
-                ? CSS.HSL(HSL, options)
-                : translateColor.HSLA(mix, options.decimals)
-        ) as R;
+        return (css ? CSS.HSL(HSL, options) : translateColor.HSLA(mix, options.decimals)) as R;
     },
     [ColorModel.CIELab]<CSS extends boolean, R = CSS extends true ? string : CIELabObject>(
         colors: ColorInput[],
@@ -918,11 +795,7 @@ export const colorMixer = {
         const mix = this.mix(colors, mode);
         const Lab = rgbToLab(mix.R, mix.G, mix.B);
         delete mix.A;
-        return (
-            css
-                ? CSS.CIELab(Lab, options)
-                : translateColor.CIELabA(mix, options.decimals)
-        ) as R;
+        return (css ? CSS.CIELab(Lab, options) : translateColor.CIELabA(mix, options.decimals)) as R;
     },
     CIELabA<CSS extends boolean, R = CSS extends true ? string : CIELabObject>(
         colors: ColorInput[],
@@ -935,18 +808,11 @@ export const colorMixer = {
         if (hasProp<RGBObject>(mix, 'A')) {
             Lab.A = mix.A;
         }
-        return (
-            css
-                ? CSS.CIELab(Lab, options)
-                : translateColor.CIELabA(mix, options.decimals)
-        ) as R;
+        return (css ? CSS.CIELab(Lab, options) : translateColor.CIELabA(mix, options.decimals)) as R;
     }
 };
 
-export const roundRGBObject = (
-    color: RGBObject,
-    decimals: number
-): RGBObject => {
+export const roundRGBObject = (color: RGBObject, decimals: number): RGBObject => {
     const R = round(color.R, decimals);
     const G = round(color.G, decimals);
     const B = round(color.B, decimals);
@@ -954,38 +820,28 @@ export const roundRGBObject = (
         R,
         G,
         B,
-        ...(
-            hasProp<RGBObject>(color, 'A')
-                ? {
-                    A: round(color.A, decimals)
-                }
-                : {}
-        )
+        ...(hasProp<RGBObject>(color, 'A')
+            ? {
+                  A: round(color.A, decimals)
+              }
+            : {})
     };
 };
 
-export const roundHSLObject = (
-    color: HSLObject,
-    decimals: number
-): HSLObject => {
+export const roundHSLObject = (color: HSLObject, decimals: number): HSLObject => {
     return {
         H: round(color.H, decimals),
         S: round(color.S, decimals),
         L: round(color.L, decimals),
-        ...(
-            hasProp<HSLObject>(color, 'A')
-                ? {
-                    A: round(color.A, decimals)
-                }
-                : {}
-        )
+        ...(hasProp<HSLObject>(color, 'A')
+            ? {
+                  A: round(color.A, decimals)
+              }
+            : {})
     };
 };
 
-export const roundCIELabObject = (
-    color: CIELabObject,
-    decimals: number
-): CIELabObject => {
+export const roundCIELabObject = (color: CIELabObject, decimals: number): CIELabObject => {
     return {
         L: round(color.L, decimals),
         a: round(color.a, decimals),
@@ -993,10 +849,7 @@ export const roundCIELabObject = (
     };
 };
 
-export const roundCMYKObject = (
-    color: CMYKObject,
-    decimals: number
-): CMYKObject => {
+export const roundCMYKObject = (color: CMYKObject, decimals: number): CMYKObject => {
     return {
         C: round(color.C, decimals),
         M: round(color.M, decimals),

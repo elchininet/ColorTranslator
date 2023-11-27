@@ -8,7 +8,7 @@
 
 [![Deployment Status](https://github.com/elchininet/ColorTranslator/actions/workflows/deploy.yaml/badge.svg)](https://github.com/elchininet/ColorTranslator/actions/workflows/deploy.yaml) &nbsp; [![Coverage Status](https://coveralls.io/repos/github/elchininet/ColorTranslator/badge.svg?branch=master)](https://coveralls.io/github/elchininet/ColorTranslator?branch=master) &nbsp; [![npm version](https://badge.fury.io/js/colortranslator.svg)](https://badge.fury.io/js/colortranslator)
 
-## Demo 
+## Demo
 
 https://elchininet.github.io/ColorTranslator/
 
@@ -87,8 +87,8 @@ Opens a development server that provides live reloading using [webpack-dev-serve
 
 > **Notes:**
 >
->* The conversion to a CMYK color is made taking a random value of black as a base (in this case, taking the greater value from red, green or blue). When a value of black is assumed, the rest of the colors can be calculated from it. The result will be visually similar to the original light color, but if you try to convert it back you will not obtain the same original value.
-> * The conversion to a CIE L\*a\*b color may introduce a small amount of rounding error, as far as you maintain enough decimals for the calculation it should not be noticeable, but you can expect that the values change some of their decimals during the conversions.
+> - The conversion to a CMYK color is made taking a random value of black as a base (in this case, taking the greater value from red, green or blue). When a value of black is assumed, the rest of the colors can be calculated from it. The result will be visually similar to the original light color, but if you try to convert it back you will not obtain the same original value.
+> - The conversion to a CIE L\*a\*b color may introduce a small amount of rounding error, as far as you maintain enough decimals for the calculation it should not be noticeable, but you can expect that the values change some of their decimals during the conversions.
 
 #### Input
 
@@ -96,61 +96,60 @@ The most wonderful thing about `colortranslator` is that you don‘t need to spe
 
 ###### CSS string inputs
 
-| Example of CSS string inputs          | Description                                                                                                        |
-| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `fuchsia`                             | Color keyword                                                                                                      |
-| `#FF00FF`                             | Hexadecimal color                                                                                                  |
-| `#F0F`                                | Shorthand hexadecimal color                                                                                        |
-| `#FF00FF80`                           | Hexadecimal color with alpha                                                                                       |
-| `#F0FF`                               | Shorthand hexadecimal color with alpha                                                                             |
-| `rgb(255 0 255)`                      | Functional RGB notation                                                                                            |
-| `rgb(100% 0% 100%)`                   | Functional RGB notation with values in percentages                                                                 |
-| `rgb(255 0 255 / 0.5)`                | Functional RGB notation with alpha                                                                                 |
-| `rgb(255 0 255 / 50%)`                | Functional RGB notation CSS with alpha in percenatages                                                             |
-| `rgb(100% 0% 100% / 0.5)`             | Functional RGB notation with values in percentages and alpha                                                       |
-| `rgb(100% 0% 100% / 50%)`             | Functional RGB notation with values and alpha in percentages                                                       |
-| `rgb(255, 0, 255)`                    | Functional RGB notation (CSS Colors 3 comma-separated)                                                             |
-| `rgba(255, 0, 255, 0.5)`              | Functional RGB notation with alpha (CSS Colors 3 comma-separated)                                                  |
-| `hsl(300 100% 50%)`                   | Functional HSL notation                                                                                            |
-| `hsl(300deg 100% 50%)`                | Functional HSL notation with hue in degrees                                                                        |
-| `hsl(270grad 100% 50%)`               | Functional HSL notation with hue in gradians                                                                       |
-| `hsl(5.24rad 100% 50%)`               | Functional HSL notation with hue in radians                                                                        |
-| `hsl(0.83turn 100% 50%)`              | Functional HSL notation with hue in turns                                                                          |
-| `hsl(300 100% 50% / 0.5)`             | Functional HSL notation with alpha                                                                                 |
-| `hsl(300 100% 50% / 50%)`             | Functional HSL notation with alpha in percentages                                                                  |
-| `hsl(300, 100%, 50%)`                 | Functional HSL notation (Colors 3 comma-separated)                                                                 |
-| `hsl(300deg, 100%, 50%)`              | Functional HSL notation with hue in degrees (CSS Colors 3 comma-separated)                                         |
-| `hsl(270grad, 100%, 50%)`             | Functional HSL notation with hue in gradians (CSS Colors 3 comma-separated)                                        |
-| `hsl(5.24rad, 100%, 50%)`             | Functional HSL notation with hue in radians (CSS Colors 3 comma-separated)                                         |
-| `hsl(0.83turn, 100%, 50%)`            | Functional HSL notation with hue in turns (CSS Colors 3 comma-separated)                                           |
-| `hsla(300, 100%, 50%, 0.5)`           | Functional HSL notation with alpha (CSS Colors 3 comma-separated)                                                  |
-| `lab(54 81 70)`                       | Functional LAB notation with numbers                                                                               |
-| `lab(54 81 70 / 1)`                   | Functional LAB notation with numbers and alpha                                                                     |
-| `lab(54% 65% 56%)`                    | Functional LAB notation with percentages                                                                           |
-| `lab(54% 65% 56% / 1)`                | Functional LAB notation with percentages and alpha                                                                 |
-| `lab(54 81 70 / 93%)`                 | Functional LAB notation with numbers and alpha in percentages                                                      |
-| `lab(54% 65% 56% / 93%)`              | Functional LAB notation with parcentages and alpha in percentages                                                  |
-| `device-cmyk(0% 100% 100% 0%)`        | Device-dependent functional CMYK notation with percentages                                                         |
-| `device-cmyk(0% 100% 100% 0% / 1)`    | Device-dependent functional CMYK notation with percentages and alpha                                               |
-| `device-cmyk(0% 100% 100% 0% / 100%)` | Device-dependent functional CMYK notation with percentages and alpha in percentages                                |
-| `device-cmyk(0%, 100%, 100%, 0%)`     | Device-dependent functional CMYK notation with percentages (CSS Colors 3 comma-separated)                          |
-| `device-cmyk(0%, 100%, 100%, 0%, 1)`  | Device-dependent functional CMYK notation with percentages and alpha (CSS Colors 3 comma-separated)                |
-| `device-cmyk(0 1 1 0)`                | Device-dependent functional CMYK notation with numbers                                                             |
-| `device-cmyk(0 1 1 0 / 1)`            | Device-dependent functional CMYK notation with numbers and alpha                                                   |
-| `device-cmyk(0 1 1 0 / 100%)`         | Device-dependent functional CMYK notation with numbers and alpha in percentages                                    |
-| `device-cmyk(0, 1, 1, 0)`             | Device-dependent functional CMYK notation with numbers (CSS Colors 3 comma-separated)                              |
-| `device-cmyk(0, 1, 1, 0, 1)`          | Device-dependent functional CMYK notation with numbers and alpha (CSS Colors 3 comma-separated)                    |
-| `cmyk(0% 100% 100% 0%)`               | Functional CMYK notation with percentages                                                                          |
-| `cmyk(0% 100% 100% 0% / 1)`           | Functional CMYK notation with percentages and alpha                                                                |
-| `cmyk(0% 100% 100% 0% / 100%)`        | Functional CMYK notation with percentages and alpha in percentages                                                 |
-| `cmyk(0 1 1 0)`                       | Functional CMYK notation with numbers                                                                              |
-| `cmyk(0 1 1 0 / 1)`                   | Functional CMYK notation with numbers and alpha                                                                    |
-| `cmyk(0 1 1 0 / 100%)`                | Functional CMYK notation with numbers and alpha in percentages                                                     |
-| `cmyk(0%, 100%, 100%, 0%)`            | Functional CMYK notation with percentages (CSS Colors 3 comma-separated)                                           |
-| `cmyk(0%, 100%, 100%, 0%, 1)`         | Functional CMYK notation with percentages and alpha (CSS Colors 3 comma-separated)                                 |
-| `cmyk(0, 1, 1, 0)`                    | Functional CMYK notation with numbers (CSS Colors 3 comma-separated)                                               |
-| `cmyk(0, 1, 1, 0, 1)`                 | Functional CMYK notation with numbers and alpha (CSS Colors 3 comma-separated)                                     |
-
+| Example of CSS string inputs          | Description                                                                                         |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `fuchsia`                             | Color keyword                                                                                       |
+| `#FF00FF`                             | Hexadecimal color                                                                                   |
+| `#F0F`                                | Shorthand hexadecimal color                                                                         |
+| `#FF00FF80`                           | Hexadecimal color with alpha                                                                        |
+| `#F0FF`                               | Shorthand hexadecimal color with alpha                                                              |
+| `rgb(255 0 255)`                      | Functional RGB notation                                                                             |
+| `rgb(100% 0% 100%)`                   | Functional RGB notation with values in percentages                                                  |
+| `rgb(255 0 255 / 0.5)`                | Functional RGB notation with alpha                                                                  |
+| `rgb(255 0 255 / 50%)`                | Functional RGB notation CSS with alpha in percenatages                                              |
+| `rgb(100% 0% 100% / 0.5)`             | Functional RGB notation with values in percentages and alpha                                        |
+| `rgb(100% 0% 100% / 50%)`             | Functional RGB notation with values and alpha in percentages                                        |
+| `rgb(255, 0, 255)`                    | Functional RGB notation (CSS Colors 3 comma-separated)                                              |
+| `rgba(255, 0, 255, 0.5)`              | Functional RGB notation with alpha (CSS Colors 3 comma-separated)                                   |
+| `hsl(300 100% 50%)`                   | Functional HSL notation                                                                             |
+| `hsl(300deg 100% 50%)`                | Functional HSL notation with hue in degrees                                                         |
+| `hsl(270grad 100% 50%)`               | Functional HSL notation with hue in gradians                                                        |
+| `hsl(5.24rad 100% 50%)`               | Functional HSL notation with hue in radians                                                         |
+| `hsl(0.83turn 100% 50%)`              | Functional HSL notation with hue in turns                                                           |
+| `hsl(300 100% 50% / 0.5)`             | Functional HSL notation with alpha                                                                  |
+| `hsl(300 100% 50% / 50%)`             | Functional HSL notation with alpha in percentages                                                   |
+| `hsl(300, 100%, 50%)`                 | Functional HSL notation (Colors 3 comma-separated)                                                  |
+| `hsl(300deg, 100%, 50%)`              | Functional HSL notation with hue in degrees (CSS Colors 3 comma-separated)                          |
+| `hsl(270grad, 100%, 50%)`             | Functional HSL notation with hue in gradians (CSS Colors 3 comma-separated)                         |
+| `hsl(5.24rad, 100%, 50%)`             | Functional HSL notation with hue in radians (CSS Colors 3 comma-separated)                          |
+| `hsl(0.83turn, 100%, 50%)`            | Functional HSL notation with hue in turns (CSS Colors 3 comma-separated)                            |
+| `hsla(300, 100%, 50%, 0.5)`           | Functional HSL notation with alpha (CSS Colors 3 comma-separated)                                   |
+| `lab(54 81 70)`                       | Functional LAB notation with numbers                                                                |
+| `lab(54 81 70 / 1)`                   | Functional LAB notation with numbers and alpha                                                      |
+| `lab(54% 65% 56%)`                    | Functional LAB notation with percentages                                                            |
+| `lab(54% 65% 56% / 1)`                | Functional LAB notation with percentages and alpha                                                  |
+| `lab(54 81 70 / 93%)`                 | Functional LAB notation with numbers and alpha in percentages                                       |
+| `lab(54% 65% 56% / 93%)`              | Functional LAB notation with parcentages and alpha in percentages                                   |
+| `device-cmyk(0% 100% 100% 0%)`        | Device-dependent functional CMYK notation with percentages                                          |
+| `device-cmyk(0% 100% 100% 0% / 1)`    | Device-dependent functional CMYK notation with percentages and alpha                                |
+| `device-cmyk(0% 100% 100% 0% / 100%)` | Device-dependent functional CMYK notation with percentages and alpha in percentages                 |
+| `device-cmyk(0%, 100%, 100%, 0%)`     | Device-dependent functional CMYK notation with percentages (CSS Colors 3 comma-separated)           |
+| `device-cmyk(0%, 100%, 100%, 0%, 1)`  | Device-dependent functional CMYK notation with percentages and alpha (CSS Colors 3 comma-separated) |
+| `device-cmyk(0 1 1 0)`                | Device-dependent functional CMYK notation with numbers                                              |
+| `device-cmyk(0 1 1 0 / 1)`            | Device-dependent functional CMYK notation with numbers and alpha                                    |
+| `device-cmyk(0 1 1 0 / 100%)`         | Device-dependent functional CMYK notation with numbers and alpha in percentages                     |
+| `device-cmyk(0, 1, 1, 0)`             | Device-dependent functional CMYK notation with numbers (CSS Colors 3 comma-separated)               |
+| `device-cmyk(0, 1, 1, 0, 1)`          | Device-dependent functional CMYK notation with numbers and alpha (CSS Colors 3 comma-separated)     |
+| `cmyk(0% 100% 100% 0%)`               | Functional CMYK notation with percentages                                                           |
+| `cmyk(0% 100% 100% 0% / 1)`           | Functional CMYK notation with percentages and alpha                                                 |
+| `cmyk(0% 100% 100% 0% / 100%)`        | Functional CMYK notation with percentages and alpha in percentages                                  |
+| `cmyk(0 1 1 0)`                       | Functional CMYK notation with numbers                                                               |
+| `cmyk(0 1 1 0 / 1)`                   | Functional CMYK notation with numbers and alpha                                                     |
+| `cmyk(0 1 1 0 / 100%)`                | Functional CMYK notation with numbers and alpha in percentages                                      |
+| `cmyk(0%, 100%, 100%, 0%)`            | Functional CMYK notation with percentages (CSS Colors 3 comma-separated)                            |
+| `cmyk(0%, 100%, 100%, 0%, 1)`         | Functional CMYK notation with percentages and alpha (CSS Colors 3 comma-separated)                  |
+| `cmyk(0, 1, 1, 0)`                    | Functional CMYK notation with numbers (CSS Colors 3 comma-separated)                                |
+| `cmyk(0, 1, 1, 0, 1)`                 | Functional CMYK notation with numbers and alpha (CSS Colors 3 comma-separated)                      |
 
 ###### Object inputs
 
@@ -185,8 +184,8 @@ It is possible to instantiate the class using any of the previous inputs.
 
 ```typescript
 interface Options {
-  decimals?: number;  // defaults to 6
-  legacyCSS?: boolean; // defaults to false 
+  decimals?: number; // defaults to 6
+  legacyCSS?: boolean; // defaults to false
   spacesAfterCommas?: boolean; // defaults to false
   anglesUnit?: 'none' | 'deg' | 'grad' | 'rad' | 'turn'; // defaults to 'none'
   rgbUnit?: 'none' | 'percent'; // defaults to 'none'
@@ -197,28 +196,28 @@ interface Options {
 }
 ```
 
-| Option            | Only for CSS output | Description                                                                                                    |
-| ----------------- | ------------------- | -------------------------------------------------------------------------------------------------------------- |
-| decimals          | no                  | This option sets what is the maximum number of decimals for the outputs                                        |
-| legacyCSS         | yes                 | This option decides if the CSS output should be CSS Level 3 (legacy) or CSS Level 4                           |
-| spacesAfterCommas | yes                 | This option only takes place if `legacyCSS` is set to true. It decides if the comas should have a space after |
-| anglesUnit        | yes                 | This option only takes place if the output is an HSL CSS output. It sets the degrees units of the HSL hue angle. If `none` is used, the output will not have any unit but its value will be the `deg` one (degrees) |
-| rgbUnit           | yes                 | This option only takes place if the output is an RGB CSS output. It sets the color units of the RGB and RGBA CSS outputs. If `none` is used the color values will be decimal between `0` and `255`. If `percent` is used, the color values will be decimal with percentages between `0%` and `100%`. |
-| labUnit           | yes                 | This option only takes place if the output is a `CIE L*a*b` CSS output. It sets the color units of the `CIELab` and `CIELabA` CSS outputs. If `none` is used it will be a decimal number between `0` and `100` for the `CIE Lightness` and  a decimal number between `-125` and `125` for the `a` and `b` axis of the `CIE L*a*b` colorspace. If `percent` is used, it will be a decimal number between `0` and `100` with percentages for all the color values. |
-| cmykUnit          | yes                 | This option sets the color units of the CMYK and CMYKA CSS outputs. If `none` is used the color values will be decimal between `0` and `1`. If `percent` is used, the color values will be decimal with percentages between `0%` and `100%`. |
-| alphaUnit         | yes                 | This option only takes place if the output is a CSS Level 4 output (`legacyCSS` has not been set, or it has been set to `false` or it has been autodetected as `false`). This option sets the alpha units of the CSS Level 4 outputs. If `none` is used the alpha values will be decimal between `0` and `1`. If `percent` is used, the alpha values will be decimal with percentages between `0%` and `100%`. |
-| cmykFunction      | yes                 | This option sets the cmyk function of the CMYK and CMYKA CSS outputs.                                       |
+| Option            | Only for CSS output | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ----------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| decimals          | no                  | This option sets what is the maximum number of decimals for the outputs                                                                                                                                                                                                                                                                                                                                                                                         |
+| legacyCSS         | yes                 | This option decides if the CSS output should be CSS Level 3 (legacy) or CSS Level 4                                                                                                                                                                                                                                                                                                                                                                             |
+| spacesAfterCommas | yes                 | This option only takes place if `legacyCSS` is set to true. It decides if the comas should have a space after                                                                                                                                                                                                                                                                                                                                                   |
+| anglesUnit        | yes                 | This option only takes place if the output is an HSL CSS output. It sets the degrees units of the HSL hue angle. If `none` is used, the output will not have any unit but its value will be the `deg` one (degrees)                                                                                                                                                                                                                                             |
+| rgbUnit           | yes                 | This option only takes place if the output is an RGB CSS output. It sets the color units of the RGB and RGBA CSS outputs. If `none` is used the color values will be decimal between `0` and `255`. If `percent` is used, the color values will be decimal with percentages between `0%` and `100%`.                                                                                                                                                            |
+| labUnit           | yes                 | This option only takes place if the output is a `CIE L*a*b` CSS output. It sets the color units of the `CIELab` and `CIELabA` CSS outputs. If `none` is used it will be a decimal number between `0` and `100` for the `CIE Lightness` and a decimal number between `-125` and `125` for the `a` and `b` axis of the `CIE L*a*b` colorspace. If `percent` is used, it will be a decimal number between `0` and `100` with percentages for all the color values. |
+| cmykUnit          | yes                 | This option sets the color units of the CMYK and CMYKA CSS outputs. If `none` is used the color values will be decimal between `0` and `1`. If `percent` is used, the color values will be decimal with percentages between `0%` and `100%`.                                                                                                                                                                                                                    |
+| alphaUnit         | yes                 | This option only takes place if the output is a CSS Level 4 output (`legacyCSS` has not been set, or it has been set to `false` or it has been autodetected as `false`). This option sets the alpha units of the CSS Level 4 outputs. If `none` is used the alpha values will be decimal between `0` and `1`. If `percent` is used, the alpha values will be decimal with percentages between `0%` and `100%`.                                                  |
+| cmykFunction      | yes                 | This option sets the cmyk function of the CMYK and CMYKA CSS outputs.                                                                                                                                                                                                                                                                                                                                                                                           |
 
->Note: the library tries to detect some options automatically if you don‘t send them in the options object. These are the rules for this autodetection:
+> Note: the library tries to detect some options automatically if you don‘t send them in the options object. These are the rules for this autodetection:
 >
-> * `legacyCSS`: if this option is set, then its value prevails, if it is not set, and the CSS input is provided in CSS Level 3, then this option will be `true`, otherwise it will take its default value which is `false`.
-> * `spacesAfterCommas`: if this option is set, then its value prevails, if it is not set, and the CSS input is provided with spaces after the commas, then this option will be `true`. If the input is not consistent in this aspect, then it will take its default value which is `false` (This option only takes place if `legacyCSS` is `true` or it has been autodetected as `true`)
-> * `anglesUnit`: if this option is set, then its value prevails, if it is not set, and the HSL CSS input is provided with an angle unit, then it will take that value, otherwise it will use the default one wich is `none`.
-> * `rgbUnit`: if this option is set, then its value prevails, if it is not set, and the RGB CSS input is provided with percentages in its color values, then it will take the `percent` value, otherwise it will use the default one wich is `none`.
-> * `labUnit`: if this option is set, then its value prevails, if it is not set, and the CIE L\*a\*b CSS input is provided with percentages in its color values, then it will take the `percent` value, otherwise it will use the default one wich is `none`.
-> * `cmykUnit`: if this option is set, then its value prevails, if it is not set, and the CMYK CSS input is provided without percentages in its color values, then it will take the `none` value, otherwise it will use the default one wich is `percent`.
-> * `alphaUnit`: if this option is set, then its value prevails, if it is not set, and the CSS input (must be CSS Level 4) is provided with percentages in its alpha value, then it will take the `percent` value, otherwise it will use the default one wich is `none`.
-> * `cmykFunction`: if this option is set, then its value prevails, if it is not set, and the CMYK CSS input is provided using the `cmyk` function, then it will take the `cmyk` value, otherwise it will use the default one wich is `device-cmyk`.
+> - `legacyCSS`: if this option is set, then its value prevails, if it is not set, and the CSS input is provided in CSS Level 3, then this option will be `true`, otherwise it will take its default value which is `false`.
+> - `spacesAfterCommas`: if this option is set, then its value prevails, if it is not set, and the CSS input is provided with spaces after the commas, then this option will be `true`. If the input is not consistent in this aspect, then it will take its default value which is `false` (This option only takes place if `legacyCSS` is `true` or it has been autodetected as `true`)
+> - `anglesUnit`: if this option is set, then its value prevails, if it is not set, and the HSL CSS input is provided with an angle unit, then it will take that value, otherwise it will use the default one wich is `none`.
+> - `rgbUnit`: if this option is set, then its value prevails, if it is not set, and the RGB CSS input is provided with percentages in its color values, then it will take the `percent` value, otherwise it will use the default one wich is `none`.
+> - `labUnit`: if this option is set, then its value prevails, if it is not set, and the CIE L\*a\*b CSS input is provided with percentages in its color values, then it will take the `percent` value, otherwise it will use the default one wich is `none`.
+> - `cmykUnit`: if this option is set, then its value prevails, if it is not set, and the CMYK CSS input is provided without percentages in its color values, then it will take the `none` value, otherwise it will use the default one wich is `percent`.
+> - `alphaUnit`: if this option is set, then its value prevails, if it is not set, and the CSS input (must be CSS Level 4) is provided with percentages in its alpha value, then it will take the `percent` value, otherwise it will use the default one wich is `none`.
+> - `cmykFunction`: if this option is set, then its value prevails, if it is not set, and the CMYK CSS input is provided using the `cmyk` function, then it will take the `cmyk` value, otherwise it will use the default one wich is `device-cmyk`.
 
 ###### Class instantiation examples
 
@@ -305,23 +304,23 @@ new ColorTranslator('#00F', { cmykFunction: 'cmyk' }).CMYKA; // cmyk(100% 100% 0
 
 There are 15 chainable public methods and 14 of them accept a number as input. The last one accepts an [options object](#options-object):
 
-| Public methods | Input              | Description                                              |
-| -------------- | ------------------ | -------------------------------------------------------- |
-| setH           | 0 ≤ input ≤ 360    | Sets the color hue                                       |
-| setS           | 0 ≤ input ≤ 100    | Sets the color saturation percentage                     |
-| setL           | 0 ≤ input ≤ 100    | Sets the color lightness percentage                      |
-| setR           | 0 ≤ input ≤ 255    | Sets the red value of the color                          |
-| setG           | 0 ≤ input ≤ 255    | Sets the green value of the color                        |
-| setB           | 0 ≤ input ≤ 255    | Sets the blue value of the color                         |
-| setC           | 0 ≤ input ≤ 100    | Sets the CMYK cyan percentage value of the color         |
-| setM           | 0 ≤ input ≤ 100    | Sets the CMYK magenta percentage value of the color      |
-| setY           | 0 ≤ input ≤ 100    | Sets the CMYK yellow percentage value of the color       |
-| setK           | 0 ≤ input ≤ 100    | Sets the CMYK black percentage value of the color        |
-| setCIEL        | 0 ≤ input ≤ 100    | Sets the CIE Lightness value of the color                |
-| setCIEa        | -125 ≤ input ≤ 125 | Sets the `a` axis in the CIE L\*a\*b colorspace          |
-| setCIEb        | -125 ≤ input ≤ 125 | Sets the `b` axis in the CIE L\*a\*b colorspace          |
-| setA           | 0 ≤ input ≤ 1      | Sets the alpha value of the color                        |
-| setOptions     | Options            | Sets an object that would work as configuration options  |
+| Public methods | Input              | Description                                             |
+| -------------- | ------------------ | ------------------------------------------------------- |
+| setH           | 0 ≤ input ≤ 360    | Sets the color hue                                      |
+| setS           | 0 ≤ input ≤ 100    | Sets the color saturation percentage                    |
+| setL           | 0 ≤ input ≤ 100    | Sets the color lightness percentage                     |
+| setR           | 0 ≤ input ≤ 255    | Sets the red value of the color                         |
+| setG           | 0 ≤ input ≤ 255    | Sets the green value of the color                       |
+| setB           | 0 ≤ input ≤ 255    | Sets the blue value of the color                        |
+| setC           | 0 ≤ input ≤ 100    | Sets the CMYK cyan percentage value of the color        |
+| setM           | 0 ≤ input ≤ 100    | Sets the CMYK magenta percentage value of the color     |
+| setY           | 0 ≤ input ≤ 100    | Sets the CMYK yellow percentage value of the color      |
+| setK           | 0 ≤ input ≤ 100    | Sets the CMYK black percentage value of the color       |
+| setCIEL        | 0 ≤ input ≤ 100    | Sets the CIE Lightness value of the color               |
+| setCIEa        | -125 ≤ input ≤ 125 | Sets the `a` axis in the CIE L\*a\*b colorspace         |
+| setCIEb        | -125 ≤ input ≤ 125 | Sets the `b` axis in the CIE L\*a\*b colorspace         |
+| setA           | 0 ≤ input ≤ 1      | Sets the alpha value of the color                       |
+| setOptions     | Options            | Sets an object that would work as configuration options |
 
 ###### Class public methods examples
 
@@ -330,15 +329,9 @@ You can also consult the [demo 1](https://elchininet.github.io/ColorTranslator/#
 ```javascript
 const color = new ColorTranslator('#FF00FF');
 
-color
-  .setH(120)
-  .setS(80)
-  .setA(0.5);
+color.setH(120).setS(80).setA(0.5);
 
-color
-  .setR(255)
-  .setG(150)
-  .setA(0.25);
+color.setR(255).setG(150).setA(0.25);
 ```
 
 #### Class public readonly properties
@@ -360,19 +353,18 @@ There are 10 properties to get the CSS representation of the color:
 
 There are 10 properties to get the object representation of the color:
 
-| Property      | Description                                                       |
-| ------------- | ----------------------------------------------------------------- |
-| HEXObject     | Gets the object hex representation of the color                   |
-| HEXAObject    | Gets the object hex representation of the color with alpha        |
-| RGBObject     | Gets the object rgb representation of the color                   |
-| RGBAObject    | Gets the object rgb representation of the color with alpha        |
-| HSLObject     | Gets the object hsl representation of the color                   |
-| HSLAObject    | Gets the object hsl representation of the color with alpha        |
-| CIELabObject  | Gets the object CIE L\*a\*b representation of the color           |
-| CIELabAObject |Gets the object CIE L\*a\*b representation of the color with alpha |
-| CMYKObject    | Gets the object cmyk representation of the color                  |
-| CMYKAObject   | Gets the object cmyk representation of the color with alpha       |
-
+| Property      | Description                                                        |
+| ------------- | ------------------------------------------------------------------ |
+| HEXObject     | Gets the object hex representation of the color                    |
+| HEXAObject    | Gets the object hex representation of the color with alpha         |
+| RGBObject     | Gets the object rgb representation of the color                    |
+| RGBAObject    | Gets the object rgb representation of the color with alpha         |
+| HSLObject     | Gets the object hsl representation of the color                    |
+| HSLAObject    | Gets the object hsl representation of the color with alpha         |
+| CIELabObject  | Gets the object CIE L\*a\*b representation of the color            |
+| CIELabAObject | Gets the object CIE L\*a\*b representation of the color with alpha |
+| CMYKObject    | Gets the object cmyk representation of the color                   |
+| CMYKAObject   | Gets the object cmyk representation of the color with alpha        |
 
 There are 14 properties to get the individual color values:
 
@@ -399,7 +391,6 @@ And a property to get the options object that acts as a [configuration object](#
 | -------- | ---------------------------------- |
 | options  | Get the configuration object value |
 
-
 ###### Class public properties examples
 
 You can also consult the [demo 1](https://elchininet.github.io/ColorTranslator/#demo1) and the [demo 2](https://elchininet.github.io/ColorTranslator/#demo2) to check the use of the public properties.
@@ -422,7 +413,7 @@ For the static methods, it is not needed to specify the input color model, the A
 
 There are 56 static methods available, 20 of them to convert colors, 16 to create color blends, 16 to mix colors, one to get shades, one to get tints, and one to create color harmonies.
 
->Note: The static methods also count with the options-autodetection feature that was explained in the [options object section](#options-object), but in this case it scans all the inputs that are CSS, and it tries to detect the options in each one of them. If one of the autodetected options is consistent in all the inputs, then it takes the autodetected value, otherwise it will use the default one.
+> Note: The static methods also count with the options-autodetection feature that was explained in the [options object section](#options-object), but in this case it scans all the inputs that are CSS, and it tries to detect the options in each one of them. If one of the autodetected options is consistent in all the inputs, then it takes the autodetected value, otherwise it will use the default one.
 
 ###### Color conversion static methods
 
@@ -434,6 +425,7 @@ convertColorStaticMethod(
   options?: Options
 )
 ```
+
 ###### Color conversion static methods description
 
 | Static method   | Description                                                  |
@@ -466,10 +458,7 @@ ColorTranslator.toHEX('gold'); // #FFD700
 
 ColorTranslator.toRGB('#FF00FF'); // rgb(255 0 255)
 
-ColorTranslator.toRGBA(
-  'hsl(50, 20%, 90%)',
-  { decimals: 0 }
-); // rgba(235,233,224,1)
+ColorTranslator.toRGBA('hsl(50, 20%, 90%)', { decimals: 0 }); // rgba(235,233,224,1)
 
 ColorTranslator.toHSL('rgb(255 0 0)'); // hsl(0 100% 50%)
 
@@ -479,25 +468,13 @@ ColorTranslator.toCMYKObject('#F0F'); // {C: 0, M: 100, Y: 0, K: 0}
 
 ColorTranslator.toCMYK('#F0F'); // cmyk(0% 100% 0% 0%)
 
-ColorTranslator.toRGB(
-  { h: 115, s: '70%', l: '45%' },
-  { decimals: 0 }
-); // rgb(48 195 34)
+ColorTranslator.toRGB({ h: 115, s: '70%', l: '45%' }, { decimals: 0 }); // rgb(48 195 34)
 
-ColorTranslator.toHSLA(
-  { r: 115, g: 200, b: 150, a: 0.5 },
-  { decimals: 1 }
-); // hsl(144.7 43.6% 61.8% / 0.5)
+ColorTranslator.toHSLA({ r: 115, g: 200, b: 150, a: 0.5 }, { decimals: 1 }); // hsl(144.7 43.6% 61.8% / 0.5)
 
-ColorTranslator.toHSLA(
-  { r: 95, g: 23, b: 12, a: Math.SQRT1_2 },
-  { decimals: 4 }
-); // hsl(7.9518 77.5701% 20.9804% / 0.7071)
+ColorTranslator.toHSLA({ r: 95, g: 23, b: 12, a: Math.SQRT1_2 }, { decimals: 4 }); // hsl(7.9518 77.5701% 20.9804% / 0.7071)
 
-ColorTranslator.toCIELab(
-  '#00F',
-  { decimals: 2 }
-); // lab(29.57 68.3 -112.03)
+ColorTranslator.toCIELab('#00F', { decimals: 2 }); // lab(29.57 68.3 -112.03)
 ```
 
 You can also consult the [demo 3](https://elchininet.github.io/ColorTranslator/#demo3), the [demo 4](https://elchininet.github.io/ColorTranslator/#demo4) and the [demo 5](https://elchininet.github.io/ColorTranslator/#demo5) to check the use of these static methods.
@@ -648,10 +625,9 @@ getTints(
 ###### Color shades and color tints static methods description
 
 | Static method | Description                                                                |
-| ------------- | ---------------------------------------------------------------------------|
-| getShades     | Gets shades of a colour (mix the color with black increasing its darkness) |  
+| ------------- | -------------------------------------------------------------------------- |
+| getShades     | Gets shades of a colour (mix the color with black increasing its darkness) |
 | getTints      | Gets tints of a colour (mix the color with white increasing its lightness) |
-
 
 ###### Color shades and color tints static methods examples
 
@@ -666,7 +642,7 @@ ColorTranslator.getShades('#FF0000', 5);
 //   "#2A0000"
 // ]
 
-ColorTranslator.getTints({r: 255, g: 0, b: 0, a: 0.5}, 5);
+ColorTranslator.getTints({ r: 255, g: 0, b: 0, a: 0.5 }, 5);
 
 // [
 //   {R: 255, G: 42.5, B: 42.5, A: 0.5},
@@ -694,8 +670,8 @@ getHarmony(
 
 ###### Color harmonies static method description
 
-| Static method | Description                                                                  |
-| ------------- | ---------------------------------------------------------------------------- |
+| Static method | Description                                                                                                             |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | getHarmony    | Returns an array of colors representing the harmony requested. The color output will be the same that was sent as input |
 
 ###### Available armonies
@@ -724,12 +700,9 @@ ColorTranslator.getHarmony('rgba(0 255 255 / 0.5)', Harmony.ANALOGOUS);
 //   "rgba(0 255 127.5 / 0.5)"
 // ]
 
-ColorTranslator.getHarmony(
-  { r: 115, g: 200, b: 150, a: 0.5 },
-  Harmony.COMPLEMENTARY,
-  Mix.ADDITIVE,
-  { decimals: 2 }
-);
+ColorTranslator.getHarmony({ r: 115, g: 200, b: 150, a: 0.5 }, Harmony.COMPLEMENTARY, Mix.ADDITIVE, {
+  decimals: 2
+});
 
 // [
 //   {R: 115, G: 200, B: 150, A: 0.5},
@@ -739,7 +712,6 @@ ColorTranslator.getHarmony(
 ColorTranslator.getHarmony('#FF0000', Harmony.COMPLEMENTARY, Mix.SUBTRACTIVE);
 
 // ["#FF0000", "#00FF00"]
-
 ```
 
 You can also consult the [demo 10](https://elchininet.github.io/ColorTranslator/#demo10) and [demo 11](https://elchininet.github.io/ColorTranslator/#demo11) to check the use of this static method.
@@ -754,14 +726,14 @@ This is the type of the [options object](#options-object) that can be sent to th
 
 ```typescript
 interface InputOptions {
-    decimals?: number;
-    legacyCSS?: boolean;
-    spacesAfterCommas?: boolean;
-    anglesUnit?: 'none' | 'deg' | 'grad' | 'rad' | 'turn';
-    rgbUnit?: 'none' | 'percent';
-    cmykUnit?: 'none' | 'percent';
-    alphaUnit?: 'none' | 'percent';
-    cmykFunction?: 'device-cmyk' | 'cmyk';
+  decimals?: number;
+  legacyCSS?: boolean;
+  spacesAfterCommas?: boolean;
+  anglesUnit?: 'none' | 'deg' | 'grad' | 'rad' | 'turn';
+  rgbUnit?: 'none' | 'percent';
+  cmykUnit?: 'none' | 'percent';
+  alphaUnit?: 'none' | 'percent';
+  cmykFunction?: 'device-cmyk' | 'cmyk';
 }
 ```
 
@@ -771,10 +743,10 @@ This type is returned by the `HEXObject`, and `HEXAObject` properties, the `toHE
 
 ```typescript
 interface HEXObject {
-    R: string;
-    G: string;
-    B: string;
-    A?: string;
+  R: string;
+  G: string;
+  B: string;
+  A?: string;
 }
 ```
 
@@ -784,10 +756,10 @@ This type is returned by the `RGBObject`, and `RGBAObject` properties, the `toRG
 
 ```typescript
 interface RGBObject {
-    R: number;
-    G: number;
-    B: number;
-    A?: number;
+  R: number;
+  G: number;
+  B: number;
+  A?: number;
 }
 ```
 
@@ -797,10 +769,10 @@ This type is returned by the `HSLObject`, and `HSLAObject` properties, the `toHS
 
 ```typescript
 interface HSLObject {
-    H: number;
-    S: number;
-    L: number;
-    A?: number;
+  H: number;
+  S: number;
+  L: number;
+  A?: number;
 }
 ```
 
@@ -810,10 +782,10 @@ This type is returned by the `CIELabObject`, and `CIELabAObject` properties, the
 
 ```typescript
 interface CIELabObject {
-    L: number;
-    a: number;
-    b: number;
-    A?: number;
+  L: number;
+  a: number;
+  b: number;
+  A?: number;
 }
 ```
 
@@ -823,9 +795,9 @@ This type is returned by the `CMYKObject` property, and the `toCMYKObject` and `
 
 ```typescript
 interface CMYKObject {
-    C: number;
-    M: number;
-    Y: number;
-    K: number;
+  C: number;
+  M: number;
+  Y: number;
+  K: number;
 }
 ```

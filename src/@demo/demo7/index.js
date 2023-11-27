@@ -1,7 +1,6 @@
 import './styles.scss';
 
 export default (ColorTranslator) => {
-
     const container = document.createElement('div');
 
     const colors = ['#F00', '#FF8000', '#FF0', '#0F0', '#00F', '#A0F', '#F0A'];
@@ -23,5 +22,4 @@ export default (ColorTranslator) => {
     });
 
     return container;
-
 };

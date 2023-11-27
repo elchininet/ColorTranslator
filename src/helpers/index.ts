@@ -20,7 +20,8 @@ import {
 } from '#constants';
 
 //---Has property
-export const hasProp = <T extends object, K = keyof T>(obj: T, prop: K): boolean => Object.prototype.hasOwnProperty.call(obj, prop);
+export const hasProp = <T extends object, K = keyof T>(obj: T, prop: K): boolean =>
+    Object.prototype.hasOwnProperty.call(obj, prop);
 
 //---Get percent number
 export const percentNumber = (percent: NumberOrString): number => {
@@ -28,20 +29,23 @@ export const percentNumber = (percent: NumberOrString): number => {
 };
 
 //---Get a percentage
-export const percent = (percent: NumberOrString): number => PCENT.test(`${percent}`)
-    ? percentNumber(percent)
-    : Math.min(+percent, 100);
+export const percent = (percent: NumberOrString): number =>
+    PCENT.test(`${percent}`) ? percentNumber(percent) : Math.min(+percent, 100);
 
 //---Convert to decimal
 export const getDEC = (hex: string): number => {
-    if (hex.length === 1) { hex += hex; }
+    if (hex.length === 1) {
+        hex += hex;
+    }
     return parseInt(hex, 16);
 };
 
 //---Convert to hexadecimal
 export const getHEX = (number: NumberOrString): string => {
     const hex = round(number, 0).toString(16).toUpperCase();
-    if (hex.length === 1) { return `0x0${hex}`; }
+    if (hex.length === 1) {
+        return `0x0${hex}`;
+    }
     return `0x${hex}`;
 };
 
@@ -55,23 +59,23 @@ export const toHEX = (h: NumberOrString): string => {
 };
 
 //---Convert from decimal 255 to percent
-export const from255NumberToPercent = (value: number, decimals: number): number => round(value / 255 * 100, decimals);
+export const from255NumberToPercent = (value: number, decimals: number): number =>
+    round((value / 255) * 100, decimals);
 
 //---Convert from decimal 125 to percent
-export const from125NumberToPercent = (value: number, decimals: number): number => round(value / 125 * 100, decimals);
+export const from125NumberToPercent = (value: number, decimals: number): number =>
+    round((value / 125) * 100, decimals);
 
 //---Calculate a decimal 255 from an RGB color
 export const getBase255Number = (color: string, alpha = false): number => {
     if (!alpha && PCENT.test(color)) {
-        return Math.min(255 * percentNumber(color) / 100, 255);
+        return Math.min((255 * percentNumber(color)) / 100, 255);
     }
     if (HEX.test(color)) {
         if (color.length === 3) {
             color += color.slice(-1);
         }
-        return alpha
-            ? round(color) / 255
-            : round(color);
+        return alpha ? round(color) / 255 : round(color);
     }
     return Math.min(+color, alpha ? 1 : 255);
 };
@@ -79,13 +83,14 @@ export const getBase255Number = (color: string, alpha = false): number => {
 //---Calculate a decimal 125 from an CIE Lab color
 export const getBase125Number = (color: string): number => {
     if (PCENT.test(color)) {
-        return minmax(125 * percentNumber(color) / 100, -125, 125);
+        return minmax((125 * percentNumber(color)) / 100, -125, 125);
     }
     return minmax(+color, -125, 125);
 };
 
 //---Calculate a decimal 0-1 value from CMYK value
-export const getCMYKNumber = (color: string): number => Math.min(PCENT.test(color) ? percentNumber(color) / 100 : +color, 1);
+export const getCMYKNumber = (color: string): number =>
+    Math.min(PCENT.test(color) ? percentNumber(color) / 100 : +color, 1);
 
 //---Return an ordered string from an array values
 export const getOrderedArrayString = (keys: string[]): string => [...keys].sort().join('').toUpperCase();
@@ -100,22 +105,20 @@ export const round = (value: NumberOrString, decimals = MAX_DECIMALS): number =>
 export const minmax = (n: number, min: number, max: number): number => Math.max(min, Math.min(n, max));
 
 //--Radians to degrees
-export const degrees = (radian: number): number => radian * 180 / Math.PI;
+export const degrees = (radian: number): number => (radian * 180) / Math.PI;
 
 //--Degrees to radians
-export const radians = (degrees: number): number => degrees * Math.PI / 180;
+export const radians = (degrees: number): number => (degrees * Math.PI) / 180;
 
 //---Normalize hue
 const pi2 = 360;
 
 export const normalizeHue = (hue: number | string): number => {
-
     if (typeof hue === 'string') {
-
         const matches = hue.match(HSL_HUE) as string[];
         const value = +matches[1];
         const units = matches[2] as AnglesUnitEnum;
-        switch(units) {
+        switch (units) {
             case AnglesUnitEnum.RADIANS:
                 hue = round(degrees(value));
                 break;
@@ -123,7 +126,7 @@ export const normalizeHue = (hue: number | string): number => {
                 hue = round(value * pi2);
                 break;
             case AnglesUnitEnum.GRADIANS:
-                hue = round(9 / 10 * value);
+                hue = round((9 / 10) * value);
                 break;
             case AnglesUnitEnum.DEGREES:
             default:
@@ -139,10 +142,9 @@ export const normalizeHue = (hue: number | string): number => {
 };
 
 export const translateDegrees = (degrees: number, units: AnglesUnitEnum): number => {
-
     let hue: number;
 
-    switch(units) {
+    switch (units) {
         case AnglesUnitEnum.RADIANS:
             hue = round(radians(degrees));
             break;
@@ -150,7 +152,7 @@ export const translateDegrees = (degrees: number, units: AnglesUnitEnum): number
             hue = round(degrees / pi2);
             break;
         case AnglesUnitEnum.GRADIANS:
-            hue = round(10 / 9 * degrees);
+            hue = round((10 / 9) * degrees);
             break;
         case AnglesUnitEnum.DEGREES:
         case AnglesUnitEnum.NONE:
@@ -182,20 +184,18 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
         cmykFunction: 0
     };
 
-    for(const color of colors) {
-
+    for (const color of colors) {
         if (typeof color === 'string') {
-
             cssColors.push(color);
 
-            if (color.includes(',')){
-                matchOptions.legacyCSS ++;
+            if (color.includes(',')) {
+                matchOptions.legacyCSS++;
                 const commasWithNextCharacter = color.match(COMMAS_AND_NEXT_CHARS);
                 if (
                     new Set(commasWithNextCharacter).size === 1 &&
                     SPACES.test(commasWithNextCharacter[0].slice(1))
                 ) {
-                    matchOptions.spacesAfterCommas ++;
+                    matchOptions.spacesAfterCommas++;
                 }
             }
 
@@ -204,14 +204,8 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
                 const angle = match[1] || match[5];
                 const alpha = match[8];
                 const angleUnit = angle.match(HSL_HUE)[2];
-                hslColors.push(
-                    angleUnit === ''
-                        ? AnglesUnitEnum.NONE
-                        : angleUnit as AnglesUnitEnum
-                );
-                alphaValues.push(
-                    PCENT.test(alpha)
-                );
+                hslColors.push(angleUnit === '' ? AnglesUnitEnum.NONE : (angleUnit as AnglesUnitEnum));
+                alphaValues.push(PCENT.test(alpha));
                 continue;
             }
 
@@ -221,14 +215,8 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
                 const G = match[2] || match[6];
                 const B = match[3] || match[7];
                 const A = match[8];
-                rgbColors.push(
-                    PCENT.test(R) &&
-                    PCENT.test(G) &&
-                    PCENT.test(B)
-                );
-                alphaValues.push(
-                    PCENT.test(A)
-                );
+                rgbColors.push(PCENT.test(R) && PCENT.test(G) && PCENT.test(B));
+                alphaValues.push(PCENT.test(A));
                 continue;
             }
 
@@ -238,14 +226,8 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
                 const a = match[2];
                 const b = match[3];
                 const A = match[4];
-                labColors.push(
-                    PCENT.test(L) &&
-                    PCENT.test(a) &&
-                    PCENT.test(b)
-                );
-                alphaValues.push(
-                    PCENT.test(A)
-                );
+                labColors.push(PCENT.test(L) && PCENT.test(a) && PCENT.test(b));
+                alphaValues.push(PCENT.test(A));
                 continue;
             }
 
@@ -256,80 +238,61 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
                 const Y = match[3] || match[8];
                 const K = match[4] || match[9];
                 const A = match[10];
-                cmykColors.push(
-                    PCENT.test(C) &&
-                    PCENT.test(M) &&
-                    PCENT.test(Y) &&
-                    PCENT.test(K)
-                );
+                cmykColors.push(PCENT.test(C) && PCENT.test(M) && PCENT.test(Y) && PCENT.test(K));
                 if (color.startsWith('cmyk')) {
-                    matchOptions.cmykFunction ++;
+                    matchOptions.cmykFunction++;
                 }
-                alphaValues.push(
-                    PCENT.test(A)
-                );
+                alphaValues.push(PCENT.test(A));
             }
-
         }
-
     }
     return {
-        decimals: typeof options.decimals === TypeOf.NUMBER
-            ? options.decimals
-            : DEFAULT_OPTIONS.decimals,
-        legacyCSS: typeof options.legacyCSS === TypeOf.BOOLEAN
-            ? options.legacyCSS
-            : Boolean(
-                cssColors.length &&
-                matchOptions.legacyCSS === cssColors.length
-            ) || DEFAULT_OPTIONS.legacyCSS,
-        spacesAfterCommas: typeof options.spacesAfterCommas === TypeOf.BOOLEAN
-            ? options.spacesAfterCommas
-            : Boolean(
-                cssColors.length &&
-                matchOptions.spacesAfterCommas === cssColors.length
-            ) || DEFAULT_OPTIONS.spacesAfterCommas,
-        anglesUnit: options.anglesUnit && anglesUnitValues.includes(options.anglesUnit)
-            ? options.anglesUnit as AnglesUnitEnum
-            : (
-                new Set(hslColors).size === 1
-                    ? hslColors[0]
-                    : DEFAULT_OPTIONS.anglesUnit
-            ),
-        rgbUnit: options.rgbUnit && colorUnitValues.includes(options.rgbUnit)
-            ? options.rgbUnit as ColorUnitEnum
-            : (
-                new Set(rgbColors).size === 1 && rgbColors[0]
-                    ? ColorUnitEnum.PERCENT
-                    : DEFAULT_OPTIONS.rgbUnit
-            ),
-        labUnit: options.labUnit && colorUnitValues.includes(options.labUnit)
-            ? options.labUnit as ColorUnitEnum
-            : (
-                new Set(labColors).size === 1 && labColors[0]
-                    ? ColorUnitEnum.PERCENT
-                    : DEFAULT_OPTIONS.labUnit
-            ),
-        cmykUnit: options.cmykUnit && colorUnitValues.includes(options.cmykUnit)
-            ? options.cmykUnit as ColorUnitEnum
-            : (
-                new Set(cmykColors).size === 1 && !cmykColors[0]
-                    ? ColorUnitEnum.NONE
-                    : DEFAULT_OPTIONS.cmykUnit
-            ),
-        alphaUnit: options.alphaUnit && colorUnitValues.includes(options.alphaUnit)
-            ? options.alphaUnit as ColorUnitEnum
-            : (
-                new Set(alphaValues).size === 1 && alphaValues[0]
-                    ? ColorUnitEnum.PERCENT
-                    : DEFAULT_OPTIONS.alphaUnit
-            ),
-        cmykFunction: options.cmykFunction && cmykFunctionValues.includes(options.cmykFunction)
-            ? options.cmykFunction as CMYKFunctionEnum
-            : (
-                cmykColors.length && cmykColors.length === matchOptions.cmykFunction
-                    ? CMYKFunctionEnum.CMYK
-                    : DEFAULT_OPTIONS.cmykFunction
-            )
+        decimals: typeof options.decimals === TypeOf.NUMBER ? options.decimals : DEFAULT_OPTIONS.decimals,
+        legacyCSS:
+            typeof options.legacyCSS === TypeOf.BOOLEAN
+                ? options.legacyCSS
+                : Boolean(cssColors.length && matchOptions.legacyCSS === cssColors.length) ||
+                  DEFAULT_OPTIONS.legacyCSS,
+        spacesAfterCommas:
+            typeof options.spacesAfterCommas === TypeOf.BOOLEAN
+                ? options.spacesAfterCommas
+                : Boolean(cssColors.length && matchOptions.spacesAfterCommas === cssColors.length) ||
+                  DEFAULT_OPTIONS.spacesAfterCommas,
+        anglesUnit:
+            options.anglesUnit && anglesUnitValues.includes(options.anglesUnit)
+                ? (options.anglesUnit as AnglesUnitEnum)
+                : new Set(hslColors).size === 1
+                  ? hslColors[0]
+                  : DEFAULT_OPTIONS.anglesUnit,
+        rgbUnit:
+            options.rgbUnit && colorUnitValues.includes(options.rgbUnit)
+                ? (options.rgbUnit as ColorUnitEnum)
+                : new Set(rgbColors).size === 1 && rgbColors[0]
+                  ? ColorUnitEnum.PERCENT
+                  : DEFAULT_OPTIONS.rgbUnit,
+        labUnit:
+            options.labUnit && colorUnitValues.includes(options.labUnit)
+                ? (options.labUnit as ColorUnitEnum)
+                : new Set(labColors).size === 1 && labColors[0]
+                  ? ColorUnitEnum.PERCENT
+                  : DEFAULT_OPTIONS.labUnit,
+        cmykUnit:
+            options.cmykUnit && colorUnitValues.includes(options.cmykUnit)
+                ? (options.cmykUnit as ColorUnitEnum)
+                : new Set(cmykColors).size === 1 && !cmykColors[0]
+                  ? ColorUnitEnum.NONE
+                  : DEFAULT_OPTIONS.cmykUnit,
+        alphaUnit:
+            options.alphaUnit && colorUnitValues.includes(options.alphaUnit)
+                ? (options.alphaUnit as ColorUnitEnum)
+                : new Set(alphaValues).size === 1 && alphaValues[0]
+                  ? ColorUnitEnum.PERCENT
+                  : DEFAULT_OPTIONS.alphaUnit,
+        cmykFunction:
+            options.cmykFunction && cmykFunctionValues.includes(options.cmykFunction)
+                ? (options.cmykFunction as CMYKFunctionEnum)
+                : cmykColors.length && cmykColors.length === matchOptions.cmykFunction
+                  ? CMYKFunctionEnum.CMYK
+                  : DEFAULT_OPTIONS.cmykFunction
     };
 };

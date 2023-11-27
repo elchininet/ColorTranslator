@@ -1,11 +1,4 @@
-import {
-    ColorArray,
-    RGBObject,
-    CIELabObject,
-    HSLObject,
-    CMYKObject,
-    RYBObject
-} from '@types';
+import { ColorArray, RGBObject, CIELabObject, HSLObject, CMYKObject, RYBObject } from '@types';
 import { round, minmax } from '#helpers';
 
 const MATRIX_LRGB_XYZ_D50: [ColorArray, ColorArray, ColorArray] = [
@@ -26,8 +19,12 @@ const TRISTIMULUS_D50 = MATRIX_LRGB_XYZ_D50.map((matrix: ColorArray): number => 
 
 //---HUE to RGB
 const hueToRGB = (t1: number, t2: number, hue: number): number => {
-    if (hue < 0) { hue += 6; }
-    if (hue >= 6) { hue -= 6; }
+    if (hue < 0) {
+        hue += 6;
+    }
+    if (hue >= 6) {
+        hue -= 6;
+    }
     if (hue < 1) {
         return round(((t2 - t1) * hue + t1) * 255);
     } else if (hue < 3) {
@@ -42,24 +39,22 @@ const hueToRGB = (t1: number, t2: number, hue: number): number => {
 // RGB to linear-light RGB
 // http://www.brucelindbloom.com/index.html?Eqn_RGB_to_XYZ.html
 const rgbToLinearLightRGB = (value: number): number => {
-    return value <= 0.04045
-        ? value / 12.92
-        : ((value + 0.055) / 1.055) ** 2.4;
+    return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
 };
 
 const linearLightRGBToRGB = (value: number): number => {
-    return value <= 0.0031308
-        ? 12.92 * value
-        : 1.055 * (value ** (1 / 2.4)) - 0.055;
+    return value <= 0.0031308 ? 12.92 * value : 1.055 * value ** (1 / 2.4) - 0.055;
 };
 
 // Matrix * vector multiplication
 const matrixVectorMultiplication = (
-    v1: number, v2: number, v3: number,
+    v1: number,
+    v2: number,
+    v3: number,
     matrix: [ColorArray, ColorArray, ColorArray]
 ): ColorArray => {
     const result: ColorArray = [0, 0, 0];
-    const linearRGB = [ v1, v2, v3 ];
+    const linearRGB = [v1, v2, v3];
     matrix.forEach((array: number[], index: number): void => {
         array.forEach((value: number, mindex: number) => {
             result[index] += value * linearRGB[mindex];
@@ -70,34 +65,22 @@ const matrixVectorMultiplication = (
 
 const from_CIE_XYZ_D50_to_CIE_LAB = (x: number, y: number, z: number): ColorArray => {
     const f = (t: number): number => {
-        return t > (6 / 29) ** 3
-            ? Math.cbrt(t)
-            : t / (3 * (6 / 29) ** 2) + (4 / 29);
+        return t > (6 / 29) ** 3 ? Math.cbrt(t) : t / (3 * (6 / 29) ** 2) + 4 / 29;
     };
     const fx = f(x / TRISTIMULUS_D50[0]);
     const fy = f(y / TRISTIMULUS_D50[1]);
     const fz = f(z / TRISTIMULUS_D50[2]);
-    return [
-        116 * fy - 16,
-        500 * (fx - fy),
-        200 * (fy - fz)
-    ];
+    return [116 * fy - 16, 500 * (fx - fy), 200 * (fy - fz)];
 };
 
 const from_CIE_LAB_to_CIE_XYZ_D50 = (L: number, a: number, b: number): ColorArray => {
     const f = (t: number): number => {
-        return t > 6 / 29
-            ? t ** 3
-            : 3 * (6 / 29) ** 2 * (t - 4 / 29);
+        return t > 6 / 29 ? t ** 3 : 3 * (6 / 29) ** 2 * (t - 4 / 29);
     };
     const fl = (L + 16) / 116;
     const fa = a / 500;
     const fb = b / 200;
-    return [
-        TRISTIMULUS_D50[0] * f(fl + fa),
-        TRISTIMULUS_D50[1] * f(fl),
-        TRISTIMULUS_D50[2] * f(fl - fb)
-    ];
+    return [TRISTIMULUS_D50[0] * f(fl + fa), TRISTIMULUS_D50[1] * f(fl), TRISTIMULUS_D50[2] * f(fl - fb)];
 };
 
 //---HSL to RGB
@@ -105,9 +88,7 @@ export const hslToRGB = (H: number, S: number, L: number): RGBObject => {
     H /= 60;
     S /= 100;
     L /= 100;
-    const t2 = (L <= .5)
-        ? L * (S + 1)
-        : L + S - (L * S);
+    const t2 = L <= 0.5 ? L * (S + 1) : L + S - L * S;
     const t1 = L * 2 - t2;
     const R = hueToRGB(t1, t2, H + 2);
     const G = hueToRGB(t1, t2, H);
@@ -140,7 +121,9 @@ export const rgbToHSL = (R: number, G: number, B: number, A = 1): HSLObject => {
                 break;
         }
         H = round(H * 60);
-        if (H < 0) { H += 360; }
+        if (H < 0) {
+            H += 360;
+        }
         S = D / (1 - Math.abs(2 * L - 1));
     }
     return {
@@ -153,12 +136,7 @@ export const rgbToHSL = (R: number, G: number, B: number, A = 1): HSLObject => {
 
 //--- RGB to Lab
 export const rgbToLab = (R: number, G: number, B: number): CIELabObject => {
-
-    const LINEAR_LIGHT_RGB = [
-        R / 255,
-        G / 255,
-        B / 255
-    ].map(rgbToLinearLightRGB);
+    const LINEAR_LIGHT_RGB = [R / 255, G / 255, B / 255].map(rgbToLinearLightRGB);
 
     const CIE_XYZ_D50 = matrixVectorMultiplication(
         LINEAR_LIGHT_RGB[0],
@@ -166,11 +144,7 @@ export const rgbToLab = (R: number, G: number, B: number): CIELabObject => {
         LINEAR_LIGHT_RGB[2],
         MATRIX_LRGB_XYZ_D50
     );
-    const CIE_LAB = from_CIE_XYZ_D50_to_CIE_LAB(
-        CIE_XYZ_D50[0],
-        CIE_XYZ_D50[1],
-        CIE_XYZ_D50[2]
-    );
+    const CIE_LAB = from_CIE_XYZ_D50_to_CIE_LAB(CIE_XYZ_D50[0], CIE_XYZ_D50[1], CIE_XYZ_D50[2]);
 
     return {
         L: CIE_LAB[0],
@@ -181,7 +155,6 @@ export const rgbToLab = (R: number, G: number, B: number): CIELabObject => {
 
 //---Lab to RGB
 export const labToRgb = (L: number, a: number, b: number): RGBObject => {
-
     const CIE_XYZ_D50 = from_CIE_LAB_to_CIE_XYZ_D50(L, a, b);
 
     const LINEAR_LIGHT_RGB = matrixVectorMultiplication(
@@ -229,8 +202,8 @@ export const rgbToCMYK = (R: number, G: number, B: number): CMYKObject => {
 
 //---RGB to RYB and RYB to RGB for color mixes
 /*
-* http://nishitalab.org/user/UEI/publication/Sugita_IWAIT2015.pdf
-*/
+ * http://nishitalab.org/user/UEI/publication/Sugita_IWAIT2015.pdf
+ */
 export const rgbToRYB = (R: number, G: number, B: number): RYBObject => {
     const Iw = Math.min(R, G, B);
     const Ib = Math.min(255 - R, 255 - G, 255 - B);
@@ -271,7 +244,6 @@ export const rybToRGB = (R: number, Y: number, B: number): RGBObject => {
 
 //---Hue RYB
 export const hueRYB = (hue: number, toRYB: boolean): number => {
-
     if (hue < 0) hue += 360;
     if (hue > 360) hue -= 360;
 
@@ -309,5 +281,4 @@ export const hueRYB = (hue: number, toRYB: boolean): number => {
     });
 
     return C + (hue - A) * ((D - C) / (B - A));
-
 };

@@ -102,7 +102,7 @@ export enum AnglesUnitEnum {
 
 export enum ColorUnitEnum {
     NONE = 'none',
-    PERCENT = 'percent',
+    PERCENT = 'percent'
 }
 
 export enum CMYKFunctionEnum {
@@ -119,19 +119,16 @@ export interface Options {
     labUnit: ColorUnitEnum;
     cmykUnit: ColorUnitEnum;
     alphaUnit: ColorUnitEnum;
-    cmykFunction: CMYKFunctionEnum
+    cmykFunction: CMYKFunctionEnum;
 }
 
 export type InputOptions = Partial<
-    Omit<
-        Options,
-        'anglesUnit' | 'rgbUnit' | 'labUnit' | 'cmykUnit' | 'alphaUnit' | 'cmykFunction'
-    >
+    Omit<Options, 'anglesUnit' | 'rgbUnit' | 'labUnit' | 'cmykUnit' | 'alphaUnit' | 'cmykFunction'>
 > & {
     anglesUnit?: `${AnglesUnitEnum}`;
     rgbUnit?: `${ColorUnitEnum}`;
     cmykUnit?: `${ColorUnitEnum}`;
-    labUnit?: `${ColorUnitEnum}`,
+    labUnit?: `${ColorUnitEnum}`;
     alphaUnit?: `${ColorUnitEnum}`;
-    cmykFunction?: `${CMYKFunctionEnum}`
+    cmykFunction?: `${CMYKFunctionEnum}`;
 };

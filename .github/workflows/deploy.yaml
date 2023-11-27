@@ -1,83 +1,83 @@
 name: Deploy
 
 on:
-  push:
-    tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+    push:
+        tags:
+            - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    container:
-      image: node:18
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set-up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'yarn'
-          registry-url: 'https://registry.npmjs.org'
-      - name: Publish
-        run: |
-          yarn install --frozen-lockfile --ignore-scripts --prefer-offline
-          npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Build Changelog
-        id: build_changelog
-        uses: mikepenz/release-changelog-builder-action@v4
-        with:
-          configurationJson: |
-            {
-              "categories": [
-                {
-                  "title": "## 🚀 Features",
-                  "labels": ["feature", "enhancement", "request"]
-                },
-                {
-                  "title": "## 🛠 Fixes",
-                  "labels": ["fix", "bug"]
-                },
-                {
-                  "title": "## 🎲 Demo",
-                  "labels": ["demo"]
-                },
-                {
-                  "title": "## 🧩 Dependencies",
-                  "labels": ["dependencies"]
-                },
-                {
-                  "title": "## ⚙️ Configuration",
-                  "labels": ["configuration"]
-                },
-                {
-                  "title": "## 📦 Other",
-                  "labels": []
-                }
-              ],
-              "template": "#{{CHANGELOG}}",
-              "pr_template": "- #{{TITLE}}\n   - PR: ##{{NUMBER}} by @#{{AUTHOR}}",
-              "empty_template": "#{{OWNER}}\n#{{REPO}}\n#{{FROM_TAG}}\n#{{TO_TAG}}",
-              "max_pull_requests": 1000,
-              "max_back_track_time_days": 1000,
-              "label_extractor": [
-                {
-                  "pattern": "^fix",
-                  "on_property": "title",
-                  "method": "match",
-                  "flags": "i"
-                }
-              ]
-            }
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create a release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            esm/index.js
-            index.d.ts
-          body: |
-            ${{ steps.build_changelog.outputs.changelog }}
+    deploy:
+        runs-on: ubuntu-latest
+        container:
+            image: node:18
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+            - name: Set-up Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '18'
+                  cache: 'yarn'
+                  registry-url: 'https://registry.npmjs.org'
+            - name: Publish
+              run: |
+                  yarn install --frozen-lockfile --ignore-scripts --prefer-offline
+                  npm publish
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+            - name: Build Changelog
+              id: build_changelog
+              uses: mikepenz/release-changelog-builder-action@v4
+              with:
+                  configurationJson: |
+                      {
+                        "categories": [
+                          {
+                            "title": "## 🚀 Features",
+                            "labels": ["feature", "enhancement", "request"]
+                          },
+                          {
+                            "title": "## 🛠 Fixes",
+                            "labels": ["fix", "bug"]
+                          },
+                          {
+                            "title": "## 🎲 Demo",
+                            "labels": ["demo"]
+                          },
+                          {
+                            "title": "## 🧩 Dependencies",
+                            "labels": ["dependencies"]
+                          },
+                          {
+                            "title": "## ⚙️ Configuration",
+                            "labels": ["configuration"]
+                          },
+                          {
+                            "title": "## 📦 Other",
+                            "labels": []
+                          }
+                        ],
+                        "template": "#{{CHANGELOG}}",
+                        "pr_template": "- #{{TITLE}}\n   - PR: ##{{NUMBER}} by @#{{AUTHOR}}",
+                        "empty_template": "#{{OWNER}}\n#{{REPO}}\n#{{FROM_TAG}}\n#{{TO_TAG}}",
+                        "max_pull_requests": 1000,
+                        "max_back_track_time_days": 1000,
+                        "label_extractor": [
+                          {
+                            "pattern": "^fix",
+                            "on_property": "title",
+                            "method": "match",
+                            "flags": "i"
+                          }
+                        ]
+                      }
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: Create a release
+              uses: softprops/action-gh-release@v1
+              with:
+                  files: |
+                      esm/index.js
+                      index.d.ts
+                  body: |
+                      ${{ steps.build_changelog.outputs.changelog }}

@@ -15,7 +15,6 @@ interface TestCase {
 }
 
 describe('ColorTranslator CSS config options', () => {
-
     const COLOR = '#FF00FF';
 
     const TEST_CASES: TestCase[] = [
@@ -194,18 +193,7 @@ describe('ColorTranslator CSS config options', () => {
     ];
 
     TEST_CASES.forEach((testCase: TestCase): void => {
-
-        const {
-            options,
-            extraOptions = {},
-            RGB,
-            RGBA,
-            HSL,
-            HSLA,
-            CMYK,
-            CMYKA,
-            isDefault
-        } = testCase;
+        const { options, extraOptions = {}, RGB, RGBA, HSL, HSLA, CMYK, CMYKA, isDefault } = testCase;
 
         it(`Check ${JSON.stringify(options)}`, () => {
             const mergedOptions = { ...options, ...extraOptions };
@@ -225,9 +213,10 @@ describe('ColorTranslator CSS config options', () => {
         });
 
         if (isDefault) {
-
             const key: keyof Options = Object.keys(options)[0] as keyof Options;
-            const { [key]: defaultProp, ...defaultOptions } = { ...DEFAULT_OPTIONS };
+            const { [key]: defaultProp, ...defaultOptions } = {
+                ...DEFAULT_OPTIONS
+            };
 
             it(`Check default value of ${key}:${defaultProp}`, () => {
                 const mergedOptions = { ...defaultOptions, ...extraOptions };
@@ -245,17 +234,12 @@ describe('ColorTranslator CSS config options', () => {
                 expect(ColorTranslator.toCMYK(COLOR, mergedOptions)).toBe(CMYK);
                 expect(ColorTranslator.toCMYKA(COLOR, mergedOptions)).toBe(CMYKA);
             });
-
         }
-
     });
-
 });
 
 describe('ColorTranslator CSS config options autodetection', () => {
-
     it(`legacyCSS auto detection`, () => {
-
         const instanceLegacy = new ColorTranslator('rgba(255,0,255)');
 
         expect(instanceLegacy.HSL).toBe('hsl(300,100%,50%)');
@@ -268,11 +252,9 @@ describe('ColorTranslator CSS config options autodetection', () => {
 
         expect(ColorTranslator.toRGB('rgba(255,0,255)')).toBe('rgb(255,0,255)');
         expect(ColorTranslator.toHSLA('rgba(255 0 255 / 1)')).toBe('hsl(300 100% 50% / 1)');
-
     });
 
     it(`spacesAfterCommas auto detection`, () => {
-
         const instanceWithoutSpaces = new ColorTranslator('rgba(255,0,255)');
 
         expect(instanceWithoutSpaces.RGB).toBe('rgb(255,0,255)');
@@ -287,11 +269,9 @@ describe('ColorTranslator CSS config options autodetection', () => {
         expect(ColorTranslator.toRGBA('rgba(255, 0,255)')).toBe('rgba(255,0,255,1)');
         expect(ColorTranslator.toHSL('rgba(255, 0, 255, 1)')).toBe('hsl(300, 100%, 50%)');
         expect(ColorTranslator.toHSL('rgba(255,0,255, 1)')).toBe('hsl(300,100%,50%)');
-
     });
 
     it(`anglesUnit auto detection`, () => {
-
         const HSL = {
             H: 720,
             S: 100,
@@ -322,17 +302,13 @@ describe('ColorTranslator CSS config options autodetection', () => {
         ];
 
         TEST_CASES.forEach((testCase): void => {
-
             const instance = new ColorTranslator(testCase.color);
             expect(instance.HSL).toBe(testCase.result);
             expect(ColorTranslator.toHSL(testCase.color)).toBe(testCase.result);
-
         });
-
     });
 
     it(`rgbUnit auto detection`, () => {
-
         const instancePercentage = new ColorTranslator('rgb(100% 100% 0%)');
 
         expect(instancePercentage.RGBA).toBe('rgb(100% 100% 0% / 1)');
@@ -345,11 +321,9 @@ describe('ColorTranslator CSS config options autodetection', () => {
 
         expect(ColorTranslator.toRGBA('rgba(255 0 255)')).toBe('rgb(255 0 255 / 1)');
         expect(ColorTranslator.toRGB('rgb(100% 100% 0% / 0.5)')).toBe('rgb(100% 100% 0%)');
-
     });
 
     it(`labUnit auto detection`, () => {
-
         const instancePercentage = new ColorTranslator('lab(54% 64% 55%)');
 
         const REG_PERCENT = /(\d+)(\.\d+)?%/g;
@@ -361,11 +335,9 @@ describe('ColorTranslator CSS config options autodetection', () => {
 
         expect(instanceNone.CIELab.includes('%')).toBe(false);
         expect(instanceNone.CIELabA.includes('%')).toBe(false);
-
     });
 
     it(`cmykUnit auto detection`, () => {
-
         const instancePercentage = new ColorTranslator('device-cmyk(100% 100% 100% 100%)');
 
         expect(instancePercentage.CMYK).toBe('device-cmyk(0% 0% 0% 100%)');
@@ -376,13 +348,13 @@ describe('ColorTranslator CSS config options autodetection', () => {
         expect(instanceNone.CMYK).toBe('device-cmyk(0 0 0 1)');
         expect(instanceNone.CMYKA).toBe('device-cmyk(0 0 0 1 / 1)');
 
-        expect(ColorTranslator.toCMYK('device-cmyk(100% 100% 100% 100% / 0.5)')).toBe('device-cmyk(0% 0% 0% 100%)');
+        expect(ColorTranslator.toCMYK('device-cmyk(100% 100% 100% 100% / 0.5)')).toBe(
+            'device-cmyk(0% 0% 0% 100%)'
+        );
         expect(ColorTranslator.toCMYKA('device-cmyk(1 1 1 1)')).toBe('device-cmyk(0 0 0 1 / 1)');
-
     });
 
     it(`alphaUnit auto detection`, () => {
-
         const regNone = /^.* \/ 0\.5\)$/;
         const regPercent = /^.* \/ 50%\)$/;
         const instanceAlphaNone = new ColorTranslator('rgb(255 0 255 / 0.5)');
@@ -404,11 +376,9 @@ describe('ColorTranslator CSS config options autodetection', () => {
         expect(ColorTranslator.toHSLA('rgb(255 0 255 / 80%)')).toBe('hsl(300 100% 50% / 80%)');
         expect(ColorTranslator.toRGBA('rgb(255 0 255 / 5%)')).toBe('rgb(255 0 255 / 5%)');
         expect(regPercent.test(ColorTranslator.toCMYKA('rgb(255 0 255 / 50%)'))).toBe(true);
-
     });
 
     it(`cmykFunction auto detection`, () => {
-
         const cmykRegExp = /^cmyk\(/;
         const deviceCmykRegExp = /^device-cmyk\(/;
         const instanceCmyk = new ColorTranslator('cmyk(0 0 0 0)');
@@ -426,36 +396,28 @@ describe('ColorTranslator CSS config options autodetection', () => {
 
         expect(ColorTranslator.toCMYK('device-cmyk(0 0 0 0)')).toMatch(deviceCmykRegExp);
         expect(ColorTranslator.toCMYKA('device-cmyk(0 0 0 0)')).toMatch(deviceCmykRegExp);
-
-
     });
 
     it(`wrong config options`, () => {
-
-        const instanceWrong = new ColorTranslator(
-            '#FFF',
-            {
-                // @ts-ignore
-                decimals: true,
-                // @ts-ignore
-                legacyCSS: 100,
-                // @ts-ignore
-                spacesAfterCommas: 'none',
-                // @ts-ignore
-                anglesUnit: 'percent',
-                // @ts-ignore
-                rgbUnit: 'false',
-                // @ts-ignore
-                cmykUnit: 2.45,
-                // @ts-ignore
-                alphaUnit: 0,
-                // @ts-ignore
-                cmykFunction: 'my-cmyk'
-            }
-        );
+        const instanceWrong = new ColorTranslator('#FFF', {
+            // @ts-ignore
+            decimals: true,
+            // @ts-ignore
+            legacyCSS: 100,
+            // @ts-ignore
+            spacesAfterCommas: 'none',
+            // @ts-ignore
+            anglesUnit: 'percent',
+            // @ts-ignore
+            rgbUnit: 'false',
+            // @ts-ignore
+            cmykUnit: 2.45,
+            // @ts-ignore
+            alphaUnit: 0,
+            // @ts-ignore
+            cmykFunction: 'my-cmyk'
+        });
 
         expect(instanceWrong.options).toMatchObject(DEFAULT_OPTIONS);
-
     });
-
 });

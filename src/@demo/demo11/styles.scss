@@ -1,35 +1,35 @@
 $color: #333;
 
 #demo11 {
-  .demo-wrapper > div {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .wrapper {
-    width: 33.33%;
-  }
-  .harmony {
-    display: flex;
-    height: 25px;
-    justify-content: center;
-    @media screen and (max-width: 768px) {
-      height: 15px;
+    .demo-wrapper > div {
+        display: flex;
+        flex-wrap: wrap;
     }
-  }
-  .label {
-    color: #FFF;
-    font-size: 12px;
-    padding-top: 10px;
-    text-align: center;
-  }
-  .box {
-    height: 25px;
-    outline: 2px solid #000;
-    width: 25px;
-    @media screen and (max-width: 768px) {
-      height: 15px;
-      outline-width: 1px;
-      width: 15px;
+    .wrapper {
+        width: 33.33%;
     }
-  }
+    .harmony {
+        display: flex;
+        height: 25px;
+        justify-content: center;
+        @media screen and (max-width: 768px) {
+            height: 15px;
+        }
+    }
+    .label {
+        color: #fff;
+        font-size: 12px;
+        padding-top: 10px;
+        text-align: center;
+    }
+    .box {
+        height: 25px;
+        outline: 2px solid #000;
+        width: 25px;
+        @media screen and (max-width: 768px) {
+            height: 15px;
+            outline-width: 1px;
+            width: 15px;
+        }
+    }
 }

@@ -15,13 +15,10 @@ const options = {
 };
 
 COLORS.forEach((color): void => {
-
     Object.values(color).forEach((colorValue) => {
-
         const colorValueStr = JSON.stringify(colorValue);
 
         describe(`ColorTranslator static color conversion for ${colorValueStr}`, () => {
-
             // toHEX
             it(`toHEX method from ${colorValueStr} => ${color.HEX}`, () => {
                 expect(ColorTranslator.toHEX(colorValue)).toBe(color.HEX);
@@ -75,17 +72,12 @@ COLORS.forEach((color): void => {
             it(`toHSLAObject method from ${colorValueStr} => ${JSON.stringify(color.HSLAObject)}`, () => {
                 expect(ColorTranslator.toHSLAObject(colorValue, options)).toMatchObject(color.HSLAObject);
             });
-
         });
-
     });
-
 });
 
 COLORS.forEach((color): void => {
-
     describe('ColorTranslator static color conversion with auto legacyCSS detection', () => {
-
         it('Non legacy conversion', () => {
             expect(ColorTranslator.toRGB(color.HEX)).toBe(color.RGB);
             expect(ColorTranslator.toRGBA(color.HEXObject)).toBe(color.RGBA);
@@ -99,26 +91,25 @@ COLORS.forEach((color): void => {
             expect(ColorTranslator.toHSL(color.RGBALegacy, optionsNoDecimals)).toBe(color.HSLLegacy);
             expect(ColorTranslator.toHSLA(color.RGBLegacy, optionsNoDecimals)).toBe(color.HSLALegacy);
         });
-
     });
-
 });
 
 CMYK_COLORS.forEach((color) => {
-
     Object.values(color).forEach((colorValue) => {
-
         const colorValueStr = JSON.stringify(colorValue);
 
         describe(`ColorTranslator static CMYK color conversion for ${colorValueStr}`, () => {
-
             // toCMYK
             it(`toCMYK method from ${colorValueStr} => ${color.CMYK}`, () => {
                 expect(ColorTranslator.toCMYK(colorValue, options)).toBe(color.CMYK);
             });
 
-            it(`toCMYKObject method from ${colorValueStr} => ${JSON.stringify(color.CMYKIntObject100)}`, () => {
-                expect(ColorTranslator.toCMYKObject(colorValue, options)).toMatchObject(color.CMYKIntObject100);
+            it(`toCMYKObject method from ${colorValueStr} => ${JSON.stringify(
+                color.CMYKIntObject100
+            )}`, () => {
+                expect(ColorTranslator.toCMYKObject(colorValue, options)).toMatchObject(
+                    color.CMYKIntObject100
+                );
             });
 
             // toCMYKA
@@ -126,12 +117,21 @@ CMYK_COLORS.forEach((color) => {
                 expect(ColorTranslator.toCMYKA(colorValue, options)).toBe(color.CMYKWithAlpha);
             });
 
-            it(`toCMYKAObject method from ${colorValueStr} => ${JSON.stringify(color.CMYKIntObject100WithAlpha)}`, () => {
-                expect(ColorTranslator.toCMYKAObject(colorValue, options)).toMatchObject(color.CMYKIntObject100WithAlpha);
+            it(`toCMYKAObject method from ${colorValueStr} => ${JSON.stringify(
+                color.CMYKIntObject100WithAlpha
+            )}`, () => {
+                expect(ColorTranslator.toCMYKAObject(colorValue, options)).toMatchObject(
+                    color.CMYKIntObject100WithAlpha
+                );
             });
 
             it(`toCMYK method with decimals from ${colorValueStr}`, () => {
-                expect(ColorTranslator.toCMYK(colorValue, { ...optionsNoLegacy, ...optionsCmykUnitPercent })).toMatchSnapshot();
+                expect(
+                    ColorTranslator.toCMYK(colorValue, {
+                        ...optionsNoLegacy,
+                        ...optionsCmykUnitPercent
+                    })
+                ).toMatchSnapshot();
             });
 
             it(`toCMYK method with decimals and auto legacyCSS from ${colorValueStr}`, () => {
@@ -143,19 +143,27 @@ CMYK_COLORS.forEach((color) => {
             });
 
             it(`toCMYKA method with decimals from ${colorValueStr}`, () => {
-                expect(ColorTranslator.toCMYKA(colorValue, { ...optionsNoLegacy, ...optionsCmykUnitPercent, ...optionsAlphaUnitNone })).toMatchSnapshot();
+                expect(
+                    ColorTranslator.toCMYKA(colorValue, {
+                        ...optionsNoLegacy,
+                        ...optionsCmykUnitPercent,
+                        ...optionsAlphaUnitNone
+                    })
+                ).toMatchSnapshot();
             });
 
             it(`toCMYKA method with decimals and auto legacyCSS from ${colorValueStr}`, () => {
-                expect(ColorTranslator.toCMYKA(colorValue, { ...optionsCmykUnitPercent, ...optionsAlphaUnitNone })).toMatchSnapshot();
+                expect(
+                    ColorTranslator.toCMYKA(colorValue, {
+                        ...optionsCmykUnitPercent,
+                        ...optionsAlphaUnitNone
+                    })
+                ).toMatchSnapshot();
             });
 
             it(`toCMYKAObject method with decimals from ${colorValueStr}`, () => {
                 expect(ColorTranslator.toCMYKAObject(colorValue)).toMatchSnapshot();
             });
-
         });
-
     });
-
 });

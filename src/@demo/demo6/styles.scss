@@ -1,29 +1,29 @@
 #demo6 {
-  .demo-wrapper > div {
-    display: flex;
-    font-size: 18px;
-    flex-shrink: 0;
-    flex-wrap: wrap;
-    margin: 0 auto;
-  }
-
-  .box {
-    align-items: center;
-    box-sizing: border-box;
-    color: #333;
-    display: flex;
-    flex-grow: 0;
-    flex-shrink: 0;
-    justify-content: center;
-    outline: 1px solid #333;
-    text-align: center;
-    @for $i from 0 through 11 {
-      $pcent: 100% / (3 + $i * 3);
-      &.file#{$i} {
-        font-size: 1em - $i / 11;
-        height: $pcent;
-        width: $pcent;
-      }
+    .demo-wrapper > div {
+        display: flex;
+        font-size: 18px;
+        flex-shrink: 0;
+        flex-wrap: wrap;
+        margin: 0 auto;
     }
-  }
+
+    .box {
+        align-items: center;
+        box-sizing: border-box;
+        color: #333;
+        display: flex;
+        flex-grow: 0;
+        flex-shrink: 0;
+        justify-content: center;
+        outline: 1px solid #333;
+        text-align: center;
+        @for $i from 0 through 11 {
+            $pcent: 100% / (3 + $i * 3);
+            &.file#{$i} {
+                font-size: 1em - $i / 11;
+                height: $pcent;
+                width: $pcent;
+            }
+        }
+    }
 }

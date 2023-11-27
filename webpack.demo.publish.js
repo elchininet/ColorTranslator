@@ -33,7 +33,7 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.js'],
         alias: aliases
-    },    
+    },
     plugins: [
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: []
@@ -48,7 +48,7 @@ module.exports = {
             filename: 'styles/styles.css'
         }),
         new CopyWebpackPlugin({
-            patterns: [{ from: 'src/@demo/images', to: 'images' }]            
+            patterns: [{ from: 'src/@demo/images', to: 'images' }]
         })
     ]
 };

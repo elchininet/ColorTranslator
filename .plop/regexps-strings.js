@@ -128,8 +128,6 @@ module.exports = {
     HSL_HUE: new RegExp(`^(-?${NUMBER_WITH_DECIMALS})(${HSL_DEGREES_UNITS})$`),
     toRegExp: function (str, caseInsensitive = false) {
         const stringWithoutSpaces = str.replace(/\s*/gm, '');
-        return caseInsensitive
-            ? new RegExp(stringWithoutSpaces, 'i')
-            : new RegExp(stringWithoutSpaces);
+        return caseInsensitive ? new RegExp(stringWithoutSpaces, 'i') : new RegExp(stringWithoutSpaces);
     }
 };

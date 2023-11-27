@@ -87,12 +87,12 @@
 ## [1.4.0] - 2021-03-22
 
 - Implemented static methods to mix colors in additive mode
-    * getMixHEX
-    * getMixHEXA
-    * getMixRGB
-    * getMixRGBA
-    * getMixHSL
-    * getMixHSLA
+  - getMixHEX
+  - getMixHEXA
+  - getMixRGB
+  - getMixRGBA
+  - getMixHSL
+  - getMixHSLA
 
 ## [1.3.6] - 2021-03-20
 
@@ -138,7 +138,7 @@
 
 #### Fixes
 
-- Resolve eslint-utils vulnerability forcing the version to be equal or greater than 1.4.1 
+- Resolve eslint-utils vulnerability forcing the version to be equal or greater than 1.4.1
 
 ## 2019-07-17
 

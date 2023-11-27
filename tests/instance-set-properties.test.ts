@@ -19,7 +19,6 @@ const TEST_CMYK_COLORS = {
 };
 
 describe('ColorTranslator set instance properties', () => {
-
     it('Set property H', () => {
         const instance = new ColorTranslator(TEST_COLORS.red.HEX);
         instance.setH(240);
@@ -91,7 +90,9 @@ describe('ColorTranslator set instance properties', () => {
     });
 
     it('Set property decimals', () => {
-        const instance = new ColorTranslator(TEST_COLORS.red.HEX, { decimals: 3 });
+        const instance = new ColorTranslator(TEST_COLORS.red.HEX, {
+            decimals: 3
+        });
         expect(instance.options.decimals).toBe(3);
         instance.setOptions({ decimals: 5 });
         expect(instance.options.decimals).toBe(5);
@@ -100,18 +101,14 @@ describe('ColorTranslator set instance properties', () => {
         instance.setOptions({});
         expect(instance.options.decimals).toBe(5);
     });
-
 });
 
 // Test class properties
 describe('Properties boundaries', (): void => {
-
     COLORS.forEach((item): void => {
-
         const instance = new ColorTranslator(item.HEX);
 
         it(`Set properties boundaries for color ${item.HEX}`, (): void => {
-
             const R = instance.R;
             const G = instance.G;
             const B = instance.B;
@@ -252,15 +249,11 @@ describe('Properties boundaries', (): void => {
             instance.setK(200);
             expect(instance.K).toBe(100);
             instance.setK(K);
-
         });
-
     });
-
 });
 
 describe('ColorTranslator set CMYK instance properties', () => {
-
     it('Set property C', () => {
         const instance = new ColorTranslator(TEST_CMYK_COLORS.lime.RGB);
         instance.setC(0);
@@ -288,5 +281,4 @@ describe('ColorTranslator set CMYK instance properties', () => {
         expect(instance.K).toBe(100);
         expect(instance.CMYK).toBe('device-cmyk(0% 100% 100% 100%)');
     });
-
 });

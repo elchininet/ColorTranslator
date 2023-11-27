@@ -1,17 +1,17 @@
 #demo2 {
-  .demo-wrapper > div {
-    flex-shrink: 0;
-  }
+    .demo-wrapper > div {
+        flex-shrink: 0;
+    }
 
-  .rainbow {
-    align-items: center;
-    border-left: 15px solid transparent;
-    border-top: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-radius: 500px 500px 0 0;
-    box-sizing: border-box;
-    display: flex;
-    height: 100%;
-    width: 100%;
-  }
+    .rainbow {
+        align-items: center;
+        border-left: 15px solid transparent;
+        border-top: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-radius: 500px 500px 0 0;
+        box-sizing: border-box;
+        display: flex;
+        height: 100%;
+        width: 100%;
+    }
 }

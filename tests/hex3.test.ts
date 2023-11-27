@@ -1,21 +1,23 @@
 import { ColorTranslator, InputOptions } from '../src';
 import { HEX3 } from './tests.constants';
 
-type HexProps = typeof HEX3[0];
+type HexProps = (typeof HEX3)[0];
 type Props = Exclude<keyof HexProps, 'keyword'>;
 
 const hex3Props: Props[] = ['HEX', 'HEXObject', 'HEXA', 'HEXAObject', 'HEXObjectPercent', 'rgbPercent'];
 
 HEX3.forEach((item: HexProps): void => {
-
     // Iterate over the color models
     hex3Props.forEach((prop: Props): void => {
-
-        describe(`ColorTranslator dynamic test for the HEX3 color: ${JSON.stringify(item[prop])}`, (): void => {
-
+        describe(`ColorTranslator dynamic test for the HEX3 color: ${JSON.stringify(
+            item[prop]
+        )}`, (): void => {
             const options: InputOptions = { legacyCSS: true };
             const optionsRgbNone: InputOptions = { rgbUnit: 'none' };
-            const optionsLegacyRgbNone: InputOptions = { ...options, ...optionsRgbNone };
+            const optionsLegacyRgbNone: InputOptions = {
+                ...options,
+                ...optionsRgbNone
+            };
 
             it('CSS RGB', (): void => {
                 expect(ColorTranslator.toRGB(item[prop], optionsRgbNone)).toBe(item.RGB);
@@ -64,9 +66,6 @@ HEX3.forEach((item: HexProps): void => {
                 expect(ColorTranslator.toHSLAObject(item[prop])).toMatchObject(item.HSLAObject);
                 expect(ColorTranslator.toHSLAObject(item.KEYWORD)).toMatchObject(item.HSLAObject);
             });
-
         });
-
     });
-
 });

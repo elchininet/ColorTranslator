@@ -7,7 +7,8 @@ module.exports = {
     extends: [
         'eslint:recommended',
         'plugin:@typescript-eslint/eslint-recommended',
-        'plugin:@typescript-eslint/recommended'
+        'plugin:@typescript-eslint/recommended',
+        'prettier'
     ],
     globals: {
         Atomics: 'readonly',
@@ -20,8 +21,8 @@ module.exports = {
     },
     plugins: ['@typescript-eslint'],
     rules: {
-        quotes: ['error', 'single', { 'avoidEscape': true, 'allowTemplateLiterals': true }],
-        semi: ['error', 'always'],
+        'quotes': ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
+        'semi': ['error', 'always'],
         'no-trailing-spaces': ['error'],
         '@typescript-eslint/no-duplicate-enum-values': 'off'
     },

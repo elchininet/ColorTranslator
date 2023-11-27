@@ -2,7 +2,6 @@ import { ColorTranslator } from '../src';
 import { HEXObject, RGBObject, HSLObjectGeneric, CIELabObjectGeneric } from '../src/@types';
 
 describe('ColorTranslator shades and tints tests', (): void => {
-
     const hexColorFunctions = [
         ColorTranslator.toHEX,
         ColorTranslator.toHEXA,
@@ -101,5 +100,4 @@ describe('ColorTranslator shades and tints tests', (): void => {
             expect(tints).toMatchSnapshot();
         });
     });
-
 });
