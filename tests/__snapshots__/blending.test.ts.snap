@@ -85,6 +85,65 @@ exports[`ColorTranslator blending tests Blending with L*a*b colors 4`] = `
 ]
 `;
 
+exports[`ColorTranslator blending tests Blending with L*a*b colors 5`] = `
+[
+  "lab(54.291734 80.812455 69.88504)",
+  "lab(29.563244 55.959822 -36.18907)",
+  "lab(29.567573 68.298653 -112.02943)",
+]
+`;
+
+exports[`ColorTranslator blending tests Blending with L*a*b colors 6`] = `
+[
+  "lab(54.291734 80.812455 69.88504 / 1)",
+  "lab(29.563244 55.959822 -36.18907 / 1)",
+  "lab(29.567573 68.298653 -112.02943 / 1)",
+]
+`;
+
+exports[`ColorTranslator blending tests Blending with L*a*b colors 7`] = `
+[
+  {
+    "L": 54.291734,
+    "a": 80.812455,
+    "b": 69.88504,
+  },
+  {
+    "L": 29.563244,
+    "a": 55.959822,
+    "b": -36.18907,
+  },
+  {
+    "L": 29.567573,
+    "a": 68.298653,
+    "b": -112.02943,
+  },
+]
+`;
+
+exports[`ColorTranslator blending tests Blending with L*a*b colors 8`] = `
+[
+  {
+    "A": 1,
+    "L": 54.291734,
+    "a": 80.812455,
+    "b": 69.88504,
+  },
+  {
+    "A": 1,
+    "L": 29.563244,
+    "a": 55.959822,
+    "b": -36.18907,
+  },
+  {
+    "A": 1,
+    "L": 29.567573,
+    "a": 68.298653,
+    "b": -112.02943,
+  },
+]
+`;
+
 exports[`ColorTranslator blending tests Blending with decimals snapshots 1`] = `
 [
   "rgb(255 0 0)",

@@ -41,6 +41,11 @@ describe('ColorTranslator shades and tints tests', (): void => {
             const shades = ColorTranslator.getShades(input, 5);
             expect(shades).toMatchObject(output);
         });
+        it(`Shades tests without number of shades is equal to 5 from ${JSON.stringify(input)}`, (): void => {
+            const shades = ColorTranslator.getShades(input, 5);
+            const shadesDefault = ColorTranslator.getShades(input);
+            expect(shades).toMatchObject(shadesDefault);
+        });
         it(`Shades tests with alpha from ${JSON.stringify(inputWithAlpha)}`, (): void => {
             const output = shades_results.map((color: string) => fn(color + alpha));
             const shades = ColorTranslator.getShades(inputWithAlpha, 5);
@@ -48,13 +53,18 @@ describe('ColorTranslator shades and tints tests', (): void => {
         });
         it(`Tints tests from ${JSON.stringify(input)}`, (): void => {
             const output = tints_results.map((color: string) => fn(color));
-            const shades = ColorTranslator.getTints(input, 5);
-            expect(shades).toMatchObject(output);
+            const tints = ColorTranslator.getTints(input, 5);
+            expect(tints).toMatchObject(output);
+        });
+        it(`Tints tests without number of tints from ${JSON.stringify(input)}`, (): void => {
+            const tints = ColorTranslator.getTints(input, 5);
+            const tintsDefault = ColorTranslator.getTints(input);
+            expect(tints).toMatchObject(tintsDefault);
         });
         it(`Tints tests with alpha from ${JSON.stringify(inputWithAlpha)}`, (): void => {
             const output = tints_results.map((color: string) => fn(color + alpha));
-            const shades = ColorTranslator.getTints(inputWithAlpha, 5);
-            expect(shades).toMatchObject(output);
+            const tints = ColorTranslator.getTints(inputWithAlpha, 5);
+            expect(tints).toMatchObject(output);
         });
     });
 
@@ -75,13 +85,13 @@ describe('ColorTranslator shades and tints tests', (): void => {
         });
         it(`Tints tests from ${JSON.stringify(input)}`, (): void => {
             const output = tints_results.map((color: string) => fn(color, options));
-            const shades = ColorTranslator.getTints(input, 5, options);
-            expect(shades).toMatchObject(output);
+            const tints = ColorTranslator.getTints(input, 5, options);
+            expect(tints).toMatchObject(output);
         });
         it(`Tints tests with alpha from ${JSON.stringify(inputWithAlpha)}`, (): void => {
             const output = tints_results.map((color: string) => fn(color + alpha, options));
-            const shades = ColorTranslator.getTints(inputWithAlpha, 5, options);
-            expect(shades).toMatchObject(output);
+            const tints = ColorTranslator.getTints(inputWithAlpha, 5, options);
+            expect(tints).toMatchObject(output);
         });
         it(`Shades tests from ${JSON.stringify(input)} with decimals`, (): void => {
             const shades = ColorTranslator.getShades(input, 5, options);

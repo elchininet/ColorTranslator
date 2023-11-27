@@ -20,8 +20,7 @@ import {
     Mix,
     MixString,
     DEFAULT_BLEND_STEPS,
-    DEFAULT_SHADES_TINTS_STEPS,
-    MAX_DECIMALS
+    DEFAULT_SHADES_TINTS_STEPS
 } from '#constants';
 import {
     rgbToHSL,
@@ -585,7 +584,7 @@ export class ColorTranslator {
         const rgb = getColorReturn<RGBObject>(
             color,
             model,
-            MAX_DECIMALS,
+            options.decimals,
             utils.translateColor.RGB
         );
         return CSS.RGB(rgb, detectedOptions);
@@ -607,7 +606,7 @@ export class ColorTranslator {
         const rgba = getColorReturn<RGBObject>(
             color,
             model,
-            MAX_DECIMALS,
+            options.decimals,
             utils.translateColor.RGBA
         );
         return CSS.RGB(rgba, detectedOptions);
@@ -629,7 +628,7 @@ export class ColorTranslator {
         const hsl = getColorReturn<HSLObject>(
             color,
             model,
-            MAX_DECIMALS,
+            options.decimals,
             utils.translateColor.HSL
         );
         return CSS.HSL(hsl, detectedOptions);
@@ -651,7 +650,7 @@ export class ColorTranslator {
         const hsla = getColorReturn<HSLObject>(
             color,
             model,
-            MAX_DECIMALS,
+            options.decimals,
             utils.translateColor.HSLA
         );
         return CSS.HSL(hsla, detectedOptions);
@@ -673,7 +672,7 @@ export class ColorTranslator {
         const lab = getColorReturn<CIELabObject>(
             color,
             model,
-            MAX_DECIMALS,
+            options.decimals,
             utils.translateColor.CIELab
         );
         return CSS.CIELab(lab, detectedOptions);
@@ -695,7 +694,7 @@ export class ColorTranslator {
         const lab = getColorReturn<CIELabObject>(
             color,
             model,
-            MAX_DECIMALS,
+            options.decimals,
             utils.translateColor.CIELabA
         );
         return CSS.CIELab(lab, detectedOptions);
@@ -717,7 +716,7 @@ export class ColorTranslator {
         const cmyk = getColorReturn<CMYKObject>(
             color,
             model,
-            MAX_DECIMALS,
+            options.decimals,
             utils.translateColor.CMYK
         );
         return CSS.CMYK(cmyk, detectedOptions);
@@ -739,7 +738,7 @@ export class ColorTranslator {
         const cmyka = getColorReturn<CMYKObject>(
             color,
             model,
-            MAX_DECIMALS,
+            options.decimals,
             utils.translateColor.CMYKA
         );
         return CSS.CMYK(cmyka, detectedOptions);
