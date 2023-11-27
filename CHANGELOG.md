@@ -6,6 +6,7 @@
 - Improve `getMixXXX` methods overloads to make it possible to omit optional parameters
 - Improve `getHarmony` method overloads to make it possible to omit optional parameters
 - Improve types for `Mix` and `Harmony` making it possible to send also strings
+- Make optional the `shades` and `tints` parameters of the `getShades` and `getTints` methods respectively
 - Fix a bug in the `getBlendXXX` which was ignoring the `decimals` sent and always suing `MAX_DECIMALS`
 - Fix `CIELabObject` not being exported with the library
 
