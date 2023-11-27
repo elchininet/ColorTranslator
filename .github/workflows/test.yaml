@@ -1,31 +1,31 @@
 name: Test
 
 on:
-    push:
-        branches:
-            - master
-    pull_request:
+  push:
+    branches:
+      - master
+  pull_request:
 
 jobs:
-    test:
-        runs-on: ubuntu-latest
-        container:
-            image: node:18
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-            - name: Set up Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: '18'
-                  cache: 'yarn'
-            - name: Install
-              run: yarn install --frozen-lockfile --ignore-scripts --prefer-offline
-            - name: Linting files
-              run: yarn lint
-            - name: Make coverage
-              run: yarn test --coverage
-            - name: Coveralls
-              uses: coverallsapp/github-action@master
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
+  test:
+    runs-on: ubuntu-latest
+    container:
+      image: node:18
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'yarn'
+      - name: Install
+        run: yarn install --frozen-lockfile --ignore-scripts --prefer-offline
+      - name: Linting files
+        run: yarn lint
+      - name: Make coverage
+        run: yarn test --coverage
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
