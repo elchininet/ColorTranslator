@@ -800,7 +800,7 @@ export class ColorTranslator {
     public static getBlendRGBObject(
         from: ColorInput,
         to: ColorInput,
-        steps: number,
+        steps?: number,
         options?: InputOptions
     ): RGBObject[];
     public static getBlendRGBObject(
@@ -835,7 +835,7 @@ export class ColorTranslator {
     public static getBlendRGB(
         from: ColorInput,
         to: ColorInput,
-        steps: number,
+        steps?: number,
         options?: InputOptions
     ): string[];
     public static getBlendRGB(
@@ -882,7 +882,7 @@ export class ColorTranslator {
     public static getBlendRGBAObject(
         from: ColorInput,
         to: ColorInput,
-        steps: number,
+        steps?: number,
         options?: InputOptions
     ): RGBObject[];
     public static getBlendRGBAObject(
@@ -917,7 +917,7 @@ export class ColorTranslator {
     public static getBlendRGBA(
         from: ColorInput,
         to: ColorInput,
-        steps: number,
+        steps?: number,
         options?: InputOptions
     ): string[];
     public static getBlendRGBA(
@@ -964,7 +964,7 @@ export class ColorTranslator {
     public static getBlendHSLObject(
         from: ColorInput,
         to: ColorInput,
-        steps: number,
+        steps?: number,
         options?: InputOptions
     ): HSLObject[];
     public static getBlendHSLObject(
@@ -999,7 +999,7 @@ export class ColorTranslator {
     public static getBlendHSL(
         from: ColorInput,
         to: ColorInput,
-        steps: number,
+        steps?: number,
         options?: InputOptions
     ): string[];
     public static getBlendHSL(
@@ -1046,7 +1046,7 @@ export class ColorTranslator {
     public static getBlendHSLAObject(
         from: ColorInput,
         to: ColorInput,
-        steps: number,
+        steps?: number,
         options?: InputOptions
     ): HSLObject[];
     public static getBlendHSLAObject(
@@ -1081,7 +1081,7 @@ export class ColorTranslator {
     public static getBlendHSLA(
         from: ColorInput,
         to: ColorInput,
-        steps: number,
+        steps?: number,
         options?: InputOptions
     ): string[];
     public static getBlendHSLA(
@@ -1128,7 +1128,7 @@ export class ColorTranslator {
     public static getBlendCIELabObject(
         from: ColorInput,
         to: ColorInput,
-        steps: number,
+        steps?: number,
         options?: InputOptions
     ): CIELabObject[];
     public static getBlendCIELabObject(
@@ -1163,7 +1163,7 @@ export class ColorTranslator {
     public static getBlendCIELab(
         from: ColorInput,
         to: ColorInput,
-        steps: number,
+        steps?: number,
         options?: InputOptions
     ): string[];
     public static getBlendCIELab(
@@ -1210,7 +1210,7 @@ export class ColorTranslator {
     public static getBlendCIELabAObject(
         from: ColorInput,
         to: ColorInput,
-        steps: number,
+        steps?: number,
         options?: InputOptions
     ): CIELabObject[];
     public static getBlendCIELabAObject(
@@ -1245,7 +1245,7 @@ export class ColorTranslator {
     public static getBlendCIELabA(
         from: ColorInput,
         to: ColorInput,
-        steps: number,
+        steps?: number,
         options?: InputOptions
     ): string[];
     public static getBlendCIELabA(
@@ -1307,7 +1307,7 @@ export class ColorTranslator {
     ): RGBObject;
     public static getMixRGBObject(
         colors: ColorInput[],
-        mode: MixString,
+        mode?: MixString,
         options?: InputOptions
     ): RGBObject;
     public static getMixRGBObject(
@@ -1343,7 +1343,7 @@ export class ColorTranslator {
     ): string;
     public static getMixRGB(
         colors: ColorInput[],
-        mode: MixString,
+        mode?: MixString,
         options?: InputOptions
     ): string;
     public static getMixRGB(
@@ -1379,7 +1379,7 @@ export class ColorTranslator {
     ): RGBObject;
     public static getMixRGBAObject(
         colors: ColorInput[],
-        mode: MixString,
+        mode?: MixString,
         options?: InputOptions
     ): RGBObject;
     public static getMixRGBAObject(
@@ -1415,7 +1415,7 @@ export class ColorTranslator {
     ): string;
     public static getMixRGBA(
         colors: ColorInput[],
-        mode: MixString,
+        mode?: MixString,
         options?: InputOptions
     ): string;
     public static getMixRGBA(
@@ -1451,7 +1451,7 @@ export class ColorTranslator {
     ): HSLObject;
     public static getMixHSLObject(
         colors: ColorInput[],
-        mode: MixString,
+        mode?: MixString,
         options?: InputOptions
     ): HSLObject;
     public static getMixHSLObject(
@@ -1487,7 +1487,7 @@ export class ColorTranslator {
     ): string;
     public static getMixHSL(
         colors: ColorInput[],
-        mode: MixString,
+        mode?: MixString,
         options?: InputOptions
     ): string;
     public static getMixHSL(
@@ -1523,7 +1523,7 @@ export class ColorTranslator {
     ): HSLObject;
     public static getMixHSLAObject(
         colors: ColorInput[],
-        mode: MixString,
+        mode?: MixString,
         options?: InputOptions
     ): HSLObject;
     public static getMixHSLAObject(
@@ -1559,7 +1559,7 @@ export class ColorTranslator {
     ): string;
     public static getMixHSLA(
         colors: ColorInput[],
-        mode: MixString,
+        mode?: MixString,
         options?: InputOptions
     ): string;
     public static getMixHSLA(
@@ -1595,7 +1595,7 @@ export class ColorTranslator {
     ): CIELabObject;
     public static getMixCIELabObject(
         colors: ColorInput[],
-        mode: MixString,
+        mode?: MixString,
         options?: InputOptions
     ): CIELabObject;
     public static getMixCIELabObject(
@@ -1631,7 +1631,7 @@ export class ColorTranslator {
     ): string;
     public static getMixCIELab(
         colors: ColorInput[],
-        mode: MixString,
+        mode?: MixString,
         options?: InputOptions
     ): string;
     public static getMixCIELab(
@@ -1667,7 +1667,7 @@ export class ColorTranslator {
     ): CIELabObject;
     public static getMixCIELabAObject(
         colors: ColorInput[],
-        mode: MixString,
+        mode?: MixString,
         options?: InputOptions
     ): CIELabObject;
     public static getMixCIELabAObject(
@@ -1703,7 +1703,7 @@ export class ColorTranslator {
     ): string;
     public static getMixCIELabA(
         colors: ColorInput[],
-        mode: MixString,
+        mode?: MixString,
         options?: InputOptions
     ): string;
     public static getMixCIELabA(
@@ -1740,11 +1740,11 @@ export class ColorTranslator {
     public static getShades(color: HSLObjectGeneric, options?: InputOptions): HSLObject[];
     public static getShades(color: CIELabObjectGeneric, options?: InputOptions): CIELabObject[];
 
-    public static getShades(color: string, shades: number, options?: InputOptions): string[];
-    public static getShades(color: HEXObject, shades: number, options?: InputOptions): HEXObject[];
-    public static getShades(color: RGBObject, shades: number, options?: InputOptions): RGBObject[];
-    public static getShades(color: HSLObjectGeneric, shades: number, options?: InputOptions): HSLObject[];
-    public static getShades(color: CIELabObjectGeneric, shades: number, options?: InputOptions): CIELabObject[];
+    public static getShades(color: string, shades?: number, options?: InputOptions): string[];
+    public static getShades(color: HEXObject, shades?: number, options?: InputOptions): HEXObject[];
+    public static getShades(color: RGBObject, shades?: number, options?: InputOptions): RGBObject[];
+    public static getShades(color: HSLObjectGeneric, shades?: number, options?: InputOptions): HSLObject[];
+    public static getShades(color: CIELabObjectGeneric, shades?: number, options?: InputOptions): CIELabObject[];
 
     public static getShades(
         color: ColorInputWithoutCMYK,
@@ -1780,11 +1780,11 @@ export class ColorTranslator {
     public static getTints(color: HSLObjectGeneric, options?: InputOptions): HSLObject[];
     public static getTints(color: CIELabObjectGeneric, options?: InputOptions): CIELabObject[];
 
-    public static getTints(color: string, tints: number, options?: InputOptions): string[];
-    public static getTints(color: HEXObject, tints: number, options?: InputOptions): HEXObject[];
-    public static getTints(color: RGBObject, tints: number, options?: InputOptions): RGBObject[];
-    public static getTints(color: HSLObjectGeneric, tints: number, options?: InputOptions): HSLObject[];
-    public static getTints(color: CIELabObjectGeneric, tints: number, options?: InputOptions): CIELabObject[];
+    public static getTints(color: string, tints?: number, options?: InputOptions): string[];
+    public static getTints(color: HEXObject, tints?: number, options?: InputOptions): HEXObject[];
+    public static getTints(color: RGBObject, tints?: number, options?: InputOptions): RGBObject[];
+    public static getTints(color: HSLObjectGeneric, tints?: number, options?: InputOptions): HSLObject[];
+    public static getTints(color: CIELabObjectGeneric, tints?: number, options?: InputOptions): CIELabObject[];
 
     public static getTints(
         color: ColorInputWithoutCMYK,
@@ -1820,17 +1820,17 @@ export class ColorTranslator {
     public static getHarmony(color: HSLObjectGeneric, options?: InputOptions): HSLObject[];
     public static getHarmony(color: CIELabObjectGeneric, options?: InputOptions): CIELabObject[];
 
-    public static getHarmony(color: string, mode: MixString, options?: InputOptions): string[];
-    public static getHarmony(color: HEXObject, mode: MixString, options?: InputOptions): HEXObject[];
-    public static getHarmony(color: RGBObject, mode: MixString, options?: InputOptions): RGBObject[];
-    public static getHarmony(color: HSLObjectGeneric, mode: MixString, options?: InputOptions): HSLObject[];
-    public static getHarmony(color: CIELabObjectGeneric, mode: MixString, options?: InputOptions): CIELabObject[];
+    public static getHarmony(color: string, mode?: MixString, options?: InputOptions): string[];
+    public static getHarmony(color: HEXObject, mode?: MixString, options?: InputOptions): HEXObject[];
+    public static getHarmony(color: RGBObject, mode?: MixString, options?: InputOptions): RGBObject[];
+    public static getHarmony(color: HSLObjectGeneric, mode?: MixString, options?: InputOptions): HSLObject[];
+    public static getHarmony(color: CIELabObjectGeneric, mode?: MixString, options?: InputOptions): CIELabObject[];
 
-    public static getHarmony(color: string, harmony: Harmony, options?: InputOptions): string[];
-    public static getHarmony(color: HEXObject, harmony: Harmony, options?: InputOptions): HEXObject[];
-    public static getHarmony(color: RGBObject, harmony: Harmony, options?: InputOptions): RGBObject[];
-    public static getHarmony(color: HSLObjectGeneric, harmony: Harmony, options?: InputOptions): HSLObject[];
-    public static getHarmony(color: CIELabObjectGeneric, harmony: Harmony, options?: InputOptions): CIELabObject[];
+    public static getHarmony(color: string, harmony?: Harmony, options?: InputOptions): string[];
+    public static getHarmony(color: HEXObject, harmony?: Harmony, options?: InputOptions): HEXObject[];
+    public static getHarmony(color: RGBObject, harmony?: Harmony, options?: InputOptions): RGBObject[];
+    public static getHarmony(color: HSLObjectGeneric, harmony?: Harmony, options?: InputOptions): HSLObject[];
+    public static getHarmony(color: CIELabObjectGeneric, harmony?: Harmony, options?: InputOptions): CIELabObject[];
 
     public static getHarmony(color: string, harmony?: Harmony, mode?: MixString, options?: InputOptions): string[];
     public static getHarmony(color: HEXObject, harmony?: Harmony, mode?: MixString, options?: InputOptions): HEXObject[];
