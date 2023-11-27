@@ -507,10 +507,18 @@ You can also consult the [demo 3](https://elchininet.github.io/ColorTranslator/#
 The static methods to create color blends accept any of the mentioned inputs as the first and second parameter, the third parameter is optional and it is the number of steps of the blending. And the fourth parameter is also optional and it is an [options object](#options-object) (this fourth option is not present in the methods to generate HEX colors):
 
 ```typescript
+// If steps is not sent, the default will be 5
 getBlendColorsStaticMethod(
   fromColor: string | object,
   toColor: string | object,
-  steps: number = 5,
+  options?: Options
+)
+
+// Specifying the number of steps
+getBlendColorsStaticMethod(
+  fromColor: string | object,
+  toColor: string | object,
+  steps?: number,
   options?: Options
 )
 ```
@@ -572,14 +580,21 @@ You can also consult the [demo 6](https://elchininet.github.io/ColorTranslator/#
 
 ###### Color mix static methods
 
-The static methods to mix colors accept an array of any of the mentioned inputs as the first parameter. The second parameter is optional and specifies the mixing mode (by default it will be `Mix.ADDITIVE`). And the third parameter is also optional and it is an [options object](#options-object) (this third option is not present in the methods to generate HEX colors):
+The static methods to mix colors accept an array of any of the mentioned inputs as the first parameter. The second parameter is optional and specifies the mixing mode (by default it will be `ADDITIVE`). And the third parameter is also optional and it is an [options object](#options-object) (this third option is not present in the methods to generate HEX colors):
 
 > **Note:** The subtractive mix simulates the mixing of pigments, to achieve this, the rgb colors are converted to ryb color model, the addition is performed in this mode and at the end the result is converted back to rgb. The result is OK most of the time, but as this is not a real mix of pigments, sometimes the result could differ from the reality.
 
 ```typescript
+// If mode is not sent, the default will be "ADDITIVE"
 getMixColorsStaticMethod(
   colors: [string | object][],
-  mode: Mix = Mix.ADDITIVE,
+  options?: Options
+)
+
+// Specifying the mix mode
+getMixColorsStaticMethod(
+  colors: [string | object][],
+  mode?: 'ADDITIVE' | 'SUBTRACTIVE',
   options?: Options
 )
 ```
@@ -616,11 +631,11 @@ ColorTranslator.getMixHSL(['rgba(255, 0, 0, 1)', '#00FF00']);
 
 // hsl(60 100% 50%)
 
-ColorTranslator.getMixHEXAObject(['#F00', 'rgb(0, 0, 255)'], Mix.ADDITIVE);
+ColorTranslator.getMixHEXAObject(['#F00', 'rgb(0, 0, 255)'], 'ADDITIVE');
 
 // { R: '0xFF', G: '0x00', B: '0xFF', A: '0xFF' }
 
-ColorTranslator.getMixHEX(['#FF0', '#F00'], Mix.SUBTRACTIVE);
+ColorTranslator.getMixHEX(['#FF0', '#F00'], 'SUBTRACTIVE');
 
 // #FF8800
 ```
@@ -681,13 +696,34 @@ You can also consult the [demo 7](https://elchininet.github.io/ColorTranslator/#
 
 ###### Color harmonies static method
 
-The static method to create color harmonies accepts four parmeters, the first one could be any of the mentioned inputs, the second one is optional and it is to specify the kind of harmony (by default it will be `Harmony.COMPLEMENTARY`), the third one is also optional and it specifies if the returned harmony is based on additive or subtractive colors (by default it will be `Mix.ADDITIVE`), and the fourth parameter is also optional and it is an [options object](#options-object). This method will return the colors in the same format that was sent as input:
+The static method to create color harmonies accepts four parmeters, the first one could be any of the mentioned inputs, the second one is optional and it is to specify the kind of harmony (by default it will be "COMPLEMENTARY"), the third one is also optional and it specifies if the returned harmony is based on additive or subtractive colors (by default it will be "ADDITIVE"), and the fourth parameter is also optional and it is an [options object](#options-object). This method will return the colors in the same format that was sent as input:
 
 ```typescript
+// If harmony is not sent, the default will be "COMPLEMENTARY"
+// If mode is not sent, the default will be "ADDITIVE"
 getHarmony(
-  color: string | object
-  harmony: Harmony = Harmony.COMPLEMENTARY,
-  mode: Mix = Mix.ADDITIVE,
+  color: string | object,
+  options?: Options
+)
+
+// If mode is not sent, the default will be "ADDITIVE"
+getHarmony(
+  color: string | object,
+  harmony?: 'ANALOGOUS' | 'COMPLEMENTARY' | 'SPLIT_COMPLEMENTARY' | 'TRIADIC' | 'TETRADIC' | 'SQUARE',
+  options?: Options
+)
+
+// If harmony is not sent, the default will be "COMPLEMENTARY"
+getHarmony(
+  color: string | object,
+  mode?: 'ADDITIVE' | 'SUBTRACTIVE',
+  options?: Options
+)
+
+getHarmony(
+  color: string | object,
+  harmony: 'ANALOGOUS' | 'COMPLEMENTARY' | 'SPLIT_COMPLEMENTARY' | 'TRIADIC' | 'TETRADIC' | 'SQUARE',
+  mode: 'ADDITIVE' | 'SUBTRACTIVE',
   options?: Options
 )
 ```
@@ -716,7 +752,7 @@ ColorTranslator.getHarmony('#FF00FF');
 
 // ["#FF00FF", "#00FF00"]
 
-ColorTranslator.getHarmony('rgba(0 255 255 / 0.5)', Harmony.ANALOGOUS);
+ColorTranslator.getHarmony('rgba(0 255 255 / 0.5)', 'ANALOGOUS');
 
 // [
 //   "rgba(0 255 255 / 0.5)",
@@ -726,8 +762,8 @@ ColorTranslator.getHarmony('rgba(0 255 255 / 0.5)', Harmony.ANALOGOUS);
 
 ColorTranslator.getHarmony(
   { r: 115, g: 200, b: 150, a: 0.5 },
-  Harmony.COMPLEMENTARY,
-  Mix.ADDITIVE,
+  'COMPLEMENTARY',
+  'ADDITIVE',
   { decimals: 2 }
 );
 
@@ -736,7 +772,7 @@ ColorTranslator.getHarmony(
 //   {R: 200, G: 123.75, B: 115, A: 0.5}
 // ]
 
-ColorTranslator.getHarmony('#FF0000', Harmony.COMPLEMENTARY, Mix.SUBTRACTIVE);
+ColorTranslator.getHarmony('#FF0000', 'COMPLEMENTARY', 'SUBTRACTIVE');
 
 // ["#FF0000", "#00FF00"]
 
@@ -746,7 +782,16 @@ You can also consult the [demo 10](https://elchininet.github.io/ColorTranslator/
 
 ## TypeScript Support
 
-The package has its own type definitions, so it can be used in a `TypeScript` project without any issues. The next interfaces are exposed and can be imported in your project:
+The package has its own type definitions, so it can be used in a `TypeScript` project without any issues. The next enums and interfaces are exposed and can be imported in your project:
+
+###### Harmony and Mix
+
+You can send these values as strings and it will be checked by `TypeScript` if the string is correct. But for comodity, you can use the `Harmony` and `Mix` enums exported in the library.
+
+```typescript
+Harmony.COMPLEMENTARY === 'COMPLEMENTARY';
+Mix.ADDITIVE === 'ADDITIVE'
+```
 
 ###### InputOptions
 

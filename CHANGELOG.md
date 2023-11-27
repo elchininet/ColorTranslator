@@ -7,6 +7,7 @@
 - Improve `getHarmony` method overloads to make it possible to omit optional parameters
 - Improve types for `Mix` and `Harmony` making it possible to send also strings
 - Fix a bug in the `getBlendXXX` which was ignoring the `decimals` sent and always suing `MAX_DECIMALS`
+- Fix `CIELabObject` not being exported with the library
 
 ## [4.0.0] - 2023-11-26
 
