@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.1.0] - 2023-11-27
+
+- Improve `getBlendXXX` methods overloads to make it possible to omit optional parameters
+- Improve `getMixXXX` methods overloads to make it possible to omit optional parameters
+- Improve `getHarmony` method overloads to make it possible to omit optional parameters
+- Improve types for `Mix` and `Harmony` making it possible to send also strings
+- Fix a bug in the `getBlendXXX` which was ignoring the `decimals` sent and always suing `MAX_DECIMALS`
+
 ## [4.0.0] - 2023-11-26
 
 - [BREAKING CHANGE]: Properties of the HEX, HEXA, RGB, RGBA, HSL, HSLA, CMYK and CMYKA objects are now capitalized letters to make them more consistent with the rest of the properties and to add support for `Lab` colors with alpha (`L a b A`)

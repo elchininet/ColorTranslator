@@ -794,14 +794,34 @@ export class ColorTranslator {
     public static getBlendRGBObject(
         from: ColorInput,
         to: ColorInput,
-        steps: number = DEFAULT_BLEND_STEPS,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): RGBObject[];
+    public static getBlendRGBObject(
+        from: ColorInput,
+        to: ColorInput,
+        steps?: number,
+        options?: InputOptions
+    ): RGBObject[];
+    public static getBlendRGBObject(
+        from: ColorInput,
+        to: ColorInput,
+        thirdParameter?: number | InputOptions,
+        fourthParameter?: InputOptions
     ): RGBObject[] {
+        if (typeof thirdParameter === 'number') {
+            return getBlendReturn<RGBObject>(
+                from,
+                to,
+                thirdParameter,
+                fourthParameter?.decimals,
+                utils.translateColor.RGB
+            );
+        }
         return getBlendReturn<RGBObject>(
             from,
             to,
-            steps,
-            options.decimals,
+            DEFAULT_BLEND_STEPS,
+            thirdParameter?.decimals,
             utils.translateColor.RGB
         );
     }
@@ -809,20 +829,46 @@ export class ColorTranslator {
     public static getBlendRGB(
         from: ColorInput,
         to: ColorInput,
-        steps: number = DEFAULT_BLEND_STEPS,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): string[];
+    public static getBlendRGB(
+        from: ColorInput,
+        to: ColorInput,
+        steps?: number,
+        options?: InputOptions
+    ): string[];
+    public static getBlendRGB(
+        from: ColorInput,
+        to: ColorInput,
+        thirdParameter?: number | InputOptions,
+        fourthParameter?: InputOptions
     ): string[] {
+        if (typeof thirdParameter === 'number') {
+            return getBlendReturn<RGBObject>(
+                from,
+                to,
+                thirdParameter,
+                fourthParameter?.decimals,
+                utils.translateColor.RGB
+            )
+                .map((color: RGBObject): string => {
+                    return CSS.RGB(
+                        color,
+                        getOptionsFromColorInput(fourthParameter || {}, from, to)
+                    );
+                });
+        }
         return getBlendReturn<RGBObject>(
             from,
             to,
-            steps,
-            MAX_DECIMALS,
+            DEFAULT_BLEND_STEPS,
+            thirdParameter?.decimals,
             utils.translateColor.RGB
         )
             .map((color: RGBObject): string => {
                 return CSS.RGB(
                     color,
-                    getOptionsFromColorInput(options, from, to)
+                    getOptionsFromColorInput(thirdParameter || {}, from, to)
                 );
             });
     }
@@ -830,14 +876,34 @@ export class ColorTranslator {
     public static getBlendRGBAObject(
         from: ColorInput,
         to: ColorInput,
-        steps: number = DEFAULT_BLEND_STEPS,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): RGBObject[];
+    public static getBlendRGBAObject(
+        from: ColorInput,
+        to: ColorInput,
+        steps?: number,
+        options?: InputOptions
+    ): RGBObject[];
+    public static getBlendRGBAObject(
+        from: ColorInput,
+        to: ColorInput,
+        thirdParameter?: number | InputOptions,
+        fourthParameter?: InputOptions
     ): RGBObject[] {
+        if (typeof thirdParameter === 'number') {
+            return getBlendReturn<RGBObject>(
+                from,
+                to,
+                thirdParameter,
+                fourthParameter?.decimals,
+                utils.translateColor.RGBA
+            );
+        }
         return getBlendReturn<RGBObject>(
             from,
             to,
-            steps,
-            options.decimals,
+            DEFAULT_BLEND_STEPS,
+            thirdParameter?.decimals,
             utils.translateColor.RGBA
         );
     }
@@ -845,20 +911,46 @@ export class ColorTranslator {
     public static getBlendRGBA(
         from: ColorInput,
         to: ColorInput,
-        steps: number = DEFAULT_BLEND_STEPS,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): string[];
+    public static getBlendRGBA(
+        from: ColorInput,
+        to: ColorInput,
+        steps?: number,
+        options?: InputOptions
+    ): string[];
+    public static getBlendRGBA(
+        from: ColorInput,
+        to: ColorInput,
+        thirdParameter?: number | InputOptions,
+        fourthParameter?: InputOptions
     ): string[] {
+        if (typeof thirdParameter === 'number') {
+            return getBlendReturn<RGBObject>(
+                from,
+                to,
+                thirdParameter,
+                fourthParameter?.decimals,
+                utils.translateColor.RGBA
+            )
+                .map((color: RGBObject): string => {
+                    return CSS.RGB(
+                        color,
+                        getOptionsFromColorInput(fourthParameter || {}, from, to)
+                    );
+                });
+        }
         return getBlendReturn<RGBObject>(
             from,
             to,
-            steps,
-            MAX_DECIMALS,
+            DEFAULT_BLEND_STEPS,
+            thirdParameter?.decimals,
             utils.translateColor.RGBA
         )
             .map((color: RGBObject): string => {
                 return CSS.RGB(
                     color,
-                    getOptionsFromColorInput(options, from, to)
+                    getOptionsFromColorInput(thirdParameter || {}, from, to)
                 );
             });
     }
@@ -866,14 +958,34 @@ export class ColorTranslator {
     public static getBlendHSLObject(
         from: ColorInput,
         to: ColorInput,
-        steps: number = DEFAULT_BLEND_STEPS,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): HSLObject[];
+    public static getBlendHSLObject(
+        from: ColorInput,
+        to: ColorInput,
+        steps?: number,
+        options?: InputOptions
+    ): HSLObject[];
+    public static getBlendHSLObject(
+        from: ColorInput,
+        to: ColorInput,
+        thirdParameter?: number | InputOptions,
+        fourthParameter?: InputOptions
     ): HSLObject[] {
+        if (typeof thirdParameter === 'number') {
+            return getBlendReturn<HSLObject>(
+                from,
+                to,
+                thirdParameter,
+                fourthParameter?.decimals,
+                utils.translateColor.HSL
+            );
+        }
         return getBlendReturn<HSLObject>(
             from,
             to,
-            steps,
-            options.decimals,
+            DEFAULT_BLEND_STEPS,
+            fourthParameter?.decimals,
             utils.translateColor.HSL
         );
     }
@@ -881,33 +993,81 @@ export class ColorTranslator {
     public static getBlendHSL(
         from: ColorInput,
         to: ColorInput,
-        steps: number = DEFAULT_BLEND_STEPS,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): string[];
+    public static getBlendHSL(
+        from: ColorInput,
+        to: ColorInput,
+        steps?: number,
+        options?: InputOptions
+    ): string[];
+    public static getBlendHSL(
+        from: ColorInput,
+        to: ColorInput,
+        thirdParameter?: number | InputOptions,
+        fourthParameter?: InputOptions
     ): string[] {
-        const detectedOptions = getOptionsFromColorInput(options, from, to);
+        if (typeof thirdParameter === 'number') {
+            return getBlendReturn<HSLObject>(
+                from,
+                to,
+                thirdParameter,
+                fourthParameter?.decimals,
+                utils.translateColor.HSL
+            )
+                .map((color: HSLObject) => {
+                    return CSS.HSL(
+                        color,
+                        getOptionsFromColorInput(fourthParameter || {}, from, to)
+                    );
+                });
+        }
         return getBlendReturn<HSLObject>(
             from,
             to,
-            steps,
-            MAX_DECIMALS,
+            DEFAULT_BLEND_STEPS,
+            thirdParameter?.decimals,
             utils.translateColor.HSL
         )
             .map((color: HSLObject) => {
-                return CSS.HSL(color, detectedOptions);
+                return CSS.HSL(
+                    color,
+                    getOptionsFromColorInput(thirdParameter || {}, from, to)
+                );
             });
     }
 
     public static getBlendHSLAObject(
         from: ColorInput,
         to: ColorInput,
-        steps: number = DEFAULT_BLEND_STEPS,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): HSLObject[];
+    public static getBlendHSLAObject(
+        from: ColorInput,
+        to: ColorInput,
+        steps?: number,
+        options?: InputOptions
+    ): HSLObject[];
+    public static getBlendHSLAObject(
+        from: ColorInput,
+        to: ColorInput,
+        thirdParameter?: number | InputOptions,
+        fourthParameter?: InputOptions
     ): HSLObject[] {
+        if (typeof thirdParameter === 'number') {
+            return getBlendReturn<HSLObject>(
+                from,
+                to,
+                thirdParameter,
+                fourthParameter?.decimals,
+                utils.translateColor.HSLA
+            );
+        }
         return getBlendReturn<HSLObject>(
             from,
             to,
-            steps,
-            options.decimals,
+            DEFAULT_BLEND_STEPS,
+            thirdParameter?.decimals,
             utils.translateColor.HSLA
         );
     }
@@ -915,33 +1075,81 @@ export class ColorTranslator {
     public static getBlendHSLA(
         from: ColorInput,
         to: ColorInput,
-        steps: number = DEFAULT_BLEND_STEPS,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): string[];
+    public static getBlendHSLA(
+        from: ColorInput,
+        to: ColorInput,
+        steps?: number,
+        options?: InputOptions
+    ): string[];
+    public static getBlendHSLA(
+        from: ColorInput,
+        to: ColorInput,
+        thirdParameter?: number | InputOptions,
+        fourthParameter?: InputOptions
     ): string[] {
-        const detectedOptions = getOptionsFromColorInput(options, from, to);
+        if (typeof thirdParameter === 'number') {
+            return getBlendReturn<HSLObject>(
+                from,
+                to,
+                thirdParameter,
+                fourthParameter?.decimals,
+                utils.translateColor.HSLA
+            )
+                .map((color: HSLObject): string => {
+                    return CSS.HSL(
+                        color,
+                        getOptionsFromColorInput(fourthParameter || {}, from, to)
+                    );
+                });
+        }
         return getBlendReturn<HSLObject>(
             from,
             to,
-            steps,
-            MAX_DECIMALS,
+            DEFAULT_BLEND_STEPS,
+            thirdParameter?.decimals,
             utils.translateColor.HSLA
         )
             .map((color: HSLObject): string => {
-                return CSS.HSL(color, detectedOptions);
+                return CSS.HSL(
+                    color,
+                    getOptionsFromColorInput(thirdParameter || {}, from, to)
+                );
             });
     }
 
     public static getBlendCIELabObject(
         from: ColorInput,
         to: ColorInput,
-        steps: number = DEFAULT_BLEND_STEPS,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): CIELabObject[];
+    public static getBlendCIELabObject(
+        from: ColorInput,
+        to: ColorInput,
+        steps?: number,
+        options?: InputOptions
+    ): CIELabObject[];
+    public static getBlendCIELabObject(
+        from: ColorInput,
+        to: ColorInput,
+        thirdParameter?: number | InputOptions,
+        fourthParameter?: InputOptions
     ): CIELabObject[] {
+        if (typeof thirdParameter === 'number') {
+            return getBlendReturn<CIELabObject>(
+                from,
+                to,
+                thirdParameter,
+                fourthParameter?.decimals,
+                utils.translateColor.CIELab
+            );
+        }
         return getBlendReturn<CIELabObject>(
             from,
             to,
-            steps,
-            options.decimals,
+            DEFAULT_BLEND_STEPS,
+            thirdParameter?.decimals,
             utils.translateColor.CIELab
         );
     }
@@ -949,33 +1157,81 @@ export class ColorTranslator {
     public static getBlendCIELab(
         from: ColorInput,
         to: ColorInput,
-        steps: number = DEFAULT_BLEND_STEPS,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): string[];
+    public static getBlendCIELab(
+        from: ColorInput,
+        to: ColorInput,
+        steps?: number,
+        options?: InputOptions
+    ): string[];
+    public static getBlendCIELab(
+        from: ColorInput,
+        to: ColorInput,
+        thirdParameter?: number | InputOptions,
+        fourthParameter?: InputOptions
     ): string[] {
-        const detectedOptions = getOptionsFromColorInput(options, from, to);
+        if (typeof thirdParameter === 'number') {
+            return getBlendReturn<CIELabObject>(
+                from,
+                to,
+                thirdParameter,
+                fourthParameter?.decimals,
+                utils.translateColor.CIELab
+            )
+                .map((color: CIELabObject) => {
+                    return CSS.CIELab(
+                        color,
+                        getOptionsFromColorInput(fourthParameter || {}, from, to)
+                    );
+                });
+        }
         return getBlendReturn<CIELabObject>(
             from,
             to,
-            steps,
-            MAX_DECIMALS,
+            DEFAULT_BLEND_STEPS,
+            thirdParameter?.decimals,
             utils.translateColor.CIELab
         )
             .map((color: CIELabObject) => {
-                return CSS.CIELab(color, detectedOptions);
+                return CSS.CIELab(
+                    color,
+                    getOptionsFromColorInput(thirdParameter || {}, from, to)
+                );
             });
     }
 
     public static getBlendCIELabAObject(
         from: ColorInput,
         to: ColorInput,
-        steps: number = DEFAULT_BLEND_STEPS,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): CIELabObject[];
+    public static getBlendCIELabAObject(
+        from: ColorInput,
+        to: ColorInput,
+        steps?: number,
+        options?: InputOptions
+    ): CIELabObject[];
+    public static getBlendCIELabAObject(
+        from: ColorInput,
+        to: ColorInput,
+        thirdParameter?: number | InputOptions,
+        fourthParameter?: InputOptions
     ): CIELabObject[] {
+        if (typeof thirdParameter === 'number') {
+            return getBlendReturn<CIELabObject>(
+                from,
+                to,
+                thirdParameter,
+                fourthParameter?.decimals,
+                utils.translateColor.CIELabA
+            );
+        }
         return getBlendReturn<CIELabObject>(
             from,
             to,
-            steps,
-            options.decimals,
+            DEFAULT_BLEND_STEPS,
+            thirdParameter?.decimals,
             utils.translateColor.CIELabA
         );
     }
@@ -983,19 +1239,47 @@ export class ColorTranslator {
     public static getBlendCIELabA(
         from: ColorInput,
         to: ColorInput,
-        steps: number = DEFAULT_BLEND_STEPS,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): string[];
+    public static getBlendCIELabA(
+        from: ColorInput,
+        to: ColorInput,
+        steps?: number,
+        options?: InputOptions
+    ): string[];
+    public static getBlendCIELabA(
+        from: ColorInput,
+        to: ColorInput,
+        thirdParameter?: number | InputOptions,
+        fourthParameter?: InputOptions
     ): string[] {
-        const detectedOptions = getOptionsFromColorInput(options, from, to);
+        if (typeof thirdParameter === 'number') {
+            return getBlendReturn<CIELabObject>(
+                from,
+                to,
+                thirdParameter,
+                fourthParameter?.decimals,
+                utils.translateColor.CIELabA
+            )
+                .map((color: CIELabObject) => {
+                    return CSS.CIELab(
+                        color,
+                        getOptionsFromColorInput(fourthParameter || {}, from, to)
+                    );
+                });
+        }
         return getBlendReturn<CIELabObject>(
             from,
             to,
-            steps,
-            MAX_DECIMALS,
+            DEFAULT_BLEND_STEPS,
+            thirdParameter?.decimals,
             utils.translateColor.CIELabA
         )
             .map((color: CIELabObject) => {
-                return CSS.CIELab(color, detectedOptions);
+                return CSS.CIELab(
+                    color,
+                    getOptionsFromColorInput(thirdParameter || {}, from, to)
+                );
             });
     }
 
@@ -1018,157 +1302,433 @@ export class ColorTranslator {
 
     public static getMixRGBObject(
         colors: ColorInput[],
-        mode: MixString = Mix.ADDITIVE,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): RGBObject;
+    public static getMixRGBObject(
+        colors: ColorInput[],
+        mode?: MixString,
+        options?: InputOptions
+    ): RGBObject;
+    public static getMixRGBObject(
+        colors: ColorInput[],
+        secondParameter?: MixString | InputOptions,
+        thirdParameter?: InputOptions
     ): RGBObject {
+        if (typeof secondParameter === 'string') {
+            return utils.colorMixer.RGB(
+                colors,
+                secondParameter,
+                false,
+                getOptionsFromColorInput(
+                    thirdParameter || {},
+                    ...colors
+                )
+            );
+        }
         return utils.colorMixer.RGB(
             colors,
-            mode,
+            Mix.ADDITIVE,
             false,
-            getOptionsFromColorInput(options, ...colors)
+            getOptionsFromColorInput(
+                secondParameter || {},
+                ...colors
+            )
         );
     }
 
     public static getMixRGB(
         colors: ColorInput[],
-        mode: MixString = Mix.ADDITIVE,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): string;
+    public static getMixRGB(
+        colors: ColorInput[],
+        mode?: MixString,
+        options?: InputOptions
+    ): string;
+    public static getMixRGB(
+        colors: ColorInput[],
+        secondParameter?: MixString | InputOptions,
+        thirdParameter?: InputOptions
     ): string {
+        if (typeof secondParameter === 'string') {
+            return utils.colorMixer.RGB(
+                colors,
+                secondParameter,
+                true,
+                getOptionsFromColorInput(
+                    thirdParameter || {},
+                    ...colors
+                )
+            );
+        }
         return utils.colorMixer.RGB(
             colors,
-            mode,
+            Mix.ADDITIVE,
             true,
-            getOptionsFromColorInput(options, ...colors)
+            getOptionsFromColorInput(
+                secondParameter || {},
+                ...colors
+            )
         );
     }
 
     public static getMixRGBAObject(
         colors: ColorInput[],
-        mode: MixString = Mix.ADDITIVE,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): RGBObject;
+    public static getMixRGBAObject(
+        colors: ColorInput[],
+        mode?: MixString,
+        options?: InputOptions
+    ): RGBObject;
+    public static getMixRGBAObject(
+        colors: ColorInput[],
+        secondParameter?: MixString | InputOptions,
+        thirdParameter?: InputOptions
     ): RGBObject {
+        if (typeof secondParameter === 'string') {
+            return utils.colorMixer.RGBA(
+                colors,
+                secondParameter,
+                false,
+                getOptionsFromColorInput(
+                    thirdParameter || {},
+                    ...colors
+                )
+            );
+        }
         return utils.colorMixer.RGBA(
             colors,
-            mode,
+            Mix.ADDITIVE,
             false,
-            getOptionsFromColorInput(options, ...colors)
+            getOptionsFromColorInput(
+                secondParameter || {},
+                ...colors
+            )
         );
     }
 
     public static getMixRGBA(
         colors: ColorInput[],
-        mode: MixString = Mix.ADDITIVE,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): string;
+    public static getMixRGBA(
+        colors: ColorInput[],
+        mode?: MixString,
+        options?: InputOptions
+    ): string;
+    public static getMixRGBA(
+        colors: ColorInput[],
+        secondParameter?: MixString | InputOptions,
+        thirdParameter?: InputOptions
     ): string {
+        if (typeof secondParameter === 'string') {
+            return utils.colorMixer.RGBA(
+                colors,
+                secondParameter,
+                true,
+                getOptionsFromColorInput(
+                    thirdParameter || {},
+                    ...colors
+                )
+            );
+        }
         return utils.colorMixer.RGBA(
             colors,
-            mode,
+            Mix.ADDITIVE,
             true,
-            getOptionsFromColorInput(options, ...colors)
+            getOptionsFromColorInput(
+                secondParameter || {},
+                ...colors
+            )
         );
     }
 
     public static getMixHSLObject(
         colors: ColorInput[],
-        mode: MixString = Mix.ADDITIVE,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): HSLObject;
+    public static getMixHSLObject(
+        colors: ColorInput[],
+        mode?: MixString,
+        options?: InputOptions
+    ): HSLObject;
+    public static getMixHSLObject(
+        colors: ColorInput[],
+        secondParameter?: MixString | InputOptions,
+        thirdParameter?: InputOptions
     ): HSLObject {
+        if (typeof secondParameter === 'string') {
+            return utils.colorMixer.HSL(
+                colors,
+                secondParameter,
+                false,
+                getOptionsFromColorInput(
+                    thirdParameter || {},
+                    ...colors
+                )
+            );
+        }
         return utils.colorMixer.HSL(
             colors,
-            mode,
+            Mix.ADDITIVE,
             false,
-            getOptionsFromColorInput(options, ...colors)
+            getOptionsFromColorInput(
+                secondParameter || {},
+                ...colors
+            )
         );
     }
 
     public static getMixHSL(
         colors: ColorInput[],
-        mode: MixString = Mix.ADDITIVE,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): string;
+    public static getMixHSL(
+        colors: ColorInput[],
+        mode?: MixString,
+        options?: InputOptions
+    ): string;
+    public static getMixHSL(
+        colors: ColorInput[],
+        secondParameter?: MixString | InputOptions,
+        thirdParameter?: InputOptions
     ): string {
+        if (typeof secondParameter === 'string') {
+            return utils.colorMixer.HSL(
+                colors,
+                secondParameter,
+                true,
+                getOptionsFromColorInput(
+                    thirdParameter || {},
+                    ...colors
+                )
+            );
+        }
         return utils.colorMixer.HSL(
             colors,
-            mode,
+            Mix.ADDITIVE,
             true,
-            getOptionsFromColorInput(options, ...colors)
+            getOptionsFromColorInput(
+                secondParameter || {},
+                ...colors
+            )
         );
     }
 
     public static getMixHSLAObject(
         colors: ColorInput[],
-        mode: MixString = Mix.ADDITIVE,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): HSLObject;
+    public static getMixHSLAObject(
+        colors: ColorInput[],
+        mode?: MixString,
+        options?: InputOptions
+    ): HSLObject;
+    public static getMixHSLAObject(
+        colors: ColorInput[],
+        secondParameter?: MixString | InputOptions,
+        thirdParameter?: InputOptions
     ): HSLObject {
+        if (typeof secondParameter === 'string') {
+            return utils.colorMixer.HSLA(
+                colors,
+                secondParameter,
+                false,
+                getOptionsFromColorInput(
+                    thirdParameter || {},
+                    ...colors
+                )
+            );
+        }
         return utils.colorMixer.HSLA(
             colors,
-            mode,
+            Mix.ADDITIVE,
             false,
-            getOptionsFromColorInput(options, ...colors)
+            getOptionsFromColorInput(
+                secondParameter || {},
+                ...colors
+            )
         );
     }
 
     public static getMixHSLA(
         colors: ColorInput[],
-        mode: MixString = Mix.ADDITIVE,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): string;
+    public static getMixHSLA(
+        colors: ColorInput[],
+        mode?: MixString,
+        options?: InputOptions
+    ): string;
+    public static getMixHSLA(
+        colors: ColorInput[],
+        secondParameter?: MixString | InputOptions,
+        thirdParameter?: InputOptions
     ): string {
+        if (typeof secondParameter === 'string') {
+            return utils.colorMixer.HSLA(
+                colors,
+                secondParameter,
+                true,
+                getOptionsFromColorInput(
+                    thirdParameter || {},
+                    ...colors
+                )
+            );
+        }
         return utils.colorMixer.HSLA(
             colors,
-            mode,
+            Mix.ADDITIVE,
             true,
-            getOptionsFromColorInput(options, ...colors)
+            getOptionsFromColorInput(
+                secondParameter || {},
+                ...colors
+            )
         );
     }
 
     public static getMixCIELabObject(
         colors: ColorInput[],
-        mode: MixString = Mix.ADDITIVE,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): CIELabObject;
+    public static getMixCIELabObject(
+        colors: ColorInput[],
+        mode?: MixString,
+        options?: InputOptions
+    ): CIELabObject;
+    public static getMixCIELabObject(
+        colors: ColorInput[],
+        secondParameter?: MixString | InputOptions,
+        thirdParameter?: InputOptions
     ): CIELabObject {
+        if (typeof secondParameter === 'string') {
+            return utils.colorMixer.CIELab(
+                colors,
+                secondParameter,
+                false,
+                getOptionsFromColorInput(
+                    thirdParameter || {},
+                    ...colors
+                )
+            );
+        }
         return utils.colorMixer.CIELab(
             colors,
-            mode,
+            Mix.ADDITIVE,
             false,
-            getOptionsFromColorInput(options, ...colors)
+            getOptionsFromColorInput(
+                secondParameter || {},
+                ...colors
+            )
         );
     }
 
     public static getMixCIELab(
         colors: ColorInput[],
-        mode: MixString = Mix.ADDITIVE,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): string;
+    public static getMixCIELab(
+        colors: ColorInput[],
+        mode?: MixString,
+        options?: InputOptions
+    ): string;
+    public static getMixCIELab(
+        colors: ColorInput[],
+        secondParameter?: MixString | InputOptions,
+        thirdParameter?: InputOptions
     ): string {
+        if (typeof secondParameter === 'string') {
+            return utils.colorMixer.CIELab(
+                colors,
+                secondParameter,
+                true,
+                getOptionsFromColorInput(
+                    thirdParameter || {},
+                    ...colors
+                )
+            );
+        }
         return utils.colorMixer.CIELab(
             colors,
-            mode,
+            Mix.ADDITIVE,
             true,
-            getOptionsFromColorInput(options, ...colors)
+            getOptionsFromColorInput(
+                secondParameter || {},
+                ...colors
+            )
         );
     }
 
     public static getMixCIELabAObject(
         colors: ColorInput[],
-        mode: MixString = Mix.ADDITIVE,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): CIELabObject;
+    public static getMixCIELabAObject(
+        colors: ColorInput[],
+        mode?: MixString,
+        options?: InputOptions
+    ): CIELabObject;
+    public static getMixCIELabAObject(
+        colors: ColorInput[],
+        secondParameter?: MixString | InputOptions,
+        thirdParameter?: InputOptions
     ): CIELabObject {
+        if (typeof secondParameter === 'string') {
+            return utils.colorMixer.CIELabA(
+                colors,
+                secondParameter,
+                false,
+                getOptionsFromColorInput(
+                    thirdParameter || {},
+                    ...colors
+                )
+            );
+        }
         return utils.colorMixer.CIELabA(
             colors,
-            mode,
+            Mix.ADDITIVE,
             false,
-            getOptionsFromColorInput(options, ...colors)
+            getOptionsFromColorInput(
+                secondParameter || {},
+                ...colors
+            )
         );
     }
 
     public static getMixCIELabA(
         colors: ColorInput[],
-        mode: MixString = Mix.ADDITIVE,
-        options: InputOptions = {}
+        options?: InputOptions
+    ): string;
+    public static getMixCIELabA(
+        colors: ColorInput[],
+        mode?: MixString,
+        options?: InputOptions
+    ): string;
+    public static getMixCIELabA(
+        colors: ColorInput[],
+        secondParameter?: MixString | InputOptions,
+        thirdParameter?: InputOptions
     ): string {
+        if (typeof secondParameter === 'string') {
+            return utils.colorMixer.CIELabA(
+                colors,
+                secondParameter,
+                true,
+                getOptionsFromColorInput(
+                    thirdParameter || {},
+                    ...colors
+                )
+            );
+        }
         return utils.colorMixer.CIELabA(
             colors,
-            mode,
+            Mix.ADDITIVE,
             true,
-            getOptionsFromColorInput(options, ...colors)
+            getOptionsFromColorInput(
+                secondParameter || {},
+                ...colors
+            )
         );
     }
 
