@@ -1837,5 +1837,6 @@ export {
     HEXObject,
     RGBObject,
     HSLObject,
+    CIELabObject,
     CMYKObject
 };
