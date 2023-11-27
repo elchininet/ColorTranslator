@@ -57,6 +57,26 @@ describe('ColorTranslator blending tests', (): void => {
             expect(obj.blendFn(from, to, r2.length, options)).toMatchObject(r2);
 
             expect(obj.blendFn(from, to).length).toBe(5);
+            expect(
+                obj.blendFn(from, to, { decimals: 6 })
+            ).toMatchObject(
+                obj.blendFn(from, to)
+            );
+            expect(
+                obj.blendFn(from, to, 4, { decimals: 6 })
+            ).toMatchObject(
+                obj.blendFn(from, to, 4)
+            );
+            expect(
+                obj.blendFn(from, to, { cmykUnit: 'percent' })
+            ).toMatchObject(
+                obj.blendFn(from, to)
+            );
+            expect(
+                obj.blendFn(from, to, 3, { cmykUnit: 'percent' })
+            ).toMatchObject(
+                obj.blendFn(from, to, 3)
+            );
 
         });
 
@@ -75,6 +95,10 @@ describe('ColorTranslator blending tests', (): void => {
     it('Blending with L*a*b colors', (): void => {
         blendLabFunctions.forEach((fn) => {
             expect(fn(from, to)).toMatchSnapshot();
+        });
+
+        blendLabFunctions.forEach((fn) => {
+            expect(fn(from, to, 3)).toMatchSnapshot();
         });
     });
 

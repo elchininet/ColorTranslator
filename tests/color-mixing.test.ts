@@ -117,6 +117,11 @@ describe('Color mixing with L*a*b colors', (): void => {
     });
     it('Return a mix in lab color with decimals', (): void => {
         expect(
+            ColorTranslator.getMixCIELab(['#F00', '#00F'], Mix.ADDITIVE)
+        ).toBe(
+            'lab(60.169696 93.550025 -60.498556)'
+        );
+        expect(
             ColorTranslator.getMixCIELab(['#F00', '#00F'])
         ).toBe(
             'lab(60.169696 93.550025 -60.498556)'
