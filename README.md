@@ -518,7 +518,7 @@ getBlendColorsStaticMethod(
 getBlendColorsStaticMethod(
   fromColor: string | object,
   toColor: string | object,
-  steps?: number,
+  steps: number,
   options?: Options
 )
 ```
@@ -594,7 +594,7 @@ getMixColorsStaticMethod(
 // Specifying the mix mode
 getMixColorsStaticMethod(
   colors: [string | object][],
-  mode?: 'ADDITIVE' | 'SUBTRACTIVE',
+  mode: 'ADDITIVE' | 'SUBTRACTIVE',
   options?: Options
 )
 ```
@@ -647,12 +647,26 @@ You can also consult the [demo 8](https://elchininet.github.io/ColorTranslator/#
 The static methods to get [shades or tints of a color](https://en.m.wikipedia.org/wiki/Tints_and_shades) accept any of the mentioned inputs as the first parameter. The second parameter specifies the number of shades or tints that should be returned and the third parameter is optional and it is an [options object](#options-object). This method will return the colors in the same format that was sent as input:
 
 ```typescript
+// If shades is not sent, the default will be 5
+getShades(
+  color: string | object,
+  options?: Options
+)
+
+// Specifying the shades number
 getShades(
   color: string | object,
   shades: number,
   options?: Options
 )
 
+// If tints is not sent, the default will be 5
+getTints(
+  color: string | object,
+  options?: Options
+)
+
+// Specifying the tints number
 getTints(
   color: string | object,
   tints: number,
@@ -709,14 +723,14 @@ getHarmony(
 // If mode is not sent, the default will be "ADDITIVE"
 getHarmony(
   color: string | object,
-  harmony?: 'ANALOGOUS' | 'COMPLEMENTARY' | 'SPLIT_COMPLEMENTARY' | 'TRIADIC' | 'TETRADIC' | 'SQUARE',
+  harmony: 'ANALOGOUS' | 'COMPLEMENTARY' | 'SPLIT_COMPLEMENTARY' | 'TRIADIC' | 'TETRADIC' | 'SQUARE',
   options?: Options
 )
 
 // If harmony is not sent, the default will be "COMPLEMENTARY"
 getHarmony(
   color: string | object,
-  mode?: 'ADDITIVE' | 'SUBTRACTIVE',
+  mode: 'ADDITIVE' | 'SUBTRACTIVE',
   options?: Options
 )
 
