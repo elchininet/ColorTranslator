@@ -1,4 +1,4 @@
-name: Test
+name: Tests
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   pull_request:
 
 jobs:      
-  test:
+  tests:
     runs-on: ubuntu-latest
     container:
       image: node:18
@@ -31,9 +31,9 @@ jobs:
         run: yarn install --frozen-lockfile --ignore-scripts --prefer-offline
       - name: Linting files
         run: yarn lint
-      - name: Make coverage
+      - name: Unit tests
         run: yarn test --coverage
-      - name: Coveralls
+      - name: Build coverage
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
