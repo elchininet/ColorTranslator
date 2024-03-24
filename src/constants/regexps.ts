@@ -3,7 +3,7 @@ import { ColorModel } from './enums';
 /**
  * Regular exressions generated automatically from templates
  * The string templates are located in .plop/regexps-strings.js
- * To regenerate these regular expressions run yarn compile:regexps
+ * To regenerate these regular expressions run pnpm compile:regexps
  * DO NOT REMOVE THE START AND END COMMENTS!
  */
 // START REGEXPS

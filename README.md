@@ -25,6 +25,12 @@ https://elchininet.github.io/ColorTranslator/
 npm install colortranslator
 ```
 
+#### Using PNPM
+
+```javascript
+pnpm add colortranslator
+```
+
 #### Using Yarn
 
 ```javascript
