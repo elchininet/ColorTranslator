@@ -70,7 +70,7 @@ describe('L*a*b with percentages', (): void => {
             [0, '0%'],
             [25, '20%'],
             [62.5, '50%'],
-            [125, '100%'],
+            [125, '100%']
         ];
 
         values.forEach((v): void => {

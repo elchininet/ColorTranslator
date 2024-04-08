@@ -34,7 +34,7 @@ type Transformer = (value: NumberOrString, index?: number) => NumberOrString;
 
 const prepareColorForCss = (
     color: Color,
-    transformer: Transformer,
+    transformer: Transformer
 ): NumberOrString[] => {
     const props = getOrderedArrayString(Object.keys(color));
     const model = VALID_COLOR_OBJECTS[props];

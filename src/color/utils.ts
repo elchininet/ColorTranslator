@@ -422,23 +422,23 @@ export const getColorMixture = (
     }));
     switch(model) {
         case ColorModel.HEX:
-            default:
-                return hslMap.map((HSLColor: HSLObject): HEXOutput => {
-                    const RGBColor = hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L);
-                    if (hasAlpha) RGBColor.A = HSLColor.A;
-                    return isCSS
-                        ? hasAlpha
-                            ? CSS.HEX(
-                                {
-                                    ...RGBColor,
-                                    A: round(RGBColor.A * 255)
-                                }
-                            )
-                            : CSS.HEX(RGBColor)
-                        : hasAlpha
-                            ? translateColor.HEXA(RGBColor)
-                            : translateColor.HEX(RGBColor);
-                });
+        default:
+            return hslMap.map((HSLColor: HSLObject): HEXOutput => {
+                const RGBColor = hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L);
+                if (hasAlpha) RGBColor.A = HSLColor.A;
+                return isCSS
+                    ? hasAlpha
+                        ? CSS.HEX(
+                            {
+                                ...RGBColor,
+                                A: round(RGBColor.A * 255)
+                            }
+                        )
+                        : CSS.HEX(RGBColor)
+                    : hasAlpha
+                        ? translateColor.HEXA(RGBColor)
+                        : translateColor.HEX(RGBColor);
+            });
         case ColorModel.RGB:
             return hslMap.map((HSLColor: HSLObject): RGBOutput => {
                 const RGBColor = hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L);

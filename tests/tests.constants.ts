@@ -427,7 +427,7 @@ export const CMYK_COLORS = [
         CMYKIntObjectWithAlpha: {C: 0, M: 0, Y: 0, K: 1, A: 1},
         CMYKIntObject100: {C: 0, M: 0, Y: 0, K: 100},
         CMYKIntObject100WithAlpha: {C: 0, M: 0, Y: 0, K: 100, A: 1}
-    },
+    }
 ];
 
 export const ADDITIVE_MIXES = [
