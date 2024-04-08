@@ -37,7 +37,7 @@ const demos = new Map([
     ['demo8', demo8],
     ['demo9', demo9],
     ['demo10', demo10],
-    ['demo11', demo11],
+    ['demo11', demo11]
 ]);
 
 document.addEventListener('DOMContentLoaded', () => {

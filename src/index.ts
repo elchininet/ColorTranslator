@@ -71,7 +71,7 @@ const getHarmonyReturn = (
     harmony: HarmonyString,
     color: ColorInputWithoutCMYK,
     mode: MixString,
-    options: Options,
+    options: Options
 ): ColorOutput[] => {
     return ({
         [Harmony.ANALOGOUS]:           utils.colorHarmony.buildHarmony(color, utils.analogous, mode, options),
@@ -762,7 +762,7 @@ export class ColorTranslator {
     public static getBlendHEX(
         from: ColorInput,
         to: ColorInput,
-        steps: number = DEFAULT_BLEND_STEPS,
+        steps: number = DEFAULT_BLEND_STEPS
     ): string[] {
         return ColorTranslator.getBlendHEXObject(from, to, steps)
             .map((color: HEXObject): string => CSS.HEX(color));

@@ -20,7 +20,7 @@ import {
     Harmony,
     HarmonyString,
     Mix,
-    MixString,
+    MixString
 } from '#constants';
 
 //---Has property
