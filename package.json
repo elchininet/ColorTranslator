@@ -33,7 +33,6 @@
     "demo": "webpack serve --open --config webpack.demo.config.js",
     "docs": "webpack --config webpack.demo.publish.js --mode production && pnpm build",
     "compile:regexps": "pnpm plop",
-    "preinstall": "npx -y only-allow pnpm",
     "prepare": "pnpm build",
     "prepublishOnly": "pnpm lint && pnpm test",
     "version": "git add .",
