@@ -92,5 +92,10 @@
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.1",
     "whatwg-fetch": "^3.6.20"
+  },
+  "pnpm": {
+    "overrides": {
+      "@babel/helpers@<7.26.10": ">=7.26.10"
+    }
   }
 }
