@@ -95,8 +95,7 @@
   },
   "pnpm": {
     "overrides": {
-      "@babel/helpers@<7.26.10": ">=7.26.10",
-      "http-proxy-middleware@<2.0.9": ">=2.0.9"
+      "@babel/helpers@<7.26.10": ">=7.26.10"
     }
   }
 }
