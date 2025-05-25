@@ -1,28 +1,28 @@
 import {
-    HEXObject,
-    RGBObject,
-    HSLObject,
+    AnglesUnitEnum,
     CIELabObject,
     CMYKObject,
     Color,
+    ColorUnitEnum,
+    HEXObject,
+    HSLObject,
     NumberOrString,
     Options,
-    AnglesUnitEnum,
-    ColorUnitEnum
+    RGBObject
 } from '@types';
 import {
+    COLOR_PROPS,
     ColorModel,
     TEMPLATE_VAR,
-    COLOR_PROPS,
     VALID_COLOR_OBJECTS
 } from '#constants';
 import {
-    toHEX,
-    round,
-    percent,
-    getOrderedArrayString,
-    from255NumberToPercent,
     from125NumberToPercent,
+    from255NumberToPercent,
+    getOrderedArrayString,
+    percent,
+    round,
+    toHEX,
     translateDegrees
 } from '#helpers';
 

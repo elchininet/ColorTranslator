@@ -1,12 +1,12 @@
 import {
-    ColorArray,
-    RGBObject,
     CIELabObject,
-    HSLObject,
     CMYKObject,
+    ColorArray,
+    HSLObject,
+    RGBObject,
     RYBObject
 } from '@types';
-import { round, minmax } from '#helpers';
+import { minmax, round } from '#helpers';
 
 const MATRIX_LRGB_XYZ_D50: [ColorArray, ColorArray, ColorArray] = [
     [0.4360747, 0.3850649, 0.1430804],
