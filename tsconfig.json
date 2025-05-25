@@ -14,7 +14,8 @@
       "@types": ["@types"],
       "#helpers": ["helpers"],
       "#constants": ["constants"],
-      "#color/*": ["color/*"]
+      "#color/*": ["color/*"],
+      "#parsers": ["parsers"]
     }
   },
   "include": ["src/**/*.ts"],

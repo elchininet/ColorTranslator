@@ -205,3 +205,7 @@ export type InputOptions = Partial<
     alphaUnit?: `${ColorUnitEnum}`;
     cmykFunction?: `${CMYKFunctionEnum}`
 };
+
+export type MatchOptions = {
+    [K in keyof Pick<Options, 'legacyCSS' | 'spacesAfterCommas' | 'cmykFunction'>]: number;
+};
