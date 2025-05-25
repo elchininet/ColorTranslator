@@ -33,7 +33,6 @@ import {
 import * as utils from '#color/utils';
 import { CSS } from '#color/css';
 import {
-    getOptionsFromColorInput,
     isHarmony,
     isMix,
     minmax,
@@ -87,7 +86,7 @@ export class ColorTranslator {
 
     // Constructor
     public constructor(color: ColorInput, options: InputOptions = {}) {
-        this._options = getOptionsFromColorInput(options, color);
+        this._options = utils.getOptionsFromColorInput(options, color);
         this.rgb = utils.getRGBObject(color);
         this.updateHSL();
         this.updateLab();
@@ -580,7 +579,7 @@ export class ColorTranslator {
 
     public static toRGB(color: ColorInput, options: InputOptions = {}): string {
         const model = utils.getColorModel(color);
-        const detectedOptions = getOptionsFromColorInput(options, color);
+        const detectedOptions = utils.getOptionsFromColorInput(options, color);
         const rgb = getColorReturn<RGBObject>(
             color,
             model,
@@ -602,7 +601,7 @@ export class ColorTranslator {
 
     public static toRGBA(color: ColorInput, options: InputOptions = {}): string {
         const model = utils.getColorModel(color);
-        const detectedOptions = getOptionsFromColorInput(options, color);
+        const detectedOptions = utils.getOptionsFromColorInput(options, color);
         const rgba = getColorReturn<RGBObject>(
             color,
             model,
@@ -624,7 +623,7 @@ export class ColorTranslator {
 
     public static toHSL(color: ColorInput, options: InputOptions = {}): string {
         const model = utils.getColorModel(color);
-        const detectedOptions = getOptionsFromColorInput(options, color);
+        const detectedOptions = utils.getOptionsFromColorInput(options, color);
         const hsl = getColorReturn<HSLObject>(
             color,
             model,
@@ -646,7 +645,7 @@ export class ColorTranslator {
 
     public static toHSLA(color: ColorInput, options: InputOptions = {}): string {
         const model = utils.getColorModel(color);
-        const detectedOptions = getOptionsFromColorInput(options, color);
+        const detectedOptions = utils.getOptionsFromColorInput(options, color);
         const hsla = getColorReturn<HSLObject>(
             color,
             model,
@@ -668,7 +667,7 @@ export class ColorTranslator {
 
     public static toCIELab(color: ColorInput, options: InputOptions = {}): string {
         const model = utils.getColorModel(color);
-        const detectedOptions = getOptionsFromColorInput(options, color);
+        const detectedOptions = utils.getOptionsFromColorInput(options, color);
         const lab = getColorReturn<CIELabObject>(
             color,
             model,
@@ -690,7 +689,7 @@ export class ColorTranslator {
 
     public static toCIELabA(color: ColorInput, options: InputOptions = {}): string {
         const model = utils.getColorModel(color);
-        const detectedOptions = getOptionsFromColorInput(options, color);
+        const detectedOptions = utils.getOptionsFromColorInput(options, color);
         const lab = getColorReturn<CIELabObject>(
             color,
             model,
@@ -712,7 +711,7 @@ export class ColorTranslator {
 
     public static toCMYK(color: ColorInput, options: InputOptions = {}): string {
         const model = utils.getColorModel(color);
-        const detectedOptions = getOptionsFromColorInput(options, color);
+        const detectedOptions = utils.getOptionsFromColorInput(options, color);
         const cmyk = getColorReturn<CMYKObject>(
             color,
             model,
@@ -734,7 +733,7 @@ export class ColorTranslator {
 
     public static toCMYKA(color: ColorInput, options: InputOptions = {}): string {
         const model = utils.getColorModel(color);
-        const detectedOptions = getOptionsFromColorInput(options, color);
+        const detectedOptions = utils.getOptionsFromColorInput(options, color);
         const cmyka = getColorReturn<CMYKObject>(
             color,
             model,
@@ -854,7 +853,7 @@ export class ColorTranslator {
                 .map((color: RGBObject): string => {
                     return CSS.RGB(
                         color,
-                        getOptionsFromColorInput(fourthParameter || {}, from, to)
+                        utils.getOptionsFromColorInput(fourthParameter || {}, from, to)
                     );
                 });
         }
@@ -868,7 +867,7 @@ export class ColorTranslator {
             .map((color: RGBObject): string => {
                 return CSS.RGB(
                     color,
-                    getOptionsFromColorInput(thirdParameter || {}, from, to)
+                    utils.getOptionsFromColorInput(thirdParameter || {}, from, to)
                 );
             });
     }
@@ -936,7 +935,7 @@ export class ColorTranslator {
                 .map((color: RGBObject): string => {
                     return CSS.RGB(
                         color,
-                        getOptionsFromColorInput(fourthParameter || {}, from, to)
+                        utils.getOptionsFromColorInput(fourthParameter || {}, from, to)
                     );
                 });
         }
@@ -950,7 +949,7 @@ export class ColorTranslator {
             .map((color: RGBObject): string => {
                 return CSS.RGB(
                     color,
-                    getOptionsFromColorInput(thirdParameter || {}, from, to)
+                    utils.getOptionsFromColorInput(thirdParameter || {}, from, to)
                 );
             });
     }
@@ -1018,7 +1017,7 @@ export class ColorTranslator {
                 .map((color: HSLObject) => {
                     return CSS.HSL(
                         color,
-                        getOptionsFromColorInput(fourthParameter || {}, from, to)
+                        utils.getOptionsFromColorInput(fourthParameter || {}, from, to)
                     );
                 });
         }
@@ -1032,7 +1031,7 @@ export class ColorTranslator {
             .map((color: HSLObject) => {
                 return CSS.HSL(
                     color,
-                    getOptionsFromColorInput(thirdParameter || {}, from, to)
+                    utils.getOptionsFromColorInput(thirdParameter || {}, from, to)
                 );
             });
     }
@@ -1100,7 +1099,7 @@ export class ColorTranslator {
                 .map((color: HSLObject): string => {
                     return CSS.HSL(
                         color,
-                        getOptionsFromColorInput(fourthParameter || {}, from, to)
+                        utils.getOptionsFromColorInput(fourthParameter || {}, from, to)
                     );
                 });
         }
@@ -1114,7 +1113,7 @@ export class ColorTranslator {
             .map((color: HSLObject): string => {
                 return CSS.HSL(
                     color,
-                    getOptionsFromColorInput(thirdParameter || {}, from, to)
+                    utils.getOptionsFromColorInput(thirdParameter || {}, from, to)
                 );
             });
     }
@@ -1182,7 +1181,7 @@ export class ColorTranslator {
                 .map((color: CIELabObject) => {
                     return CSS.CIELab(
                         color,
-                        getOptionsFromColorInput(fourthParameter || {}, from, to)
+                        utils.getOptionsFromColorInput(fourthParameter || {}, from, to)
                     );
                 });
         }
@@ -1196,7 +1195,7 @@ export class ColorTranslator {
             .map((color: CIELabObject) => {
                 return CSS.CIELab(
                     color,
-                    getOptionsFromColorInput(thirdParameter || {}, from, to)
+                    utils.getOptionsFromColorInput(thirdParameter || {}, from, to)
                 );
             });
     }
@@ -1264,7 +1263,7 @@ export class ColorTranslator {
                 .map((color: CIELabObject) => {
                     return CSS.CIELab(
                         color,
-                        getOptionsFromColorInput(fourthParameter || {}, from, to)
+                        utils.getOptionsFromColorInput(fourthParameter || {}, from, to)
                     );
                 });
         }
@@ -1278,7 +1277,7 @@ export class ColorTranslator {
             .map((color: CIELabObject) => {
                 return CSS.CIELab(
                     color,
-                    getOptionsFromColorInput(thirdParameter || {}, from, to)
+                    utils.getOptionsFromColorInput(thirdParameter || {}, from, to)
                 );
             });
     }
@@ -1319,7 +1318,7 @@ export class ColorTranslator {
                 colors,
                 secondParameter,
                 false,
-                getOptionsFromColorInput(
+                utils.getOptionsFromColorInput(
                     thirdParameter || {},
                     ...colors
                 )
@@ -1329,7 +1328,7 @@ export class ColorTranslator {
             colors,
             Mix.ADDITIVE,
             false,
-            getOptionsFromColorInput(
+            utils.getOptionsFromColorInput(
                 secondParameter || {},
                 ...colors
             )
@@ -1355,7 +1354,7 @@ export class ColorTranslator {
                 colors,
                 secondParameter,
                 true,
-                getOptionsFromColorInput(
+                utils.getOptionsFromColorInput(
                     thirdParameter || {},
                     ...colors
                 )
@@ -1365,7 +1364,7 @@ export class ColorTranslator {
             colors,
             Mix.ADDITIVE,
             true,
-            getOptionsFromColorInput(
+            utils.getOptionsFromColorInput(
                 secondParameter || {},
                 ...colors
             )
@@ -1391,7 +1390,7 @@ export class ColorTranslator {
                 colors,
                 secondParameter,
                 false,
-                getOptionsFromColorInput(
+                utils.getOptionsFromColorInput(
                     thirdParameter || {},
                     ...colors
                 )
@@ -1401,7 +1400,7 @@ export class ColorTranslator {
             colors,
             Mix.ADDITIVE,
             false,
-            getOptionsFromColorInput(
+            utils.getOptionsFromColorInput(
                 secondParameter || {},
                 ...colors
             )
@@ -1427,7 +1426,7 @@ export class ColorTranslator {
                 colors,
                 secondParameter,
                 true,
-                getOptionsFromColorInput(
+                utils.getOptionsFromColorInput(
                     thirdParameter || {},
                     ...colors
                 )
@@ -1437,7 +1436,7 @@ export class ColorTranslator {
             colors,
             Mix.ADDITIVE,
             true,
-            getOptionsFromColorInput(
+            utils.getOptionsFromColorInput(
                 secondParameter || {},
                 ...colors
             )
@@ -1463,7 +1462,7 @@ export class ColorTranslator {
                 colors,
                 secondParameter,
                 false,
-                getOptionsFromColorInput(
+                utils.getOptionsFromColorInput(
                     thirdParameter || {},
                     ...colors
                 )
@@ -1473,7 +1472,7 @@ export class ColorTranslator {
             colors,
             Mix.ADDITIVE,
             false,
-            getOptionsFromColorInput(
+            utils.getOptionsFromColorInput(
                 secondParameter || {},
                 ...colors
             )
@@ -1499,7 +1498,7 @@ export class ColorTranslator {
                 colors,
                 secondParameter,
                 true,
-                getOptionsFromColorInput(
+                utils.getOptionsFromColorInput(
                     thirdParameter || {},
                     ...colors
                 )
@@ -1509,7 +1508,7 @@ export class ColorTranslator {
             colors,
             Mix.ADDITIVE,
             true,
-            getOptionsFromColorInput(
+            utils.getOptionsFromColorInput(
                 secondParameter || {},
                 ...colors
             )
@@ -1535,7 +1534,7 @@ export class ColorTranslator {
                 colors,
                 secondParameter,
                 false,
-                getOptionsFromColorInput(
+                utils.getOptionsFromColorInput(
                     thirdParameter || {},
                     ...colors
                 )
@@ -1545,7 +1544,7 @@ export class ColorTranslator {
             colors,
             Mix.ADDITIVE,
             false,
-            getOptionsFromColorInput(
+            utils.getOptionsFromColorInput(
                 secondParameter || {},
                 ...colors
             )
@@ -1571,7 +1570,7 @@ export class ColorTranslator {
                 colors,
                 secondParameter,
                 true,
-                getOptionsFromColorInput(
+                utils.getOptionsFromColorInput(
                     thirdParameter || {},
                     ...colors
                 )
@@ -1581,7 +1580,7 @@ export class ColorTranslator {
             colors,
             Mix.ADDITIVE,
             true,
-            getOptionsFromColorInput(
+            utils.getOptionsFromColorInput(
                 secondParameter || {},
                 ...colors
             )
@@ -1607,7 +1606,7 @@ export class ColorTranslator {
                 colors,
                 secondParameter,
                 false,
-                getOptionsFromColorInput(
+                utils.getOptionsFromColorInput(
                     thirdParameter || {},
                     ...colors
                 )
@@ -1617,7 +1616,7 @@ export class ColorTranslator {
             colors,
             Mix.ADDITIVE,
             false,
-            getOptionsFromColorInput(
+            utils.getOptionsFromColorInput(
                 secondParameter || {},
                 ...colors
             )
@@ -1643,7 +1642,7 @@ export class ColorTranslator {
                 colors,
                 secondParameter,
                 true,
-                getOptionsFromColorInput(
+                utils.getOptionsFromColorInput(
                     thirdParameter || {},
                     ...colors
                 )
@@ -1653,7 +1652,7 @@ export class ColorTranslator {
             colors,
             Mix.ADDITIVE,
             true,
-            getOptionsFromColorInput(
+            utils.getOptionsFromColorInput(
                 secondParameter || {},
                 ...colors
             )
@@ -1679,7 +1678,7 @@ export class ColorTranslator {
                 colors,
                 secondParameter,
                 false,
-                getOptionsFromColorInput(
+                utils.getOptionsFromColorInput(
                     thirdParameter || {},
                     ...colors
                 )
@@ -1689,7 +1688,7 @@ export class ColorTranslator {
             colors,
             Mix.ADDITIVE,
             false,
-            getOptionsFromColorInput(
+            utils.getOptionsFromColorInput(
                 secondParameter || {},
                 ...colors
             )
@@ -1715,7 +1714,7 @@ export class ColorTranslator {
                 colors,
                 secondParameter,
                 true,
-                getOptionsFromColorInput(
+                utils.getOptionsFromColorInput(
                     thirdParameter || {},
                     ...colors
                 )
@@ -1725,7 +1724,7 @@ export class ColorTranslator {
             colors,
             Mix.ADDITIVE,
             true,
-            getOptionsFromColorInput(
+            utils.getOptionsFromColorInput(
                 secondParameter || {},
                 ...colors
             )
@@ -1755,7 +1754,7 @@ export class ColorTranslator {
                 color,
                 secondParameter,
                 true,
-                getOptionsFromColorInput(
+                utils.getOptionsFromColorInput(
                     thirdParameter || {},
                     color
                 )
@@ -1765,7 +1764,7 @@ export class ColorTranslator {
             color,
             DEFAULT_SHADES_TINTS_STEPS,
             true,
-            getOptionsFromColorInput(
+            utils.getOptionsFromColorInput(
                 secondParameter || {},
                 color
             )
@@ -1795,7 +1794,7 @@ export class ColorTranslator {
                 color,
                 secondParameter,
                 false,
-                getOptionsFromColorInput(
+                utils.getOptionsFromColorInput(
                     thirdParameter || {},
                     color
                 )
@@ -1805,7 +1804,7 @@ export class ColorTranslator {
             color,
             DEFAULT_SHADES_TINTS_STEPS,
             false,
-            getOptionsFromColorInput(
+            utils.getOptionsFromColorInput(
                 secondParameter || {},
                 color
             )
@@ -1850,7 +1849,7 @@ export class ColorTranslator {
                 isMix(thirdParam)
                     ? thirdParam
                     : Mix.ADDITIVE,
-                getOptionsFromColorInput(
+                utils.getOptionsFromColorInput(
                     isMix(thirdParam)
                         ? (fourthParam || {})
                         : thirdParam || {},
@@ -1862,7 +1861,7 @@ export class ColorTranslator {
                 Harmony.COMPLEMENTARY,
                 color,
                 secondParam,
-                getOptionsFromColorInput(
+                utils.getOptionsFromColorInput(
                     thirdParam as InputOptions || {},
                     color
                 )
@@ -1872,7 +1871,7 @@ export class ColorTranslator {
             Harmony.COMPLEMENTARY,
             color,
             Mix.ADDITIVE,
-            getOptionsFromColorInput(
+            utils.getOptionsFromColorInput(
                 secondParam || {},
                 color
             )

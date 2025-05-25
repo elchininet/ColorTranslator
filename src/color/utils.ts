@@ -1,27 +1,27 @@
 import {
+    AnglesUnitEnum,
     CIELabObject,
     CIELabObjectGeneric,
     CIELabOutput,
-    CIELabRegExpMatchArray,
+    CMYKFunctionEnum,
     CMYKObject,
     CMYKObjectGeneric,
-    CMYKRegExpMatchArray,
     Color,
     ColorInput,
     ColorInputWithoutCMYK,
     ColorOutput,
+    ColorUnitEnum,
     HEXObject,
     HEXOutput,
-    HEXRegExpMatchArray,
     HSLObject,
     HSLObjectGeneric,
     HSLOutput,
-    HSLRegExpMatchArray,
+    InputOptions,
+    MatchOptions,
     Options,
     RGBObject,
     RGBObjectGeneric,
     RGBOutput,
-    RGBRegExpMatchArray,
     RGYBObject,
     RYBObject
 } from '@types';
@@ -30,27 +30,37 @@ import {
     ColorKeywords,
     ColorModel,
     COLORREGS,
+    COMMAS_AND_NEXT_CHARS,
+    DEFAULT_OPTIONS,
     ERRORS,
     HEX,
     Mix,
     MixString,
     PCENT,
+    SPACES,
+    TypeOf,
     VALID_COLOR_OBJECTS
 } from '#constants';
 import {
     getBase125Number,
     getBase255Number,
     getCMYKNumber,
-    getDEC,
     getHEX,
     getOrderedArrayString,
     hasProp,
     minmax,
+    normalizeAlpha,
     normalizeHue,
     percent,
-    percentNumber,
     round
 } from '#helpers';
+import {
+    CIELabStringParser,
+    CMYKStringParser,
+    HEXStringParser,
+    HSLStringParser,
+    RGBStringParser
+} from '#parsers';
 import {
     cmykToRGB,
     hslToRGB,
@@ -65,18 +75,6 @@ import {
 import { CSS } from '#color/css';
 
 type HarmonyFunction = (color: HSLObject, mode: MixString) => HSLObject[];
-
-//---Normalize alpha
-export const normalizeAlpha = (alpha: number | string | undefined | null): number => {
-    if (typeof alpha === 'string') {
-        if(PCENT.test(alpha)) {
-            alpha = percentNumber(alpha) / 100;
-        } else {
-            alpha = +alpha;
-        }
-    }
-    return (isNaN(+alpha) || alpha > 1) ? 1 : round(alpha);
-};
 
 //---Harmony
 const harmony = (
@@ -182,75 +180,19 @@ export const getRGBObjectFromString = {
         const colorStr = !~COLOR_KEYS.indexOf(color)
             ? color
             : ColorKeywords[color as keyof typeof ColorKeywords];
-        const match = colorStr.match(COLORREGS.HEX) as HEXRegExpMatchArray;
-        const groups = match.groups;
-        const object: RGBObject = {
-            R: getDEC(groups.r ?? groups.rr),
-            G: getDEC(groups.g ?? groups.gg),
-            B: getDEC(groups.b ?? groups.bb)
-        };
-        const A = groups.a ?? groups.aa;
-        if (A !== undefined) {
-            object.A = getDEC(A) / 255;
-        }
-        return object;
+        return new HEXStringParser(colorStr).rgb;
     },
     [ColorModel.RGB](color: string): RGBObject {
-        const match = color.match(COLORREGS.RGB) as RGBRegExpMatchArray;
-        const groups = match.groups;
-        const R = getBase255Number(groups.r_legacy ?? groups.r);
-        const G = getBase255Number(groups.g_legacy ?? groups.g);
-        const B = getBase255Number(groups.b_legacy ?? groups.b);
-        const A = groups.a_legacy ?? groups.a;
-        const object: RGBObject = {
-            R: Math.min(R, 255),
-            G: Math.min(G, 255),
-            B: Math.min(B, 255)
-        };
-        if (A !== undefined) {
-            object.A = normalizeAlpha(A);
-        }
-        return object;
+        return new RGBStringParser(color).rgb;
     },
     [ColorModel.HSL](color: string): RGBObject {
-        const match = color.match(COLORREGS.HSL) as HSLRegExpMatchArray;
-        const groups = match.groups;
-        const H = normalizeHue(groups.h_legacy ?? groups.h);
-        const S = percent(groups.s_legacy ?? groups.s);
-        const L = percent(groups.l_legacy ?? groups.l);
-        const A = groups.a_legacy ?? groups.a;
-        const RGB = hslToRGB(H, S, L);
-        if (A !== undefined) {
-            RGB.A = normalizeAlpha(A);
-        }
-        return RGB;
+        return new HSLStringParser(color).rgb;
     },
     [ColorModel.CIELab](color: string): RGBObject {
-        const match = color.match(COLORREGS.CIELab) as CIELabRegExpMatchArray;
-        const groups = match.groups;
-        const L = percent(groups.L);
-        const a = getBase125Number(groups.a);
-        const b = getBase125Number(groups.b);
-        const A = groups.A;
-        const RGB = labToRgb(L, a, b);
-        if (A !== undefined) {
-            RGB.A = normalizeAlpha(A);
-        }
-        return RGB;
+        return new CIELabStringParser(color).rgb;
     },
     [ColorModel.CMYK](color: string): RGBObject {
-        const match = color.match(COLORREGS.CMYK) as CMYKRegExpMatchArray;
-        const groups = match.groups;
-        const C = getCMYKNumber(groups.c_legacy ?? groups.c);
-        const M = getCMYKNumber(groups.m_legacy ?? groups.m);
-        const Y = getCMYKNumber(groups.y_legacy ?? groups.y);
-        const K = getCMYKNumber(groups.k_legacy ?? groups.k);
-        const A = groups.a_legacy ?? groups.a;
-        const RGB = cmykToRGB(C, M, Y, K);
-        if (A !== undefined) {
-            RGB.A = normalizeAlpha(A);
-        }
-        return RGB;
+        return new CMYKStringParser(color).rgb;
     }
 };
 
@@ -300,6 +242,148 @@ export const getRGBObjectFromObject = {
         }
         return RGB;
     }
+};
+
+export const getOptionsFromColorInput = (options: InputOptions, ...colors: ColorInput[]): Options => {
+    const cssColors: string[] = [];
+    const hslColors: AnglesUnitEnum[] = [];
+    const rgbColors: boolean[] = [];
+    const labColors: boolean[] = [];
+    const cmykColors: boolean[] = [];
+    const alphaValues: boolean[] = [];
+    const anglesUnitValues = Object.values<string>(AnglesUnitEnum);
+    const colorUnitValues = Object.values<string>(ColorUnitEnum);
+    const cmykFunctionValues = Object.values<string>(CMYKFunctionEnum);
+
+    const matchOptions: MatchOptions = {
+        legacyCSS: 0,
+        spacesAfterCommas: 0,
+        cmykFunction: 0
+    };
+
+    for(const color of colors) {
+
+        if (typeof color === 'string') {
+
+            cssColors.push(color);
+
+            if (color.includes(',')){
+                matchOptions.legacyCSS ++;
+                const commasWithNextCharacter = color.match(COMMAS_AND_NEXT_CHARS);
+                if (
+                    new Set(commasWithNextCharacter).size === 1 &&
+                    SPACES.test(commasWithNextCharacter[0].slice(1))
+                ) {
+                    matchOptions.spacesAfterCommas ++;
+                }
+            }
+
+            if (HSLStringParser.test(color)) {
+                const parser = new HSLStringParser(color);
+                hslColors.push(parser.angleUnit);
+                alphaValues.push(
+                    parser.hasPercentageAlpha
+                );
+                continue;
+            }
+
+            if (RGBStringParser.test(color)) {
+                const parser = new RGBStringParser(color);
+                rgbColors.push(
+                    parser.hasPercentageValues
+                );
+                alphaValues.push(
+                    parser.hasPercentageAlpha
+                );
+                continue;
+            }
+
+            if (CIELabStringParser.test(color)) {
+                const parser = new CIELabStringParser(color);
+                labColors.push(
+                    parser.hasPercentageValues
+                );
+                alphaValues.push(
+                    parser.hasPercentageAlpha
+                );
+                continue;
+            }
+
+            if (CMYKStringParser.test(color)) {
+                const parser = new CMYKStringParser(color);
+                cmykColors.push(
+                    parser.hasPercentageValues
+                );
+                if (color.startsWith('cmyk')) {
+                    matchOptions.cmykFunction ++;
+                }
+                alphaValues.push(
+                    parser.hasPercentageAlpha
+                );
+            }
+
+        }
+
+    }
+    return {
+        decimals: typeof options.decimals === TypeOf.NUMBER
+            ? options.decimals
+            : DEFAULT_OPTIONS.decimals,
+        legacyCSS: typeof options.legacyCSS === TypeOf.BOOLEAN
+            ? options.legacyCSS
+            : Boolean(
+                cssColors.length &&
+                matchOptions.legacyCSS === cssColors.length
+            ) || DEFAULT_OPTIONS.legacyCSS,
+        spacesAfterCommas: typeof options.spacesAfterCommas === TypeOf.BOOLEAN
+            ? options.spacesAfterCommas
+            : Boolean(
+                cssColors.length &&
+                matchOptions.spacesAfterCommas === cssColors.length
+            ) || DEFAULT_OPTIONS.spacesAfterCommas,
+        anglesUnit: options.anglesUnit && anglesUnitValues.includes(options.anglesUnit)
+            ? options.anglesUnit as AnglesUnitEnum
+            : (
+                new Set(hslColors).size === 1
+                    ? hslColors[0]
+                    : DEFAULT_OPTIONS.anglesUnit
+            ),
+        rgbUnit: options.rgbUnit && colorUnitValues.includes(options.rgbUnit)
+            ? options.rgbUnit as ColorUnitEnum
+            : (
+                new Set(rgbColors).size === 1 && rgbColors[0]
+                    ? ColorUnitEnum.PERCENT
+                    : DEFAULT_OPTIONS.rgbUnit
+            ),
+        labUnit: options.labUnit && colorUnitValues.includes(options.labUnit)
+            ? options.labUnit as ColorUnitEnum
+            : (
+                new Set(labColors).size === 1 && labColors[0]
+                    ? ColorUnitEnum.PERCENT
+                    : DEFAULT_OPTIONS.labUnit
+            ),
+        cmykUnit: options.cmykUnit && colorUnitValues.includes(options.cmykUnit)
+            ? options.cmykUnit as ColorUnitEnum
+            : (
+                new Set(cmykColors).size === 1 && !cmykColors[0]
+                    ? ColorUnitEnum.NONE
+                    : DEFAULT_OPTIONS.cmykUnit
+            ),
+        alphaUnit: options.alphaUnit && colorUnitValues.includes(options.alphaUnit)
+            ? options.alphaUnit as ColorUnitEnum
+            : (
+                new Set(alphaValues).size === 1 && alphaValues[0]
+                    ? ColorUnitEnum.PERCENT
+                    : DEFAULT_OPTIONS.alphaUnit
+            ),
+        cmykFunction: options.cmykFunction && cmykFunctionValues.includes(options.cmykFunction)
+            ? options.cmykFunction as CMYKFunctionEnum
+            : (
+                cmykColors.length && cmykColors.length === matchOptions.cmykFunction
+                    ? CMYKFunctionEnum.CMYK
+                    : DEFAULT_OPTIONS.cmykFunction
+            )
+    };
 };
 
 export const getRGBObject = (color: ColorInput, model: ColorModel = getColorModel(color)): RGBObject => {

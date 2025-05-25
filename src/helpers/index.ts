@@ -1,21 +1,10 @@
 import {
     AnglesUnitEnum,
     AngleUnitRegExpMatchArray,
-    CIELabRegExpMatchArray,
-    CMYKFunctionEnum,
-    CMYKRegExpMatchArray,
-    ColorInput,
-    ColorUnitEnum,
-    HSLRegExpMatchArray,
     InputOptions,
-    NumberOrString,
-    Options,
-    RGBRegExpMatchArray
+    NumberOrString
 } from '@types';
 import {
-    COLORREGS,
-    COMMAS_AND_NEXT_CHARS,
-    DEFAULT_OPTIONS,
     Harmony,
     HarmonyString,
     HEX,
@@ -23,9 +12,7 @@ import {
     MAX_DECIMALS,
     Mix,
     MixString,
-    PCENT,
-    SPACES,
-    TypeOf
+    PCENT
 } from '#constants';
 
 //---Has property
@@ -148,6 +135,18 @@ export const normalizeHue = (hue: number | string): number => {
     return hue;
 };
 
+//---Normalize alpha
+export const normalizeAlpha = (alpha: number | string | undefined | null): number => {
+    if (typeof alpha === 'string') {
+        if(PCENT.test(alpha)) {
+            alpha = percentNumber(alpha) / 100;
+        } else {
+            alpha = +alpha;
+        }
+    }
+    return (isNaN(+alpha) || alpha > 1) ? 1 : round(alpha);
+};
+
 export const translateDegrees = (degrees: number, units: AnglesUnitEnum): number => {
 
     let hue: number;
@@ -169,181 +168,6 @@ export const translateDegrees = (degrees: number, units: AnglesUnitEnum): number
     }
 
     return hue;
-};
-
-type MatchOptions = {
-    [K in keyof Pick<Options, 'legacyCSS' | 'spacesAfterCommas' | 'cmykFunction'>]: number;
-};
-
-export const getOptionsFromColorInput = (options: InputOptions, ...colors: ColorInput[]): Options => {
-    const cssColors: string[] = [];
-    const hslColors: AnglesUnitEnum[] = [];
-    const rgbColors: boolean[] = [];
-    const labColors: boolean[] = [];
-    const cmykColors: boolean[] = [];
-    const alphaValues: boolean[] = [];
-    const anglesUnitValues = Object.values<string>(AnglesUnitEnum);
-    const colorUnitValues = Object.values<string>(ColorUnitEnum);
-    const cmykFunctionValues = Object.values<string>(CMYKFunctionEnum);
-
-    const matchOptions: MatchOptions = {
-        legacyCSS: 0,
-        spacesAfterCommas: 0,
-        cmykFunction: 0
-    };
-
-    for(const color of colors) {
-
-        if (typeof color === 'string') {
-
-            cssColors.push(color);
-
-            if (color.includes(',')){
-                matchOptions.legacyCSS ++;
-                const commasWithNextCharacter = color.match(COMMAS_AND_NEXT_CHARS);
-                if (
-                    new Set(commasWithNextCharacter).size === 1 &&
-                    SPACES.test(commasWithNextCharacter[0].slice(1))
-                ) {
-                    matchOptions.spacesAfterCommas ++;
-                }
-            }
-
-            if (color.match(COLORREGS.HSL)) {
-                const match = color.match(COLORREGS.HSL) as HSLRegExpMatchArray;
-                const groups = match.groups;
-                const angle = groups.h_legacy ?? groups.h;
-                const alpha = groups.a_legacy ?? groups.a;
-                const angleUnitMatch = angle.match(HSL_HUE) as AngleUnitRegExpMatchArray;
-                const angleUnit = angleUnitMatch.groups.units;
-                hslColors.push(
-                    angleUnit === ''
-                        ? AnglesUnitEnum.NONE
-                        : angleUnit as AnglesUnitEnum
-                );
-                alphaValues.push(
-                    PCENT.test(alpha)
-                );
-                continue;
-            }
-
-            if (COLORREGS.RGB.test(color)) {
-                const match = color.match(COLORREGS.RGB) as RGBRegExpMatchArray;
-                const groups = match.groups;
-                const R = groups.r_legacy ?? groups.r;
-                const G = groups.g_legacy ?? groups.g;
-                const B = groups.b_legacy ?? groups.b;
-                const A = groups.a_legacy ?? groups.a;
-                rgbColors.push(
-                    PCENT.test(R) &&
-                    PCENT.test(G) &&
-                    PCENT.test(B)
-                );
-                alphaValues.push(
-                    PCENT.test(A)
-                );
-                continue;
-            }
-
-            if (COLORREGS.CIELab.test(color)) {
-                const match = color.match(COLORREGS.CIELab) as CIELabRegExpMatchArray;
-                const groups = match.groups;
-                const { L, a, b, A } = groups;
-                labColors.push(
-                    PCENT.test(L) &&
-                    PCENT.test(a) &&
-                    PCENT.test(b)
-                );
-                alphaValues.push(
-                    PCENT.test(A)
-                );
-                continue;
-            }
-
-            if (color.match(COLORREGS.CMYK)) {
-                const match = color.match(COLORREGS.CMYK) as CMYKRegExpMatchArray;
-                const groups = match.groups;
-                const C = groups.c_legacy ?? groups.c;
-                const M = groups.m_legacy ?? groups.m;
-                const Y = groups.y_legacy ?? groups.y;
-                const K = groups.k_legacy ?? groups.k;
-                const A = groups.a_legacy ?? groups.a;
-                cmykColors.push(
-                    PCENT.test(C) &&
-                    PCENT.test(M) &&
-                    PCENT.test(Y) &&
-                    PCENT.test(K)
-                );
-                if (color.startsWith('cmyk')) {
-                    matchOptions.cmykFunction ++;
-                }
-                alphaValues.push(
-                    PCENT.test(A)
-                );
-            }
-
-        }
-
-    }
-    return {
-        decimals: typeof options.decimals === TypeOf.NUMBER
-            ? options.decimals
-            : DEFAULT_OPTIONS.decimals,
-        legacyCSS: typeof options.legacyCSS === TypeOf.BOOLEAN
-            ? options.legacyCSS
-            : Boolean(
-                cssColors.length &&
-                matchOptions.legacyCSS === cssColors.length
-            ) || DEFAULT_OPTIONS.legacyCSS,
-        spacesAfterCommas: typeof options.spacesAfterCommas === TypeOf.BOOLEAN
-            ? options.spacesAfterCommas
-            : Boolean(
-                cssColors.length &&
-                matchOptions.spacesAfterCommas === cssColors.length
-            ) || DEFAULT_OPTIONS.spacesAfterCommas,
-        anglesUnit: options.anglesUnit && anglesUnitValues.includes(options.anglesUnit)
-            ? options.anglesUnit as AnglesUnitEnum
-            : (
-                new Set(hslColors).size === 1
-                    ? hslColors[0]
-                    : DEFAULT_OPTIONS.anglesUnit
-            ),
-        rgbUnit: options.rgbUnit && colorUnitValues.includes(options.rgbUnit)
-            ? options.rgbUnit as ColorUnitEnum
-            : (
-                new Set(rgbColors).size === 1 && rgbColors[0]
-                    ? ColorUnitEnum.PERCENT
-                    : DEFAULT_OPTIONS.rgbUnit
-            ),
-        labUnit: options.labUnit && colorUnitValues.includes(options.labUnit)
-            ? options.labUnit as ColorUnitEnum
-            : (
-                new Set(labColors).size === 1 && labColors[0]
-                    ? ColorUnitEnum.PERCENT
-                    : DEFAULT_OPTIONS.labUnit
-            ),
-        cmykUnit: options.cmykUnit && colorUnitValues.includes(options.cmykUnit)
-            ? options.cmykUnit as ColorUnitEnum
-            : (
-                new Set(cmykColors).size === 1 && !cmykColors[0]
-                    ? ColorUnitEnum.NONE
-                    : DEFAULT_OPTIONS.cmykUnit
-            ),
-        alphaUnit: options.alphaUnit && colorUnitValues.includes(options.alphaUnit)
-            ? options.alphaUnit as ColorUnitEnum
-            : (
-                new Set(alphaValues).size === 1 && alphaValues[0]
-                    ? ColorUnitEnum.PERCENT
-                    : DEFAULT_OPTIONS.alphaUnit
-            ),
-        cmykFunction: options.cmykFunction && cmykFunctionValues.includes(options.cmykFunction)
-            ? options.cmykFunction as CMYKFunctionEnum
-            : (
-                cmykColors.length && cmykColors.length === matchOptions.cmykFunction
-                    ? CMYKFunctionEnum.CMYK
-                    : DEFAULT_OPTIONS.cmykFunction
-            )
-    };
 };
 
 export const isHarmony = (param: HarmonyString | MixString | InputOptions): param is HarmonyString => {
