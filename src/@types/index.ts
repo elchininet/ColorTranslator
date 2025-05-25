@@ -88,6 +88,76 @@ export type HSLOutput = string | HSLObject;
 export type CMYKOutput = string | CMYKObject;
 export type ColorOutput = HEXOutput | RGBOutput | HSLOutput | CIELabOutput;
 
+export interface HEXRegExpMatchArray extends RegExpMatchArray {
+    groups: {
+        r: string;
+        g: string;
+        b: string;
+        a: string | undefined;
+        rr: string;
+        gg: string;
+        bb: string;
+        aa: string | undefined;
+    }
+}
+
+export interface RGBRegExpMatchArray extends RegExpMatchArray {
+    groups: {
+        r_legacy: string;
+        g_legacy: string;
+        b_legacy: string;
+        a_legacy: string | undefined;
+        r: string;
+        g: string;
+        b: string;
+        a: string | undefined;
+    }
+}
+
+export interface HSLRegExpMatchArray extends RegExpMatchArray {
+    groups: {
+        h_legacy: string;
+        s_legacy: string;
+        l_legacy: string;
+        a_legacy: string | undefined;
+        h: string;
+        s: string;
+        l: string;
+        a: string | undefined;
+    }
+}
+
+export interface CIELabRegExpMatchArray extends RegExpMatchArray {
+    groups: {
+        L: string;
+        a: string;
+        b: string;
+        A: string | undefined;
+    }
+}
+
+export interface CMYKRegExpMatchArray extends RegExpMatchArray {
+    groups: {
+        c_legacy: string;
+        m_legacy: string;
+        y_legacy: string;
+        k_legacy: string;
+        a_legacy: string | undefined;
+        c: string;
+        m: string;
+        y: string;
+        k: string;
+        a: string | undefined;
+    }
+}
+
+export interface AngleUnitRegExpMatchArray extends RegExpMatchArray {
+    groups: {
+        number: string;
+        units: string;
+    }
+}
+
 export interface ObjectProps<T> {
     [key: string]: T;
 }

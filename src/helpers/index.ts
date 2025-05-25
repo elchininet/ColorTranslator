@@ -1,26 +1,31 @@
 import {
-    Options,
+    AnglesUnitEnum,
+    AngleUnitRegExpMatchArray,
+    CIELabRegExpMatchArray,
+    CMYKFunctionEnum,
+    CMYKRegExpMatchArray,
+    ColorInput,
+    ColorUnitEnum,
+    HSLRegExpMatchArray,
     InputOptions,
     NumberOrString,
-    ColorInput,
-    AnglesUnitEnum,
-    ColorUnitEnum,
-    CMYKFunctionEnum
+    Options,
+    RGBRegExpMatchArray
 } from '@types';
 import {
-    PCENT,
-    HEX,
-    MAX_DECIMALS,
-    DEFAULT_OPTIONS,
-    COMMAS_AND_NEXT_CHARS,
-    SPACES,
     COLORREGS,
-    HSL_HUE,
-    TypeOf,
+    COMMAS_AND_NEXT_CHARS,
+    DEFAULT_OPTIONS,
     Harmony,
     HarmonyString,
+    HEX,
+    HSL_HUE,
+    MAX_DECIMALS,
     Mix,
-    MixString
+    MixString,
+    PCENT,
+    SPACES,
+    TypeOf
 } from '#constants';
 
 //---Has property
@@ -116,9 +121,10 @@ export const normalizeHue = (hue: number | string): number => {
 
     if (typeof hue === 'string') {
 
-        const matches = hue.match(HSL_HUE) as string[];
-        const value = +matches[1];
-        const units = matches[2] as AnglesUnitEnum;
+        const matches = hue.match(HSL_HUE) as AngleUnitRegExpMatchArray;
+        const groups = matches.groups;
+        const value = +groups.number;
+        const units = groups.units as AnglesUnitEnum;
         switch(units) {
             case AnglesUnitEnum.RADIANS:
                 hue = round(degrees(value));
@@ -204,10 +210,12 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
             }
 
             if (color.match(COLORREGS.HSL)) {
-                const match = color.match(COLORREGS.HSL);
-                const angle = match[1] || match[5];
-                const alpha = match[8];
-                const angleUnit = angle.match(HSL_HUE)[2];
+                const match = color.match(COLORREGS.HSL) as HSLRegExpMatchArray;
+                const groups = match.groups;
+                const angle = groups.h_legacy ?? groups.h;
+                const alpha = groups.a_legacy ?? groups.a;
+                const angleUnitMatch = angle.match(HSL_HUE) as AngleUnitRegExpMatchArray;
+                const angleUnit = angleUnitMatch.groups.units;
                 hslColors.push(
                     angleUnit === ''
                         ? AnglesUnitEnum.NONE
@@ -220,11 +228,12 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
             }
 
             if (COLORREGS.RGB.test(color)) {
-                const match = color.match(COLORREGS.RGB);
-                const R = match[1] || match[5];
-                const G = match[2] || match[6];
-                const B = match[3] || match[7];
-                const A = match[8];
+                const match = color.match(COLORREGS.RGB) as RGBRegExpMatchArray;
+                const groups = match.groups;
+                const R = groups.r_legacy ?? groups.r;
+                const G = groups.g_legacy ?? groups.g;
+                const B = groups.b_legacy ?? groups.b;
+                const A = groups.a_legacy ?? groups.a;
                 rgbColors.push(
                     PCENT.test(R) &&
                     PCENT.test(G) &&
@@ -237,11 +246,9 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
             }
 
             if (COLORREGS.CIELab.test(color)) {
-                const match = color.match(COLORREGS.CIELab);
-                const L = match[1];
-                const a = match[2];
-                const b = match[3];
-                const A = match[4];
+                const match = color.match(COLORREGS.CIELab) as CIELabRegExpMatchArray;
+                const groups = match.groups;
+                const { L, a, b, A } = groups;
                 labColors.push(
                     PCENT.test(L) &&
                     PCENT.test(a) &&
@@ -254,12 +261,13 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
             }
 
             if (color.match(COLORREGS.CMYK)) {
-                const match = color.match(COLORREGS.CMYK);
-                const C = match[1] || match[6];
-                const M = match[2] || match[7];
-                const Y = match[3] || match[8];
-                const K = match[4] || match[9];
-                const A = match[10];
+                const match = color.match(COLORREGS.CMYK) as CMYKRegExpMatchArray;
+                const groups = match.groups;
+                const C = groups.c_legacy ?? groups.c;
+                const M = groups.m_legacy ?? groups.m;
+                const Y = groups.y_legacy ?? groups.y;
+                const K = groups.k_legacy ?? groups.k;
+                const A = groups.a_legacy ?? groups.a;
                 cmykColors.push(
                     PCENT.test(C) &&
                     PCENT.test(M) &&

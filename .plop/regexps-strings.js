@@ -10,39 +10,39 @@ module.exports = {
     COLOR_REGEXP_STRINGS: {
         HEX: `
             ^#(?:
-                    (${HEX_DIGIT})
-                    (${HEX_DIGIT})
-                    (${HEX_DIGIT})
-                    (${HEX_DIGIT})?
+                    (?<r>${HEX_DIGIT})
+                    (?<g>${HEX_DIGIT})
+                    (?<b>${HEX_DIGIT})
+                    (?<a>${HEX_DIGIT})?
                 |
-                    (${HEX_DIGIT_DOUBLE})
-                    (${HEX_DIGIT_DOUBLE})
-                    (${HEX_DIGIT_DOUBLE})
-                    (${HEX_DIGIT_DOUBLE})?
+                    (?<rr>${HEX_DIGIT_DOUBLE})
+                    (?<gg>${HEX_DIGIT_DOUBLE})
+                    (?<bb>${HEX_DIGIT_DOUBLE})
+                    (?<aa>${HEX_DIGIT_DOUBLE})?
             )$
         `,
         RGB: `
             ^rgba?${SPACE}\\(
                 ${SPACE}
                 (?:
-                        (${NUMBER_WITH_DECIMALS}%?)
+                        (?<r_legacy>${NUMBER_WITH_DECIMALS}%?)
                         ${COMMA}
-                        (${NUMBER_WITH_DECIMALS}%?)
+                        (?<g_legacy>${NUMBER_WITH_DECIMALS}%?)
                         ${COMMA}
-                        (${NUMBER_WITH_DECIMALS}%?)
+                        (?<b_legacy>${NUMBER_WITH_DECIMALS}%?)
                         (?:
                             ${COMMA}
-                            (${NUMBER_WITH_DECIMALS})
-                        )?
+                            (?<a_legacy>${NUMBER_WITH_DECIMALS})
+                        )?   
                     |
-                        (${NUMBER_WITH_DECIMALS}%?)
+                        (?<r>${NUMBER_WITH_DECIMALS}%?)
                         ${SPACE}
-                        (${NUMBER_WITH_DECIMALS}%?)
+                        (?<g>${NUMBER_WITH_DECIMALS}%?)
                         ${SPACE}
-                        (${NUMBER_WITH_DECIMALS}%?)
+                        (?<b>${NUMBER_WITH_DECIMALS}%?)
                         (?:
                             ${SLASH}
-                            (${NUMBER_WITH_DECIMALS}%?)
+                            (?<a>${NUMBER_WITH_DECIMALS}%?)
                         )?
                 )
                 ${SPACE}
@@ -52,24 +52,24 @@ module.exports = {
             ^hsla?${SPACE}\\(
                 ${SPACE}
                 (?:
-                        (-?${NUMBER_WITH_DECIMALS}${HSL_DEGREES_UNITS})
+                        (?<h_legacy>-?${NUMBER_WITH_DECIMALS}${HSL_DEGREES_UNITS})
                         ${COMMA}
-                        (${NUMBER_WITH_DECIMALS})%
+                        (?<s_legacy>${NUMBER_WITH_DECIMALS})%
                         ${COMMA}
-                        (${NUMBER_WITH_DECIMALS})%
+                        (?<l_legacy>${NUMBER_WITH_DECIMALS})%
                         (?:
                             ${COMMA}
-                            (${NUMBER_WITH_DECIMALS})
+                            (?<a_legacy>${NUMBER_WITH_DECIMALS})
                         )?
                     |
-                        (-?${NUMBER_WITH_DECIMALS}${HSL_DEGREES_UNITS})
+                        (?<h>-?${NUMBER_WITH_DECIMALS}${HSL_DEGREES_UNITS})
                         ${SPACE}
-                        (${NUMBER_WITH_DECIMALS})%
+                        (?<s>${NUMBER_WITH_DECIMALS})%
                         ${SPACE}
-                        (${NUMBER_WITH_DECIMALS})%
+                        (?<l>${NUMBER_WITH_DECIMALS})%
                         (?:
                             ${SLASH}
-                            (${NUMBER_WITH_DECIMALS}%?)
+                            (?<a>${NUMBER_WITH_DECIMALS}%?)
                         )?
                 )
                 ${SPACE}
@@ -79,14 +79,14 @@ module.exports = {
             ^lab${SPACE}\\(
                     ${SPACE}
                     (?:
-                        (${NUMBER_WITH_DECIMALS}%?)
+                        (?<L>${NUMBER_WITH_DECIMALS}%?)
                         ${SPACE}
-                        (-?${NUMBER_WITH_DECIMALS}%?)
+                        (?<a>-?${NUMBER_WITH_DECIMALS}%?)
                         ${SPACE}
-                        (-?${NUMBER_WITH_DECIMALS}%?)
+                        (?<b>-?${NUMBER_WITH_DECIMALS}%?)
                         (?:
                             ${SLASH}
-                            (${NUMBER_WITH_DECIMALS}%?)
+                            (?<A>${NUMBER_WITH_DECIMALS}%?)
                         )?
                     )
                     ${SPACE}
@@ -97,35 +97,35 @@ module.exports = {
             ${SPACE}
             \\(${SPACE}
                 (?:
-                    (${NUMBER_WITH_DECIMALS}%?)
+                    (?<c_legacy>${NUMBER_WITH_DECIMALS}%?)
                     ${COMMA}
-                    (${NUMBER_WITH_DECIMALS}%?)
+                    (?<m_legacy>${NUMBER_WITH_DECIMALS}%?)
                     ${COMMA}
-                    (${NUMBER_WITH_DECIMALS}%?)
+                    (?<y_legacy>${NUMBER_WITH_DECIMALS}%?)
                     ${COMMA}
-                    (${NUMBER_WITH_DECIMALS}%?)
+                    (?<k_legacy>${NUMBER_WITH_DECIMALS}%?)
                     (?:
                         ${COMMA}
-                        (${NUMBER_WITH_DECIMALS})
+                        (?<a_legacy>${NUMBER_WITH_DECIMALS})
                     )?
                 |
-                    (${NUMBER_WITH_DECIMALS}%?)
+                    (?<c>${NUMBER_WITH_DECIMALS}%?)
                     ${SPACE}
-                    (${NUMBER_WITH_DECIMALS}%?)
+                    (?<m>${NUMBER_WITH_DECIMALS}%?)
                     ${SPACE}
-                    (${NUMBER_WITH_DECIMALS}%?)
+                    (?<y>${NUMBER_WITH_DECIMALS}%?)
                     ${SPACE}
-                    (${NUMBER_WITH_DECIMALS}%?)
+                    (?<k>${NUMBER_WITH_DECIMALS}%?)
                     (?:
                         ${SLASH}
-                        (${NUMBER_WITH_DECIMALS}%?)
+                        (?<a>${NUMBER_WITH_DECIMALS}%?)
                     )?
                 )
                 ${SPACE}
             \\)$
         `
     },
-    HSL_HUE: new RegExp(`^(-?${NUMBER_WITH_DECIMALS})(${HSL_DEGREES_UNITS})$`),
+    HSL_HUE: new RegExp(`^(?<number>-?${NUMBER_WITH_DECIMALS})(?<units>${HSL_DEGREES_UNITS})$`),
     toRegExp: function (str, caseInsensitive = false) {
         const stringWithoutSpaces = str.replace(/\s*/gm, '');
         return caseInsensitive

@@ -1,44 +1,44 @@
 import {
-    Color,
-    ColorInput,
-    ColorInputWithoutCMYK,
-    HSLObjectGeneric,
-    HEXObject,
-    RGBObject,
-    HSLObject,
     CIELabObject,
     CIELabObjectGeneric,
     CMYKObject,
+    Color,
+    ColorInput,
+    ColorInputWithoutCMYK,
     ColorOutput,
+    HEXObject,
+    HSLObject,
+    HSLObjectGeneric,
+    InputOptions,
     Options,
-    InputOptions
+    RGBObject
 } from '@types';
 import {
     ColorModel,
+    DEFAULT_BLEND_STEPS,
+    DEFAULT_SHADES_TINTS_STEPS,
     Harmony,
     HarmonyString,
     Mix,
-    MixString,
-    DEFAULT_BLEND_STEPS,
-    DEFAULT_SHADES_TINTS_STEPS
+    MixString
 } from '#constants';
 import {
-    rgbToHSL,
+    cmykToRGB,
     hslToRGB,
-    rgbToLab,
     labToRgb,
     rgbToCMYK,
-    cmykToRGB
+    rgbToHSL,
+    rgbToLab
 } from '#color/translators';
 import * as utils from '#color/utils';
 import { CSS } from '#color/css';
 import {
-    round,
-    minmax,
     getOptionsFromColorInput,
-    normalizeHue,
     isHarmony,
-    isMix
+    isMix,
+    minmax,
+    normalizeHue,
+    round
 } from '#helpers';
 
 const getColorReturn = <T>(

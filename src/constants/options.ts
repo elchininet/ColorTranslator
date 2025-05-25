@@ -1,8 +1,8 @@
 import {
-    Options,
     AnglesUnitEnum,
+    CMYKFunctionEnum,
     ColorUnitEnum,
-    CMYKFunctionEnum
+    Options
 } from '@types';
 import { MAX_DECIMALS } from './numbers';
 

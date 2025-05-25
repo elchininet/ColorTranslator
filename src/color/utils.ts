@@ -1,61 +1,66 @@
 import {
+    CIELabObject,
+    CIELabObjectGeneric,
+    CIELabOutput,
+    CIELabRegExpMatchArray,
+    CMYKObject,
+    CMYKObjectGeneric,
+    CMYKRegExpMatchArray,
     Color,
     ColorInput,
     ColorInputWithoutCMYK,
-    RGBObjectGeneric,
-    CIELabObjectGeneric,
-    HSLObjectGeneric,
-    CMYKObjectGeneric,
-    CMYKObject,
-    HSLObject,
-    CIELabObject,
-    RGBObject,
-    RYBObject,
-    RGYBObject,
-    HEXObject,
-    RGBOutput,
-    HSLOutput,
-    CIELabOutput,
-    HEXOutput,
     ColorOutput,
-    Options
+    HEXObject,
+    HEXOutput,
+    HEXRegExpMatchArray,
+    HSLObject,
+    HSLObjectGeneric,
+    HSLOutput,
+    HSLRegExpMatchArray,
+    Options,
+    RGBObject,
+    RGBObjectGeneric,
+    RGBOutput,
+    RGBRegExpMatchArray,
+    RGYBObject,
+    RYBObject
 } from '@types';
 import {
-    HEX,
-    PCENT,
+    COLOR_KEYS,
+    ColorKeywords,
     ColorModel,
+    COLORREGS,
+    ERRORS,
+    HEX,
     Mix,
     MixString,
-    ColorKeywords,
-    COLORREGS,
-    COLOR_KEYS,
-    ERRORS,
+    PCENT,
     VALID_COLOR_OBJECTS
 } from '#constants';
 import {
-    getOrderedArrayString,
+    getBase125Number,
+    getBase255Number,
+    getCMYKNumber,
     getDEC,
     getHEX,
-    getBase255Number,
-    getBase125Number,
-    getCMYKNumber,
+    getOrderedArrayString,
     hasProp,
+    minmax,
+    normalizeHue,
     percent,
     percentNumber,
-    round,
-    minmax,
-    normalizeHue
+    round
 } from '#helpers';
 import {
-    rgbToHSL,
-    hslToRGB,
     cmykToRGB,
-    rgbToCMYK,
-    rgbToRYB,
-    rybToRGB,
-    rgbToLab,
+    hslToRGB,
+    hueRYB,
     labToRgb,
-    hueRYB
+    rgbToCMYK,
+    rgbToHSL,
+    rgbToLab,
+    rgbToRYB,
+    rybToRGB
 } from '#color/translators';
 import { CSS } from '#color/css';
 
@@ -177,24 +182,26 @@ export const getRGBObjectFromString = {
         const colorStr = !~COLOR_KEYS.indexOf(color)
             ? color
             : ColorKeywords[color as keyof typeof ColorKeywords];
-        const match = colorStr.match(COLORREGS.HEX);
+        const match = colorStr.match(COLORREGS.HEX) as HEXRegExpMatchArray;
+        const groups = match.groups;
         const object: RGBObject = {
-            R: getDEC(match[1] || match[5]),
-            G: getDEC(match[2] || match[6]),
-            B: getDEC(match[3] || match[7])
+            R: getDEC(groups.r ?? groups.rr),
+            G: getDEC(groups.g ?? groups.gg),
+            B: getDEC(groups.b ?? groups.bb)
         };
-        const A = match[4] || match[8];
+        const A = groups.a ?? groups.aa;
         if (A !== undefined) {
             object.A = getDEC(A) / 255;
         }
         return object;
     },
     [ColorModel.RGB](color: string): RGBObject {
-        const match = color.match(COLORREGS.RGB);
-        const R = getBase255Number(match[1] || match[5]);
-        const G = getBase255Number(match[2] || match[6]);
-        const B = getBase255Number(match[3] || match[7]);
-        const A = match[4] || match[8];
+        const match = color.match(COLORREGS.RGB) as RGBRegExpMatchArray;
+        const groups = match.groups;
+        const R = getBase255Number(groups.r_legacy ?? groups.r);
+        const G = getBase255Number(groups.g_legacy ?? groups.g);
+        const B = getBase255Number(groups.b_legacy ?? groups.b);
+        const A = groups.a_legacy ?? groups.a;
         const object: RGBObject = {
             R: Math.min(R, 255),
             G: Math.min(G, 255),
@@ -206,11 +213,12 @@ export const getRGBObjectFromString = {
         return object;
     },
     [ColorModel.HSL](color: string): RGBObject {
-        const match = color.match(COLORREGS.HSL);
-        const H = normalizeHue(match[1] || match[5]);
-        const S = percent(match[2] || match[6]);
-        const L = percent(match[3] || match[7]);
-        const A = match[4] || match[8];
+        const match = color.match(COLORREGS.HSL) as HSLRegExpMatchArray;
+        const groups = match.groups;
+        const H = normalizeHue(groups.h_legacy ?? groups.h);
+        const S = percent(groups.s_legacy ?? groups.s);
+        const L = percent(groups.l_legacy ?? groups.l);
+        const A = groups.a_legacy ?? groups.a;
         const RGB = hslToRGB(H, S, L);
         if (A !== undefined) {
             RGB.A = normalizeAlpha(A);
@@ -218,11 +226,12 @@ export const getRGBObjectFromString = {
         return RGB;
     },
     [ColorModel.CIELab](color: string): RGBObject {
-        const match = color.match(COLORREGS.CIELab);
-        const L = percent(match[1]);
-        const a = getBase125Number(match[2]);
-        const b = getBase125Number(match[3]);
-        const A = match[4];
+        const match = color.match(COLORREGS.CIELab) as CIELabRegExpMatchArray;
+        const groups = match.groups;
+        const L = percent(groups.L);
+        const a = getBase125Number(groups.a);
+        const b = getBase125Number(groups.b);
+        const A = groups.A;
         const RGB = labToRgb(L, a, b);
         if (A !== undefined) {
             RGB.A = normalizeAlpha(A);
@@ -230,12 +239,13 @@ export const getRGBObjectFromString = {
         return RGB;
     },
     [ColorModel.CMYK](color: string): RGBObject {
-        const match = color.match(COLORREGS.CMYK);
-        const C = getCMYKNumber(match[1] || match[6]);
-        const M = getCMYKNumber(match[2] || match[7]);
-        const Y = getCMYKNumber(match[3] || match[8]);
-        const K = getCMYKNumber(match[4] || match[9]);
-        const A = match[5] || match[10];
+        const match = color.match(COLORREGS.CMYK) as CMYKRegExpMatchArray;
+        const groups = match.groups;
+        const C = getCMYKNumber(groups.c_legacy ?? groups.c);
+        const M = getCMYKNumber(groups.m_legacy ?? groups.m);
+        const Y = getCMYKNumber(groups.y_legacy ?? groups.y);
+        const K = getCMYKNumber(groups.k_legacy ?? groups.k);
+        const A = groups.a_legacy ?? groups.a;
         const RGB = cmykToRGB(C, M, Y, K);
         if (A !== undefined) {
             RGB.A = normalizeAlpha(A);
