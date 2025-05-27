@@ -186,95 +186,50 @@ exports[`ColorTranslator blending tests Blending with decimals snapshots 4`] = `
 
 exports[`ColorTranslator blending tests Blending with decimals snapshots 5`] = `
 [
-  {
-    "B": 0,
-    "G": 0,
-    "R": 255,
-  },
-  {
-    "B": 63.75,
-    "G": 0,
-    "R": 191.25,
-  },
-  {
-    "B": 127.5,
-    "G": 0,
-    "R": 127.5,
-  },
-  {
-    "B": 191.25,
-    "G": 0,
-    "R": 63.75,
-  },
-  {
-    "B": 255,
-    "G": 0,
-    "R": 0,
-  },
+  "hwb(0 0% 0%)",
+  "hwb(340 0% 25%)",
+  "hwb(300 0% 50%)",
+  "hwb(260 0% 25%)",
+  "hwb(240 0% 0%)",
 ]
 `;
 
 exports[`ColorTranslator blending tests Blending with decimals snapshots 6`] = `
 [
-  {
-    "A": 1,
-    "B": 0,
-    "G": 0,
-    "R": 255,
-  },
-  {
-    "A": 1,
-    "B": 63.75,
-    "G": 0,
-    "R": 191.25,
-  },
-  {
-    "A": 1,
-    "B": 127.5,
-    "G": 0,
-    "R": 127.5,
-  },
-  {
-    "A": 1,
-    "B": 191.25,
-    "G": 0,
-    "R": 63.75,
-  },
-  {
-    "A": 1,
-    "B": 255,
-    "G": 0,
-    "R": 0,
-  },
+  "hwb(0 0% 0% / 1)",
+  "hwb(340 0% 25% / 1)",
+  "hwb(300 0% 50% / 1)",
+  "hwb(260 0% 25% / 1)",
+  "hwb(240 0% 0% / 1)",
 ]
 `;
 
 exports[`ColorTranslator blending tests Blending with decimals snapshots 7`] = `
 [
   {
-    "H": 0,
-    "L": 50,
-    "S": 100,
+    "B": 0,
+    "G": 0,
+    "R": 255,
   },
   {
-    "H": 340,
-    "L": 37.5,
-    "S": 100,
+    "B": 63.75,
+    "G": 0,
+    "R": 191.25,
   },
   {
-    "H": 300,
-    "L": 25,
-    "S": 100,
+    "B": 127.5,
+    "G": 0,
+    "R": 127.5,
   },
   {
-    "H": 260,
-    "L": 37.5,
-    "S": 100,
+    "B": 191.25,
+    "G": 0,
+    "R": 63.75,
   },
   {
-    "H": 240,
-    "L": 50,
-    "S": 100,
+    "B": 255,
+    "G": 0,
+    "R": 0,
   },
 ]
 `;
@@ -283,6 +238,71 @@ exports[`ColorTranslator blending tests Blending with decimals snapshots 8`] = `
 [
   {
     "A": 1,
+    "B": 0,
+    "G": 0,
+    "R": 255,
+  },
+  {
+    "A": 1,
+    "B": 63.75,
+    "G": 0,
+    "R": 191.25,
+  },
+  {
+    "A": 1,
+    "B": 127.5,
+    "G": 0,
+    "R": 127.5,
+  },
+  {
+    "A": 1,
+    "B": 191.25,
+    "G": 0,
+    "R": 63.75,
+  },
+  {
+    "A": 1,
+    "B": 255,
+    "G": 0,
+    "R": 0,
+  },
+]
+`;
+
+exports[`ColorTranslator blending tests Blending with decimals snapshots 9`] = `
+[
+  {
+    "H": 0,
+    "L": 50,
+    "S": 100,
+  },
+  {
+    "H": 340,
+    "L": 37.5,
+    "S": 100,
+  },
+  {
+    "H": 300,
+    "L": 25,
+    "S": 100,
+  },
+  {
+    "H": 260,
+    "L": 37.5,
+    "S": 100,
+  },
+  {
+    "H": 240,
+    "L": 50,
+    "S": 100,
+  },
+]
+`;
+
+exports[`ColorTranslator blending tests Blending with decimals snapshots 10`] = `
+[
+  {
+    "A": 1,
     "H": 0,
     "L": 50,
     "S": 100,
@@ -310,6 +330,71 @@ exports[`ColorTranslator blending tests Blending with decimals snapshots 8`] = `
     "H": 240,
     "L": 50,
     "S": 100,
+  },
+]
+`;
+
+exports[`ColorTranslator blending tests Blending with decimals snapshots 11`] = `
+[
+  {
+    "B": 0,
+    "H": 0,
+    "W": 0,
+  },
+  {
+    "B": 25,
+    "H": 340,
+    "W": 0,
+  },
+  {
+    "B": 50,
+    "H": 300,
+    "W": 0,
+  },
+  {
+    "B": 25,
+    "H": 260,
+    "W": 0,
+  },
+  {
+    "B": 0,
+    "H": 240,
+    "W": 0,
+  },
+]
+`;
+
+exports[`ColorTranslator blending tests Blending with decimals snapshots 12`] = `
+[
+  {
+    "A": 1,
+    "B": 0,
+    "H": 0,
+    "W": 0,
+  },
+  {
+    "A": 1,
+    "B": 25,
+    "H": 340,
+    "W": 0,
+  },
+  {
+    "A": 1,
+    "B": 50,
+    "H": 300,
+    "W": 0,
+  },
+  {
+    "A": 1,
+    "B": 25,
+    "H": 260,
+    "W": 0,
+  },
+  {
+    "A": 1,
+    "B": 0,
+    "H": 240,
+    "W": 0,
   },
 ]
 `;

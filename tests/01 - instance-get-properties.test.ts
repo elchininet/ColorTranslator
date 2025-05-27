@@ -82,9 +82,32 @@ COLORS.forEach((color): void => {
                 expect(instance.HSLAObject).toMatchObject(color.HSLAObject);
             });
 
+            // HWB
+            it(`HWB property => ${color.HWB}`, () => {
+                expect(instance.HWB).toBe(color.HWB);
+                expect(legacyInstance.HWB).toBe(color.HWB);
+            });
+
+            // HWBA
+            it(`HWBA property => ${color.HWBA}`, () => {
+                expect(instance.HWBA).toBe(color.HWBA);
+                expect(legacyInstance.HWBA).toBe(color.HWBA);
+            });
+
+            // HWBObject
+            it(`HWBObject property => ${JSON.stringify(color.HWBObject)}`, () => {
+                expect(instance.HWBObject).toMatchObject(color.HWBObject);
+            });
+
+            // HWBAObject
+            it(`HWBAObject property => ${JSON.stringify(color.HWBAObject)}`, () => {
+                expect(instance.HWBAObject).toMatchObject(color.HWBAObject);
+            });
+
             // H
             it(`H property => ${color.HSLObject.H}`, () => {
                 expect(instance.H).toBe(color.HSLObject.H);
+                expect(instance.H).toBe(color.HWBObject.H);
             });
 
             // S
@@ -95,6 +118,16 @@ COLORS.forEach((color): void => {
             // L
             it(`L property => ${color.HSLObject.L}`, () => {
                 expect(instance.L).toBe(color.HSLObject.L);
+            });
+
+            // Whiteness
+            it(`Whiteness property => ${color.HWBObject.W}`, () => {
+                expect(instance.Whiteness).toBe(color.HWBObject.W);
+            });
+
+            // Blackness
+            it(`Blackness property => ${color.HWBObject.B}`, () => {
+                expect(instance.Blackness).toBe(color.HWBObject.B);
             });
 
             // R

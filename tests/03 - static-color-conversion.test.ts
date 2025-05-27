@@ -76,6 +76,24 @@ COLORS.forEach((color): void => {
                 expect(ColorTranslator.toHSLAObject(colorValue, options)).toMatchObject(color.HSLAObject);
             });
 
+            // toHWB
+            it(`toHWB method from ${colorValueStr} => ${color.HWB}`, () => {
+                expect(ColorTranslator.toHWB(colorValue, options)).toBe(color.HWB);
+            });
+
+            it(`toHWBObject method from ${colorValueStr} => ${JSON.stringify(color.HWBObject)}`, () => {
+                expect(ColorTranslator.toHWBObject(colorValue, options)).toMatchObject(color.HWBObject);
+            });
+
+            // toHWBA
+            it(`toHWBA method from ${colorValueStr} => ${color.HWBA}`, () => {
+                expect(ColorTranslator.toHWBA(colorValue, options)).toBe(color.HWBA);
+            });
+
+            it(`toHWBAObject method from ${colorValueStr} => ${JSON.stringify(color.HWBAObject)}`, () => {
+                expect(ColorTranslator.toHWBAObject(colorValue, options)).toMatchObject(color.HWBAObject);
+            });
+
         });
 
     });
@@ -91,6 +109,8 @@ COLORS.forEach((color): void => {
             expect(ColorTranslator.toRGBA(color.HEXObject)).toBe(color.RGBA);
             expect(ColorTranslator.toHSL(color.RGB, optionsNoDecimals)).toBe(color.HSL);
             expect(ColorTranslator.toHSLA(color.RGBObject, optionsNoDecimals)).toBe(color.HSLA);
+            expect(ColorTranslator.toHWB(color.RGB, optionsNoDecimals)).toBe(color.HWB);
+            expect(ColorTranslator.toHWBA(color.RGBObject, optionsNoDecimals)).toBe(color.HWBA);
         });
 
         it('Legacy conversion', () => {

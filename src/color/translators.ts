@@ -3,6 +3,7 @@ import {
     CMYKObject,
     ColorArray,
     HSLObject,
+    HWBObject,
     RGBObject,
     RYBObject
 } from '@types';
@@ -197,6 +198,83 @@ export const labToRgb = (L: number, a: number, b: number): RGBObject => {
         R: minmax(RGB[0] * 255, 0, 255),
         G: minmax(RGB[1] * 255, 0, 255),
         B: minmax(RGB[2] * 255, 0, 255)
+    };
+};
+
+//---RGB to HWB
+export const rgbToHwb = (R: number, G: number, B: number, A: number = 1): HWBObject => {
+    R /= 255;
+    G /= 255;
+    B /= 255;
+    const MAX = Math.max(R, G, B);
+    const MIN = Math.min(R, G, B);
+    const D = MAX - MIN;
+    let H = 0;
+    if (D !== 0) {
+        switch (MAX) {
+            case R:
+                H = ((G - B) / D) % 6;
+                break;
+            case G:
+                H = (B - R) / D + 2;
+                break;
+            case B:
+                H = (R - G) / D + 4;
+                break;
+        }
+        H = round(H * 60);
+        if (H < 0) { H += 360; }
+    }
+    return {
+        H,
+        W: round(MIN * 100),
+        B: round((1 - MAX) * 100),
+        A
+    };
+};
+
+//--HWB to RGB
+export const hwbToRgb = (H: number, W: number, B: number): RGBObject => {
+    W /= 100;
+    B /= 100;
+    const V = 1 - B;
+    const C = V - W;
+    const X = C * (1 - Math.abs((H / 60) % 2 - 1));
+    let RGB_R = 0;
+    let RGB_G = 0;
+    let RGB_B = 0;
+    if (H < 60) {
+        RGB_R = C;
+        RGB_G = X;
+        RGB_B = 0;
+    } else if (H >= 60 && H < 120) {
+        RGB_R = X;
+        RGB_G = C;
+        RGB_B = 0;
+    } else if (H >= 120 && H < 180) {
+        RGB_R = 0;
+        RGB_G = C;
+        RGB_B = X;
+    } else if (H >= 180 && H < 240) {
+        RGB_R = 0;
+        RGB_G = X;
+        RGB_B = C;
+    } else if (H >= 240 && H < 300) {
+        RGB_R = X;
+        RGB_G = 0;
+        RGB_B = C;
+    } else if (H >= 300) {
+        RGB_R = C;
+        RGB_G = 0;
+        RGB_B = X;
+    }
+    RGB_R += W;
+    RGB_G += W;
+    RGB_B += W;
+    return {
+        R: minmax(RGB_R * 255, 0, 255),
+        G: minmax(RGB_G * 255, 0, 255),
+        B: minmax(RGB_B * 255, 0, 255)
     };
 };
 

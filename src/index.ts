@@ -9,6 +9,8 @@ import {
     HEXObject,
     HSLObject,
     HSLObjectGeneric,
+    HWBObject,
+    HWBObjectGeneric,
     InputOptions,
     Options,
     RGBObject
@@ -25,9 +27,11 @@ import {
 import {
     cmykToRGB,
     hslToRGB,
+    hwbToRgb,
     labToRgb,
     rgbToCMYK,
     rgbToHSL,
+    rgbToHwb,
     rgbToLab
 } from '#color/translators';
 import * as utils from '#color/utils';
@@ -89,6 +93,7 @@ export class ColorTranslator {
         this._options = utils.getOptionsFromColorInput(options, color);
         this.rgb = utils.getRGBObject(color);
         this.updateHSL();
+        this.updateHWB();
         this.updateLab();
         this.updateCMYK();
     }
@@ -97,6 +102,7 @@ export class ColorTranslator {
     private _options: Options;
     private rgb: RGBObject;
     private hsl: HSLObject;
+    private hwb: HWBObject;
     private lab: CIELabObject;
     private cmyk: CMYKObject;
 
@@ -109,6 +115,17 @@ export class ColorTranslator {
                 this.hsl.L
             ),
             A: this.hsl.A
+        };
+    }
+
+    private updateRGBFromHWB(): void {
+        this.rgb = {
+            ...hwbToRgb(
+                this.hwb.H,
+                this.hwb.W,
+                this.hwb.B
+            ),
+            A: this.rgb.A
         };
     }
 
@@ -137,6 +154,15 @@ export class ColorTranslator {
 
     private updateHSL(): void {
         this.hsl = rgbToHSL(
+            this.rgb.R,
+            this.rgb.G,
+            this.rgb.B,
+            this.rgb.A
+        );
+    }
+
+    private updateHWB(): void {
+        this.hwb = rgbToHwb(
             this.rgb.R,
             this.rgb.G,
             this.rgb.B,
@@ -176,6 +202,7 @@ export class ColorTranslator {
     public setH(H: number): ColorTranslator {
         this.hsl.H = normalizeHue(H);
         this.updateRGB();
+        this.updateHWB();
         this.updateLab();
         this.updateCMYK();
         return this;
@@ -184,6 +211,7 @@ export class ColorTranslator {
     public setS(S: number): ColorTranslator {
         this.hsl.S = minmax(S, 0, 100);
         this.updateRGB();
+        this.updateHWB();
         this.updateLab();
         this.updateCMYK();
         return this;
@@ -192,6 +220,26 @@ export class ColorTranslator {
     public setL(L: number): ColorTranslator {
         this.hsl.L = minmax(L, 0, 100);
         this.updateRGB();
+        this.updateHWB();
+        this.updateLab();
+        this.updateCMYK();
+        return this;
+    }
+
+    // Public HWB methods
+    public setWhiteness(W: number): ColorTranslator {
+        this.hwb.W = minmax(W, 0, 100);
+        this.updateRGBFromHWB();
+        this.updateHSL();
+        this.updateLab();
+        this.updateCMYK();
+        return this;
+    }
+
+    public setBlackness(B: number): ColorTranslator {
+        this.hwb.B = minmax(B, 0, 100);
+        this.updateRGBFromHWB();
+        this.updateHSL();
         this.updateLab();
         this.updateCMYK();
         return this;
@@ -201,6 +249,7 @@ export class ColorTranslator {
     public setR(R: number): ColorTranslator {
         this.rgb.R = minmax(R, 0, 255);
         this.updateHSL();
+        this.updateHWB();
         this.updateLab();
         this.updateCMYK();
         return;
@@ -209,6 +258,7 @@ export class ColorTranslator {
     public setG(G: number): ColorTranslator {
         this.rgb.G = minmax(G, 0, 255);
         this.updateHSL();
+        this.updateHWB();
         this.updateLab();
         this.updateCMYK();
         return this;
@@ -217,6 +267,7 @@ export class ColorTranslator {
     public setB(B: number): ColorTranslator {
         this.rgb.B = minmax(B, 0, 255);
         this.updateHSL();
+        this.updateHWB();
         this.updateLab();
         this.updateCMYK();
         return this;
@@ -304,6 +355,15 @@ export class ColorTranslator {
         return round(this.hsl.L, this.options.decimals);
     }
 
+    // Public HWB properties
+    public get Whiteness(): number {
+        return round(this.hwb.W, this.options.decimals);
+    }
+
+    public get Blackness(): number {
+        return round(this.hwb.B, this.options.decimals);
+    }
+
     // Public Lab properties
     public get CIEL(): number {
         return round(this.lab.L, this.options.decimals);
@@ -387,6 +447,21 @@ export class ColorTranslator {
     public get HSLAObject(): HSLObject {
         return {
             ...this.HSLObject,
+            A: this.A
+        };
+    }
+
+    public get HWBObject(): HWBObject {
+        return {
+            H: this.H,
+            W: this.Whiteness,
+            B: this.Blackness
+        };
+    }
+
+    public get HWBAObject(): HWBObject {
+        return {
+            ...this.HWBObject,
             A: this.A
         };
     }
@@ -480,6 +555,29 @@ export class ColorTranslator {
                 H: this.H,
                 S: this.S,
                 L: this.L,
+                A: this.A
+            },
+            this.options
+        );
+    }
+
+    public get HWB(): string {
+        return CSS.HWB(
+            {
+                H: this.H,
+                W: this.Whiteness,
+                B: this.Blackness
+            },
+            this.options
+        );
+    }
+
+    public get HWBA(): string {
+        return CSS.HWB(
+            {
+                H: this.H,
+                W: this.Whiteness,
+                B: this.Blackness,
                 A: this.A
             },
             this.options
@@ -653,6 +751,50 @@ export class ColorTranslator {
             utils.translateColor.HSLA
         );
         return CSS.HSL(hsla, detectedOptions);
+    }
+
+    public static toHWBObject(color: ColorInput, options: InputOptions = {}): HWBObject {
+        const model = utils.getColorModel(color);
+        return getColorReturn<HWBObject>(
+            color,
+            model,
+            options.decimals,
+            utils.translateColor.HWB
+        );
+    }
+
+    public static toHWB(color: ColorInput, options: InputOptions = {}): string {
+        const model = utils.getColorModel(color);
+        const detectedOptions = utils.getOptionsFromColorInput(options, color);
+        const hwb = getColorReturn<HWBObject>(
+            color,
+            model,
+            options.decimals,
+            utils.translateColor.HWB
+        );
+        return CSS.HWB(hwb, detectedOptions);
+    }
+
+    public static toHWBAObject(color: ColorInput, options: InputOptions = {}): HWBObject {
+        const model = utils.getColorModel(color);
+        return getColorReturn<HWBObject>(
+            color,
+            model,
+            options.decimals,
+            utils.translateColor.HWBA
+        );
+    }
+
+    public static toHWBA(color: ColorInput, options: InputOptions = {}): string {
+        const model = utils.getColorModel(color);
+        const detectedOptions = utils.getOptionsFromColorInput(options, color);
+        const hwb = getColorReturn<HWBObject>(
+            color,
+            model,
+            options.decimals,
+            utils.translateColor.HWBA
+        );
+        return CSS.HWB(hwb, detectedOptions);
     }
 
     public static toCIELabObject(color: ColorInput, options: InputOptions = {}): CIELabObject {
@@ -1112,6 +1254,170 @@ export class ColorTranslator {
         )
             .map((color: HSLObject): string => {
                 return CSS.HSL(
+                    color,
+                    utils.getOptionsFromColorInput(thirdParameter || {}, from, to)
+                );
+            });
+    }
+
+    public static getBlendHWBObject(
+        from: ColorInput,
+        to: ColorInput,
+        options?: InputOptions
+    ): HWBObject[];
+    public static getBlendHWBObject(
+        from: ColorInput,
+        to: ColorInput,
+        steps?: number,
+        options?: InputOptions
+    ): HWBObject[];
+    public static getBlendHWBObject(
+        from: ColorInput,
+        to: ColorInput,
+        thirdParameter?: number | InputOptions,
+        fourthParameter?: InputOptions
+    ): HWBObject[] {
+        if (typeof thirdParameter === 'number') {
+            return getBlendReturn<HWBObject>(
+                from,
+                to,
+                thirdParameter,
+                fourthParameter?.decimals,
+                utils.translateColor.HWB
+            );
+        }
+        return getBlendReturn<HWBObject>(
+            from,
+            to,
+            DEFAULT_BLEND_STEPS,
+            fourthParameter?.decimals,
+            utils.translateColor.HWB
+        );
+    }
+
+    public static getBlendHWB(
+        from: ColorInput,
+        to: ColorInput,
+        options?: InputOptions
+    ): string[];
+    public static getBlendHWB(
+        from: ColorInput,
+        to: ColorInput,
+        steps?: number,
+        options?: InputOptions
+    ): string[];
+    public static getBlendHWB(
+        from: ColorInput,
+        to: ColorInput,
+        thirdParameter?: number | InputOptions,
+        fourthParameter?: InputOptions
+    ): string[] {
+        if (typeof thirdParameter === 'number') {
+            return getBlendReturn<HWBObject>(
+                from,
+                to,
+                thirdParameter,
+                fourthParameter?.decimals,
+                utils.translateColor.HWB
+            )
+                .map((color: HWBObject) => {
+                    return CSS.HWB(
+                        color,
+                        utils.getOptionsFromColorInput(fourthParameter || {}, from, to)
+                    );
+                });
+        }
+        return getBlendReturn<HWBObject>(
+            from,
+            to,
+            DEFAULT_BLEND_STEPS,
+            thirdParameter?.decimals,
+            utils.translateColor.HWB
+        )
+            .map((color: HWBObject) => {
+                return CSS.HWB(
+                    color,
+                    utils.getOptionsFromColorInput(thirdParameter || {}, from, to)
+                );
+            });
+    }
+
+    public static getBlendHWBAObject(
+        from: ColorInput,
+        to: ColorInput,
+        options?: InputOptions
+    ): HWBObject[];
+    public static getBlendHWBAObject(
+        from: ColorInput,
+        to: ColorInput,
+        steps?: number,
+        options?: InputOptions
+    ): HWBObject[];
+    public static getBlendHWBAObject(
+        from: ColorInput,
+        to: ColorInput,
+        thirdParameter?: number | InputOptions,
+        fourthParameter?: InputOptions
+    ): HWBObject[] {
+        if (typeof thirdParameter === 'number') {
+            return getBlendReturn<HWBObject>(
+                from,
+                to,
+                thirdParameter,
+                fourthParameter?.decimals,
+                utils.translateColor.HWBA
+            );
+        }
+        return getBlendReturn<HWBObject>(
+            from,
+            to,
+            DEFAULT_BLEND_STEPS,
+            fourthParameter?.decimals,
+            utils.translateColor.HWBA
+        );
+    }
+
+    public static getBlendHWBA(
+        from: ColorInput,
+        to: ColorInput,
+        options?: InputOptions
+    ): string[];
+    public static getBlendHWBA(
+        from: ColorInput,
+        to: ColorInput,
+        steps?: number,
+        options?: InputOptions
+    ): string[];
+    public static getBlendHWBA(
+        from: ColorInput,
+        to: ColorInput,
+        thirdParameter?: number | InputOptions,
+        fourthParameter?: InputOptions
+    ): string[] {
+        if (typeof thirdParameter === 'number') {
+            return getBlendReturn<HWBObject>(
+                from,
+                to,
+                thirdParameter,
+                fourthParameter?.decimals,
+                utils.translateColor.HWBA
+            )
+                .map((color: HWBObject) => {
+                    return CSS.HWB(
+                        color,
+                        utils.getOptionsFromColorInput(fourthParameter || {}, from, to)
+                    );
+                });
+        }
+        return getBlendReturn<HWBObject>(
+            from,
+            to,
+            DEFAULT_BLEND_STEPS,
+            thirdParameter?.decimals,
+            utils.translateColor.HWBA
+        )
+            .map((color: HWBObject) => {
+                return CSS.HWB(
                     color,
                     utils.getOptionsFromColorInput(thirdParameter || {}, from, to)
                 );
@@ -1587,6 +1893,150 @@ export class ColorTranslator {
         );
     }
 
+    public static getMixHWBObject(
+        colors: ColorInput[],
+        options?: InputOptions
+    ): HWBObject;
+    public static getMixHWBObject(
+        colors: ColorInput[],
+        mode?: MixString,
+        options?: InputOptions
+    ): HWBObject;
+    public static getMixHWBObject(
+        colors: ColorInput[],
+        secondParameter?: MixString | InputOptions,
+        thirdParameter?: InputOptions
+    ): HWBObject {
+        if (typeof secondParameter === 'string') {
+            return utils.colorMixer.HWB(
+                colors,
+                secondParameter,
+                false,
+                utils.getOptionsFromColorInput(
+                    thirdParameter || {},
+                    ...colors
+                )
+            );
+        }
+        return utils.colorMixer.HWB(
+            colors,
+            Mix.ADDITIVE,
+            false,
+            utils.getOptionsFromColorInput(
+                secondParameter || {},
+                ...colors
+            )
+        );
+    }
+
+    public static getMixHWB(
+        colors: ColorInput[],
+        options?: InputOptions
+    ): string;
+    public static getMixHWB(
+        colors: ColorInput[],
+        mode?: MixString,
+        options?: InputOptions
+    ): string;
+    public static getMixHWB(
+        colors: ColorInput[],
+        secondParameter?: MixString | InputOptions,
+        thirdParameter?: InputOptions
+    ): string {
+        if (typeof secondParameter === 'string') {
+            return utils.colorMixer.HWB(
+                colors,
+                secondParameter,
+                true,
+                utils.getOptionsFromColorInput(
+                    thirdParameter || {},
+                    ...colors
+                )
+            );
+        }
+        return utils.colorMixer.HWB(
+            colors,
+            Mix.ADDITIVE,
+            true,
+            utils.getOptionsFromColorInput(
+                secondParameter || {},
+                ...colors
+            )
+        );
+    }
+
+    public static getMixHWBAObject(
+        colors: ColorInput[],
+        options?: InputOptions
+    ): HWBObject;
+    public static getMixHWBAObject(
+        colors: ColorInput[],
+        mode?: MixString,
+        options?: InputOptions
+    ): HWBObject;
+    public static getMixHWBAObject(
+        colors: ColorInput[],
+        secondParameter?: MixString | InputOptions,
+        thirdParameter?: InputOptions
+    ): HWBObject {
+        if (typeof secondParameter === 'string') {
+            return utils.colorMixer.HWBA(
+                colors,
+                secondParameter,
+                false,
+                utils.getOptionsFromColorInput(
+                    thirdParameter || {},
+                    ...colors
+                )
+            );
+        }
+        return utils.colorMixer.HWBA(
+            colors,
+            Mix.ADDITIVE,
+            false,
+            utils.getOptionsFromColorInput(
+                secondParameter || {},
+                ...colors
+            )
+        );
+    }
+
+    public static getMixHWBA(
+        colors: ColorInput[],
+        options?: InputOptions
+    ): string;
+    public static getMixHWBA(
+        colors: ColorInput[],
+        mode?: MixString,
+        options?: InputOptions
+    ): string;
+    public static getMixHWBA(
+        colors: ColorInput[],
+        secondParameter?: MixString | InputOptions,
+        thirdParameter?: InputOptions
+    ): string {
+        if (typeof secondParameter === 'string') {
+            return utils.colorMixer.HWBA(
+                colors,
+                secondParameter,
+                true,
+                utils.getOptionsFromColorInput(
+                    thirdParameter || {},
+                    ...colors
+                )
+            );
+        }
+        return utils.colorMixer.HWBA(
+            colors,
+            Mix.ADDITIVE,
+            true,
+            utils.getOptionsFromColorInput(
+                secondParameter || {},
+                ...colors
+            )
+        );
+    }
+
     public static getMixCIELabObject(
         colors: ColorInput[],
         options?: InputOptions
@@ -1736,12 +2186,14 @@ export class ColorTranslator {
     public static getShades(color: HEXObject, options?: InputOptions): HEXObject[];
     public static getShades(color: RGBObject, options?: InputOptions): RGBObject[];
     public static getShades(color: HSLObjectGeneric, options?: InputOptions): HSLObject[];
+    public static getShades(color: HWBObjectGeneric, options?: InputOptions): HWBObject[];
     public static getShades(color: CIELabObjectGeneric, options?: InputOptions): CIELabObject[];
 
     public static getShades(color: string, shades?: number, options?: InputOptions): string[];
     public static getShades(color: HEXObject, shades?: number, options?: InputOptions): HEXObject[];
     public static getShades(color: RGBObject, shades?: number, options?: InputOptions): RGBObject[];
     public static getShades(color: HSLObjectGeneric, shades?: number, options?: InputOptions): HSLObject[];
+    public static getShades(color: HWBObjectGeneric, shades?: number, options?: InputOptions): HWBObject[];
     public static getShades(color: CIELabObjectGeneric, shades?: number, options?: InputOptions): CIELabObject[];
 
     public static getShades(
@@ -1776,12 +2228,14 @@ export class ColorTranslator {
     public static getTints(color: HEXObject, options?: InputOptions): HEXObject[];
     public static getTints(color: RGBObject, options?: InputOptions): RGBObject[];
     public static getTints(color: HSLObjectGeneric, options?: InputOptions): HSLObject[];
+    public static getTints(color: HWBObjectGeneric, options?: InputOptions): HWBObject[];
     public static getTints(color: CIELabObjectGeneric, options?: InputOptions): CIELabObject[];
 
     public static getTints(color: string, tints?: number, options?: InputOptions): string[];
     public static getTints(color: HEXObject, tints?: number, options?: InputOptions): HEXObject[];
     public static getTints(color: RGBObject, tints?: number, options?: InputOptions): RGBObject[];
     public static getTints(color: HSLObjectGeneric, tints?: number, options?: InputOptions): HSLObject[];
+    public static getTints(color: HWBObjectGeneric, tints?: number, options?: InputOptions): HWBObject[];
     public static getTints(color: CIELabObjectGeneric, tints?: number, options?: InputOptions): CIELabObject[];
 
     public static getTints(
@@ -1816,24 +2270,28 @@ export class ColorTranslator {
     public static getHarmony(color: HEXObject, options?: InputOptions): HEXObject[];
     public static getHarmony(color: RGBObject, options?: InputOptions): RGBObject[];
     public static getHarmony(color: HSLObjectGeneric, options?: InputOptions): HSLObject[];
+    public static getHarmony(color: HWBObjectGeneric, options?: InputOptions): HWBObject[];
     public static getHarmony(color: CIELabObjectGeneric, options?: InputOptions): CIELabObject[];
 
     public static getHarmony(color: string, mode?: MixString, options?: InputOptions): string[];
     public static getHarmony(color: HEXObject, mode?: MixString, options?: InputOptions): HEXObject[];
     public static getHarmony(color: RGBObject, mode?: MixString, options?: InputOptions): RGBObject[];
     public static getHarmony(color: HSLObjectGeneric, mode?: MixString, options?: InputOptions): HSLObject[];
+    public static getHarmony(color: HWBObjectGeneric, mode?: MixString, options?: InputOptions): HWBObject[];
     public static getHarmony(color: CIELabObjectGeneric, mode?: MixString, options?: InputOptions): CIELabObject[];
 
     public static getHarmony(color: string, harmony?: Harmony, options?: InputOptions): string[];
     public static getHarmony(color: HEXObject, harmony?: Harmony, options?: InputOptions): HEXObject[];
     public static getHarmony(color: RGBObject, harmony?: Harmony, options?: InputOptions): RGBObject[];
     public static getHarmony(color: HSLObjectGeneric, harmony?: Harmony, options?: InputOptions): HSLObject[];
+    public static getHarmony(color: HWBObjectGeneric, harmony?: Harmony, options?: InputOptions): HWBObject[];
     public static getHarmony(color: CIELabObjectGeneric, harmony?: Harmony, options?: InputOptions): CIELabObject[];
 
     public static getHarmony(color: string, harmony?: Harmony, mode?: MixString, options?: InputOptions): string[];
     public static getHarmony(color: HEXObject, harmony?: Harmony, mode?: MixString, options?: InputOptions): HEXObject[];
     public static getHarmony(color: RGBObject, harmony?: Harmony, mode?: MixString, options?: InputOptions): RGBObject[];
     public static getHarmony(color: HSLObjectGeneric, harmony?: Harmony, mode?: MixString, options?: InputOptions): HSLObject[];
+    public static getHarmony(color: HWBObjectGeneric, harmony?: Harmony, mode?: MixString, options?: InputOptions): HWBObject[];
     public static getHarmony(color: CIELabObjectGeneric, harmony?: Harmony, mode?: MixString, options?: InputOptions): CIELabObject[];
 
     public static getHarmony(

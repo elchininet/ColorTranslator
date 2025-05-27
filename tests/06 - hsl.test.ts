@@ -41,8 +41,8 @@ COLORS.forEach((item): void => {
             expect(ColorTranslator.toHSLA(HSLAPercentages, legacyOptions)).toBe(item.HSLALegacy);
             expect(ColorTranslator.toHSLAObject(HSLAPercentages, options)).toMatchObject(item.HSLAObject);
 
-            expect(ColorTranslator.toRGBA(HSLPercentages)).toMatchSnapshot();
-            expect(ColorTranslator.toHSLA(HSLPercentages)).toMatchSnapshot();
+            expect(ColorTranslator.toRGBA(HSLAPercentages)).toMatchSnapshot();
+            expect(ColorTranslator.toHSLA(HSLAPercentages)).toMatchSnapshot();
 
         });
 

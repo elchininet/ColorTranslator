@@ -1,5 +1,85 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ColorTranslator shades and tints tests Shades snapshots with HWB functions from "hwb(0 0% 0% / 1)" 1`] = `
+[
+  "hwb(0 0% 17% / 1)",
+  "hwb(0 0% 33% / 1)",
+  "hwb(0 0% 50% / 1)",
+  "hwb(0 0% 67% / 1)",
+  "hwb(0 0% 83% / 1)",
+]
+`;
+
+exports[`ColorTranslator shades and tints tests Shades snapshots with HWB functions from "hwb(0 0% 0%)" 1`] = `
+[
+  "hwb(0 0% 17% / 1)",
+  "hwb(0 0% 33% / 1)",
+  "hwb(0 0% 50% / 1)",
+  "hwb(0 0% 67% / 1)",
+  "hwb(0 0% 83% / 1)",
+]
+`;
+
+exports[`ColorTranslator shades and tints tests Shades snapshots with HWB functions from {"H":0,"W":0,"B":0,"A":1} 1`] = `
+[
+  {
+    "B": 17,
+    "H": 0,
+    "W": 0,
+  },
+  {
+    "B": 33,
+    "H": 0,
+    "W": 0,
+  },
+  {
+    "B": 50,
+    "H": 0,
+    "W": 0,
+  },
+  {
+    "B": 67,
+    "H": 0,
+    "W": 0,
+  },
+  {
+    "B": 83,
+    "H": 0,
+    "W": 0,
+  },
+]
+`;
+
+exports[`ColorTranslator shades and tints tests Shades snapshots with HWB functions from {"H":0,"W":0,"B":0} 1`] = `
+[
+  {
+    "B": 17,
+    "H": 0,
+    "W": 0,
+  },
+  {
+    "B": 33,
+    "H": 0,
+    "W": 0,
+  },
+  {
+    "B": 50,
+    "H": 0,
+    "W": 0,
+  },
+  {
+    "B": 67,
+    "H": 0,
+    "W": 0,
+  },
+  {
+    "B": 83,
+    "H": 0,
+    "W": 0,
+  },
+]
+`;
+
 exports[`ColorTranslator shades and tints tests Shades snapshots with L*a*b functions from "lab(54.2917337686 80.812455318 69.8850403235 / 1)" 1`] = `
 [
   "lab(45 70 61 / 1)",
@@ -251,6 +331,86 @@ exports[`ColorTranslator shades and tints tests Shades tests from {"R":255,"G":0
     "B": 0,
     "G": 0,
     "R": 43,
+  },
+]
+`;
+
+exports[`ColorTranslator shades and tints tests Tints snapshots with HWB functions from "hwb(0 0% 0% / 1)" 1`] = `
+[
+  "hwb(0 17% 0% / 1)",
+  "hwb(0 33% 0% / 1)",
+  "hwb(0 50% 0% / 1)",
+  "hwb(0 67% 0% / 1)",
+  "hwb(0 83% 0% / 1)",
+]
+`;
+
+exports[`ColorTranslator shades and tints tests Tints snapshots with HWB functions from "hwb(0 0% 0%)" 1`] = `
+[
+  "hwb(0 17% 0% / 1)",
+  "hwb(0 33% 0% / 1)",
+  "hwb(0 50% 0% / 1)",
+  "hwb(0 67% 0% / 1)",
+  "hwb(0 83% 0% / 1)",
+]
+`;
+
+exports[`ColorTranslator shades and tints tests Tints snapshots with HWB functions from {"H":0,"W":0,"B":0,"A":1} 1`] = `
+[
+  {
+    "B": 0,
+    "H": 0,
+    "W": 17,
+  },
+  {
+    "B": 0,
+    "H": 0,
+    "W": 33,
+  },
+  {
+    "B": 0,
+    "H": 0,
+    "W": 50,
+  },
+  {
+    "B": 0,
+    "H": 0,
+    "W": 67,
+  },
+  {
+    "B": 0,
+    "H": 0,
+    "W": 83,
+  },
+]
+`;
+
+exports[`ColorTranslator shades and tints tests Tints snapshots with HWB functions from {"H":0,"W":0,"B":0} 1`] = `
+[
+  {
+    "B": 0,
+    "H": 0,
+    "W": 17,
+  },
+  {
+    "B": 0,
+    "H": 0,
+    "W": 33,
+  },
+  {
+    "B": 0,
+    "H": 0,
+    "W": 50,
+  },
+  {
+    "B": 0,
+    "H": 0,
+    "W": 67,
+  },
+  {
+    "B": 0,
+    "H": 0,
+    "W": 83,
   },
 ]
 `;

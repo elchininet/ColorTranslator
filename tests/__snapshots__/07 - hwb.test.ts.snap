@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HWB tests for hwb(0 0% 0%) HWB with percentages {"H":0,"W":"0%","B":"0%"} 1`] = `"rgb(255 0 0)"`;
+
+exports[`HWB tests for hwb(0 0% 0%) HWB with percentages {"H":0,"W":"0%","B":"0%"} 2`] = `"hwb(0 0% 0%)"`;
+
+exports[`HWB tests for hwb(0 0% 0%) HWBA with percentages {"H":0,"W":"0%","B":"0%","A":"100%"} 1`] = `"rgb(255 0 0 / 1)"`;
+
+exports[`HWB tests for hwb(0 0% 0%) HWBA with percentages {"H":0,"W":"0%","B":"0%","A":"100%"} 2`] = `"hwb(0 0% 0%)"`;
+
+exports[`HWB tests for hwb(0 0% 100%) HWB with percentages {"H":0,"W":"0%","B":"100%"} 1`] = `"rgb(0 0 0)"`;
+
+exports[`HWB tests for hwb(0 0% 100%) HWB with percentages {"H":0,"W":"0%","B":"100%"} 2`] = `"hwb(0 0% 100%)"`;
+
+exports[`HWB tests for hwb(0 0% 100%) HWBA with percentages {"H":0,"W":"0%","B":"100%","A":"100%"} 1`] = `"rgb(0 0 0 / 1)"`;
+
+exports[`HWB tests for hwb(0 0% 100%) HWBA with percentages {"H":0,"W":"0%","B":"100%","A":"100%"} 2`] = `"hwb(0 0% 100%)"`;
+
+exports[`HWB tests for hwb(0 50% 50%) HWB with percentages {"H":0,"W":"50%","B":"50%"} 1`] = `"rgb(127.5 127.5 127.5)"`;
+
+exports[`HWB tests for hwb(0 50% 50%) HWB with percentages {"H":0,"W":"50%","B":"50%"} 2`] = `"hwb(0 50% 50%)"`;
+
+exports[`HWB tests for hwb(0 50% 50%) HWBA with percentages {"H":0,"W":"50%","B":"50%","A":"100%"} 1`] = `"rgb(127.5 127.5 127.5 / 1)"`;
+
+exports[`HWB tests for hwb(0 50% 50%) HWBA with percentages {"H":0,"W":"50%","B":"50%","A":"100%"} 2`] = `"hwb(0 50% 50%)"`;
+
+exports[`HWB tests for hwb(0 100% 0%) HWB with percentages {"H":0,"W":"100%","B":"0%"} 1`] = `"rgb(255 255 255)"`;
+
+exports[`HWB tests for hwb(0 100% 0%) HWB with percentages {"H":0,"W":"100%","B":"0%"} 2`] = `"hwb(0 100% 0%)"`;
+
+exports[`HWB tests for hwb(0 100% 0%) HWBA with percentages {"H":0,"W":"100%","B":"0%","A":"100%"} 1`] = `"rgb(255 255 255 / 1)"`;
+
+exports[`HWB tests for hwb(0 100% 0%) HWBA with percentages {"H":0,"W":"100%","B":"0%","A":"100%"} 2`] = `"hwb(0 100% 0%)"`;
+
+exports[`HWB tests for hwb(120 0% 0%) HWB with percentages {"H":120,"W":"0%","B":"0%"} 1`] = `"rgb(0 255 0)"`;
+
+exports[`HWB tests for hwb(120 0% 0%) HWB with percentages {"H":120,"W":"0%","B":"0%"} 2`] = `"hwb(120 0% 0%)"`;
+
+exports[`HWB tests for hwb(120 0% 0%) HWBA with percentages {"H":120,"W":"0%","B":"0%","A":"100%"} 1`] = `"rgb(0 255 0 / 1)"`;
+
+exports[`HWB tests for hwb(120 0% 0%) HWBA with percentages {"H":120,"W":"0%","B":"0%","A":"100%"} 2`] = `"hwb(120 0% 0%)"`;
+
+exports[`HWB tests for hwb(240 0% 0%) HWB with percentages {"H":240,"W":"0%","B":"0%"} 1`] = `"rgb(0 0 255)"`;
+
+exports[`HWB tests for hwb(240 0% 0%) HWB with percentages {"H":240,"W":"0%","B":"0%"} 2`] = `"hwb(240 0% 0%)"`;
+
+exports[`HWB tests for hwb(240 0% 0%) HWBA with percentages {"H":240,"W":"0%","B":"0%","A":"100%"} 1`] = `"rgb(0 0 255 / 1)"`;
+
+exports[`HWB tests for hwb(240 0% 0%) HWBA with percentages {"H":240,"W":"0%","B":"0%","A":"100%"} 2`] = `"hwb(240 0% 0%)"`;
+
+exports[`HWB tests for hwb(300 0% 0%) HWB with percentages {"H":300,"W":"0%","B":"0%"} 1`] = `"rgb(255 0 255)"`;
+
+exports[`HWB tests for hwb(300 0% 0%) HWB with percentages {"H":300,"W":"0%","B":"0%"} 2`] = `"hwb(300 0% 0%)"`;
+
+exports[`HWB tests for hwb(300 0% 0%) HWBA with percentages {"H":300,"W":"0%","B":"0%","A":"100%"} 1`] = `"rgb(255 0 255 / 1)"`;
+
+exports[`HWB tests for hwb(300 0% 0%) HWBA with percentages {"H":300,"W":"0%","B":"0%","A":"100%"} 2`] = `"hwb(300 0% 0%)"`;

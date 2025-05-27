@@ -15,10 +15,14 @@ const blendFunctions = [
     { colorFn: ColorTranslator.toRGBA, blendFn: ColorTranslator.getBlendRGBA },
     { colorFn: ColorTranslator.toHSL,  blendFn: ColorTranslator.getBlendHSL  },
     { colorFn: ColorTranslator.toHSLA, blendFn: ColorTranslator.getBlendHSLA },
+    { colorFn: ColorTranslator.toHWB,  blendFn: ColorTranslator.getBlendHWB  },
+    { colorFn: ColorTranslator.toHWBA, blendFn: ColorTranslator.getBlendHWBA },
     { colorFn: ColorTranslator.toRGBObject,  blendFn: ColorTranslator.getBlendRGBObject  },
     { colorFn: ColorTranslator.toRGBAObject, blendFn: ColorTranslator.getBlendRGBAObject },
     { colorFn: ColorTranslator.toHSLObject,  blendFn: ColorTranslator.getBlendHSLObject  },
-    { colorFn: ColorTranslator.toHSLAObject, blendFn: ColorTranslator.getBlendHSLAObject }
+    { colorFn: ColorTranslator.toHSLAObject, blendFn: ColorTranslator.getBlendHSLAObject },
+    { colorFn: ColorTranslator.toHWBObject,  blendFn: ColorTranslator.getBlendHWBObject  },
+    { colorFn: ColorTranslator.toHWBAObject, blendFn: ColorTranslator.getBlendHWBAObject }
 ];
 
 const blendLabFunctions = [

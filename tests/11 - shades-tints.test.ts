@@ -1,5 +1,11 @@
 import { ColorTranslator } from '../src';
-import { HEXObject, RGBObject, HSLObjectGeneric, CIELabObjectGeneric } from '../src/@types';
+import {
+    CIELabObjectGeneric,
+    HEXObject,
+    HSLObjectGeneric,
+    HWBObjectGeneric,
+    RGBObject
+} from '../src/@types';
 
 describe('ColorTranslator shades and tints tests', (): void => {
 
@@ -18,7 +24,14 @@ describe('ColorTranslator shades and tints tests', (): void => {
         ColorTranslator.toRGBObject,
         ColorTranslator.toRGBAObject,
         ColorTranslator.toHSLObject,
-        ColorTranslator.toHSLAObject
+        ColorTranslator.toHSLAObject,
+    ];
+
+    const colorHwbFunctions = [
+        ColorTranslator.toHWB,
+        ColorTranslator.toHWBA,
+        ColorTranslator.toHWBObject,
+        ColorTranslator.toHWBAObject
     ];
 
     const labColorFunctions = [
@@ -96,6 +109,19 @@ describe('ColorTranslator shades and tints tests', (): void => {
         it(`Shades tests from ${JSON.stringify(input)} with decimals`, (): void => {
             const shades = ColorTranslator.getShades(input, 5, options);
             expect(shades).toMatchSnapshot();
+        });
+    });
+
+    colorHwbFunctions.forEach((fn): void => {
+        const options = { decimals: 0 };
+        const input = fn(base, { decimals: 10 }) as string & HWBObjectGeneric;
+        it(`Shades snapshots with HWB functions from ${JSON.stringify(input)}`, (): void => {
+            const shades = ColorTranslator.getShades(input, 5, options);
+            expect(shades).toMatchSnapshot();
+        });
+        it(`Tints snapshots with HWB functions from ${JSON.stringify(input)}`, (): void => {
+            const tints = ColorTranslator.getTints(input, 5, options);
+            expect(tints).toMatchSnapshot();
         });
     });
 

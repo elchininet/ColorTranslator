@@ -18,7 +18,12 @@ export const COLORS = [
         HSLA: 'hsl(0 100% 50% / 1)',
         HSLAInPercentages: 'hsl(0 100% 50% / 100%)',
         HSLObject: { H: 0, S: 100, L: 50 },
-        HSLAObject: { H: 0, S: 100, L: 50, A: 1 }
+        HSLAObject: { H: 0, S: 100, L: 50, A: 1 },
+        HWB: 'hwb(0 0% 0%)',
+        HWBA: 'hwb(0 0% 0% / 1)',
+        HWBAInPercentage: 'hwb(0 0% 0% / 100%)',
+        HWBObject: { H: 0, W: 0, B: 0 },
+        HWBAObject: { H: 0, W: 0, B: 0, A: 1 }
     },
     {
         KEYWORD: 'lime',
@@ -39,7 +44,12 @@ export const COLORS = [
         HSLA: 'hsl(120 100% 50% / 1)',
         HSLAInPercentages: 'hsl(120 100% 50% / 100%)',
         HSLObject: { H: 120, S: 100, L: 50 },
-        HSLAObject: { H: 120, S: 100, L: 50, A: 1 }
+        HSLAObject: { H: 120, S: 100, L: 50, A: 1 },
+        HWB: 'hwb(120 0% 0%)',
+        HWBA: 'hwb(120 0% 0% / 1)',
+        HWBAInPercentage: 'hwb(120 0% 0% / 100%)',
+        HWBObject: { H: 120, W: 0, B: 0 },
+        HWBAObject: { H: 120, W: 0, B: 0, A: 1 }
     },
     {
         KEYWORD: 'blue',
@@ -60,7 +70,12 @@ export const COLORS = [
         HSLA: 'hsl(240 100% 50% / 1)',
         HSLAInPercentages: 'hsl(240 100% 50% / 100%)',
         HSLObject: { H: 240, S: 100, L: 50 },
-        HSLAObject: { H: 240, S: 100, L: 50, A: 1 }
+        HSLAObject: { H: 240, S: 100, L: 50, A: 1 },
+        HWB: 'hwb(240 0% 0%)',
+        HWBA: 'hwb(240 0% 0% / 1)',
+        HWBAInPercentage: 'hwb(240 0% 0% / 100%)',
+        HWBObject: { H: 240, W: 0, B: 0 },
+        HWBAObject: { H: 240, W: 0, B: 0, A: 1 }
     },
     {
         KEYWORD: 'magenta',
@@ -81,7 +96,12 @@ export const COLORS = [
         HSLA: 'hsl(300 100% 50% / 1)',
         HSLAInPercentages: 'hsl(300 100% 50% / 100%)',
         HSLObject: { H: 300, S: 100, L: 50 },
-        HSLAObject: { H: 300, S: 100, L: 50, A: 1 }
+        HSLAObject: { H: 300, S: 100, L: 50, A: 1 },
+        HWB: 'hwb(300 0% 0%)',
+        HWBA: 'hwb(300 0% 0% / 1)',
+        HWBAInPercentage: 'hwb(300 0% 0% / 100%)',
+        HWBObject: { H: 300, W: 0, B: 0 },
+        HWBAObject: { H: 300, W: 0, B: 0, A: 1 }
     },
     {
         KEYWORD: 'white',
@@ -102,7 +122,12 @@ export const COLORS = [
         HSLA: 'hsl(0 0% 100% / 1)',
         HSLAInPercentages: 'hsl(0 0% 100% / 100%)',
         HSLObject: { H: 0, S: 0, L: 100 },
-        HSLAObject: { H: 0, S: 0, L: 100, A: 1 }
+        HSLAObject: { H: 0, S: 0, L: 100, A: 1 },
+        HWB: 'hwb(0 100% 0%)',
+        HWBA: 'hwb(0 100% 0% / 1)',
+        HWBAInPercentage: 'hwb(0 100% 0% / 100%)',
+        HWBObject: { H: 0, W: 100, B: 0 },
+        HWBAObject: { H: 0, W: 100, B: 0, A: 1 }
     },
     {
         KEYWORD: 'black',
@@ -123,7 +148,12 @@ export const COLORS = [
         HSLA: 'hsl(0 0% 0% / 1)',
         HSLAInPercentages: 'hsl(0 0% 0% / 100%)',
         HSLObject: { H: 0, S: 0, L: 0 },
-        HSLAObject: { H: 0, S: 0, L: 0, A: 1 }
+        HSLAObject: { H: 0, S: 0, L: 0, A: 1 },
+        HWB: 'hwb(0 0% 100%)',
+        HWBA: 'hwb(0 0% 100% / 1)',
+        HWBAInPercentage: 'hwb(0 0% 100% / 100%)',
+        HWBObject: { H: 0, W: 0, B: 100 },
+        HWBAObject: { H: 0, W: 0, B: 100, A: 1 }
     },
     {
         KEYWORD: 'gray',
@@ -144,7 +174,12 @@ export const COLORS = [
         HSLA: 'hsl(0 0% 50% / 1)',
         HSLAInPercentages: 'hsl(0 0% 50% / 100%)',
         HSLObject: { H: 0, S: 0, L: 50 },
-        HSLAObject: { H: 0, S: 0, L: 50, A: 1 }
+        HSLAObject: { H: 0, S: 0, L: 50, A: 1 },
+        HWB: 'hwb(0 50% 50%)',
+        HWBA: 'hwb(0 50% 50% / 1)',
+        HWBAInPercentage: 'hwb(0 50% 50% / 100%)',
+        HWBObject: { H: 0, W: 50, B: 50 },
+        HWBAObject: { H: 0, W: 50, B: 50, A: 1 }
     }
 ];
 

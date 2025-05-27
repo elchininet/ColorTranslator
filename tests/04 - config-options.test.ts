@@ -9,6 +9,8 @@ interface TestCase {
     RGBA: string;
     HSL: string;
     HSLA: string;
+    HWB: string;
+    HWBA: string;
     CMYK: string;
     CMYKA: string;
     isDefault: boolean;
@@ -25,6 +27,8 @@ describe('ColorTranslator CSS config options', () => {
             RGBA: 'rgba(255,0,255,1)',
             HSL: 'hsl(300,100%,50%)',
             HSLA: 'hsla(300,100%,50%,1)',
+            HWB: 'hwb(300 0% 0%)',
+            HWBA: 'hwb(300 0% 0% / 1)',
             CMYK: 'device-cmyk(0%,100%,0%,0%)',
             CMYKA: 'device-cmyk(0%,100%,0%,0%,1)',
             isDefault: false
@@ -35,6 +39,8 @@ describe('ColorTranslator CSS config options', () => {
             RGBA: 'rgb(255 0 255 / 1)',
             HSL: 'hsl(300 100% 50%)',
             HSLA: 'hsl(300 100% 50% / 1)',
+            HWB: 'hwb(300 0% 0%)',
+            HWBA: 'hwb(300 0% 0% / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
@@ -46,6 +52,8 @@ describe('ColorTranslator CSS config options', () => {
             RGBA: 'rgba(255, 0, 255, 1)',
             HSL: 'hsl(300, 100%, 50%)',
             HSLA: 'hsla(300, 100%, 50%, 1)',
+            HWB: 'hwb(300 0% 0%)',
+            HWBA: 'hwb(300 0% 0% / 1)',
             CMYK: 'device-cmyk(0%, 100%, 0%, 0%)',
             CMYKA: 'device-cmyk(0%, 100%, 0%, 0%, 1)',
             isDefault: false
@@ -57,6 +65,8 @@ describe('ColorTranslator CSS config options', () => {
             RGBA: 'rgba(255,0,255,1)',
             HSL: 'hsl(300,100%,50%)',
             HSLA: 'hsla(300,100%,50%,1)',
+            HWB: 'hwb(300 0% 0%)',
+            HWBA: 'hwb(300 0% 0% / 1)',
             CMYK: 'device-cmyk(0%,100%,0%,0%)',
             CMYKA: 'device-cmyk(0%,100%,0%,0%,1)',
             isDefault: true
@@ -67,6 +77,8 @@ describe('ColorTranslator CSS config options', () => {
             RGBA: 'rgb(255 0 255 / 1)',
             HSL: 'hsl(300 100% 50%)',
             HSLA: 'hsl(300 100% 50% / 1)',
+            HWB: 'hwb(300 0% 0%)',
+            HWBA: 'hwb(300 0% 0% / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
@@ -77,6 +89,8 @@ describe('ColorTranslator CSS config options', () => {
             RGBA: 'rgb(255 0 255 / 1)',
             HSL: 'hsl(300deg 100% 50%)',
             HSLA: 'hsl(300deg 100% 50% / 1)',
+            HWB: 'hwb(300deg 0% 0%)',
+            HWBA: 'hwb(300deg 0% 0% / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
@@ -87,6 +101,8 @@ describe('ColorTranslator CSS config options', () => {
             RGBA: 'rgb(255 0 255 / 1)',
             HSL: 'hsl(333.333333grad 100% 50%)',
             HSLA: 'hsl(333.333333grad 100% 50% / 1)',
+            HWB: 'hwb(333.333333grad 0% 0%)',
+            HWBA: 'hwb(333.333333grad 0% 0% / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
@@ -97,6 +113,8 @@ describe('ColorTranslator CSS config options', () => {
             RGBA: 'rgb(255 0 255 / 1)',
             HSL: 'hsl(5.235988rad 100% 50%)',
             HSLA: 'hsl(5.235988rad 100% 50% / 1)',
+            HWB: 'hwb(5.235988rad 0% 0%)',
+            HWBA: 'hwb(5.235988rad 0% 0% / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
@@ -107,6 +125,8 @@ describe('ColorTranslator CSS config options', () => {
             RGBA: 'rgb(255 0 255 / 1)',
             HSL: 'hsl(0.833333turn 100% 50%)',
             HSLA: 'hsl(0.833333turn 100% 50% / 1)',
+            HWB: 'hwb(0.833333turn 0% 0%)',
+            HWBA: 'hwb(0.833333turn 0% 0% / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
@@ -117,6 +137,8 @@ describe('ColorTranslator CSS config options', () => {
             RGBA: 'rgb(255 0 255 / 1)',
             HSL: 'hsl(300 100% 50%)',
             HSLA: 'hsl(300 100% 50% / 1)',
+            HWB: 'hwb(300 0% 0%)',
+            HWBA: 'hwb(300 0% 0% / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
@@ -127,6 +149,8 @@ describe('ColorTranslator CSS config options', () => {
             RGBA: 'rgb(100% 0% 100% / 1)',
             HSL: 'hsl(300 100% 50%)',
             HSLA: 'hsl(300 100% 50% / 1)',
+            HWB: 'hwb(300 0% 0%)',
+            HWBA: 'hwb(300 0% 0% / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
@@ -137,6 +161,8 @@ describe('ColorTranslator CSS config options', () => {
             RGBA: 'rgb(255 0 255 / 1)',
             HSL: 'hsl(300 100% 50%)',
             HSLA: 'hsl(300 100% 50% / 1)',
+            HWB: 'hwb(300 0% 0%)',
+            HWBA: 'hwb(300 0% 0% / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
@@ -147,6 +173,8 @@ describe('ColorTranslator CSS config options', () => {
             RGBA: 'rgb(255 0 255 / 1)',
             HSL: 'hsl(300 100% 50%)',
             HSLA: 'hsl(300 100% 50% / 1)',
+            HWB: 'hwb(300 0% 0%)',
+            HWBA: 'hwb(300 0% 0% / 1)',
             CMYK: 'device-cmyk(0 1 0 0)',
             CMYKA: 'device-cmyk(0 1 0 0 / 1)',
             isDefault: false
@@ -157,6 +185,8 @@ describe('ColorTranslator CSS config options', () => {
             RGBA: 'rgb(255 0 255 / 1)',
             HSL: 'hsl(300 100% 50%)',
             HSLA: 'hsl(300 100% 50% / 1)',
+            HWB: 'hwb(300 0% 0%)',
+            HWBA: 'hwb(300 0% 0% / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
@@ -167,6 +197,8 @@ describe('ColorTranslator CSS config options', () => {
             RGBA: 'rgb(255 0 255 / 100%)',
             HSL: 'hsl(300 100% 50%)',
             HSLA: 'hsl(300 100% 50% / 100%)',
+            HWB: 'hwb(300 0% 0%)',
+            HWBA: 'hwb(300 0% 0% / 100%)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 100%)',
             isDefault: false
@@ -177,6 +209,8 @@ describe('ColorTranslator CSS config options', () => {
             RGBA: 'rgb(255 0 255 / 1)',
             HSL: 'hsl(300 100% 50%)',
             HSLA: 'hsl(300 100% 50% / 1)',
+            HWB: 'hwb(300 0% 0%)',
+            HWBA: 'hwb(300 0% 0% / 1)',
             CMYK: 'cmyk(0% 100% 0% 0%)',
             CMYKA: 'cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
@@ -187,6 +221,8 @@ describe('ColorTranslator CSS config options', () => {
             RGBA: 'rgb(255 0 255 / 1)',
             HSL: 'hsl(300 100% 50%)',
             HSLA: 'hsl(300 100% 50% / 1)',
+            HWB: 'hwb(300 0% 0%)',
+            HWBA: 'hwb(300 0% 0% / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
@@ -202,6 +238,8 @@ describe('ColorTranslator CSS config options', () => {
             RGBA,
             HSL,
             HSLA,
+            HWB,
+            HWBA,
             CMYK,
             CMYKA,
             isDefault
@@ -214,12 +252,16 @@ describe('ColorTranslator CSS config options', () => {
             expect(instance.RGBA).toBe(RGBA);
             expect(instance.HSL).toBe(HSL);
             expect(instance.HSLA).toBe(HSLA);
+            expect(instance.HWB).toBe(HWB);
+            expect(instance.HWBA).toBe(HWBA);
             expect(instance.CMYK).toBe(CMYK);
             expect(instance.CMYKA).toBe(CMYKA);
             expect(ColorTranslator.toRGB(COLOR, mergedOptions)).toBe(RGB);
             expect(ColorTranslator.toRGBA(COLOR, mergedOptions)).toBe(RGBA);
             expect(ColorTranslator.toHSL(COLOR, mergedOptions)).toBe(HSL);
             expect(ColorTranslator.toHSLA(COLOR, mergedOptions)).toBe(HSLA);
+            expect(ColorTranslator.toHWB(COLOR, mergedOptions)).toBe(HWB);
+            expect(ColorTranslator.toHWBA(COLOR, mergedOptions)).toBe(HWBA);
             expect(ColorTranslator.toCMYK(COLOR, mergedOptions)).toBe(CMYK);
             expect(ColorTranslator.toCMYKA(COLOR, mergedOptions)).toBe(CMYKA);
         });
@@ -236,12 +278,16 @@ describe('ColorTranslator CSS config options', () => {
                 expect(instance.RGBA).toBe(RGBA);
                 expect(instance.HSL).toBe(HSL);
                 expect(instance.HSLA).toBe(HSLA);
+                expect(instance.HWB).toBe(HWB);
+                expect(instance.HWBA).toBe(HWBA);
                 expect(instance.CMYK).toBe(CMYK);
                 expect(instance.CMYKA).toBe(CMYKA);
                 expect(ColorTranslator.toRGB(COLOR, mergedOptions)).toBe(RGB);
                 expect(ColorTranslator.toRGBA(COLOR, mergedOptions)).toBe(RGBA);
                 expect(ColorTranslator.toHSL(COLOR, mergedOptions)).toBe(HSL);
                 expect(ColorTranslator.toHSLA(COLOR, mergedOptions)).toBe(HSLA);
+                expect(ColorTranslator.toHWB(COLOR, mergedOptions)).toBe(HWB);
+                expect(ColorTranslator.toHWBA(COLOR, mergedOptions)).toBe(HWBA);
                 expect(ColorTranslator.toCMYK(COLOR, mergedOptions)).toBe(CMYK);
                 expect(ColorTranslator.toCMYKA(COLOR, mergedOptions)).toBe(CMYKA);
             });
@@ -298,7 +344,13 @@ describe('ColorTranslator CSS config options autodetection', () => {
             L: 50
         };
 
-        const TEST_CASES = [
+        const HWB = {
+            H: 450,
+            W: 10,
+            B: 20
+        };
+
+        const HSL_TEST_CASES = [
             {
                 color: `hsl(${HSL.H} ${HSL.S}% ${HSL.L}%)`,
                 result: `hsl(0 ${HSL.S}% ${HSL.L}%)`
@@ -321,11 +373,43 @@ describe('ColorTranslator CSS config options autodetection', () => {
             }
         ];
 
-        TEST_CASES.forEach((testCase): void => {
+        const HWB_TEST_CASES = [
+            //--HWB
+            {
+                color: `hwb(${HWB.H} ${HWB.W}% ${HWB.B}%)`,
+                result: `hwb(90 ${HWB.W}% ${HWB.B}%)`
+            },
+            {
+                color: `hwb(${HWB.H}deg ${HWB.W}% ${HWB.B}%)`,
+                result: `hwb(90deg ${HWB.W}% ${HWB.B}%)`
+            },
+            {
+                color: `hwb(${HWB.H}grad ${HWB.W}% ${HWB.B}%)`,
+                result: `hwb(50grad ${HWB.W}% ${HWB.B}%)`
+            },
+            {
+                color: `hwb(${HWB.H}turn ${HWB.W}% ${HWB.B}%)`,
+                result: `hwb(0turn ${HWB.W}% ${HWB.B}%)`
+            },
+            {
+                color: `hwb(${HWB.H}rad ${HWB.W}% ${HWB.B}%)`,
+                result: `hwb(3.893843rad ${HWB.W}% ${HWB.B}%)`
+            }
+        ];
+
+        HSL_TEST_CASES.forEach((testCase): void => {
 
             const instance = new ColorTranslator(testCase.color);
             expect(instance.HSL).toBe(testCase.result);
             expect(ColorTranslator.toHSL(testCase.color)).toBe(testCase.result);
+
+        });
+
+        HWB_TEST_CASES.forEach((testCase): void => {
+
+            const instance = new ColorTranslator(testCase.color);
+            expect(instance.HWB).toBe(testCase.result);
+            expect(ColorTranslator.toHWB(testCase.color)).toBe(testCase.result);
 
         });
 
@@ -388,20 +472,24 @@ describe('ColorTranslator CSS config options autodetection', () => {
         const instanceAlphaNone = new ColorTranslator('rgb(255 0 255 / 0.5)');
 
         expect(instanceAlphaNone.HSLA).toBe('hsl(300 100% 50% / 0.5)');
+        expect(instanceAlphaNone.HWBA).toBe('hwb(300 0% 0% / 0.5)');
         expect(instanceAlphaNone.RGBA).toBe('rgb(255 0 255 / 0.5)');
         expect(regNone.test(instanceAlphaNone.CMYKA)).toBe(true);
 
         const instanceAlphaPercentage = new ColorTranslator('rgb(255 0 255 / 50%)');
 
         expect(instanceAlphaPercentage.HSLA).toBe('hsl(300 100% 50% / 50%)');
+        expect(instanceAlphaPercentage.HWBA).toBe('hwb(300 0% 0% / 50%)');
         expect(instanceAlphaPercentage.RGBA).toBe('rgb(255 0 255 / 50%)');
         expect(regPercent.test(instanceAlphaPercentage.CMYKA)).toBe(true);
 
         expect(ColorTranslator.toHSLA('rgb(255 0 255 / 0.5)')).toBe('hsl(300 100% 50% / 0.5)');
+        expect(ColorTranslator.toHWBA('rgb(255 0 255 / 0.5)')).toBe('hwb(300 0% 0% / 0.5)');
         expect(ColorTranslator.toRGBA('rgb(255 0 255 / 0.5)')).toBe('rgb(255 0 255 / 0.5)');
         expect(regNone.test(ColorTranslator.toCMYKA('rgb(255 0 255 / 0.5)'))).toBe(true);
 
         expect(ColorTranslator.toHSLA('rgb(255 0 255 / 80%)')).toBe('hsl(300 100% 50% / 80%)');
+        expect(ColorTranslator.toHWBA('rgb(255 0 255 / 80%)')).toBe('hwb(300 0% 0% / 80%)');
         expect(ColorTranslator.toRGBA('rgb(255 0 255 / 5%)')).toBe('rgb(255 0 255 / 5%)');
         expect(regPercent.test(ColorTranslator.toCMYKA('rgb(255 0 255 / 50%)'))).toBe(true);
 
