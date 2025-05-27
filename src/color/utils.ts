@@ -16,6 +16,9 @@ import {
     HSLObject,
     HSLObjectGeneric,
     HSLOutput,
+    HWBObject,
+    HWBObjectGeneric,
+    HWBOutput,
     InputOptions,
     MatchOptions,
     Options,
@@ -59,15 +62,18 @@ import {
     CMYKStringParser,
     HEXStringParser,
     HSLStringParser,
+    HWBStringParser,
     RGBStringParser
 } from '#parsers';
 import {
     cmykToRGB,
     hslToRGB,
     hueRYB,
+    hwbToRgb,
     labToRgb,
     rgbToCMYK,
     rgbToHSL,
+    rgbToHwb,
     rgbToLab,
     rgbToRYB,
     rybToRGB
@@ -188,6 +194,9 @@ export const getRGBObjectFromString = {
     [ColorModel.HSL](color: string): RGBObject {
         return new HSLStringParser(color).rgb;
     },
+    [ColorModel.HWB](color: string): RGBObject {
+        return new HWBStringParser(color).rgb;
+    },
     [ColorModel.CIELab](color: string): RGBObject {
         return new CIELabStringParser(color).rgb;
     },
@@ -221,6 +230,15 @@ export const getRGBObjectFromObject = {
         }
         return RGB;
     },
+    [ColorModel.HWB](color: HWBObjectGeneric): RGBObject {
+        const W = percent(`${color.W}`);
+        const B = percent(`${color.B}`);
+        const RGB = hwbToRgb(normalizeHue(color.H), W, B);
+        if (hasProp<HWBObjectGeneric>(color, 'A')) {
+            RGB.A = normalizeAlpha(color.A);
+        }
+        return RGB;
+    },
     [ColorModel.CIELab](color: CIELabObjectGeneric): RGBObject {
         const L = percent(`${color.L}`);
         const a = getBase125Number(`${color.a}`);
@@ -246,7 +264,7 @@ export const getRGBObjectFromObject = {
 
 export const getOptionsFromColorInput = (options: InputOptions, ...colors: ColorInput[]): Options => {
     const cssColors: string[] = [];
-    const hslColors: AnglesUnitEnum[] = [];
+    const anglesUnits: AnglesUnitEnum[] = [];
     const rgbColors: boolean[] = [];
     const labColors: boolean[] = [];
     const cmykColors: boolean[] = [];
@@ -280,7 +298,16 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
 
             if (HSLStringParser.test(color)) {
                 const parser = new HSLStringParser(color);
-                hslColors.push(parser.angleUnit);
+                anglesUnits.push(parser.angleUnit);
+                alphaValues.push(
+                    parser.hasPercentageAlpha
+                );
+                continue;
+            }
+
+            if (HWBStringParser.test(color)) {
+                const parser = new HWBStringParser(color);
+                anglesUnits.push(parser.angleUnit);
                 alphaValues.push(
                     parser.hasPercentageAlpha
                 );
@@ -344,8 +371,8 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
         anglesUnit: options.anglesUnit && anglesUnitValues.includes(options.anglesUnit)
             ? options.anglesUnit as AnglesUnitEnum
             : (
-                new Set(hslColors).size === 1
-                    ? hslColors[0]
+                new Set(anglesUnits).size === 1
+                    ? anglesUnits[0]
                     : DEFAULT_OPTIONS.anglesUnit
             ),
         rgbUnit: options.rgbUnit && colorUnitValues.includes(options.rgbUnit)
@@ -389,7 +416,15 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
 export const getRGBObject = (color: ColorInput, model: ColorModel = getColorModel(color)): RGBObject => {
     return typeof color === 'string'
         ? getRGBObjectFromString[model](color)
-        : getRGBObjectFromObject[model](color as RGBObjectGeneric & HSLObjectGeneric & CIELabObjectGeneric & CMYKObjectGeneric);
+        : getRGBObjectFromObject[model](
+            color as (
+                RGBObjectGeneric &
+                HSLObjectGeneric &
+                HWBObjectGeneric &
+                CIELabObjectGeneric &
+                CMYKObjectGeneric
+            )
+        );
 };
 
 //---Get the color values from an object
@@ -439,6 +474,20 @@ export const translateColor = {
             ? round(color.A, decimals)
             : 1;
         return HSL;
+    },
+
+    [ColorModel.HWB](color: RGBObject, decimals: number): HWBObject {
+        const HWB = rgbToHwb(color.R, color.G, color.B);
+        delete HWB.A;
+        return roundHWBObject(HWB, decimals);
+    },
+
+    HWBA(color: RGBObject, decimals: number): HWBObject {
+        const HWB = translateColor.HWB(color, decimals);
+        HWB.A = hasProp<RGBObject>(color, 'A')
+            ? round(color.A, decimals)
+            : 1;
+        return HWB;
     },
 
     [ColorModel.CIELab](color: RGBObject, decimals: number): CIELabObject {
@@ -503,7 +552,7 @@ export const getColorMixture = (
     const RGB = getRGBObject(color, model);
     const hasAlpha = (
         (typeof color === 'string' && hasProp<RGBObject>(RGB, 'A')) ||
-        (typeof color !== 'string' && hasProp<RGBObjectGeneric | HSLObjectGeneric | CIELabObjectGeneric>(color, 'A'))
+        (typeof color !== 'string' && hasProp<RGBObjectGeneric | HSLObjectGeneric | HWBObjectGeneric | CIELabObjectGeneric>(color, 'A'))
     );
     const HSL: HSLObject = rgbToHSL(RGB.R, RGB.G, RGB.B, RGB.A);
     if (!hasAlpha) delete HSL.A;
@@ -560,6 +609,18 @@ export const getColorMixture = (
                             options.decimals
                         );
             });
+        case ColorModel.HWB:
+            return hslMap.map((HSLColor: HSLObject): HWBOutput => {
+                const RGBColor = hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L);
+                const HWBColor = rgbToHwb(RGBColor.R, RGBColor.G, RGBColor.B);
+                if (hasAlpha) HWBColor.A = HSLColor.A;
+                return isCSS
+                    ? CSS.HWB(HWBColor, options)
+                    : translateColor.HWB(
+                        RGBColor,
+                        options.decimals
+                    );
+            });
         case ColorModel.CIELab:
             return hslMap.map((HSLColor: HSLObject): CIELabOutput => {
                 const RGBColor = hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L);
@@ -601,7 +662,7 @@ export const colorHarmony = {
         const HSL = rgbToHSL(RGB.R, RGB.G, RGB.B, RGB.A);
         const hasAlpha = (
             (typeof color === 'string' && hasProp<RGBObject>(RGB, 'A')) ||
-            (typeof color !== 'string' && hasProp<RGBObjectGeneric | HSLObjectGeneric | CIELabObjectGeneric>(color, 'A'))
+            (typeof color !== 'string' && hasProp<RGBObjectGeneric | HSLObjectGeneric | HWBObjectGeneric | CIELabObjectGeneric>(color, 'A'))
         );
         const isCSS = typeof color === 'string';
         switch(model) {
@@ -624,6 +685,10 @@ export const colorHarmony = {
                 return hasAlpha
                     ? this.HSLA(HSL, harmonyFunction, mode, isCSS, options)
                     : this.HSL(HSL, harmonyFunction, mode, isCSS, options);
+            case ColorModel.HWB:
+                return hasAlpha
+                    ? this.HWBA(HSL, harmonyFunction, mode, isCSS, options)
+                    : this.HWB(HSL, harmonyFunction, mode, isCSS, options)
             case ColorModel.RGB:
                 return hasAlpha
                     ? this.RGBA(HSL, harmonyFunction, mode, isCSS, options)
@@ -784,6 +849,66 @@ export const colorHarmony = {
                         options.decimals
                     )
             )
+        );
+    },
+
+    [ColorModel.HWB](
+        color: HSLObject,
+        harmonyFunction: HarmonyFunction,
+        mode: MixString,
+        css: boolean,
+        options: Options
+    ): HWBOutput[] {
+        const array = harmonyFunction(color, mode);
+        return array.map(
+            (c: HSLObject): HWBOutput => {
+                const rgb = hslToRGB(c.H, c.S, c.L);
+                const hwb = rgbToHwb(rgb.R, rgb.G, rgb.B);
+                return css
+                    ? CSS.HWB(
+                        {
+                            H: hwb.H,
+                            W: hwb.W,
+                            B: hwb.B
+                        },
+                        options
+                    )
+                    : translateColor.HWB(
+                        rgb,
+                        options.decimals
+                    );
+            }
+        );
+    },
+
+    HWBA(
+        color: HSLObject,
+        harmonyFunction: HarmonyFunction,
+        mode: MixString,
+        css: boolean,
+        options: Options
+    ): HWBOutput[] {
+        const array = harmonyFunction(color, mode);
+        return array.map(
+            (c: HSLObject): HWBOutput => {
+                const rgb = hslToRGB(c.H, c.S, c.L);
+                const hwb = rgbToHwb(rgb.R, rgb.G, rgb.B);
+                return css
+                    ? CSS.HWB(
+                        {
+                            ...hwb,
+                            A: normalizeAlpha(c.A)
+                        },
+                        options
+                    )
+                    : translateColor.HWBA(
+                        {
+                            ...rgb,
+                            A: normalizeAlpha(c.A)
+                        },
+                        options.decimals
+                    );
+            }
         );
     },
 
@@ -1004,6 +1129,36 @@ export const colorMixer = {
                 : translateColor.HSLA(mix, options.decimals)
         ) as R;
     },
+    [ColorModel.HWB]<CSS extends boolean, R = CSS extends true ? string : HWBObject>(
+        colors: ColorInput[],
+        mode: MixString,
+        css: CSS,
+        options: Options
+    ): R {
+        const mix = this.mix(colors, mode);
+        const HWB = rgbToHwb(mix.R, mix.G, mix.B);
+        delete mix.A;
+        delete HWB.A;
+        return (
+            css
+                ? CSS.HWB(HWB, options)
+                : translateColor.HWB(mix, options.decimals)
+        ) as R;
+    },
+    HWBA<CSS extends boolean, R = CSS extends true ? string : HWBObject>(
+        colors: ColorInput[],
+        mode: MixString,
+        css: CSS,
+        options: Options
+    ): R {
+        const mix = this.mix(colors, mode);
+        const HWB = rgbToHwb(mix.R, mix.G, mix.B, mix.A);
+        return (
+            css
+                ? CSS.HWB(HWB, options)
+                : translateColor.HWBA(mix, options.decimals)
+        ) as R;
+    },
     [ColorModel.CIELab]<CSS extends boolean, R = CSS extends true ? string : CIELabObject>(
         colors: ColorInput[],
         mode: MixString,
@@ -1066,14 +1221,18 @@ export const roundHSLObject = (
     return {
         H: round(color.H, decimals),
         S: round(color.S, decimals),
-        L: round(color.L, decimals),
-        ...(
-            hasProp<HSLObject>(color, 'A')
-                ? {
-                    A: round(color.A, decimals)
-                }
-                : {}
-        )
+        L: round(color.L, decimals)
+    };
+};
+
+export const roundHWBObject = (
+    color: HWBObject,
+    decimals: number
+): HWBObject => {
+    return {
+        H: round(color.H, decimals),
+        W: round(color.W, decimals),
+        B: round(color.B, decimals)
     };
 };
 

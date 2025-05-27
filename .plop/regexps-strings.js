@@ -2,9 +2,10 @@ const HEX_DIGIT = '[a-f\\d]';
 const HEX_DIGIT_DOUBLE = `${HEX_DIGIT}{2}`;
 const NUMBER_WITH_DECIMALS = '(?:\\d*\\.)?\\d+';
 const SPACE = '\\s*';
+const REAL_SPACE = '\\s+';
 const COMMA = `${SPACE},${SPACE}`;
 const SLASH = `${SPACE}\\/${SPACE}`;
-const HSL_DEGREES_UNITS = '(?:deg|grad|rad|turn)?';
+const DEGREES_UNITS = '(?:deg|grad|rad|turn)?';
 
 module.exports = {
     COLOR_REGEXP_STRINGS: {
@@ -36,14 +37,32 @@ module.exports = {
                         )?   
                     |
                         (?<r>${NUMBER_WITH_DECIMALS}%?)
-                        ${SPACE}
+                        ${REAL_SPACE}
                         (?<g>${NUMBER_WITH_DECIMALS}%?)
-                        ${SPACE}
+                        ${REAL_SPACE}
                         (?<b>${NUMBER_WITH_DECIMALS}%?)
                         (?:
                             ${SLASH}
                             (?<a>${NUMBER_WITH_DECIMALS}%?)
                         )?
+
+                )
+                ${SPACE}
+            \\)$
+        `,
+        HWB: `
+            ^hwb${SPACE}\\(
+                ${SPACE}
+                (?:
+                    (?<h>${NUMBER_WITH_DECIMALS}${DEGREES_UNITS})
+                    ${REAL_SPACE}
+                    (?<w>${NUMBER_WITH_DECIMALS})%
+                    ${REAL_SPACE}
+                    (?<b>${NUMBER_WITH_DECIMALS})%
+                    (?:
+                        ${SLASH}
+                        (?<a>${NUMBER_WITH_DECIMALS}%?)
+                    )?
                 )
                 ${SPACE}
             \\)$
@@ -52,7 +71,7 @@ module.exports = {
             ^hsla?${SPACE}\\(
                 ${SPACE}
                 (?:
-                        (?<h_legacy>-?${NUMBER_WITH_DECIMALS}${HSL_DEGREES_UNITS})
+                        (?<h_legacy>-?${NUMBER_WITH_DECIMALS}${DEGREES_UNITS})
                         ${COMMA}
                         (?<s_legacy>${NUMBER_WITH_DECIMALS})%
                         ${COMMA}
@@ -62,10 +81,10 @@ module.exports = {
                             (?<a_legacy>${NUMBER_WITH_DECIMALS})
                         )?
                     |
-                        (?<h>-?${NUMBER_WITH_DECIMALS}${HSL_DEGREES_UNITS})
-                        ${SPACE}
+                        (?<h>-?${NUMBER_WITH_DECIMALS}${DEGREES_UNITS})
+                        ${REAL_SPACE}
                         (?<s>${NUMBER_WITH_DECIMALS})%
-                        ${SPACE}
+                        ${REAL_SPACE}
                         (?<l>${NUMBER_WITH_DECIMALS})%
                         (?:
                             ${SLASH}
@@ -80,9 +99,9 @@ module.exports = {
                     ${SPACE}
                     (?:
                         (?<L>${NUMBER_WITH_DECIMALS}%?)
-                        ${SPACE}
+                        ${REAL_SPACE}
                         (?<a>-?${NUMBER_WITH_DECIMALS}%?)
-                        ${SPACE}
+                        ${REAL_SPACE}
                         (?<b>-?${NUMBER_WITH_DECIMALS}%?)
                         (?:
                             ${SLASH}
@@ -110,11 +129,11 @@ module.exports = {
                     )?
                 |
                     (?<c>${NUMBER_WITH_DECIMALS}%?)
-                    ${SPACE}
+                    ${REAL_SPACE}
                     (?<m>${NUMBER_WITH_DECIMALS}%?)
-                    ${SPACE}
+                    ${REAL_SPACE}
                     (?<y>${NUMBER_WITH_DECIMALS}%?)
-                    ${SPACE}
+                    ${REAL_SPACE}
                     (?<k>${NUMBER_WITH_DECIMALS}%?)
                     (?:
                         ${SLASH}
@@ -125,7 +144,7 @@ module.exports = {
             \\)$
         `
     },
-    HSL_HUE: new RegExp(`^(?<number>-?${NUMBER_WITH_DECIMALS})(?<units>${HSL_DEGREES_UNITS})$`),
+    HSL_HUE: new RegExp(`^(?<number>-?${NUMBER_WITH_DECIMALS})(?<units>${DEGREES_UNITS})$`),
     toRegExp: function (str, caseInsensitive = false) {
         const stringWithoutSpaces = str.replace(/\s*/gm, '');
         return caseInsensitive

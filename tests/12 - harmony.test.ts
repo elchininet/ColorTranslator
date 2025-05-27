@@ -1,6 +1,12 @@
 import { ColorTranslator } from '../src';
 import { Harmony, Mix } from '../src/constants';
-import { HEXObject, RGBObject, HSLObjectGeneric, CIELabObjectGeneric } from '../src/@types';
+import {
+    CIELabObjectGeneric,
+    HEXObject,
+    HSLObjectGeneric,
+    HWBObjectGeneric,
+    RGBObject
+} from '../src/@types';
 
 describe('ColorTranslator harmony tests', (): void => {
 
@@ -16,10 +22,14 @@ describe('ColorTranslator harmony tests', (): void => {
         ColorTranslator.toRGBA,
         ColorTranslator.toHSL,
         ColorTranslator.toHSLA,
+        ColorTranslator.toHWB,
+        ColorTranslator.toHWBA,
         ColorTranslator.toRGBObject,
         ColorTranslator.toRGBAObject,
         ColorTranslator.toHSLObject,
-        ColorTranslator.toHSLAObject
+        ColorTranslator.toHSLAObject,
+        ColorTranslator.toHWBObject,
+        ColorTranslator.toHWBAObject
     ];
 
     const labColorFunctions = [
@@ -54,7 +64,7 @@ describe('ColorTranslator harmony tests', (): void => {
         hexColorFunctions.forEach((fn): void => {
 
             const options = { decimals: 0, legacyCSS: false };
-            const color = fn(base) as string & HEXObject & RGBObject & HSLObjectGeneric;
+            const color = fn(base) as string & HEXObject & RGBObject & HSLObjectGeneric & HWBObjectGeneric;
             const additiveResult = additive_results.map(colors => colors.map(color => fn(color)));
             const subtractiveResult = subtractive_results.map(colors => colors.map(color => fn(color)));
 

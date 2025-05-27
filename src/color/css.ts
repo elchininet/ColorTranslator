@@ -6,6 +6,7 @@ import {
     ColorUnitEnum,
     HEXObject,
     HSLObject,
+    HWBObject,
     NumberOrString,
     Options,
     RGBObject
@@ -69,6 +70,28 @@ const getAlpha = (value: number, options: Options, ignoreLegacy = false): Number
     return round(value, decimals);
 };
 
+const buildHueTransformer = (options: Options) => {
+    const { anglesUnit, decimals } = options;
+    return (value: number, index: number): NumberOrString => {
+        if (
+            index === 0 &&
+            anglesUnit !== AnglesUnitEnum.NONE
+        ) {
+            const translated = round(
+                translateDegrees(
+                    value,
+                    anglesUnit
+                ),
+                decimals
+            );
+            return `${translated}${anglesUnit}`;
+        }
+        return index === 3
+            ? getAlpha(value, options)
+            : round(value, decimals);
+    };
+};
+
 export const CSS = {
     [ColorModel.HEX]: (color: HEXObject | RGBObject): string => {
         const transformer = (value: NumberOrString): string => toHEX(round(value));
@@ -110,31 +133,9 @@ export const CSS = {
         return getResultFromTemplate(template, values);
     },
     [ColorModel.HSL]: (color: HSLObject, options: Options): string => {
-        const {
-            decimals,
-            legacyCSS,
-            spacesAfterCommas,
-            anglesUnit
-        } = options;
+        const { legacyCSS, spacesAfterCommas } = options;
         const comma = getComma(spacesAfterCommas);
-        const transformer = (value: number, index: number): NumberOrString => {
-            if (
-                index === 0 &&
-                anglesUnit !== AnglesUnitEnum.NONE
-            ) {
-                const translated = round(
-                    translateDegrees(
-                        value,
-                        anglesUnit
-                    ),
-                    decimals
-                );
-                return `${translated}${anglesUnit}`;
-            }
-            return index === 3
-                ? getAlpha(value, options)
-                : round(value, decimals);
-        };
+        const transformer = buildHueTransformer(options);
         const values = prepareColorForCss(color, transformer);
         const template = legacyCSS
             ? (
@@ -147,6 +148,14 @@ export const CSS = {
                     ? `hsl({1} {2}% {3}% / {4})`
                     : `hsl({1} {2}% {3}%)`
             );
+        return getResultFromTemplate(template, values);
+    },
+    [ColorModel.HWB]: (color: HWBObject, options: Options) => {
+        const transformer = buildHueTransformer(options);
+        const values = prepareColorForCss(color, transformer);
+        const template = values.length === 4
+            ? `hwb({1} {2}% {3}% / {4})`
+            : `hwb({1} {2}% {3}%)`;
         return getResultFromTemplate(template, values);
     },
     [ColorModel.CIELab]: (color: CIELabObject, options: Options) => {

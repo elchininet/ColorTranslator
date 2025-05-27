@@ -16,6 +16,7 @@ module.exports = (plop) => {
                 data: {
                     HEX: toRegExp(COLOR_REGEXP_STRINGS.HEX, true),
                     RGB: toRegExp(COLOR_REGEXP_STRINGS.RGB),
+                    HWB: toRegExp(COLOR_REGEXP_STRINGS.HWB),
                     HSL: toRegExp(COLOR_REGEXP_STRINGS.HSL),
                     CIELab: toRegExp(COLOR_REGEXP_STRINGS.CIELab),
                     CMYK: toRegExp(COLOR_REGEXP_STRINGS.CMYK),

@@ -37,6 +37,20 @@ export interface HSLObjectGeneric {
     A?: NumberOrString;
 }
 
+export interface HWBObject {
+    H: number;
+    W: number;
+    B: number;
+    A?: number;
+}
+
+export interface HWBObjectGeneric {
+    H: number;
+    W: NumberOrString;
+    B: NumberOrString;
+    A?: NumberOrString;
+}
+
 export interface CIELabObject {
     L: number;
     a: number;
@@ -76,17 +90,33 @@ export interface RYBObject {
 
 export type RGYBObject = RGBObject | RYBObject;
 
-export type Color = RGBObjectGeneric | HSLObjectGeneric | CMYKObjectGeneric | CIELabObjectGeneric;
-export type ColorWithoutCMYK = RGBObjectGeneric | HSLObjectGeneric | CIELabObjectGeneric;
+export type Color = 
+    | RGBObjectGeneric
+    | HSLObjectGeneric
+    | HWBObjectGeneric
+    | CMYKObjectGeneric
+    | CIELabObjectGeneric;
+
+export type ColorWithoutCMYK =
+    | RGBObjectGeneric
+    | HSLObjectGeneric
+    | HWBObjectGeneric
+    | CIELabObjectGeneric;
 
 export type ColorInput = string | Color;
 export type ColorInputWithoutCMYK = string | ColorWithoutCMYK;
 export type HEXOutput = string | HEXObject;
 export type RGBOutput = string | RGBObject;
+export type HWBOutput = string | HWBObject;
 export type CIELabOutput = string | CIELabObject;
 export type HSLOutput = string | HSLObject;
 export type CMYKOutput = string | CMYKObject;
-export type ColorOutput = HEXOutput | RGBOutput | HSLOutput | CIELabOutput;
+export type ColorOutput =
+    | HEXOutput
+    | RGBOutput
+    | HSLOutput
+    | HWBOutput
+    | CIELabOutput;
 
 export interface HEXRegExpMatchArray extends RegExpMatchArray {
     groups: {
@@ -123,6 +153,15 @@ export interface HSLRegExpMatchArray extends RegExpMatchArray {
         h: string;
         s: string;
         l: string;
+        a: string | undefined;
+    }
+}
+
+export interface HWBRegExpMatchArray extends RegExpMatchArray {
+    groups: {
+        h: string;
+        w: string;
+        b: string;
         a: string | undefined;
     }
 }

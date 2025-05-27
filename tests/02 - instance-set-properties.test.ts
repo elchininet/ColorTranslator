@@ -6,7 +6,8 @@ const TEST_COLORS = {
     blue: COLORS[2],
     magenta: COLORS[3],
     white: COLORS[4],
-    gray: COLORS[6]
+    gray: COLORS[6],
+    black: COLORS[5]
 };
 
 const TEST_CMYK_COLORS = {
@@ -20,49 +21,63 @@ const TEST_CMYK_COLORS = {
 
 describe('ColorTranslator set instance properties', () => {
 
-    it('Set property H', () => {
+    it('Method setH', () => {
         const instance = new ColorTranslator(TEST_COLORS.red.HEX);
         instance.setH(240);
         expect(instance.H).toBe(240);
         expect(instance.HEX).toBe(TEST_COLORS.blue.HEX);
     });
 
-    it('Set property S', () => {
+    it('Method setS', () => {
         const instance = new ColorTranslator(TEST_COLORS.red.HEX);
         instance.setS(0);
         expect(instance.S).toBe(0);
         expect(instance.HEX).toBe(TEST_COLORS.gray.HEX);
     });
 
-    it('Set property L', () => {
+    it('Method setL', () => {
         const instance = new ColorTranslator(TEST_COLORS.white.HEX);
         instance.setL(50);
         expect(instance.L).toBe(50);
         expect(instance.HEX).toBe(TEST_COLORS.gray.HEX);
     });
 
-    it('Set property R', () => {
+    it('Method setWhiteness', () => {
+        const instance = new ColorTranslator(TEST_COLORS.red.HEX);
+        instance.setWhiteness(100);
+        expect(instance.Whiteness).toBe(100);
+        expect(instance.HEX).toBe(TEST_COLORS.white.HEX);
+    });
+
+    it('Method setBlackness', () => {
+        const instance = new ColorTranslator(TEST_COLORS.red.HEX);
+        instance.setBlackness(100);
+        expect(instance.Blackness).toBe(100);
+        expect(instance.HEX).toBe(TEST_COLORS.black.HEX);
+    });
+
+    it('Method setR', () => {
         const instance = new ColorTranslator(TEST_COLORS.blue.HEX);
         instance.setR(255);
         expect(instance.R).toBe(255);
         expect(instance.HEX).toBe(TEST_COLORS.magenta.HEX);
     });
 
-    it('Set property G', () => {
+    it('Method setG', () => {
         const instance = new ColorTranslator(TEST_COLORS.white.HEX);
         instance.setG(0);
         expect(instance.G).toBe(0);
         expect(instance.HEX).toBe(TEST_COLORS.magenta.HEX);
     });
 
-    it('Set property B', () => {
+    it('Method setB', () => {
         const instance = new ColorTranslator(TEST_COLORS.red.HEX);
         instance.setB(255);
         expect(instance.B).toBe(255);
         expect(instance.HEX).toBe(TEST_COLORS.magenta.HEX);
     });
 
-    it('Set property A', () => {
+    it('Method setA', () => {
         const instance = new ColorTranslator(TEST_COLORS.red.HEX);
         const REG = /^(.*)(\d)(\))$/;
         instance.setA(0.5);
@@ -86,6 +101,13 @@ describe('ColorTranslator set instance properties', () => {
         expect(instance.HSLObject).toMatchObject(TEST_COLORS.red.HSLObject);
         expect(instance.HSLAObject).toMatchObject({
             ...TEST_COLORS.red.HSLObject,
+            A: 0.5
+        });
+        expect(instance.HWB).toBe(TEST_COLORS.red.HWB);
+        expect(instance.HWBA).toBe(TEST_COLORS.red.HWBA.replace(REG, '$10.5$3'));
+        expect(instance.HWBObject).toMatchObject(TEST_COLORS.red.HWBObject);
+        expect(instance.HWBAObject).toMatchObject({
+            ...TEST_COLORS.red.HWBObject,
             A: 0.5
         });
     });
@@ -118,6 +140,8 @@ describe('Properties boundaries', (): void => {
             const H = instance.H;
             const S = instance.S;
             const L = instance.L;
+            const Whiteness = instance.Whiteness;
+            const Blackness = instance.Blackness;
             const A = instance.A;
             const C = instance.C;
             const M = instance.M;
@@ -189,6 +213,24 @@ describe('Properties boundaries', (): void => {
             instance.setL(200);
             expect(instance.L).toBe(100);
             instance.setL(L);
+
+            // Test Whiteness
+            instance.setWhiteness(50);
+            expect(instance.Whiteness).toBe(50);
+            instance.setWhiteness(-100);
+            expect(instance.Whiteness).toBe(0);
+            instance.setWhiteness(200);
+            expect(instance.Whiteness).toBe(100);
+            instance.setWhiteness(Whiteness);
+
+            // Test Blackness
+            instance.setBlackness(50);
+            expect(instance.Blackness).toBe(50);
+            instance.setBlackness(-100);
+            expect(instance.Blackness).toBe(0);
+            instance.setBlackness(200);
+            expect(instance.Blackness).toBe(100);
+            instance.setL(Blackness);
 
             // Test CIEL
             instance.setCIEL(50);

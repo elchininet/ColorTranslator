@@ -11,12 +11,16 @@ const mixFunctions = [
     { name: 'getMixRGBA', mixFn: ColorTranslator.getMixRGBA, fn: ColorTranslator.toRGBA },
     { name: 'getMixHSL',  mixFn: ColorTranslator.getMixHSL,  fn: ColorTranslator.toHSL },
     { name: 'getMixHSLA', mixFn: ColorTranslator.getMixHSLA, fn: ColorTranslator.toHSLA },
+    { name: 'getMixHWB',  mixFn: ColorTranslator.getMixHWB,  fn: ColorTranslator.toHWB },
+    { name: 'getMixHWBA', mixFn: ColorTranslator.getMixHWBA, fn: ColorTranslator.toHWBA },
     { name: 'getMixHEXObject',  mixFn: ColorTranslator.getMixHEXObject,  fn: ColorTranslator.toHEXObject },
     { name: 'getMixHEXAObject', mixFn: ColorTranslator.getMixHEXAObject, fn: ColorTranslator.toHEXAObject },
     { name: 'getMixRGBObject',  mixFn: ColorTranslator.getMixRGBObject,  fn: ColorTranslator.toRGBObject },
     { name: 'getMixRGBAObject', mixFn: ColorTranslator.getMixRGBAObject, fn: ColorTranslator.toRGBAObject },
     { name: 'getMixHSLObject',  mixFn: ColorTranslator.getMixHSLObject,  fn: ColorTranslator.toHSLObject },
-    { name: 'getMixHSLAObject', mixFn: ColorTranslator.getMixHSLAObject, fn: ColorTranslator.toHSLAObject }
+    { name: 'getMixHSLAObject', mixFn: ColorTranslator.getMixHSLAObject, fn: ColorTranslator.toHSLAObject },
+    { name: 'getMixHWBObject',  mixFn: ColorTranslator.getMixHWBObject,  fn: ColorTranslator.toHWBObject },
+    { name: 'getMixHWBAObject', mixFn: ColorTranslator.getMixHWBAObject, fn: ColorTranslator.toHWBAObject }
 ];
 
 const options: InputOptions = { rgbUnit: 'none' };
