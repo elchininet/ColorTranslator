@@ -203,32 +203,15 @@ export const labToRgb = (L: number, a: number, b: number): RGBObject => {
 
 //---RGB to HWB
 export const rgbToHwb = (R: number, G: number, B: number, A: number = 1): HWBObject => {
-    R /= 255;
-    G /= 255;
-    B /= 255;
-    const MAX = Math.max(R, G, B);
-    const MIN = Math.min(R, G, B);
-    const D = MAX - MIN;
-    let H = 0;
-    if (D !== 0) {
-        switch (MAX) {
-            case R:
-                H = ((G - B) / D) % 6;
-                break;
-            case G:
-                H = (B - R) / D + 2;
-                break;
-            case B:
-                H = (R - G) / D + 4;
-                break;
-        }
-        H = round(H * 60);
-        if (H < 0) { H += 360; }
-    }
+    const hsl = rgbToHSL(R, G, B, A);
     return {
-        H,
-        W: round(MIN * 100),
-        B: round((1 - MAX) * 100),
+        H: hsl.H,
+        W: round(
+            Math.min(R, G, B) / 255 * 100
+        ),
+        B: round(
+            (1 - Math.max(R, G, B) / 255) * 100
+        ),
         A
     };
 };
