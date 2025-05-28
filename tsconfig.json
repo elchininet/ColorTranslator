@@ -15,7 +15,8 @@
       "#helpers": ["helpers"],
       "#constants": ["constants"],
       "#color/*": ["color/*"],
-      "#parsers": ["parsers"]
+      "#parsers": ["parsers"],
+      "#returns": ["returns"]
     }
   },
   "include": ["src/**/*.ts"],
