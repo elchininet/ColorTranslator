@@ -16,6 +16,7 @@ import {
     MixString
 } from '#constants';
 import * as utils from '#color/utils';
+import { getOptionsFromColorInput, getRGBObject } from '#color/extractors';
 
 export const getColorReturn = <T>(
     color: ColorInput,
@@ -23,7 +24,7 @@ export const getColorReturn = <T>(
     decimals: number,
     translateFunction: (color: Color, decimals: number) => T
 ): T => {
-    const rgbObject = utils.getRGBObject(color, model);
+    const rgbObject = getRGBObject(color, model);
     return translateFunction(rgbObject, decimals);
 };
 
@@ -35,8 +36,8 @@ export const getBlendReturn = <T>(
     translateFunction: (color: Color, decimals: number) => T
 ): T[] => {
     if (steps < 1) steps = DEFAULT_BLEND_STEPS;
-    const fromRGBObject = utils.getRGBObject(from);
-    const toRGBObject = utils.getRGBObject(to);
+    const fromRGBObject = getRGBObject(from);
+    const toRGBObject = getRGBObject(to);
     const blendArray = utils.blend(fromRGBObject, toRGBObject, steps);
     return blendArray.map((color: RGBObject): T => {
         return translateFunction(color, decimals);
@@ -90,7 +91,7 @@ export function getBlendReturnWithParameters<T>(
     if (cssFunction) {
         return result.map((color: T): string => cssFunction(
             color,
-            utils.getOptionsFromColorInput(
+            getOptionsFromColorInput(
                 (
                     typeof thirdParameter === 'number'
                         ? fourthParameter
@@ -132,7 +133,7 @@ export function getMixReturn<T>(
         colorMixerFunction,
         css
     } = params;
-    const options = utils.getOptionsFromColorInput(
+    const options = getOptionsFromColorInput(
         (
             typeof secondParameter === 'string'
                 ? thirdParameter

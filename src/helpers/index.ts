@@ -5,6 +5,7 @@ import {
     NumberOrString
 } from '@types';
 import {
+    BASE_255,
     Harmony,
     HarmonyString,
     HEX,
@@ -51,7 +52,7 @@ export const toHEX = (h: NumberOrString): string => {
 };
 
 //---Convert from decimal 255 to percent
-export const from255NumberToPercent = (value: number, decimals: number): number => round(value / 255 * 100, decimals);
+export const from255NumberToPercent = (value: number, decimals: number): number => round(value / BASE_255 * 100, decimals);
 
 //---Convert from decimal 125 to percent
 export const from125NumberToPercent = (value: number, decimals: number): number => round(value / 125 * 100, decimals);
@@ -59,17 +60,17 @@ export const from125NumberToPercent = (value: number, decimals: number): number 
 //---Calculate a decimal 255 from an RGB color
 export const getBase255Number = (color: string, alpha = false): number => {
     if (!alpha && PCENT.test(color)) {
-        return Math.min(255 * percentNumber(color) / 100, 255);
+        return Math.min(BASE_255 * percentNumber(color) / 100, BASE_255);
     }
     if (HEX.test(color)) {
         if (color.length === 3) {
             color += color.slice(-1);
         }
         return alpha
-            ? round(color) / 255
+            ? round(color) / BASE_255
             : round(color);
     }
-    return Math.min(+color, alpha ? 1 : 255);
+    return Math.min(+color, alpha ? 1 : BASE_255);
 };
 
 //---Calculate a decimal 125 from an CIE Lab color
