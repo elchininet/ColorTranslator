@@ -15,6 +15,7 @@ import {
     RGBObject
 } from '@types';
 import {
+    BASE_255,
     DEFAULT_BLEND_STEPS,
     DEFAULT_SHADES_TINTS_STEPS,
     Harmony,
@@ -33,6 +34,11 @@ import {
     rgbToLab
 } from '#color/translators';
 import * as utils from '#color/utils';
+import {
+    getColorModel,
+    getOptionsFromColorInput,
+    getRGBObject
+} from '#color/extractors';
 import { CSS } from '#color/css';
 import {
     isHarmony,
@@ -60,8 +66,8 @@ export class ColorTranslator {
 
     // Constructor
     public constructor(color: ColorInput, options: InputOptions = {}) {
-        this._options = utils.getOptionsFromColorInput(options, color);
-        this.rgb = utils.getRGBObject(color);
+        this._options = getOptionsFromColorInput(options, color);
+        this.rgb = getRGBObject(color);
         this.updateHSL();
         this.updateHWB();
         this.updateLab();
@@ -217,7 +223,7 @@ export class ColorTranslator {
 
     // Public RGB methods
     public setR(R: number): ColorTranslator {
-        this.rgb.R = minmax(R, 0, 255);
+        this.rgb.R = minmax(R, 0, BASE_255);
         this.updateHSL();
         this.updateHWB();
         this.updateLab();
@@ -226,7 +232,7 @@ export class ColorTranslator {
     }
 
     public setG(G: number): ColorTranslator {
-        this.rgb.G = minmax(G, 0, 255);
+        this.rgb.G = minmax(G, 0, BASE_255);
         this.updateHSL();
         this.updateHWB();
         this.updateLab();
@@ -235,7 +241,7 @@ export class ColorTranslator {
     }
 
     public setB(B: number): ColorTranslator {
-        this.rgb.B = minmax(B, 0, 255);
+        this.rgb.B = minmax(B, 0, BASE_255);
         this.updateHSL();
         this.updateHWB();
         this.updateLab();
@@ -481,7 +487,7 @@ export class ColorTranslator {
             R: this.R,
             G: this.G,
             B: this.B,
-            A: this.A * 255
+            A: this.A * BASE_255
         });
     }
 
@@ -604,7 +610,7 @@ export class ColorTranslator {
 
     // Color Conversion Static Methods
     public static toHEXObject(color: ColorInput): HEXObject {
-        const model = utils.getColorModel(color);
+        const model = getColorModel(color);
         return getColorReturn<HEXObject>(
             color,
             model,
@@ -620,7 +626,7 @@ export class ColorTranslator {
     }
 
     public static toHEXAObject(color: ColorInput): HEXObject {
-        const model = utils.getColorModel(color);
+        const model = getColorModel(color);
         return getColorReturn<HEXObject>(
             color,
             model,
@@ -636,7 +642,7 @@ export class ColorTranslator {
     }
 
     public static toRGBObject(color: ColorInput, options: InputOptions = {}): RGBObject {
-        const model = utils.getColorModel(color);
+        const model = getColorModel(color);
         return getColorReturn<RGBObject>(
             color,
             model,
@@ -646,8 +652,8 @@ export class ColorTranslator {
     }
 
     public static toRGB(color: ColorInput, options: InputOptions = {}): string {
-        const model = utils.getColorModel(color);
-        const detectedOptions = utils.getOptionsFromColorInput(options, color);
+        const model = getColorModel(color);
+        const detectedOptions = getOptionsFromColorInput(options, color);
         const rgb = getColorReturn<RGBObject>(
             color,
             model,
@@ -658,7 +664,7 @@ export class ColorTranslator {
     }
 
     public static toRGBAObject(color: ColorInput, options: InputOptions = {}): RGBObject {
-        const model = utils.getColorModel(color);
+        const model = getColorModel(color);
         return getColorReturn<RGBObject>(
             color,
             model,
@@ -668,8 +674,8 @@ export class ColorTranslator {
     }
 
     public static toRGBA(color: ColorInput, options: InputOptions = {}): string {
-        const model = utils.getColorModel(color);
-        const detectedOptions = utils.getOptionsFromColorInput(options, color);
+        const model = getColorModel(color);
+        const detectedOptions = getOptionsFromColorInput(options, color);
         const rgba = getColorReturn<RGBObject>(
             color,
             model,
@@ -680,7 +686,7 @@ export class ColorTranslator {
     }
 
     public static toHSLObject(color: ColorInput, options: InputOptions = {}): HSLObject {
-        const model = utils.getColorModel(color);
+        const model = getColorModel(color);
         return getColorReturn<HSLObject>(
             color,
             model,
@@ -690,8 +696,8 @@ export class ColorTranslator {
     }
 
     public static toHSL(color: ColorInput, options: InputOptions = {}): string {
-        const model = utils.getColorModel(color);
-        const detectedOptions = utils.getOptionsFromColorInput(options, color);
+        const model = getColorModel(color);
+        const detectedOptions = getOptionsFromColorInput(options, color);
         const hsl = getColorReturn<HSLObject>(
             color,
             model,
@@ -702,7 +708,7 @@ export class ColorTranslator {
     }
 
     public static toHSLAObject(color: ColorInput, options: InputOptions = {}): HSLObject {
-        const model = utils.getColorModel(color);
+        const model = getColorModel(color);
         return getColorReturn<HSLObject>(
             color,
             model,
@@ -712,8 +718,8 @@ export class ColorTranslator {
     }
 
     public static toHSLA(color: ColorInput, options: InputOptions = {}): string {
-        const model = utils.getColorModel(color);
-        const detectedOptions = utils.getOptionsFromColorInput(options, color);
+        const model = getColorModel(color);
+        const detectedOptions = getOptionsFromColorInput(options, color);
         const hsla = getColorReturn<HSLObject>(
             color,
             model,
@@ -724,7 +730,7 @@ export class ColorTranslator {
     }
 
     public static toHWBObject(color: ColorInput, options: InputOptions = {}): HWBObject {
-        const model = utils.getColorModel(color);
+        const model = getColorModel(color);
         return getColorReturn<HWBObject>(
             color,
             model,
@@ -734,8 +740,8 @@ export class ColorTranslator {
     }
 
     public static toHWB(color: ColorInput, options: InputOptions = {}): string {
-        const model = utils.getColorModel(color);
-        const detectedOptions = utils.getOptionsFromColorInput(options, color);
+        const model = getColorModel(color);
+        const detectedOptions = getOptionsFromColorInput(options, color);
         const hwb = getColorReturn<HWBObject>(
             color,
             model,
@@ -746,7 +752,7 @@ export class ColorTranslator {
     }
 
     public static toHWBAObject(color: ColorInput, options: InputOptions = {}): HWBObject {
-        const model = utils.getColorModel(color);
+        const model = getColorModel(color);
         return getColorReturn<HWBObject>(
             color,
             model,
@@ -756,8 +762,8 @@ export class ColorTranslator {
     }
 
     public static toHWBA(color: ColorInput, options: InputOptions = {}): string {
-        const model = utils.getColorModel(color);
-        const detectedOptions = utils.getOptionsFromColorInput(options, color);
+        const model = getColorModel(color);
+        const detectedOptions = getOptionsFromColorInput(options, color);
         const hwb = getColorReturn<HWBObject>(
             color,
             model,
@@ -768,7 +774,7 @@ export class ColorTranslator {
     }
 
     public static toCIELabObject(color: ColorInput, options: InputOptions = {}): CIELabObject {
-        const model = utils.getColorModel(color);
+        const model = getColorModel(color);
         return getColorReturn<CIELabObject>(
             color,
             model,
@@ -778,8 +784,8 @@ export class ColorTranslator {
     }
 
     public static toCIELab(color: ColorInput, options: InputOptions = {}): string {
-        const model = utils.getColorModel(color);
-        const detectedOptions = utils.getOptionsFromColorInput(options, color);
+        const model = getColorModel(color);
+        const detectedOptions = getOptionsFromColorInput(options, color);
         const lab = getColorReturn<CIELabObject>(
             color,
             model,
@@ -790,7 +796,7 @@ export class ColorTranslator {
     }
 
     public static toCIELabAObject(color: ColorInput, options: InputOptions = {}): CIELabObject {
-        const model = utils.getColorModel(color);
+        const model = getColorModel(color);
         return getColorReturn<CIELabObject>(
             color,
             model,
@@ -800,8 +806,8 @@ export class ColorTranslator {
     }
 
     public static toCIELabA(color: ColorInput, options: InputOptions = {}): string {
-        const model = utils.getColorModel(color);
-        const detectedOptions = utils.getOptionsFromColorInput(options, color);
+        const model = getColorModel(color);
+        const detectedOptions = getOptionsFromColorInput(options, color);
         const lab = getColorReturn<CIELabObject>(
             color,
             model,
@@ -812,7 +818,7 @@ export class ColorTranslator {
     }
 
     public static toCMYKObject(color: ColorInput, options: InputOptions = {}): CMYKObject {
-        const model = utils.getColorModel(color);
+        const model = getColorModel(color);
         return getColorReturn<CMYKObject>(
             color,
             model,
@@ -822,8 +828,8 @@ export class ColorTranslator {
     }
 
     public static toCMYK(color: ColorInput, options: InputOptions = {}): string {
-        const model = utils.getColorModel(color);
-        const detectedOptions = utils.getOptionsFromColorInput(options, color);
+        const model = getColorModel(color);
+        const detectedOptions = getOptionsFromColorInput(options, color);
         const cmyk = getColorReturn<CMYKObject>(
             color,
             model,
@@ -834,7 +840,7 @@ export class ColorTranslator {
     }
 
     public static toCMYKAObject(color: ColorInput, options: InputOptions = {}): CMYKObject {
-        const model = utils.getColorModel(color);
+        const model = getColorModel(color);
         return getColorReturn<CMYKObject>(
             color,
             model,
@@ -844,8 +850,8 @@ export class ColorTranslator {
     }
 
     public static toCMYKA(color: ColorInput, options: InputOptions = {}): string {
-        const model = utils.getColorModel(color);
-        const detectedOptions = utils.getOptionsFromColorInput(options, color);
+        const model = getColorModel(color);
+        const detectedOptions = getOptionsFromColorInput(options, color);
         const cmyka = getColorReturn<CMYKObject>(
             color,
             model,
@@ -1736,7 +1742,7 @@ export class ColorTranslator {
                 color,
                 secondParameter,
                 true,
-                utils.getOptionsFromColorInput(
+                getOptionsFromColorInput(
                     thirdParameter || {},
                     color
                 )
@@ -1746,7 +1752,7 @@ export class ColorTranslator {
             color,
             DEFAULT_SHADES_TINTS_STEPS,
             true,
-            utils.getOptionsFromColorInput(
+            getOptionsFromColorInput(
                 secondParameter || {},
                 color
             )
@@ -1778,7 +1784,7 @@ export class ColorTranslator {
                 color,
                 secondParameter,
                 false,
-                utils.getOptionsFromColorInput(
+                getOptionsFromColorInput(
                     thirdParameter || {},
                     color
                 )
@@ -1788,7 +1794,7 @@ export class ColorTranslator {
             color,
             DEFAULT_SHADES_TINTS_STEPS,
             false,
-            utils.getOptionsFromColorInput(
+            getOptionsFromColorInput(
                 secondParameter || {},
                 color
             )
@@ -1837,7 +1843,7 @@ export class ColorTranslator {
                 isMix(thirdParam)
                     ? thirdParam
                     : Mix.ADDITIVE,
-                utils.getOptionsFromColorInput(
+                getOptionsFromColorInput(
                     isMix(thirdParam)
                         ? (fourthParam || {})
                         : thirdParam || {},
@@ -1849,7 +1855,7 @@ export class ColorTranslator {
                 Harmony.COMPLEMENTARY,
                 color,
                 secondParam,
-                utils.getOptionsFromColorInput(
+                getOptionsFromColorInput(
                     thirdParam as InputOptions || {},
                     color
                 )
@@ -1859,7 +1865,7 @@ export class ColorTranslator {
             Harmony.COMPLEMENTARY,
             color,
             Mix.ADDITIVE,
-            utils.getOptionsFromColorInput(
+            getOptionsFromColorInput(
                 secondParam || {},
                 color
             )
