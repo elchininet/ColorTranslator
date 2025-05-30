@@ -154,14 +154,22 @@ export interface RGBRegExpMatchArray extends RegExpMatchArray {
 
 export interface HSLRegExpMatchArray extends RegExpMatchArray {
     groups: {
+        // Legacy values
         h_legacy: string;
         s_legacy: string;
         l_legacy: string;
         a_legacy: string | undefined;
+        // HSL values
         h: string;
         s: string;
         l: string;
         a: string | undefined;
+        // Relative values
+        from: string;
+        relative_h: string;
+        relative_s: string;
+        relative_l: string;
+        relative_a: string | undefined;
     }
 }
 
