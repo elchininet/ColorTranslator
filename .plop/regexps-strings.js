@@ -1,11 +1,20 @@
 const HEX_DIGIT = '[a-f\\d]';
 const HEX_DIGIT_DOUBLE = `${HEX_DIGIT}{2}`;
+const HEX_NUMBER = '#[a-fA-F\\d]+';
 const NUMBER_WITH_DECIMALS = '(?:\\d*\\.)?\\d+';
 const SPACE = '\\s*';
 const REAL_SPACE = '\\s+';
 const COMMA = `${SPACE},${SPACE}`;
 const SLASH = `${SPACE}\\/${SPACE}`;
 const DEGREES_UNITS = '(?:deg|grad|rad|turn)?';
+const FROM_COLOR = `(?:\\w+|\\w+\\(${SPACE}[^())]+${SPACE}\\)|${HEX_NUMBER})`;
+const CALC_CHARACTERS = '\\(\\)\\/\\*\\-+\\d\\.\\s';
+const CALC_OPERATION = '[\\d\\.\\/\\*\\+\\-\\w\\s]+';
+const CALC_OPERAND = `(?:${NUMBER_WITH_DECIMALS}|\\w+)`;
+const CALC_RGB_COLOR = `calc\\([rgb${CALC_CHARACTERS}]+\\)`;
+const CALC_ALPHA_COLOR = `calc\\([${CALC_CHARACTERS}]*alpha[${CALC_CHARACTERS}]*\\)`;
+const RELATIVE_RGB_COLOR = `(?:[rgb]|${NUMBER_WITH_DECIMALS}|${CALC_RGB_COLOR})`;
+const RELATIVE_ALPHA = `(?:${NUMBER_WITH_DECIMALS}%?|${CALC_ALPHA_COLOR}|alpha)`;
 
 module.exports = {
     COLOR_REGEXP_STRINGS: {
@@ -44,6 +53,20 @@ module.exports = {
                         (?:
                             ${SLASH}
                             (?<a>${NUMBER_WITH_DECIMALS}%?)
+                        )?
+                    |
+                        from
+                        ${REAL_SPACE}
+                        (?<from>${FROM_COLOR})
+                        ${REAL_SPACE}
+                        (?<relative_r>${RELATIVE_RGB_COLOR})
+                        ${REAL_SPACE}
+                        (?<relative_g>${RELATIVE_RGB_COLOR})
+                        ${REAL_SPACE}
+                        (?<relative_b>${RELATIVE_RGB_COLOR})
+                        (?:
+                            ${SLASH}
+                            (?<relative_a>${RELATIVE_ALPHA})
                         )?
 
                 )
@@ -96,19 +119,19 @@ module.exports = {
         `,
         CIELab: `
             ^lab${SPACE}\\(
-                    ${SPACE}
+                ${SPACE}
+                (?:
+                    (?<L>${NUMBER_WITH_DECIMALS}%?)
+                    ${REAL_SPACE}
+                    (?<a>-?${NUMBER_WITH_DECIMALS}%?)
+                    ${REAL_SPACE}
+                    (?<b>-?${NUMBER_WITH_DECIMALS}%?)
                     (?:
-                        (?<L>${NUMBER_WITH_DECIMALS}%?)
-                        ${REAL_SPACE}
-                        (?<a>-?${NUMBER_WITH_DECIMALS}%?)
-                        ${REAL_SPACE}
-                        (?<b>-?${NUMBER_WITH_DECIMALS}%?)
-                        (?:
-                            ${SLASH}
-                            (?<A>${NUMBER_WITH_DECIMALS}%?)
-                        )?
-                    )
-                    ${SPACE}
+                        ${SLASH}
+                        (?<A>${NUMBER_WITH_DECIMALS}%?)
+                    )?
+                )
+                ${SPACE}
             \\)$
         `,
         CMYK: `
@@ -144,11 +167,74 @@ module.exports = {
             \\)$
         `
     },
+    CALC: {
+        REGEXP: `
+            ^calc\\(
+                ${SPACE}
+                (?<operation>${CALC_OPERATION})
+                ${SPACE}
+            \\)$
+        `,
+        SCOPED: `
+            \\(
+                ${SPACE}
+                ([^()]+)
+                ${SPACE}
+            \\)
+        `,
+        DIVISION: `
+            ${SPACE}
+            (?<left>${CALC_OPERAND})
+            ${SPACE}
+            \\/
+            ${SPACE}
+            (?<right>${CALC_OPERAND})
+            ${SPACE}
+        `,
+        MULTIPLICATION: `
+            ${SPACE}
+            (?<left>${CALC_OPERAND})
+            ${SPACE}
+            \\*
+            ${SPACE}
+            (?<right>${CALC_OPERAND})
+            ${SPACE}
+        `,
+        SUM: `
+            ${SPACE}
+            (?<left>${CALC_OPERAND})
+            ${SPACE}
+            \\+
+            ${SPACE}
+            (?<right>${CALC_OPERAND})
+            ${SPACE}
+        `,
+        REST: `
+            ${SPACE}
+            (?<left>${CALC_OPERAND})
+            ${SPACE}
+            \\-
+            ${SPACE}
+            (?<right>${CALC_OPERAND})
+            ${SPACE}
+        `
+    },
     HSL_HUE: new RegExp(`^(?<number>-?${NUMBER_WITH_DECIMALS})(?<units>${DEGREES_UNITS})$`),
-    toRegExp: function (str, caseInsensitive = false) {
+    toRegExp: function (str, options = {}) {
+        const {
+            global = false,
+            caseInsensitive = false,
+        } = options;
+        let flags = '';
+        if (global) {
+            flags += 'g';
+        }
+        if (caseInsensitive) {
+            flags += 'i';
+        }
         const stringWithoutSpaces = str.replace(/\s*/gm, '');
-        return caseInsensitive
-            ? new RegExp(stringWithoutSpaces, 'i')
-            : new RegExp(stringWithoutSpaces);
+        return flags === ''
+            ? new RegExp(stringWithoutSpaces)
+            : new RegExp(stringWithoutSpaces, flags);
     }
 };

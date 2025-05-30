@@ -133,14 +133,22 @@ export interface HEXRegExpMatchArray extends RegExpMatchArray {
 
 export interface RGBRegExpMatchArray extends RegExpMatchArray {
     groups: {
+        // Legacy values
         r_legacy: string;
         g_legacy: string;
         b_legacy: string;
         a_legacy: string | undefined;
+        // RGB values
         r: string;
         g: string;
         b: string;
         a: string | undefined;
+        // Relative values
+        from: string;
+        relative_r: string;
+        relative_g: string;
+        relative_b: string;
+        relative_a: string | undefined;
     }
 }
 
@@ -248,3 +256,5 @@ export type InputOptions = Partial<
 export type MatchOptions = {
     [K in keyof Pick<Options, 'legacyCSS' | 'spacesAfterCommas' | 'cmykFunction'>]: number;
 };
+
+export type ParserGetRgbObject = (color: string) => RGBObject;
