@@ -142,7 +142,7 @@ export const getRGBObjectFromString = {
         return new HWBStringParser(color, getRGBObject).rgb;
     },
     [ColorModel.CIELab](color: string): RGBObject {
-        return new CIELabStringParser(color).rgb;
+        return new CIELabStringParser(color, getRGBObject).rgb;
     },
     [ColorModel.CMYK](color: string): RGBObject {
         return new CMYKStringParser(color).rgb;
@@ -284,7 +284,7 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
             }
 
             if (CIELabStringParser.test(color)) {
-                const parser = new CIELabStringParser(color);
+                const parser = new CIELabStringParser(color, getRGBObject);
                 labColors.push(
                     parser.hasPercentageValues
                 );
