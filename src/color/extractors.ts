@@ -139,7 +139,7 @@ export const getRGBObjectFromString = {
         return new HSLStringParser(color).rgb;
     },
     [ColorModel.HWB](color: string): RGBObject {
-        return new HWBStringParser(color).rgb;
+        return new HWBStringParser(color, getRGBObject).rgb;
     },
     [ColorModel.CIELab](color: string): RGBObject {
         return new CIELabStringParser(color).rgb;
@@ -264,7 +264,7 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
             }
 
             if (HWBStringParser.test(color)) {
-                const parser = new HWBStringParser(color);
+                const parser = new HWBStringParser(color, getRGBObject);
                 anglesUnits.push(parser.angleUnit);
                 alphaValues.push(
                     parser.hasPercentageAlpha
