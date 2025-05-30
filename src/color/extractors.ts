@@ -133,7 +133,7 @@ export const getRGBObjectFromString = {
         return new HEXStringParser(colorStr).rgb;
     },
     [ColorModel.RGB](color: string): RGBObject {
-        return new RGBStringParser(color).rgb;
+        return new RGBStringParser(color, getRGBObject).rgb;
     },
     [ColorModel.HSL](color: string): RGBObject {
         return new HSLStringParser(color).rgb;
@@ -273,7 +273,7 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
             }
 
             if (RGBStringParser.test(color)) {
-                const parser = new RGBStringParser(color);
+                const parser = new RGBStringParser(color, getRGBObject);
                 rgbColors.push(
                     parser.hasPercentageValues
                 );

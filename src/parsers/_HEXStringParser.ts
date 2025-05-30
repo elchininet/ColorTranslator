@@ -1,5 +1,5 @@
 import { RGBObject, HEXRegExpMatchArray } from '@types';
-import { COLORREGS } from '#constants';
+import { BASE_255, COLORREGS } from '#constants';
 import { getDEC } from '#helpers';
 
 export class HEXStringParser {
@@ -17,7 +17,7 @@ export class HEXStringParser {
             B: getDEC(this._b)
         };
         if (this._a !== undefined) {
-            rgb.A = getDEC(this._a) / 255;
+            rgb.A = getDEC(this._a) / BASE_255;
         }
         this._rgb = rgb;
     }
