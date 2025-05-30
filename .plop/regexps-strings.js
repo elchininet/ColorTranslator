@@ -13,9 +13,11 @@ const CALC_OPERATION = '[\\d\\.\\/\\*\\+\\-\\w\\s]+';
 const CALC_OPERAND = `(?:${NUMBER_WITH_DECIMALS}|\\w+)`;
 const CALC_RGB_COLOR = `calc\\([rgb${CALC_CHARACTERS}]+\\)`;
 const CALC_HWB_COLOR = `calc\\([hwb${CALC_CHARACTERS}]+\\)`;
+const CALC_HSL_COLOR = `calc\\([hsl${CALC_CHARACTERS}]+\\)`;
 const CALC_ALPHA_COLOR = `calc\\([${CALC_CHARACTERS}]*alpha[${CALC_CHARACTERS}]*\\)`;
 const RELATIVE_RGB_COLOR = `(?:[rgb]|${NUMBER_WITH_DECIMALS}|${CALC_RGB_COLOR})`;
 const RELATIVE_HWB_COLOR = `(?:[hwb]|${NUMBER_WITH_DECIMALS}|${CALC_HWB_COLOR})`;
+const RELATIVE_HSL_COLOR = `(?:[hsl]|${NUMBER_WITH_DECIMALS}|${CALC_HSL_COLOR})`;
 const RELATIVE_ALPHA = `(?:${NUMBER_WITH_DECIMALS}%?|${CALC_ALPHA_COLOR}|alpha)`;
 
 module.exports = {
@@ -128,6 +130,20 @@ module.exports = {
                         (?:
                             ${SLASH}
                             (?<a>${NUMBER_WITH_DECIMALS}%?)
+                        )?
+                    |
+                        from
+                        ${REAL_SPACE}
+                        (?<from>${FROM_COLOR})
+                        ${REAL_SPACE}
+                        (?<relative_h>${RELATIVE_HSL_COLOR})
+                        ${REAL_SPACE}
+                        (?<relative_s>${RELATIVE_HSL_COLOR})
+                        ${REAL_SPACE}
+                        (?<relative_l>${RELATIVE_HSL_COLOR})
+                        (?:
+                            ${SLASH}
+                            (?<relative_a>${RELATIVE_ALPHA})
                         )?
                 )
                 ${SPACE}
