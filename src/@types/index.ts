@@ -191,10 +191,17 @@ export interface HWBRegExpMatchArray extends RegExpMatchArray {
 
 export interface CIELabRegExpMatchArray extends RegExpMatchArray {
     groups: {
+        // Lab values
         L: string;
         a: string;
         b: string;
         A: string | undefined;
+        // Relative values
+        from: string;
+        relative_L: string;
+        relative_a: string;
+        relative_b: string;
+        relative_A: string | undefined;
     }
 }
 
