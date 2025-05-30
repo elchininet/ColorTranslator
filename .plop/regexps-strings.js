@@ -12,8 +12,10 @@ const CALC_CHARACTERS = '\\(\\)\\/\\*\\-+\\d\\.\\s';
 const CALC_OPERATION = '[\\d\\.\\/\\*\\+\\-\\w\\s]+';
 const CALC_OPERAND = `(?:${NUMBER_WITH_DECIMALS}|\\w+)`;
 const CALC_RGB_COLOR = `calc\\([rgb${CALC_CHARACTERS}]+\\)`;
+const CALC_HWB_COLOR = `calc\\([hwb${CALC_CHARACTERS}]+\\)`;
 const CALC_ALPHA_COLOR = `calc\\([${CALC_CHARACTERS}]*alpha[${CALC_CHARACTERS}]*\\)`;
 const RELATIVE_RGB_COLOR = `(?:[rgb]|${NUMBER_WITH_DECIMALS}|${CALC_RGB_COLOR})`;
+const RELATIVE_HWB_COLOR = `(?:[hwb]|${NUMBER_WITH_DECIMALS}|${CALC_HWB_COLOR})`;
 const RELATIVE_ALPHA = `(?:${NUMBER_WITH_DECIMALS}%?|${CALC_ALPHA_COLOR}|alpha)`;
 
 module.exports = {
@@ -77,15 +79,29 @@ module.exports = {
             ^hwb${SPACE}\\(
                 ${SPACE}
                 (?:
-                    (?<h>${NUMBER_WITH_DECIMALS}${DEGREES_UNITS})
-                    ${REAL_SPACE}
-                    (?<w>${NUMBER_WITH_DECIMALS})%
-                    ${REAL_SPACE}
-                    (?<b>${NUMBER_WITH_DECIMALS})%
-                    (?:
-                        ${SLASH}
-                        (?<a>${NUMBER_WITH_DECIMALS}%?)
-                    )?
+                        (?<h>${NUMBER_WITH_DECIMALS}${DEGREES_UNITS})
+                        ${REAL_SPACE}
+                        (?<w>${NUMBER_WITH_DECIMALS})%
+                        ${REAL_SPACE}
+                        (?<b>${NUMBER_WITH_DECIMALS})%
+                        (?:
+                            ${SLASH}
+                            (?<a>${NUMBER_WITH_DECIMALS}%?)
+                        )?
+                    |
+                        from
+                        ${REAL_SPACE}
+                        (?<from>${FROM_COLOR})
+                        ${REAL_SPACE}
+                        (?<relative_h>${RELATIVE_HWB_COLOR})
+                        ${REAL_SPACE}
+                        (?<relative_w>${RELATIVE_HWB_COLOR})
+                        ${REAL_SPACE}
+                        (?<relative_b>${RELATIVE_HWB_COLOR})
+                        (?:
+                            ${SLASH}
+                            (?<relative_a>${RELATIVE_ALPHA})
+                        )?
                 )
                 ${SPACE}
             \\)$

@@ -167,10 +167,17 @@ export interface HSLRegExpMatchArray extends RegExpMatchArray {
 
 export interface HWBRegExpMatchArray extends RegExpMatchArray {
     groups: {
+        // HWB values
         h: string;
         w: string;
         b: string;
         a: string | undefined;
+        // Relative values
+        from: string;
+        relative_h: string;
+        relative_w: string;
+        relative_b: string;
+        relative_a: string | undefined;
     }
 }
 
