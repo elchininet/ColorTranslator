@@ -71,7 +71,7 @@ export class RGBStringParser {
             }
 
             this._rgb = rgb;
-            
+
         } else {
 
             this._r = r_legacy ?? r;

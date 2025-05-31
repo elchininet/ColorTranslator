@@ -8,8 +8,8 @@ const COMMA = `${SPACE},${SPACE}`;
 const SLASH = `${SPACE}\\/${SPACE}`;
 const DEGREES_UNITS = '(?:deg|grad|rad|turn)?';
 const FROM_COLOR = `(?:\\w+|\\w+\\(${SPACE}[^())]+${SPACE}\\)|\\w+\\(from${REAL_SPACE}\\w+\\(.*\\)${SPACE}\\)|${HEX_NUMBER})`;
-const CALC_CHARACTERS = '\\(\\)\\/\\*\\-+\\d\\.\\s';
-const CALC_OPERATION = '[\\d\\.\\/\\*\\+\\-\\w\\s]+';
+const CALC_CHARACTERS = '()/*\\-+\\d.\\s';
+const CALC_OPERATION = '[\\d./*+-\\w\\s]+';
 const CALC_OPERAND = `(?:${NUMBER_WITH_DECIMALS}|\\w+)`;
 const CALC_RGB_COLOR = `calc\\([rgb${CALC_CHARACTERS}]+\\)`;
 const CALC_HWB_COLOR = `calc\\([hwb${CALC_CHARACTERS}]+\\)`;
@@ -261,7 +261,7 @@ module.exports = {
             ${SPACE}
             (?<left>${CALC_OPERAND})
             ${SPACE}
-            \\-
+            -
             ${SPACE}
             (?<right>${CALC_OPERAND})
             ${SPACE}

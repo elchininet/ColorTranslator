@@ -68,7 +68,7 @@ export class CIELabStringParser {
             const rgb: RGBObject = {
                 R: toRGB.R,
                 G: toRGB.G,
-                B: toRGB.B,
+                B: toRGB.B
             };
 
             if (relative_A) {
