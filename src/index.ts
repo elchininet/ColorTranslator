@@ -24,12 +24,12 @@ import {
     MixString
 } from '#constants';
 import {
-    cmykToRGB,
-    hslToRGB,
+    cmykToRgb,
+    hslToRgb,
     hwbToRgb,
     labToRgb,
-    rgbToCMYK,
-    rgbToHSL,
+    rgbToCmyk,
+    rgbToHsl,
     rgbToHwb,
     rgbToLab
 } from '#color/translators';
@@ -85,7 +85,7 @@ export class ColorTranslator {
     // Private methods
     private updateRGB(): void {
         this.rgb = {
-            ...hslToRGB(
+            ...hslToRgb(
                 this.hsl.H,
                 this.hsl.S,
                 this.hsl.L
@@ -107,7 +107,7 @@ export class ColorTranslator {
 
     private updateRGBFromCMYK(): void {
         this.rgb = {
-            ...cmykToRGB(
+            ...cmykToRgb(
                 this.cmyk.C,
                 this.cmyk.M,
                 this.cmyk.Y,
@@ -129,7 +129,7 @@ export class ColorTranslator {
     }
 
     private updateHSL(): void {
-        this.hsl = rgbToHSL(
+        this.hsl = rgbToHsl(
             this.rgb.R,
             this.rgb.G,
             this.rgb.B,
@@ -158,7 +158,7 @@ export class ColorTranslator {
     }
 
     private updateCMYK(): void {
-        this.cmyk = rgbToCMYK(
+        this.cmyk = rgbToCmyk(
             this.rgb.R,
             this.rgb.G,
             this.rgb.B
