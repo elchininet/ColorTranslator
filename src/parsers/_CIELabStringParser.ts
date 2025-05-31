@@ -4,12 +4,15 @@ import {
     RGBObject
 } from '@types';
 import {
-    BASE_255,
     COLORREGS,
+    MAX_ALPHA,
+    MAX_LAB,
+    MAX_PCENT,
     PCENT
 } from '#constants';
 import {
     getBase125Number,
+    minmax,
     normalizeAlpha,
     percent
 } from '#helpers';
@@ -57,29 +60,20 @@ export class CIELabStringParser {
             const b = new CalcParser('b', relative_b, fromLabVars).result;
 
             const toRGB = labToRgb(
-                L,
-                a,
-                b
+                minmax(L, 0, MAX_PCENT),
+                minmax(a, - MAX_LAB, MAX_LAB),
+                minmax(b, - MAX_LAB, MAX_LAB)
             );
 
             const rgb: RGBObject = {
-                R: Math.min(
-                    toRGB.R,
-                    BASE_255
-                ),
-                G: Math.min(
-                    toRGB.G,
-                    BASE_255
-                ),
-                B: Math.min(
-                    toRGB.B,
-                    BASE_255
-                )
+                R: toRGB.R,
+                G: toRGB.G,
+                B: toRGB.B,
             };
 
             if (relative_A) {
-                const A = new CalcParser('a', relative_A, fromLabVars).result;
-                rgb.A = Math.min(A, 1);
+                const A = new CalcParser('alpha', relative_A, fromLabVars).result;
+                rgb.A = minmax(A, 0, MAX_ALPHA);
             }
 
             this._rgb = rgb;

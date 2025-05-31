@@ -7,7 +7,7 @@ const REAL_SPACE = '\\s+';
 const COMMA = `${SPACE},${SPACE}`;
 const SLASH = `${SPACE}\\/${SPACE}`;
 const DEGREES_UNITS = '(?:deg|grad|rad|turn)?';
-const FROM_COLOR = `(?:\\w+|\\w+\\(${SPACE}[^())]+${SPACE}\\)|${HEX_NUMBER})`;
+const FROM_COLOR = `(?:\\w+|\\w+\\(${SPACE}[^())]+${SPACE}\\)|\\w+\\(from${REAL_SPACE}\\w+\\(.*\\)${SPACE}\\)|${HEX_NUMBER})`;
 const CALC_CHARACTERS = '\\(\\)\\/\\*\\-+\\d\\.\\s';
 const CALC_OPERATION = '[\\d\\.\\/\\*\\+\\-\\w\\s]+';
 const CALC_OPERAND = `(?:${NUMBER_WITH_DECIMALS}|\\w+)`;
@@ -15,7 +15,7 @@ const CALC_RGB_COLOR = `calc\\([rgb${CALC_CHARACTERS}]+\\)`;
 const CALC_HWB_COLOR = `calc\\([hwb${CALC_CHARACTERS}]+\\)`;
 const CALC_HSL_COLOR = `calc\\([hsl${CALC_CHARACTERS}]+\\)`;
 const CALC_LAB_COLOR = `calc\\([lab${CALC_CHARACTERS}]+\\)`;
-const CALC_ALPHA_COLOR = `calc\\([${CALC_CHARACTERS}]*alpha[${CALC_CHARACTERS}]*\\)`;
+const CALC_ALPHA_COLOR = `calc\\([${CALC_CHARACTERS}\\w]*(?:alpha)?[${CALC_CHARACTERS}\\w]*\\)`;
 const RELATIVE_RGB_COLOR = `(?:[rgb]|${NUMBER_WITH_DECIMALS}|${CALC_RGB_COLOR})`;
 const RELATIVE_HWB_COLOR = `(?:[hwb]|${NUMBER_WITH_DECIMALS}|${CALC_HWB_COLOR})`;
 const RELATIVE_HSL_COLOR = `(?:[hsl]|${NUMBER_WITH_DECIMALS}|${CALC_HSL_COLOR})`;
@@ -99,9 +99,9 @@ module.exports = {
                         ${REAL_SPACE}
                         (?<relative_h>${RELATIVE_HWB_COLOR})
                         ${REAL_SPACE}
-                        (?<relative_w>${RELATIVE_HWB_COLOR})
+                        (?<relative_w>${RELATIVE_HWB_COLOR})%?
                         ${REAL_SPACE}
-                        (?<relative_b>${RELATIVE_HWB_COLOR})
+                        (?<relative_b>${RELATIVE_HWB_COLOR})%?
                         (?:
                             ${SLASH}
                             (?<relative_a>${RELATIVE_ALPHA})
@@ -140,9 +140,9 @@ module.exports = {
                         ${REAL_SPACE}
                         (?<relative_h>${RELATIVE_HSL_COLOR})
                         ${REAL_SPACE}
-                        (?<relative_s>${RELATIVE_HSL_COLOR})
+                        (?<relative_s>${RELATIVE_HSL_COLOR})%?
                         ${REAL_SPACE}
-                        (?<relative_l>${RELATIVE_HSL_COLOR})
+                        (?<relative_l>${RELATIVE_HSL_COLOR})%?
                         (?:
                             ${SLASH}
                             (?<relative_a>${RELATIVE_ALPHA})

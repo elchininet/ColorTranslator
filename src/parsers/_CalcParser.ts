@@ -13,7 +13,11 @@ export class CalcParser {
         let calcString = calc;
         let stack = 0;
 
-        if (calc in vars) {
+        if (!Number.isNaN(+calc)) {
+
+            this._result = +calc;
+
+        } else if (calc in vars) {
             
             this._result = vars[calc];
 
@@ -38,6 +42,8 @@ export class CalcParser {
                     break;
                 }
 
+                /* edge case if the calc has a huge number of operations */
+                /* istanbul ignore next */
                 stack++;
 
             }
@@ -77,12 +83,9 @@ export class CalcParser {
     private _getCalcValue(calc: string, vars: Vars): number {
         const match = calc.match(CALC.REGEXP);
         const operation = match.groups.operation;
-        if (operation in vars) {
-            return vars[operation];
-        }
         const value = this._calculate(operation, vars);
         if (Number.isNaN(value)) {
-            throw new Error(`Invalid value for ${this._colorIndex}. ${ERRORS.NOT_A_VALID_RELATIVE_COLOR}`);
+            throw new Error(`Invalid value for ${this._colorIndex}. ${operation} ${ERRORS.NOT_A_VALID_RELATIVE_COLOR}`);
         }
         return value;
     }
@@ -91,15 +94,25 @@ export class CalcParser {
 
         this._operations.forEach((method, regExp) => {
 
-            operation = operation.replace(
-                regExp,
-                (__match: string, left: string, right: string): string => {
-                    return method(
-                        vars[left] ?? +left,
-                        vars[right] ?? +right
-                    ).toString();
-                }
-            );
+            let stack = 0;
+
+            while (regExp.test(operation) && stack < MAX_STACK) {
+
+                operation = operation.replace(
+                    regExp,
+                    (__match: string, left: string, right: string): string => {
+                        return method(
+                            vars[left] ?? +left,
+                            vars[right] ?? +right
+                        ).toString();
+                    }
+                );
+
+                /* edge case if the calc has a huge number of operations */
+                /* istanbul ignore next */
+                stack++;
+
+            }            
 
         });
 
@@ -108,7 +121,7 @@ export class CalcParser {
     }
 
     public get result(): number {
-        return this._result ?? Number.NaN;
+        return this._result;
     }
 
 }
