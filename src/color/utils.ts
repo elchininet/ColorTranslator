@@ -36,14 +36,14 @@ import {
     round
 } from '#helpers';
 import {
-    hslToRGB,
-    hueRYB,
-    rgbToCMYK,
-    rgbToHSL,
+    hslToRgb,
+    hueRyb,
+    rgbToCmyk,
+    rgbToHsl,
     rgbToHwb,
     rgbToLab,
-    rgbToRYB,
-    rybToRGB
+    rgbToRyb,
+    rybToRgb
 } from '#color/translators';
 import {
     getColorModel,
@@ -74,7 +74,7 @@ const harmony = (
                         ...color,
                         H: mode === Mix.ADDITIVE
                             ? normalizeHue(color.H + num)
-                            : normalizeHue(hueRYB(hueRYB(color.H, false) + num, true))
+                            : normalizeHue(hueRyb(hueRyb(color.H, false) + num, true))
                     }
                 ]
             ), [{...color}]
@@ -123,7 +123,7 @@ export const translateColor = {
     },
 
     [ColorModel.HSL](color: RGBObject, decimals: number): HSLObject {
-        const HSL = rgbToHSL(color.R, color.G, color.B);
+        const HSL = rgbToHsl(color.R, color.G, color.B);
         delete HSL.A;
         return roundHSLObject(HSL, decimals);
     },
@@ -165,7 +165,7 @@ export const translateColor = {
 
     [ColorModel.CMYK](color: RGBObject, decimals: number): CMYKObject {
         return roundCMYKObject(
-            rgbToCMYK(color.R, color.G, color.B),
+            rgbToCmyk(color.R, color.G, color.B),
             decimals
         );
     },
@@ -214,7 +214,7 @@ export const getColorMixture = (
         (typeof color === 'string' && hasProp<RGBObject>(RGB, 'A')) ||
         (typeof color !== 'string' && hasProp<RGBObjectGeneric | HSLObjectGeneric | HWBObjectGeneric | CIELabObjectGeneric>(color, 'A'))
     );
-    const HSL: HSLObject = rgbToHSL(RGB.R, RGB.G, RGB.B, RGB.A);
+    const HSL: HSLObject = rgbToHsl(RGB.R, RGB.G, RGB.B, RGB.A);
     if (!hasAlpha) delete HSL.A;
     const increment = shades
         ? HSL.L / (steps + 1)
@@ -227,7 +227,7 @@ export const getColorMixture = (
         case ColorModel.HEX:
         default:
             return hslMap.map((HSLColor: HSLObject): HEXOutput => {
-                const RGBColor = hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L);
+                const RGBColor = hslToRgb(HSLColor.H, HSLColor.S, HSLColor.L);
                 if (hasAlpha) RGBColor.A = HSLColor.A;
                 return isCSS
                     ? hasAlpha
@@ -244,7 +244,7 @@ export const getColorMixture = (
             });
         case ColorModel.RGB:
             return hslMap.map((HSLColor: HSLObject): RGBOutput => {
-                const RGBColor = hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L);
+                const RGBColor = hslToRgb(HSLColor.H, HSLColor.S, HSLColor.L);
                 if (hasAlpha) RGBColor.A = HSLColor.A;
                 return isCSS
                     ? CSS.RGB(RGBColor, options)
@@ -259,19 +259,19 @@ export const getColorMixture = (
                     : hasAlpha
                         ? translateColor.HSLA(
                             {
-                                ...hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L),
+                                ...hslToRgb(HSLColor.H, HSLColor.S, HSLColor.L),
                                 A: HSLColor.A
                             },
                             options.decimals
                         )
                         : translateColor.HSL(
-                            hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L),
+                            hslToRgb(HSLColor.H, HSLColor.S, HSLColor.L),
                             options.decimals
                         );
             });
         case ColorModel.HWB:
             return hslMap.map((HSLColor: HSLObject): HWBOutput => {
-                const RGBColor = hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L);
+                const RGBColor = hslToRgb(HSLColor.H, HSLColor.S, HSLColor.L);
                 const HWBColor = rgbToHwb(RGBColor.R, RGBColor.G, RGBColor.B);
                 if (hasAlpha) HWBColor.A = HSLColor.A;
                 return isCSS
@@ -283,7 +283,7 @@ export const getColorMixture = (
             });
         case ColorModel.CIELab:
             return hslMap.map((HSLColor: HSLObject): CIELabOutput => {
-                const RGBColor = hslToRGB(HSLColor.H, HSLColor.S, HSLColor.L);
+                const RGBColor = hslToRgb(HSLColor.H, HSLColor.S, HSLColor.L);
                 return isCSS
                     ? CSS.CIELab(
                         hasAlpha
@@ -319,10 +319,18 @@ export const colorHarmony = {
     ): ColorOutput[] {
         const model = getColorModel(color);
         const RGB = getRGBObject(color, model);
-        const HSL = rgbToHSL(RGB.R, RGB.G, RGB.B, RGB.A);
+        const HSL = rgbToHsl(RGB.R, RGB.G, RGB.B, RGB.A);
         const hasAlpha = (
             (typeof color === 'string' && hasProp<RGBObject>(RGB, 'A')) ||
-            (typeof color !== 'string' && hasProp<RGBObjectGeneric | HSLObjectGeneric | HWBObjectGeneric | CIELabObjectGeneric>(color, 'A'))
+            (
+                typeof color !== 'string' &&
+                hasProp<
+                    | RGBObjectGeneric
+                    | HSLObjectGeneric
+                    | HWBObjectGeneric
+                    | CIELabObjectGeneric
+                >(color, 'A')
+            )
         );
         const isCSS = typeof color === 'string';
         switch(model) {
@@ -371,10 +379,10 @@ export const colorHarmony = {
             (c: HSLObject): HEXOutput => (
                 css
                     ? CSS.HEX(
-                        hslToRGB(c.H, c.S, c.L)
+                        hslToRgb(c.H, c.S, c.L)
                     )
                     : translateColor.HEX(
-                        hslToRGB(c.H, c.S, c.L)
+                        hslToRgb(c.H, c.S, c.L)
                     )
             )
         );
@@ -392,12 +400,12 @@ export const colorHarmony = {
                 css
                     ? CSS.HEX(
                         {
-                            ...hslToRGB(c.H, c.S, c.L),
+                            ...hslToRgb(c.H, c.S, c.L),
                             A: normalizeAlpha(c.A) * BASE_255
                         }
                     )
                     : translateColor.HEXA({
-                        ...hslToRGB(c.H, c.S, c.L),
+                        ...hslToRgb(c.H, c.S, c.L),
                         A: normalizeAlpha(c.A)
                     })
             )
@@ -416,11 +424,11 @@ export const colorHarmony = {
             (c: HSLObject): RGBOutput => (
                 css
                     ? CSS.RGB(
-                        hslToRGB(c.H, c.S, c.L),
+                        hslToRgb(c.H, c.S, c.L),
                         options
                     )
                     : translateColor.RGB(
-                        hslToRGB(c.H, c.S, c.L),
+                        hslToRgb(c.H, c.S, c.L),
                         options.decimals
                     )
             )
@@ -440,14 +448,14 @@ export const colorHarmony = {
                 css
                     ? CSS.RGB(
                         {
-                            ...hslToRGB(c.H, c.S, c.L),
+                            ...hslToRgb(c.H, c.S, c.L),
                             A: normalizeAlpha(c.A)
                         },
                         options
                     )
                     : translateColor.RGBA(
                         {
-                            ...hslToRGB(c.H, c.S, c.L),
+                            ...hslToRgb(c.H, c.S, c.L),
                             A: normalizeAlpha(c.A)
                         },
                         options.decimals
@@ -476,7 +484,7 @@ export const colorHarmony = {
                         options
                     )
                     : translateColor.HSL(
-                        hslToRGB(c.H, c.S, c.L),
+                        hslToRgb(c.H, c.S, c.L),
                         options.decimals
                     )
             )
@@ -503,7 +511,7 @@ export const colorHarmony = {
                     )
                     : translateColor.HSLA(
                         {
-                            ...hslToRGB(c.H, c.S, c.L),
+                            ...hslToRgb(c.H, c.S, c.L),
                             A: normalizeAlpha(c.A)
                         },
                         options.decimals
@@ -522,7 +530,7 @@ export const colorHarmony = {
         const array = harmonyFunction(color, mode);
         return array.map(
             (c: HSLObject): HWBOutput => {
-                const rgb = hslToRGB(c.H, c.S, c.L);
+                const rgb = hslToRgb(c.H, c.S, c.L);
                 const hwb = rgbToHwb(rgb.R, rgb.G, rgb.B);
                 return css
                     ? CSS.HWB(
@@ -551,7 +559,7 @@ export const colorHarmony = {
         const array = harmonyFunction(color, mode);
         return array.map(
             (c: HSLObject): HWBOutput => {
-                const rgb = hslToRGB(c.H, c.S, c.L);
+                const rgb = hslToRgb(c.H, c.S, c.L);
                 const hwb = rgbToHwb(rgb.R, rgb.G, rgb.B);
                 return css
                     ? CSS.HWB(
@@ -582,7 +590,7 @@ export const colorHarmony = {
         const array = harmonyFunction(color, mode);
         return array.map(
             (c: HSLObject): CIELabOutput => {
-                const RGB = hslToRGB(c.H, c.S, c.L);
+                const RGB = hslToRgb(c.H, c.S, c.L);
                 return (
                     css
                         ? CSS.CIELab(
@@ -612,7 +620,7 @@ export const colorHarmony = {
         const array = harmonyFunction(color, mode);
         return array.map(
             (c: HSLObject): CIELabOutput => {
-                const RGB = hslToRGB(c.H, c.S, c.L);
+                const RGB = hslToRgb(c.H, c.S, c.L);
                 return (
                     css
                         ? CSS.CIELab(
@@ -650,7 +658,7 @@ export const colorMixer = {
 
         const rybMap = mode === Mix.SUBTRACTIVE
             ? rgbMap.map((color: RGBObject): RYBObject => {
-                const RYB = rgbToRYB(color.R, color.G, color.B);
+                const RYB = rgbToRyb(color.R, color.G, color.B);
                 if (hasProp<RGBObject>(color, 'A')) {
                     RYB.A = color.A;
                 }
@@ -693,7 +701,7 @@ export const colorMixer = {
             mix = createMix(rgbMap);
         } else {
             const RYB = createMix(rybMap);
-            mix = rybToRGB(RYB.R, RYB.Y, RYB.B);
+            mix = rybToRgb(RYB.R, RYB.Y, RYB.B);
             mix.A = RYB.A;
         }
 
@@ -766,7 +774,7 @@ export const colorMixer = {
         options: Options
     ): R {
         const mix = this.mix(colors, mode);
-        const HSL = rgbToHSL(mix.R, mix.G, mix.B);
+        const HSL = rgbToHsl(mix.R, mix.G, mix.B);
         delete mix.A;
         delete HSL.A;
         return (
@@ -782,7 +790,7 @@ export const colorMixer = {
         options: Options
     ): R {
         const mix = this.mix(colors, mode);
-        const HSL = rgbToHSL(mix.R, mix.G, mix.B, mix.A);
+        const HSL = rgbToHsl(mix.R, mix.G, mix.B, mix.A);
         return (
             css
                 ? CSS.HSL(HSL, options)

@@ -10,6 +10,7 @@ import {
     HarmonyString,
     HEX,
     HSL_HUE,
+    MAX_ALPHA,
     MAX_DECIMALS,
     Mix,
     MixString,
@@ -145,7 +146,7 @@ export const normalizeAlpha = (alpha: number | string | undefined | null): numbe
             alpha = +alpha;
         }
     }
-    return (isNaN(+alpha) || alpha > 1) ? 1 : round(alpha);
+    return (isNaN(+alpha) || alpha > MAX_ALPHA) ? MAX_ALPHA : round(alpha);
 };
 
 export const translateDegrees = (degrees: number, units: AnglesUnitEnum): number => {

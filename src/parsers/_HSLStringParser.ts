@@ -19,7 +19,7 @@ import {
     normalizeHue,
     percent
 } from '#helpers';
-import { hslToRGB, rgbToHSL } from '#color/translators';
+import { hslToRgb, rgbToHsl } from '#color/translators';
 import { CalcParser } from './_CalcParser';
 
 export class HSLStringParser {
@@ -51,7 +51,7 @@ export class HSLStringParser {
         if (from) {
 
             const fromRGB = getRGBObject(from);
-            const fromHSL = rgbToHSL(
+            const fromHSL = rgbToHsl(
                 fromRGB.R,
                 fromRGB.G,
                 fromRGB.B,
@@ -68,7 +68,7 @@ export class HSLStringParser {
             const S = new CalcParser('s', relative_s, fromHSLVars).result;
             const L = new CalcParser('l', relative_l, fromHSLVars).result;
 
-            const toRGB = hslToRGB(
+            const toRGB = hslToRgb(
                 minmax(H, 0, MAX_HUE),
                 minmax(S, 0, MAX_PCENT),
                 minmax(L, 0, MAX_PCENT)
@@ -93,7 +93,7 @@ export class HSLStringParser {
             this._s = s_legacy ?? s;
             this._l = l_legacy ?? l;
             this._a = a_legacy ?? a;
-            const rgb: RGBObject = hslToRGB(
+            const rgb: RGBObject = hslToRgb(
                 normalizeHue(this._h),
                 percent(this._s),
                 percent(this._l)

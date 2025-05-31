@@ -1,7 +1,7 @@
 import { CMYKRegExpMatchArray, RGBObject } from '@types';
 import { COLORREGS, PCENT } from '#constants';
 import { getCMYKNumber, normalizeAlpha } from '#helpers';
-import { cmykToRGB } from '#color/translators';
+import { cmykToRgb } from '#color/translators';
 
 export class CMYKStringParser {
 
@@ -13,7 +13,7 @@ export class CMYKStringParser {
         this._y = groups.y_legacy ?? groups.y;
         this._k = groups.k_legacy ?? groups.k;
         this._a = groups.a_legacy ?? groups.a;
-        const rgb: RGBObject = cmykToRGB(
+        const rgb: RGBObject = cmykToRgb(
             getCMYKNumber(this._c),
             getCMYKNumber(this._m),
             getCMYKNumber(this._y),

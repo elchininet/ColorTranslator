@@ -7,7 +7,7 @@ import {
     RGBObject,
     RYBObject
 } from '@types';
-import { BASE_255 } from '#constants';
+import { BASE_255, MAX_ALPHA } from '#constants';
 import { minmax, round } from '#helpers';
 
 const MATRIX_LRGB_XYZ_D50: [ColorArray, ColorArray, ColorArray] = [
@@ -27,7 +27,7 @@ const TRISTIMULUS_D50 = MATRIX_LRGB_XYZ_D50.map((matrix: ColorArray): number => 
 }) as ColorArray;
 
 //---HUE to RGB
-const hueToRGB = (t1: number, t2: number, hue: number): number => {
+const hueToRgb = (t1: number, t2: number, hue: number): number => {
     if (hue < 0) { hue += 6; }
     if (hue >= 6) { hue -= 6; }
     if (hue < 1) {
@@ -43,13 +43,13 @@ const hueToRGB = (t1: number, t2: number, hue: number): number => {
 
 // RGB to linear-light RGB
 // http://www.brucelindbloom.com/index.html?Eqn_RGB_to_XYZ.html
-const rgbToLinearLightRGB = (value: number): number => {
+const rgbToLinearLightRgb = (value: number): number => {
     return value <= 0.04045
         ? value / 12.92
         : ((value + 0.055) / 1.055) ** 2.4;
 };
 
-const linearLightRGBToRGB = (value: number): number => {
+const linearLightRgbToRgb = (value: number): number => {
     return value <= 0.0031308
         ? 12.92 * value
         : 1.055 * (value ** (1 / 2.4)) - 0.055;
@@ -61,10 +61,10 @@ const matrixVectorMultiplication = (
     matrix: [ColorArray, ColorArray, ColorArray]
 ): ColorArray => {
     const result: ColorArray = [0, 0, 0];
-    const linearRGB = [ v1, v2, v3 ];
+    const linearRgb = [ v1, v2, v3 ];
     matrix.forEach((array: number[], index: number): void => {
         array.forEach((value: number, mindex: number) => {
-            result[index] += value * linearRGB[mindex];
+            result[index] += value * linearRgb[mindex];
         });
     });
     return result;
@@ -103,7 +103,7 @@ const from_CIE_LAB_to_CIE_XYZ_D50 = (L: number, a: number, b: number): ColorArra
 };
 
 //---HSL to RGB
-export const hslToRGB = (H: number, S: number, L: number): RGBObject => {
+export const hslToRgb = (H: number, S: number, L: number): RGBObject => {
     H /= 60;
     S /= 100;
     L /= 100;
@@ -111,18 +111,18 @@ export const hslToRGB = (H: number, S: number, L: number): RGBObject => {
         ? L * (S + 1)
         : L + S - (L * S);
     const t1 = L * 2 - t2;
-    const R = hueToRGB(t1, t2, H + 2);
-    const G = hueToRGB(t1, t2, H);
-    const B = hueToRGB(t1, t2, H - 2);
+    const R = hueToRgb(t1, t2, H + 2);
+    const G = hueToRgb(t1, t2, H);
+    const B = hueToRgb(t1, t2, H - 2);
     return { R, G, B };
 };
 
 //---RGB to HSL
-export const rgbToHSL = (R: number, G: number, B: number, A = 1): HSLObject => {
+export const rgbToHsl = (R: number, G: number, B: number, A = 1): HSLObject => {
     R /= BASE_255;
     G /= BASE_255;
     B /= BASE_255;
-    A = Math.min(A, 1);
+    A = Math.min(A, MAX_ALPHA);
     const MAX = Math.max(R, G, B);
     const MIN = Math.min(R, G, B);
     const D = MAX - MIN;
@@ -160,7 +160,7 @@ export const rgbToLab = (R: number, G: number, B: number): CIELabObject => {
         R / BASE_255,
         G / BASE_255,
         B / BASE_255
-    ].map(rgbToLinearLightRGB);
+    ].map(rgbToLinearLightRgb);
 
     const CIE_XYZ_D50 = matrixVectorMultiplication(
         LINEAR_LIGHT_RGB[0],
@@ -193,18 +193,18 @@ export const labToRgb = (L: number, a: number, b: number): RGBObject => {
         MATRIX_XYZ_D50_LRGB
     );
 
-    const RGB = LINEAR_LIGHT_RGB.map(linearLightRGBToRGB) as ColorArray;
+    const rgb = LINEAR_LIGHT_RGB.map(linearLightRgbToRgb) as ColorArray;
 
     return {
-        R: minmax(RGB[0] * BASE_255, 0, BASE_255),
-        G: minmax(RGB[1] * BASE_255, 0, BASE_255),
-        B: minmax(RGB[2] * BASE_255, 0, BASE_255)
+        R: minmax(rgb[0] * BASE_255, 0, BASE_255),
+        G: minmax(rgb[1] * BASE_255, 0, BASE_255),
+        B: minmax(rgb[2] * BASE_255, 0, BASE_255)
     };
 };
 
 //---RGB to HWB
 export const rgbToHwb = (R: number, G: number, B: number, A: number = 1): HWBObject => {
-    const hsl = rgbToHSL(R, G, B, A);
+    const hsl = rgbToHsl(R, G, B, A);
     return {
         H: hsl.H,
         W: round(
@@ -221,58 +221,59 @@ export const rgbToHwb = (R: number, G: number, B: number, A: number = 1): HWBObj
 export const hwbToRgb = (H: number, W: number, B: number): RGBObject => {
     W /= 100;
     B /= 100;
-    const V = 1 - B;
-    const C = V - W;
-    const X = C * (1 - Math.abs((H / 60) % 2 - 1));
-    let RGB_R = 0;
-    let RGB_G = 0;
-    let RGB_B = 0;
+    const v = 1 - B;
+    const c = v - W;
+    const x = c * (1 - Math.abs((H / 60) % 2 - 1));
+    let rgbR = 0;
+    let rgbG = 0;
+    let rgbB = 0;
     if (H < 60) {
-        RGB_R = C;
-        RGB_G = X;
-        RGB_B = 0;
+        rgbR = c;
+        rgbG = x;
+        rgbB = 0;
     } else if (H >= 60 && H < 120) {
-        RGB_R = X;
-        RGB_G = C;
-        RGB_B = 0;
+        rgbR = x;
+        rgbG = c;
+        rgbB = 0;
     } else if (H >= 120 && H < 180) {
-        RGB_R = 0;
-        RGB_G = C;
-        RGB_B = X;
+        rgbR = 0;
+        rgbG = c;
+        rgbB = x;
     } else if (H >= 180 && H < 240) {
-        RGB_R = 0;
-        RGB_G = X;
-        RGB_B = C;
+        rgbR = 0;
+        rgbG = x;
+        rgbB = c;
     } else if (H >= 240 && H < 300) {
-        RGB_R = X;
-        RGB_G = 0;
-        RGB_B = C;
+        rgbR = x;
+        rgbG = 0;
+        rgbB = c;
     } else if (H >= 300) {
-        RGB_R = C;
-        RGB_G = 0;
-        RGB_B = X;
+        rgbR = c;
+        rgbG = 0;
+        rgbB = x;
     }
-    RGB_R += W;
-    RGB_G += W;
-    RGB_B += W;
+    rgbR += W;
+    rgbG += W;
+    rgbB += W;
     return {
-        R: minmax(RGB_R * BASE_255, 0, BASE_255),
-        G: minmax(RGB_G * BASE_255, 0, BASE_255),
-        B: minmax(RGB_B * BASE_255, 0, BASE_255)
+        R: minmax(rgbR * BASE_255, 0, BASE_255),
+        G: minmax(rgbG * BASE_255, 0, BASE_255),
+        B: minmax(rgbB * BASE_255, 0, BASE_255)
     };
 };
 
 //---CMYK To RGB
-export const cmykToRGB = (C: number, M: number, Y: number, K: number): RGBObject => {
+export const cmykToRgb = (C: number, M: number, Y: number, K: number): RGBObject => {
     K = 1 - K;
-    const R = round(BASE_255 * (1 - C) * K);
-    const G = round(BASE_255 * (1 - M) * K);
-    const B = round(BASE_255 * (1 - Y) * K);
-    return { R, G, B };
+    return {
+        R: round(BASE_255 * (1 - C) * K),
+        G: round(BASE_255 * (1 - M) * K),
+        B: round(BASE_255 * (1 - Y) * K)
+    };
 };
 
 //---RGB to CMYK
-export const rgbToCMYK = (R: number, G: number, B: number): CMYKObject => {
+export const rgbToCmyk = (R: number, G: number, B: number): CMYKObject => {
     R /= BASE_255;
     G /= BASE_255;
     B /= BASE_255;
@@ -293,46 +294,46 @@ export const rgbToCMYK = (R: number, G: number, B: number): CMYKObject => {
 /*
 * http://nishitalab.org/user/UEI/publication/Sugita_IWAIT2015.pdf
 */
-export const rgbToRYB = (R: number, G: number, B: number): RYBObject => {
+export const rgbToRyb = (R: number, G: number, B: number): RYBObject => {
     const Iw = Math.min(R, G, B);
     const Ib = Math.min(BASE_255 - R, BASE_255 - G, BASE_255 - B);
-    const rRGB = R - Iw;
-    const gRGB = G - Iw;
-    const bRGB = B - Iw;
-    const minRG = Math.min(rRGB, gRGB);
-    const rRYB = rRGB - minRG;
-    const yRYB = (gRGB + minRG) / 2;
-    const bRYB = (bRGB + gRGB - minRG) / 2;
-    const n = Math.max(rRYB, yRYB, bRYB) / Math.max(rRGB, gRGB, bRGB);
+    const rRgb = R - Iw;
+    const gRgb = G - Iw;
+    const bRgb = B - Iw;
+    const minRg = Math.min(rRgb, gRgb);
+    const rRyb = rRgb - minRg;
+    const yRyb = (gRgb + minRg) / 2;
+    const bRyb = (bRgb + gRgb - minRg) / 2;
+    const n = Math.max(rRyb, yRyb, bRyb) / Math.max(rRgb, gRgb, bRgb);
     const N = isNaN(n) || n === Infinity || n <= 0 ? 1 : n;
     return {
-        R: rRYB / N + Ib,
-        Y: yRYB / N + Ib,
-        B: bRYB / N + Ib
+        R: rRyb / N + Ib,
+        Y: yRyb / N + Ib,
+        B: bRyb / N + Ib
     };
 };
 
-export const rybToRGB = (R: number, Y: number, B: number): RGBObject => {
+export const rybToRgb = (R: number, Y: number, B: number): RGBObject => {
     const Iw = Math.min(R, Y, B);
     const Ib = Math.min(BASE_255 - R, BASE_255 - Y, BASE_255 - B);
-    const rRYB = R - Iw;
-    const yRYB = Y - Iw;
-    const bRYB = B - Iw;
-    const minYB = Math.min(yRYB, bRYB);
-    const rRGB = rRYB + yRYB - minYB;
-    const gRGB = yRYB + minYB;
-    const bRGB = 2 * (bRYB - minYB);
-    const n = Math.max(rRGB, gRGB, bRGB) / Math.max(rRYB, yRYB, bRYB);
+    const rRyb = R - Iw;
+    const yRyb = Y - Iw;
+    const bRyb = B - Iw;
+    const minYb = Math.min(yRyb, bRyb);
+    const rRgb = rRyb + yRyb - minYb;
+    const gRgb = yRyb + minYb;
+    const bRgb = 2 * (bRyb - minYb);
+    const n = Math.max(rRgb, gRgb, bRgb) / Math.max(rRyb, yRyb, bRyb);
     const N = isNaN(n) || n === Infinity || n <= 0 ? 1 : n;
     return {
-        R: rRGB / N + Ib,
-        G: gRGB / N + Ib,
-        B: bRGB / N + Ib
+        R: rRgb / N + Ib,
+        G: gRgb / N + Ib,
+        B: bRgb / N + Ib
     };
 };
 
 //---Hue RYB
-export const hueRYB = (hue: number, toRYB: boolean): number => {
+export const hueRyb = (hue: number, toRyb: boolean): number => {
 
     if (hue < 0) hue += 360;
     if (hue > 360) hue -= 360;
@@ -351,8 +352,8 @@ export const hueRYB = (hue: number, toRYB: boolean): number => {
         [120, 240],
         [240, 360]
     ];
-    const from = toRYB ? map1 : map2;
-    const to = toRYB ? map2 : map1;
+    const from = toRyb ? map1 : map2;
+    const to = toRyb ? map2 : map1;
 
     let A = 0;
     let B = 0;

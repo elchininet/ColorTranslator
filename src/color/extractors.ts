@@ -48,8 +48,8 @@ import {
     RGBStringParser
 } from '#parsers';
 import {
-    cmykToRGB,
-    hslToRGB,
+    cmykToRgb,
+    hslToRgb,
     hwbToRgb,
     labToRgb
 } from '#color/translators';
@@ -168,7 +168,7 @@ export const getRGBObjectFromObject = {
     [ColorModel.HSL](color: HSLObjectGeneric): RGBObject {
         const S = percent(`${color.S}`);
         const L = percent(`${color.L}`);
-        const RGB = hslToRGB(normalizeHue(color.H), S, L);
+        const RGB = hslToRgb(normalizeHue(color.H), S, L);
         if (hasProp<HSLObjectGeneric>(color, 'A')) {
             RGB.A = normalizeAlpha(color.A);
         }
@@ -198,7 +198,7 @@ export const getRGBObjectFromObject = {
         const M = getCMYKNumber(`${color.M}`);
         const Y = getCMYKNumber(`${color.Y}`);
         const K = getCMYKNumber(`${color.K}`);
-        const RGB = cmykToRGB(C, M, Y, K);
+        const RGB = cmykToRgb(C, M, Y, K);
         if (hasProp<CMYKObjectGeneric>(color, 'A')) {
             RGB.A = normalizeAlpha(color.A);
         }

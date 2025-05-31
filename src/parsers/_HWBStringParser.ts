@@ -6,7 +6,6 @@ import {
     RGBObject
 } from '@types';
 import {
-    BASE_255,
     COLORREGS,
     HSL_HUE,
     MAX_ALPHA,
