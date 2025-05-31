@@ -113,7 +113,7 @@ interface GetMixReturn {
     colorMixerFunction: (color: ColorInput[], mix: MixString, isCSS: boolean, options: Options) => string;
 }
 
-interface GetMixObjectReturn<T> extends GetMixReturn {
+interface GetMixObjectReturn extends GetMixReturn {
     css: false;
 }
 
@@ -121,10 +121,10 @@ interface GetMixCssReturn extends GetMixReturn {
     css: true;
 }
 
-export function getMixReturn<T>(params: GetMixObjectReturn<T>): T;
-export function getMixReturn<T>(params: GetMixCssReturn): string;
+export function getMixReturn<T>(params: GetMixObjectReturn): T;
+export function getMixReturn(params: GetMixCssReturn): string;
 export function getMixReturn<T>(
-    params: GetMixObjectReturn<T> | GetMixCssReturn
+    params: GetMixObjectReturn | GetMixCssReturn
 ): T | string {
     const {
         colors,

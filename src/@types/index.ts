@@ -90,7 +90,7 @@ export interface RYBObject {
 
 export type RGYBObject = RGBObject | RYBObject;
 
-export type Color = 
+export type Color =
     | RGBObjectGeneric
     | HSLObjectGeneric
     | HWBObjectGeneric

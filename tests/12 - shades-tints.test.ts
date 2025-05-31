@@ -24,7 +24,7 @@ describe('ColorTranslator shades and tints tests', (): void => {
         ColorTranslator.toRGBObject,
         ColorTranslator.toRGBAObject,
         ColorTranslator.toHSLObject,
-        ColorTranslator.toHSLAObject,
+        ColorTranslator.toHSLAObject
     ];
 
     const colorHwbFunctions = [

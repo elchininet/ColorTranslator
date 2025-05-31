@@ -356,7 +356,7 @@ export const colorHarmony = {
             case ColorModel.HWB:
                 return hasAlpha
                     ? this.HWBA(HSL, harmonyFunction, mode, isCSS, options)
-                    : this.HWB(HSL, harmonyFunction, mode, isCSS, options)
+                    : this.HWB(HSL, harmonyFunction, mode, isCSS, options);
             case ColorModel.RGB:
                 return hasAlpha
                     ? this.RGBA(HSL, harmonyFunction, mode, isCSS, options)

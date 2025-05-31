@@ -18,11 +18,11 @@ export class CalcParser {
             this._result = +calc;
 
         } else if (calc in vars) {
-            
+
             this._result = vars[calc];
 
         } else  if (CALC.REGEXP.test(calcString)) {
-            
+
             CALC.REGEXP.lastIndex = 0;
 
             this._result = this._getCalcValue(calcString, vars);
@@ -53,7 +53,7 @@ export class CalcParser {
         }
 
     }
-    
+
     private _colorIndex: string;
     private _result: number;
 
@@ -61,7 +61,7 @@ export class CalcParser {
         [CALC.DIVISION,       this._division],
         [CALC.MULTIPLICATION, this._multiplication],
         [CALC.SUM,            this._sum],
-        [CALC.REST,           this._rest],
+        [CALC.REST,           this._rest]
     ]);
 
     private _division(left: number, right: number): number {
@@ -90,7 +90,7 @@ export class CalcParser {
         return value;
     }
 
-    private _calculate(operation: string, vars: Vars): number {       
+    private _calculate(operation: string, vars: Vars): number {
 
         this._operations.forEach((method, regExp) => {
 
@@ -112,7 +112,7 @@ export class CalcParser {
                 /* istanbul ignore next */
                 stack++;
 
-            }            
+            }
 
         });
 

@@ -140,8 +140,7 @@ describe('Relative colors', () => {
             input: 'lab(from #FF0000 l a b / calc(A - 0.5))',
             error: buildVariableError('alpha', 'A - 0.5')
         }
-        
-        
+
     ];
 
     describe.each(TEST_CASES)('Test case: %s', (input) => {
@@ -200,7 +199,7 @@ describe('Relative colors', () => {
 
     describe.each(ERROR_TEST_CASES)('With error test case: $input', ({ input, error }) => {
 
-        const options = { decimals: 1 };
+        //const options = { decimals: 1 };
 
         it('toHEX should throw an error', () => {
             expect(
