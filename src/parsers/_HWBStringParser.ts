@@ -9,9 +9,13 @@ import {
     BASE_255,
     COLORREGS,
     HSL_HUE,
+    MAX_ALPHA,
+    MAX_HUE,
+    MAX_PCENT,
     PCENT
 } from '#constants';
 import {
+    minmax,
     normalizeAlpha,
     normalizeHue,
     percent
@@ -53,7 +57,7 @@ export class HWBStringParser {
                 h: fromHWB.H,
                 w: fromHWB.W,
                 b: fromHWB.B,
-                alpha: fromHWB.A ?? 1
+                alpha: fromHWB.A
             };
 
             const H = new CalcParser('h', relative_h, fromHWBVars).result;
@@ -61,29 +65,20 @@ export class HWBStringParser {
             const B = new CalcParser('b', relative_b, fromHWBVars).result;
 
             const toRGB = hwbToRgb(
-                H,
-                W,
-                B
+                minmax(H, 0, MAX_HUE),
+                minmax(W, 0, MAX_PCENT),
+                minmax(B, 0, MAX_PCENT)
             );
 
             const rgb: RGBObject = {
-                R: Math.min(
-                    toRGB.R,
-                    BASE_255
-                ),
-                G: Math.min(
-                    toRGB.G,
-                    BASE_255
-                ),
-                B: Math.min(
-                    toRGB.B,
-                    BASE_255
-                )
+                R: toRGB.R,
+                G: toRGB.G,
+                B: toRGB.B
             };
 
             if (relative_a) {
-                const A = new CalcParser('a', relative_a, fromHWBVars).result;
-                rgb.A = Math.min(A, 1);
+                const A = new CalcParser('alpha', relative_a, fromHWBVars).result;
+                rgb.A = minmax(A, 0, MAX_ALPHA);
             }
 
             this._rgb = rgb;

@@ -6,12 +6,15 @@ import {
     RGBObject
 } from '@types';
 import {
-    BASE_255,
     COLORREGS,
     HSL_HUE,
+    MAX_ALPHA,
+    MAX_HUE,
+    MAX_PCENT,
     PCENT
 } from '#constants';
 import {
+    minmax,
     normalizeAlpha,
     normalizeHue,
     percent
@@ -58,7 +61,7 @@ export class HSLStringParser {
                 h: fromHSL.H,
                 s: fromHSL.S,
                 l: fromHSL.L,
-                alpha: fromHSL.A ?? 1
+                alpha: fromHSL.A
             };
 
             const H = new CalcParser('h', relative_h, fromHSLVars).result;
@@ -66,29 +69,20 @@ export class HSLStringParser {
             const L = new CalcParser('l', relative_l, fromHSLVars).result;
 
             const toRGB = hslToRGB(
-                H,
-                S,
-                L
+                minmax(H, 0, MAX_HUE),
+                minmax(S, 0, MAX_PCENT),
+                minmax(L, 0, MAX_PCENT)
             );
 
             const rgb: RGBObject = {
-                R: Math.min(
-                    toRGB.R,
-                    BASE_255
-                ),
-                G: Math.min(
-                    toRGB.G,
-                    BASE_255
-                ),
-                B: Math.min(
-                    toRGB.B,
-                    BASE_255
-                )
+                R: toRGB.R,
+                G: toRGB.G,
+                B: toRGB.B
             };
 
             if (relative_a) {
-                const A = new CalcParser('a', relative_a, fromHSLVars).result;
-                rgb.A = Math.min(A, 1);
+                const A = new CalcParser('alpha', relative_a, fromHSLVars).result;
+                rgb.A = minmax(A, 0, MAX_ALPHA);
             }
 
             this._rgb = rgb;
