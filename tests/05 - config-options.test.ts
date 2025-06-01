@@ -374,7 +374,6 @@ describe('ColorTranslator CSS config options autodetection', () => {
         ];
 
         const HWB_TEST_CASES = [
-            //--HWB
             {
                 color: `hwb(${HWB.H} ${HWB.W}% ${HWB.B}%)`,
                 result: `hwb(90 ${HWB.W}% ${HWB.B}%)`
@@ -398,19 +397,15 @@ describe('ColorTranslator CSS config options autodetection', () => {
         ];
 
         HSL_TEST_CASES.forEach((testCase): void => {
-
             const instance = new ColorTranslator(testCase.color);
             expect(instance.HSL).toBe(testCase.result);
             expect(ColorTranslator.toHSL(testCase.color)).toBe(testCase.result);
-
         });
 
         HWB_TEST_CASES.forEach((testCase): void => {
-
             const instance = new ColorTranslator(testCase.color);
             expect(instance.HWB).toBe(testCase.result);
             expect(ColorTranslator.toHWB(testCase.color)).toBe(testCase.result);
-
         });
 
     });

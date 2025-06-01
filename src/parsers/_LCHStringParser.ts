@@ -63,8 +63,8 @@ export class LCHStringParser {
 
             const rgb = lchToRgb(
                 minmax(L, 0, MAX_PCENT),
-                minmax(C, 0, MAX_LCH_C),
-                minmax(H, 0, MAX_HUE)
+                minmax(C, - MAX_LCH_C, MAX_LCH_C),
+                normalizeHue(H)
             );
 
             if (relative_a) {
