@@ -6,3 +6,4 @@ export const MAX_HUE = 360;
 export const MAX_PCENT = 100;
 export const MAX_ALPHA = 1;
 export const MAX_LAB = 125;
+export const MAX_LCH_C = 150;

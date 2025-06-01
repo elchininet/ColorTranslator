@@ -12,6 +12,8 @@ import {
     HSL_HUE,
     MAX_ALPHA,
     MAX_DECIMALS,
+    MAX_LAB,
+    MAX_LCH_C,
     Mix,
     MixString,
     PCENT
@@ -56,7 +58,10 @@ export const toHEX = (h: NumberOrString): string => {
 export const from255NumberToPercent = (value: number, decimals: number): number => round(value / BASE_255 * 100, decimals);
 
 //---Convert from decimal 125 to percent
-export const from125NumberToPercent = (value: number, decimals: number): number => round(value / 125 * 100, decimals);
+export const from125NumberToPercent = (value: number, decimals: number): number => round(value / MAX_LAB * 100, decimals);
+
+//---Convert from decimal 150 to percent
+export const from150NumberToPercent = (value: number, decimals: number): number => round(value / MAX_LCH_C * 100, decimals);
 
 //---Calculate a decimal 255 from an RGB color
 export const getBase255Number = (color: string, alpha = false): number => {
@@ -74,12 +79,20 @@ export const getBase255Number = (color: string, alpha = false): number => {
     return Math.min(+color, alpha ? 1 : BASE_255);
 };
 
-//---Calculate a decimal 125 from an CIE Lab color
+//---Calculate a decimal 125 from a CIE Lab color
 export const getBase125Number = (color: string): number => {
     if (PCENT.test(color)) {
-        return minmax(125 * percentNumber(color) / 100, -125, 125);
+        return minmax(MAX_LAB * percentNumber(color) / 100, -MAX_LAB, MAX_LAB);
     }
-    return minmax(+color, -125, 125);
+    return minmax(+color, -MAX_LAB, MAX_LAB);
+};
+
+//---Calculate a decimal 150 from an LCH color
+export const getBase150Number = (color: string): number => {
+    if (PCENT.test(color)) {
+        return minmax(MAX_LCH_C * percentNumber(color) / 100, -MAX_LCH_C, MAX_LCH_C);
+    }
+    return minmax(+color, -MAX_LCH_C, MAX_LCH_C);
 };
 
 //---Calculate a decimal 0-1 value from CMYK value
@@ -149,7 +162,7 @@ export const normalizeAlpha = (alpha: number | string | undefined | null): numbe
     return (isNaN(+alpha) || alpha > MAX_ALPHA) ? MAX_ALPHA : round(alpha);
 };
 
-export const translateDegrees = (degrees: number, units: AnglesUnitEnum): number => {
+export const translateDegrees = (degrees: number, units: `${AnglesUnitEnum}`): number => {
 
     let hue: number;
 

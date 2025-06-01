@@ -12,37 +12,42 @@ exports[`ColorTranslator shades and tints tests Shades snapshots with HWB functi
 
 exports[`ColorTranslator shades and tints tests Shades snapshots with HWB functions from "hwb(0 0% 0%)" 1`] = `
 [
-  "hwb(0 0% 17% / 1)",
-  "hwb(0 0% 33% / 1)",
-  "hwb(0 0% 50% / 1)",
-  "hwb(0 0% 67% / 1)",
-  "hwb(0 0% 83% / 1)",
+  "hwb(0 0% 17%)",
+  "hwb(0 0% 33%)",
+  "hwb(0 0% 50%)",
+  "hwb(0 0% 67%)",
+  "hwb(0 0% 83%)",
 ]
 `;
 
 exports[`ColorTranslator shades and tints tests Shades snapshots with HWB functions from {"H":0,"W":0,"B":0,"A":1} 1`] = `
 [
   {
+    "A": 1,
     "B": 17,
     "H": 0,
     "W": 0,
   },
   {
+    "A": 1,
     "B": 33,
     "H": 0,
     "W": 0,
   },
   {
+    "A": 1,
     "B": 50,
     "H": 0,
     "W": 0,
   },
   {
+    "A": 1,
     "B": 67,
     "H": 0,
     "W": 0,
   },
   {
+    "A": 1,
     "B": 83,
     "H": 0,
     "W": 0,
@@ -347,37 +352,42 @@ exports[`ColorTranslator shades and tints tests Tints snapshots with HWB functio
 
 exports[`ColorTranslator shades and tints tests Tints snapshots with HWB functions from "hwb(0 0% 0%)" 1`] = `
 [
-  "hwb(0 17% 0% / 1)",
-  "hwb(0 33% 0% / 1)",
-  "hwb(0 50% 0% / 1)",
-  "hwb(0 67% 0% / 1)",
-  "hwb(0 83% 0% / 1)",
+  "hwb(0 17% 0%)",
+  "hwb(0 33% 0%)",
+  "hwb(0 50% 0%)",
+  "hwb(0 67% 0%)",
+  "hwb(0 83% 0%)",
 ]
 `;
 
 exports[`ColorTranslator shades and tints tests Tints snapshots with HWB functions from {"H":0,"W":0,"B":0,"A":1} 1`] = `
 [
   {
+    "A": 1,
     "B": 0,
     "H": 0,
     "W": 17,
   },
   {
+    "A": 1,
     "B": 0,
     "H": 0,
     "W": 33,
   },
   {
+    "A": 1,
     "B": 0,
     "H": 0,
     "W": 50,
   },
   {
+    "A": 1,
     "B": 0,
     "H": 0,
     "W": 67,
   },
   {
+    "A": 1,
     "B": 0,
     "H": 0,
     "W": 83,

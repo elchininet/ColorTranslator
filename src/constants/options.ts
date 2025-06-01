@@ -13,6 +13,7 @@ export const DEFAULT_OPTIONS: Options = {
     anglesUnit: AnglesUnitEnum.NONE,
     rgbUnit: ColorUnitEnum.NONE,
     labUnit: ColorUnitEnum.NONE,
+    lchUnit: ColorUnitEnum.NONE,
     cmykUnit: ColorUnitEnum.PERCENT,
     alphaUnit: ColorUnitEnum.NONE,
     cmykFunction: CMYKFunctionEnum.DEVICE_CMYK

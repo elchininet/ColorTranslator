@@ -1,5 +1,9 @@
 import { ColorTranslator } from '../src';
-import { COLORS, CMYK_COLORS } from './tests.constants';
+import {
+    COLORS,
+    LAB_AND_LCH_COLORS,
+    CMYK_COLORS
+} from './tests.constants';
 
 const options = { decimals: 0 };
 const legacyOptions = { ...options, legacyCSS: true };
@@ -218,27 +222,99 @@ CMYK_COLORS.forEach((color) => {
 
 });
 
-describe('ColorTranslator L*a*b properties', () => {
-    it('CIEL, CIEa and CIEb', () => {
-        const instance = new ColorTranslator('#F00', { decimals: 0 });
-        expect(instance.CIEL).toBe(54);
-        expect(instance.CIEa).toBe(81);
-        expect(instance.CIEb).toBe(70);
-    });
-    it('CIELab, CIELabA, CIELabObject and CIELabAObject', () => {
-        const instance = new ColorTranslator('#F00', { decimals: 0 });
-        expect(instance.CIELab).toBe('lab(54 81 70)');
-        expect(instance.CIELabA).toBe('lab(54 81 70 / 1)');
-        expect(instance.CIELabObject).toMatchObject({
-            L: 54,
-            a: 81,
-            b: 70
+LAB_AND_LCH_COLORS.forEach((color) => {
+
+    const { KEYWORD } = color;
+
+    const instance = new ColorTranslator(KEYWORD, { decimals: 0 });
+    const instancePercentages = new ColorTranslator(
+        KEYWORD,
+        {
+            decimals: 0,
+            labUnit: 'percent',
+            lchUnit: 'percent',
+            alphaUnit: 'percent'
+        }
+    );
+
+    describe(`CIELab color tests for ${ KEYWORD }`, () => {
+       
+        it(`CIELab property => ${ color.CIELab }`, () => {
+            expect(instance.CIELab).toBe(color.CIELab);
         });
-        expect(instance.CIELabAObject).toMatchObject({
-            L: 54,
-            a: 81,
-            b: 70,
-            A: 1
+
+        it(`CIELabA property => ${ color.CIELabA }`, () => {
+            expect(instance.CIELabA).toBe(color.CIELabA);
         });
+
+        it(`CIELab property in percentages => ${ color.CIELabInPrcentage }`, () => {
+            expect(instancePercentages.CIELab).toBe(color.CIELabInPrcentage);
+        });
+
+        it(`CIELabA property in percentages => ${ color.CIELabAInPrcentage }`, () => {
+            expect(instancePercentages.CIELabA).toBe(color.CIELabAInPrcentage);
+        });
+
+        it(`CIELabObject property => ${ JSON.stringify(color.CIELabObject) }`, () => {
+            expect(instance.CIELabObject).toMatchObject(color.CIELabObject);
+        });
+
+        it(`CIELabAObject property => ${ JSON.stringify(color.CIELabAObject) }`, () => {
+            expect(instance.CIELabAObject).toMatchObject(color.CIELabAObject);
+        });
+
+        it(`CIEL property => ${ color.CIELabObject.L }`, () => {
+            expect(instance.CIEL).toBe(color.CIELabObject.L);
+        });
+
+        it(`CIEa property => ${ color.CIELabObject.a }`, () => {
+            expect(instance.CIEa).toBe(color.CIELabObject.a);
+        });
+
+        it(`CIEb property => ${ color.CIELabObject.b }`, () => {
+            expect(instance.CIEb).toBe(color.CIELabObject.b);
+        });
+
     });
+
+    describe(`LCH color tests for ${ KEYWORD }`, () => {
+       
+        it(`LCH property => ${ color.LCH }`, () => {
+            expect(instance.LCH).toBe(color.LCH);
+        });
+
+        it(`LCHA property => ${ color.LCHA }`, () => {
+            expect(instance.LCH).toBe(color.LCH);
+        });
+
+        it(`LCH property in percentages => ${ color.LCHInPercentage }`, () => {
+            expect(instancePercentages.LCH).toBe(color.LCHInPercentage);
+        });
+
+        it(`LCHA property in percentages => ${ color.LCHAInPercentage }`, () => {
+            expect(instancePercentages.LCHA).toBe(color.LCHAInPercentage);
+        });
+
+        it(`LCHObject property => ${ JSON.stringify(color.LCHObject) }`, () => {
+            expect(instance.LCHObject).toMatchObject(color.LCHObject);
+        });
+
+        it(`LCHAObject property => ${ JSON.stringify(color.LCHAObject) }`, () => {
+            expect(instance.LCHAObject).toMatchObject(color.LCHAObject);
+        });
+
+        it(`LCHL property => ${ color.LCHObject.L }`, () => {
+            expect(instance.LCHL).toBe(color.LCHObject.L);
+        });
+
+        it(`LCHC property => ${ color.LCHObject.C }`, () => {
+            expect(instance.LCHC).toBe(color.LCHObject.C);
+        });
+
+        it(`LCHH property => ${ color.LCHObject.H }`, () => {
+            expect(instance.LCHH).toBe(color.LCHObject.H);
+        });
+
+    });
+
 });

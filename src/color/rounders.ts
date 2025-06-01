@@ -2,7 +2,8 @@ import {
     CIELabObject,
     CMYKObject,
     HSLObject,
-    HWBObject
+    HWBObject,
+    LCHObject
 } from '@types';
 import { round } from '#helpers';
 
@@ -36,6 +37,17 @@ export const roundCIELabObject = (
         L: round(color.L, decimals),
         a: round(color.a, decimals),
         b: round(color.b, decimals)
+    };
+};
+
+export const roundLCHObject = (
+    color: LCHObject,
+    decimals: number
+): LCHObject => {
+    return {
+        L: round(color.L, decimals),
+        C: round(color.C, decimals),
+        H: round(color.H, decimals)
     };
 };
 

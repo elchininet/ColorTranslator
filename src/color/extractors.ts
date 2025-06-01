@@ -9,6 +9,7 @@ import {
     HSLObjectGeneric,
     HWBObjectGeneric,
     InputOptions,
+    LCHObjectGeneric,
     MatchOptions,
     Options,
     RGBObject,
@@ -31,6 +32,7 @@ import {
 } from '#constants';
 import {
     getBase125Number,
+    getBase150Number,
     getBase255Number,
     getCMYKNumber,
     getOrderedArrayString,
@@ -45,13 +47,15 @@ import {
     HEXStringParser,
     HSLStringParser,
     HWBStringParser,
+    LCHStringParser,
     RGBStringParser
 } from '#parsers';
 import {
     cmykToRgb,
     hslToRgb,
     hwbToRgb,
-    labToRgb
+    labToRgb,
+    lchToRgb
 } from '#color/translators';
 
 //---Detect the color model from an string
@@ -144,6 +148,9 @@ export const getRGBObjectFromString = {
     [ColorModel.CIELab](color: string): RGBObject {
         return new CIELabStringParser(color, getRGBObject).rgb;
     },
+    [ColorModel.LCH](color: string): RGBObject {
+        return new LCHStringParser(color, getRGBObject).rgb;
+    },
     [ColorModel.CMYK](color: string): RGBObject {
         return new CMYKStringParser(color).rgb;
     }
@@ -193,6 +200,16 @@ export const getRGBObjectFromObject = {
         }
         return RGB;
     },
+    [ColorModel.LCH](color: LCHObjectGeneric): RGBObject {
+        const L = percent(`${color.L}`);
+        const C = getBase150Number(`${color.C}`);
+        const H = normalizeHue(`${color.H}`);
+        const RGB = lchToRgb(L, C, H);
+        if (hasProp<LCHObjectGeneric>(color, 'A')) {
+            RGB.A = normalizeAlpha(color.A);
+        }
+        return RGB;
+    },
     [ColorModel.CMYK](color: CMYKObjectGeneric): RGBObject {
         const C = getCMYKNumber(`${color.C}`);
         const M = getCMYKNumber(`${color.M}`);
@@ -215,6 +232,7 @@ export const getRGBObject = (color: ColorInput, model: ColorModel = getColorMode
                 HSLObjectGeneric &
                 HWBObjectGeneric &
                 CIELabObjectGeneric &
+                LCHObjectGeneric &
                 CMYKObjectGeneric
             )
         );
@@ -225,6 +243,7 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
     const anglesUnits: AnglesUnitEnum[] = [];
     const rgbColors: boolean[] = [];
     const labColors: boolean[] = [];
+    const lchColors: boolean[] = [];
     const cmykColors: boolean[] = [];
     const alphaValues: boolean[] = [];
     const anglesUnitValues = Object.values<string>(AnglesUnitEnum);
@@ -294,6 +313,17 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
                 continue;
             }
 
+            if (LCHStringParser.test(color)) {
+                const parser = new LCHStringParser(color, getRGBObject);
+                lchColors.push(
+                    parser.hasPercentageValues
+                );
+                alphaValues.push(
+                    parser.hasPercentageAlpha
+                );
+                continue;
+            }
+
             if (CMYKStringParser.test(color)) {
                 const parser = new CMYKStringParser(color);
                 cmykColors.push(
@@ -346,6 +376,13 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
                 new Set(labColors).size === 1 && labColors[0]
                     ? ColorUnitEnum.PERCENT
                     : DEFAULT_OPTIONS.labUnit
+            ),
+        lchUnit: options.lchUnit && colorUnitValues.includes(options.lchUnit)
+            ? options.lchUnit as ColorUnitEnum
+            : (
+                new Set(lchColors).size === 1 && lchColors[0]
+                    ? ColorUnitEnum.PERCENT
+                    : DEFAULT_OPTIONS.lchUnit
             ),
         cmykUnit: options.cmykUnit && colorUnitValues.includes(options.cmykUnit)
             ? options.cmykUnit as ColorUnitEnum

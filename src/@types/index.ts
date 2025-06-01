@@ -65,6 +65,20 @@ export interface CIELabObjectGeneric {
     A?: NumberOrString;
 }
 
+export interface LCHObject {
+    L: number;
+    C: number;
+    H: number;
+    A?: number;
+}
+
+export interface LCHObjectGeneric {
+    L: NumberOrString;
+    C: NumberOrString;
+    H: NumberOrString;
+    A?: NumberOrString;
+}
+
 export interface CMYKObject {
     C: number;
     M: number;
@@ -95,13 +109,15 @@ export type Color =
     | HSLObjectGeneric
     | HWBObjectGeneric
     | CMYKObjectGeneric
-    | CIELabObjectGeneric;
+    | CIELabObjectGeneric
+    | LCHObjectGeneric;
 
 export type ColorWithoutCMYK =
     | RGBObjectGeneric
     | HSLObjectGeneric
     | HWBObjectGeneric
-    | CIELabObjectGeneric;
+    | CIELabObjectGeneric
+    | LCHObjectGeneric;
 
 export type ColorInput = string | Color;
 export type ColorInputWithoutCMYK = string | ColorWithoutCMYK;
@@ -109,6 +125,7 @@ export type HEXOutput = string | HEXObject;
 export type RGBOutput = string | RGBObject;
 export type HWBOutput = string | HWBObject;
 export type CIELabOutput = string | CIELabObject;
+export type LCHOutput = string | LCHObject;
 export type HSLOutput = string | HSLObject;
 export type CMYKOutput = string | CMYKObject;
 export type ColorOutput =
@@ -116,7 +133,8 @@ export type ColorOutput =
     | RGBOutput
     | HSLOutput
     | HWBOutput
-    | CIELabOutput;
+    | CIELabOutput
+    | LCHOutput;
 
 export interface HEXRegExpMatchArray extends RegExpMatchArray {
     groups: {
@@ -205,6 +223,22 @@ export interface CIELabRegExpMatchArray extends RegExpMatchArray {
     }
 }
 
+export interface LCHRegExpMatchArray extends RegExpMatchArray {
+    groups: {
+        // LCH values
+        l: string;
+        c: string;
+        h: string;
+        a: string | undefined;
+        // Relative values
+        from: string;
+        relative_l: string;
+        relative_c: string;
+        relative_h: string;
+        relative_a: string | undefined;
+    }
+}
+
 export interface CMYKRegExpMatchArray extends RegExpMatchArray {
     groups: {
         c_legacy: string;
@@ -253,27 +287,16 @@ export interface Options {
     decimals: number;
     legacyCSS: boolean;
     spacesAfterCommas: boolean;
-    anglesUnit: AnglesUnitEnum;
-    rgbUnit: ColorUnitEnum;
-    labUnit: ColorUnitEnum;
-    cmykUnit: ColorUnitEnum;
-    alphaUnit: ColorUnitEnum;
-    cmykFunction: CMYKFunctionEnum
+    anglesUnit: `${AnglesUnitEnum}`;
+    rgbUnit: `${ColorUnitEnum}`;
+    labUnit: `${ColorUnitEnum}`;
+    lchUnit: `${ColorUnitEnum}`,
+    cmykUnit: `${ColorUnitEnum}`;
+    alphaUnit: `${ColorUnitEnum}`;
+    cmykFunction: `${CMYKFunctionEnum}`
 }
 
-export type InputOptions = Partial<
-    Omit<
-        Options,
-        'anglesUnit' | 'rgbUnit' | 'labUnit' | 'cmykUnit' | 'alphaUnit' | 'cmykFunction'
-    >
-> & {
-    anglesUnit?: `${AnglesUnitEnum}`;
-    rgbUnit?: `${ColorUnitEnum}`;
-    cmykUnit?: `${ColorUnitEnum}`;
-    labUnit?: `${ColorUnitEnum}`,
-    alphaUnit?: `${ColorUnitEnum}`;
-    cmykFunction?: `${CMYKFunctionEnum}`
-};
+export type InputOptions = Partial<Options>;
 
 export type MatchOptions = {
     [K in keyof Pick<Options, 'legacyCSS' | 'spacesAfterCommas' | 'cmykFunction'>]: number;

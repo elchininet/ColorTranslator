@@ -15,11 +15,13 @@ const CALC_RGB_COLOR = `calc\\([rgb${CALC_CHARACTERS}]+\\)`;
 const CALC_HWB_COLOR = `calc\\([hwb${CALC_CHARACTERS}]+\\)`;
 const CALC_HSL_COLOR = `calc\\([hsl${CALC_CHARACTERS}]+\\)`;
 const CALC_LAB_COLOR = `calc\\([lab${CALC_CHARACTERS}]+\\)`;
+const CALC_LCH_COLOR = `calc\\([lch${CALC_CHARACTERS}]+\\)`;
 const CALC_ALPHA_COLOR = `calc\\([${CALC_CHARACTERS}\\w]*(?:alpha)?[${CALC_CHARACTERS}\\w]*\\)`;
 const RELATIVE_RGB_COLOR = `(?:[rgb]|${NUMBER_WITH_DECIMALS}|${CALC_RGB_COLOR})`;
 const RELATIVE_HWB_COLOR = `(?:[hwb]|${NUMBER_WITH_DECIMALS}|${CALC_HWB_COLOR})`;
 const RELATIVE_HSL_COLOR = `(?:[hsl]|${NUMBER_WITH_DECIMALS}|${CALC_HSL_COLOR})`;
 const RELATIVE_LAB_COLOR = `(?:[lab]|${NUMBER_WITH_DECIMALS}|${CALC_LAB_COLOR})`;
+const RELATIVE_LCH_COLOR = `(?:[lch]|${NUMBER_WITH_DECIMALS}|${CALC_LCH_COLOR})`;
 const RELATIVE_ALPHA = `(?:${NUMBER_WITH_DECIMALS}%?|${CALC_ALPHA_COLOR}|alpha)`;
 
 module.exports = {
@@ -177,6 +179,37 @@ module.exports = {
                         (?:
                             ${SLASH}
                             (?<relative_A>${RELATIVE_ALPHA})
+                        )?
+                )
+                ${SPACE}
+            \\)$
+        `,
+        LCH: `
+            ^lch${SPACE}\\(
+                ${SPACE}
+                (?:
+                        (?<l>${NUMBER_WITH_DECIMALS}%?)
+                        ${REAL_SPACE}
+                        (?<c>-?${NUMBER_WITH_DECIMALS}%?)
+                        ${REAL_SPACE}
+                        (?<h>-?${NUMBER_WITH_DECIMALS})
+                        (?:
+                            ${SLASH}
+                            (?<a>${NUMBER_WITH_DECIMALS}%?)
+                        )?
+                    |
+                        from
+                        ${REAL_SPACE}
+                        (?<from>${FROM_COLOR})
+                        ${REAL_SPACE}
+                        (?<relative_l>${RELATIVE_LCH_COLOR})
+                        ${REAL_SPACE}
+                        (?<relative_c>${RELATIVE_LCH_COLOR})
+                        ${REAL_SPACE}
+                        (?<relative_h>${RELATIVE_LCH_COLOR})
+                        (?:
+                            ${SLASH}
+                            (?<relative_a>${RELATIVE_ALPHA})
                         )?
                 )
                 ${SPACE}
