@@ -31,7 +31,12 @@ describe('Relative colors', () => {
         // Lab
         'lab(from #FF00FF l a b)',
         'lab(from #FF00FF calc(l + 200 / 100 - 2) calc( a * l / l) calc(b + a - a))',
-        'lab(from rgb(from #FF00FF r g b / 1) l a b)'
+        'lab(from rgb(from #FF00FF r g b / 1) l a b)',
+
+        // LCH
+        'lch(from #FF00FF l c h)',
+        'lch(from #FF00FF calc(l - (c - c)) calc(c * (l / l)) calc(h * (c / c)))',
+        'lch(from rgb(255 0 255 / 1) l c h / 1)'
     ];
 
     const ALPHA_TEST_CASES = [
@@ -62,7 +67,12 @@ describe('Relative colors', () => {
         // Lab
         'lab(from #FF00FF l a b / calc(alpha / 2))',
         'lab(from #FF00FF calc(l + 200 / 100 - 2) calc( a * l / l) calc(b + a - a) / calc(alpha - 0.5))',
-        'lab(from rgb(from #FF00FF r g b / 0.25) l a b / calc(alpha * 2))'
+        'lab(from rgb(from #FF00FF r g b / 0.25) l a b / calc(alpha * 2))',
+
+        // LCH
+        'lch(from #FF00FF l c h / calc(alpha / 2))',
+        'lch(from #FF00FF calc(l - (c - c)) calc(c * (l / l)) calc(h * (c / c)) / calc(alpha - 0.5))',
+        'lch(from rgb(255 0 255 / 0.25) l c h / calc(alpha * 2 ))'
 
     ];
 
@@ -139,8 +149,24 @@ describe('Relative colors', () => {
         {
             input: 'lab(from #FF0000 l a b / calc(A - 0.5))',
             error: buildVariableError('alpha', 'A - 0.5')
+        },
+        // LCH
+        {
+            input: 'lch(from #FF0000 l a b)',
+            error: ERRORS.NOT_ACCEPTED_STRING_INPUT
+        },
+        {
+            input: 'lch(from #FF0000 l c h alpha)',
+            error: ERRORS.NOT_ACCEPTED_STRING_INPUT
+        },
+        {
+            input: 'lch(from #FF0000 l c calc(lch / 2))',
+            error: buildVariableError('h', 'lch / 2')
+        },
+        {
+            input: 'lch(from #FF0000 l c h / calc(A - 0.5))',
+            error: buildVariableError('alpha', 'A - 0.5')
         }
-
     ];
 
     describe.each(TEST_CASES)('Test case: %s', (input) => {
@@ -199,25 +225,23 @@ describe('Relative colors', () => {
 
     describe.each(ERROR_TEST_CASES)('With error test case: $input', ({ input, error }) => {
 
-        //const options = { decimals: 1 };
-
         it('toHEX should throw an error', () => {
             expect(
                 () => ColorTranslator.toHEXA(input)
             ).toThrow(error);
         });
 
-        // it('toRGB should throw an error', () => {
-        //     expect(
-        //         ColorTranslator.toRGBA(input, options)
-        //     ).toBe(rgba);
-        // });
+        it('toRGB should throw an error', () => {
+            expect(
+                () => ColorTranslator.toRGBA(input)
+            ).toThrow(error);
+        });
 
-        // it('toHSL should throw an error', () => {
-        //     expect(
-        //         ColorTranslator.toHSLA(input, options)
-        //     ).toBe(hsla);
-        // });
+        it('toHSL should throw an error', () => {
+            expect(
+                () => ColorTranslator.toHSLA(input)
+            ).toThrow(error);
+        });
 
     });
 
