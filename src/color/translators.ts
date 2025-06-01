@@ -212,15 +212,15 @@ export const labToRgb = (L: number, a: number, b: number): RGBObject => {
 // LAB to LCH
 export const labToLch = (L: number, a: number, b: number): LCHObject => {
     const C = Math.sqrt(
-        Math.pow(a, 2) + Math.pow(b, 2)
+        a ** 2 + b ** 2
     );
-    const H = Math.atan2(b, a);
+    const H = degrees(
+        Math.atan2(b, a)
+    );
     return {
         L,
         C,
-        H: normalizeHue(
-            degrees(H)
-        )
+        H: normalizeHue(H)
     };
 };
 
