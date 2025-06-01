@@ -68,17 +68,11 @@ export class HSLStringParser {
             const S = new CalcParser('s', relative_s, fromHSLVars).result;
             const L = new CalcParser('l', relative_l, fromHSLVars).result;
 
-            const toRGB = hslToRgb(
+            const rgb = hslToRgb(
                 minmax(H, 0, MAX_HUE),
                 minmax(S, 0, MAX_PCENT),
                 minmax(L, 0, MAX_PCENT)
             );
-
-            const rgb: RGBObject = {
-                R: toRGB.R,
-                G: toRGB.G,
-                B: toRGB.B
-            };
 
             if (relative_a) {
                 const A = new CalcParser('alpha', relative_a, fromHSLVars).result;

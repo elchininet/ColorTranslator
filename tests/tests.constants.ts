@@ -336,6 +336,114 @@ export const HEX3 = [
     }
 ];
 
+export const LAB_AND_LCH_COLORS = [
+    {
+        KEYWORD: 'red',
+        CIELab: 'lab(54 81 70)',
+        CIELabA: 'lab(54 81 70 / 1)',
+        CIELabInPrcentage: 'lab(54% 65% 56%)',
+        CIELabAInPrcentage: 'lab(54% 65% 56% / 100%)',
+        CIELabObject: { L: 54, a: 81, b: 70 },
+        CIELabAObject: { L: 54, a: 81, b: 70, A: 1 },
+        LCH: 'lch(54 107 41)',
+        LCHA: 'lch(54 107 41 / 1)',
+        LCHInPercentage: 'lch(54% 71% 41)',
+        LCHAInPercentage: 'lch(54% 71% 41 / 100%)',
+        LCHObject: { L: 54, C: 107, H: 41 },
+        LCHAObject: { L: 54, C: 107, H: 41, A: 1 }        
+    },
+    {
+        KEYWORD: 'lime',
+        CIELab: 'lab(88 -79 81)',
+        CIELabA: 'lab(88 -79 81 / 1)',
+        CIELabInPrcentage: 'lab(88% -63% 65%)',
+        CIELabAInPrcentage: 'lab(88% -63% 65% / 100%)',
+        CIELabObject: { L: 88, a: -79, b: 81 },
+        CIELabAObject: { L: 88, a: -79, b: 81, A: 1 },
+        LCH: 'lch(88 113 134)',
+        LCHA: 'lch(88 113 134 / 1)',
+        LCHInPercentage: 'lch(88% 75% 134)',
+        LCHAInPercentage: 'lch(88% 75% 134 / 100%)',
+        LCHObject: { L: 88, C: 113, H: 134 },
+        LCHAObject: { L: 88, C: 113, H: 134, A: 1 }
+    },
+    {
+        KEYWORD: 'blue',
+        CIELab: 'lab(30 68 -112)',
+        CIELabA: 'lab(30 68 -112 / 1)',
+        CIELabInPrcentage: 'lab(30% 54% -90%)',
+        CIELabAInPrcentage: 'lab(30% 54% -90% / 100%)',
+        CIELabObject: { L: 30, a: 68, b: -112 },
+        CIELabAObject: { L: 30, a: 68, b: -112, A: 1 },
+        LCH: 'lch(30 131 301)',
+        LCHA: 'lch(30 131 301 / 1)',
+        LCHInPercentage: 'lch(30% 87% 301)',
+        LCHAInPercentage: 'lch(30% 87% 301 / 100%)',
+        LCHObject: { L: 30, C: 131, H: 301 },
+        LCHAObject: { L: 30, C: 131, H: 301, A: 1 }
+    },
+    {
+        KEYWORD: 'magenta',
+        CIELab: 'lab(60 94 -60)',
+        CIELabA: 'lab(60 94 -60 / 1)',
+        CIELabInPrcentage: 'lab(60% 75% -48%)',
+        CIELabAInPrcentage: 'lab(60% 75% -48% / 100%)',
+        CIELabObject: { L: 60, a: 94, b: -60 },
+        CIELabAObject: { L: 60, a: 94, b: -60, A: 1 },
+        LCH: 'lch(60 111 327)',
+        LCHA: 'lch(60 111 327 / 1)',
+        LCHInPercentage: 'lch(60% 74% 327)',
+        LCHAInPercentage: 'lch(60% 74% 327 / 100%)',
+        LCHObject: { L: 60, C: 111, H: 327 },
+        LCHAObject: { L: 60, C: 111, H: 327, A: 1 }
+    },
+    {
+        KEYWORD: 'white',
+        CIELab: 'lab(100 0 0)',
+        CIELabA: 'lab(100 0 0 / 1)',
+        CIELabInPrcentage: 'lab(100% 0% 0%)',
+        CIELabAInPrcentage: 'lab(100% 0% 0% / 100%)',
+        CIELabObject: { L: 100, a: 0, b: 0 },
+        CIELabAObject: { L: 100, a: 0, b: 0, A: 1 },
+        LCH: 'lch(100 0 0)',
+        LCHA: 'lch(100 0 0 / 1)',
+        LCHInPercentage: 'lch(100% 0% 0)',
+        LCHAInPercentage: 'lch(100% 0% 0 / 100%)',
+        LCHObject: { L: 100, C: 0, H: 0 },
+        LCHAObject: { L: 100, C: 0, H: 0, A: 1 }
+    },
+    {
+        KEYWORD: 'black',
+        CIELab: 'lab(0 0 0)',
+        CIELabA: 'lab(0 0 0 / 1)',
+        CIELabInPrcentage: 'lab(0% 0% 0%)',
+        CIELabAInPrcentage: 'lab(0% 0% 0% / 100%)',
+        CIELabObject: { L: 0, a: 0, b: 0 },
+        CIELabAObject: { L: 0, a: 0, b: 0, A: 1 },
+        LCH: 'lch(0 0 0)',
+        LCHA: 'lch(0 0 0 / 1)',
+        LCHInPercentage: 'lch(0% 0% 0)',
+        LCHAInPercentage: 'lch(0% 0% 0 / 100%)',
+        LCHObject: { L: 0, C: 0, H: 0 },
+        LCHAObject: { L: 0, C: 0, H: 0, A: 1 }
+    },
+    {
+        KEYWORD: 'gray',
+        CIELab: 'lab(54 0 0)',
+        CIELabA: 'lab(54 0 0 / 1)',
+        CIELabInPrcentage: 'lab(54% 0% 0%)',
+        CIELabAInPrcentage: 'lab(54% 0% 0% / 100%)',
+        CIELabObject: { L: 54, a: 0, b: 0 },
+        CIELabAObject: { L: 54, a: 0, b: 0, A: 1 },
+        LCH: 'lch(54 0 0)',
+        LCHA: 'lch(54 0 0 / 1)',
+        LCHInPercentage: 'lch(54% 0% 0)',
+        LCHAInPercentage: 'lch(54% 0% 0 / 100%)',
+        LCHObject: { L: 54, C: 0, H: 0 },
+        LCHAObject: { L: 54, C: 0, H: 0, A: 1 }
+    }
+];
+
 export const CMYK_COLORS = [
     {
         RGB: '#F00',

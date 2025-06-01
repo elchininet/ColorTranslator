@@ -4,11 +4,18 @@ import {
     ColorArray,
     HSLObject,
     HWBObject,
+    LCHObject,
     RGBObject,
     RYBObject
 } from '@types';
 import { BASE_255, MAX_ALPHA } from '#constants';
-import { minmax, round } from '#helpers';
+import {
+    degrees,
+    minmax,
+    normalizeHue,
+    radians,
+    round
+} from '#helpers';
 
 const MATRIX_LRGB_XYZ_D50: [ColorArray, ColorArray, ColorArray] = [
     [0.4360747, 0.3850649, 0.1430804],
@@ -200,6 +207,53 @@ export const labToRgb = (L: number, a: number, b: number): RGBObject => {
         G: minmax(rgb[1] * BASE_255, 0, BASE_255),
         B: minmax(rgb[2] * BASE_255, 0, BASE_255)
     };
+};
+
+// LAB to LCH
+export const labToLch = (L: number, a: number, b: number): LCHObject => {
+    const C = Math.sqrt(
+        Math.pow(a, 2) + Math.pow(b, 2)
+    );
+    const H = Math.atan2(b, a);
+    return {
+        L,
+        C,
+        H: normalizeHue(
+            degrees(H)
+        )
+    };
+};
+
+// LCH to LAB
+export const lchToLab = (L: number, C: number, H: number): CIELabObject => {
+    const radH = radians(H);
+    const a = C * Math.cos(radH);
+    const b = C * Math.sin(radH);
+    return {
+        L,
+        a,
+        b
+    };
+};
+
+// RGB to LCH
+export const rgbToLch = (R: number, G: number, B: number): LCHObject => {
+    const lab = rgbToLab(R, G, B);
+    return labToLch(
+        lab.L,
+        lab.a,
+        lab.b
+    );
+};
+
+// LCH to RGB
+export const lchToRgb = (L: number, C: number, H: number): RGBObject => {
+    const lab = lchToLab(L, C, H);
+    return labToRgb(
+        lab.L,
+        lab.a,
+        lab.b
+    );
 };
 
 //---RGB to HWB

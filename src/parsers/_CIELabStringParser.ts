@@ -59,17 +59,11 @@ export class CIELabStringParser {
             const a = new CalcParser('a', relative_a, fromLabVars).result;
             const b = new CalcParser('b', relative_b, fromLabVars).result;
 
-            const toRGB = labToRgb(
+            const rgb = labToRgb(
                 minmax(L, 0, MAX_PCENT),
                 minmax(a, - MAX_LAB, MAX_LAB),
                 minmax(b, - MAX_LAB, MAX_LAB)
             );
-
-            const rgb: RGBObject = {
-                R: toRGB.R,
-                G: toRGB.G,
-                B: toRGB.B
-            };
 
             if (relative_A) {
                 const A = new CalcParser('alpha', relative_A, fromLabVars).result;

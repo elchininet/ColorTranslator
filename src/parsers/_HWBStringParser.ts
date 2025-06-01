@@ -63,17 +63,11 @@ export class HWBStringParser {
             const W = new CalcParser('w', relative_w, fromHWBVars).result;
             const B = new CalcParser('b', relative_b, fromHWBVars).result;
 
-            const toRGB = hwbToRgb(
+            const rgb = hwbToRgb(
                 minmax(H, 0, MAX_HUE),
                 minmax(W, 0, MAX_PCENT),
                 minmax(B, 0, MAX_PCENT)
             );
-
-            const rgb: RGBObject = {
-                R: toRGB.R,
-                G: toRGB.G,
-                B: toRGB.B
-            };
 
             if (relative_a) {
                 const A = new CalcParser('alpha', relative_a, fromHWBVars).result;

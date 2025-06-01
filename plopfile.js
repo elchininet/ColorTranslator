@@ -25,6 +25,7 @@ module.exports = (plop) => {
                     HWB: toRegExp(COLOR_REGEXP_STRINGS.HWB),
                     HSL: toRegExp(COLOR_REGEXP_STRINGS.HSL),
                     CIELab: toRegExp(COLOR_REGEXP_STRINGS.CIELab),
+                    LCH: toRegExp(COLOR_REGEXP_STRINGS.LCH),
                     CMYK: toRegExp(COLOR_REGEXP_STRINGS.CMYK),
                     CALC_REGEXP: toRegExp(CALC.REGEXP),
                     CALC_SCOPED: toRegExp(

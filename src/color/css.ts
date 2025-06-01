@@ -7,6 +7,7 @@ import {
     HEXObject,
     HSLObject,
     HWBObject,
+    LCHObject,
     NumberOrString,
     Options,
     RGBObject
@@ -19,6 +20,7 @@ import {
 } from '#constants';
 import {
     from125NumberToPercent,
+    from150NumberToPercent,
     from255NumberToPercent,
     getOrderedArrayString,
     percent,
@@ -184,6 +186,48 @@ export const CSS = {
         const template = values.length === 4
             ? `lab({1} {2} {3} / {4})`
             : `lab({1} {2} {3})`;
+        return getResultFromTemplate(template, values);
+    },
+    [ColorModel.LCH]: (color: LCHObject, options: Options) => {
+        const {
+            decimals,
+            lchUnit,
+            anglesUnit
+        } = options;
+        const transformer = (value: number, index: number): NumberOrString => {
+            if (index === 0) {
+                const L = round(
+                    percent(value),
+                    decimals
+                );
+                return lchUnit === ColorUnitEnum.PERCENT
+                    ? `${L}%`
+                    : `${L}`;
+            }
+            if (index === 1) {
+                return lchUnit === ColorUnitEnum.PERCENT
+                    ? `${from150NumberToPercent(value, decimals)}%`
+                    : round(value, decimals);
+            }
+            if (index === 2) {
+                if (anglesUnit !== AnglesUnitEnum.NONE) {
+                    const translated = round(
+                        translateDegrees(
+                            value,
+                            anglesUnit
+                        ),
+                        decimals
+                    );
+                    return `${translated}${anglesUnit}`;
+                }
+                return round(value, decimals);
+            }
+            return getAlpha(value, options, true);
+        };
+        const values = prepareColorForCss(color, transformer);
+        const template = values.length === 4
+            ? `lch({1} {2} {3} / {4})`
+            : `lch({1} {2} {3})`;
         return getResultFromTemplate(template, values);
     },
     [ColorModel.CMYK]: (color: CMYKObject, options: Options): string => {
