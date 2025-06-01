@@ -1,5 +1,9 @@
 import { ColorTranslator, InputOptions } from '../src';
-import { COLORS, CMYK_COLORS } from './tests.constants';
+import {
+    COLORS,
+    CMYK_COLORS,
+    LAB_AND_LCH_COLORS
+} from './tests.constants';
 
 const optionsNoLegacy: InputOptions = { legacyCSS: false };
 const optionsNoDecimals: InputOptions = { decimals: 0 };
@@ -94,6 +98,82 @@ COLORS.forEach((color): void => {
                 expect(ColorTranslator.toHWBAObject(colorValue, options)).toMatchObject(color.HWBAObject);
             });
 
+        });
+
+    });
+
+});
+
+LAB_AND_LCH_COLORS.forEach((color) => {
+
+    const keyword = color.KEYWORD;
+
+    describe(`ColorTranslator static CIELab and LCH color conversion for ${keyword}`, () => {
+
+        const options = { decimals: 0 };
+        const optionsWithPercentage = {
+            ...options,
+            labUnit: 'percent',
+            lchUnit: 'percent',
+            alphaUnit: 'percent'
+        } as const;
+
+        // LAB
+        it(`toCIELab => ${ color.CIELab }`, () => {
+            expect(ColorTranslator.toCIELab(keyword, options)).toBe(color.CIELab);
+        });
+
+        it(`toCIELab with parcentages => ${ color.CIELabInPrcentage }`, () => {
+            expect(
+                ColorTranslator.toCIELab(keyword, optionsWithPercentage)
+            ).toBe(color.CIELabInPrcentage);
+        });
+
+        it(`toCIELabA => ${ color.CIELabA }`, () => {
+            expect(ColorTranslator.toCIELabA(keyword, options)).toBe(color.CIELabA);
+        });
+
+        it(`toCIELabA with parcentages => ${ color.CIELabAInPrcentage }`, () => {
+            expect(
+                ColorTranslator.toCIELabA(keyword, optionsWithPercentage)
+            ).toBe(color.CIELabAInPrcentage);
+        });
+
+        it(`toCIELabObject => ${ JSON.stringify(color.CIELabObject) }`, () => {
+            expect(ColorTranslator.toCIELabObject(keyword, options)).toMatchObject(color.CIELabObject);
+        });
+
+        it(`toCIELabAObject => ${ JSON.stringify(color.CIELabAObject) }`, () => {
+            expect(ColorTranslator.toCIELabAObject(keyword, options)).toMatchObject(color.CIELabAObject);
+        });
+
+        // LCH
+        it(`toLCH => ${ color.LCH }`, () => {
+            expect(ColorTranslator.toLCH(keyword, options)).toBe(color.LCH);
+        });
+
+        it(`toLCH with parcentages => ${ color.LCHInPercentage }`, () => {
+            expect(
+                ColorTranslator.toLCH(keyword, optionsWithPercentage)
+            ).toBe(color.LCHInPercentage);
+        });
+
+        it(`toLCHA => ${ color.LCHA }`, () => {
+            expect(ColorTranslator.toLCHA(keyword, options)).toBe(color.LCHA);
+        });
+
+        it(`toLCHA with parcentages => ${ color.LCHAInPercentage }`, () => {
+            expect(
+                ColorTranslator.toLCHA(keyword, optionsWithPercentage)
+            ).toBe(color.LCHAInPercentage);
+        });
+
+        it(`toLCHObject => ${ JSON.stringify(color.LCHObject) }`, () => {
+            expect(ColorTranslator.toLCHObject(keyword, options)).toMatchObject(color.LCHObject);
+        });
+
+        it(`toLCHAObject => ${ JSON.stringify(color.LCHAObject) }`, () => {
+            expect(ColorTranslator.toLCHAObject(keyword, options)).toMatchObject(color.LCHAObject);
         });
 
     });
