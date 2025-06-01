@@ -1,8 +1,8 @@
 import { ColorTranslator } from '../src';
 import {
     COLORS,
-    LAB_AND_LCH_COLORS,
-    CMYK_COLORS
+    CMYK_COLORS,
+    LAB_AND_LCH_COLORS
 } from './tests.constants';
 
 const options = { decimals: 0 };
