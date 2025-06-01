@@ -1,5 +1,9 @@
 import { ColorTranslator } from '../src';
-import { COLORS, CMYK_COLORS } from './tests.constants';
+import {
+    COLORS,
+    CMYK_COLORS,
+    LAB_AND_LCH_COLORS
+} from './tests.constants';
 
 const TEST_COLORS = {
     red: COLORS[0],
@@ -9,6 +13,8 @@ const TEST_COLORS = {
     gray: COLORS[6],
     black: COLORS[5]
 };
+
+const RED_LAB_AND_LCH_COLORS = LAB_AND_LCH_COLORS[0];
 
 const TEST_CMYK_COLORS = {
     red: CMYK_COLORS[0],
@@ -77,6 +83,27 @@ describe('ColorTranslator set instance properties', () => {
         expect(instance.HEX).toBe(TEST_COLORS.magenta.HEX);
     });
 
+    it('Method setLCHL', () => {
+        const instance = new ColorTranslator(RED_LAB_AND_LCH_COLORS.KEYWORD);
+        expect(instance.LCHL).not.toBe(50);
+        instance.setLCHL(50);
+        expect(instance.LCHL).toBe(50);
+    });
+
+    it('Method setLCHC', () => {
+        const instance = new ColorTranslator(RED_LAB_AND_LCH_COLORS.KEYWORD);
+        expect(instance.LCHC).not.toBe(50);
+        instance.setLCHC(50);
+        expect(instance.LCHC).toBe(50);
+    });
+
+    it('Method setLCHH', () => {
+        const instance = new ColorTranslator(RED_LAB_AND_LCH_COLORS.KEYWORD);
+        expect(instance.LCHH).not.toBe(50);
+        instance.setLCHH(50);
+        expect(instance.LCHH).toBe(50);
+    });
+
     it('Method setA', () => {
         const instance = new ColorTranslator(TEST_COLORS.red.HEX);
         const REG = /^(.*)(\d)(\))$/;
@@ -110,6 +137,12 @@ describe('ColorTranslator set instance properties', () => {
             ...TEST_COLORS.red.HWBObject,
             A: 0.5
         });
+
+        const LAB_REG = /^lab\([\d\.]+ [\d\.]+ [\d\.]+ \/ 0.5\)$/
+        expect(instance.CIELabA).toMatch(LAB_REG);
+        
+        const LCH_REG = /^lch\([\d\.]+ [\d\.]+ [\d\.]+ \/ 0.5\)$/
+        expect(instance.LCHA).toMatch(LCH_REG);
     });
 
     it('Set property decimals', () => {
@@ -142,6 +175,9 @@ describe('Properties boundaries', (): void => {
             const L = instance.L;
             const Whiteness = instance.Whiteness;
             const Blackness = instance.Blackness;
+            const LCHL = instance.LCHL;
+            const LCHC = instance.LCHC;
+            const LCHH = instance.LCHH;
             const A = instance.A;
             const C = instance.C;
             const M = instance.M;
@@ -258,6 +294,33 @@ describe('Properties boundaries', (): void => {
             instance.setCIEb(129);
             expect(instance.CIEb).toBe(125);
             instance.setL(CIEb);
+
+            // Test LCHL
+            instance.setLCHL(50);
+            expect(instance.LCHL).toBe(50);
+            instance.setLCHL(-120);
+            expect(instance.LCHL).toBe(0);
+            instance.setLCHL(150);
+            expect(instance.LCHL).toBe(100);
+            instance.setLCHL(LCHL);
+
+            // Test LCHC
+            instance.setLCHC(50);
+            expect(instance.LCHC).toBe(50);
+            instance.setLCHC(-100);
+            expect(instance.LCHC).toBe(0);
+            instance.setLCHC(200);
+            expect(instance.LCHC).toBe(150);
+            instance.setLCHC(LCHC);
+
+            // Test LCHH
+            instance.setLCHH(50);
+            expect(instance.LCHH).toBe(50);
+            instance.setLCHH(-100);
+            expect(instance.LCHH).toBe(260);
+            instance.setLCHH(400);
+            expect(instance.LCHH).toBe(40);
+            instance.setLCHH(LCHH);
 
             // Test C
             instance.setC(50);
