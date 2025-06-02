@@ -10,10 +10,13 @@ import {
 } from '#constants';
 import { getBase255Number, normalizeAlpha } from '#helpers';
 import { CalcParser } from './_CalcParser';
+import { AlphaBaseClass } from './baseClasses/_AlphaBaseClass';
 
-export class RGBStringParser {
+export class RGBStringParser extends AlphaBaseClass {
 
     constructor(colorString: string, getRGBObject: ParserGetRgbObject) {
+
+        super();
 
         const match = colorString.match(COLORREGS.RGB) as RGBRegExpMatchArray;
         const groups = match.groups;
@@ -106,12 +109,6 @@ export class RGBStringParser {
     private _r: string;
     private _g: string;
     private _b: string;
-    private _a: string | undefined;
-    private _rgb: RGBObject;
-
-    public get rgb(): RGBObject {
-        return this._rgb;
-    }
 
     public get hasPercentageValues(): boolean {
         return (
@@ -119,10 +116,6 @@ export class RGBStringParser {
             PCENT.test(this._g) &&
             PCENT.test(this._b)
         );
-    }
-
-    public get hasPercentageAlpha(): boolean {
-        return PCENT.test(this._a);
     }
 
     static test(colorString: string): boolean {

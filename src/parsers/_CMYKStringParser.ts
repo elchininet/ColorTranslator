@@ -2,10 +2,14 @@ import { CMYKRegExpMatchArray, RGBObject } from '@types';
 import { COLORREGS, PCENT } from '#constants';
 import { getCMYKNumber, normalizeAlpha } from '#helpers';
 import { cmykToRgb } from '#color/translators';
+import { AlphaBaseClass } from './baseClasses/_AlphaBaseClass';
 
-export class CMYKStringParser {
+export class CMYKStringParser extends AlphaBaseClass {
 
     constructor(colorString: string) {
+
+        super();
+
         const match = colorString.match(COLORREGS.CMYK) as CMYKRegExpMatchArray;
         const groups = match.groups;
         this._c = groups.c_legacy ?? groups.c;
@@ -29,13 +33,6 @@ export class CMYKStringParser {
     private _m: string;
     private _y: string;
     private _k: string;
-    private _a: string | undefined;
-
-    private _rgb: RGBObject;
-
-    public get rgb(): RGBObject {
-        return this._rgb;
-    }
 
     public get hasPercentageValues(): boolean {
         return (
@@ -44,10 +41,6 @@ export class CMYKStringParser {
             PCENT.test(this._y) &&
             PCENT.test(this._k)
         );
-    }
-
-    public get hasPercentageAlpha(): boolean {
-        return PCENT.test(this._a);
     }
 
     static test(colorString: string): boolean {

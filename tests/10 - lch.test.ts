@@ -1,5 +1,4 @@
 import { ColorTranslator } from '../src';
-import { COLORS } from './tests.constants';
 
 describe('conversion from a LCH color', () => {
 

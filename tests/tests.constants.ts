@@ -350,7 +350,7 @@ export const LAB_AND_LCH_COLORS = [
         LCHInPercentage: 'lch(54% 71% 41)',
         LCHAInPercentage: 'lch(54% 71% 41 / 100%)',
         LCHObject: { L: 54, C: 107, H: 41 },
-        LCHAObject: { L: 54, C: 107, H: 41, A: 1 }        
+        LCHAObject: { L: 54, C: 107, H: 41, A: 1 }
     },
     {
         KEYWORD: 'lime',

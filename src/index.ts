@@ -304,7 +304,7 @@ export class ColorTranslator {
     public setCIEL(L: number): ColorTranslator {
         this.lab.L = minmax(L, 0, MAX_PCENT);
         this.updateRGBFromLAB();
-        this.updateLCHFromLAB()
+        this.updateLCHFromLAB();
         this.update('rgb', 'lab', 'lch');
         return this;
     }
@@ -312,7 +312,7 @@ export class ColorTranslator {
     public setCIEa(a: number): ColorTranslator {
         this.lab.a = minmax(a, -MAX_LAB, MAX_LAB);
         this.updateRGBFromLAB();
-        this.updateLCHFromLAB()
+        this.updateLCHFromLAB();
         this.update('rgb', 'lab', 'lch');
         return this;
     }
@@ -320,7 +320,7 @@ export class ColorTranslator {
     public setCIEb(b: number): ColorTranslator {
         this.lab.b = minmax(b, -MAX_LAB, MAX_LAB);
         this.updateRGBFromLAB();
-        this.updateLCHFromLAB()
+        this.updateLCHFromLAB();
         this.update('rgb', 'lab', 'lch');
         return this;
     }

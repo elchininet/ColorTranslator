@@ -595,7 +595,7 @@ describe('ColorTranslator CSS config options autodetection', () => {
 
         LCH_TEST_CASES.forEach((testCase): void => {
             const instance = new ColorTranslator(testCase.color);
-            expect(instance.LCH).toMatch(testCase.regexp)
+            expect(instance.LCH).toMatch(testCase.regexp);
             expect(ColorTranslator.toLCH(testCase.color)).toMatch(testCase.regexp);
         });
 

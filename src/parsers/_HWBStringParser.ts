@@ -1,17 +1,13 @@
 import {
-    AnglesUnitEnum,
-    AngleUnitRegExpMatchArray,
     HWBRegExpMatchArray,
     ParserGetRgbObject,
     RGBObject
 } from '@types';
 import {
     COLORREGS,
-    HSL_HUE,
     MAX_ALPHA,
     MAX_HUE,
-    MAX_PCENT,
-    PCENT
+    MAX_PCENT
 } from '#constants';
 import {
     minmax,
@@ -21,10 +17,13 @@ import {
 } from '#helpers';
 import { hwbToRgb, rgbToHwb } from '#color/translators';
 import { CalcParser } from './_CalcParser';
+import { HueBaseClass } from './baseClasses/_HueBaseClass';
 
-export class HWBStringParser {
+export class HWBStringParser extends HueBaseClass {
 
     constructor(colorString: string, getRGBObject: ParserGetRgbObject) {
+
+        super();
 
         const match = colorString.match(COLORREGS.HWB) as HWBRegExpMatchArray;
         const groups = match.groups;
@@ -95,30 +94,8 @@ export class HWBStringParser {
         }
     }
 
-    private _h: string;
     private _w: string;
     private _b: string;
-    private _a: string | undefined;
-    private _rgb: RGBObject;
-
-    public get rgb(): RGBObject {
-        return this._rgb;
-    }
-
-    public get angleUnit(): AnglesUnitEnum {
-        if (this._h) {
-            const angleUnitMatch = this._h.match(HSL_HUE) as AngleUnitRegExpMatchArray;
-            const angleUnit = angleUnitMatch.groups.units;
-            return angleUnit === ''
-                ? AnglesUnitEnum.NONE
-                : angleUnit as AnglesUnitEnum;
-        }
-        return AnglesUnitEnum.NONE;
-    }
-
-    public get hasPercentageAlpha(): boolean {
-        return PCENT.test(this._a);
-    }
 
     static test(colorString: string): boolean {
         return COLORREGS.HWB.test(colorString);
