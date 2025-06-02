@@ -18,10 +18,13 @@ import {
 } from '#helpers';
 import { labToRgb, rgbToLab } from '#color/translators';
 import { CalcParser } from './_CalcParser';
+import { AlphaBaseClass } from './baseClasses/_AlphaBaseClass';
 
-export class CIELabStringParser {
+export class CIELabStringParser extends AlphaBaseClass {
 
     constructor(colorString: string, getRGBObject: ParserGetRgbObject) {
+
+        super();
 
         const match = colorString.match(COLORREGS.CIELab) as CIELabRegExpMatchArray;
         const groups = match.groups;
@@ -75,16 +78,16 @@ export class CIELabStringParser {
         } else {
 
             this._L = L;
-            this._a = a;
-            this._b = b;
-            this._A = A;
+            this._A = a;
+            this._B = b;
+            this._a = A;
             const rgb: RGBObject = labToRgb(
                 percent(this._L),
-                getBase125Number(this._a),
-                getBase125Number(this._b)
+                getBase125Number(this._A),
+                getBase125Number(this._B)
             );
-            if (this._A !== undefined) {
-                rgb.A = normalizeAlpha(this._A);
+            if (this._a !== undefined) {
+                rgb.A = normalizeAlpha(this._a);
             }
             this._rgb = rgb;
 
@@ -92,25 +95,15 @@ export class CIELabStringParser {
     }
 
     private _L: string;
-    private _a: string;
-    private _b: string;
-    private _A: string | undefined;
-    private _rgb: RGBObject;
-
-    public get rgb(): RGBObject {
-        return this._rgb;
-    }
+    private _A: string;
+    private _B: string;
 
     public get hasPercentageValues(): boolean {
         return (
             PCENT.test(this._L) &&
-            PCENT.test(this._a) &&
-            PCENT.test(this._b)
+            PCENT.test(this._A) &&
+            PCENT.test(this._B)
         );
-    }
-
-    public get hasPercentageAlpha(): boolean {
-        return PCENT.test(this._A);
     }
 
     static test(colorString: string): boolean {

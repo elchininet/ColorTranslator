@@ -1,10 +1,14 @@
 import { RGBObject, HEXRegExpMatchArray } from '@types';
 import { BASE_255, COLORREGS } from '#constants';
 import { getDEC } from '#helpers';
+import { RgbClass } from './baseClasses/_RgbClass';
 
-export class HEXStringParser {
+export class HEXStringParser extends RgbClass {
 
     constructor(colorString: string) {
+
+        super();
+
         const match = colorString.match(COLORREGS.HEX) as HEXRegExpMatchArray;
         const groups = match.groups;
         this._r = groups.r ?? groups.rr;
@@ -26,10 +30,5 @@ export class HEXStringParser {
     private _g: string;
     private _b: string;
     private _a: string | undefined;
-    private _rgb: RGBObject;
-
-    public get rgb(): RGBObject {
-        return this._rgb;
-    }
 
 }

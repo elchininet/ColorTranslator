@@ -297,7 +297,7 @@ export const getColorMixture = (
         case ColorModel.HWB:
             return hslMap.map((HSLColor: HSLObject): HWBOutput => {
                 const RGBColor = hslToRgb(HSLColor.H, HSLColor.S, HSLColor.L);
-                if (hasAlpha) RGBColor.A = HSLColor.A;  
+                if (hasAlpha) RGBColor.A = HSLColor.A;
                 const hwb = hasAlpha
                     ? translateColor.HWBA(RGBColor, options.decimals)
                     : translateColor.HWB(RGBColor, options.decimals);

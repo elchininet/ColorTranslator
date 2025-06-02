@@ -1,13 +1,10 @@
 import {
-    AnglesUnitEnum,
-    AngleUnitRegExpMatchArray,
     LCHRegExpMatchArray,
     ParserGetRgbObject,
     RGBObject
 } from '@types';
 import {
     COLORREGS,
-    HSL_HUE,
     MAX_ALPHA,
     MAX_LCH_C,
     MAX_PCENT,
@@ -22,10 +19,13 @@ import {
 } from '#helpers';
 import { lchToRgb, rgbToLch } from '#color/translators';
 import { CalcParser } from './_CalcParser';
+import { HueBaseClass } from './baseClasses/_HueBaseClass';
 
-export class LCHStringParser {
+export class LCHStringParser extends HueBaseClass {
 
     constructor(colorString: string, getRGBObject: ParserGetRgbObject) {
+
+        super();
 
         const match = colorString.match(COLORREGS.LCH) as LCHRegExpMatchArray;
         const groups = match.groups;
@@ -97,34 +97,12 @@ export class LCHStringParser {
 
     private _l: string;
     private _c: string;
-    private _h: string;
-    private _a: string | undefined;
-    private _rgb: RGBObject;
-
-    public get rgb(): RGBObject {
-        return this._rgb;
-    }
-
-    public get angleUnit(): AnglesUnitEnum {
-        if (this._h) {
-            const angleUnitMatch = this._h.match(HSL_HUE) as AngleUnitRegExpMatchArray;
-            const angleUnit = angleUnitMatch.groups.units;
-            return angleUnit === ''
-                ? AnglesUnitEnum.NONE
-                : angleUnit as AnglesUnitEnum;
-        }
-        return AnglesUnitEnum.NONE;
-    }
 
     public get hasPercentageValues(): boolean {
         return (
             PCENT.test(this._l) &&
             PCENT.test(this._c)
         );
-    }
-
-    public get hasPercentageAlpha(): boolean {
-        return PCENT.test(this._a);
     }
 
     static test(colorString: string): boolean {

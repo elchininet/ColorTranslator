@@ -239,7 +239,7 @@ LAB_AND_LCH_COLORS.forEach((color) => {
     );
 
     describe(`CIELab color tests for ${ KEYWORD }`, () => {
-       
+
         it(`CIELab property => ${ color.CIELab }`, () => {
             expect(instanceKeyword.CIELab).toBe(color.CIELab);
         });
@@ -279,7 +279,7 @@ LAB_AND_LCH_COLORS.forEach((color) => {
     });
 
     describe(`LCH color tests for ${ KEYWORD }`, () => {
-       
+
         it(`LCH property => ${ color.LCH }`, () => {
             expect(instanceKeyword.LCH).toBe(color.LCH);
         });

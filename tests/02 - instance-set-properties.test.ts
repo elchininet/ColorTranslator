@@ -138,10 +138,10 @@ describe('ColorTranslator set instance properties', () => {
             A: 0.5
         });
 
-        const LAB_REG = /^lab\([\d\.]+ [\d\.]+ [\d\.]+ \/ 0.5\)$/
+        const LAB_REG = /^lab\([\d.]+ [\d.]+ [\d.]+ \/ 0.5\)$/;
         expect(instance.CIELabA).toMatch(LAB_REG);
-        
-        const LCH_REG = /^lch\([\d\.]+ [\d\.]+ [\d\.]+ \/ 0.5\)$/
+
+        const LCH_REG = /^lch\([\d.]+ [\d.]+ [\d.]+ \/ 0.5\)$/;
         expect(instance.LCHA).toMatch(LCH_REG);
     });
 
