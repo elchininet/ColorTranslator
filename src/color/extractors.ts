@@ -315,6 +315,7 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
 
             if (LCHStringParser.test(color)) {
                 const parser = new LCHStringParser(color, getRGBObject);
+                anglesUnits.push(parser.angleUnit);
                 lchColors.push(
                     parser.hasPercentageValues
                 );

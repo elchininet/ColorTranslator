@@ -192,7 +192,7 @@ module.exports = {
                         ${REAL_SPACE}
                         (?<c>-?${NUMBER_WITH_DECIMALS}%?)
                         ${REAL_SPACE}
-                        (?<h>-?${NUMBER_WITH_DECIMALS})
+                        (?<h>-?${NUMBER_WITH_DECIMALS}${DEGREES_UNITS})
                         (?:
                             ${SLASH}
                             (?<a>${NUMBER_WITH_DECIMALS}%?)
