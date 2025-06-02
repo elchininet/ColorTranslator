@@ -11,6 +11,10 @@ interface TestCase {
     HSLA: string;
     HWB: string;
     HWBA: string;
+    CIELab: string;
+    CIELabA: string;
+    LCH: string;
+    LCHA: string;
     CMYK: string;
     CMYKA: string;
     isDefault: boolean;
@@ -29,6 +33,10 @@ describe('ColorTranslator CSS config options', () => {
             HSLA: 'hsla(300,100%,50%,1)',
             HWB: 'hwb(300 0% 0%)',
             HWBA: 'hwb(300 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696 111.407731 327.109357)',
+            LCHA: 'lch(60.169696 111.407731 327.109357 / 1)',
             CMYK: 'device-cmyk(0%,100%,0%,0%)',
             CMYKA: 'device-cmyk(0%,100%,0%,0%,1)',
             isDefault: false
@@ -41,6 +49,10 @@ describe('ColorTranslator CSS config options', () => {
             HSLA: 'hsl(300 100% 50% / 1)',
             HWB: 'hwb(300 0% 0%)',
             HWBA: 'hwb(300 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696 111.407731 327.109357)',
+            LCHA: 'lch(60.169696 111.407731 327.109357 / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
@@ -54,6 +66,10 @@ describe('ColorTranslator CSS config options', () => {
             HSLA: 'hsla(300, 100%, 50%, 1)',
             HWB: 'hwb(300 0% 0%)',
             HWBA: 'hwb(300 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696 111.407731 327.109357)',
+            LCHA: 'lch(60.169696 111.407731 327.109357 / 1)',
             CMYK: 'device-cmyk(0%, 100%, 0%, 0%)',
             CMYKA: 'device-cmyk(0%, 100%, 0%, 0%, 1)',
             isDefault: false
@@ -67,6 +83,10 @@ describe('ColorTranslator CSS config options', () => {
             HSLA: 'hsla(300,100%,50%,1)',
             HWB: 'hwb(300 0% 0%)',
             HWBA: 'hwb(300 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696 111.407731 327.109357)',
+            LCHA: 'lch(60.169696 111.407731 327.109357 / 1)',
             CMYK: 'device-cmyk(0%,100%,0%,0%)',
             CMYKA: 'device-cmyk(0%,100%,0%,0%,1)',
             isDefault: true
@@ -79,6 +99,10 @@ describe('ColorTranslator CSS config options', () => {
             HSLA: 'hsl(300 100% 50% / 1)',
             HWB: 'hwb(300 0% 0%)',
             HWBA: 'hwb(300 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696 111.407731 327.109357)',
+            LCHA: 'lch(60.169696 111.407731 327.109357 / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
@@ -91,6 +115,10 @@ describe('ColorTranslator CSS config options', () => {
             HSLA: 'hsl(300deg 100% 50% / 1)',
             HWB: 'hwb(300deg 0% 0%)',
             HWBA: 'hwb(300deg 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696 111.407731 327.109357deg)',
+            LCHA: 'lch(60.169696 111.407731 327.109357deg / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
@@ -103,6 +131,10 @@ describe('ColorTranslator CSS config options', () => {
             HSLA: 'hsl(333.333333grad 100% 50% / 1)',
             HWB: 'hwb(333.333333grad 0% 0%)',
             HWBA: 'hwb(333.333333grad 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696 111.407731 363.454841grad)',
+            LCHA: 'lch(60.169696 111.407731 363.454841grad / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
@@ -115,6 +147,10 @@ describe('ColorTranslator CSS config options', () => {
             HSLA: 'hsl(5.235988rad 100% 50% / 1)',
             HWB: 'hwb(5.235988rad 0% 0%)',
             HWBA: 'hwb(5.235988rad 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696 111.407731 5.709135rad)',
+            LCHA: 'lch(60.169696 111.407731 5.709135rad / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
@@ -127,6 +163,10 @@ describe('ColorTranslator CSS config options', () => {
             HSLA: 'hsl(0.833333turn 100% 50% / 1)',
             HWB: 'hwb(0.833333turn 0% 0%)',
             HWBA: 'hwb(0.833333turn 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696 111.407731 0.908637turn)',
+            LCHA: 'lch(60.169696 111.407731 0.908637turn / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
@@ -139,6 +179,10 @@ describe('ColorTranslator CSS config options', () => {
             HSLA: 'hsl(300 100% 50% / 1)',
             HWB: 'hwb(300 0% 0%)',
             HWBA: 'hwb(300 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696 111.407731 327.109357)',
+            LCHA: 'lch(60.169696 111.407731 327.109357 / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
@@ -151,6 +195,74 @@ describe('ColorTranslator CSS config options', () => {
             HSLA: 'hsl(300 100% 50% / 1)',
             HWB: 'hwb(300 0% 0%)',
             HWBA: 'hwb(300 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696 111.407731 327.109357)',
+            LCHA: 'lch(60.169696 111.407731 327.109357 / 1)',
+            CMYK: 'device-cmyk(0% 100% 0% 0%)',
+            CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
+            isDefault: false
+        },
+        {
+            options: { labUnit: 'none' },
+            RGB: 'rgb(255 0 255)',
+            RGBA: 'rgb(255 0 255 / 1)',
+            HSL: 'hsl(300 100% 50%)',
+            HSLA: 'hsl(300 100% 50% / 1)',
+            HWB: 'hwb(300 0% 0%)',
+            HWBA: 'hwb(300 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696 111.407731 327.109357)',
+            LCHA: 'lch(60.169696 111.407731 327.109357 / 1)',
+            CMYK: 'device-cmyk(0% 100% 0% 0%)',
+            CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
+            isDefault: true
+        },
+        {
+            options: { labUnit: 'percent' },
+            RGB: 'rgb(255 0 255)',
+            RGBA: 'rgb(255 0 255 / 1)',
+            HSL: 'hsl(300 100% 50%)',
+            HSLA: 'hsl(300 100% 50% / 1)',
+            HWB: 'hwb(300 0% 0%)',
+            HWBA: 'hwb(300 0% 0% / 1)',
+            CIELab: 'lab(60.169696% 74.84002% -48.398845%)',
+            CIELabA: 'lab(60.169696% 74.84002% -48.398845% / 1)',
+            LCH: 'lch(60.169696 111.407731 327.109357)',
+            LCHA: 'lch(60.169696 111.407731 327.109357 / 1)',
+            CMYK: 'device-cmyk(0% 100% 0% 0%)',
+            CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
+            isDefault: false
+        },
+        {
+            options: { lchUnit: 'none' },
+            RGB: 'rgb(255 0 255)',
+            RGBA: 'rgb(255 0 255 / 1)',
+            HSL: 'hsl(300 100% 50%)',
+            HSLA: 'hsl(300 100% 50% / 1)',
+            HWB: 'hwb(300 0% 0%)',
+            HWBA: 'hwb(300 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696 111.407731 327.109357)',
+            LCHA: 'lch(60.169696 111.407731 327.109357 / 1)',
+            CMYK: 'device-cmyk(0% 100% 0% 0%)',
+            CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
+            isDefault: true
+        },
+        {
+            options: { lchUnit: 'percent' },
+            RGB: 'rgb(255 0 255)',
+            RGBA: 'rgb(255 0 255 / 1)',
+            HSL: 'hsl(300 100% 50%)',
+            HSLA: 'hsl(300 100% 50% / 1)',
+            HWB: 'hwb(300 0% 0%)',
+            HWBA: 'hwb(300 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696% 74.271821% 327.109357)',
+            LCHA: 'lch(60.169696% 74.271821% 327.109357 / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
@@ -163,6 +275,10 @@ describe('ColorTranslator CSS config options', () => {
             HSLA: 'hsl(300 100% 50% / 1)',
             HWB: 'hwb(300 0% 0%)',
             HWBA: 'hwb(300 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696 111.407731 327.109357)',
+            LCHA: 'lch(60.169696 111.407731 327.109357 / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
@@ -175,6 +291,10 @@ describe('ColorTranslator CSS config options', () => {
             HSLA: 'hsl(300 100% 50% / 1)',
             HWB: 'hwb(300 0% 0%)',
             HWBA: 'hwb(300 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696 111.407731 327.109357)',
+            LCHA: 'lch(60.169696 111.407731 327.109357 / 1)',
             CMYK: 'device-cmyk(0 1 0 0)',
             CMYKA: 'device-cmyk(0 1 0 0 / 1)',
             isDefault: false
@@ -187,6 +307,10 @@ describe('ColorTranslator CSS config options', () => {
             HSLA: 'hsl(300 100% 50% / 1)',
             HWB: 'hwb(300 0% 0%)',
             HWBA: 'hwb(300 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696 111.407731 327.109357)',
+            LCHA: 'lch(60.169696 111.407731 327.109357 / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
@@ -199,6 +323,10 @@ describe('ColorTranslator CSS config options', () => {
             HSLA: 'hsl(300 100% 50% / 100%)',
             HWB: 'hwb(300 0% 0%)',
             HWBA: 'hwb(300 0% 0% / 100%)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 100%)',
+            LCH: 'lch(60.169696 111.407731 327.109357)',
+            LCHA: 'lch(60.169696 111.407731 327.109357 / 100%)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 100%)',
             isDefault: false
@@ -211,6 +339,10 @@ describe('ColorTranslator CSS config options', () => {
             HSLA: 'hsl(300 100% 50% / 1)',
             HWB: 'hwb(300 0% 0%)',
             HWBA: 'hwb(300 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696 111.407731 327.109357)',
+            LCHA: 'lch(60.169696 111.407731 327.109357 / 1)',
             CMYK: 'cmyk(0% 100% 0% 0%)',
             CMYKA: 'cmyk(0% 100% 0% 0% / 1)',
             isDefault: false
@@ -223,6 +355,10 @@ describe('ColorTranslator CSS config options', () => {
             HSLA: 'hsl(300 100% 50% / 1)',
             HWB: 'hwb(300 0% 0%)',
             HWBA: 'hwb(300 0% 0% / 1)',
+            CIELab: 'lab(60.169696 93.550025 -60.498556)',
+            CIELabA: 'lab(60.169696 93.550025 -60.498556 / 1)',
+            LCH: 'lch(60.169696 111.407731 327.109357)',
+            LCHA: 'lch(60.169696 111.407731 327.109357 / 1)',
             CMYK: 'device-cmyk(0% 100% 0% 0%)',
             CMYKA: 'device-cmyk(0% 100% 0% 0% / 1)',
             isDefault: true
@@ -240,6 +376,10 @@ describe('ColorTranslator CSS config options', () => {
             HSLA,
             HWB,
             HWBA,
+            CIELab,
+            CIELabA,
+            LCH,
+            LCHA,
             CMYK,
             CMYKA,
             isDefault
@@ -254,6 +394,10 @@ describe('ColorTranslator CSS config options', () => {
             expect(instance.HSLA).toBe(HSLA);
             expect(instance.HWB).toBe(HWB);
             expect(instance.HWBA).toBe(HWBA);
+            expect(instance.CIELab).toBe(CIELab);
+            expect(instance.CIELabA).toBe(CIELabA);
+            expect(instance.LCH).toBe(LCH);
+            expect(instance.LCHA).toBe(LCHA);
             expect(instance.CMYK).toBe(CMYK);
             expect(instance.CMYKA).toBe(CMYKA);
             expect(ColorTranslator.toRGB(COLOR, mergedOptions)).toBe(RGB);
@@ -262,6 +406,10 @@ describe('ColorTranslator CSS config options', () => {
             expect(ColorTranslator.toHSLA(COLOR, mergedOptions)).toBe(HSLA);
             expect(ColorTranslator.toHWB(COLOR, mergedOptions)).toBe(HWB);
             expect(ColorTranslator.toHWBA(COLOR, mergedOptions)).toBe(HWBA);
+            expect(ColorTranslator.toCIELab(COLOR, mergedOptions)).toBe(CIELab);
+            expect(ColorTranslator.toCIELabA(COLOR, mergedOptions)).toBe(CIELabA);
+            expect(ColorTranslator.toLCH(COLOR, mergedOptions)).toBe(LCH);
+            expect(ColorTranslator.toLCHA(COLOR, mergedOptions)).toBe(LCHA);
             expect(ColorTranslator.toCMYK(COLOR, mergedOptions)).toBe(CMYK);
             expect(ColorTranslator.toCMYKA(COLOR, mergedOptions)).toBe(CMYKA);
         });
@@ -280,6 +428,10 @@ describe('ColorTranslator CSS config options', () => {
                 expect(instance.HSLA).toBe(HSLA);
                 expect(instance.HWB).toBe(HWB);
                 expect(instance.HWBA).toBe(HWBA);
+                expect(instance.CIELab).toBe(CIELab);
+                expect(instance.CIELabA).toBe(CIELabA);
+                expect(instance.LCH).toBe(LCH);
+                expect(instance.LCHA).toBe(LCHA);
                 expect(instance.CMYK).toBe(CMYK);
                 expect(instance.CMYKA).toBe(CMYKA);
                 expect(ColorTranslator.toRGB(COLOR, mergedOptions)).toBe(RGB);
@@ -288,6 +440,10 @@ describe('ColorTranslator CSS config options', () => {
                 expect(ColorTranslator.toHSLA(COLOR, mergedOptions)).toBe(HSLA);
                 expect(ColorTranslator.toHWB(COLOR, mergedOptions)).toBe(HWB);
                 expect(ColorTranslator.toHWBA(COLOR, mergedOptions)).toBe(HWBA);
+                expect(ColorTranslator.toCIELab(COLOR, mergedOptions)).toBe(CIELab);
+                expect(ColorTranslator.toCIELabA(COLOR, mergedOptions)).toBe(CIELabA);
+                expect(ColorTranslator.toLCH(COLOR, mergedOptions)).toBe(LCH);
+                expect(ColorTranslator.toLCHA(COLOR, mergedOptions)).toBe(LCHA);
                 expect(ColorTranslator.toCMYK(COLOR, mergedOptions)).toBe(CMYK);
                 expect(ColorTranslator.toCMYKA(COLOR, mergedOptions)).toBe(CMYKA);
             });
@@ -350,6 +506,12 @@ describe('ColorTranslator CSS config options autodetection', () => {
             B: 20
         };
 
+        const LCH = {
+            L: 60.169696,
+            C: 111.407731,
+            H: 327.109357
+        };
+
         const HSL_TEST_CASES = [
             {
                 color: `hsl(${HSL.H} ${HSL.S}% ${HSL.L}%)`,
@@ -396,6 +558,29 @@ describe('ColorTranslator CSS config options autodetection', () => {
             }
         ];
 
+        const LCH_TEST_CASES = [
+            {
+                color: `lch(${LCH.L} ${LCH.C} ${LCH.H})`,
+                regexp: /^lch\(\d+\.\d+ \d+\.\d+ \d+\.\d+\)$/
+            },
+            {
+                color: `lch(${LCH.L} ${LCH.C} ${LCH.H}deg)`,
+                regexp: /^lch\(\d+\.\d+ \d+\.\d+ \d+\.\d+deg\)$/
+            },
+            {
+                color: `lch(${LCH.L} ${LCH.C} ${LCH.H}grad)`,
+                regexp: /^lch\(\d+\.\d+ \d+\.\d+ \d+\.\d+grad\)$/
+            },
+            {
+                color: `lch(${LCH.L} ${LCH.C} ${LCH.H}rad)`,
+                regexp: /^lch\(\d+\.\d+ \d+\.\d+ \d+\.\d+rad\)$/
+            },
+            {
+                color: `lch(${LCH.L} ${LCH.C} ${LCH.H}turn)`,
+                regexp: /^lch\(\d+\.\d+ \d+\.\d+ \d+\.\d+turn\)$/
+            }
+        ];
+
         HSL_TEST_CASES.forEach((testCase): void => {
             const instance = new ColorTranslator(testCase.color);
             expect(instance.HSL).toBe(testCase.result);
@@ -406,6 +591,12 @@ describe('ColorTranslator CSS config options autodetection', () => {
             const instance = new ColorTranslator(testCase.color);
             expect(instance.HWB).toBe(testCase.result);
             expect(ColorTranslator.toHWB(testCase.color)).toBe(testCase.result);
+        });
+
+        LCH_TEST_CASES.forEach((testCase): void => {
+            const instance = new ColorTranslator(testCase.color);
+            expect(instance.LCH).toMatch(testCase.regexp)
+            expect(ColorTranslator.toLCH(testCase.color)).toMatch(testCase.regexp);
         });
 
     });
@@ -443,6 +634,23 @@ describe('ColorTranslator CSS config options autodetection', () => {
 
     });
 
+    it(`lchUnit auto detection`, () => {
+
+        const instancePercentage = new ColorTranslator('lch(60.169696% 74.271821% 327.109357)');
+
+        const REG_PERCENT = /^lch\(\d+\.\d+% \d+\.\d+% \d+\.\d+\)$/;
+        const ALPHA_REG_PERCENT = /^lch\(\d+\.\d+% \d+\.\d+% \d+\.\d+ \/ \d\)$/;
+
+        expect(instancePercentage.LCH).toMatch(REG_PERCENT);
+        expect(instancePercentage.LCHA).toMatch(ALPHA_REG_PERCENT);
+
+        const instanceNone = new ColorTranslator('lch(60.169696 74.271821% 327.109357)');
+
+        expect(instanceNone.LCH.includes('%')).toBe(false);
+        expect(instanceNone.LCHA.includes('%')).toBe(false);
+
+    });
+
     it(`cmykUnit auto detection`, () => {
 
         const instancePercentage = new ColorTranslator('device-cmyk(100% 100% 100% 100%)');
@@ -469,24 +677,28 @@ describe('ColorTranslator CSS config options autodetection', () => {
         expect(instanceAlphaNone.HSLA).toBe('hsl(300 100% 50% / 0.5)');
         expect(instanceAlphaNone.HWBA).toBe('hwb(300 0% 0% / 0.5)');
         expect(instanceAlphaNone.RGBA).toBe('rgb(255 0 255 / 0.5)');
-        expect(regNone.test(instanceAlphaNone.CMYKA)).toBe(true);
+        expect(instanceAlphaNone.LCHA).toMatch(regNone);
+        expect(instanceAlphaNone.CMYKA).toMatch(regNone);
 
         const instanceAlphaPercentage = new ColorTranslator('rgb(255 0 255 / 50%)');
 
         expect(instanceAlphaPercentage.HSLA).toBe('hsl(300 100% 50% / 50%)');
         expect(instanceAlphaPercentage.HWBA).toBe('hwb(300 0% 0% / 50%)');
         expect(instanceAlphaPercentage.RGBA).toBe('rgb(255 0 255 / 50%)');
-        expect(regPercent.test(instanceAlphaPercentage.CMYKA)).toBe(true);
+        expect(instanceAlphaPercentage.LCHA).toMatch(regPercent);
+        expect(instanceAlphaPercentage.CMYKA).toMatch(regPercent);
 
         expect(ColorTranslator.toHSLA('rgb(255 0 255 / 0.5)')).toBe('hsl(300 100% 50% / 0.5)');
         expect(ColorTranslator.toHWBA('rgb(255 0 255 / 0.5)')).toBe('hwb(300 0% 0% / 0.5)');
         expect(ColorTranslator.toRGBA('rgb(255 0 255 / 0.5)')).toBe('rgb(255 0 255 / 0.5)');
-        expect(regNone.test(ColorTranslator.toCMYKA('rgb(255 0 255 / 0.5)'))).toBe(true);
+        expect(ColorTranslator.toLCHA('rgb(255 0 255 / 0.5)')).toMatch(regNone);
+        expect(ColorTranslator.toCMYKA('rgb(255 0 255 / 0.5)')).toMatch(regNone);
 
         expect(ColorTranslator.toHSLA('rgb(255 0 255 / 80%)')).toBe('hsl(300 100% 50% / 80%)');
         expect(ColorTranslator.toHWBA('rgb(255 0 255 / 80%)')).toBe('hwb(300 0% 0% / 80%)');
         expect(ColorTranslator.toRGBA('rgb(255 0 255 / 5%)')).toBe('rgb(255 0 255 / 5%)');
-        expect(regPercent.test(ColorTranslator.toCMYKA('rgb(255 0 255 / 50%)'))).toBe(true);
+        expect(ColorTranslator.toLCHA('rgb(255 0 255 / 50%)')).toMatch(regPercent);
+        expect(ColorTranslator.toCMYKA('rgb(255 0 255 / 50%)')).toMatch(regPercent);
 
     });
 
@@ -528,6 +740,10 @@ describe('ColorTranslator CSS config options autodetection', () => {
                 anglesUnit: 'percent',
                 // @ts-ignore
                 rgbUnit: 'false',
+                // @ts-ignore
+                labUnit: 'percentage',
+                // @ts-ignore
+                lchUnit: 'null',
                 // @ts-ignore
                 cmykUnit: 2.45,
                 // @ts-ignore
