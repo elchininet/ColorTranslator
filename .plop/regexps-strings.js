@@ -128,9 +128,9 @@ module.exports = {
                     |
                         (?<h>-?${NUMBER_WITH_DECIMALS}${DEGREES_UNITS})
                         ${REAL_SPACE}
-                        (?<s>${NUMBER_WITH_DECIMALS})%
+                        (?<s>${NUMBER_WITH_DECIMALS})%?
                         ${REAL_SPACE}
-                        (?<l>${NUMBER_WITH_DECIMALS})%
+                        (?<l>${NUMBER_WITH_DECIMALS})%?
                         (?:
                             ${SLASH}
                             (?<a>${NUMBER_WITH_DECIMALS}%?)
