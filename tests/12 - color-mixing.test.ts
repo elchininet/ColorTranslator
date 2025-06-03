@@ -105,7 +105,7 @@ describe('Strong additive colors mixing', (): void => {
 });
 
 describe('Color mixing with L*a*b colors', (): void => {
-    it('Mixing lab colors should return the same result of mising hex colors', (): void => {
+    it('Mixing lab colors should return the same result of mixing hex colors', (): void => {
         expect(
             ColorTranslator.getMixHEX(['lab(54.291734 80.812455 69.88504)', 'lab(29.567573 68.298653 -112.02943)'])
         ).toBe(
@@ -228,6 +228,134 @@ describe('Color mixing with L*a*b colors', (): void => {
             )
         ).toMatchObject(
             { L: 60.169696, a: 93.550025, b: -60.498556, A: 1 }
+        );
+    });
+});
+
+describe('Color mixing with lch colors', (): void => {
+    it('Mixing lch colors should return the same result of mixing hex colors', (): void => {
+        expect(
+            ColorTranslator.getMixHEX(['lch(54.291734 106.838999 40.852613)', 'lch(29.567573 131.207085 301.368541)'])
+        ).toBe(
+            ColorTranslator.getMixHEX(['#F00', '#00F'])
+        );
+    });
+    it('Return a mix in lch color', (): void => {
+        expect(
+            ColorTranslator.getMixLCH(['#F00', '#00F'], Mix.ADDITIVE, { decimals: 0 })
+        ).toBe(
+            'lch(60 111 327)'
+        );
+    });
+    it('Return a mix in lch color with decimals', (): void => {
+        expect(
+            ColorTranslator.getMixLCH(['#F00', '#00F'], Mix.ADDITIVE)
+        ).toBe(
+            'lch(60.169696 111.407731 327.109357)'
+        );
+        expect(
+            ColorTranslator.getMixLCH(['#F00', '#00F'])
+        ).toBe(
+            'lch(60.169696 111.407731 327.109357)'
+        );
+    });
+    it('Return a mix in lch color as an object', (): void => {
+        expect(
+            ColorTranslator.getMixLCHObject(
+                [
+                    { R: 255, G: 0, B: 0 },
+                    { R: 0, G: 0, B: 255 }
+                ],
+                Mix.ADDITIVE,
+                { decimals: 0 }
+            )
+        ).toMatchObject(
+            { L: 60, C: 111, H: 327 }
+        );
+    });
+    it('Return a mix in lch color as an object with decimals', (): void => {
+        expect(
+            ColorTranslator.getMixLCHObject(
+                [
+                    { R: 255, G: 0, B: 0 },
+                    { R: 0, G: 0, B: 255 }
+                ]
+            )
+        ).toMatchObject(
+            { L: 60.169696, C: 111.407731, H: 327.109357 }
+        );
+    });
+    it('Return a substractive mix in lch color as an object with decimals', (): void => {
+        expect(
+            ColorTranslator.getMixLCHObject(
+                [
+                    { R: 255, G: 0, B: 0 },
+                    { R: 0, G: 0, B: 255 }
+                ],
+                Mix.SUBTRACTIVE
+            )
+        ).toMatchObject(
+            { L: 39.282789, C: 121.254804, H: 308.004699 }
+        );
+    });
+    it('Return a mix in lch color with alpha', (): void => {
+        expect(
+            ColorTranslator.getMixLCHA(['#F00', '#00F'], Mix.ADDITIVE, { decimals: 0 })
+        ).toBe(
+            'lch(60 111 327 / 1)'
+        );
+    });
+    it('Return a substractive mix in lch color with alpha', (): void => {
+        expect(
+            ColorTranslator.getMixLCHA(['#F00', '#00F'], Mix.SUBTRACTIVE)
+        ).toBe(
+            'lch(39.282789 121.254804 308.004699 / 1)'
+        );
+    });
+    it('Return a mix in lch color with alpha and decimals', (): void => {
+        expect(
+            ColorTranslator.getMixLCHA(['#F00', '#00F'])
+        ).toBe(
+            'lch(60.169696 111.407731 327.109357 / 1)'
+        );
+    });
+    it('Return a mix in lch color with alpha as an object', (): void => {
+        expect(
+            ColorTranslator.getMixLCHAObject(
+                [
+                    { R: 255, G: 0, B: 0 },
+                    { R: 0, G: 0, B: 255 }
+                ],
+                Mix.ADDITIVE,
+                { decimals: 0 }
+            )
+        ).toMatchObject(
+            { L: 60, C: 111, H: 327, A: 1 }
+        );
+    });
+    it('Return a substractive mix in lch color with alpha as an object with decimals', (): void => {
+        expect(
+            ColorTranslator.getMixLCHAObject(
+                [
+                    { R: 255, G: 0, B: 0 },
+                    { R: 0, G: 0, B: 255 }
+                ],
+                Mix.SUBTRACTIVE
+            )
+        ).toMatchObject(
+            { L: 39.282789, C: 121.254804, H: 308.004699, A: 1 }
+        );
+    });
+    it('Return a mix in lch color with alpha as an object with decimals', (): void => {
+        expect(
+            ColorTranslator.getMixLCHAObject(
+                [
+                    { R: 255, G: 0, B: 0 },
+                    { R: 0, G: 0, B: 255 }
+                ]
+            )
+        ).toMatchObject(
+            { L: 60.169696, C: 111.407731, H: 327.109357, A: 1 }
         );
     });
 });
