@@ -32,6 +32,13 @@ const blendLabFunctions = [
     ColorTranslator.getBlendCIELabAObject
 ];
 
+const blendLchFunctions = [
+    ColorTranslator.getBlendLCH,
+    ColorTranslator.getBlendLCHA,
+    ColorTranslator.getBlendLCHObject,
+    ColorTranslator.getBlendLCHAObject
+];
+
 const options = { decimals: 0 };
 
 describe('ColorTranslator blending tests', (): void => {
@@ -102,6 +109,16 @@ describe('ColorTranslator blending tests', (): void => {
         });
 
         blendLabFunctions.forEach((fn) => {
+            expect(fn(from, to, 3)).toMatchSnapshot();
+        });
+    });
+
+    it('Blending with LCH colors', (): void => {
+        blendLchFunctions.forEach((fn) => {
+            expect(fn(from, to)).toMatchSnapshot();
+        });
+
+        blendLchFunctions.forEach((fn) => {
             expect(fn(from, to, 3)).toMatchSnapshot();
         });
     });

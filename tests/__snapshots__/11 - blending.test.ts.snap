@@ -144,6 +144,150 @@ exports[`ColorTranslator blending tests Blending with L*a*b colors 8`] = `
 ]
 `;
 
+exports[`ColorTranslator blending tests Blending with LCH colors 1`] = `
+[
+  "lch(54.291734 106.838999 40.852613)",
+  "lch(41.112203 70.226282 19.475294)",
+  "lch(29.563244 66.641958 327.109357)",
+  "lch(24.637463 101.329336 304.462915)",
+  "lch(29.567573 131.207085 301.368541)",
+]
+`;
+
+exports[`ColorTranslator blending tests Blending with LCH colors 2`] = `
+[
+  "lch(54.291734 106.838999 40.852613 / 1)",
+  "lch(41.112203 70.226282 19.475294 / 1)",
+  "lch(29.563244 66.641958 327.109357 / 1)",
+  "lch(24.637463 101.329336 304.462915 / 1)",
+  "lch(29.567573 131.207085 301.368541 / 1)",
+]
+`;
+
+exports[`ColorTranslator blending tests Blending with LCH colors 3`] = `
+[
+  {
+    "C": 106.838999,
+    "H": 40.852613,
+    "L": 54.291734,
+  },
+  {
+    "C": 70.226282,
+    "H": 19.475294,
+    "L": 41.112203,
+  },
+  {
+    "C": 66.641958,
+    "H": 327.109357,
+    "L": 29.563244,
+  },
+  {
+    "C": 101.329336,
+    "H": 304.462915,
+    "L": 24.637463,
+  },
+  {
+    "C": 131.207085,
+    "H": 301.368541,
+    "L": 29.567573,
+  },
+]
+`;
+
+exports[`ColorTranslator blending tests Blending with LCH colors 4`] = `
+[
+  {
+    "A": 1,
+    "C": 106.838999,
+    "H": 40.852613,
+    "L": 54.291734,
+  },
+  {
+    "A": 1,
+    "C": 70.226282,
+    "H": 19.475294,
+    "L": 41.112203,
+  },
+  {
+    "A": 1,
+    "C": 66.641958,
+    "H": 327.109357,
+    "L": 29.563244,
+  },
+  {
+    "A": 1,
+    "C": 101.329336,
+    "H": 304.462915,
+    "L": 24.637463,
+  },
+  {
+    "A": 1,
+    "C": 131.207085,
+    "H": 301.368541,
+    "L": 29.567573,
+  },
+]
+`;
+
+exports[`ColorTranslator blending tests Blending with LCH colors 5`] = `
+[
+  "lch(54.291734 106.838999 40.852613)",
+  "lch(29.563244 66.641958 327.109357)",
+  "lch(29.567573 131.207085 301.368541)",
+]
+`;
+
+exports[`ColorTranslator blending tests Blending with LCH colors 6`] = `
+[
+  "lch(54.291734 106.838999 40.852613 / 1)",
+  "lch(29.563244 66.641958 327.109357 / 1)",
+  "lch(29.567573 131.207085 301.368541 / 1)",
+]
+`;
+
+exports[`ColorTranslator blending tests Blending with LCH colors 7`] = `
+[
+  {
+    "C": 106.838999,
+    "H": 40.852613,
+    "L": 54.291734,
+  },
+  {
+    "C": 66.641958,
+    "H": 327.109357,
+    "L": 29.563244,
+  },
+  {
+    "C": 131.207085,
+    "H": 301.368541,
+    "L": 29.567573,
+  },
+]
+`;
+
+exports[`ColorTranslator blending tests Blending with LCH colors 8`] = `
+[
+  {
+    "A": 1,
+    "C": 106.838999,
+    "H": 40.852613,
+    "L": 54.291734,
+  },
+  {
+    "A": 1,
+    "C": 66.641958,
+    "H": 327.109357,
+    "L": 29.563244,
+  },
+  {
+    "A": 1,
+    "C": 131.207085,
+    "H": 301.368541,
+    "L": 29.567573,
+  },
+]
+`;
+
 exports[`ColorTranslator blending tests Blending with decimals snapshots 1`] = `
 [
   "rgb(255 0 0)",
