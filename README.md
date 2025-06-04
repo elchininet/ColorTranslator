@@ -106,61 +106,85 @@ Opens a development server that provides live reloading using [webpack-dev-serve
 The most wonderful thing about `colortranslator` is that you don‘t need to specify the input that you are using, the library will recognise it automatically. The input can be a CSS string or an object:
 
 ###### CSS string inputs
-
-| Example of CSS string inputs          | Description                                                                                                        |
-| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `fuchsia`                             | Color keyword                                                                                                      |
-| `#FF00FF`                             | Hexadecimal color                                                                                                  |
-| `#F0F`                                | Shorthand hexadecimal color                                                                                        |
-| `#FF00FF80`                           | Hexadecimal color with alpha                                                                                       |
-| `#F0FF`                               | Shorthand hexadecimal color with alpha                                                                             |
-| `rgb(255 0 255)`                      | Functional RGB notation                                                                                            |
-| `rgb(100% 0% 100%)`                   | Functional RGB notation with values in percentages                                                                 |
-| `rgb(255 0 255 / 0.5)`                | Functional RGB notation with alpha                                                                                 |
-| `rgb(255 0 255 / 50%)`                | Functional RGB notation CSS with alpha in percenatages                                                             |
-| `rgb(100% 0% 100% / 0.5)`             | Functional RGB notation with values in percentages and alpha                                                       |
-| `rgb(100% 0% 100% / 50%)`             | Functional RGB notation with values and alpha in percentages                                                       |
-| `rgb(255, 0, 255)`                    | Functional RGB notation (CSS Colors 3 comma-separated)                                                             |
-| `rgba(255, 0, 255, 0.5)`              | Functional RGB notation with alpha (CSS Colors 3 comma-separated)                                                  |
-| `hsl(300 100% 50%)`                   | Functional HSL notation                                                                                            |
-| `hsl(300deg 100% 50%)`                | Functional HSL notation with hue in degrees                                                                        |
-| `hsl(270grad 100% 50%)`               | Functional HSL notation with hue in gradians                                                                       |
-| `hsl(5.24rad 100% 50%)`               | Functional HSL notation with hue in radians                                                                        |
-| `hsl(0.83turn 100% 50%)`              | Functional HSL notation with hue in turns                                                                          |
-| `hsl(300 100% 50% / 0.5)`             | Functional HSL notation with alpha                                                                                 |
-| `hsl(300 100% 50% / 50%)`             | Functional HSL notation with alpha in percentages                                                                  |
-| `hsl(300, 100%, 50%)`                 | Functional HSL notation (Colors 3 comma-separated)                                                                 |
-| `hsl(300deg, 100%, 50%)`              | Functional HSL notation with hue in degrees (CSS Colors 3 comma-separated)                                         |
-| `hsl(270grad, 100%, 50%)`             | Functional HSL notation with hue in gradians (CSS Colors 3 comma-separated)                                        |
-| `hsl(5.24rad, 100%, 50%)`             | Functional HSL notation with hue in radians (CSS Colors 3 comma-separated)                                         |
-| `hsl(0.83turn, 100%, 50%)`            | Functional HSL notation with hue in turns (CSS Colors 3 comma-separated)                                           |
-| `hsla(300, 100%, 50%, 0.5)`           | Functional HSL notation with alpha (CSS Colors 3 comma-separated)                                                  |
-| `lab(54 81 70)`                       | Functional LAB notation with numbers                                                                               |
-| `lab(54 81 70 / 1)`                   | Functional LAB notation with numbers and alpha                                                                     |
-| `lab(54% 65% 56%)`                    | Functional LAB notation with percentages                                                                           |
-| `lab(54% 65% 56% / 1)`                | Functional LAB notation with percentages and alpha                                                                 |
-| `lab(54 81 70 / 93%)`                 | Functional LAB notation with numbers and alpha in percentages                                                      |
-| `lab(54% 65% 56% / 93%)`              | Functional LAB notation with parcentages and alpha in percentages                                                  |
-| `device-cmyk(0% 100% 100% 0%)`        | Device-dependent functional CMYK notation with percentages                                                         |
-| `device-cmyk(0% 100% 100% 0% / 1)`    | Device-dependent functional CMYK notation with percentages and alpha                                               |
-| `device-cmyk(0% 100% 100% 0% / 100%)` | Device-dependent functional CMYK notation with percentages and alpha in percentages                                |
-| `device-cmyk(0%, 100%, 100%, 0%)`     | Device-dependent functional CMYK notation with percentages (CSS Colors 3 comma-separated)                          |
-| `device-cmyk(0%, 100%, 100%, 0%, 1)`  | Device-dependent functional CMYK notation with percentages and alpha (CSS Colors 3 comma-separated)                |
-| `device-cmyk(0 1 1 0)`                | Device-dependent functional CMYK notation with numbers                                                             |
-| `device-cmyk(0 1 1 0 / 1)`            | Device-dependent functional CMYK notation with numbers and alpha                                                   |
-| `device-cmyk(0 1 1 0 / 100%)`         | Device-dependent functional CMYK notation with numbers and alpha in percentages                                    |
-| `device-cmyk(0, 1, 1, 0)`             | Device-dependent functional CMYK notation with numbers (CSS Colors 3 comma-separated)                              |
-| `device-cmyk(0, 1, 1, 0, 1)`          | Device-dependent functional CMYK notation with numbers and alpha (CSS Colors 3 comma-separated)                    |
-| `cmyk(0% 100% 100% 0%)`               | Functional CMYK notation with percentages                                                                          |
-| `cmyk(0% 100% 100% 0% / 1)`           | Functional CMYK notation with percentages and alpha                                                                |
-| `cmyk(0% 100% 100% 0% / 100%)`        | Functional CMYK notation with percentages and alpha in percentages                                                 |
-| `cmyk(0 1 1 0)`                       | Functional CMYK notation with numbers                                                                              |
-| `cmyk(0 1 1 0 / 1)`                   | Functional CMYK notation with numbers and alpha                                                                    |
-| `cmyk(0 1 1 0 / 100%)`                | Functional CMYK notation with numbers and alpha in percentages                                                     |
-| `cmyk(0%, 100%, 100%, 0%)`            | Functional CMYK notation with percentages (CSS Colors 3 comma-separated)                                           |
-| `cmyk(0%, 100%, 100%, 0%, 1)`         | Functional CMYK notation with percentages and alpha (CSS Colors 3 comma-separated)                                 |
-| `cmyk(0, 1, 1, 0)`                    | Functional CMYK notation with numbers (CSS Colors 3 comma-separated)                                               |
-| `cmyk(0, 1, 1, 0, 1)`                 | Functional CMYK notation with numbers and alpha (CSS Colors 3 comma-separated)                                     |
+   
+| Example of CSS string inputs                                  | Description                                                                            |
+| ------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `fuchsia`                                                     | Color keyword                                                                          |
+| `#FF00FF`                                                     | Hexadecimal color                                                                      |
+| `#F0F`                                                        | Shorthand hexadecimal color                                                            |
+| `#FF00FF80`                                                   | Hexadecimal color with alpha                                                           |
+| `#F0FF`                                                       | Shorthand hexadecimal color with alpha                                                 |
+| `rgb(255 0 255)`                                              | Functional RGB notation                                                                |
+| `rgb(100% 0% 100%)`                                           | Functional RGB notation with values in percentages                                     |
+| `rgb(255 0 255 / 0.5)`                                        | Functional RGB notation with alpha                                                     |
+| `rgb(255 0 255 / 50%)`                                        | Functional RGB notation CSS with alpha in percenatages                                 |
+| `rgb(100% 0% 100% / 0.5)`                                     | Functional RGB notation with values in percentages and alpha                           |
+| `rgb(100% 0% 100% / 50%)`                                     | Functional RGB notation with values and alpha in percentages                           |
+| `rgb(255, 0, 255)`                                          | Functional RGB legacy notation                                                         |
+| `rgba(255, 0, 255, 0.5)`                                    | Functional RGB legacy notation with alpha                                              |
+| `rgb(from #F00 r g b)`                                        | Functional RGB notation in relative color syntax                                       |
+| `rgb(from hsl(0 100% 50%) calc(r + 5) g b / calc(alpha / 2))` | Functional RGB notation in relative color syntax with alpha                            |
+| `hsl(300 100% 50%)`                                           | Functional HSL notation                                                                |
+| `hsl(300 100 50)`                                             | Functional HSL notation without percentages                                            |
+| `hsl(300deg 100% 50%)`                                        | Functional HSL notation with hue in degrees                                            |
+| `hsl(270grad 100% 50%)`                                       | Functional HSL notation with hue in gradians                                           |
+| `hsl(5.24rad 100% 50%)`                                       | Functional HSL notation with hue in radians                                            |
+| `hsl(0.83turn 100% 50%)`                                      | Functional HSL notation with hue in turns                                              |
+| `hsl(300 100% 50% / 0.5)`                                     | Functional HSL notation with alpha                                                     |
+| `hsl(300 100% 50% / 50%)`                                     | Functional HSL notation with alpha in percentages                                      |
+| `hsl(300, 100%, 50%)`                                       | Functional HSL legacy notation                                                         |
+| `hsl(300deg, 100%, 50%)`                                      | Functional HSL legacy notation with hue in degrees                                     |
+| `hsl(270grad, 100%, 50%)`                                     | Functional HSL legacy notation with hue in gradians                                    |
+| `hsl(5.24rad, 100%, 50%)`                                     | Functional HSL legacy notation with hue in radians                                     |
+| `hsl(0.83turn, 100%, 50%)`                                    | Functional HSL legacy notation with hue in turns                                       |
+| `hsla(300, 100%, 50%, 0.5)`                                 | Functional HSL legacy notation with alpha                                              |
+| `hsl(from hsl(0 100 50) h s l)`                               | Functional HSL notation in relative color syntax                                       |
+| `hsl(from hsl(0 100 50) calc(h + 5) s l / calc(alpha / 2))`   | Functional HSL notation in relative color syntax with alpha                            |
+| `hwb(0 0% 0%)`                                                | Functional HWB notation                                                                |
+| `hwb(0 0% 0% / 0.5)`                                          | Functional HWB notation with alpha                                                     |
+| `hwb(0deg 0% 0%)`                                             | Functional HWB notation with hue in degrees                                            |
+| `hwb(0grad 0% 0%)`                                            | Functional HWB notation with hue in gradians                                           |
+| `hwb(0rad 0% 0%)`                                             | Functional HWB notation with hue in radians                                            |
+| `hwb(0turn 0% 0%)`                                            | Functional HWB notation with hue in turns                                              |
+| `hwb(from hwb(0 0% 0%) h w b)`                                | Functional HWB notation in relative color syntax                                       |
+| `hwb(from hwb(0 0% 0%) calc(h + 2) w b / calc(alpha / 2))`    | Functional HWB notation in relative color syntax with alpha                            |
+| `lab(54 81 70)`                                               | Functional LAB notation without percentages                                            |
+| `lab(54 81 70 / 1)`                                           | Functional LAB notation without percentages and alpha                                  |
+| `lab(54% 65% 56%)`                                            | Functional LAB notation with percentages                                               |
+| `lab(54% 65% 56% / 1)`                                        | Functional LAB notation with percentages and alpha                                     |
+| `lab(54 81 70 / 93%)`                                         | Functional LAB notation without percentages and alpha in percentages                   |
+| `lab(54% 65% 56% / 93%)`                                      | Functional LAB notation with alpha parcentages                                         |
+| `lab(54% 65% 56% / 93%)`                                      | Functional LAB notation with alpha parcentages                                         |
+| `lch(54 107 41)`                                              | Functional LCH notation                                                                |
+| `lch(54% 71% 41)`                                             | Functional LCH notation with pecentages                                                |
+| `lch(54 107 41 / 0.5)`                                        | Functional LCH notation with alpha                                                     |
+| `lch(54% 71% 41 / 0.5)`                                       | Functional LCH notation with percentages and alpha                                     |
+| `lch(54 107 41deg)`                                           | Functional LCH notation with hue in degrees                                            |
+| `lch(54 107 46grad)`                                          | Functional LCH notation with hue in gradians                                           |
+| `lch(54 107 1rad)`                                            | Functional LCH notation with hue in radians                                            |
+| `lch(54 107 0turn)`                                           | Functional LCH notation with hue in turns                                              |
+| `lch(from lch(54 107 41) l c h)`                              | Functional LCH notation in relative color syntax                                       |
+| `lch(from lch(54 107 41) calc(l + 2) c h / calc(alpha / 2))`  | Functional LCH notation in relative color syntax and alpha                             |
+| `device-cmyk(0% 100% 100% 0%)`                                | Device-dependent functional CMYK notation with percentages                             |
+| `device-cmyk(0% 100% 100% 0% / 1)`                            | Device-dependent functional CMYK notation with percentages and alpha                   |
+| `device-cmyk(0% 100% 100% 0% / 100%)`                         | Device-dependent functional CMYK notation with percentages and alpha in percentages    |
+| `device-cmyk(0%, 100%, 100%, 0%)`                             | Device-dependent functional CMYK legacy notation with percentages                      |
+| `device-cmyk(0%, 100%, 100%, 0%, 1)`                          | Device-dependent functional CMYK legacy notation with percentages and alpha            |
+| `device-cmyk(0 1 1 0)`                                        | Device-dependent functional CMYK notation without percentages                          |
+| `device-cmyk(0 1 1 0 / 1)`                                    | Device-dependent functional CMYK notation without percentages and alpha                |
+| `device-cmyk(0 1 1 0 / 100%)`                                 | Device-dependent functional CMYK notation without percentages and alpha in percentages |
+| `device-cmyk(0, 1, 1, 0)`                                     | Device-dependent functional CMYK legacy notation without percentages                   |
+| `device-cmyk(0, 1, 1, 0, 1)`                                  | Device-dependent functional CMYK legacy notation without percentages and alpha         |
+| `cmyk(0% 100% 100% 0%)`                                       | Functional CMYK notation with percentages                                              |
+| `cmyk(0% 100% 100% 0% / 1)`                                   | Functional CMYK notation with percentages and alpha                                    |
+| `cmyk(0% 100% 100% 0% / 100%)`                                | Functional CMYK notation with percentages and alpha in percentages                     |
+| `cmyk(0 1 1 0)`                                               | Functional CMYK notation without percentages                                           |
+| `cmyk(0 1 1 0 / 1)`                                           | Functional CMYK notation without percentages and alpha                                 |
+| `cmyk(0 1 1 0 / 100%)`                                        | Functional CMYK notation without percentages and alpha in percentages                  |
+| `cmyk(0%, 100%, 100%, 0%)`                                    | Functional CMYK legacy notation with percentages                                       |
+| `cmyk(0%, 100%, 100%, 0%, 1)`                                 | Functional CMYK legacy notation with percentages and alpha                             |
+| `cmyk(0, 1, 1, 0)`                                            | Functional CMYK legacy notation without percentages                                    |
+| `cmyk(0, 1, 1, 0, 1)`                                         | Functional CMYK legacy notation without percentages and alpha                          |
 
 
 ###### Object inputs
@@ -170,17 +194,22 @@ The most wonderful thing about `colortranslator` is that you don‘t need to spe
 | `{R: "0xFF", G: "0x00", B: "0xFF"}`            | Hexadecimal color                         |
 | `{R: "0xF", G: "0x0", B: "0xF"}`               | Shorthand hexadecimal color               |
 | `{R: "0xFF", G: "0x00", B: "0xFF", A: "0x80"}` | Hexadecimal color with alpha              |
-| `{R: "0xF", G: "0x0", G: "0xF", G: "0xF"}`     | Shorthand hexadecimal color with alpha    |
+| `{R: "0xF", G: "0x0", B: "0xF", A: "0xF"}`     | Shorthand hexadecimal color with alpha    |
 | `{R: 255, G: 0, B: 255}`                       | RGB notation                              |
-| `{R: 255, G: 0, G: 255, A: 0.5}`               | RGB notation with alpha                   |
+| `{R: 255, G: 0, B: 255, A: 0.5}`               | RGB notation with alpha                   |
+| `{R: 255, G: 0, B: 255, A: 0.5}`               | RGB notation with alpha                   |
 | `{H: 300, S: "100%", L: "50%"}`                | HSL notation using percentages            |
 | `{H: 300, S: 100, L: 50}`                      | HSL notation using numbers                |
 | `{H: 300, S: "100%", L: "50%", A: 0.5}`        | HSL notation with alpha using percentages |
 | `{H: 300, S: 100, L: 50, A: 0.5}`              | HSL notation with alpha using numbers     |
+| `{H: 0, W: 0, B: 0}`                           | HWB notation                              |
+| `{H: 0, W: 0, B: 0, A: 0.5}`                   | HWB notation with alpha                   |
 | `{L: 54, a: 81, b: 70}`                        | LAB notation using numbers                |
 | `{L: 54, a: 81, b: 70, A: 1}`                  | LAB notation using numbers with alpha     |
 | `{L: '54%', a: '65%', b: '56%'}`               | LAB notation using percentages            |
 | `{L: '54%', a: '65%', b: '56%', A: '100%'}`    | LAB notation using percentages with alpha |
+| `{L: 54, C: 107, H: 41}`                       | LCH notation                              |
+| `{L: 54, C: 107, H: 41, A: 0.5}`               | LCH notation with alpha                   |
 | `{C: "0%", M: "100%", Y: "100%", K: "0%"}`     | CMYK notation using percentages           |
 | `{C: 0, M: 1, Y: 1, K: 0}`                     | CMYK notation using numbers               |
 
@@ -202,6 +231,7 @@ interface Options {
   anglesUnit?: 'none' | 'deg' | 'grad' | 'rad' | 'turn'; // defaults to 'none'
   rgbUnit?: 'none' | 'percent'; // defaults to 'none'
   labUnit?: 'none' | 'percent'; // defaults to 'none'
+  lchUnit?: 'none' | 'percent'; // defaults to 'none'
   cmykUnit?: 'none' | 'percent'; // defaults to 'percent'
   alphaUnit?: 'none' | 'percent'; // defaults to 'none'
   cmykFunction?: 'device-cmyk' | 'cmyk'; // defaults to 'device-cmyk'
@@ -216,6 +246,7 @@ interface Options {
 | anglesUnit        | yes                 | This option only takes place if the output is an HSL CSS output. It sets the degrees units of the HSL hue angle. If `none` is used, the output will not have any unit but its value will be the `deg` one (degrees) |
 | rgbUnit           | yes                 | This option only takes place if the output is an RGB CSS output. It sets the color units of the RGB and RGBA CSS outputs. If `none` is used the color values will be decimal between `0` and `255`. If `percent` is used, the color values will be decimal with percentages between `0%` and `100%`. |
 | labUnit           | yes                 | This option only takes place if the output is a `CIE L*a*b` CSS output. It sets the color units of the `CIELab` and `CIELabA` CSS outputs. If `none` is used it will be a decimal number between `0` and `100` for the `CIE Lightness` and  a decimal number between `-125` and `125` for the `a` and `b` axis of the `CIE L*a*b` colorspace. If `percent` is used, it will be a decimal number between `0` and `100` with percentages for all the color values. |
+| lchUnit           | yes                 | This option only takes place if the output is a `LCH` CSS output. It sets the color units of the `LCH` and `LCHA` CSS outputs. If `none` is used it will be a decimal number between `0` and `100` for the lightness, between `0` and `150` for the chroma, and between `0` and `360` for the hue. If `percent` is used, it will be a decimal number between `0` and `100` for the lightness and the chrome and between `0` and `360` for the hue. |
 | cmykUnit          | yes                 | This option sets the color units of the CMYK and CMYKA CSS outputs. If `none` is used the color values will be decimal between `0` and `1`. If `percent` is used, the color values will be decimal with percentages between `0%` and `100%`. |
 | alphaUnit         | yes                 | This option only takes place if the output is a CSS Level 4 output (`legacyCSS` has not been set, or it has been set to `false` or it has been autodetected as `false`). This option sets the alpha units of the CSS Level 4 outputs. If `none` is used the alpha values will be decimal between `0` and `1`. If `percent` is used, the alpha values will be decimal with percentages between `0%` and `100%`. |
 | cmykFunction      | yes                 | This option sets the cmyk function of the CMYK and CMYKA CSS outputs.                                       |
@@ -224,9 +255,10 @@ interface Options {
 >
 > * `legacyCSS`: if this option is set, then its value prevails, if it is not set, and the CSS input is provided in CSS Level 3, then this option will be `true`, otherwise it will take its default value which is `false`.
 > * `spacesAfterCommas`: if this option is set, then its value prevails, if it is not set, and the CSS input is provided with spaces after the commas, then this option will be `true`. If the input is not consistent in this aspect, then it will take its default value which is `false` (This option only takes place if `legacyCSS` is `true` or it has been autodetected as `true`)
-> * `anglesUnit`: if this option is set, then its value prevails, if it is not set, and the HSL CSS input is provided with an angle unit, then it will take that value, otherwise it will use the default one wich is `none`.
+> * `anglesUnit`: if this option is set, then its value prevails, if it is not set, and the HSL, HWB or LCH CSS inputs are provided with an angle unit, then it will take that value, otherwise it will use the default one wich is `none`.
 > * `rgbUnit`: if this option is set, then its value prevails, if it is not set, and the RGB CSS input is provided with percentages in its color values, then it will take the `percent` value, otherwise it will use the default one wich is `none`.
 > * `labUnit`: if this option is set, then its value prevails, if it is not set, and the CIE L\*a\*b CSS input is provided with percentages in its color values, then it will take the `percent` value, otherwise it will use the default one wich is `none`.
+> * `lchUnit`: if this option is set, then its value prevails, if it is not set, and the LCH CSS input is provided with percentages in lightness and chroma, then it will take the `percent` value, otherwise it will use the default one wich is `none`.
 > * `cmykUnit`: if this option is set, then its value prevails, if it is not set, and the CMYK CSS input is provided without percentages in its color values, then it will take the `none` value, otherwise it will use the default one wich is `percent`.
 > * `alphaUnit`: if this option is set, then its value prevails, if it is not set, and the CSS input (must be CSS Level 4) is provided with percentages in its alpha value, then it will take the `percent` value, otherwise it will use the default one wich is `none`.
 > * `cmykFunction`: if this option is set, then its value prevails, if it is not set, and the CMYK CSS input is provided using the `cmyk` function, then it will take the `cmyk` value, otherwise it will use the default one wich is `device-cmyk`.
@@ -243,6 +275,8 @@ const rgb = new ColorTranslator('rgb(255, 0, 0)');
 const hsl = new ColorTranslator('hsl(50 20% 90% / 0.5)');
 
 const lab = new ColorTranslator('lab(54 81 70)');
+
+const lab = new ColorTranslator('hwb(from red h calc(w * 1.25) calc(b * 1.25) / calc(alpha / 2))');
 
 const hsla = new ColorTranslator({ R: 115, G: 200, B: 150, A: 0.5 });
 
@@ -274,11 +308,23 @@ new ColorTranslator('hsl(100, 30%, 20%, 0.25)').RGB; // rgb(45.9, 66.3, 35.7)
 // anglesUnit
 new ColorTranslator('#0F0').HSL; // hsl(120 100% 50%)
 new ColorTranslator('#0F0', { anglesUnit: 'none' }).HSL; // hsl(120 100% 50%)
+new ColorTranslator('#0F0', { anglesUnit: 'none' }).HWB; // hwb(120 0% 0%)
+new ColorTranslator('#0F0', { anglesUnit: 'none' }).LCH; // lch(87.818128 113.339731 134.391246)
 new ColorTranslator('#0F0', { anglesUnit: 'deg' }).HSL; // hsl(120deg 100% 50%)
+new ColorTranslator('#0F0', { anglesUnit: 'deg' }).HWB; // hwb(120deg 0% 0%)
+new ColorTranslator('#0F0', { anglesUnit: 'deg' }).LCH; // lch(87.818128 113.339731 134.391246deg)
 new ColorTranslator('#0F0', { anglesUnit: 'grad' }).HSL; // hsl(133.333333grad 100% 50%)
+new ColorTranslator('#0F0', { anglesUnit: 'grad' }).HWB; // hwb(133.333333grad 0% 0%)
+new ColorTranslator('#0F0', { anglesUnit: 'grad' }).LCH; // lch(87.818128 113.339731 149.323607grad)
 new ColorTranslator('#0F0', { anglesUnit: 'rad' }).HSL; // hsl(2.094395rad 100% 50%)
+new ColorTranslator('#0F0', { anglesUnit: 'rad' }).HWB; // hwb(2.094395rad 0% 0%)
+new ColorTranslator('#0F0', { anglesUnit: 'rad' }).LCH; // lch(87.818128 113.339731 2.34557rad)
 new ColorTranslator('#0F0', { anglesUnit: 'turn' }).HSL; // hsl(0.333333turn 100% 50%)
+new ColorTranslator('#0F0', { anglesUnit: 'turn' }).HWB; // hwb(0.333333turn 0% 0%)
+new ColorTranslator('#0F0', { anglesUnit: 'turn' }).LCH; // lch(87.818128 113.339731 0.373309turn)
 new ColorTranslator('hsl(0.5turn 100% 50% / 0.5)').HSL; // hsl(0.5turn 100% 50%)
+new ColorTranslator('lch(54 107 41)').HWB; // hwb(0turn 0% 0%)
+new ColorTranslator('lch(54 107 0turn)').LCH; // lch(55.806124 84.221697 0.003517turn)
 
 // rgbUnit
 new ColorTranslator('#0F0').RGB; // rgb(0 255 0)
@@ -293,6 +339,13 @@ new ColorTranslator('#0F0', { labUnit: 'none' }).CIELab; // lab(87.818128 -79.28
 new ColorTranslator('#0F0', { labUnit: 'percent' }).CIELab; // lab(87.818128% -63.429825% 64.792205%)
 new ColorTranslator('lab(88 -79 81)').CIELabA; // lab(87.863151 -78.89437 80.892902 / 1)
 new ColorTranslator('lab(54.291734% 64.649964% 55.908032% / 1)').CIELabA; // lab(54.291736% 64.649953% 55.90801% / 1)
+
+// lchUnit
+new ColorTranslator('#0F0').LCH; // lch(87.818128 113.339731 134.391246)
+new ColorTranslator('#0F0', { lchUnit: 'none' }).LCH; // lch(87.818128 113.339731 134.391246)
+new ColorTranslator('#0F0', { lchUnit: 'percent' }).LCH; // lch(87.818128% 75.559821% 134.391246)
+new ColorTranslator('lch(88 113 134)').LCH; // lch(87.919219 112.827026 134.029641)
+new ColorTranslator('lch(88% 75% 134)').LCH; // lch(87.953899% 74.965844% 133.999475)
 
 // cmykUnit
 new ColorTranslator('#0F0').CMYK; // device-cmyk(100% 0% 100% 0%)
@@ -318,12 +371,12 @@ There are 15 chainable public methods and 14 of them accept a number as input. T
 
 | Public methods | Input              | Description                                              |
 | -------------- | ------------------ | -------------------------------------------------------- |
-| setH           | 0 ≤ input ≤ 360    | Sets the color hue                                       |
-| setS           | 0 ≤ input ≤ 100    | Sets the color saturation percentage                     |
-| setL           | 0 ≤ input ≤ 100    | Sets the color lightness percentage                      |
 | setR           | 0 ≤ input ≤ 255    | Sets the red value of the color                          |
 | setG           | 0 ≤ input ≤ 255    | Sets the green value of the color                        |
 | setB           | 0 ≤ input ≤ 255    | Sets the blue value of the color                         |
+| setH           | 0 ≤ input ≤ 360    | Sets the color hue                                       |
+| setS           | 0 ≤ input ≤ 100    | Sets the color saturation percentage                     |
+| setL           | 0 ≤ input ≤ 100    | Sets the color lightness percentage                      |
 | setC           | 0 ≤ input ≤ 100    | Sets the CMYK cyan percentage value of the color         |
 | setM           | 0 ≤ input ≤ 100    | Sets the CMYK magenta percentage value of the color      |
 | setY           | 0 ≤ input ≤ 100    | Sets the CMYK yellow percentage value of the color       |
