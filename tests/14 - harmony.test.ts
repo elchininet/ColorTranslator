@@ -5,6 +5,7 @@ import {
     HEXObject,
     HSLObjectGeneric,
     HWBObjectGeneric,
+    LCHObjectGeneric,
     RGBObject
 } from '../src/@types';
 
@@ -37,6 +38,13 @@ describe('ColorTranslator harmony tests', (): void => {
         ColorTranslator.toCIELabA,
         ColorTranslator.toCIELabObject,
         ColorTranslator.toCIELabAObject
+    ];
+
+    const lchColorFunctions = [
+        ColorTranslator.toLCH,
+        ColorTranslator.toLCHA,
+        ColorTranslator.toLCHObject,
+        ColorTranslator.toLCHAObject
     ];
 
     const base = '#FF0000';
@@ -133,6 +141,18 @@ describe('ColorTranslator harmony tests', (): void => {
         labColorFunctions.forEach((fn) => {
             const harmony = ColorTranslator.getHarmony(
                 fn('#0000FF') as string & CIELabObjectGeneric,
+                Harmony.COMPLEMENTARY,
+                Mix.SUBTRACTIVE,
+                { decimals: 0 }
+            );
+            expect(harmony).toMatchSnapshot();
+        });
+    });
+
+    it('lch color as input', (): void => {
+        lchColorFunctions.forEach((fn) => {
+            const harmony = ColorTranslator.getHarmony(
+                fn('#0000FF') as string & LCHObjectGeneric,
                 Harmony.COMPLEMENTARY,
                 Mix.SUBTRACTIVE,
                 { decimals: 0 }
