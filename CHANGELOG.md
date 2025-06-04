@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.0] - 2025-06-05
+
+- Add support for HWB colors (hue, whiteness and blackness)
+- Add support for LCH colors (lightness, chroma and hue)
+- Add support for relative colors (compatible with rgb, hsl, hwb, lab, and lch)
+- Add support for HSL colors without percentage numbers (no compatible with legacy syntax)
+
 ## [4.1.0] - 2023-11-27
 
 - Improve `getBlendXXX` methods overloads to make it possible to omit optional parameters
