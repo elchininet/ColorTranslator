@@ -170,6 +170,91 @@ exports[`ColorTranslator shades and tints tests Shades snapshots with L*a*b func
 ]
 `;
 
+exports[`ColorTranslator shades and tints tests Shades snapshots with lch functions from "lch(54.2917337686 106.8389994128 40.8526127761 / 1)" 1`] = `
+[
+  "lch(45 93 41 / 1)",
+  "lch(36 79 41 / 1)",
+  "lch(26 62 39 / 1)",
+  "lch(16 44 34 / 1)",
+  "lch(5 22 20 / 1)",
+]
+`;
+
+exports[`ColorTranslator shades and tints tests Shades snapshots with lch functions from "lch(54.2917337686 106.8389994128 40.8526127761)" 1`] = `
+[
+  "lch(45 93 41)",
+  "lch(36 79 41)",
+  "lch(26 62 39)",
+  "lch(16 44 34)",
+  "lch(5 22 20)",
+]
+`;
+
+exports[`ColorTranslator shades and tints tests Shades snapshots with lch functions from {"L":54.2917337686,"C":106.8389994128,"H":40.8526127761,"A":1} 1`] = `
+[
+  {
+    "A": 1,
+    "C": 93,
+    "H": 41,
+    "L": 45,
+  },
+  {
+    "A": 1,
+    "C": 79,
+    "H": 41,
+    "L": 36,
+  },
+  {
+    "A": 1,
+    "C": 62,
+    "H": 39,
+    "L": 26,
+  },
+  {
+    "A": 1,
+    "C": 44,
+    "H": 34,
+    "L": 16,
+  },
+  {
+    "A": 1,
+    "C": 22,
+    "H": 20,
+    "L": 5,
+  },
+]
+`;
+
+exports[`ColorTranslator shades and tints tests Shades snapshots with lch functions from {"L":54.2917337686,"C":106.8389994128,"H":40.8526127761} 1`] = `
+[
+  {
+    "C": 93,
+    "H": 41,
+    "L": 45,
+  },
+  {
+    "C": 79,
+    "H": 41,
+    "L": 36,
+  },
+  {
+    "C": 62,
+    "H": 39,
+    "L": 26,
+  },
+  {
+    "C": 44,
+    "H": 34,
+    "L": 16,
+  },
+  {
+    "C": 22,
+    "H": 20,
+    "L": 5,
+  },
+]
+`;
+
 exports[`ColorTranslator shades and tints tests Shades tests from "hsl(0 100% 50% / 1)" with decimals 1`] = `
 [
   "hsl(0 100% 42% / 1)",
@@ -506,6 +591,91 @@ exports[`ColorTranslator shades and tints tests Tints snapshots with L*a*b funct
     "L": 89,
     "a": 15,
     "b": 6,
+  },
+]
+`;
+
+exports[`ColorTranslator shades and tints tests Tints snapshots with lch functions from "lch(54.2917337686 106.8389994128 40.8526127761 / 1)" 1`] = `
+[
+  "lch(56 95 36 / 1)",
+  "lch(61 76 30 / 1)",
+  "lch(69 55 26 / 1)",
+  "lch(78 35 23 / 1)",
+  "lch(89 16 21 / 1)",
+]
+`;
+
+exports[`ColorTranslator shades and tints tests Tints snapshots with lch functions from "lch(54.2917337686 106.8389994128 40.8526127761)" 1`] = `
+[
+  "lch(56 95 36)",
+  "lch(61 76 30)",
+  "lch(69 55 26)",
+  "lch(78 35 23)",
+  "lch(89 16 21)",
+]
+`;
+
+exports[`ColorTranslator shades and tints tests Tints snapshots with lch functions from {"L":54.2917337686,"C":106.8389994128,"H":40.8526127761,"A":1} 1`] = `
+[
+  {
+    "A": 1,
+    "C": 95,
+    "H": 36,
+    "L": 56,
+  },
+  {
+    "A": 1,
+    "C": 76,
+    "H": 30,
+    "L": 61,
+  },
+  {
+    "A": 1,
+    "C": 55,
+    "H": 26,
+    "L": 69,
+  },
+  {
+    "A": 1,
+    "C": 35,
+    "H": 23,
+    "L": 78,
+  },
+  {
+    "A": 1,
+    "C": 16,
+    "H": 21,
+    "L": 89,
+  },
+]
+`;
+
+exports[`ColorTranslator shades and tints tests Tints snapshots with lch functions from {"L":54.2917337686,"C":106.8389994128,"H":40.8526127761} 1`] = `
+[
+  {
+    "C": 95,
+    "H": 36,
+    "L": 56,
+  },
+  {
+    "C": 76,
+    "H": 30,
+    "L": 61,
+  },
+  {
+    "C": 55,
+    "H": 26,
+    "L": 69,
+  },
+  {
+    "C": 35,
+    "H": 23,
+    "L": 78,
+  },
+  {
+    "C": 16,
+    "H": 21,
+    "L": 89,
   },
 ]
 `;
