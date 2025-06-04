@@ -4,6 +4,7 @@ import {
     HEXObject,
     HSLObjectGeneric,
     HWBObjectGeneric,
+    LCHObjectGeneric,
     RGBObject
 } from '../src/@types';
 
@@ -39,6 +40,13 @@ describe('ColorTranslator shades and tints tests', (): void => {
         ColorTranslator.toCIELabA,
         ColorTranslator.toCIELabObject,
         ColorTranslator.toCIELabAObject
+    ];
+
+    const lchColorFunctions = [
+        ColorTranslator.toLCH,
+        ColorTranslator.toLCHA,
+        ColorTranslator.toLCHObject,
+        ColorTranslator.toLCHAObject
     ];
 
     const base = '#FF0000';
@@ -133,6 +141,19 @@ describe('ColorTranslator shades and tints tests', (): void => {
             expect(shades).toMatchSnapshot();
         });
         it(`Tints snapshots with L*a*b functions from ${JSON.stringify(input)}`, (): void => {
+            const tints = ColorTranslator.getTints(input, 5, options);
+            expect(tints).toMatchSnapshot();
+        });
+    });
+
+    lchColorFunctions.forEach((fn): void => {
+        const options = { decimals: 0 };
+        const input = fn(base, { decimals: 10 }) as string & LCHObjectGeneric;
+        it(`Shades snapshots with lch functions from ${JSON.stringify(input)}`, (): void => {
+            const shades = ColorTranslator.getShades(input, 5, options);
+            expect(shades).toMatchSnapshot();
+        });
+        it(`Tints snapshots with lch functions from ${JSON.stringify(input)}`, (): void => {
             const tints = ColorTranslator.getTints(input, 5, options);
             expect(tints).toMatchSnapshot();
         });
