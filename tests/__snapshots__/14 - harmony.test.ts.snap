@@ -3075,3 +3075,49 @@ exports[`ColorTranslator harmony tests Subtractive Harmony with decimals for {"R
   },
 ]
 `;
+
+exports[`ColorTranslator harmony tests lch color as input 1`] = `
+[
+  "lch(30 131 301)",
+  "lch(68 88 59)",
+]
+`;
+
+exports[`ColorTranslator harmony tests lch color as input 2`] = `
+[
+  "lch(30 131 301 / 1)",
+  "lch(68 88 59 / 1)",
+]
+`;
+
+exports[`ColorTranslator harmony tests lch color as input 3`] = `
+[
+  {
+    "C": 131,
+    "H": 301,
+    "L": 30,
+  },
+  {
+    "C": 88,
+    "H": 59,
+    "L": 68,
+  },
+]
+`;
+
+exports[`ColorTranslator harmony tests lch color as input 4`] = `
+[
+  {
+    "A": 1,
+    "C": 131,
+    "H": 301,
+    "L": 30,
+  },
+  {
+    "A": 1,
+    "C": 88,
+    "H": 59,
+    "L": 68,
+  },
+]
+`;
