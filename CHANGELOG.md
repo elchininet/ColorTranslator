@@ -1,6 +1,6 @@
 # Changelog
 
-## [5.0.0] - 2025-06-05
+## [5.0.0] - 2025-06-06
 
 - Add support for HWB colors (hue, whiteness and blackness)
 - Add support for LCH colors (lightness, chroma and hue)
