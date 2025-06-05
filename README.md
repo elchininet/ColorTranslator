@@ -155,8 +155,10 @@ The most wonderful thing about `colortranslator` is that you don‘t need to spe
 | `lab(54 81 70 / 93%)`                                         | Functional LAB notation without percentages and alpha in percentages                   |
 | `lab(54% 65% 56% / 93%)`                                      | Functional LAB notation with alpha parcentages                                         |
 | `lab(54% 65% 56% / 93%)`                                      | Functional LAB notation with alpha parcentages                                         |
+| `lab(from #F00 l a b)`                                        | Functional LAB notation in relative color syntax                                       |
+| `lab(from #F00 calc(l + 5) a b / calc(alpha / 2))`            | Functional LAB notation in relative color syntax with alpha                            |
 | `lch(54 107 41)`                                              | Functional LCH notation                                                                |
-| `lch(54% 71% 41)`                                             | Functional LCH notation with pecentages                                                |
+| `lch(54% 71% 41)`                                             | Functional LCH notation with percentages                                               |
 | `lch(54 107 41 / 0.5)`                                        | Functional LCH notation with alpha                                                     |
 | `lch(54% 71% 41 / 0.5)`                                       | Functional LCH notation with percentages and alpha                                     |
 | `lch(54 107 41deg)`                                           | Functional LCH notation with hue in degrees                                            |
@@ -377,8 +379,8 @@ There are 20 chainable public methods and 19 of them accept a number as input. T
 | setH           | 0 ≤ input ≤ 360    | Sets the color hue                                       |
 | setS           | 0 ≤ input ≤ 100    | Sets the color saturation percentage                     |
 | setL           | 0 ≤ input ≤ 100    | Sets the color lightness percentage                      |
-| setWhiteness   | 0 ≤ input ≤ 100    | Sets the color whiteness perecentage                     |
-| setBlackness   | 0 ≤ input ≤ 100    | Sets the color blackness perecentage                     |
+| setWhiteness   | 0 ≤ input ≤ 100    | Sets the color whiteness percentage                      |
+| setBlackness   | 0 ≤ input ≤ 100    | Sets the color blackness percentage                      |
 | setCIEL        | 0 ≤ input ≤ 100    | Sets the CIE Lightness value of the color                |
 | setCIEa        | -125 ≤ input ≤ 125 | Sets the `a` axis in the CIE L\*a\*b colorspace          |
 | setCIEb        | -125 ≤ input ≤ 125 | Sets the `b` axis in the CIE L\*a\*b colorspace          |
