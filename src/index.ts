@@ -396,6 +396,19 @@ export class ColorTranslator {
         return this._options;
     }
 
+    // Public RGB properties
+    public get R(): number {
+        return round(this.rgb.R, this.options.decimals);
+    }
+
+    public get G(): number {
+        return round(this.rgb.G, this.options.decimals);
+    }
+
+    public get B(): number {
+        return round(this.rgb.B, this.options.decimals);
+    }
+
     // Public HSL properties
     public get H(): number {
         return round(this.hsl.H, this.options.decimals);
@@ -442,19 +455,6 @@ export class ColorTranslator {
 
     public get LCHH(): number {
         return round(this.lch.H, this.options.decimals);
-    }
-
-    // Public RGB properties
-    public get R(): number {
-        return round(this.rgb.R, this.options.decimals);
-    }
-
-    public get G(): number {
-        return round(this.rgb.G, this.options.decimals);
-    }
-
-    public get B(): number {
-        return round(this.rgb.B, this.options.decimals);
     }
 
     // Public alpha property
@@ -2187,6 +2187,8 @@ export {
     HEXObject,
     RGBObject,
     HSLObject,
+    HWBObject,
     CIELabObject,
+    LCHObject,
     CMYKObject
 };
