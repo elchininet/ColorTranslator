@@ -301,7 +301,7 @@ export const hwbToRgb = (H: number, W: number, B: number): RGBObject => {
         rgbR = x;
         rgbG = 0;
         rgbB = c;
-    } else if (H >= 300) {
+    } else {
         rgbR = c;
         rgbG = 0;
         rgbB = x;
