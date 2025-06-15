@@ -952,9 +952,7 @@ export const colorMixer = {
     ): R {
         const mix = this.mix(colors, mode);
         const Lab = rgbToLab(mix.R, mix.G, mix.B);
-        if (hasProp<RGBObject>(mix, 'A')) {
-            Lab.A = mix.A;
-        }
+        Lab.A = mix.A;
         return (
             css
                 ? CSS.CIELab(Lab, options)
@@ -984,9 +982,7 @@ export const colorMixer = {
     ): R {
         const mix = this.mix(colors, mode);
         const lch = rgbToLch(mix.R, mix.G, mix.B);
-        if (hasProp<RGBObject>(mix, 'A')) {
-            lch.A = mix.A;
-        }
+        lch.A = mix.A;
         return (
             css
                 ? CSS.LCH(lch, options)

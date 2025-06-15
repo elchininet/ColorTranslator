@@ -8,14 +8,14 @@ describe('Relative colors', () => {
         'rgb(from #FF0000 r g r)',
         'rgb(from #000000 calc(r + 255) g calc(b + 255))',
         'rgb(from hsl(0 100% 50%) r g r)',
-        'rgb(from hsl(0 100% 50%) r g calc((r - 127.5) * 2))',
+        'rgb(from hsl(0 100% 50%) r g calc(((r - 127.5) * 2)) / 1)',
         'rgb(from rgb(0 255 0 / 1) calc(r + g + b) b calc(g / 255 + 254) / calc(alpha / 2))',
         'rgb(from rgb(from #FF0000 r g b / 1) r g calc(g * b + r) / calc(alpha - .5))',
 
         // HSL
         'hsl(from #000000 300 100% 50%)',
         'hsl(from #FF0000 calc(h + 300) s l)',
-        'hsl(from hsl(0 100% 50%) calc(s * 3) s calc(s / 2))',
+        'hsl(from hsl(0 100% 50%) calc(s * 3) s calc((s / 2) * 1))',
         'hsl(from hsl(0 100% 50%) calc(l * 3 + 150) calc(h + 100) calc(s / 4 + 25))',
         'hsl(from rgb(255 0 255 / 1) h s l / calc(alpha / 2))',
         'hsl(from rgb(from #FF0000 r g b / 1) calc(h + 300) s l / calc(alpha - .5))',
@@ -23,19 +23,19 @@ describe('Relative colors', () => {
         // HWB
         'hwb(from #FF0000 300 w b)',
         'hwb(from #FF0000 calc(h + 300) w b)',
-        'hwb(from hsl(0 100% 50%) calc(300 - h) w calc(b * 100))',
+        'hwb(from hsl(0 100% 50%) calc(300 - h) w calc((b * 100) - 0))',
         'hwb(from hsl(0 100% 50%) calc(h + w + b + 600 / 2) calc(w / 2) calc(b / 400))',
         'hwb(from rgb(255 0 255 / 1) h w b / calc(alpha / 2))',
         'hwb(from rgb(from #FF0000 r g b / 1) calc(h + 300) w b / calc(alpha - .5))',
 
         // Lab
         'lab(from #FF00FF l a b)',
-        'lab(from #FF00FF calc(l + 200 / 100 - 2) calc( a * l / l) calc(b + a - a))',
+        'lab(from #FF00FF calc(l + 200 / 100 - 2) calc(a * l / l) calc((b + a - a) / 1))',
         'lab(from rgb(from #FF00FF r g b / 1) l a b)',
 
         // LCH
         'lch(from #FF00FF l c h)',
-        'lch(from #FF00FF calc(l - (c - c)) calc(c * (l / l)) calc(h * (c / c)))',
+        'lch(from #FF00FF calc(l - (c - c)) calc(c * (l / l)) calc(h * ((c / c) * 1)))',
         'lch(from rgb(255 0 255 / 1) l c h / 1)'
     ];
 
