@@ -95,7 +95,8 @@
   },
   "pnpm": {
     "overrides": {
-      "@babel/helpers@<7.26.10": ">=7.26.10"
+      "@babel/helpers@<7.26.10": ">=7.26.10",
+      "on-headers@<1.1.0": ">=1.1.0"
     }
   }
 }
