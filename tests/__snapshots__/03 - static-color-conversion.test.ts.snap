@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`ColorTranslator static CMYK color conversion for "#000" toCMYK method with decimals and auto legacyCSS from "#000" 1`] = `"device-cmyk(0% 0% 0% 100%)"`;
 
