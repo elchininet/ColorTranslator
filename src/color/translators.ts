@@ -278,9 +278,9 @@ export const hwbToRgb = (H: number, W: number, B: number): RGBObject => {
     const v = 1 - B;
     const c = v - W;
     const x = c * (1 - Math.abs((H / 60) % 2 - 1));
-    let rgbR = 0;
-    let rgbG = 0;
-    let rgbB = 0;
+    let rgbR;
+    let rgbG;
+    let rgbB;
     if (H < 60) {
         rgbR = c;
         rgbG = x;
