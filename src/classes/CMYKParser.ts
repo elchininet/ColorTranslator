@@ -30,7 +30,7 @@ import {
 } from '#css';
 import { getRGB } from '#color/rgb';
 import { rgbToCmyk } from '#color/translators';
-import { ColorParserContext, ColorParser } from './ColorParserContext';
+import { ColorParser } from './ColorParserContext';
 
 interface CSSOptions extends CSSOptionsBase {
     hasPercentageValues: boolean;
@@ -55,7 +55,7 @@ export class CMYKParser extends ColorParser {
         return isCMYKObject(input);
     }
 
-    parse(input: string | CMYKObjectGeneric, __context: ColorParserContext): CMYKObject {
+    parse(input: string | CMYKObjectGeneric): CMYKObject {
 
         if (isString(input)) {
 

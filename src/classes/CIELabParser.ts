@@ -7,7 +7,7 @@ import {
     ColorUnitEnum,
     CSSOptionsBase,
     NumberOrString,
-    Options,
+    Options
 } from '@types';
 import {
     ColorModel,

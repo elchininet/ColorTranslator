@@ -121,11 +121,11 @@ export class HWBParser extends ColorParser {
                             ? {}
                             : {
                                 A: normalizeAlpha(a)
-                            } 
+                            }
                     )
                 };
 
-            }            
+            }
 
         }
 
@@ -138,7 +138,7 @@ export class HWBParser extends ColorParser {
                     ? {}
                     : {
                         A: normalizeAlpha(input.A)
-                    } 
+                    }
             )
         };
 

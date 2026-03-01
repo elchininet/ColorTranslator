@@ -50,7 +50,7 @@ export const getRGB = (color: ColorObject): RGBObject => {
                 color.B
             ),
             ...alpha
-        }
+        };
     }
 
     if (isCIELabObject(color)) {

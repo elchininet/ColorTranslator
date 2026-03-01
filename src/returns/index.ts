@@ -392,7 +392,7 @@ export const getHarmonyReturn = <T extends Exclude<ColorObject, CMYKObject>>(
     const hsl = colorParserContext.convert<HSLObject>(
         color,
         ColorModel.HSL
-    );    
+    );
     const array = harmonyFunction(hsl, mode);
     if (isCSS) {
         return array.map((harmonyColor: HSLObject): string => {
@@ -437,7 +437,7 @@ export const getHarmonyReturnParameters = (
             Harmony.COMPLEMENTARY,
             secondParam,
             thirdParam as InputOptions
-        ]
+        ];
     }
     return [
         Harmony.COMPLEMENTARY,

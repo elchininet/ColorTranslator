@@ -29,7 +29,7 @@ import {
     round,
     toHEX
 } from '#utilities';
-import { ColorParserContext, ColorParser } from './ColorParserContext';
+import { ColorParser } from './ColorParserContext';
 
 export class HEXParser extends ColorParser {
 
@@ -57,10 +57,7 @@ export class HEXParser extends ColorParser {
         return isRGBObject(input) && !hasInvalidHex;
     }
 
-    parse(
-        input: string | RGBObjectGeneric,
-        __context: ColorParserContext
-    ): RGBObject {
+    parse(input: string | RGBObjectGeneric): RGBObject {
 
         if (isString(input)) {
 

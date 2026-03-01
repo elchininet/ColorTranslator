@@ -65,7 +65,7 @@ export class LCHParser extends ColorParser {
     parse(input: string | LCHObjectGeneric, context: ColorParserContext): LCHObject {
 
         if (isString(input)) {
-            
+
             const groups = this._extract(input);
 
             const {
@@ -193,7 +193,7 @@ export class LCHParser extends ColorParser {
             lchUnit,
             anglesUnit
         } = options;
-        const lch = this.convert(color, options.decimals, withAlpha)
+        const lch = this.convert(color, options.decimals, withAlpha);
         const transformer = (value: number, index: number): NumberOrString => {
             if (index === 0) {
                 const L = round(
