@@ -18,8 +18,7 @@ import {
 } from '@types';
 import {
     BASE_255,
-    DEFAULT_BLEND_STEPS,
-    DEFAULT_SHADES_TINTS_STEPS,
+    ColorModel,
     Harmony,
     HarmonyString,
     MAX_ALPHA,
@@ -43,42 +42,61 @@ import {
     rgbToLab,
     rgbToLch
 } from '#color/translators';
-import * as utils from '#color/utils';
 import {
     getColorModel,
     getOptionsFromColorInput,
-    getRGBObject
-} from '#color/extractors';
-import { CSS } from '#color/css';
-import {
-    isHarmony,
-    isMix,
     minmax,
     normalizeHue,
     round
-} from '#helpers';
+} from '#utilities';
+import { colorParserContext } from '#parsers';
 import {
     getBlendReturn,
-    getBlendReturnWithParameters,
-    getColorReturn,
+    getBlendReturnParams,
+    getMixReturn,
+    getMixReturnParameters,
+    getShadesOrTintsReturn,
+    getShadesOrTintsReturnParameters,
     getHarmonyReturn,
-    getMixReturn
+    getHarmonyReturnParameters
 } from '#returns';
-
-const bindedMixers = Object.fromEntries(
-    Object.entries(utils.colorMixer).map((entry) => {
-        const [key, fn] = entry;
-        return [key, fn.bind(utils.colorMixer)];
-    })
-) as typeof utils.colorMixer;
 
 export class ColorTranslator {
 
     // Constructor
     public constructor(color: ColorInput, options: InputOptions = {}) {
         this._options = getOptionsFromColorInput(options, color);
-        this.rgb = getRGBObject(color);
-        this.update('rgb');
+        const parsedColor = colorParserContext.parse(color);
+        const model = getColorModel(parsedColor);
+        switch (model) {
+            case ColorModel.HSL:
+                this.hsl = parsedColor as HSLObject;
+                this.update('hsl');
+                break;
+            case ColorModel.HWB:
+                this.hwb = parsedColor as HWBObject;
+                this.updateRGBFromHWB();
+                this.update('hwb', 'rgb');
+                break;
+            case ColorModel.CIELab:
+                this.lab = parsedColor as CIELabObject;
+                this.updateRGBFromLAB();
+                this.update('lab', 'rgb');
+                break;
+            case ColorModel.LCH:
+                this.lch = parsedColor as LCHObject;
+                this.updateRGBFromLCH();
+                this.update('lch', 'rgb');
+                break;
+            case ColorModel.CMYK:
+                this.cmyk = parsedColor as CMYKObject;
+                this.updateRGBFromCMYK();
+                this.update('cmyk', 'rgb');
+                break;
+            default:
+                this.rgb = parsedColor as RGBObject;
+                this.update('rgb');
+        }
     }
 
     // Private properties
@@ -119,7 +137,7 @@ export class ColorTranslator {
                 this.hsl.S,
                 this.hsl.L
             ),
-            A: this.hsl.A
+            A: this.hsl.A ?? 1
         };
     }
 
@@ -148,7 +166,7 @@ export class ColorTranslator {
                 this.rgb.G,
                 this.rgb.B
             ),
-            A: this.rgb.A
+            A: this.rgb.A ?? 1
         };
     }
 
@@ -159,16 +177,19 @@ export class ColorTranslator {
                 this.rgb.G,
                 this.rgb.B
             ),
-            A: this.rgb.A
+            A: this.rgb.A ?? 1
         };
     }
 
     private updateCMYK(): void {
-        this.cmyk = rgbToCmyk(
-            this.rgb.R,
-            this.rgb.G,
-            this.rgb.B
-        );
+        this.cmyk = {
+            ...rgbToCmyk(
+                this.rgb.R,
+                this.rgb.G,
+                this.rgb.B
+            ),
+            A: this.rgb.A ?? 1
+        };
     }
 
     private updateRGBFromHWB(): void {
@@ -178,7 +199,7 @@ export class ColorTranslator {
                 this.hwb.W,
                 this.hwb.B
             ),
-            A: this.rgb.A
+            A: this.hwb?.A ?? 1
         };
     }
 
@@ -189,7 +210,7 @@ export class ColorTranslator {
                 this.lch.C,
                 this.lch.H
             ),
-            A: this.rgb.A
+            A: this.lch.A ?? 1
         };
     }
 
@@ -201,7 +222,7 @@ export class ColorTranslator {
                 this.cmyk.Y,
                 this.cmyk.K
             ),
-            A: this.rgb.A
+            A: this.cmyk.A ?? 1
         };
     }
 
@@ -212,7 +233,7 @@ export class ColorTranslator {
                 this.lab.a,
                 this.lab.b
             ),
-            A: this.rgb.A
+            A: this.lab.A ?? 1
         };
     }
 
@@ -481,532 +502,538 @@ export class ColorTranslator {
 
     // Object public properties
     public get HEXObject(): HEXObject {
-        return utils.translateColor.HEX(this.rgb);
+        return colorParserContext.convert(
+            this.rgb,
+            ColorModel.HEX
+        );
     }
 
     public get HEXAObject(): HEXObject {
-        return utils.translateColor.HEXA(this.rgb);
+        return colorParserContext.convert(
+            this.rgb,
+            ColorModel.HEX,
+            0,
+            true
+        );
     }
 
     public get RGBObject(): RGBObject {
-        return {
-            R: this.R,
-            G: this.G,
-            B: this.B
-        };
+        return colorParserContext.convert(
+            this.rgb,
+            ColorModel.RGB,
+            this.options.decimals
+        );
     }
 
     public get RGBAObject(): RGBObject {
-        return {
-            ...this.RGBObject,
-            A: this.A
-        };
+        return colorParserContext.convert(
+            this.rgb,
+            ColorModel.RGB,
+            this.options.decimals,
+            true
+        );
     }
 
     public get HSLObject(): HSLObject {
-        return {
-            H: this.H,
-            S: this.S,
-            L: this.L
-        };
+        return colorParserContext.convert(
+            this.hsl,
+            ColorModel.HSL,
+            this.options.decimals
+        );
     }
 
     public get HSLAObject(): HSLObject {
-        return {
-            ...this.HSLObject,
-            A: this.A
-        };
+        return colorParserContext.convert(
+            this.hsl,
+            ColorModel.HSL,
+            this.options.decimals,
+            true
+        );
     }
 
     public get HWBObject(): HWBObject {
-        return {
-            H: this.H,
-            W: this.Whiteness,
-            B: this.Blackness
-        };
+        return colorParserContext.convert(
+            this.hwb,
+            ColorModel.HWB,
+            this.options.decimals
+        );
     }
 
     public get HWBAObject(): HWBObject {
-        return {
-            ...this.HWBObject,
-            A: this.A
-        };
+        return colorParserContext.convert(
+            this.hwb,
+            ColorModel.HWB,
+            this.options.decimals,
+            true
+        );
     }
 
     public get CIELabObject(): CIELabObject {
-        return {
-            L: this.CIEL,
-            a: this.CIEa,
-            b: this.CIEb
-        };
+        return colorParserContext.convert(
+            this.lab,
+            ColorModel.CIELab,
+            this.options.decimals
+        );
     }
 
     public get CIELabAObject(): CIELabObject {
-        return {
-            ...this.CIELabObject,
-            A: this.A
-        };
+        return colorParserContext.convert(
+            this.lab,
+            ColorModel.CIELab,
+            this.options.decimals,
+            true
+        );
     }
 
     public get LCHObject(): LCHObject {
-        return {
-            L: this.LCHL,
-            C: this.LCHC,
-            H: this.LCHH
-        };
+        return colorParserContext.convert(
+            this.lch,
+            ColorModel.LCH,
+            this.options.decimals
+        );
     }
 
     public get LCHAObject(): LCHObject {
-        return {
-            ...this.LCHObject,
-            A: this.A
-        };
+        return colorParserContext.convert(
+            this.lch,
+            ColorModel.LCH,
+            this.options.decimals,
+            true
+        );
     }
 
     public get CMYKObject(): CMYKObject {
-        return {
-            C: this.C,
-            M: this.M,
-            Y: this.Y,
-            K: this.K
-        };
+        return colorParserContext.convert(
+            this.cmyk,
+            ColorModel.CMYK,
+            this.options.decimals
+        );
     }
 
     public get CMYKAObject(): CMYKObject {
-        return {
-            ...this.CMYKObject,
-            A: this.A
-        };
+        return colorParserContext.convert(
+            this.cmyk,
+            ColorModel.CMYK,
+            this.options.decimals,
+            true
+        );
     }
 
     // CSS public properties
     public get HEX(): string {
-        return CSS.HEX({
-            R: this.R,
-            G: this.G,
-            B: this.B
-        });
+        return colorParserContext.convertCSS(
+            this.rgb,
+            ColorModel.HEX
+        );
     }
 
     public get HEXA(): string {
-        return CSS.HEX({
-            R: this.R,
-            G: this.G,
-            B: this.B,
-            A: this.A * BASE_255
-        });
+        return colorParserContext.convertCSS(
+            this.rgb,
+            ColorModel.HEX,
+            {},
+            true
+        );
     }
 
     public get RGB(): string {
-        return CSS.RGB(
-            {
-                R: this.R,
-                G: this.G,
-                B: this.B
-            },
+        return colorParserContext.convertCSS(
+            this.rgb,
+            ColorModel.RGB,
             this.options
         );
     }
 
     public get RGBA(): string {
-        return CSS.RGB(
-            {
-                R: this.R,
-                G: this.G,
-                B: this.B,
-                A: this.A
-            },
-            this.options
+        return colorParserContext.convertCSS(
+            this.rgb,
+            ColorModel.RGB,
+            this.options,
+            true
         );
     }
 
     public get HSL(): string {
-        return CSS.HSL(
-            {
-                H: this.H,
-                S: this.S,
-                L: this.L
-            },
+        return colorParserContext.convertCSS(
+            this.hsl,
+            ColorModel.HSL,
             this.options
         );
     }
 
     public get HSLA(): string {
-        return CSS.HSL(
-            {
-                H: this.H,
-                S: this.S,
-                L: this.L,
-                A: this.A
-            },
-            this.options
+        return colorParserContext.convertCSS(
+            this.hsl,
+            ColorModel.HSL,
+            this.options,
+            true
         );
     }
 
     public get HWB(): string {
-        return CSS.HWB(
-            {
-                H: this.H,
-                W: this.Whiteness,
-                B: this.Blackness
-            },
+        return colorParserContext.convertCSS(
+            this.hwb,
+            ColorModel.HWB,
             this.options
         );
     }
 
     public get HWBA(): string {
-        return CSS.HWB(
-            {
-                H: this.H,
-                W: this.Whiteness,
-                B: this.Blackness,
-                A: this.A
-            },
-            this.options
+        return colorParserContext.convertCSS(
+            this.hwb,
+            ColorModel.HWB,
+            this.options,
+            true
         );
     }
 
     public get CIELab(): string {
-        return CSS.CIELab(
-            {
-                L: this.CIEL,
-                a: this.CIEa,
-                b: this.CIEb
-            },
+        return colorParserContext.convertCSS(
+            this.lab,
+            ColorModel.CIELab,
             this.options
         );
     }
 
     public get CIELabA(): string {
-        return CSS.CIELab(
-            {
-                L: this.CIEL,
-                a: this.CIEa,
-                b: this.CIEb,
-                A: this.A
-            },
-            this.options
+        return colorParserContext.convertCSS(
+            this.lab,
+            ColorModel.CIELab,
+            this.options,
+            true
         );
     }
 
     public get LCH(): string {
-        return CSS.LCH(
-            {
-                L: this.LCHL,
-                C: this.LCHC,
-                H: this.LCHH
-            },
+        return colorParserContext.convertCSS(
+            this.lch,
+            ColorModel.LCH,
             this.options
         );
     }
 
     public get LCHA(): string {
-        return CSS.LCH(
-            {
-                L: this.LCHL,
-                C: this.LCHC,
-                H: this.LCHH,
-                A: this.A
-            },
-            this.options
+        return colorParserContext.convertCSS(
+            this.lch,
+            ColorModel.LCH,
+            this.options,
+            true
         );
     }
 
     public get CMYK(): string {
-        return CSS.CMYK(
-            {
-                C: this.C,
-                M: this.M,
-                Y: this.Y,
-                K: this.K
-            },
+        return colorParserContext.convertCSS(
+            this.cmyk,
+            ColorModel.CMYK,
             this.options
         );
     }
 
     public get CMYKA(): string {
-        return CSS.CMYK(
-            {
-                C: this.C,
-                M: this.M,
-                Y: this.Y,
-                K: this.K,
-                A: this.A
-            },
-            this.options
+        return colorParserContext.convertCSS(
+            this.cmyk,
+            ColorModel.CMYK,
+            this.options,
+            true
         );
     }
 
     // Color Conversion Static Methods
     public static toHEXObject(color: ColorInput): HEXObject {
-        const model = getColorModel(color);
-        return getColorReturn<HEXObject>(
+        return colorParserContext.convert(
             color,
-            model,
-            0,
-            utils.translateColor.HEX
+            ColorModel.HEX
         );
     }
 
     public static toHEX(color: ColorInput): string {
-        return CSS.HEX(
-            ColorTranslator.toHEXObject(color)
+        return colorParserContext.convertCSS(
+            color,
+            ColorModel.HEX
         );
     }
 
     public static toHEXAObject(color: ColorInput): HEXObject {
-        const model = getColorModel(color);
-        return getColorReturn<HEXObject>(
+        return colorParserContext.convert(
             color,
-            model,
-            0,
-            utils.translateColor.HEXA
+            ColorModel.HEX,
+            undefined,
+            true
         );
     }
 
     public static toHEXA(color: ColorInput): string {
-        return CSS.HEX(
-            ColorTranslator.toHEXAObject(color)
+        return colorParserContext.convertCSS(
+            color,
+            ColorModel.HEX,
+            undefined,
+            true
         );
     }
 
     public static toRGBObject(color: ColorInput, options: InputOptions = {}): RGBObject {
-        const model = getColorModel(color);
-        return getColorReturn<RGBObject>(
+        return colorParserContext.convert(
             color,
-            model,
-            options.decimals,
-            utils.translateColor.RGB
+            ColorModel.RGB,
+            options.decimals
         );
     }
 
     public static toRGB(color: ColorInput, options: InputOptions = {}): string {
-        const rgb = ColorTranslator.toRGBObject(color, options);
-        const detectedOptions = getOptionsFromColorInput(options, color);
-        return CSS.RGB(rgb, detectedOptions);
+        return colorParserContext.convertCSS(
+            color,
+            ColorModel.RGB,
+            getOptionsFromColorInput(options, color)
+        );
     }
 
     public static toRGBAObject(color: ColorInput, options: InputOptions = {}): RGBObject {
-        const model = getColorModel(color);
-        return getColorReturn<RGBObject>(
+        return colorParserContext.convert(
             color,
-            model,
+            ColorModel.RGB,
             options.decimals,
-            utils.translateColor.RGBA
+            true
         );
     }
 
     public static toRGBA(color: ColorInput, options: InputOptions = {}): string {
-        const rgba = ColorTranslator.toRGBAObject(color, options);
-        const detectedOptions = getOptionsFromColorInput(options, color);
-        return CSS.RGB(rgba, detectedOptions);
+        return colorParserContext.convertCSS(
+            color,
+            ColorModel.RGB,
+            getOptionsFromColorInput(options, color),
+            true
+        );
     }
 
     public static toHSLObject(color: ColorInput, options: InputOptions = {}): HSLObject {
-        const model = getColorModel(color);
-        return getColorReturn<HSLObject>(
+        return colorParserContext.convert(
             color,
-            model,
-            options.decimals,
-            utils.translateColor.HSL
+            ColorModel.HSL,
+            options.decimals
         );
     }
 
     public static toHSL(color: ColorInput, options: InputOptions = {}): string {
-        const hsl = ColorTranslator.toHSLObject(color, options);
-        const detectedOptions = getOptionsFromColorInput(options, color);
-        return CSS.HSL(hsl, detectedOptions);
+        return colorParserContext.convertCSS(
+            color,
+            ColorModel.HSL,
+            getOptionsFromColorInput(options, color)
+        );
     }
 
     public static toHSLAObject(color: ColorInput, options: InputOptions = {}): HSLObject {
-        const model = getColorModel(color);
-        return getColorReturn<HSLObject>(
+        return colorParserContext.convert(
             color,
-            model,
+            ColorModel.HSL,
             options.decimals,
-            utils.translateColor.HSLA
+            true
         );
     }
 
     public static toHSLA(color: ColorInput, options: InputOptions = {}): string {
-        const hsla = ColorTranslator.toHSLAObject(color, options);
-        const detectedOptions = getOptionsFromColorInput(options, color);
-        return CSS.HSL(hsla, detectedOptions);
+        return colorParserContext.convertCSS(
+            color,
+            ColorModel.HSL,
+            getOptionsFromColorInput(options, color),
+            true
+        );
     }
 
     public static toHWBObject(color: ColorInput, options: InputOptions = {}): HWBObject {
-        const model = getColorModel(color);
-        return getColorReturn<HWBObject>(
+        return colorParserContext.convert(
             color,
-            model,
-            options.decimals,
-            utils.translateColor.HWB
+            ColorModel.HWB,
+            options.decimals
         );
     }
 
     public static toHWB(color: ColorInput, options: InputOptions = {}): string {
-        const hwb = ColorTranslator.toHWBObject(color, options);
-        const detectedOptions = getOptionsFromColorInput(options, color);
-        return CSS.HWB(hwb, detectedOptions);
+        return colorParserContext.convertCSS(
+            color,
+            ColorModel.HWB,
+            getOptionsFromColorInput(options, color)
+        );
     }
 
     public static toHWBAObject(color: ColorInput, options: InputOptions = {}): HWBObject {
-        const model = getColorModel(color);
-        return getColorReturn<HWBObject>(
+        return colorParserContext.convert(
             color,
-            model,
+            ColorModel.HWB,
             options.decimals,
-            utils.translateColor.HWBA
+            true
         );
     }
 
     public static toHWBA(color: ColorInput, options: InputOptions = {}): string {
-        const hwb = ColorTranslator.toHWBAObject(color, options);
-        const detectedOptions = getOptionsFromColorInput(options, color);
-        return CSS.HWB(hwb, detectedOptions);
+        return colorParserContext.convertCSS(
+            color,
+            ColorModel.HWB,
+            getOptionsFromColorInput(options, color),
+            true
+        );
     }
 
     public static toCIELabObject(color: ColorInput, options: InputOptions = {}): CIELabObject {
-        const model = getColorModel(color);
-        return getColorReturn<CIELabObject>(
+        return colorParserContext.convert(
             color,
-            model,
-            options.decimals,
-            utils.translateColor.CIELab
+            ColorModel.CIELab,
+            options.decimals
         );
     }
 
     public static toCIELab(color: ColorInput, options: InputOptions = {}): string {
-        const lab = ColorTranslator.toCIELabObject(color, options);
-        const detectedOptions = getOptionsFromColorInput(options, color);
-        return CSS.CIELab(lab, detectedOptions);
+        return colorParserContext.convertCSS(
+            color,
+            ColorModel.CIELab,
+            getOptionsFromColorInput(options, color)
+        );
     }
 
     public static toCIELabAObject(color: ColorInput, options: InputOptions = {}): CIELabObject {
-        const model = getColorModel(color);
-        return getColorReturn<CIELabObject>(
+        return colorParserContext.convert(
             color,
-            model,
+            ColorModel.CIELab,
             options.decimals,
-            utils.translateColor.CIELabA
+            true
         );
     }
 
     public static toCIELabA(color: ColorInput, options: InputOptions = {}): string {
-        const lab = ColorTranslator.toCIELabAObject(color, options);
-        const detectedOptions = getOptionsFromColorInput(options, color);
-        return CSS.CIELab(lab, detectedOptions);
+        return colorParserContext.convertCSS(
+            color,
+            ColorModel.CIELab,
+            getOptionsFromColorInput(options, color),
+            true
+        );
     }
 
     public static toLCHObject(color: ColorInput, options: InputOptions = {}): LCHObject {
-        const model = getColorModel(color);
-        return getColorReturn<LCHObject>(
+        return colorParserContext.convert(
             color,
-            model,
-            options.decimals,
-            utils.translateColor.LCH
+            ColorModel.LCH,
+            options.decimals
         );
     }
 
     public static toLCH(color: ColorInput, options: InputOptions = {}): string {
-        const lch = ColorTranslator.toLCHObject(color, options);
-        const detectedOptions = getOptionsFromColorInput(options, color);
-        return CSS.LCH(lch, detectedOptions);
+        return colorParserContext.convertCSS(
+            color,
+            ColorModel.LCH,
+            getOptionsFromColorInput(options, color)
+        );
     }
 
     public static toLCHAObject(color: ColorInput, options: InputOptions = {}): LCHObject {
-        const model = getColorModel(color);
-        return getColorReturn<LCHObject>(
+        return colorParserContext.convert(
             color,
-            model,
+            ColorModel.LCH,
             options.decimals,
-            utils.translateColor.LCHA
+            true
         );
     }
 
     public static toLCHA(color: ColorInput, options: InputOptions = {}): string {
-        const lch = ColorTranslator.toLCHAObject(color, options);
-        const detectedOptions = getOptionsFromColorInput(options, color);
-        return CSS.LCH(lch, detectedOptions);
+        return colorParserContext.convertCSS(
+            color,
+            ColorModel.LCH,
+            getOptionsFromColorInput(options, color),
+            true
+        );
     }
 
     public static toCMYKObject(color: ColorInput, options: InputOptions = {}): CMYKObject {
-        const model = getColorModel(color);
-        return getColorReturn<CMYKObject>(
+        return colorParserContext.convert(
             color,
-            model,
-            options.decimals,
-            utils.translateColor.CMYK
+            ColorModel.CMYK,
+            options.decimals
         );
     }
 
     public static toCMYK(color: ColorInput, options: InputOptions = {}): string {
-        const cmyk = ColorTranslator.toCMYKObject(color, options);
-        const detectedOptions = getOptionsFromColorInput(options, color);
-        return CSS.CMYK(cmyk, detectedOptions);
+        return colorParserContext.convertCSS(
+            color,
+            ColorModel.CMYK,
+            getOptionsFromColorInput(options, color)
+        );
     }
 
     public static toCMYKAObject(color: ColorInput, options: InputOptions = {}): CMYKObject {
-        const model = getColorModel(color);
-        return getColorReturn<CMYKObject>(
+        return colorParserContext.convert(
             color,
-            model,
+            ColorModel.CMYK,
             options.decimals,
-            utils.translateColor.CMYKA
+            true
         );
     }
 
     public static toCMYKA(color: ColorInput, options: InputOptions = {}): string {
-        const cmyka = ColorTranslator.toCMYKAObject(color, options);
-        const detectedOptions = getOptionsFromColorInput(options, color);
-        return CSS.CMYK(cmyka, detectedOptions);
+        return colorParserContext.convertCSS(
+            color,
+            ColorModel.CMYK,
+            getOptionsFromColorInput(options, color),
+            true
+        );
     }
 
     // Color Blending Static Methods
     public static getBlendHEXObject(
         from: ColorInput,
         to: ColorInput,
-        steps: number = DEFAULT_BLEND_STEPS
-    ): HEXObject[] {
-        return getBlendReturn<HEXObject>(
+        steps?: number
+    ): RGBObject[] {
+        return getBlendReturn(
             from,
             to,
-            steps,
-            0,
-            utils.translateColor.HEX
+            ColorModel.HEX,
+            false,
+            false,
+            steps
         );
     }
 
     public static getBlendHEX(
         from: ColorInput,
         to: ColorInput,
-        steps: number = DEFAULT_BLEND_STEPS
+        steps?: number
     ): string[] {
-        return ColorTranslator.getBlendHEXObject(from, to, steps)
-            .map((color: HEXObject): string => CSS.HEX(color));
+        return getBlendReturn(
+            from,
+            to,
+            ColorModel.HEX,
+            true,
+            false,
+            steps
+        );
     }
 
     public static getBlendHEXAObject(
         from: ColorInput,
         to: ColorInput,
-        steps: number = DEFAULT_BLEND_STEPS
-    ): HEXObject[] {
-        return getBlendReturn<HEXObject>(
+        steps?: number
+    ): RGBObject[] {
+        return getBlendReturn(
             from,
             to,
-            steps,
-            0,
-            utils.translateColor.HEXA
+            ColorModel.HEX,
+            false,
+            true,
+            steps
         );
     }
 
     public static getBlendHEXA(
         from: ColorInput,
         to: ColorInput,
-        steps: number = DEFAULT_BLEND_STEPS
+        steps?: number
     ): string[] {
-        return ColorTranslator.getBlendHEXAObject(from, to, steps)
-            .map((color: HEXObject): string => CSS.HEX(color));
+        return getBlendReturn(
+            from,
+            to,
+            ColorModel.HEX,
+            true,
+            true,
+            steps
+        );
     }
 
     public static getBlendRGBObject(
@@ -1026,13 +1053,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): RGBObject[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.RGB
-        });
+            ColorModel.RGB,
+            false,
+            false,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendRGB(
@@ -1052,14 +1083,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): string[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.RGB,
-            cssFunction: CSS.RGB
-        });
+            ColorModel.RGB,
+            true,
+            false,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendRGBAObject(
@@ -1079,13 +1113,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): RGBObject[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.RGBA
-        });
+            ColorModel.RGB,
+            false,
+            true,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendRGBA(
@@ -1105,14 +1143,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): string[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.RGBA,
-            cssFunction: CSS.RGB
-        });
+            ColorModel.RGB,
+            true,
+            true,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendHSLObject(
@@ -1132,13 +1173,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): HSLObject[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.HSL
-        });
+            ColorModel.HSL,
+            false,
+            false,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendHSL(
@@ -1158,14 +1203,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): string[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.HSL,
-            cssFunction: CSS.HSL
-        });
+            ColorModel.HSL,
+            true,
+            false,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendHSLAObject(
@@ -1185,13 +1233,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): HSLObject[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.HSLA
-        });
+            ColorModel.HSL,
+            false,
+            true,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendHSLA(
@@ -1211,14 +1263,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): string[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.HSLA,
-            cssFunction: CSS.HSL
-        });
+            ColorModel.HSL,
+            true,
+            true,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendHWBObject(
@@ -1238,13 +1293,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): HWBObject[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.HWB
-        });
+            ColorModel.HWB,
+            false,
+            false,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendHWB(
@@ -1264,14 +1323,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): string[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.HWB,
-            cssFunction: CSS.HWB
-        });
+            ColorModel.HWB,
+            true,
+            false,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendHWBAObject(
@@ -1291,13 +1353,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): HWBObject[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.HWBA
-        });
+            ColorModel.HWB,
+            false,
+            true,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendHWBA(
@@ -1317,14 +1383,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): string[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.HWBA,
-            cssFunction: CSS.HWB
-        });
+            ColorModel.HWB,
+            true,
+            true,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendCIELabObject(
@@ -1344,13 +1413,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): CIELabObject[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.CIELab
-        });
+            ColorModel.CIELab,
+            false,
+            false,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendCIELab(
@@ -1370,14 +1443,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): string[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.CIELab,
-            cssFunction: CSS.CIELab
-        });
+            ColorModel.CIELab,
+            true,
+            false,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendCIELabAObject(
@@ -1397,13 +1473,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): CIELabObject[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.CIELabA
-        });
+            ColorModel.CIELab,
+            false,
+            true,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendCIELabA(
@@ -1423,14 +1503,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): string[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.CIELabA,
-            cssFunction: CSS.CIELab
-        });
+            ColorModel.CIELab,
+            true,
+            true,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendLCHObject(
@@ -1450,13 +1533,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): LCHObject[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.LCH
-        });
+            ColorModel.LCH,
+            false,
+            false,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendLCH(
@@ -1476,14 +1563,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): string[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.LCH,
-            cssFunction: CSS.LCH
-        });
+            ColorModel.LCH,
+            true,
+            false,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendLCHAObject(
@@ -1503,13 +1593,17 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): LCHObject[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.LCHA
-        });
+            ColorModel.LCH,
+            false,
+            true,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     public static getBlendLCHA(
@@ -1529,31 +1623,58 @@ export class ColorTranslator {
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
     ): string[] {
-        return getBlendReturnWithParameters({
+        return getBlendReturn(
             from,
             to,
-            thirdParameter,
-            fourthParameter,
-            translateFunction: utils.translateColor.LCHA,
-            cssFunction: CSS.LCH
-        });
+            ColorModel.LCH,
+            true,
+            true,
+            ...getBlendReturnParams(
+                thirdParameter,
+                fourthParameter
+            )
+        );
     }
 
     // Color Mix Static Methods
-    public static getMixHEXObject(colors: ColorInput[], mode: MixString = Mix.ADDITIVE): HEXObject {
-        return utils.colorMixer.HEX(colors, mode, false);
+    public static getMixHEXObject(colors: ColorInput[], mode?: MixString): HEXObject {
+        return getMixReturn(
+            colors,
+            ColorModel.HEX,
+            false,
+            false,
+            mode
+        );
     }
 
     public static getMixHEX(colors: ColorInput[], mode: MixString = Mix.ADDITIVE): string {
-        return utils.colorMixer.HEX(colors, mode, true);
+        return getMixReturn(
+            colors,
+            ColorModel.HEX,
+            true,
+            false,
+            mode
+        );
     }
 
     public static getMixHEXAObject(colors: ColorInput[], mode: MixString = Mix.ADDITIVE): HEXObject {
-        return utils.colorMixer.HEXA(colors, mode, false);
+        return getMixReturn(
+            colors,
+            ColorModel.HEX,
+            false,
+            true,
+            mode
+        );
     }
 
     public static getMixHEXA(colors: ColorInput[], mode: MixString = Mix.ADDITIVE): string {
-        return utils.colorMixer.HEXA(colors, mode, true);
+        return getMixReturn(
+            colors,
+            ColorModel.HEX,
+            true,
+            true,
+            mode
+        );
     }
 
     public static getMixRGBObject(
@@ -1570,13 +1691,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): RGBObject {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.RGB,
-            css: false
-        });
+            ColorModel.RGB,
+            false,
+            false,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixRGB(
@@ -1593,13 +1717,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): string {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.RGB,
-            css: true
-        });
+            ColorModel.RGB,
+            true,
+            false,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixRGBAObject(
@@ -1616,13 +1743,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): RGBObject {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.RGBA,
-            css: false
-        });
+            ColorModel.RGB,
+            false,
+            true,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixRGBA(
@@ -1639,13 +1769,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): string {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.RGBA,
-            css: true
-        });
+            ColorModel.RGB,
+            true,
+            true,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixHSLObject(
@@ -1662,13 +1795,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): HSLObject {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.HSL,
-            css: false
-        });
+            ColorModel.HSL,
+            false,
+            false,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixHSL(
@@ -1685,13 +1821,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): string {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.HSL,
-            css: true
-        });
+            ColorModel.HSL,
+            true,
+            false,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixHSLAObject(
@@ -1708,13 +1847,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): HSLObject {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.HSLA,
-            css: false
-        });
+            ColorModel.HSL,
+            false,
+            true,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixHSLA(
@@ -1731,13 +1873,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): string {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.HSLA,
-            css: true
-        });
+            ColorModel.HSL,
+            true,
+            true,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixHWBObject(
@@ -1754,13 +1899,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): HWBObject {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.HWB,
-            css: false
-        });
+            ColorModel.HWB,
+            false,
+            false,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixHWB(
@@ -1777,13 +1925,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): string {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.HWB,
-            css: true
-        });
+            ColorModel.HWB,
+            true,
+            false,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixHWBAObject(
@@ -1800,13 +1951,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): HWBObject {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.HWBA,
-            css: false
-        });
+            ColorModel.HWB,
+            false,
+            true,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixHWBA(
@@ -1823,13 +1977,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): string {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.HWBA,
-            css: true
-        });
+            ColorModel.HWB,
+            true,
+            true,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixCIELabObject(
@@ -1846,13 +2003,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): CIELabObject {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.CIELab,
-            css: false
-        });
+            ColorModel.CIELab,
+            false,
+            false,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixCIELab(
@@ -1869,13 +2029,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): string {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.CIELab,
-            css: true
-        });
+            ColorModel.CIELab,
+            true,
+            false,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixCIELabAObject(
@@ -1892,13 +2055,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): CIELabObject {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.CIELabA,
-            css: false
-        });
+            ColorModel.CIELab,
+            false,
+            true,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixCIELabA(
@@ -1915,13 +2081,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): string {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.CIELabA,
-            css: true
-        });
+            ColorModel.CIELab,
+            true,
+            true,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixLCHObject(
@@ -1938,13 +2107,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): LCHObject {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.LCH,
-            css: false
-        });
+            ColorModel.LCH,
+            false,
+            false,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixLCH(
@@ -1961,13 +2133,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): string {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.LCH,
-            css: true
-        });
+            ColorModel.LCH,
+            true,
+            false,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixLCHAObject(
@@ -1984,13 +2159,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): LCHObject {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.LCHA,
-            css: false
-        });
+            ColorModel.LCH,
+            false,
+            true,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     public static getMixLCHA(
@@ -2007,13 +2185,16 @@ export class ColorTranslator {
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
     ): string {
-        return getMixReturn({
+        return getMixReturn(
             colors,
-            secondParameter,
-            thirdParameter,
-            colorMixerFunction: bindedMixers.LCHA,
-            css: true
-        });
+            ColorModel.LCH,
+            true,
+            true,
+            ...getMixReturnParameters(
+                secondParameter,
+                thirdParameter
+            )
+        );
     }
 
     // Get shades static method
@@ -2038,24 +2219,12 @@ export class ColorTranslator {
         secondParameter?: number | InputOptions,
         thirdParameter?: InputOptions
     ): ColorOutput[] {
-        if (typeof secondParameter === 'number') {
-            return utils.getColorMixture(
-                color,
-                secondParameter,
-                true,
-                getOptionsFromColorInput(
-                    thirdParameter || {},
-                    color
-                )
-            );
-        }
-        return utils.getColorMixture(
-            color,
-            DEFAULT_SHADES_TINTS_STEPS,
+        return getShadesOrTintsReturn(
             true,
-            getOptionsFromColorInput(
-                secondParameter || {},
-                color
+            color,
+            ...getShadesOrTintsReturnParameters(
+                secondParameter,
+                thirdParameter
             )
         );
     }
@@ -2082,24 +2251,12 @@ export class ColorTranslator {
         secondParameter?: number | InputOptions,
         thirdParameter?: InputOptions
     ): ColorOutput[] {
-        if (typeof secondParameter === 'number') {
-            return utils.getColorMixture(
-                color,
-                secondParameter,
-                false,
-                getOptionsFromColorInput(
-                    thirdParameter || {},
-                    color
-                )
-            );
-        }
-        return utils.getColorMixture(
-            color,
-            DEFAULT_SHADES_TINTS_STEPS,
+        return getShadesOrTintsReturn(
             false,
-            getOptionsFromColorInput(
-                secondParameter || {},
-                color
+            color,
+            ...getShadesOrTintsReturnParameters(
+                secondParameter,
+                thirdParameter
             )
         );
     }
@@ -2143,38 +2300,12 @@ export class ColorTranslator {
         thirdParam?: MixString | InputOptions,
         fourthParam?: InputOptions
     ): ColorOutput[] {
-        if (isHarmony(secondParam)) {
-            return getHarmonyReturn(
-                secondParam,
-                color,
-                isMix(thirdParam)
-                    ? thirdParam
-                    : Mix.ADDITIVE,
-                getOptionsFromColorInput(
-                    isMix(thirdParam)
-                        ? (fourthParam || {})
-                        : thirdParam || {},
-                    color
-                )
-            );
-        } else if (isMix(secondParam)) {
-            return getHarmonyReturn(
-                Harmony.COMPLEMENTARY,
-                color,
-                secondParam,
-                getOptionsFromColorInput(
-                    thirdParam as InputOptions || {},
-                    color
-                )
-            );
-        }
         return getHarmonyReturn(
-            Harmony.COMPLEMENTARY,
             color,
-            Mix.ADDITIVE,
-            getOptionsFromColorInput(
-                secondParam || {},
-                color
+            ...getHarmonyReturnParameters(
+                secondParam,
+                thirdParam,
+                fourthParam
             )
         );
     }
@@ -2184,7 +2315,6 @@ export {
     InputOptions,
     Harmony,
     Mix,
-    HEXObject,
     RGBObject,
     HSLObject,
     HWBObject,

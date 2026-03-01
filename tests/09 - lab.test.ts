@@ -1,5 +1,5 @@
 import { ColorTranslator } from '../src';
-import { COLORS } from './tests.constants';
+import { COLORS, LAB_AND_LCH_COLORS } from './tests.constants';
 
 COLORS.forEach((item): void => {
 
@@ -22,8 +22,8 @@ COLORS.forEach((item): void => {
             const laba = ColorTranslator.toCIELabAObject(item.HEX);
             const hex = ColorTranslator.toHEXObject(lab);
             const hexa = ColorTranslator.toHEXAObject(laba);
-            expect(hex).toMatchObject(item.HEXObject);
-            expect(hexa).toMatchObject(item.HEXAObject);
+            expect(hex).toEqual(item.HEXObject);
+            expect(hexa).toEqual(item.HEXAObject);
 
         });
 
@@ -34,6 +34,47 @@ COLORS.forEach((item): void => {
             const labLegacyWithAlphaInPercent = ColorTranslator.toCIELabA(item.HEX, { legacyCSS: true, alphaUnit: 'percent' });
             expect(lab).toBe(labLegacy);
             expect(labLegacyWithAlphaInPercent.endsWith('/ 100%)')).toBe(true);
+
+        });
+
+    });
+
+    describe('CIE L*a*b round trip', () => {
+
+        const options = {
+            legacyCSS: false
+        };
+
+        LAB_AND_LCH_COLORS.forEach((color) => {
+
+            it.each([
+                color.CIELab,
+                color.CIELabInPrcentage,
+                color.CIELabObject,
+                color.CIELabA,
+                color.CIELabAInPrcentage,
+                color.CIELabAObject
+            ])('round trip of %s', (lab) => {
+                expect(
+                    new ColorTranslator(lab, { legacyCSS: false, labUnit: 'none', decimals: 0 }).CIELab
+                ).toBe(color.CIELab);
+                expect(
+                    new ColorTranslator(lab, { legacyCSS: false, labUnit: 'percent', decimals: 0 }).CIELab
+                ).toBe(color.CIELabInPrcentage);
+                expect(
+                    new ColorTranslator(lab, { decimals: 0 }).CIELabObject
+                ).toEqual(color.CIELabObject);
+
+                expect(
+                    new ColorTranslator(lab, { legacyCSS: false, labUnit: 'none', decimals: 0, alphaUnit: 'none' }).CIELabA
+                ).toBe(color.CIELabA);
+                expect(
+                    new ColorTranslator(lab, { legacyCSS: false, labUnit: 'percent', decimals: 0, alphaUnit: 'percent' }).CIELabA
+                ).toBe(color.CIELabAInPrcentage);
+                expect(
+                    new ColorTranslator(lab, { decimals: 0 }).CIELabAObject
+                ).toEqual(color.CIELabAObject);
+            });
 
         });
 

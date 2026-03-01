@@ -172,33 +172,3 @@ export enum ColorKeywords {
     'yellowgreen'          = '#9ACD32',
     'rebeccapurple'        = '#663399'
 }
-
-export const COLOR_KEYS = Object.keys(ColorKeywords);
-export const COLOR_PROPS = {
-    HEX: ['R', 'G', 'B', 'A'],
-    RGB: ['R', 'G', 'B', 'A'],
-    HSL: ['H', 'S', 'L', 'A'],
-    HWB: ['H', 'W', 'B', 'A'],
-    CIELab: ['L', 'a', 'b', 'A'],
-    LCH: ['L', 'C', 'H', 'A'],
-    CMYK: ['C', 'M', 'Y', 'K', 'A']
-};
-export const VALID_COLOR_OBJECTS: Record<string, ColorModel> = {
-    ABGR: ColorModel.RGB,
-    ABHW: ColorModel.HWB,
-    ACHL: ColorModel.LCH,
-    ACKMY: ColorModel.CMYK,
-    AHLS: ColorModel.HSL,
-    ALAB: ColorModel.CIELab,
-    BGR: ColorModel.RGB,
-    BHW: ColorModel.HWB,
-    CHL: ColorModel.LCH,
-    CKMY: ColorModel.CMYK,
-    HLS: ColorModel.HSL,
-    LAB: ColorModel.CIELab
-};
-
-export enum TypeOf {
-    NUMBER = 'number',
-    BOOLEAN = 'boolean'
-}

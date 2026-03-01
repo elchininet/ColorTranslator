@@ -32,7 +32,7 @@ COLORS.forEach((color): void => {
             });
 
             it(`toHEXObject method from ${colorValueStr} => ${JSON.stringify(color.HEXObject)}`, () => {
-                expect(ColorTranslator.toHEXObject(colorValue)).toMatchObject(color.HEXObject);
+                expect(ColorTranslator.toHEXObject(colorValue)).toEqual(color.HEXObject);
             });
 
             // toHEXA
@@ -41,7 +41,7 @@ COLORS.forEach((color): void => {
             });
 
             it(`toHEXAObject method from ${colorValueStr} => ${JSON.stringify(color.HEXAObject)}`, () => {
-                expect(ColorTranslator.toHEXAObject(colorValue)).toMatchObject(color.HEXAObject);
+                expect(ColorTranslator.toHEXAObject(colorValue)).toEqual(color.HEXAObject);
             });
 
             // toRGB
@@ -50,7 +50,7 @@ COLORS.forEach((color): void => {
             });
 
             it(`toRGBObject method from ${colorValueStr} => ${JSON.stringify(color.RGBObject)}`, () => {
-                expect(ColorTranslator.toRGBObject(colorValue, options)).toMatchObject(color.RGBObject);
+                expect(ColorTranslator.toRGBObject(colorValue, options)).toEqual(color.RGBObject);
             });
 
             // toRGBA
@@ -59,7 +59,7 @@ COLORS.forEach((color): void => {
             });
 
             it(`toRGBAObject method from ${colorValueStr} => ${JSON.stringify(color.RGBAObject)}`, () => {
-                expect(ColorTranslator.toRGBAObject(colorValue, options)).toMatchObject(color.RGBAObject);
+                expect(ColorTranslator.toRGBAObject(colorValue, options)).toEqual(color.RGBAObject);
             });
 
             // toHSL
@@ -68,7 +68,7 @@ COLORS.forEach((color): void => {
             });
 
             it(`toHSLObject method from ${colorValueStr} => ${JSON.stringify(color.HSLObject)}`, () => {
-                expect(ColorTranslator.toHSLObject(colorValue, options)).toMatchObject(color.HSLObject);
+                expect(ColorTranslator.toHSLObject(colorValue, options)).toEqual(color.HSLObject);
             });
 
             // toHSLA
@@ -77,7 +77,7 @@ COLORS.forEach((color): void => {
             });
 
             it(`toHSLAObject method from ${colorValueStr} => ${JSON.stringify(color.HSLAObject)}`, () => {
-                expect(ColorTranslator.toHSLAObject(colorValue, options)).toMatchObject(color.HSLAObject);
+                expect(ColorTranslator.toHSLAObject(colorValue, options)).toEqual(color.HSLAObject);
             });
 
             // toHWB
@@ -86,7 +86,7 @@ COLORS.forEach((color): void => {
             });
 
             it(`toHWBObject method from ${colorValueStr} => ${JSON.stringify(color.HWBObject)}`, () => {
-                expect(ColorTranslator.toHWBObject(colorValue, options)).toMatchObject(color.HWBObject);
+                expect(ColorTranslator.toHWBObject(colorValue, options)).toEqual(color.HWBObject);
             });
 
             // toHWBA
@@ -95,9 +95,91 @@ COLORS.forEach((color): void => {
             });
 
             it(`toHWBAObject method from ${colorValueStr} => ${JSON.stringify(color.HWBAObject)}`, () => {
-                expect(ColorTranslator.toHWBAObject(colorValue, options)).toMatchObject(color.HWBAObject);
+                expect(ColorTranslator.toHWBAObject(colorValue, options)).toEqual(color.HWBAObject);
             });
 
+        });
+
+    });
+
+    describe('Colors static methods round trip', () => {
+
+        it('HEX round trip', () => {
+            expect(
+                ColorTranslator.toHEX(color.HEX)
+            ).toBe(color.HEX);
+            expect(
+                ColorTranslator.toHEXA(color.HEXA)
+            ).toBe(color.HEXA);
+            expect(
+                ColorTranslator.toHEXObject(color.HEXObject)
+            ).toEqual(color.HEXObject);
+            expect(
+                ColorTranslator.toHEXAObject(color.HEXAObject)
+            ).toEqual(color.HEXAObject);
+        });
+
+        it('RGB round trip', () => {
+            expect(
+                ColorTranslator.toRGB(color.RGB)
+            ).toBe(color.RGB);
+            expect(
+                ColorTranslator.toRGBA(color.RGBA)
+            ).toBe(color.RGBA);
+            expect(
+                ColorTranslator.toRGBObject(color.RGBObject)
+            ).toEqual(color.RGBObject);
+            expect(
+                ColorTranslator.toRGBAObject(color.RGBAObject)
+            ).toEqual(color.RGBAObject);
+            expect(
+                ColorTranslator.toRGB(color.RGBLegacy)
+            ).toBe(color.RGBLegacy);
+            expect(
+                ColorTranslator.toRGBA(color.RGBALegacy)
+            ).toBe(color.RGBALegacy);
+        });
+
+        it('HSL round trip', () => {
+            expect(
+                ColorTranslator.toHSL(color.HSL)
+            ).toBe(color.HSL);
+            expect(
+                ColorTranslator.toHSLA(color.HSLA)
+            ).toBe(color.HSLA);
+            expect(
+                ColorTranslator.toHSLA(color.HSLAInPercentages)
+            ).toBe(color.HSLAInPercentages);
+            expect(
+                ColorTranslator.toHSLObject(color.HSLObject)
+            ).toEqual(color.HSLObject);
+            expect(
+                ColorTranslator.toHSLAObject(color.HSLAObject)
+            ).toEqual(color.HSLAObject);
+            expect(
+                ColorTranslator.toHSL(color.HSLLegacy)
+            ).toBe(color.HSLLegacy);
+            expect(
+                ColorTranslator.toHSLA(color.HSLALegacy)
+            ).toBe(color.HSLALegacy);
+        });
+
+        it('HWB round trip', () => {
+            expect(
+                ColorTranslator.toHWB(color.HWB)
+            ).toBe(color.HWB);
+            expect(
+                ColorTranslator.toHWBA(color.HWBA)
+            ).toBe(color.HWBA);
+            expect(
+                ColorTranslator.toHWBA(color.HWBAInPercentage)
+            ).toBe(color.HWBAInPercentage);
+            expect(
+                ColorTranslator.toHWBObject(color.HWBObject)
+            ).toEqual(color.HWBObject);
+            expect(
+                ColorTranslator.toHWBAObject(color.HWBAObject)
+            ).toEqual(color.HWBAObject);
         });
 
     });
@@ -140,11 +222,11 @@ LAB_AND_LCH_COLORS.forEach((color) => {
         });
 
         it(`toCIELabObject => ${ JSON.stringify(color.CIELabObject) }`, () => {
-            expect(ColorTranslator.toCIELabObject(keyword, options)).toMatchObject(color.CIELabObject);
+            expect(ColorTranslator.toCIELabObject(keyword, options)).toEqual(color.CIELabObject);
         });
 
         it(`toCIELabAObject => ${ JSON.stringify(color.CIELabAObject) }`, () => {
-            expect(ColorTranslator.toCIELabAObject(keyword, options)).toMatchObject(color.CIELabAObject);
+            expect(ColorTranslator.toCIELabAObject(keyword, options)).toEqual(color.CIELabAObject);
         });
 
         // LCH
@@ -169,11 +251,57 @@ LAB_AND_LCH_COLORS.forEach((color) => {
         });
 
         it(`toLCHObject => ${ JSON.stringify(color.LCHObject) }`, () => {
-            expect(ColorTranslator.toLCHObject(keyword, options)).toMatchObject(color.LCHObject);
+            expect(ColorTranslator.toLCHObject(keyword, options)).toEqual(color.LCHObject);
         });
 
         it(`toLCHAObject => ${ JSON.stringify(color.LCHAObject) }`, () => {
-            expect(ColorTranslator.toLCHAObject(keyword, options)).toMatchObject(color.LCHAObject);
+            expect(ColorTranslator.toLCHAObject(keyword, options)).toEqual(color.LCHAObject);
+        });
+
+    });
+
+    describe('CIELab and LCH static methods round trip', () => {
+
+        it('CIELab round trip', () => {
+            expect(
+                ColorTranslator.toCIELab(color.CIELab)
+            ).toBe(color.CIELab);
+            expect(
+                ColorTranslator.toCIELab(color.CIELabInPrcentage)
+            ).toBe(color.CIELabInPrcentage);
+            expect(
+                ColorTranslator.toCIELabA(color.CIELabA)
+            ).toBe(color.CIELabA);
+            expect(
+                ColorTranslator.toCIELabA(color.CIELabAInPrcentage)
+            ).toBe(color.CIELabAInPrcentage);
+            expect(
+                ColorTranslator.toCIELabObject(color.CIELabObject)
+            ).toEqual(color.CIELabObject);
+            expect(
+                ColorTranslator.toCIELabAObject(color.CIELabAObject)
+            ).toEqual(color.CIELabAObject);
+        });
+
+        it('LCH round trip', () => {
+            expect(
+                ColorTranslator.toLCH(color.LCH)
+            ).toBe(color.LCH);
+            expect(
+                ColorTranslator.toLCH(color.LCHInPercentage)
+            ).toBe(color.LCHInPercentage);
+            expect(
+                ColorTranslator.toLCHA(color.LCHA)
+            ).toBe(color.LCHA);
+            expect(
+                ColorTranslator.toLCHA(color.LCHAInPercentage)
+            ).toBe(color.LCHAInPercentage);
+            expect(
+                ColorTranslator.toLCHObject(color.LCHObject)
+            ).toEqual(color.LCHObject);
+            expect(
+                ColorTranslator.toLCHAObject(color.LCHAObject)
+            ).toEqual(color.LCHAObject);
         });
 
     });
@@ -193,7 +321,7 @@ COLORS.forEach((color): void => {
             expect(ColorTranslator.toHWBA(color.RGBObject, optionsNoDecimals)).toBe(color.HWBA);
         });
 
-        it('Legacy conversion', () => {
+        it(' Legacy conversion', () => {
             expect(ColorTranslator.toRGB(color.HSLLegacy, optionsNoDecimals)).toBe(color.RGBLegacy);
             expect(ColorTranslator.toRGBA(color.HSLALegacy, optionsNoDecimals)).toBe(color.RGBALegacy);
             expect(ColorTranslator.toHSL(color.RGBALegacy, optionsNoDecimals)).toBe(color.HSLLegacy);
@@ -218,7 +346,7 @@ CMYK_COLORS.forEach((color) => {
             });
 
             it(`toCMYKObject method from ${colorValueStr} => ${JSON.stringify(color.CMYKIntObject100)}`, () => {
-                expect(ColorTranslator.toCMYKObject(colorValue, options)).toMatchObject(color.CMYKIntObject100);
+                expect(ColorTranslator.toCMYKObject(colorValue, options)).toEqual(color.CMYKIntObject100);
             });
 
             // toCMYKA
@@ -227,7 +355,7 @@ CMYK_COLORS.forEach((color) => {
             });
 
             it(`toCMYKAObject method from ${colorValueStr} => ${JSON.stringify(color.CMYKIntObject100WithAlpha)}`, () => {
-                expect(ColorTranslator.toCMYKAObject(colorValue, options)).toMatchObject(color.CMYKIntObject100WithAlpha);
+                expect(ColorTranslator.toCMYKAObject(colorValue, options)).toEqual(color.CMYKIntObject100WithAlpha);
             });
 
             it(`toCMYK method with decimals from ${colorValueStr}`, () => {
@@ -254,6 +382,71 @@ CMYK_COLORS.forEach((color) => {
                 expect(ColorTranslator.toCMYKAObject(colorValue)).toMatchSnapshot();
             });
 
+        });
+
+        describe('Conversion from CMYK', () => {
+            expect(ColorTranslator.toHEX(colorValue)).toBe(
+                ColorTranslator.toHEX(color.RGB)
+            );
+        });
+
+    });
+
+    describe('CMYK static methods round trip', () => {
+        it('CMYK round trip', () => {
+            expect(
+                ColorTranslator.toCMYK(color.CMYK)
+            ).toBe(color.CMYK);
+            expect(
+                ColorTranslator.toCMYKA(color.CMYKWithAlpha)
+            ).toBe(color.CMYKWithAlpha);
+            expect(
+                ColorTranslator.toCMYKA(color.CMYKWithAlphaInPercentages)
+            ).toBe(color.CMYKWithAlphaInPercentages);
+
+            expect(
+                ColorTranslator.toCMYK(color.CMYKInt)
+            ).toBe(color.CMYKInt);
+            expect(
+                ColorTranslator.toCMYKA(color.CMYKIntWithAlpha)
+            ).toBe(color.CMYKIntWithAlpha);
+            expect(
+                ColorTranslator.toCMYKA(color.CMYKIntWithAlphaInPercentages)
+            ).toBe(color.CMYKIntWithAlphaInPercentages);
+
+            expect(
+                ColorTranslator.toCMYK(color.CMYKLegacy)
+            ).toBe(color.CMYKLegacy);
+            expect(
+                ColorTranslator.toCMYKA(color.CMYKLegacyWithAlpha)
+            ).toBe(color.CMYKLegacyWithAlpha);
+
+            expect(
+                 ColorTranslator.toCMYK(color.CMYKIntLegacy)
+            ).toBe(color.CMYKIntLegacy);
+            expect(
+                ColorTranslator.toCMYKA(color.CMYKIntLegacyWithAlpha)
+            ).toBe(color.CMYKIntLegacyWithAlpha);
+            expect(
+                ColorTranslator.toCMYKA(color.CMYKIntWithAlphaInPercentages)
+            ).toBe(color.CMYKIntWithAlphaInPercentages);
+            
+            // The round-trips for objects should go always to int 100
+            expect(
+                ColorTranslator.toCMYKObject(color.CMYKObject)
+            ).toEqual(color.CMYKIntObject100);
+            expect(
+                ColorTranslator.toCMYKObject(color.CMYKIntObject)
+            ).toEqual(color.CMYKIntObject100);
+            expect(
+                ColorTranslator.toCMYKObject(color.CMYKIntObject100)
+            ).toEqual(color.CMYKIntObject100);
+            expect(
+                ColorTranslator.toCMYKAObject(color.CMYKIntObjectWithAlpha)
+            ).toEqual(color.CMYKIntObject100WithAlpha);
+            expect(
+                ColorTranslator.toCMYKAObject(color.CMYKIntObject100WithAlpha)
+            ).toEqual(color.CMYKIntObject100WithAlpha);
         });
 
     });

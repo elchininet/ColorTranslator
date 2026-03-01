@@ -655,16 +655,16 @@ describe('ColorTranslator CSS config options autodetection', () => {
 
         const instancePercentage = new ColorTranslator('device-cmyk(100% 100% 100% 100%)');
 
-        expect(instancePercentage.CMYK).toBe('device-cmyk(0% 0% 0% 100%)');
-        expect(instancePercentage.CMYKA).toBe('device-cmyk(0% 0% 0% 100% / 1)');
+        expect(instancePercentage.CMYK).toBe('device-cmyk(100% 100% 100% 100%)');
+        expect(instancePercentage.CMYKA).toBe('device-cmyk(100% 100% 100% 100% / 1)');
 
         const instanceNone = new ColorTranslator('device-cmyk(1 1 1 1)');
 
-        expect(instanceNone.CMYK).toBe('device-cmyk(0 0 0 1)');
-        expect(instanceNone.CMYKA).toBe('device-cmyk(0 0 0 1 / 1)');
+        expect(instanceNone.CMYK).toBe('device-cmyk(1 1 1 1)');
+        expect(instanceNone.CMYKA).toBe('device-cmyk(1 1 1 1 / 1)');
 
-        expect(ColorTranslator.toCMYK('device-cmyk(100% 100% 100% 100% / 0.5)')).toBe('device-cmyk(0% 0% 0% 100%)');
-        expect(ColorTranslator.toCMYKA('device-cmyk(1 1 1 1)')).toBe('device-cmyk(0 0 0 1 / 1)');
+        expect(ColorTranslator.toCMYK('device-cmyk(100% 100% 100% 100% / 0.5)')).toBe('device-cmyk(100% 100% 100% 100%)');
+        expect(ColorTranslator.toCMYKA('device-cmyk(1 1 1 1)')).toBe('device-cmyk(1 1 1 1 / 1)');
 
     });
 
@@ -753,7 +753,7 @@ describe('ColorTranslator CSS config options autodetection', () => {
             }
         );
 
-        expect(instanceWrong.options).toMatchObject(DEFAULT_OPTIONS);
+        expect(instanceWrong.options).toEqual(DEFAULT_OPTIONS);
 
     });
 
