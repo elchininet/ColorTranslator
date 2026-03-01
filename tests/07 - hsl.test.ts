@@ -20,11 +20,11 @@ COLORS.forEach((item): void => {
 
             expect(ColorTranslator.toRGB(HSLPercentages, options)).toBe(item.RGB);
             expect(ColorTranslator.toRGB(HSLPercentages, legacyOptions)).toBe(item.RGBLegacy);
-            expect(ColorTranslator.toRGBObject(HSLPercentages, options)).toMatchObject(item.RGBObject);
+            expect(ColorTranslator.toRGBObject(HSLPercentages, options)).toEqual(item.RGBObject);
 
             expect(ColorTranslator.toHSL(HSLPercentages, options)).toBe(item.HSL);
             expect(ColorTranslator.toHSL(HSLPercentages, legacyOptions)).toBe(item.HSLLegacy);
-            expect(ColorTranslator.toHSLObject(HSLPercentages, options)).toMatchObject(item.HSLObject);
+            expect(ColorTranslator.toHSLObject(HSLPercentages, options)).toEqual(item.HSLObject);
 
             expect(ColorTranslator.toRGB(HSLPercentages)).toMatchSnapshot();
             expect(ColorTranslator.toHSL(HSLPercentages)).toMatchSnapshot();
@@ -35,11 +35,11 @@ COLORS.forEach((item): void => {
 
             expect(ColorTranslator.toRGBA(HSLAPercentages, options)).toBe(item.RGBA);
             expect(ColorTranslator.toRGBA(HSLAPercentages, legacyOptions)).toBe(item.RGBALegacy);
-            expect(ColorTranslator.toRGBAObject(HSLAPercentages, options)).toMatchObject(item.RGBAObject);
+            expect(ColorTranslator.toRGBAObject(HSLAPercentages, options)).toEqual(item.RGBAObject);
 
             expect(ColorTranslator.toHSLA(HSLAPercentages, options)).toBe(item.HSLA);
             expect(ColorTranslator.toHSLA(HSLAPercentages, legacyOptions)).toBe(item.HSLALegacy);
-            expect(ColorTranslator.toHSLAObject(HSLAPercentages, options)).toMatchObject(item.HSLAObject);
+            expect(ColorTranslator.toHSLAObject(HSLAPercentages, options)).toEqual(item.HSLAObject);
 
             expect(ColorTranslator.toRGBA(HSLAPercentages)).toMatchSnapshot();
             expect(ColorTranslator.toHSLA(HSLAPercentages)).toMatchSnapshot();
@@ -50,11 +50,11 @@ COLORS.forEach((item): void => {
 
             expect(ColorTranslator.toRGB(HSLBigHue, options)).toBe(item.RGB);
             expect(ColorTranslator.toRGB(HSLBigHue, legacyOptions)).toBe(item.RGBLegacy);
-            expect(ColorTranslator.toRGBObject(HSLBigHue, options)).toMatchObject(item.RGBObject);
+            expect(ColorTranslator.toRGBObject(HSLBigHue, options)).toEqual(item.RGBObject);
 
             expect(ColorTranslator.toHSL(HSLBigHue, options)).toBe(item.HSL);
             expect(ColorTranslator.toHSL(HSLBigHue, legacyOptions)).toBe(item.HSLLegacy);
-            expect(ColorTranslator.toHSLObject(HSLBigHue, options)).toMatchObject(item.HSLObject);
+            expect(ColorTranslator.toHSLObject(HSLBigHue, options)).toEqual(item.HSLObject);
 
         });
 
@@ -62,11 +62,11 @@ COLORS.forEach((item): void => {
 
             expect(ColorTranslator.toRGBA(HSLABigHue, options)).toBe(item.RGBA);
             expect(ColorTranslator.toRGBA(HSLABigHue, legacyOptions)).toBe(item.RGBALegacy);
-            expect(ColorTranslator.toRGBAObject(HSLABigHue, options)).toMatchObject(item.RGBAObject);
+            expect(ColorTranslator.toRGBAObject(HSLABigHue, options)).toEqual(item.RGBAObject);
 
             expect(ColorTranslator.toHSLA(HSLABigHue, options)).toBe(item.HSLA);
             expect(ColorTranslator.toHSLA(HSLABigHue, legacyOptions)).toBe(item.HSLALegacy);
-            expect(ColorTranslator.toHSLAObject(HSLABigHue, options)).toMatchObject(item.HSLAObject);
+            expect(ColorTranslator.toHSLAObject(HSLABigHue, options)).toEqual(item.HSLAObject);
 
         });
 
@@ -74,11 +74,11 @@ COLORS.forEach((item): void => {
 
             expect(ColorTranslator.toRGB(HSLLowHue, options)).toBe(item.RGB);
             expect(ColorTranslator.toRGB(HSLLowHue, legacyOptions)).toBe(item.RGBLegacy);
-            expect(ColorTranslator.toRGBObject(HSLLowHue, options)).toMatchObject(item.RGBObject);
+            expect(ColorTranslator.toRGBObject(HSLLowHue, options)).toEqual(item.RGBObject);
 
             expect(ColorTranslator.toHSL(HSLLowHue, options)).toBe(item.HSL);
             expect(ColorTranslator.toHSL(HSLLowHue, legacyOptions)).toBe(item.HSLLegacy);
-            expect(ColorTranslator.toHSLObject(HSLLowHue, options)).toMatchObject(item.HSLObject);
+            expect(ColorTranslator.toHSLObject(HSLLowHue, options)).toEqual(item.HSLObject);
 
         });
 
@@ -86,11 +86,11 @@ COLORS.forEach((item): void => {
 
             expect(ColorTranslator.toRGBA(HSLALowHue, options)).toBe(item.RGBA);
             expect(ColorTranslator.toRGBA(HSLALowHue, legacyOptions)).toBe(item.RGBALegacy);
-            expect(ColorTranslator.toRGBAObject(HSLALowHue, options)).toMatchObject(item.RGBAObject);
+            expect(ColorTranslator.toRGBAObject(HSLALowHue, options)).toEqual(item.RGBAObject);
 
             expect(ColorTranslator.toHSLA(HSLALowHue, options)).toBe(item.HSLA);
             expect(ColorTranslator.toHSLA(HSLALowHue, legacyOptions)).toBe(item.HSLALegacy);
-            expect(ColorTranslator.toHSLAObject(HSLALowHue, options)).toMatchObject(item.HSLAObject);
+            expect(ColorTranslator.toHSLAObject(HSLALowHue, options)).toEqual(item.HSLAObject);
 
         });
 

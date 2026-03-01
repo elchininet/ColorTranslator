@@ -34,12 +34,12 @@ COLORS.forEach((color): void => {
 
             // HEXObject
             it(`HEXObject property => ${JSON.stringify(color.HEXObject)}`, () => {
-                expect(instance.HEXObject).toMatchObject(color.HEXObject);
+                expect(instance.HEXObject).toEqual(color.HEXObject);
             });
 
             // HEXAObject
             it(`HEXAObject property => ${JSON.stringify(color.HEXAObject)}`, () => {
-                expect(instance.HEXAObject).toMatchObject(color.HEXAObject);
+                expect(instance.HEXAObject).toEqual(color.HEXAObject);
             });
 
             // RGB
@@ -56,12 +56,12 @@ COLORS.forEach((color): void => {
 
             // RGBObject
             it(`RGBObject property => ${JSON.stringify(color.RGBObject)}`, () => {
-                expect(instance.RGBObject).toMatchObject(color.RGBObject);
+                expect(instance.RGBObject).toEqual(color.RGBObject);
             });
 
             // RGBAObject
             it(`RGBAObject property => ${JSON.stringify(color.RGBAObject)}`, () => {
-                expect(instance.RGBAObject).toMatchObject(color.RGBAObject);
+                expect(instance.RGBAObject).toEqual(color.RGBAObject);
             });
 
             // HSL
@@ -78,12 +78,12 @@ COLORS.forEach((color): void => {
 
             // HSLObject
             it(`HSLObject property => ${JSON.stringify(color.HSLObject)}`, () => {
-                expect(instance.HSLObject).toMatchObject(color.HSLObject);
+                expect(instance.HSLObject).toEqual(color.HSLObject);
             });
 
             // HSLAObject
             it(`HSLAObject property => ${JSON.stringify(color.HSLAObject)}`, () => {
-                expect(instance.HSLAObject).toMatchObject(color.HSLAObject);
+                expect(instance.HSLAObject).toEqual(color.HSLAObject);
             });
 
             // HWB
@@ -100,12 +100,12 @@ COLORS.forEach((color): void => {
 
             // HWBObject
             it(`HWBObject property => ${JSON.stringify(color.HWBObject)}`, () => {
-                expect(instance.HWBObject).toMatchObject(color.HWBObject);
+                expect(instance.HWBObject).toEqual(color.HWBObject);
             });
 
             // HWBAObject
             it(`HWBAObject property => ${JSON.stringify(color.HWBAObject)}`, () => {
-                expect(instance.HWBAObject).toMatchObject(color.HWBAObject);
+                expect(instance.HWBAObject).toEqual(color.HWBAObject);
             });
 
             // H
@@ -188,12 +188,12 @@ CMYK_COLORS.forEach((color) => {
 
             // CMYKObject
             it(`CMYKObject property => ${JSON.stringify(color.CMYKIntObject100)}`, () => {
-                expect(instance.CMYKObject).toMatchObject(color.CMYKIntObject100);
+                expect(instance.CMYKObject).toEqual(color.CMYKIntObject100);
             });
 
             // CMYKAObject
             it(`CMYKAObject property => ${JSON.stringify(color.CMYKIntObject100WithAlpha)}`, () => {
-                expect(instance.CMYKAObject).toMatchObject(color.CMYKIntObject100WithAlpha);
+                expect(instance.CMYKAObject).toEqual(color.CMYKIntObject100WithAlpha);
             });
 
             // C
@@ -257,11 +257,11 @@ LAB_AND_LCH_COLORS.forEach((color) => {
         });
 
         it(`CIELabObject property => ${ JSON.stringify(color.CIELabObject) }`, () => {
-            expect(instanceKeyword.CIELabObject).toMatchObject(color.CIELabObject);
+            expect(instanceKeyword.CIELabObject).toEqual(color.CIELabObject);
         });
 
         it(`CIELabAObject property => ${ JSON.stringify(color.CIELabAObject) }`, () => {
-            expect(instanceKeyword.CIELabAObject).toMatchObject(color.CIELabAObject);
+            expect(instanceKeyword.CIELabAObject).toEqual(color.CIELabAObject);
         });
 
         it(`CIEL property => ${ color.CIELabObject.L }`, () => {
@@ -297,11 +297,11 @@ LAB_AND_LCH_COLORS.forEach((color) => {
         });
 
         it(`LCHObject property => ${ JSON.stringify(color.LCHObject) }`, () => {
-            expect(instanceKeyword.LCHObject).toMatchObject(color.LCHObject);
+            expect(instanceKeyword.LCHObject).toEqual(color.LCHObject);
         });
 
         it(`LCHAObject property => ${ JSON.stringify(color.LCHAObject) }`, () => {
-            expect(instanceKeyword.LCHAObject).toMatchObject(color.LCHAObject);
+            expect(instanceKeyword.LCHAObject).toEqual(color.LCHAObject);
         });
 
         it(`LCHL property => ${ color.LCHObject.L }`, () => {

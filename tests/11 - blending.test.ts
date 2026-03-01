@@ -54,46 +54,46 @@ describe('ColorTranslator blending tests', (): void => {
             const r2 = result2.map(c => obj.colorFn(c));
             const r3 = result3.map(c => obj.colorFn(c));
 
-            expect(obj.blendFn(from, to, r1.length)).toMatchObject(r1);
-            expect(obj.blendFn(from, to, r2.length)).toMatchObject(r2);
-            expect(obj.blendFn(from, to)).toMatchObject(r3);
-            expect(obj.blendFn(from, to, 0)).toMatchObject(r3);
+            expect(obj.blendFn(from, to, r1.length)).toEqual(r1);
+            expect(obj.blendFn(from, to, r2.length)).toEqual(r2);
+            expect(obj.blendFn(from, to)).toEqual(r3);
+            expect(obj.blendFn(from, to, 0)).toEqual(r3);
         });
 
         blendFunctions.forEach((obj): void => {
             const r1 = result1.map(c => obj.colorFn(c, options));
             const r2 = result2.map(c => obj.colorFn(c, options));
 
-            expect(obj.blendFn(from, to, r1.length, options)).toMatchObject(r1);
-            expect(obj.blendFn(from, to, r2.length, options)).toMatchObject(r2);
+            expect(obj.blendFn(from, to, r1.length, options)).toEqual(r1);
+            expect(obj.blendFn(from, to, r2.length, options)).toEqual(r2);
 
             expect(obj.blendFn(from, to).length).toBe(5);
             expect(
                 obj.blendFn(from, to, { decimals: 6 })
-            ).toMatchObject(
+            ).toEqual(
                 obj.blendFn(from, to)
             );
             expect(
                 obj.blendFn(from, to, 4, { decimals: 6 })
-            ).toMatchObject(
+            ).toEqual(
                 obj.blendFn(from, to, 4)
             );
             expect(
                 obj.blendFn(from, to, { cmykUnit: 'percent' })
-            ).toMatchObject(
+            ).toEqual(
                 obj.blendFn(from, to)
             );
             expect(
                 obj.blendFn(from, to, 3, { cmykUnit: 'percent' })
-            ).toMatchObject(
+            ).toEqual(
                 obj.blendFn(from, to, 3)
             );
 
         });
 
         // Check default steps
-        expect(ColorTranslator.getBlendHEX(from, to)).toMatchObject(ColorTranslator.getBlendHEX(from, to, 5));
-        expect(ColorTranslator.getBlendHEX(from, to, -5)).toMatchObject(ColorTranslator.getBlendHEX(from, to, 5));
+        expect(ColorTranslator.getBlendHEX(from, to)).toEqual(ColorTranslator.getBlendHEX(from, to, 5));
+        expect(ColorTranslator.getBlendHEX(from, to, -5)).toEqual(ColorTranslator.getBlendHEX(from, to, 5));
 
     });
 

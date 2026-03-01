@@ -15,7 +15,7 @@ import {
     normalizeHue,
     radians,
     round
-} from '#helpers';
+} from '#utilities';
 
 const MATRIX_LRGB_XYZ_D50: [ColorArray, ColorArray, ColorArray] = [
     [0.4360747, 0.3850649, 0.1430804],
@@ -320,9 +320,21 @@ export const hwbToRgb = (H: number, W: number, B: number): RGBObject => {
 export const cmykToRgb = (C: number, M: number, Y: number, K: number): RGBObject => {
     K = 1 - K;
     return {
-        R: round(BASE_255 * (1 - C) * K),
-        G: round(BASE_255 * (1 - M) * K),
-        B: round(BASE_255 * (1 - Y) * K)
+        R: minmax(
+            round(BASE_255 * (1 - C) * K),
+            0,
+            BASE_255
+        ),
+        G: minmax(
+            round(BASE_255 * (1 - M) * K),
+            0,
+            BASE_255
+        ),
+        B: minmax(
+            round(BASE_255 * (1 - Y) * K),
+            0,
+            BASE_255
+        )
     };
 };
 

@@ -22,8 +22,8 @@ COLORS.forEach((item): void => {
             const lcha = ColorTranslator.toLCHAObject(item.HEX);
             const hex = ColorTranslator.toHEXObject(lch);
             const hexa = ColorTranslator.toHEXAObject(lcha);
-            expect(hex).toMatchObject(item.HEXObject);
-            expect(hexa).toMatchObject(item.HEXAObject);
+            expect(hex).toEqual(item.HEXObject);
+            expect(hexa).toEqual(item.HEXAObject);
 
         });
 

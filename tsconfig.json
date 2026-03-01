@@ -12,11 +12,13 @@
     "baseUrl": "./src",
     "paths": {
       "@types": ["@types"],
-      "#helpers": ["helpers"],
       "#constants": ["constants"],
+      "#classes/*": ["classes/*"],
       "#color/*": ["color/*"],
+      "#css": ["css"],
       "#parsers": ["parsers"],
-      "#returns": ["returns"]
+      "#returns": ["returns"],
+      "#utilities": ["utilities"]
     }
   },
   "include": ["src/**/*.ts"],
