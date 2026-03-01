@@ -21,7 +21,6 @@ import {
     MixString
 } from '#constants';
 import {
-    getOptionsFromColorInput,
     isHarmony,
     isNumber,
     isString,
@@ -37,7 +36,7 @@ import {
     rybToRgb
 } from '#color/translators';
 import { getRGB } from '#color/rgb';
-import { colorParserContext } from '#parsers';
+import { colorParserContext, getOptionsFromColorInput } from '#parsers';
 
 //---Blending
 const blend = (from: RGBObject, to: RGBObject, steps: number): RGBObject[] => {

@@ -44,12 +44,11 @@ import {
 } from '#color/translators';
 import {
     getColorModel,
-    getOptionsFromColorInput,
     minmax,
     normalizeHue,
     round
 } from '#utilities';
-import { colorParserContext } from '#parsers';
+import { colorParserContext, getOptionsFromColorInput } from '#parsers';
 import {
     getBlendReturn,
     getBlendReturnParams,
