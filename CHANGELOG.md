@@ -1,5 +1,11 @@
 # Changelog
 
+## [6.0.0] - 2026-03-01
+
+- Complete refactoring of the library and how the color conversion is managed
+- Fix conversions round trip
+- Fix a bug in CMYK to RGB conversion
+
 ## [5.0.0] - 2025-06-06
 
 - Add support for HWB colors (hue, whiteness and blackness)

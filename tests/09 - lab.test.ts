@@ -52,7 +52,7 @@ COLORS.forEach((item): void => {
                 color.CIELabInPrcentage,
                 color.CIELabObject,
                 color.CIELabA,
-                color.CIELabAInPrcentage,
+                color.CIELabAInPercentage,
                 color.CIELabAObject
             ])('round trip of %s', (lab) => {
                 expect(
@@ -70,7 +70,7 @@ COLORS.forEach((item): void => {
                 ).toBe(color.CIELabA);
                 expect(
                     new ColorTranslator(lab, { legacyCSS: false, labUnit: 'percent', decimals: 0, alphaUnit: 'percent' }).CIELabA
-                ).toBe(color.CIELabAInPrcentage);
+                ).toBe(color.CIELabAInPercentage);
                 expect(
                     new ColorTranslator(lab, { decimals: 0 }).CIELabAObject
                 ).toEqual(color.CIELabAObject);

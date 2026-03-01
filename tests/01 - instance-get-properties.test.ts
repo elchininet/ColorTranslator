@@ -252,8 +252,8 @@ LAB_AND_LCH_COLORS.forEach((color) => {
             expect(instanceKeywordPercentages.CIELab).toBe(color.CIELabInPrcentage);
         });
 
-        it(`CIELabA property in percentages => ${ color.CIELabAInPrcentage }`, () => {
-            expect(instanceKeywordPercentages.CIELabA).toBe(color.CIELabAInPrcentage);
+        it(`CIELabA property in percentages => ${ color.CIELabAInPercentage }`, () => {
+            expect(instanceKeywordPercentages.CIELabA).toBe(color.CIELabAInPercentage);
         });
 
         it(`CIELabObject property => ${ JSON.stringify(color.CIELabObject) }`, () => {
@@ -314,6 +314,42 @@ LAB_AND_LCH_COLORS.forEach((color) => {
 
         it(`LCHH property => ${ color.LCHObject.H }`, () => {
             expect(instanceKeyword.LCHH).toBe(color.LCHObject.H);
+        });
+
+    });
+
+    describe('CIELab and LCH round trip', () => {
+
+        it('CIELab round trip', () => {
+            const instance = new ColorTranslator(color.CIELab);
+            const instancePercentages = new ColorTranslator(color.CIELabInPrcentage);
+            const instanceAlpha = new ColorTranslator(color.CIELabA);
+            const instanceAlphaPercentages = new ColorTranslator(color.CIELabAInPercentage);
+            const instanceObject = new ColorTranslator(color.CIELabObject);
+            const instanceAlphaObject = new ColorTranslator(color.CIELabAObject);
+
+            expect(instance.CIELab).toBe(color.CIELab);
+            expect(instancePercentages.CIELab).toBe(color.CIELabInPrcentage);
+            expect(instanceAlpha.CIELabA).toBe(color.CIELabA);
+            expect(instanceAlphaPercentages.CIELabA).toBe(color.CIELabAInPercentage);
+            expect(instanceObject.CIELabObject).toEqual(color.CIELabObject);
+            expect(instanceAlphaObject.CIELabAObject).toEqual(color.CIELabAObject);
+        });
+
+        it('LCH round trip', () => {
+            const instance = new ColorTranslator(color.LCH);
+            const instancePercentages = new ColorTranslator(color.LCHInPercentage);
+            const instanceAlpha = new ColorTranslator(color.LCHA);
+            const instanceAlphaPercentages = new ColorTranslator(color.LCHAInPercentage);
+            const instanceObject = new ColorTranslator(color.LCHObject);
+            const instanceAlphaObject = new ColorTranslator(color.LCHAObject);
+
+            expect(instance.LCH).toBe(color.LCH);
+            expect(instancePercentages.LCH).toBe(color.LCHInPercentage);
+            expect(instanceAlpha.LCHA).toBe(color.LCHA);
+            expect(instanceAlphaPercentages.LCHA).toBe(color.LCHAInPercentage);
+            expect(instanceObject.LCHObject).toEqual(color.LCHObject);
+            expect(instanceAlphaObject.LCHAObject).toEqual(color.LCHAObject);
         });
 
     });

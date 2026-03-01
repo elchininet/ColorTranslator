@@ -133,10 +133,10 @@ LAB_AND_LCH_COLORS.forEach((color) => {
             expect(ColorTranslator.toCIELabA(keyword, options)).toBe(color.CIELabA);
         });
 
-        it(`toCIELabA with parcentages => ${ color.CIELabAInPrcentage }`, () => {
+        it(`toCIELabA with parcentages => ${ color.CIELabAInPercentage }`, () => {
             expect(
                 ColorTranslator.toCIELabA(keyword, optionsWithPercentage)
-            ).toBe(color.CIELabAInPrcentage);
+            ).toBe(color.CIELabAInPercentage);
         });
 
         it(`toCIELabObject => ${ JSON.stringify(color.CIELabObject) }`, () => {
@@ -174,6 +174,52 @@ LAB_AND_LCH_COLORS.forEach((color) => {
 
         it(`toLCHAObject => ${ JSON.stringify(color.LCHAObject) }`, () => {
             expect(ColorTranslator.toLCHAObject(keyword, options)).toEqual(color.LCHAObject);
+        });
+
+    });
+
+    describe('CIELab and LCH static methods round trip', () => {
+
+        it('CIELab round trip', () => {
+            expect(
+                ColorTranslator.toCIELab(color.CIELab)
+            ).toBe(color.CIELab);
+            expect(
+                ColorTranslator.toCIELab(color.CIELabInPrcentage)
+            ).toBe(color.CIELabInPrcentage);
+            expect(
+                ColorTranslator.toCIELabA(color.CIELabA)
+            ).toBe(color.CIELabA);
+            expect(
+                ColorTranslator.toCIELabA(color.CIELabAInPercentage)
+            ).toBe(color.CIELabAInPercentage);
+            expect(
+                ColorTranslator.toCIELabObject(color.CIELabObject)
+            ).toEqual(color.CIELabObject);
+            expect(
+                ColorTranslator.toCIELabAObject(color.CIELabAObject)
+            ).toEqual(color.CIELabAObject);
+        });
+
+        it('LCH round trip', () => {
+            expect(
+                ColorTranslator.toLCH(color.LCH)
+            ).toBe(color.LCH);
+            expect(
+                ColorTranslator.toLCH(color.LCHInPercentage)
+            ).toBe(color.LCHInPercentage);
+            expect(
+                ColorTranslator.toLCHA(color.LCHA)
+            ).toBe(color.LCHA);
+            expect(
+                ColorTranslator.toLCHA(color.LCHAInPercentage)
+            ).toBe(color.LCHAInPercentage);
+            expect(
+                ColorTranslator.toLCHObject(color.LCHObject)
+            ).toEqual(color.LCHObject);
+            expect(
+                ColorTranslator.toLCHAObject(color.LCHAObject)
+            ).toEqual(color.LCHAObject);
         });
 
     });
@@ -256,7 +302,7 @@ CMYK_COLORS.forEach((color) => {
 
         });
 
-        describe('Conversion fro CMYK', () => {
+        describe('Conversion from CMYK', () => {
             expect(ColorTranslator.toHEX(colorValue)).toBe(
                 ColorTranslator.toHEX(color.RGB)
             );
