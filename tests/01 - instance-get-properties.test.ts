@@ -158,6 +158,70 @@ COLORS.forEach((color): void => {
 
     });
 
+    describe('Colors properties round trip', () => {
+
+        it('HEX round trip', () => {
+            const instance = new ColorTranslator(color.HEX);
+            const instanceAlpha = new ColorTranslator(color.HEXA);
+            const instanceObject = new ColorTranslator(color.HEXObject);
+            const instanceAlphaObject = new ColorTranslator(color.HEXAObject);
+
+            expect(instance.HEX).toBe(color.HEX);
+            expect(instanceAlpha.HEXA).toBe(color.HEXA);
+            expect(instanceObject.HEXObject).toEqual(color.HEXObject);
+            expect(instanceAlphaObject.HEXAObject).toEqual(color.HEXAObject);
+        });
+
+        it('RGB round trip', () => {
+            const instance = new ColorTranslator(color.RGB);
+            const instanceAlpha = new ColorTranslator(color.RGBA);
+            const instanceObject = new ColorTranslator(color.RGBObject);
+            const instanceAlphaObject = new ColorTranslator(color.RGBAObject);
+            const legacyInstance = new ColorTranslator(color.RGBLegacy);
+            const legacyInstanceAlpha = new ColorTranslator(color.RGBALegacy);
+
+            expect(instance.RGB).toBe(color.RGB);
+            expect(instanceAlpha.RGBA).toBe(color.RGBA);
+            expect(instanceObject.RGBObject).toEqual(color.RGBObject);
+            expect(instanceAlphaObject.RGBAObject).toEqual(color.RGBAObject);
+            expect(legacyInstance.RGB).toBe(color.RGBLegacy);
+            expect(legacyInstanceAlpha.RGBA).toBe(color.RGBALegacy);
+        });
+
+        it('HSL round trip', () => {
+            const instance = new ColorTranslator(color.HSL);
+            const instanceAlpha = new ColorTranslator(color.HSLA);
+            const instancePercentages = new ColorTranslator(color.HSLAInPercentages);
+            const instanceObject = new ColorTranslator(color.HSLObject);
+            const instanceAlphaObject = new ColorTranslator(color.HSLAObject);
+            const legacyInstance = new ColorTranslator(color.HSLLegacy);
+            const legacyInstanceAlpha = new ColorTranslator(color.HSLALegacy);
+
+            expect(instance.HSL).toBe(color.HSL);
+            expect(instanceAlpha.HSLA).toBe(color.HSLA);
+            expect(instancePercentages.HSLA).toBe(color.HSLAInPercentages);
+            expect(instanceObject.HSLObject).toEqual(color.HSLObject);
+            expect(instanceAlphaObject.HSLAObject).toEqual(color.HSLAObject);
+            expect(legacyInstance.HSL).toBe(color.HSLLegacy);
+            expect(legacyInstanceAlpha.HSLA).toBe(color.HSLALegacy);
+        });
+
+        it('HWB round trip', () => {
+            const instance = new ColorTranslator(color.HWB);
+            const instanceAlpha = new ColorTranslator(color.HWBA);
+            const instanceAlphaPercentage = new ColorTranslator(color.HWBAInPercentage);
+            const instanceObject = new ColorTranslator(color.HWBObject);
+            const instanceAlphaObject = new ColorTranslator(color.HWBAObject);
+
+            expect(instance.HWB).toBe(color.HWB);
+            expect(instanceAlpha.HWBA).toBe(color.HWBA);
+            expect(instanceAlphaPercentage.HWBA).toBe(color.HWBAInPercentage);
+            expect(instanceObject.HWBObject).toEqual(color.HWBObject);
+            expect(instanceAlphaObject.HWBAObject).toEqual(color.HWBAObject);
+        });
+
+    });
+
 });
 
 CMYK_COLORS.forEach((color) => {
@@ -216,6 +280,55 @@ CMYK_COLORS.forEach((color) => {
                 expect(instance.K).toBe(color.CMYKIntObject100.K);
             });
 
+        });
+
+    });
+
+    describe('CMYK colors properties round trip', () => {
+
+        it('CMYK round trip', () => {
+            const instance = new ColorTranslator(color.CMYK);
+            const instanceAlpha = new ColorTranslator(color.CMYKWithAlpha);
+            const instanceAlphaPercentages = new ColorTranslator(color.CMYKWithAlphaInPercentages);
+
+            const instanceInt = new ColorTranslator(color.CMYKInt);
+            const instanceIntAlpha = new ColorTranslator(color.CMYKIntWithAlpha);
+            const instanceIntAlphaPercentages = new ColorTranslator(color.CMYKIntWithAlphaInPercentages);
+            
+            const instanceLegacy = new ColorTranslator(color.CMYKLegacy);
+            const instanceLegacyAlpha = new ColorTranslator(color.CMYKLegacyWithAlpha);
+
+            const instanceIntLegacy = new ColorTranslator(color.CMYKIntLegacy);
+            const instanceIntLegacyAlpha = new ColorTranslator(color.CMYKIntLegacyWithAlpha);
+            const instanceIntLegacyAlphaPercentages = new ColorTranslator(color.CMYKIntWithAlphaInPercentages);
+
+            const instanceObject = new ColorTranslator(color.CMYKObject);
+            const instanceIntObject = new ColorTranslator(color.CMYKIntObject);
+            const instanceInt100Object = new ColorTranslator(color.CMYKIntObject100);
+            const instanceIntAlphaObject = new ColorTranslator(color.CMYKIntObjectWithAlpha);
+            const instanceInt100AlphaObject = new ColorTranslator(color.CMYKIntObject100WithAlpha);
+
+            expect(instance.CMYK).toBe(color.CMYK);
+            expect(instanceAlpha.CMYKA).toBe(color.CMYKWithAlpha);
+            expect(instanceAlphaPercentages.CMYKA).toBe(color.CMYKWithAlphaInPercentages);
+
+            expect(instanceInt.CMYK).toBe(color.CMYKInt);
+            expect(instanceIntAlpha.CMYKA).toBe(color.CMYKIntWithAlpha);
+            expect(instanceIntAlphaPercentages.CMYKA).toBe(color.CMYKIntWithAlphaInPercentages);
+
+            expect(instanceLegacy.CMYK).toBe(color.CMYKLegacy);
+            expect(instanceLegacyAlpha.CMYKA).toBe(color.CMYKLegacyWithAlpha);
+
+            expect(instanceIntLegacy.CMYK).toBe(color.CMYKIntLegacy);
+            expect(instanceIntLegacyAlpha.CMYKA).toBe(color.CMYKIntLegacyWithAlpha);
+            expect(instanceIntLegacyAlphaPercentages.CMYKA).toBe(color.CMYKIntWithAlphaInPercentages);
+            
+            // The round-trips for objects should go always to int 100
+            expect(instanceObject.CMYKObject).toEqual(color.CMYKIntObject100);
+            expect(instanceIntObject.CMYKObject).toEqual(color.CMYKIntObject100);
+            expect(instanceInt100Object.CMYKObject).toEqual(color.CMYKIntObject100);
+            expect(instanceIntAlphaObject.CMYKAObject).toEqual(color.CMYKIntObject100WithAlpha);
+            expect(instanceInt100AlphaObject.CMYKAObject).toEqual(color.CMYKIntObject100WithAlpha);
         });
 
     });
@@ -314,6 +427,42 @@ LAB_AND_LCH_COLORS.forEach((color) => {
 
         it(`LCHH property => ${ color.LCHObject.H }`, () => {
             expect(instanceKeyword.LCHH).toBe(color.LCHObject.H);
+        });
+
+    });
+
+    describe('CIELab and LCH round trip', () => {
+
+        it('CIELab round trip', () => {
+            const instance = new ColorTranslator(color.CIELab);
+            const instancePercentages = new ColorTranslator(color.CIELabInPrcentage);
+            const instanceAlpha = new ColorTranslator(color.CIELabA);
+            const instanceAlphaPercentages = new ColorTranslator(color.CIELabAInPrcentage);
+            const instanceObject = new ColorTranslator(color.CIELabObject);
+            const instanceAlphaObject = new ColorTranslator(color.CIELabAObject);
+
+            expect(instance.CIELab).toBe(color.CIELab);
+            expect(instancePercentages.CIELab).toBe(color.CIELabInPrcentage);
+            expect(instanceAlpha.CIELabA).toBe(color.CIELabA);
+            expect(instanceAlphaPercentages.CIELabA).toBe(color.CIELabAInPrcentage);
+            expect(instanceObject.CIELabObject).toEqual(color.CIELabObject);
+            expect(instanceAlphaObject.CIELabAObject).toEqual(color.CIELabAObject);
+        });
+
+        it('LCH round trip', () => {
+            const instance = new ColorTranslator(color.LCH);
+            const instancePercentages = new ColorTranslator(color.LCHInPercentage);
+            const instanceAlpha = new ColorTranslator(color.LCHA);
+            const instanceAlphaPercentages = new ColorTranslator(color.LCHAInPercentage);
+            const instanceObject = new ColorTranslator(color.LCHObject);
+            const instanceAlphaObject = new ColorTranslator(color.LCHAObject);
+
+            expect(instance.LCH).toBe(color.LCH);
+            expect(instancePercentages.LCH).toBe(color.LCHInPercentage);
+            expect(instanceAlpha.LCHA).toBe(color.LCHA);
+            expect(instanceAlphaPercentages.LCHA).toBe(color.LCHAInPercentage);
+            expect(instanceObject.LCHObject).toEqual(color.LCHObject);
+            expect(instanceAlphaObject.LCHAObject).toEqual(color.LCHAObject);
         });
 
     });
