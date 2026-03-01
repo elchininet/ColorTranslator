@@ -41,10 +41,6 @@ COLORS.forEach((item): void => {
 
     describe('CIE L*a*b round trip', () => {
 
-        const options = {
-            legacyCSS: false
-        };
-
         LAB_AND_LCH_COLORS.forEach((color) => {
 
             it.each([

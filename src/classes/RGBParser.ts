@@ -120,7 +120,7 @@ export class RGBParser extends ColorParser {
                         BASE_255
                     )
                 };
-    
+
                 if (relative_a) {
                     const A = new CalcParser('alpha', relative_a, fromRGBVars).result;
                     rgb.A = Math.min(A, 1);
