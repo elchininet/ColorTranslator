@@ -84,11 +84,11 @@ describe('Relative colors', () => {
         // RGB
         {
             input: 'rgb(from #FF0000 h s l)',
-            error: ERRORS.NOT_ACCEPTED_STRING_INPUT
+            error: ERRORS.NOT_ACCEPTED_INPUT
         },
         {
             input: 'rgb(from rgb(255 0 0) r g b alpha)',
-            error: ERRORS.NOT_ACCEPTED_STRING_INPUT
+            error: ERRORS.NOT_ACCEPTED_INPUT
 
         },
         {
@@ -102,11 +102,11 @@ describe('Relative colors', () => {
         // HSL
         {
             input: 'hsl(from #FF0000 r g b)',
-            error: ERRORS.NOT_ACCEPTED_STRING_INPUT
+            error: ERRORS.NOT_ACCEPTED_INPUT
         },
         {
             input: 'hsl(from hsl(0 100% 50%) h s l alpha)',
-            error: ERRORS.NOT_ACCEPTED_STRING_INPUT
+            error: ERRORS.NOT_ACCEPTED_INPUT
         },
         {
             input: 'hsl(from hsl(0 100% 50%) h s calc(hsl * 2))',
@@ -119,11 +119,11 @@ describe('Relative colors', () => {
         // HWB
         {
             input: 'hwb(from #FF0000 h s l)',
-            error: ERRORS.NOT_ACCEPTED_STRING_INPUT
+            error: ERRORS.NOT_ACCEPTED_INPUT
         },
         {
             input: 'hwb(from hwb(0 0% 0%) h w b alpha)',
-            error: ERRORS.NOT_ACCEPTED_STRING_INPUT
+            error: ERRORS.NOT_ACCEPTED_INPUT
         },
         {
             input: 'hwb(from hwb(0 0% 0%) calc(hwb - 50) w b)',
@@ -136,11 +136,11 @@ describe('Relative colors', () => {
         // Lab
         {
             input: 'lab(from #FF0000 h w b)',
-            error: ERRORS.NOT_ACCEPTED_STRING_INPUT
+            error: ERRORS.NOT_ACCEPTED_INPUT
         },
         {
             input: 'lab(from #FF0000 h w b alpha)',
-            error: ERRORS.NOT_ACCEPTED_STRING_INPUT
+            error: ERRORS.NOT_ACCEPTED_INPUT
         },
         {
             input: 'lab(from #FF0000 l a calc(lab / 2))',
@@ -153,11 +153,11 @@ describe('Relative colors', () => {
         // LCH
         {
             input: 'lch(from #FF0000 l a b)',
-            error: ERRORS.NOT_ACCEPTED_STRING_INPUT
+            error: ERRORS.NOT_ACCEPTED_INPUT
         },
         {
             input: 'lch(from #FF0000 l c h alpha)',
-            error: ERRORS.NOT_ACCEPTED_STRING_INPUT
+            error: ERRORS.NOT_ACCEPTED_INPUT
         },
         {
             input: 'lch(from #FF0000 l c calc(lch / 2))',

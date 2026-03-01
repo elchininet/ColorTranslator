@@ -34,7 +34,7 @@ describe('Additive Color mixing', (): void => {
                 if (typeof mix === 'string') {
                     expect(mix).toBe(fnObject.fn(item.mix, options));
                 } else {
-                    expect(mix).toMatchObject(fnObject.fn(item.mix, options));
+                    expect(mix).toEqual(fnObject.fn(item.mix, options));
                 }
             });
             it('Default mixing should be ADDITIVE', () => {
@@ -43,7 +43,7 @@ describe('Additive Color mixing', (): void => {
                 if (typeof mixAdditive === 'string') {
                     expect(mixAdditive).toBe(mixDefault);
                 } else {
-                    expect(mixAdditive).toMatchObject(mixDefault);
+                    expect(mixAdditive).toEqual(mixDefault);
                 }
             });
         });
@@ -141,7 +141,7 @@ describe('Color mixing with L*a*b colors', (): void => {
                 Mix.ADDITIVE,
                 { decimals: 0 }
             )
-        ).toMatchObject(
+        ).toEqual(
             { L: 60, a: 94, b: -60 }
         );
     });
@@ -153,7 +153,7 @@ describe('Color mixing with L*a*b colors', (): void => {
                     { R: 0, G: 0, B: 255 }
                 ]
             )
-        ).toMatchObject(
+        ).toEqual(
             { L: 60.169696, a: 93.550025, b: -60.498556 }
         );
     });
@@ -166,7 +166,7 @@ describe('Color mixing with L*a*b colors', (): void => {
                 ],
                 Mix.SUBTRACTIVE
             )
-        ).toMatchObject(
+        ).toEqual(
             { L: 39.282789, a: 74.659748, b: -95.543967 }
         );
     });
@@ -201,7 +201,7 @@ describe('Color mixing with L*a*b colors', (): void => {
                 Mix.ADDITIVE,
                 { decimals: 0 }
             )
-        ).toMatchObject(
+        ).toEqual(
             { L: 60, a: 94, b: -60, A: 1 }
         );
     });
@@ -214,7 +214,7 @@ describe('Color mixing with L*a*b colors', (): void => {
                 ],
                 Mix.SUBTRACTIVE
             )
-        ).toMatchObject(
+        ).toEqual(
             { L: 39.282789, a: 74.659748, b: -95.543967, A: 1 }
         );
     });
@@ -226,7 +226,7 @@ describe('Color mixing with L*a*b colors', (): void => {
                     { R: 0, G: 0, B: 255 }
                 ]
             )
-        ).toMatchObject(
+        ).toEqual(
             { L: 60.169696, a: 93.550025, b: -60.498556, A: 1 }
         );
     });
@@ -269,7 +269,7 @@ describe('Color mixing with lch colors', (): void => {
                 Mix.ADDITIVE,
                 { decimals: 0 }
             )
-        ).toMatchObject(
+        ).toEqual(
             { L: 60, C: 111, H: 327 }
         );
     });
@@ -281,7 +281,7 @@ describe('Color mixing with lch colors', (): void => {
                     { R: 0, G: 0, B: 255 }
                 ]
             )
-        ).toMatchObject(
+        ).toEqual(
             { L: 60.169696, C: 111.407731, H: 327.109357 }
         );
     });
@@ -294,7 +294,7 @@ describe('Color mixing with lch colors', (): void => {
                 ],
                 Mix.SUBTRACTIVE
             )
-        ).toMatchObject(
+        ).toEqual(
             { L: 39.282789, C: 121.254804, H: 308.004699 }
         );
     });
@@ -329,7 +329,7 @@ describe('Color mixing with lch colors', (): void => {
                 Mix.ADDITIVE,
                 { decimals: 0 }
             )
-        ).toMatchObject(
+        ).toEqual(
             { L: 60, C: 111, H: 327, A: 1 }
         );
     });
@@ -342,7 +342,7 @@ describe('Color mixing with lch colors', (): void => {
                 ],
                 Mix.SUBTRACTIVE
             )
-        ).toMatchObject(
+        ).toEqual(
             { L: 39.282789, C: 121.254804, H: 308.004699, A: 1 }
         );
     });
@@ -354,7 +354,7 @@ describe('Color mixing with lch colors', (): void => {
                     { R: 0, G: 0, B: 255 }
                 ]
             )
-        ).toMatchObject(
+        ).toEqual(
             { L: 60.169696, C: 111.407731, H: 327.109357, A: 1 }
         );
     });

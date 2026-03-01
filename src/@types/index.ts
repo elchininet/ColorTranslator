@@ -104,6 +104,15 @@ export interface RYBObject {
 
 export type RGYBObject = RGBObject | RYBObject;
 
+export type ColorObject =
+    | HEXObject
+    | RGBObject
+    | HSLObject
+    | HWBObject
+    | CIELabObject
+    | LCHObject
+    | CMYKObject;
+
 export type Color =
     | RGBObjectGeneric
     | HSLObjectGeneric
@@ -302,4 +311,6 @@ export type MatchOptions = {
     [K in keyof Pick<Options, 'legacyCSS' | 'spacesAfterCommas' | 'cmykFunction'>]: number;
 };
 
-export type ParserGetRgbObject = (color: string) => RGBObject;
+export interface CSSOptionsBase {
+    hasAlpha: boolean;
+}

@@ -111,29 +111,29 @@ describe('ColorTranslator set instance properties', () => {
         expect(instance.A).toBe(0.5);
         expect(instance.HEX).toBe(TEST_COLORS.red.HEX);
         expect(instance.HEXA).toBe(TEST_COLORS.red.HEX + '80');
-        expect(instance.HEXObject).toMatchObject(TEST_COLORS.red.HEXObject);
-        expect(instance.HEXAObject).toMatchObject({
+        expect(instance.HEXObject).toEqual(TEST_COLORS.red.HEXObject);
+        expect(instance.HEXAObject).toEqual({
             ...TEST_COLORS.red.HEXObject,
             A: '0x80'
         });
         expect(instance.RGB).toBe(TEST_COLORS.red.RGB);
         expect(instance.RGBA).toBe(TEST_COLORS.red.RGBA.replace(REG, '$10.5$3'));
-        expect(instance.RGBObject).toMatchObject(TEST_COLORS.red.RGBObject);
-        expect(instance.RGBAObject).toMatchObject({
+        expect(instance.RGBObject).toEqual(TEST_COLORS.red.RGBObject);
+        expect(instance.RGBAObject).toEqual({
             ...TEST_COLORS.red.RGBObject,
             A: 0.5
         });
         expect(instance.HSL).toBe(TEST_COLORS.red.HSL);
         expect(instance.HSLA).toBe(TEST_COLORS.red.HSLA.replace(REG, '$10.5$3'));
-        expect(instance.HSLObject).toMatchObject(TEST_COLORS.red.HSLObject);
-        expect(instance.HSLAObject).toMatchObject({
+        expect(instance.HSLObject).toEqual(TEST_COLORS.red.HSLObject);
+        expect(instance.HSLAObject).toEqual({
             ...TEST_COLORS.red.HSLObject,
             A: 0.5
         });
         expect(instance.HWB).toBe(TEST_COLORS.red.HWB);
         expect(instance.HWBA).toBe(TEST_COLORS.red.HWBA.replace(REG, '$10.5$3'));
-        expect(instance.HWBObject).toMatchObject(TEST_COLORS.red.HWBObject);
-        expect(instance.HWBAObject).toMatchObject({
+        expect(instance.HWBObject).toEqual(TEST_COLORS.red.HWBObject);
+        expect(instance.HWBAObject).toEqual({
             ...TEST_COLORS.red.HWBObject,
             A: 0.5
         });

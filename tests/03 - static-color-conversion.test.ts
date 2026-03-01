@@ -32,7 +32,7 @@ COLORS.forEach((color): void => {
             });
 
             it(`toHEXObject method from ${colorValueStr} => ${JSON.stringify(color.HEXObject)}`, () => {
-                expect(ColorTranslator.toHEXObject(colorValue)).toMatchObject(color.HEXObject);
+                expect(ColorTranslator.toHEXObject(colorValue)).toEqual(color.HEXObject);
             });
 
             // toHEXA
@@ -41,7 +41,7 @@ COLORS.forEach((color): void => {
             });
 
             it(`toHEXAObject method from ${colorValueStr} => ${JSON.stringify(color.HEXAObject)}`, () => {
-                expect(ColorTranslator.toHEXAObject(colorValue)).toMatchObject(color.HEXAObject);
+                expect(ColorTranslator.toHEXAObject(colorValue)).toEqual(color.HEXAObject);
             });
 
             // toRGB
@@ -50,7 +50,7 @@ COLORS.forEach((color): void => {
             });
 
             it(`toRGBObject method from ${colorValueStr} => ${JSON.stringify(color.RGBObject)}`, () => {
-                expect(ColorTranslator.toRGBObject(colorValue, options)).toMatchObject(color.RGBObject);
+                expect(ColorTranslator.toRGBObject(colorValue, options)).toEqual(color.RGBObject);
             });
 
             // toRGBA
@@ -59,7 +59,7 @@ COLORS.forEach((color): void => {
             });
 
             it(`toRGBAObject method from ${colorValueStr} => ${JSON.stringify(color.RGBAObject)}`, () => {
-                expect(ColorTranslator.toRGBAObject(colorValue, options)).toMatchObject(color.RGBAObject);
+                expect(ColorTranslator.toRGBAObject(colorValue, options)).toEqual(color.RGBAObject);
             });
 
             // toHSL
@@ -68,7 +68,7 @@ COLORS.forEach((color): void => {
             });
 
             it(`toHSLObject method from ${colorValueStr} => ${JSON.stringify(color.HSLObject)}`, () => {
-                expect(ColorTranslator.toHSLObject(colorValue, options)).toMatchObject(color.HSLObject);
+                expect(ColorTranslator.toHSLObject(colorValue, options)).toEqual(color.HSLObject);
             });
 
             // toHSLA
@@ -77,7 +77,7 @@ COLORS.forEach((color): void => {
             });
 
             it(`toHSLAObject method from ${colorValueStr} => ${JSON.stringify(color.HSLAObject)}`, () => {
-                expect(ColorTranslator.toHSLAObject(colorValue, options)).toMatchObject(color.HSLAObject);
+                expect(ColorTranslator.toHSLAObject(colorValue, options)).toEqual(color.HSLAObject);
             });
 
             // toHWB
@@ -86,7 +86,7 @@ COLORS.forEach((color): void => {
             });
 
             it(`toHWBObject method from ${colorValueStr} => ${JSON.stringify(color.HWBObject)}`, () => {
-                expect(ColorTranslator.toHWBObject(colorValue, options)).toMatchObject(color.HWBObject);
+                expect(ColorTranslator.toHWBObject(colorValue, options)).toEqual(color.HWBObject);
             });
 
             // toHWBA
@@ -95,7 +95,7 @@ COLORS.forEach((color): void => {
             });
 
             it(`toHWBAObject method from ${colorValueStr} => ${JSON.stringify(color.HWBAObject)}`, () => {
-                expect(ColorTranslator.toHWBAObject(colorValue, options)).toMatchObject(color.HWBAObject);
+                expect(ColorTranslator.toHWBAObject(colorValue, options)).toEqual(color.HWBAObject);
             });
 
         });
@@ -140,11 +140,11 @@ LAB_AND_LCH_COLORS.forEach((color) => {
         });
 
         it(`toCIELabObject => ${ JSON.stringify(color.CIELabObject) }`, () => {
-            expect(ColorTranslator.toCIELabObject(keyword, options)).toMatchObject(color.CIELabObject);
+            expect(ColorTranslator.toCIELabObject(keyword, options)).toEqual(color.CIELabObject);
         });
 
         it(`toCIELabAObject => ${ JSON.stringify(color.CIELabAObject) }`, () => {
-            expect(ColorTranslator.toCIELabAObject(keyword, options)).toMatchObject(color.CIELabAObject);
+            expect(ColorTranslator.toCIELabAObject(keyword, options)).toEqual(color.CIELabAObject);
         });
 
         // LCH
@@ -169,11 +169,11 @@ LAB_AND_LCH_COLORS.forEach((color) => {
         });
 
         it(`toLCHObject => ${ JSON.stringify(color.LCHObject) }`, () => {
-            expect(ColorTranslator.toLCHObject(keyword, options)).toMatchObject(color.LCHObject);
+            expect(ColorTranslator.toLCHObject(keyword, options)).toEqual(color.LCHObject);
         });
 
         it(`toLCHAObject => ${ JSON.stringify(color.LCHAObject) }`, () => {
-            expect(ColorTranslator.toLCHAObject(keyword, options)).toMatchObject(color.LCHAObject);
+            expect(ColorTranslator.toLCHAObject(keyword, options)).toEqual(color.LCHAObject);
         });
 
     });
@@ -193,7 +193,7 @@ COLORS.forEach((color): void => {
             expect(ColorTranslator.toHWBA(color.RGBObject, optionsNoDecimals)).toBe(color.HWBA);
         });
 
-        it('Legacy conversion', () => {
+        it(' Legacy conversion', () => {
             expect(ColorTranslator.toRGB(color.HSLLegacy, optionsNoDecimals)).toBe(color.RGBLegacy);
             expect(ColorTranslator.toRGBA(color.HSLALegacy, optionsNoDecimals)).toBe(color.RGBALegacy);
             expect(ColorTranslator.toHSL(color.RGBALegacy, optionsNoDecimals)).toBe(color.HSLLegacy);
@@ -218,7 +218,7 @@ CMYK_COLORS.forEach((color) => {
             });
 
             it(`toCMYKObject method from ${colorValueStr} => ${JSON.stringify(color.CMYKIntObject100)}`, () => {
-                expect(ColorTranslator.toCMYKObject(colorValue, options)).toMatchObject(color.CMYKIntObject100);
+                expect(ColorTranslator.toCMYKObject(colorValue, options)).toEqual(color.CMYKIntObject100);
             });
 
             // toCMYKA
@@ -227,7 +227,7 @@ CMYK_COLORS.forEach((color) => {
             });
 
             it(`toCMYKAObject method from ${colorValueStr} => ${JSON.stringify(color.CMYKIntObject100WithAlpha)}`, () => {
-                expect(ColorTranslator.toCMYKAObject(colorValue, options)).toMatchObject(color.CMYKIntObject100WithAlpha);
+                expect(ColorTranslator.toCMYKAObject(colorValue, options)).toEqual(color.CMYKIntObject100WithAlpha);
             });
 
             it(`toCMYK method with decimals from ${colorValueStr}`, () => {
@@ -254,6 +254,12 @@ CMYK_COLORS.forEach((color) => {
                 expect(ColorTranslator.toCMYKAObject(colorValue)).toMatchSnapshot();
             });
 
+        });
+
+        describe('Conversion fro CMYK', () => {
+            expect(ColorTranslator.toHEX(colorValue)).toBe(
+                ColorTranslator.toHEX(color.RGB)
+            );
         });
 
     });
