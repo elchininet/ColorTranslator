@@ -5,6 +5,7 @@ import {
     ColorInput,
     ColorInputWithoutCMYK,
     ColorOutput,
+    HarmonyString,
     HEXObject,
     HSLObject,
     HSLObjectGeneric,
@@ -13,6 +14,7 @@ import {
     InputOptions,
     LCHObject,
     LCHObjectGeneric,
+    MixString,
     Options,
     RGBObject
 } from '@types';
@@ -20,13 +22,11 @@ import {
     BASE_255,
     ColorModel,
     Harmony,
-    HarmonyString,
     MAX_ALPHA,
     MAX_LAB,
     MAX_LCH_C,
     MAX_PCENT,
-    Mix,
-    MixString
+    Mix
 } from '#constants';
 import {
     cmykToRgb,

@@ -1,22 +1,25 @@
 import {
-    AnglesUnitEnum,
     AngleUnitRegExpMatchArray,
+    AnglesUnitEnumString,
     CIELabObject,
     CMYKObject,
     Color,
+    HarmonyString,
     HSLObject,
     HWBObject,
     InputOptions,
     LCHObject,
+    MixString,
     NumberOrString,
     RGBObject
 } from '@types';
 import {
+    AnglesUnitEnum,
     BASE_255,
     ColorModel,
+    ColorKeywords,
     GRADIANS,
     Harmony,
-    HarmonyString,
     HEX,
     HSL_HUE,
     MAX_ALPHA,
@@ -25,7 +28,6 @@ import {
     MAX_LAB,
     MAX_LCH_C,
     Mix,
-    MixString,
     PCENT,
     VALID_COLOR_OBJECTS
 } from '#constants';
@@ -52,6 +54,16 @@ export const isHWBObject = (color: Color): color is HWBObject => getColorModel(c
 export const isCIELabObject = (color: Color): color is CIELabObject => getColorModel(color) === ColorModel.CIELab;
 export const isLCHObject = (color: Color): color is LCHObject => getColorModel(color) === ColorModel.LCH;
 export const isCMYKObject = (color: Color): color is CMYKObject => getColorModel(color) === ColorModel.CMYK;
+
+export const isColorKeyword = (color: string): color is keyof typeof ColorKeywords => color in ColorKeywords;
+
+export const isHarmony = (param: HarmonyString | MixString | InputOptions): param is HarmonyString => {
+    return `${param}` in Harmony;
+};
+
+export const isMix = (param: MixString | InputOptions): param is MixString => {
+    return `${param}` in Mix;
+};
 
 //---Get percent number
 export const percentNumber = (percent: NumberOrString): number => {
@@ -196,7 +208,7 @@ export const normalizeAlpha = (alpha: number | string | undefined | null): numbe
     return (isNaN(+alpha) || alpha > MAX_ALPHA) ? MAX_ALPHA : round(alpha);
 };
 
-export const translateDegrees = (degrees: number, units: `${AnglesUnitEnum}`): number => {
+export const translateDegrees = (degrees: number, units: AnglesUnitEnumString): number => {
 
     let hue: number;
 
@@ -217,14 +229,6 @@ export const translateDegrees = (degrees: number, units: `${AnglesUnitEnum}`): n
     }
 
     return hue;
-};
-
-export const isHarmony = (param: HarmonyString | MixString | InputOptions): param is HarmonyString => {
-    return `${param}` in Harmony;
-};
-
-export const isMix = (param: MixString | InputOptions): param is MixString => {
-    return `${param}` in Mix;
 };
 
 export const getAngleUnit = (unit: string | undefined): AnglesUnitEnum => {

@@ -1,12 +1,11 @@
+import { CSSCalcVars } from '@types';
 import { CALC, ERRORS } from '#constants';
-
-type Vars = Record<string, number>;
 
 const MAX_STACK = 100;
 
 export class CalcParser {
 
-    constructor(colorIndex: string, calc: string, vars: Vars) {
+    constructor(colorIndex: string, calc: string, vars: CSSCalcVars) {
 
         this._colorIndex = colorIndex;
 
@@ -80,7 +79,7 @@ export class CalcParser {
         return left - right;
     }
 
-    private _getCalcValue(calc: string, vars: Vars): number {
+    private _getCalcValue(calc: string, vars: CSSCalcVars): number {
         const match = calc.match(CALC.REGEXP);
         const operation = match.groups.operation;
         const value = this._calculate(operation, vars);
@@ -90,7 +89,7 @@ export class CalcParser {
         return value;
     }
 
-    private _calculate(operation: string, vars: Vars): number {
+    private _calculate(operation: string, vars: CSSCalcVars): number {
 
         this._operations.forEach((method, regExp) => {
 

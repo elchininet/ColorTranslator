@@ -1,6 +1,20 @@
+import {
+    AnglesUnitEnum,
+    ColorUnitEnum,
+    CMYKFunctionEnum,
+    Harmony,
+    Mix
+} from '#constants';
+
 export type ColorArray = [number, number, number];
 
 export type NumberOrString = number | string;
+
+export type AnglesUnitEnumString = `${AnglesUnitEnum}`;
+export type ColorUnitEnumString = `${ColorUnitEnum}`;
+export type CMYKFunctionEnumString = `${CMYKFunctionEnum}`;
+export type HarmonyString = `${Harmony}`;
+export type MixString = `${Mix}`;
 
 export interface HEXObject {
     R: string;
@@ -270,39 +284,17 @@ export interface AngleUnitRegExpMatchArray extends RegExpMatchArray {
     }
 }
 
-export interface ObjectProps<T> {
-    [key: string]: T;
-}
-
-export enum AnglesUnitEnum {
-    NONE = 'none',
-    DEGREES = 'deg',
-    GRADIANS = 'grad',
-    RADIANS = 'rad',
-    TURNS = 'turn'
-}
-
-export enum ColorUnitEnum {
-    NONE = 'none',
-    PERCENT = 'percent',
-}
-
-export enum CMYKFunctionEnum {
-    DEVICE_CMYK = 'device-cmyk',
-    CMYK = 'cmyk'
-}
-
 export interface Options {
     decimals: number;
     legacyCSS: boolean;
     spacesAfterCommas: boolean;
-    anglesUnit: `${AnglesUnitEnum}`;
-    rgbUnit: `${ColorUnitEnum}`;
-    labUnit: `${ColorUnitEnum}`;
-    lchUnit: `${ColorUnitEnum}`,
-    cmykUnit: `${ColorUnitEnum}`;
-    alphaUnit: `${ColorUnitEnum}`;
-    cmykFunction: `${CMYKFunctionEnum}`
+    anglesUnit: AnglesUnitEnumString;
+    rgbUnit: ColorUnitEnumString;
+    labUnit: ColorUnitEnumString;
+    lchUnit: ColorUnitEnumString,
+    cmykUnit: ColorUnitEnumString;
+    alphaUnit: ColorUnitEnumString;
+    cmykFunction: CMYKFunctionEnumString;
 }
 
 export type InputOptions = Partial<Options>;
@@ -311,6 +303,12 @@ export type MatchOptions = {
     [K in keyof Pick<Options, 'legacyCSS' | 'spacesAfterCommas' | 'cmykFunction'>]: number;
 };
 
+export type HarmonyFunction = (color: HSLObject, mode: MixString) => HSLObject[];
+
+export type CSSTransformer = (value: NumberOrString, index?: number) => NumberOrString;
+
 export interface CSSOptionsBase {
     hasAlpha: boolean;
 }
+
+export type CSSCalcVars = Record<string, number>;

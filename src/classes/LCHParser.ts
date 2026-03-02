@@ -1,8 +1,6 @@
 import {
-    AnglesUnitEnum,
     ColorInput,
     ColorObject,
-    ColorUnitEnum,
     CSSOptionsBase,
     LCHObject,
     LCHObjectGeneric,
@@ -11,8 +9,10 @@ import {
     Options
 } from '@types';
 import {
+    AnglesUnitEnum,
     COLORREGS,
     ColorModel,
+    ColorUnitEnum,
     MAX_ALPHA,
     MAX_LCH_C,
     MAX_PCENT,

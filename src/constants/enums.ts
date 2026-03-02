@@ -22,6 +22,24 @@ export enum Mix {
     SUBTRACTIVE = 'SUBTRACTIVE'
 }
 
+export enum AnglesUnitEnum {
+    NONE = 'none',
+    DEGREES = 'deg',
+    GRADIANS = 'grad',
+    RADIANS = 'rad',
+    TURNS = 'turn'
+}
+
+export enum ColorUnitEnum {
+    NONE = 'none',
+    PERCENT = 'percent',
+}
+
+export enum CMYKFunctionEnum {
+    DEVICE_CMYK = 'device-cmyk',
+    CMYK = 'cmyk'
+}
+
 export enum ColorKeywords {
     'black'                = '#000000',
     'silver'               = '#C0C0C0',

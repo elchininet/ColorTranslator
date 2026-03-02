@@ -1,15 +1,16 @@
 import {
-    AnglesUnitEnum,
-    CMYKFunctionEnum,
     ColorInput,
-    ColorUnitEnum,
     InputOptions,
     MatchOptions,
     Options
 } from '@types';
 import {
+    AnglesUnitEnum,
     ColorModel,
+    ColorUnitEnum,
+    COMMA,
     COMMAS_AND_NEXT_CHARS,
+    CMYKFunctionEnum,
     DEFAULT_OPTIONS,
     SPACES
 } from '#constants';
@@ -18,7 +19,7 @@ import {
     isNumber,
     isString
 } from '#utilities';
-import { ColorParserContext } from '#classes/ColorParserContext';
+import { ColorParserContext, ColorParser } from '#classes/ColorParserContext';
 import { HEXParser } from '#classes/HEXParser';
 import { RGBParser } from '#classes/RGBParser';
 import { HSLParser } from '#classes/HSLParser';
@@ -35,15 +36,17 @@ export const cieLabParser = new CIELabParser();
 export const lchParser = new LCHParser();
 export const cmykParser = new CMYKParser();
 
-export const colorParserContext = new ColorParserContext({
-    [ColorModel.HEX]: hexParser,
-    [ColorModel.RGB]: rgbParser,
-    [ColorModel.HSL]: hslParser,
-    [ColorModel.HWB]: hwbParser,
-    [ColorModel.CIELab]: cieLabParser,
-    [ColorModel.LCH]: lchParser,
-    [ColorModel.CMYK]: cmykParser
-});
+export const colorParserContext = new ColorParserContext(
+    new Map<ColorModel, ColorParser>([
+        [ColorModel.HEX, hexParser],
+        [ColorModel.RGB, rgbParser],
+        [ColorModel.HSL, hslParser],
+        [ColorModel.HWB, hwbParser],
+        [ColorModel.CIELab, cieLabParser],
+        [ColorModel.LCH, lchParser],
+        [ColorModel.CMYK, cmykParser]
+    ])
+);
 
 export const getOptionsFromColorInput = (options: InputOptions, ...colors: ColorInput[]): Options => {
     const cssColors: string[] = [];
@@ -69,7 +72,7 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
 
             cssColors.push(color);
 
-            if (color.includes(',')) {
+            if (color.includes(COMMA)) {
                 matchOptions.legacyCSS ++;
                 const commasWithNextCharacter = color.match(COMMAS_AND_NEXT_CHARS);
                 if (
@@ -119,7 +122,7 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
             if (cmykParser.supports(color)) {
                 const options = cmykParser.getCSSOptions(color);
                 cmykColors.push(options.hasPercentageValues);
-                if (color.startsWith('cmyk')) {
+                if (color.startsWith(CMYKFunctionEnum.CMYK)) {
                     matchOptions.cmykFunction ++;
                 }
                 alphaValues.push(options.hasPercentageAlpha);

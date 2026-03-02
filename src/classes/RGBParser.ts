@@ -1,7 +1,6 @@
 import {
     ColorInput,
     ColorObject,
-    ColorUnitEnum,
     CSSOptionsBase,
     NumberOrString,
     Options,
@@ -13,6 +12,7 @@ import {
     BASE_255,
     COLORREGS,
     ColorModel,
+    ColorUnitEnum,
     HEX,
     PCENT
 } from '#constants';

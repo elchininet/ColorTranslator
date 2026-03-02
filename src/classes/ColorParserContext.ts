@@ -13,16 +13,17 @@ import { isString, isUndefined } from '#utilities';
 
 export class ColorParserContext {
 
-    constructor(parsers: Record<ColorModel, ColorParser>) {
+    constructor(parsers: Map<ColorModel, ColorParser>) {
         this._parsers = parsers;
     }
 
-    private _parsers: Record<ColorModel, ColorParser>;
+    private _parsers: Map<ColorModel, ColorParser>;
 
     getParser(input: ColorInput): ColorParser {
-        const parser = Object.values(this._parsers).find(parser => parser.supports(input));
-        if (parser) {
-            return parser;
+        for (const parser of this._parsers.values()) {
+            if (parser.supports(input)) {
+                return parser;
+            }
         }
         throw new Error(ERRORS.NOT_ACCEPTED_INPUT);
     }
@@ -39,7 +40,7 @@ export class ColorParserContext {
         withAlpha = false
     ): T {
         const color = this.parse(input);
-        const parser = this._parsers[model];
+        const parser = this._parsers.get(model);
         return parser.convert(color, decimals, withAlpha) as T;
     }
 
@@ -50,7 +51,7 @@ export class ColorParserContext {
         withAlpha = false
     ): string {
         const color = this.parse(input);
-        const parser = this._parsers[model];
+        const parser = this._parsers.get(model);
         return parser.convertCSS(color, options, withAlpha);
     }
 

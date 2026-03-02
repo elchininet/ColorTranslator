@@ -1,5 +1,9 @@
 # Changelog
 
+## [6.0.1] - 2026-03-02
+
+- Code refactoring
+
 ## [6.0.0] - 2026-03-01
 
 - Complete refactoring of the library and how the color conversion is managed

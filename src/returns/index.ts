@@ -2,7 +2,10 @@ import {
     ColorInput,
     ColorInputWithoutCMYK,
     ColorObject,
+    HarmonyFunction,
+    HarmonyString,
     InputOptions,
+    MixString,
     RGBObject,
     RYBObject,
     RGYBObject,
@@ -16,9 +19,7 @@ import {
     DEFAULT_BLEND_STEPS,
     DEFAULT_SHADES_TINTS_STEPS,
     Harmony,
-    HarmonyString,
-    Mix,
-    MixString
+    Mix
 } from '#constants';
 import {
     isHarmony,
@@ -348,9 +349,7 @@ const harmony = (
         [{...color}]
     );
 
-type HarmonyFunction = (color: HSLObject, mode: MixString) => HSLObject[];
-
-const HARMONIES = new Map<`${Harmony}`, HarmonyFunction>([
+const HARMONIES = new Map<HarmonyString, HarmonyFunction>([
     [
         Harmony.ANALOGOUS,
         (color: HSLObject, mode: MixString): HSLObject[] => harmony(color, [30, -30], mode)
