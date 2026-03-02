@@ -4,7 +4,6 @@ import {
     CIELabRegExpMatchArray,
     ColorInput,
     ColorObject,
-    ColorUnitEnum,
     CSSOptionsBase,
     NumberOrString,
     Options
@@ -12,6 +11,7 @@ import {
 import {
     ColorModel,
     COLORREGS,
+    ColorUnitEnum,
     MAX_ALPHA,
     MAX_LAB,
     MAX_PCENT,

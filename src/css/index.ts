@@ -1,37 +1,38 @@
 import {
-    AnglesUnitEnum,
     Color,
-    ColorUnitEnum,
+    CSSTransformer,
     NumberOrString,
     Options
 } from '@types';
 import {
+    AnglesUnitEnum,
     COLOR_PROPS,
+    COMMA,
+    ColorUnitEnum,
     TEMPLATE_VAR,
     VALID_COLOR_OBJECTS
 } from '#constants';
 import {
     getOrderedArrayString,
+    isUndefined,
     round,
     translateDegrees
 } from '#utilities';
 
-type Transformer = (value: NumberOrString, index?: number) => NumberOrString;
-
 export const getCSSComma = (withSpace: boolean): string => withSpace
-    ? ', '
-    : ',';
+    ? `${COMMA} `
+    : COMMA;
 
 export const prepareColorForCss = (
     color: Color,
-    transformer: Transformer
+    transformer: CSSTransformer
 ): NumberOrString[] => {
     const props = getOrderedArrayString(Object.keys(color));
     const model = VALID_COLOR_OBJECTS[props];
     const keys = COLOR_PROPS[model];
     return keys.reduce((result: NumberOrString[], key: keyof typeof color, index: number): NumberOrString[] => {
         const value = color[key];
-        if (typeof value !== 'undefined') {
+        if (!isUndefined(value)) {
             result.push(transformer(value, index));
         }
         return result;

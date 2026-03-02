@@ -3,7 +3,6 @@ import {
     CMYKObjectGeneric,
     CMYKRegExpMatchArray,
     ColorInput,
-    ColorUnitEnum,
     ColorObject,
     CSSOptionsBase,
     NumberOrString,
@@ -12,6 +11,7 @@ import {
 import {
     ColorModel,
     COLORREGS,
+    ColorUnitEnum,
     PCENT
 } from '#constants';
 import {

@@ -1,5 +1,4 @@
 import {
-    AnglesUnitEnum,
     ColorInput,
     ColorObject,
     CSSOptionsBase,
@@ -9,6 +8,7 @@ import {
     Options
 } from '@types';
 import {
+    AnglesUnitEnum,
     COLORREGS,
     ColorModel,
     MAX_ALPHA,

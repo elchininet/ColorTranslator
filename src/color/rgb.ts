@@ -18,18 +18,13 @@ import {
     isUndefined
 } from '#utilities';
 
-const getAlpha = (color: ColorObject): { A?: number} => {
-    if (isUndefined(color.A)) {
-        return {};
-    }
-    return {
-        A: +color.A
-    };
-};
-
 export const getRGB = (color: ColorObject): RGBObject => {
 
-    const alpha = getAlpha(color);
+    const alpha = isUndefined(color.A)
+        ? {}
+        : {
+            A: +color.A
+        };
 
     if (isHSLObject(color)) {
         return {

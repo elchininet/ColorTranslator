@@ -11,7 +11,6 @@ import {
 } from '@types';
 import {
     BASE_255,
-    COLOR_KEYS,
     ColorKeywords,
     ColorModel,
     COLORREGS,
@@ -23,6 +22,7 @@ import {
     getDEC,
     getHEX,
     getBase255Number,
+    isColorKeyword,
     isString,
     isUndefined,
     isRGBObject,
@@ -34,9 +34,9 @@ import { ColorParser } from './ColorParserContext';
 export class HEXParser extends ColorParser {
 
     private _extract(input: string): HEXRegExpMatchArray['groups'] {
-        const colorStr = !~COLOR_KEYS.indexOf(input)
-            ? input
-            : ColorKeywords[input as keyof typeof ColorKeywords];
+        const colorStr = isColorKeyword(input)
+            ? ColorKeywords[input]
+            : input;
         const match = colorStr.match(COLORREGS.HEX) as HEXRegExpMatchArray;
         return match.groups;
     }
@@ -46,7 +46,7 @@ export class HEXParser extends ColorParser {
         if (isString(input)) {
             return (
                 COLORREGS.HEX.test(input) ||
-                !!~COLOR_KEYS.indexOf(input)
+                isColorKeyword(input)
             );
         }
 

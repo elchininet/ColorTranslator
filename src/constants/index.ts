@@ -1,14 +1,9 @@
+import { Options } from '@types';
 import {
     AnglesUnitEnum,
-    CMYKFunctionEnum,
-    ColorUnitEnum,
-    Options
-} from '@types';
-import {
-    ColorKeywords,
     ColorModel,
-    Harmony,
-    Mix
+    ColorUnitEnum,
+    CMYKFunctionEnum
 } from './enums';
 
 export const MAX_DECIMALS = 6;
@@ -22,8 +17,6 @@ export const MAX_LAB = 125;
 export const MAX_LCH_C = 150;
 export const GRADIANS = 10 / 9;
 
-export const COLOR_KEYS = Object.keys(ColorKeywords);
-
 export const COLOR_PROPS = Object.freeze({
     HEX: ['R', 'G', 'B', 'A'],
     RGB: ['R', 'G', 'B', 'A'],
@@ -33,6 +26,8 @@ export const COLOR_PROPS = Object.freeze({
     LCH: ['L', 'C', 'H', 'A'],
     CMYK: ['C', 'M', 'Y', 'K', 'A']
 });
+
+export const COMMA = ',';
 
 export const VALID_COLOR_OBJECTS: Record<string, ColorModel> = Object.freeze({
     ABGR: ColorModel.RGB,
@@ -48,9 +43,6 @@ export const VALID_COLOR_OBJECTS: Record<string, ColorModel> = Object.freeze({
     HLS: ColorModel.HSL,
     LAB: ColorModel.CIELab
 });
-
-export type HarmonyString = `${Harmony}`;
-export type MixString = `${Mix}`;
 
 export const DEFAULT_OPTIONS: Options = Object.freeze({
     decimals: MAX_DECIMALS,
