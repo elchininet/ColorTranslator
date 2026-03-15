@@ -11,8 +11,6 @@ jobs:
     permissions:
       contents: write
       id-token: write
-    container:
-      image: node:20
     steps:
       - name: Checkout
         uses: actions/checkout@v6
