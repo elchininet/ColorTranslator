@@ -1,5 +1,9 @@
 # Changelog
 
+## [6.1.0] - 2026-03-29
+
+- Migrate the project to `TypeScript 6`, the code has been refactored to comply with `TypeScript 6` restrictions
+
 ## [6.0.1] - 2026-03-02
 
 - Code refactoring

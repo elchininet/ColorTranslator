@@ -97,7 +97,7 @@ export class HSLParser extends ColorParser {
                     h: fromHSL.H,
                     s: fromHSL.S,
                     l: fromHSL.L,
-                    alpha: fromHSL.A
+                    alpha: fromHSL.A as number
                 };
 
                 const H = new CalcParser('h', relative_h, fromHSLVars).result;
@@ -242,7 +242,10 @@ export class HSLParser extends ColorParser {
         } = groups;
         return {
             angleUnit: getAngleUnit(h_legacy ?? h),
-            hasPercentageAlpha: PCENT.test(a_legacy ?? a),
+            hasPercentageAlpha: (
+                !isUndefined(a_legacy) && PCENT.test(a_legacy) ||
+                !isUndefined(a) && PCENT.test(a)
+            ),
             hasAlpha: !isUndefined(a_legacy ?? a)
         };
     }

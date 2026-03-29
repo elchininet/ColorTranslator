@@ -30,8 +30,8 @@ export const prepareColorForCss = (
     const props = getOrderedArrayString(Object.keys(color));
     const model = VALID_COLOR_OBJECTS[props];
     const keys = COLOR_PROPS[model];
-    return keys.reduce((result: NumberOrString[], key: keyof typeof color, index: number): NumberOrString[] => {
-        const value = color[key];
+    return keys.reduce<NumberOrString[]>((result: NumberOrString[], key: string, index: number): NumberOrString[] => {
+        const value = color[key as keyof typeof color];
         if (!isUndefined(value)) {
             result.push(transformer(value, index));
         }
@@ -62,14 +62,14 @@ export const getCSSAlpha = (value: number, options: Options, ignoreLegacy = fals
 
 export const buildCSSHueTransformer = (options: Options) => {
     const { anglesUnit, decimals } = options;
-    return (value: number, index: number): NumberOrString => {
+    return (value: NumberOrString, index: number): NumberOrString => {
         if (
             index === 0 &&
             anglesUnit !== AnglesUnitEnum.NONE
         ) {
             const translated = round(
                 translateDegrees(
-                    value,
+                    +value,
                     anglesUnit
                 ),
                 decimals
@@ -77,7 +77,7 @@ export const buildCSSHueTransformer = (options: Options) => {
             return `${translated}${anglesUnit}`;
         }
         return index === 3
-            ? getCSSAlpha(value, options)
+            ? getCSSAlpha(+value, options)
             : round(value, decimals);
     };
 };

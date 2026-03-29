@@ -1,24 +1,25 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
+    "outDir": "./",
     "module": "esnext",
     "target": "ES2020",
     "lib": ["ES2020"],
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
-    "declaration": true,
+    "declaration": false,
     "noImplicitAny": true,
     "removeComments": true,
-    "baseUrl": "./src",
+    "rootDir": "./src",
+    "types": ["node", "jest"],
     "paths": {
-      "@types": ["@types"],
-      "#constants": ["constants"],
-      "#classes/*": ["classes/*"],
-      "#color/*": ["color/*"],
-      "#css": ["css"],
-      "#parsers": ["parsers"],
-      "#returns": ["returns"],
-      "#utilities": ["utilities"]
+      "@types": ["./src/@types"],
+      "#constants": ["./src/constants"],
+      "#classes/*": ["./src/classes/*"],
+      "#color/*": ["./src/color/*"],
+      "#css": ["./src/css"],
+      "#parsers": ["./src/parsers"],
+      "#returns": ["./src/returns"],
+      "#utilities": ["./src/utilities"]
     }
   },
   "include": ["src/**/*.ts"],

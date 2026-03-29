@@ -74,7 +74,7 @@ export const getOptionsFromColorInput = (options: InputOptions, ...colors: Color
 
             if (color.includes(COMMA)) {
                 matchOptions.legacyCSS ++;
-                const commasWithNextCharacter = color.match(COMMAS_AND_NEXT_CHARS);
+                const commasWithNextCharacter = color.match(COMMAS_AND_NEXT_CHARS) as RegExpMatchArray;
                 if (
                     new Set(commasWithNextCharacter).size === 1 &&
                     SPACES.test(commasWithNextCharacter[0].slice(1))

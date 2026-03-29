@@ -83,8 +83,8 @@ export function getBlendReturn(
     to: ColorInput,
     model: ColorModel,
     css: boolean,
-    withAlpha: boolean,
-    steps: number = DEFAULT_BLEND_STEPS,
+    withAlpha?: boolean,
+    steps = DEFAULT_BLEND_STEPS,
     options: InputOptions = {}
 ) {
     if (steps < 1) steps = DEFAULT_BLEND_STEPS;
@@ -126,8 +126,8 @@ export const getBlendReturnParams = (
         ? fourthParameter
         : thirdParameter;
     return [
-        stepsParameter,
-        optionsParameter
+        stepsParameter as number | undefined,
+        optionsParameter as InputOptions
     ];
 };
 
@@ -150,8 +150,8 @@ export function getMixReturn(
 export function getMixReturn<T extends ColorObject>(
     colors: ColorInput[],
     model: ColorModel,
-    css: boolean,
-    withAlpha: boolean,
+    css?: boolean,
+    withAlpha?: boolean,
     mode: MixString = Mix.ADDITIVE,
     options: InputOptions = {}
 ): T | string {
@@ -188,7 +188,7 @@ export function getMixReturn<T extends ColorObject>(
             const common = {
                 R: Math.min(mix.R  + color.R * colorA, BASE_255),
                 B: Math.min(mix.B + color.B * colorA, BASE_255),
-                A: 1 - (1 - colorA) * (1 - mix.A)
+                A: 1 - (1 - colorA) * (1 - (mix.A as number))
             };
             const mixGY = 'G' in mix
                 ? mix.G
@@ -211,7 +211,7 @@ export function getMixReturn<T extends ColorObject>(
     if (mode === Mix.ADDITIVE) {
         mix = createMix(rgbMap);
     } else {
-        const RYB = createMix(rybMap);
+        const RYB = createMix(rybMap as RYBObject[]);
         mix = rybToRgb(RYB.R, RYB.Y, RYB.B);
         mix.A = RYB.A;
     }
@@ -244,8 +244,8 @@ export const getMixReturnParameters = (
         ? thirdParameter
         : secondParameter;
     return [
-        modeParam,
-        optionsParam
+        modeParam as MixString | undefined,
+        optionsParam as InputOptions
     ];
 };
 
@@ -315,8 +315,8 @@ export const getShadesOrTintsReturnParameters = (
         ? thirdParameter
         : secondParameter;
     return [
-        stepsParam,
-        optionsParam
+        stepsParam as number | undefined,
+        optionsParam as InputOptions
     ];
 };
 
@@ -382,7 +382,7 @@ export const getHarmonyReturn = <T extends Exclude<ColorObject, CMYKObject>>(
     mode: MixString,
     options: InputOptions = {}
 ): T[] | string[] => {
-    const harmonyFunction = HARMONIES.get(harmony);
+    const harmonyFunction = HARMONIES.get(harmony) as HarmonyFunction;
     const isCSS = isString(color);
     const parser = colorParserContext.getParser(color);
     const model = parser.model;

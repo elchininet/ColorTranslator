@@ -214,12 +214,12 @@ export class RGBParser extends ColorParser {
         } = options;
         const rgb = this.convert(color, options.decimals, withAlpha);
         const comma = getCSSComma(spacesAfterCommas);
-        const transformer = (value: number, index: number): NumberOrString => {
+        const transformer = (value: NumberOrString, index: number): NumberOrString => {
             return rgbUnit === ColorUnitEnum.PERCENT && index < 3
-                ?  `${from255NumberToPercent(value, decimals)}%`
+                ?  `${from255NumberToPercent(+value, decimals)}%`
                 : (
                     index === 3
-                        ? getCSSAlpha(value, options)
+                        ? getCSSAlpha(+value, options)
                         : round(value, decimals)
                 );
         };
@@ -274,7 +274,10 @@ export class RGBParser extends ColorParser {
                 PCENT.test(g_legacy ?? g) &&
                 PCENT.test(b_legacy ?? b)
             ),
-            hasPercentageAlpha: PCENT.test(a_legacy ?? a),
+            hasPercentageAlpha: (
+                !isUndefined(a_legacy) && PCENT.test(a_legacy) ||
+                !isUndefined(a) && PCENT.test(a)
+            ),
             hasAlpha: !isUndefined(a_legacy ?? a)
         };
     }

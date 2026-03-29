@@ -45,7 +45,7 @@ export class CMYKParser extends ColorParser {
     }
 
     private _shouldMultiplyBy100(...colors: NumberOrString[]): boolean {
-        return !colors.some((color: string) => +color > 1);
+        return !colors.some((color: NumberOrString) => +color > 1);
     }
 
     supports(input: ColorInput): boolean {
@@ -155,7 +155,7 @@ export class CMYKParser extends ColorParser {
         } = options;
         const comma = getCSSComma(spacesAfterCommas);
         const cmyk = this.convert(color, options.decimals, withAlpha);
-        const transformer = (value: number, index: number): NumberOrString => {
+        const transformer = (value: NumberOrString, index: number): NumberOrString => {
             if (
                 cmykUnit === ColorUnitEnum.PERCENT &&
                 index < 4
@@ -163,8 +163,8 @@ export class CMYKParser extends ColorParser {
                 return `${round(value, decimals)}%`;
             }
             return index === 4
-                ? getCSSAlpha(value, options)
-                : round(value / 100, decimals);
+                ? getCSSAlpha(+value, options)
+                : round(+value / 100, decimals);
         };
         const values = prepareColorForCss(cmyk, transformer);
         const template = legacyCSS
@@ -219,7 +219,10 @@ export class CMYKParser extends ColorParser {
                 PCENT.test(y_legacy ?? y) &&
                 PCENT.test(k_legacy ?? k)
             ),
-            hasPercentageAlpha: PCENT.test(a_legacy ?? a),
+            hasPercentageAlpha: (
+                (!isUndefined(a_legacy) && PCENT.test(a_legacy)) ||
+                (!isUndefined(a) && PCENT.test(a))
+            ),
             hasAlpha: !isUndefined(a_legacy ?? a)
         };
     }
