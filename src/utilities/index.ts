@@ -57,12 +57,12 @@ export const isCMYKObject = (color: Color): color is CMYKObject => getColorModel
 
 export const isColorKeyword = (color: string): color is keyof typeof ColorKeywords => color in ColorKeywords;
 
-export const isHarmony = (param: HarmonyString | MixString | InputOptions): param is HarmonyString => {
-    return `${param}` in Harmony;
+export const isHarmony = (param: HarmonyString | MixString | InputOptions | undefined): param is HarmonyString => {
+    return !!param && `${param}` in Harmony;
 };
 
-export const isMix = (param: MixString | InputOptions): param is MixString => {
-    return `${param}` in Mix;
+export const isMix = (param: MixString | InputOptions | undefined): param is MixString => {
+    return !!param && `${param}` in Mix;
 };
 
 //---Get percent number
@@ -205,7 +205,8 @@ export const normalizeAlpha = (alpha: number | string | undefined | null): numbe
             alpha = +alpha;
         }
     }
-    return (isNaN(+alpha) || alpha > MAX_ALPHA) ? MAX_ALPHA : round(alpha);
+    const alphaNumber = Number(alpha);
+    return (isNaN(alphaNumber) || alphaNumber > MAX_ALPHA) ? MAX_ALPHA : round(alphaNumber);
 };
 
 export const translateDegrees = (degrees: number, units: AnglesUnitEnumString): number => {

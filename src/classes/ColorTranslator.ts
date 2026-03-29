@@ -100,12 +100,12 @@ export class ColorTranslator {
 
     // Private properties
     private _options: Options;
-    private rgb: RGBObject;
-    private hsl: HSLObject;
-    private hwb: HWBObject;
-    private lab: CIELabObject;
-    private lch: LCHObject;
-    private cmyk: CMYKObject;
+    private rgb!: RGBObject;
+    private hsl!: HSLObject;
+    private hwb!: HWBObject;
+    private lab!: CIELabObject;
+    private lch!: LCHObject;
+    private cmyk!: CMYKObject;
 
     // Private methods
     private update(...exclude: ('rgb' | 'hsl' | 'hwb' | 'lab' | 'lch' | 'cmyk')[]): void {
@@ -271,7 +271,7 @@ export class ColorTranslator {
     public setR(R: number): ColorTranslator {
         this.rgb.R = minmax(R, 0, BASE_255);
         this.update('rgb');
-        return;
+        return this;
     }
 
     public setG(G: number): ColorTranslator {
@@ -479,7 +479,7 @@ export class ColorTranslator {
 
     // Public alpha property
     public get A(): number {
-        return round(this.hsl.A, this.options.decimals);
+        return round(this.hsl.A as number, this.options.decimals);
     }
 
     // Public CMYK properties

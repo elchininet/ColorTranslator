@@ -81,7 +81,7 @@ export class CalcParser {
 
     private _getCalcValue(calc: string, vars: CSSCalcVars): number {
         const match = calc.match(CALC.REGEXP);
-        const operation = match.groups.operation;
+        const operation = match!.groups!.operation;
         const value = this._calculate(operation, vars);
         if (Number.isNaN(value)) {
             throw new Error(`Invalid value for ${this._colorIndex}. ${operation} ${ERRORS.NOT_A_VALID_RELATIVE_COLOR}`);

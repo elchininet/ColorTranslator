@@ -164,11 +164,11 @@ export interface HEXRegExpMatchArray extends RegExpMatchArray {
         r: string;
         g: string;
         b: string;
-        a: string | undefined;
+        a?: string;
         rr: string;
         gg: string;
         bb: string;
-        aa: string | undefined;
+        aa?: string;
     }
 }
 
@@ -178,18 +178,18 @@ export interface RGBRegExpMatchArray extends RegExpMatchArray {
         r_legacy: string;
         g_legacy: string;
         b_legacy: string;
-        a_legacy: string | undefined;
+        a_legacy?: string;
         // RGB values
         r: string;
         g: string;
         b: string;
-        a: string | undefined;
+        a?: string;
         // Relative values
         from: string;
         relative_r: string;
         relative_g: string;
         relative_b: string;
-        relative_a: string | undefined;
+        relative_a?: string;
     }
 }
 
@@ -199,18 +199,18 @@ export interface HSLRegExpMatchArray extends RegExpMatchArray {
         h_legacy: string;
         s_legacy: string;
         l_legacy: string;
-        a_legacy: string | undefined;
+        a_legacy?: string;
         // HSL values
         h: string;
         s: string;
         l: string;
-        a: string | undefined;
+        a?: string;
         // Relative values
         from: string;
         relative_h: string;
         relative_s: string;
         relative_l: string;
-        relative_a: string | undefined;
+        relative_a?: string;
     }
 }
 
@@ -220,13 +220,13 @@ export interface HWBRegExpMatchArray extends RegExpMatchArray {
         h: string;
         w: string;
         b: string;
-        a: string | undefined;
+        a?: string;
         // Relative values
         from: string;
         relative_h: string;
         relative_w: string;
         relative_b: string;
-        relative_a: string | undefined;
+        relative_a?: string;
     }
 }
 
@@ -236,13 +236,13 @@ export interface CIELabRegExpMatchArray extends RegExpMatchArray {
         L: string;
         a: string;
         b: string;
-        A: string | undefined;
+        A?: string;
         // Relative values
         from: string;
         relative_L: string;
         relative_a: string;
         relative_b: string;
-        relative_A: string | undefined;
+        relative_A?: string;
     }
 }
 
@@ -252,13 +252,13 @@ export interface LCHRegExpMatchArray extends RegExpMatchArray {
         l: string;
         c: string;
         h: string;
-        a: string | undefined;
+        a?: string;
         // Relative values
         from: string;
         relative_l: string;
         relative_c: string;
         relative_h: string;
-        relative_a: string | undefined;
+        relative_a?: string;
     }
 }
 
@@ -268,12 +268,12 @@ export interface CMYKRegExpMatchArray extends RegExpMatchArray {
         m_legacy: string;
         y_legacy: string;
         k_legacy: string;
-        a_legacy: string | undefined;
+        a_legacy?: string;
         c: string;
         m: string;
         y: string;
         k: string;
-        a: string | undefined;
+        a?: string;
     }
 }
 
@@ -305,7 +305,9 @@ export type MatchOptions = {
 
 export type HarmonyFunction = (color: HSLObject, mode: MixString) => HSLObject[];
 
-export type CSSTransformer = (value: NumberOrString, index?: number) => NumberOrString;
+export type CSSTransformer =
+    | ((value: NumberOrString, index: number) => NumberOrString)
+    | ((value: NumberOrString) => NumberOrString);
 
 export interface CSSOptionsBase {
     hasAlpha: boolean;

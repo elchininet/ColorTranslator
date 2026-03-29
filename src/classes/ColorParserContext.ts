@@ -41,7 +41,7 @@ export class ColorParserContext {
     ): T {
         const color = this.parse(input);
         const parser = this._parsers.get(model);
-        return parser.convert(color, decimals, withAlpha) as T;
+        return parser!.convert(color, decimals, withAlpha) as T;
     }
 
     convertCSS(
@@ -52,7 +52,7 @@ export class ColorParserContext {
     ): string {
         const color = this.parse(input);
         const parser = this._parsers.get(model);
-        return parser.convertCSS(color, options, withAlpha);
+        return parser!.convertCSS(color, options, withAlpha);
     }
 
 }

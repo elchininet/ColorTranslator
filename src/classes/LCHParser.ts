@@ -194,7 +194,7 @@ export class LCHParser extends ColorParser {
             anglesUnit
         } = options;
         const lch = this.convert(color, options.decimals, withAlpha);
-        const transformer = (value: number, index: number): NumberOrString => {
+        const transformer = (value: NumberOrString, index: number): NumberOrString => {
             if (index === 0) {
                 const L = round(
                     percent(value),
@@ -206,14 +206,14 @@ export class LCHParser extends ColorParser {
             }
             if (index === 1) {
                 return lchUnit === ColorUnitEnum.PERCENT
-                    ? `${from150NumberToPercent(value, decimals)}%`
+                    ? `${from150NumberToPercent(+value, decimals)}%`
                     : round(value, decimals);
             }
             if (index === 2) {
                 if (anglesUnit !== AnglesUnitEnum.NONE) {
                     const translated = round(
                         translateDegrees(
-                            value,
+                            +value,
                             anglesUnit
                         ),
                         decimals
@@ -222,7 +222,7 @@ export class LCHParser extends ColorParser {
                 }
                 return round(value, decimals);
             }
-            return getCSSAlpha(value, options, true);
+            return getCSSAlpha(+value, options, true);
         };
         const values = prepareColorForCss(lch, transformer);
         const template = values.length === 4
@@ -257,7 +257,7 @@ export class LCHParser extends ColorParser {
                 PCENT.test(groups.l) &&
                 PCENT.test(groups.c)
             ),
-            hasPercentageAlpha: PCENT.test(groups.a),
+            hasPercentageAlpha: !isUndefined(groups.a) && PCENT.test(groups.a),
             hasAlpha: !isUndefined(groups.a)
         };
     }

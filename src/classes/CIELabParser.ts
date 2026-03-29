@@ -187,7 +187,7 @@ export class CIELabParser extends ColorParser {
             labUnit
         } = options;
         const lab = this.convert(color, options.decimals, withAlpha);
-        const transformer = (value: number, index: number): NumberOrString => {
+        const transformer = (value: NumberOrString, index: number): NumberOrString => {
             if (index === 0) {
                 const L = round(
                     percent(value),
@@ -199,10 +199,10 @@ export class CIELabParser extends ColorParser {
             }
             if (index < 3) {
                 return labUnit === ColorUnitEnum.PERCENT
-                    ? `${from125NumberToPercent(value, decimals)}%`
+                    ? `${from125NumberToPercent(+value, decimals)}%`
                     : round(value, decimals);
             }
-            return getCSSAlpha(value, options, true);
+            return getCSSAlpha(+value, options, true);
         };
         const values = prepareColorForCss(lab, transformer);
         const template = values.length === 4
@@ -240,7 +240,7 @@ export class CIELabParser extends ColorParser {
                 PCENT.test(a) &&
                 PCENT.test(b)
             ),
-            hasPercentageAlpha: PCENT.test(A),
+            hasPercentageAlpha: !isUndefined(A) && PCENT.test(A),
             hasAlpha: !isUndefined(A)
         };
     }

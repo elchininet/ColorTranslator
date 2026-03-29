@@ -90,7 +90,7 @@ export class HWBParser extends ColorParser {
                     h: fromHWB.H,
                     w: fromHWB.W,
                     b: fromHWB.B,
-                    alpha: fromHWB.A
+                    alpha: fromHWB.A as number
                 };
 
                 const H = new CalcParser('h', relative_h, fromHWBVars).result;
@@ -214,7 +214,7 @@ export class HWBParser extends ColorParser {
         const groups = this._extract(input);
         return {
             angleUnit: getAngleUnit(groups.h),
-            hasPercentageAlpha: PCENT.test(groups.a),
+            hasPercentageAlpha: !isUndefined(groups.a) && PCENT.test(groups.a),
             hasAlpha: !isUndefined(groups.a)
         };
     }
