@@ -1,22 +1,21 @@
 import {
     CIELabObject,
-    CIELabObjectGeneric,
     CMYKObject,
     ColorInput,
     ColorInputWithoutCMYK,
     ColorOutput,
+    GetBlendOverload,
+    GetMixOverload,
     HarmonyString,
     HEXObject,
     HSLObject,
-    HSLObjectGeneric,
     HWBObject,
-    HWBObjectGeneric,
     InputOptions,
     LCHObject,
-    LCHObjectGeneric,
     MixString,
     Options,
-    RGBObject
+    RGBObject,
+    StaticFunctionReturn
 } from '@types';
 import {
     BASE_255,
@@ -1035,1184 +1034,701 @@ export class ColorTranslator {
         );
     }
 
-    public static getBlendRGBObject(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): RGBObject[];
-    public static getBlendRGBObject(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): RGBObject[];
-    public static getBlendRGBObject(
+    public static getBlendRGBObject: GetBlendOverload<RGBObject> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): RGBObject[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.RGB,
-            false,
-            false,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.RGB,
+        false,
+        false,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendRGB(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): string[];
-    public static getBlendRGB(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): string[];
-    public static getBlendRGB(
+    public static getBlendRGB: GetBlendOverload<string> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): string[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.RGB,
-            true,
-            false,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.RGB,
+        true,
+        false,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendRGBAObject(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): RGBObject[];
-    public static getBlendRGBAObject(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): RGBObject[];
-    public static getBlendRGBAObject(
+    public static getBlendRGBAObject: GetBlendOverload<RGBObject> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): RGBObject[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.RGB,
-            false,
-            true,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.RGB,
+        false,
+        true,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendRGBA(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): string[];
-    public static getBlendRGBA(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): string[];
-    public static getBlendRGBA(
+    public static getBlendRGBA: GetBlendOverload<string> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): string[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.RGB,
-            true,
-            true,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.RGB,
+        true,
+        true,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendHSLObject(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): HSLObject[];
-    public static getBlendHSLObject(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): HSLObject[];
-    public static getBlendHSLObject(
+    public static getBlendHSLObject: GetBlendOverload<HSLObject> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): HSLObject[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.HSL,
-            false,
-            false,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.HSL,
+        false,
+        false,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendHSL(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): string[];
-    public static getBlendHSL(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): string[];
-    public static getBlendHSL(
+    public static getBlendHSL: GetBlendOverload<string> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): string[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.HSL,
-            true,
-            false,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.HSL,
+        true,
+        false,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendHSLAObject(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): HSLObject[];
-    public static getBlendHSLAObject(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): HSLObject[];
-    public static getBlendHSLAObject(
+    public static getBlendHSLAObject: GetBlendOverload<HSLObject> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): HSLObject[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.HSL,
-            false,
-            true,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.HSL,
+        false,
+        true,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendHSLA(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): string[];
-    public static getBlendHSLA(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): string[];
-    public static getBlendHSLA(
+    public static getBlendHSLA: GetBlendOverload<string> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): string[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.HSL,
-            true,
-            true,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.HSL,
+        true,
+        true,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendHWBObject(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): HWBObject[];
-    public static getBlendHWBObject(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): HWBObject[];
-    public static getBlendHWBObject(
+    public static getBlendHWBObject: GetBlendOverload<HWBObject> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): HWBObject[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.HWB,
-            false,
-            false,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.HWB,
+        false,
+        false,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendHWB(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): string[];
-    public static getBlendHWB(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): string[];
-    public static getBlendHWB(
+    public static getBlendHWB: GetBlendOverload<string> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): string[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.HWB,
-            true,
-            false,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.HWB,
+        true,
+        false,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendHWBAObject(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): HWBObject[];
-    public static getBlendHWBAObject(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): HWBObject[];
-    public static getBlendHWBAObject(
+    public static getBlendHWBAObject: GetBlendOverload<HWBObject> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): HWBObject[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.HWB,
-            false,
-            true,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.HWB,
+        false,
+        true,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendHWBA(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): string[];
-    public static getBlendHWBA(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): string[];
-    public static getBlendHWBA(
+    public static getBlendHWBA: GetBlendOverload<string> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): string[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.HWB,
-            true,
-            true,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.HWB,
+        true,
+        true,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendCIELabObject(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): CIELabObject[];
-    public static getBlendCIELabObject(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): CIELabObject[];
-    public static getBlendCIELabObject(
+    public static getBlendCIELabObject: GetBlendOverload<CIELabObject> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): CIELabObject[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.CIELab,
-            false,
-            false,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.CIELab,
+        false,
+        false,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendCIELab(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): string[];
-    public static getBlendCIELab(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): string[];
-    public static getBlendCIELab(
+    public static getBlendCIELab: GetBlendOverload<string> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): string[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.CIELab,
-            true,
-            false,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.CIELab,
+        true,
+        false,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendCIELabAObject(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): CIELabObject[];
-    public static getBlendCIELabAObject(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): CIELabObject[];
-    public static getBlendCIELabAObject(
+    public static getBlendCIELabAObject: GetBlendOverload<CIELabObject> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): CIELabObject[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.CIELab,
-            false,
-            true,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.CIELab,
+        false,
+        true,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendCIELabA(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): string[];
-    public static getBlendCIELabA(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): string[];
-    public static getBlendCIELabA(
+    public static getBlendCIELabA: GetBlendOverload<string> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): string[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.CIELab,
-            true,
-            true,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.CIELab,
+        true,
+        true,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendLCHObject(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): LCHObject[];
-    public static getBlendLCHObject(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): LCHObject[];
-    public static getBlendLCHObject(
+    public static getBlendLCHObject: GetBlendOverload<LCHObject> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): LCHObject[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.LCH,
-            false,
-            false,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.LCH,
+        false,
+        false,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendLCH(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): string[];
-    public static getBlendLCH(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): string[];
-    public static getBlendLCH(
+    public static getBlendLCH: GetBlendOverload<string> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): string[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.LCH,
-            true,
-            false,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.LCH,
+        true,
+        false,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendLCHAObject(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): LCHObject[];
-    public static getBlendLCHAObject(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): LCHObject[];
-    public static getBlendLCHAObject(
+    public static getBlendLCHAObject: GetBlendOverload<LCHObject> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): LCHObject[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.LCH,
-            false,
-            true,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.LCH,
+        false,
+        true,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
-    public static getBlendLCHA(
-        from: ColorInput,
-        to: ColorInput,
-        options?: InputOptions
-    ): string[];
-    public static getBlendLCHA(
-        from: ColorInput,
-        to: ColorInput,
-        steps?: number,
-        options?: InputOptions
-    ): string[];
-    public static getBlendLCHA(
+    public static getBlendLCHA: GetBlendOverload<string> = (
         from: ColorInput,
         to: ColorInput,
         thirdParameter?: number | InputOptions,
         fourthParameter?: InputOptions
-    ): string[] {
-        return getBlendReturn(
-            from,
-            to,
-            ColorModel.LCH,
-            true,
-            true,
-            ...getBlendReturnParams(
-                thirdParameter,
-                fourthParameter
-            )
-        );
-    }
+    ) => getBlendReturn(
+        from,
+        to,
+        ColorModel.LCH,
+        true,
+        true,
+        ...getBlendReturnParams(
+            thirdParameter,
+            fourthParameter
+        )
+    );
 
     // Color Mix Static Methods
-    public static getMixHEXObject(colors: ColorInput[], mode?: MixString): HEXObject {
-        return getMixReturn(
-            colors,
-            ColorModel.HEX,
-            false,
-            false,
-            mode
-        );
-    }
-
-    public static getMixHEX(colors: ColorInput[], mode: MixString = Mix.ADDITIVE): string {
-        return getMixReturn(
-            colors,
-            ColorModel.HEX,
-            true,
-            false,
-            mode
-        );
-    }
-
-    public static getMixHEXAObject(colors: ColorInput[], mode: MixString = Mix.ADDITIVE): HEXObject {
-        return getMixReturn(
-            colors,
-            ColorModel.HEX,
-            false,
-            true,
-            mode
-        );
-    }
-
-    public static getMixHEXA(colors: ColorInput[], mode: MixString = Mix.ADDITIVE): string {
-        return getMixReturn(
-            colors,
-            ColorModel.HEX,
-            true,
-            true,
-            mode
-        );
-    }
-
-    public static getMixRGBObject(
+    public static getMixHEXObject = (
         colors: ColorInput[],
-        options?: InputOptions
-    ): RGBObject;
-    public static getMixRGBObject(
+        mode?: MixString
+    ): HEXObject => getMixReturn(
+        colors,
+        ColorModel.HEX,
+        false,
+        false,
+        mode
+    );
+
+    public static getMixHEX = (
         colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): RGBObject;
-    public static getMixRGBObject(
+        mode: MixString = Mix.ADDITIVE
+    ): string => getMixReturn(
+        colors,
+        ColorModel.HEX,
+        true,
+        false,
+        mode
+    );
+
+    public static getMixHEXAObject = (
+        colors: ColorInput[],
+        mode: MixString = Mix.ADDITIVE
+    ): HEXObject => getMixReturn(
+        colors,
+        ColorModel.HEX,
+        false,
+        true,
+        mode
+    );
+
+    public static getMixHEXA = (
+        colors: ColorInput[],
+        mode: MixString = Mix.ADDITIVE
+    ): string => getMixReturn(
+        colors,
+        ColorModel.HEX,
+        true,
+        true,
+        mode
+    );
+
+    public static getMixRGBObject: GetMixOverload<RGBObject> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): RGBObject {
-        return getMixReturn(
-            colors,
-            ColorModel.RGB,
-            false,
-            false,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.RGB,
+        false,
+        false,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixRGB(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): string;
-    public static getMixRGB(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): string;
-    public static getMixRGB(
+    public static getMixRGB: GetMixOverload<string> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): string {
-        return getMixReturn(
-            colors,
-            ColorModel.RGB,
-            true,
-            false,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.RGB,
+        true,
+        false,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixRGBAObject(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): RGBObject;
-    public static getMixRGBAObject(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): RGBObject;
-    public static getMixRGBAObject(
+    public static getMixRGBAObject: GetMixOverload<RGBObject> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): RGBObject {
-        return getMixReturn(
-            colors,
-            ColorModel.RGB,
-            false,
-            true,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.RGB,
+        false,
+        true,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixRGBA(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): string;
-    public static getMixRGBA(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): string;
-    public static getMixRGBA(
+    public static getMixRGBA: GetMixOverload<string> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): string {
-        return getMixReturn(
-            colors,
-            ColorModel.RGB,
-            true,
-            true,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.RGB,
+        true,
+        true,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixHSLObject(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): HSLObject;
-    public static getMixHSLObject(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): HSLObject;
-    public static getMixHSLObject(
+    public static getMixHSLObject: GetMixOverload<HSLObject> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): HSLObject {
-        return getMixReturn(
-            colors,
-            ColorModel.HSL,
-            false,
-            false,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.HSL,
+        false,
+        false,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixHSL(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): string;
-    public static getMixHSL(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): string;
-    public static getMixHSL(
+    public static getMixHSL: GetMixOverload<string> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): string {
-        return getMixReturn(
-            colors,
-            ColorModel.HSL,
-            true,
-            false,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.HSL,
+        true,
+        false,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixHSLAObject(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): HSLObject;
-    public static getMixHSLAObject(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): HSLObject;
-    public static getMixHSLAObject(
+    public static getMixHSLAObject: GetMixOverload<HSLObject> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): HSLObject {
-        return getMixReturn(
-            colors,
-            ColorModel.HSL,
-            false,
-            true,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.HSL,
+        false,
+        true,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixHSLA(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): string;
-    public static getMixHSLA(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): string;
-    public static getMixHSLA(
+    public static getMixHSLA: GetMixOverload<string> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): string {
-        return getMixReturn(
-            colors,
-            ColorModel.HSL,
-            true,
-            true,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.HSL,
+        true,
+        true,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixHWBObject(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): HWBObject;
-    public static getMixHWBObject(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): HWBObject;
-    public static getMixHWBObject(
+    public static getMixHWBObject: GetMixOverload<HWBObject> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): HWBObject {
-        return getMixReturn(
-            colors,
-            ColorModel.HWB,
-            false,
-            false,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.HWB,
+        false,
+        false,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixHWB(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): string;
-    public static getMixHWB(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): string;
-    public static getMixHWB(
+    public static getMixHWB: GetMixOverload<string> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): string {
-        return getMixReturn(
-            colors,
-            ColorModel.HWB,
-            true,
-            false,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.HWB,
+        true,
+        false,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixHWBAObject(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): HWBObject;
-    public static getMixHWBAObject(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): HWBObject;
-    public static getMixHWBAObject(
+    public static getMixHWBAObject: GetMixOverload<HWBObject> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): HWBObject {
-        return getMixReturn(
-            colors,
-            ColorModel.HWB,
-            false,
-            true,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.HWB,
+        false,
+        true,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixHWBA(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): string;
-    public static getMixHWBA(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): string;
-    public static getMixHWBA(
+    public static getMixHWBA: GetMixOverload<string> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): string {
-        return getMixReturn(
-            colors,
-            ColorModel.HWB,
-            true,
-            true,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.HWB,
+        true,
+        true,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixCIELabObject(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): CIELabObject;
-    public static getMixCIELabObject(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): CIELabObject;
-    public static getMixCIELabObject(
+    public static getMixCIELabObject: GetMixOverload<CIELabObject> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): CIELabObject {
-        return getMixReturn(
-            colors,
-            ColorModel.CIELab,
-            false,
-            false,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.CIELab,
+        false,
+        false,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixCIELab(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): string;
-    public static getMixCIELab(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): string;
-    public static getMixCIELab(
+    public static getMixCIELab: GetMixOverload<string> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): string {
-        return getMixReturn(
-            colors,
-            ColorModel.CIELab,
-            true,
-            false,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.CIELab,
+        true,
+        false,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixCIELabAObject(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): CIELabObject;
-    public static getMixCIELabAObject(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): CIELabObject;
-    public static getMixCIELabAObject(
+    public static getMixCIELabAObject: GetMixOverload<CIELabObject> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): CIELabObject {
-        return getMixReturn(
-            colors,
-            ColorModel.CIELab,
-            false,
-            true,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.CIELab,
+        false,
+        true,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixCIELabA(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): string;
-    public static getMixCIELabA(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): string;
-    public static getMixCIELabA(
+    public static getMixCIELabA: GetMixOverload<string> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): string {
-        return getMixReturn(
-            colors,
-            ColorModel.CIELab,
-            true,
-            true,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.CIELab,
+        true,
+        true,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixLCHObject(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): LCHObject;
-    public static getMixLCHObject(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): LCHObject;
-    public static getMixLCHObject(
+    public static getMixLCHObject: GetMixOverload<LCHObject> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): LCHObject {
-        return getMixReturn(
-            colors,
-            ColorModel.LCH,
-            false,
-            false,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.LCH,
+        false,
+        false,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixLCH(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): string;
-    public static getMixLCH(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): string;
-    public static getMixLCH(
+    public static getMixLCH: GetMixOverload<string> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): string {
-        return getMixReturn(
-            colors,
-            ColorModel.LCH,
-            true,
-            false,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.LCH,
+        true,
+        false,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixLCHAObject(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): LCHObject;
-    public static getMixLCHAObject(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): LCHObject;
-    public static getMixLCHAObject(
+    public static getMixLCHAObject: GetMixOverload<LCHObject> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): LCHObject {
-        return getMixReturn(
-            colors,
-            ColorModel.LCH,
-            false,
-            true,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.LCH,
+        false,
+        true,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
-    public static getMixLCHA(
-        colors: ColorInput[],
-        options?: InputOptions
-    ): string;
-    public static getMixLCHA(
-        colors: ColorInput[],
-        mode?: MixString,
-        options?: InputOptions
-    ): string;
-    public static getMixLCHA(
+    public static getMixLCHA: GetMixOverload<string> = (
         colors: ColorInput[],
         secondParameter?: MixString | InputOptions,
         thirdParameter?: InputOptions
-    ): string {
-        return getMixReturn(
-            colors,
-            ColorModel.LCH,
-            true,
-            true,
-            ...getMixReturnParameters(
-                secondParameter,
-                thirdParameter
-            )
-        );
-    }
+    ) => getMixReturn(
+        colors,
+        ColorModel.LCH,
+        true,
+        true,
+        ...getMixReturnParameters(
+            secondParameter,
+            thirdParameter
+        )
+    );
 
     // Get shades static method
-    public static getShades(color: string, options?: InputOptions): string[];
-    public static getShades(color: HEXObject, options?: InputOptions): HEXObject[];
-    public static getShades(color: RGBObject, options?: InputOptions): RGBObject[];
-    public static getShades(color: HSLObjectGeneric, options?: InputOptions): HSLObject[];
-    public static getShades(color: HWBObjectGeneric, options?: InputOptions): HWBObject[];
-    public static getShades(color: CIELabObjectGeneric, options?: InputOptions): CIELabObject[];
-    public static getShades(color: LCHObjectGeneric, options?: InputOptions): LCHObject[];
-
-    public static getShades(color: string, shades?: number, options?: InputOptions): string[];
-    public static getShades(color: HEXObject, shades?: number, options?: InputOptions): HEXObject[];
-    public static getShades(color: RGBObject, shades?: number, options?: InputOptions): RGBObject[];
-    public static getShades(color: HSLObjectGeneric, shades?: number, options?: InputOptions): HSLObject[];
-    public static getShades(color: HWBObjectGeneric, shades?: number, options?: InputOptions): HWBObject[];
-    public static getShades(color: CIELabObjectGeneric, shades?: number, options?: InputOptions): CIELabObject[];
-    public static getShades(color: LCHObjectGeneric, shades?: number, options?: InputOptions): LCHObject[];
-
+    public static getShades<C extends ColorInputWithoutCMYK>(
+        color: C,
+        options?: InputOptions
+    ): StaticFunctionReturn<C>;
+    public static getShades<C extends ColorInputWithoutCMYK>(
+        color: C,
+        shades?: number,
+        options?: InputOptions
+    ): StaticFunctionReturn<C>;
     public static getShades(
         color: ColorInputWithoutCMYK,
         secondParameter?: number | InputOptions,
@@ -2229,22 +1745,15 @@ export class ColorTranslator {
     }
 
     // Get tints static method
-    public static getTints(color: string, options?: InputOptions): string[];
-    public static getTints(color: HEXObject, options?: InputOptions): HEXObject[];
-    public static getTints(color: RGBObject, options?: InputOptions): RGBObject[];
-    public static getTints(color: HSLObjectGeneric, options?: InputOptions): HSLObject[];
-    public static getTints(color: HWBObjectGeneric, options?: InputOptions): HWBObject[];
-    public static getTints(color: CIELabObjectGeneric, options?: InputOptions): CIELabObject[];
-    public static getTints(color: LCHObjectGeneric, options?: InputOptions): LCHObject[];
-
-    public static getTints(color: string, tints?: number, options?: InputOptions): string[];
-    public static getTints(color: HEXObject, tints?: number, options?: InputOptions): HEXObject[];
-    public static getTints(color: RGBObject, tints?: number, options?: InputOptions): RGBObject[];
-    public static getTints(color: HSLObjectGeneric, tints?: number, options?: InputOptions): HSLObject[];
-    public static getTints(color: HWBObjectGeneric, tints?: number, options?: InputOptions): HWBObject[];
-    public static getTints(color: CIELabObjectGeneric, tints?: number, options?: InputOptions): CIELabObject[];
-    public static getTints(color: LCHObjectGeneric, tints?: number, options?: InputOptions): LCHObject[];
-
+    public static getTints<C extends ColorInputWithoutCMYK>(
+        color: C,
+        options?: InputOptions
+    ): StaticFunctionReturn<C>;
+    public static getTints<C extends ColorInputWithoutCMYK>(
+        color: C,
+        tints?: number,
+        options?: InputOptions
+    ): StaticFunctionReturn<C>;
     public static getTints(
         color: ColorInputWithoutCMYK,
         secondParameter?: number | InputOptions,
@@ -2261,40 +1770,28 @@ export class ColorTranslator {
     }
 
     // Color Harmony Static Method
-    public static getHarmony(color: string, options?: InputOptions): string[];
-    public static getHarmony(color: HEXObject, options?: InputOptions): HEXObject[];
-    public static getHarmony(color: RGBObject, options?: InputOptions): RGBObject[];
-    public static getHarmony(color: HSLObjectGeneric, options?: InputOptions): HSLObject[];
-    public static getHarmony(color: HWBObjectGeneric, options?: InputOptions): HWBObject[];
-    public static getHarmony(color: CIELabObjectGeneric, options?: InputOptions): CIELabObject[];
-    public static getHarmony(color: LCHObjectGeneric, options?: InputOptions): LCHObject[];
-
-    public static getHarmony(color: string, mode?: MixString, options?: InputOptions): string[];
-    public static getHarmony(color: HEXObject, mode?: MixString, options?: InputOptions): HEXObject[];
-    public static getHarmony(color: RGBObject, mode?: MixString, options?: InputOptions): RGBObject[];
-    public static getHarmony(color: HSLObjectGeneric, mode?: MixString, options?: InputOptions): HSLObject[];
-    public static getHarmony(color: HWBObjectGeneric, mode?: MixString, options?: InputOptions): HWBObject[];
-    public static getHarmony(color: CIELabObjectGeneric, mode?: MixString, options?: InputOptions): CIELabObject[];
-    public static getHarmony(color: LCHObjectGeneric, mode?: MixString, options?: InputOptions): LCHObject[];
-
-    public static getHarmony(color: string, harmony?: Harmony, options?: InputOptions): string[];
-    public static getHarmony(color: HEXObject, harmony?: Harmony, options?: InputOptions): HEXObject[];
-    public static getHarmony(color: RGBObject, harmony?: Harmony, options?: InputOptions): RGBObject[];
-    public static getHarmony(color: HSLObjectGeneric, harmony?: Harmony, options?: InputOptions): HSLObject[];
-    public static getHarmony(color: HWBObjectGeneric, harmony?: Harmony, options?: InputOptions): HWBObject[];
-    public static getHarmony(color: CIELabObjectGeneric, harmony?: Harmony, options?: InputOptions): CIELabObject[];
-    public static getHarmony(color: LCHObjectGeneric, harmony?: Harmony, options?: InputOptions): LCHObject[];
-
-    public static getHarmony(color: string, harmony?: Harmony, mode?: MixString, options?: InputOptions): string[];
-    public static getHarmony(color: HEXObject, harmony?: Harmony, mode?: MixString, options?: InputOptions): HEXObject[];
-    public static getHarmony(color: RGBObject, harmony?: Harmony, mode?: MixString, options?: InputOptions): RGBObject[];
-    public static getHarmony(color: HSLObjectGeneric, harmony?: Harmony, mode?: MixString, options?: InputOptions): HSLObject[];
-    public static getHarmony(color: HWBObjectGeneric, harmony?: Harmony, mode?: MixString, options?: InputOptions): HWBObject[];
-    public static getHarmony(color: CIELabObjectGeneric, harmony?: Harmony, mode?: MixString, options?: InputOptions): CIELabObject[];
-    public static getHarmony(color: LCHObjectGeneric, harmony?: Harmony, mode?: MixString, options?: InputOptions): LCHObject[];
-
+    public static getHarmony<C extends ColorInputWithoutCMYK>(
+        color: C,
+        options?: InputOptions
+    ): StaticFunctionReturn<C>;
+    public static getHarmony<C extends ColorInputWithoutCMYK>(
+        color: C,
+        mode?: MixString,
+        options?: InputOptions
+    ): StaticFunctionReturn<C>;
+    public static getHarmony<C extends ColorInputWithoutCMYK>(
+        color: C,
+        harmony?: Harmony,
+        options?: InputOptions
+    ): StaticFunctionReturn<C>;
+    public static getHarmony<C extends ColorInputWithoutCMYK>(
+        color: C,
+        harmony?: Harmony,
+        mode?: MixString,
+        options?: InputOptions
+    ): StaticFunctionReturn<C>;
     public static getHarmony(
-        color: ColorInputWithoutCMYK,
+        color: ColorInputWithoutCMYK ,
         secondParam?: HarmonyString | MixString | InputOptions,
         thirdParam?: MixString | InputOptions,
         fourthParam?: InputOptions
