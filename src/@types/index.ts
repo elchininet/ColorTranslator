@@ -305,6 +305,27 @@ export type MatchOptions = {
 
 export type HarmonyFunction = (color: HSLObject, mode: MixString) => HSLObject[];
 
+export type StaticFunctionColorOutput<C> =
+    C extends HEXObject           ? HEXObject    :
+    C extends RGBObject           ? RGBObject    :
+    C extends HSLObjectGeneric    ? HSLObject    :
+    C extends HWBObjectGeneric    ? HWBObject    :
+    C extends CIELabObjectGeneric ? CIELabObject :
+    C extends LCHObjectGeneric    ? LCHObject    :
+    string;
+
+export type StaticFunctionReturn<C extends ColorInputWithoutCMYK> = StaticFunctionColorOutput<C>[];
+
+export type GetBlendOverload<C> = {
+    (from: ColorInput, to: ColorInput, options?: InputOptions): C[];
+    (from: ColorInput, to: ColorInput, steps?: number, options?: InputOptions): C[];
+};
+
+export type GetMixOverload<C> = {
+    (color: ColorInput[], options?: InputOptions): C;
+    (color: ColorInput[], mode?: MixString, options?: InputOptions): C;
+};
+
 export type CSSTransformer =
     | ((value: NumberOrString, index: number) => NumberOrString)
     | ((value: NumberOrString) => NumberOrString);
