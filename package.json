@@ -96,11 +96,5 @@
     "webpack-cli": "^7.0.2",
     "webpack-dev-server": "^5.2.4",
     "whatwg-fetch": "^3.6.20"
-  },
-  "pnpm": {
-    "overrides": {
-      "picomatch@<4.0.4": ">=4.0.4",
-      "serialize-javascript@<7.0.5": ">=7.0.5"
-    }
   }
 }

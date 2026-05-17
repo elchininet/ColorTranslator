@@ -15,7 +15,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v6
         with:
-          version: 10
+          version: 11
           run_install: false
       - name: Set up Node.js
         uses: actions/setup-node@v6
@@ -26,6 +26,8 @@ jobs:
         run: pnpm install --ignore-scripts --prefer-offline
       - name: Linting files
         run: pnpm lint
+      - name: Test demo build
+        run: pnpm run docs
       - name: Unit tests
         run: pnpm test --coverage
       - name: Build coverage
