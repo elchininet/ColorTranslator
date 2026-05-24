@@ -2,7 +2,7 @@ import '../../node_modules/google-code-prettify/bin/run_prettify.min';
 import '../../node_modules/google-code-prettify/bin/prettify.min.css';
 import '../../node_modules/google-code-prettify/styles/desert.css';
 import 'whatwg-fetch';
-import './styles.scss';
+import './styles.css';
 import { ColorTranslator, Harmony, Mix } from '../';
 import demo1 from './demo1';
 import demo2 from './demo2';
