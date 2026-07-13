@@ -82,7 +82,7 @@
     "jest": "^30.4.2",
     "mini-css-extract-plugin": "^2.10.2",
     "plop": "^4.0.5",
-    "postcss": "^8.5.16",
+    "postcss": "^8.5.17",
     "postcss-calc": "^10.1.1",
     "postcss-for": "^2.1.1",
     "postcss-loader": "^8.2.1",
