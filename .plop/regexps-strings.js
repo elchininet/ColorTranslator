@@ -24,7 +24,7 @@ const RELATIVE_LAB_COLOR = `(?:[lab]|${NUMBER_WITH_DECIMALS}|${CALC_LAB_COLOR})`
 const RELATIVE_LCH_COLOR = `(?:[lch]|${NUMBER_WITH_DECIMALS}|${CALC_LCH_COLOR})`;
 const RELATIVE_ALPHA = `(?:${NUMBER_WITH_DECIMALS}%?|${CALC_ALPHA_COLOR}|alpha)`;
 
-module.exports = {
+export default {
     COLOR_REGEXP_STRINGS: {
         HEX: `
             ^#(?:
