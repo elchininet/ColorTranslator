@@ -1,17 +1,17 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const aliases = require('./aliases');
+import path from 'node:path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import aliases from './aliases.js';
 
-module.exports = {
+export default {
     devtool: 'eval-source-map',
     target: 'web',
     entry: './src/@demo/demo.js',
     output: {
         filename: 'scripts/bundle.js',
-        path: path.resolve(__dirname, 'docs'),
+        path: path.resolve('docs'),
         libraryTarget: 'window'
     },
     module: {
