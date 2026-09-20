@@ -11,7 +11,9 @@ export default {
     postcssNested,
     autoprefixer,
     postcssSimpleVars,
-    postcssCalc,
+    postcssCalc({
+      unwrapSingleValue: true
+    }),
     postcssFor
   ]
 };

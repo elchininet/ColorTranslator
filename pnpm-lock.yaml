@@ -70,8 +70,8 @@ importers:
         specifier: ^8.5.28
         version: 8.5.28
       postcss-calc:
-        specifier: ^11.2.0
-        version: 11.2.0(postcss@8.5.28)
+        specifier: ^11.2.1
+        version: 11.2.1(postcss@8.5.28)
       postcss-for:
         specifier: ^2.1.1
         version: 2.1.1
@@ -3106,8 +3106,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  postcss-calc@11.2.0:
-    resolution: {integrity: sha512-GeWPgrs+s7W0b35ePAMvyNq0fP4fKsJXt9dLmO919TTiZ93aVUj+enI5t5eba7/YMkUJvWanNunMctyeuP+Dsg==}
+  postcss-calc@11.2.1:
+    resolution: {integrity: sha512-B5KZhrbeVyFznh7aj96O9oYvmipuobzWJVlPZ2NksjHdgSaqiVJ0UijuOuQTk/KVIzrKXp7399AiZGKtZF0jZA==}
     engines: {node: ^22.22.3 || ^24.15 || >=26.0}
     peerDependencies:
       postcss: ^8.5.28
@@ -7165,7 +7165,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  postcss-calc@11.2.0(postcss@8.5.28):
+  postcss-calc@11.2.1(postcss@8.5.28):
     dependencies:
       '@csstools/css-tokenizer': 4.0.1
       postcss: 8.5.28
