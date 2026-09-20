@@ -84,7 +84,7 @@
     "mini-css-extract-plugin": "^2.10.2",
     "plop": "^4.0.5",
     "postcss": "^8.5.28",
-    "postcss-calc": "^11.2.0",
+    "postcss-calc": "^11.2.1",
     "postcss-for": "^2.1.1",
     "postcss-loader": "^8.2.1",
     "postcss-nested": "^8.0.1",
