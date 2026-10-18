@@ -12,7 +12,8 @@ export default {
     autoprefixer,
     postcssSimpleVars,
     postcssCalc({
-      unwrapSingleValue: true
+      unwrapSingleValue: true,
+      precision: false
     }),
     postcssFor
   ]
