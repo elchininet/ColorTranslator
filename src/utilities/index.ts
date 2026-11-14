@@ -27,6 +27,7 @@ import {
     MAX_HUE,
     MAX_LAB,
     MAX_LCH_C,
+    MAX_PCENT,
     Mix,
     PCENT,
     VALID_COLOR_OBJECTS
@@ -138,15 +139,15 @@ export const getBase150Number = (color: string): number => {
     return minmax(+color, -MAX_LCH_C, MAX_LCH_C);
 };
 
-//---Calculate a decimal 0-1 value from CMYK value
+//---Calculate a decimal 0-100 value from CMYK value
 export const getCMYKNumber = (color: string, base100: boolean): number => {
-    const value = PCENT.test(color)
-        ? percentNumber(color)
-        : +color;
-    if (base100) {
-        return Math.min(value * 100, 100);
+    if (PCENT.test(color)) {
+        return Math.min(percentNumber(color), MAX_PCENT);
     }
-    return Math.min(value, 100);
+    const value = +color;
+    return base100
+        ? Math.min(+value * MAX_PCENT, MAX_PCENT)
+        : Math.min(+value, MAX_PCENT);
 };
 
 //---Round value

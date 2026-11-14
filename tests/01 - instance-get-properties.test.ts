@@ -222,6 +222,57 @@ CMYK_COLORS.forEach((color) => {
 
 });
 
+describe('CMYK percentage mid-range colors', () => {
+
+    // Grey (#808080) is 50% K in CMYK
+    const GREY = '#808080';
+    it(`toHEX from cmyk(0%,0%,0%,50%) returns ${GREY}`, () => {
+        expect(ColorTranslator.toHEX('device-cmyk(0% 0% 0% 50%)')).toBe(GREY);
+    });
+
+    it(`toHEX from cmyk(0, 0, 0, 0.5) returns ${GREY}`, () => {
+        expect(ColorTranslator.toHEX('device-cmyk(0 0 0 0.5)')).toBe(GREY);
+    });
+
+    it(`toHEX from CMYK object {C:0,M:0,Y:0,K:50} (0-100 range) returns ${GREY}`, () => {
+        expect(ColorTranslator.toHEX({ C: 0, M: 0, Y: 0, K: 50 })).toBe(GREY);
+    });
+
+    it(`toHEX from CMYK object {C:0,M:0,Y:0,K:0.5} (0-1 range) returns ${GREY}`, () => {
+        expect(ColorTranslator.toHEX({ C: 0, M: 0, Y: 0, K: 0.5 })).toBe(GREY);
+    });
+
+    // Dark blue (#000080) is 50% K in CMYK
+    const BLUE = '#000080';
+    it(`toHEX from cmyk(100%,100%,0%,50%) returns ${BLUE}`, () => {
+        expect(ColorTranslator.toHEX('cmyk(100%,100%,0%,50%)')).toBe(BLUE);
+    });
+
+    it(`toHEX from cmyk(1,1,0,0.5) returns ${BLUE}`, () => {
+        expect(ColorTranslator.toHEX('cmyk(1,1,0,0.5)')).toBe(BLUE);
+    });
+
+    it(`toHEX from {C:100,M:100,Y:0,K:50} (0-100 range) returns ${BLUE}`, () => {
+        expect(ColorTranslator.toHEX({C:100,M:100,Y:0,K:50})).toBe(BLUE);
+    });
+
+    it(`toHEX from CMYK object {C:1,M:1,Y:0,K:0.5} (0-1 range) returns ${BLUE}`, () => {
+        expect(ColorTranslator.toHEX({C:1,M:1,Y:0,K:0.5})).toBe(BLUE);
+    });
+
+    // Non-grey mid-range: cmyk(50% 0% 50% 0%) => R=127.5, G=255, B=127.5 => #80FF80
+    it('toHEX from cmyk(50% 0% 50% 0%) returns #80FF80', () => {
+        expect(ColorTranslator.toHEX('device-cmyk(50% 0% 50% 0%)')).toBe('#80FF80');
+    });
+
+    it('Round trip from HEX #123456', () => {
+        const hex = '#123456';
+        const cmyk = ColorTranslator.toCMYK(hex);
+        expect(ColorTranslator.toHEX(cmyk)).toBe(hex);
+    });
+
+});
+
 LAB_AND_LCH_COLORS.forEach((color) => {
 
     const { KEYWORD } = color;

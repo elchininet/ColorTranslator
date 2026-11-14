@@ -318,6 +318,7 @@ export const hwbToRgb = (H: number, W: number, B: number): RGBObject => {
 
 //---CMYK To RGB
 export const cmykToRgb = (C: number, M: number, Y: number, K: number): RGBObject => {
+    C /= 100; M /= 100; Y /= 100; K /= 100;
     K = 1 - K;
     return {
         R: minmax(

@@ -1,5 +1,9 @@
 # Changelog
 
+## [6.1.2] - 2026-11-14
+
+- Fix CMYK conversion bug regression
+
 ## [6.1.1] - 2026-03-31
 
 - Simplify static methods overloads
