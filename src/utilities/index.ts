@@ -146,8 +146,8 @@ export const getCMYKNumber = (color: string, base100: boolean): number => {
     }
     const value = +color;
     return base100
-        ? Math.min(+value * MAX_PCENT, MAX_PCENT)
-        : Math.min(+value, MAX_PCENT);
+        ? Math.min(value * MAX_PCENT, MAX_PCENT)
+        : Math.min(value, MAX_PCENT);
 };
 
 //---Round value
