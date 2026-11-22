@@ -17,7 +17,7 @@ export default [
         input: 'src/index.ts',
         output: [
             {
-                file: 'web/colortranslator.js',
+                file: 'dist/web/colortranslator.js',
                 format: 'iife',
                 name: 'colortranslator'
             },
