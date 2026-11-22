@@ -1,5 +1,9 @@
 # Changelog
 
+## [6.1.3] - 2026-11-22
+
+- Fix CommonJS imports
+
 ## [6.1.2] - 2026-11-14
 
 - Fix CMYK conversion bug regression
