@@ -3,14 +3,14 @@
   "version": "6.1.2",
   "description": "A JavaScript library, written in TypeScript, to convert among different color models",
   "type": "module",
-  "main": "index.js",
+  "main": "index.cjs",
   "module": "esm/index.js",
   "types": "index.d.ts",
   "exports": {
     ".": {
       "require": {
         "types": "./index.d.ts",
-        "default": "./index.js"
+        "default": "./index.cjs"
       },
       "import": {
         "types": "./esm/index.d.ts",
@@ -30,8 +30,7 @@
     "test:tag": "jest -t @testing",
     "lint": "eslint \"src/**/*.{js,ts}\" \"tests/**/*.ts\"",
     "clean": "./scripts/clean.sh",
-    "finish": "./scripts/finish.sh",
-    "build": "pnpm clean && rollup --config rollup.config.mjs && pnpm finish",
+    "build": "pnpm clean && rollup --config rollup.config.mjs",
     "demo": "webpack serve --open --config webpack.demo.config.js",
     "docs": "webpack --config webpack.demo.publish.js --mode production && pnpm build",
     "compile:regexps": "pnpm plop",
