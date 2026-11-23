@@ -102,5 +102,5 @@
     "webpack-dev-server": "^6.1.0",
     "whatwg-fetch": "^3.6.20"
   },
-  "packageManager": "pnpm@11.15.0"
+  "packageManager": "pnpm@12.23.0"
 }
